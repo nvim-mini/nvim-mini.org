@@ -1,0 +1,64 @@
+---
+title: "Announcing 'mini.colors'"
+author: Evgeni Chasnovski
+date: 2023-04-16
+categories: [announce, reddit]
+description: Tweak and save any color scheme (plus animate transition and convert between some color spaces)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/12o5t8l/minicolors_tweak_and_save_any_color_scheme_plus/)*
+
+{{< video 2023-04-16-announce-mini-colors/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I would like to announce a release of [mini.colors](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-colors.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) to tweak and save **any** color scheme. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.colors).
+
+This module is a combined result of a deep dive into color theory (which lead to a discovery of the beautiful [Oklab](https://bottosson.github.io/posts/oklab/) color space) and my desire to create a tool with which users can tweak any color scheme to fit their taste.
+
+For example, have you ever wondered how would warm Tokyonight look? With 'mini.colors' you are one `chan_invert('temperature')` call away. And here is the result, if anyone is curious:
+
+![Warm tokyonight](2023-04-16-announce-mini-colors/warm-tokyonight.png)
+
+Or have you ever wanted to make animated transition between color schemes? Replace `:colorscheme` command with `:Colorscheme` and you are good to go!
+
+Here are the features of 'mini.colors':
+
+- Create colorscheme object: either manually or by querying present color schemes (including currently active one).
+
+- Infer data about color scheme and/or modify based on it:
+    - Add transparency by removing background color (requires transparency in terminal emulator).
+    - Infer cterm attributes based on gui colors making it compatible with 'notermguicolors'.
+    - Resolve highlight group links.
+    - Compress by removing redundant highlight groups.
+    - Extract palette of used colors and/or infer terminal colors based on it.
+
+- Modify colors to better fit your taste and/or goals:
+    - Apply any function to color hex string.
+    - Update channels (like lightness, saturation, hue, temperature, red, green, blue, etc.).
+      Use either own function or one of the implemented methods:
+        - Add value to channel or multiply it by coefficient. Like "add 10 to saturation of every color" or "multiply saturation by 2" to make colors more saturated (less gray).
+        - Invert. Like "invert lightness" to convert between dark/light theme.
+        - Set to one or more values (picks closest to current one). Like "set to one or two hues" to make mono- or dichromatic color scheme.
+        - Repel from certain source(s) with stronger effect for closer values. Like "repel from hue 30" to remove red color from color scheme. Repel hue (how much is removed) is configurable.
+    - Simulate color vision deficiency.
+
+- Once color scheme is ready, either apply it to see effects right away or write it into a Lua file as a fully functioning separate color scheme.
+
+- Experiment interactively with a feedback.
+
+- Animate transition between color schemes either with `MiniColors.animate()` or with `:Colorscheme` user command.
+
+- Convert within supported color spaces (`MiniColors.convert()`):
+    - Hex string.
+    - 8-bit number (terminal colors).
+    - RGB.
+    - Oklab, Oklch, Okhsl.
+
+For a more hands-on learners there are ["Tweak quick start"](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-colors.md#tweak-quick-start) (essentially reproducing demo) and [recipes for some common tasks](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-colors.txt#L104).
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-colors.txt).
+
+Please, check it out and tell me what you think! Either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/301).
+
+Thanks!

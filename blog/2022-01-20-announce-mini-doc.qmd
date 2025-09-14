@@ -1,0 +1,64 @@
+---
+title: "Announcing 'mini.doc'"
+author: Evgeni Chasnovski
+date: 2022-01-20
+categories: [announce, reddit]
+description: Generate help files from EmmyLua-like annotations
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/s8p7g8/minidoc_generate_help_files_from_emmylualike/)*
+
+Hello people!
+
+I am happy to announce [mini.doc](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-doc.md) - module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for generating help files (what you read when using `:help`) from [EmmyLua](https://github.com/sumneko/lua-language-server/wiki/EmmyLua-Annotations)-like annotations (not **fully** complying with this standard but very close). The basic idea is to keep documentation close to Lua implementation and generate help files automatically. It was written mainly to document 'mini.nvim' (instead of previous great but not that flexible [tjdevries/tree-sitter-lua](https://github.com/tjdevries/tree-sitter-lua)), but other people can also benefit from this. And not only plugin authors: general user can also document their Neovim Lua setup!
+
+Basically, it works like this:
+
+- Parse every input file line by line from top to bottom to separate annotations from what is annotated ("afterlines").
+- Parse every consecutive annotation lines from top to bottom to determine for every line to which 'section' it belongs.
+- Construct hierarchical data structure that describes parsing result. Every hierarchy level is an enhanced Lua array of objects one level lower. Levels are 'section' (array of consecutive parsed annotation lines) < 'block' < 'file' < 'doc'.
+- Iteratively apply extensive (but fully configurable!) hooks to modify output. This is where everything essential happens: infer tag and signature from "afterlines", add new lines, format existing ones, and many more.
+- Collect lines and put them in output path.
+
+To give an example, this Lua code ...
+
+```lua
+--- My very first Lua function
+---
+---@param x number First number.
+---@param y number Second number.
+---
+---@return number Sum of `x` and `y`.
+Module.my_fun = function(x, y)
+  return x + y
+end
+```
+
+... will be converted into these lines (in actual help file they are a bit more colorful):
+
+```
+                                                               *Module.my_fun()*
+                           `Module.my_fun`({x}, {y})
+My very first Lua function
+
+Parameters~
+{x} `(number)` First number.
+{y} `(number)` Second number.
+
+Return~
+`(number)` Sum of `x` and `y`.
+```
+
+What extra features I consider to be very useful:
+
+- Having a way of automatically generate help lines based on what is documented (use `@eval` section with executable Lua code). It was a relief to be able to automatically generate default `config` values for all 'mini.nvim' modules.
+- Supporting `@alias` sections to avoid annotation duplication.
+- Supporting local configuration by creating a plain Lua script at configurable path. This is a currently proposed way of controlling which Lua files are parsed, where and how output is created, etc.
+
+For full disclosure, what features are not that great but probably will stay in order to manage complexity:
+
+- Not supporting markdown in comments in favor of [Vim's help syntax](https://vimhelp.org/helphelp.txt.html#help-writing).
+- Using [Lua string manipulation](https://www.lua.org/manual/5.1/manual.html#5.4) by default for basic tasks: what lines are recognized as annotations, how they are modified, how tag and signature are automatically created, etc.
+- Not having rich auto-formatting capabilities (like wrapping for target width, auto-indenting, etc.).
+
+Give it a try! Feedback is highly welcome (either here or in [this dedicated issue](https://github.com/nvim-mini/mini.nvim/issues/40)). I consider general design to be stable enough with only default behavior subject to change (based on your feedback) before next 'mini.nvim' stable release.

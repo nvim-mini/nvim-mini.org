@@ -1,0 +1,67 @@
+---
+title: "Announcing 'mini.hues'"
+author: Evgeni Chasnovski
+date: 2023-05-07
+categories: [announce, reddit]
+description: Generate configurable color scheme (plus 'randomhue' color scheme with random base colors)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/13an2tg/minihues_generate_configurable_color_scheme_plus/)*
+
+{{< video 2023-05-07-announce-mini-hues/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am really happy to tell you about the release of [mini.hues](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hues.md) - new color scheme module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) to generate configurable color scheme. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.hues).
+
+------
+
+This is an attempt to create my own color scheme leveraging the knowledge I got from [writing 'mini.colors'](2023-04-16-announce-mini-colors.qmd) and learning about [Oklab/Oklch color space](https://bottosson.github.io/posts/oklab/). But this is not **just** a color scheme, but a color scheme generator - it creates and applies palette based on (mandatory) background and foreground colors.
+
+I put quite a lot of thought into how this palette is applied to highlight groups. There are many small details that make reading code and text easier (at least for me), like bold keywords, orange delimiters, red `return`, etc.
+
+Here are [some configuration examples for you to try](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hues.md#example-configurations) (basically what is showcased in video demo).
+
+------
+
+Along with 'mini.hues' comes 'randomhue'. This is a good old configuration-free color scheme, but with a twist: each call to `:colorscheme randomhue` will result into random yet coherent colors. Generation is somewhat smart: it adapts to dark/light `'background'` option while base colors always have same lightness and chroma.
+
+First eight examples from the video can be a result of 'randomhue'. For examples of light background see [demo in README](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hues.md#demo).
+
+I've been daily driving 'randomhue' for about a week and I must say that it is quite a bit of fun. Small amount of randomness adds something special to user experience.
+
+------
+
+Here are the features of 'mini.hues':
+
+- Required to set two base colors: background and foreground. Their shades and other non-base colors are computed to be as much perceptually different as reasonably possible.
+
+- Configurable:
+    - Number of hues used for non-base colors (from 0 to 8).
+    - Saturation level ('low', 'medium', 'high').
+    - Accent color used for some selected UI elements.
+    - Plugin integration (can be selectively enabled for faster startup).
+
+- Random generator for base colors. Powers `randomhue` color scheme.
+
+- Lua function to compute palette used in color scheme.
+
+Supported highlight groups:
+
+- All built-in UI and syntax groups.
+
+- Built-in Neovim LSP and diagnostic.
+
+- Tree-sitter.
+
+- LSP semantic tokens.
+
+- 30+ modern Neovim plugins.
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-hues.txt).
+
+------
+
+Please, check it out and tell me what you think! I am also very curious about user experience with plugins (to be honest, not all of them were checked with an actual working plugin). You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/319).
+
+Thanks!

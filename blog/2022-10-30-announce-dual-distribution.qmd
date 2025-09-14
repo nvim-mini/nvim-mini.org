@@ -1,0 +1,52 @@
+---
+title: "'mini.nvim' now has dual distribution model"
+author: Evgeni Chasnovski
+date: 2022-10-30
+categories: [announce, reddit]
+description: Welcome 22 new standalone plugins!
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/yh7ao1/mininvim_now_has_dual_distribution_model_welcome/)*
+
+Hello, Neovim users!
+
+For more than a year I've been developing a [mini.nvim](https://github.com/nvim-mini/mini.nvim) plugin - library of 20+ independent Lua modules improving overall Neovim experience with minimal effort. Each one can be used separately without any startup and usage overhead. In this post I am announcing its **dual distribution**: both as current "bundle" and standalone plugins for each module.
+
+Initial motivation behind 'mini.nvim' was to share with community a set of small-ish modules which I had developed for myself in spare time for fun. As almost each module initially was mediocre compared to analogues, to gain visibility I had come up with the idea of bundling them together in one "traditional" plugin and ship them as a single Git repository. It kind of worked and in slightly more than a year since [initial announcement](2021-10-13-announce-mini-nvim.qmd) it hit 1000 GitHub stars, for which I am super grateful! This was only possible with your support and contributions. Thank you!
+
+However, although this "bundle" approach fulfilled (and keeps fulfilling) its purposes, it also immediately got criticised with some legitimate arguments (albeit personally sometimes a little far-fetched). So in the back of my head I kept thinking about addressing this in a way that would make me comfortable continuing improving 'mini.nvim'. And I think the dual distribution model is the solution here.
+
+**In a nutshell**, 'mini.nvim' will continue its development as before, but at the same time each module will also be distributed as a standalone plugin. This will be done by running a script (first manually; then, hopefully, automatically) which inside each standalone plugin will duplicate 'mini.nvim' Git commits relevant to the plugin. This way history of all incremental changes will be preserved. As a slight bonus, each plugin is super lightweight as they come only with the files necessary for their distribution (no testing infrastructure, etc.).
+
+Consider standalone plugins only as an alternative distribution of 'mini.nvim' modules. All issues, PRs and other user interaction will be done in 'mini.nvim' repo (mostly because all testing infrastructure is set up there).
+
+So please welcome 22 new standalone plugins:
+
+| Plugin name and link                                                | Short description                           |
+|---------------------------------------------------------------------|---------------------------------------------|
+| [mini.ai](https://github.com/nvim-mini/mini.ai)                   | Extend and create `a`/`i` textobjects       |
+| [mini.align](https://github.com/nvim-mini/mini.align)             | Align text interactively                    |
+| [mini.base16](https://github.com/nvim-mini/mini.base16)           | Base16 colorscheme creation                 |
+| [mini.bufremove](https://github.com/nvim-mini/mini.bufremove)     | Remove buffers                              |
+| [mini.comment](https://github.com/nvim-mini/mini.comment)         | Fast and familiar per-line comment          |
+| [mini.completion](https://github.com/nvim-mini/mini.completion)   | Completion and signature help               |
+| [mini.cursorword](https://github.com/nvim-mini/mini.cursorword)   | Autohighlight word under cursor             |
+| [mini.doc](https://github.com/nvim-mini/mini.doc)                 | Generate Neovim help files                  |
+| [mini.fuzzy](https://github.com/nvim-mini/mini.fuzzy)             | Fuzzy matching                              |
+| [mini.indentscope](https://github.com/nvim-mini/mini.indentscope) | Visualize and operate on indent scope       |
+| [mini.jump](https://github.com/nvim-mini/mini.jump)               | Jump forward/backward to a single character |
+| [mini.jump2d](https://github.com/nvim-mini/mini.jump2d)           | Jump within visible lines                   |
+| [mini.map](https://github.com/nvim-mini/mini.map)                 | Window with buffer text overview            |
+| [mini.misc](https://github.com/nvim-mini/mini.misc)               | Miscellaneous useful functions              |
+| [mini.pairs](https://github.com/nvim-mini/mini.pairs)             | Autopairs                                   |
+| [mini.sessions](https://github.com/nvim-mini/mini.sessions)       | Session management                          |
+| [mini.starter](https://github.com/nvim-mini/mini.starter)         | Fast and flexible start screen              |
+| [mini.statusline](https://github.com/nvim-mini/mini.statusline)   | Statusline                                  |
+| [mini.surround](https://github.com/nvim-mini/mini.surround)       | Fast and feature-rich surround actions      |
+| [mini.tabline](https://github.com/nvim-mini/mini.tabline)         | Tabline                                     |
+| [mini.test](https://github.com/nvim-mini/mini.test)               | Test Neovim plugins                         |
+| [mini.trailspace](https://github.com/nvim-mini/mini.trailspace)   | Work with trailing whitespace               |
+
+If you are looking where to start, I am particularly proud of 'mini.ai', 'mini.align', 'mini.indentscope', 'mini.starter', and 'mini.surround'. For Neovim plugin authors I can not recommend enough 'mini.doc' and 'mini.test', they were life changers for my workflow.
+
+If you find my work useful, please leave GitHub star for 'mini.nvim' itself and/or for its standalone plugins. Or simply share this news so that more people are aware of it. This really motivates my work on 'mini.nvim'. I am looking forward to implementing some really interesting I have. Thanks!

@@ -1,0 +1,35 @@
+---
+title: "Release 0.10.0"
+author: Evgeni Chasnovski
+date: 2023-09-05
+categories: [release, reddit]
+description: Files, clue, operators, and minor updates
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/16antd6/mininvim_release_0100_files_clue_operators_and/)*
+
+Hello, Neovim users!
+
+I would like to offer you to join me in saying late greetings to this autumn with a release of [mini.nvim](https://github.com/nvim-mini/mini.nvim) version 0.10.0. It is mostly about introducing three (quite feature full, dare I say) modules and minor updates of existing ones.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.10.0) if you are curious.
+
+------
+
+Three new modules came out of beta-testing:
+
+- [mini.files](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md) - Navigate and manipulate file system. A file explorer with column view capable of manipulating file system by editing text. Can create/delete/rename/copy/move files/directories inside and across directories.
+
+- [mini.clue](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-clue.md) - Show next key clues. Think about it as somewhat of a cross between 'which-key' and 'hydra'. Implements custom key query process with customizable opt-in triggers, next key descriptions (clues), hydra-like submodes, window delay/config. Provides clue sets for some built-in concepts: `g`/`z` keys, window commands, etc.
+
+- [mini.operators](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-operators.md) - Various text edit operators: replace, exchange, multiply, sort, evaluate. Creates mappings to operate on textobject, line, and visual selection. Supports `count` and dot-repeat.
+
+------
+
+The most prominent update of existing modules comes from 'mini.surround': its `add` (`sa`) now can replicate left and right parts by respecting `[count]`. In Normal mode two kinds of `[count]` is respected: one for operator (replicates left and right parts) and one for textobject/motion. In Visual mode `[count]` replicates parts.
+
+------
+
+All of new modules pack a lot of functionality in a small container and (at least I hope) user-friendly design. If you haven't already, please do check them out.
+
+Thanks for reading! Hope to see you in the next module release!

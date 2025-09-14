@@ -1,0 +1,35 @@
+---
+title: "Announcing 'mini.animate'"
+author: Evgeni Chasnovski
+date: 2022-12-22
+categories: [announce, reddit]
+description: Animate common Neovim actions (cursor movement, scroll, resize, window open/close)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/zsos1d/minianimate_animate_common_neovim_actions_cursor/)*
+
+{{< video 2022-12-22-announce-mini-animate/demo.mp4 >}}
+
+Hello, Neovim users!
+
+After a lot of struggle, I am happy to announce [mini.animate](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-animate.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) which adds animation to some common Neovim actions. Following [dual distribution model](2022-10-30-announce-dual-distribution.qmd), it can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.animate).
+
+This module aims to enhance visual user experience with as little setup and config intrusion as possible. Granted, not everyone likes animations in their editor, and that is OK. I myself didn't use this kind of plugins, but recently found that animation helps in various subtle ways to more precisely target my focus.
+
+Main features:
+
+- Works out of the box with a single `require('mini.animate').setup()`. No extra mappings or commands needed.
+- Animate **cursor movement** inside same buffer by showing customizable path.
+- Animate **scrolling** with a series of subscrolls ("smooth scrolling").
+- Animate **window resize** by gradually changing sizes of all windows.
+- Animate **window open/close** with visually updating floating window.
+- Timings for all actions can be customized independently.
+- Action animations can be enabled/disabled independently.
+- All animations are asynchronous/non-blocking and trigger a targeted event which can be used to perform actions after animation is done.
+- `MiniAnimate.animate()` function which can be used to perform own animations.
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-animate.txt).
+
+Please, check it out and tell me what you think! Either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/177).
+
+Thanks!

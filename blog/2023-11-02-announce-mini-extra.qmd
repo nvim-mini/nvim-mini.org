@@ -1,0 +1,53 @@
+---
+title: "Announcing 'mini.extra'"
+author: Evgeni Chasnovski
+date: 2023-11-02
+categories: [announce, reddit]
+description: Extra 'mini.nvim' functionality. Many pickers for 'mini.pick', textobjects for 'mini.ai', and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/17m65jn/miniextra_extra_mininvim_functionality_many/)*
+
+{{< video 2023-11-02-announce-mini-extra/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Today I would like to tell you about the release of [mini.extra](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim). It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.extra).
+
+Here is a [link to the video demo](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md#demo).
+
+------
+
+This is basically meant as a collection of functionality which is not essential enough for other 'mini.nvim' modules to include directly.
+
+Right now it mostly consists from many (20, to be exact) pre-built pickers for [mini.pick](2023-10-13-announce-mini-pick.qmd) plus some 'mini.ai' textobjects and 'mini.hipatterns' highlighters. But there might be more functionality and for other modules in the future.
+
+------
+
+Features:
+
+- Various pickers for 'mini.pick':
+    - Built-in diagnostic (`*MiniExtra.pickers.diagnostic()*`).
+    - File explorer (`*MiniExtra.pickers.explorer()*`).
+    - Git branches/commits/files/hunks (`*MiniExtra.pickers.git_hunks()*`, etc.).
+    - Command/search/input history (`*MiniExtra.pickers.history()*`).
+    - LSP references/symbols/etc. (`*MiniExtra.pickers.lsp()*`).
+    - Treesitter nodes (`*MiniExtra.pickers.treesitter()*`).
+    - **And much more**.
+
+    See [`*MiniExtra.pickers*` help tag](https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L209) for more.
+
+- Various textobject specifications for 'mini.ai'. See [`*MiniExtra.gen_ai_spec*` help tag](https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L73).
+
+- Various highlighters for 'mini.hipatterns'. See [`*MiniExtra.gen_highlighter*` help tag](https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L175).
+
+Notes:
+- This module requires only those 'mini.nvim' modules which are needed for a particular functionality: 'mini.pick' for pickers, etc.
+
+For full documentation see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-extra.txt).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/550).
+
+Thanks!

@@ -1,0 +1,32 @@
+---
+title: "Announcing 'mini.nvim'"
+author: Evgeni Chasnovski
+date: 2021-10-13
+categories: [announce, reddit]
+description: Collection of minimal, independent, and fast Lua modules
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/q7fiov/mininvim_collection_of_minimal_independent_and/)*
+
+Hello people!
+
+I would like to introduce you to my Neovim plugin: [mini.nvim](https://github.com/nvim-mini/mini.nvim). Basically, this is a collection of Lua modules each of which can be considered as a separate sub-plugin (meaning you don't have to use all modules, any number of them will do). This has lived for a very long time in my dotfiles, and I finally decided to share it with the world. Initial idea was to create custom targeted functionality (relatively balanced in terms of number of features and code/support) to fully own my Neovim config. As a side effect, it lead to reducing number of used plugins and to having much fun (when things worked :) ).
+
+Currently it has the following modules:
+
+- [mini.base16](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-base16.md) - fast implementation of base16 theme for manually supplied palette. Has unique palette generator which needs only background and foreground colors.
+- [mini.bufremove](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-bufremove.md) - buffer removing (unshow, delete, wipeout) while saving window layout.
+- [mini.comment](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-comment.md) - fast and familiar per-line code commenting.
+- [mini.completion](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-completion.md) - async (with customizable 'debounce' delay) 'two-stage chain completion': first builtin LSP, then configurable fallback. Also has functionality for completion item info and function signature (both in floating window appearing after customizable delay).
+- [mini.cursorword](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-cursorword.md) - automatic highlighting of word under cursor (displayed after customizable delay).
+- [mini.fuzzy](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-fuzzy.md) - functions for fast and simple fuzzy matching. It has not only functions to perform fuzzy matching of one string to others, but also a sorter for `telescope.nvim`.
+- [mini.misc](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-misc.md) - collection of miscellaneous useful functions. Like `put()` and `put_text()` which print Lua objects to command line and current buffer respectively.
+- [mini.pairs](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pairs.md) - autopairs plugin which has minimal defaults and functionality to do per-key expression mappings.
+- [mini.statusline](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-statusline.md) - minimal and fast statusline. Has ability to use custom content supplied with concise function (using module's provided section functions) along with builtin default. For full experience needs dependencies, but works without any of them.
+- [mini.surround](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-surround.md) - fast surround plugin. Add, delete, replace, find, highlight surrounding (like pair of parenthesis, quotes, etc.). Has special "function call", "tag", and "interactive" surroundings. Supports dot-repeatability, textobject, motions.
+- [mini.tabline](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-tabline.md) - minimal tabline which shows listed buffers in case of one tab and falls back to default otherwise. For full experience needs dependencies, but works without any of them.
+- [mini.trailspace](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-trailspace.md) - automatic highlighting of trailing whitespace with functionality to remove it.
+
+This currently was tested only on Linux inside clean and my full Neovim setup, but I think it should work on other platforms. There might be some period of turbulence after this post (maybe I missed something obvious), but all current functionality looks pretty stable.
+
+ Hope you'll like it :) Any feedback is highly appreciated.

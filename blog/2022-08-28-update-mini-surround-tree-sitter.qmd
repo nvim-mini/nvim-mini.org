@@ -1,0 +1,27 @@
+---
+title: "Updates of 'mini.surround': tree-sitter support and more"
+author: Evgeni Chasnovski
+date: 2022-08-28
+categories: [update, reddit]
+description: Tree-sitter support, "last"/"next" extended mappings, aliases, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/wzpzei/minisurround_new_features_treesitter_support/)*
+
+{{< video 2022-08-28-update-mini-surround-tree-sitter/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am happy to announce new features of ['mini.surround'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-surround.md) - module of ['mini.nvim'](https://github.com/nvim-mini/mini.nvim) for surrounding actions (add, delete, replace, find, highlight surrounding characters). All actions are dot-repeatable out of the box and operate on highly customizable set of surrounding identifiers. By default it defines mappings with common `s` prefix (`sa` for add, `sd` for delete, `sr` for replace, `sf` for find, `sh` for highlight), but setup similar to 'tpope/vim-surround' is, of course, [also possible](https://github.com/nvim-mini/mini.nvim/blob/085baefa6aca44526be621b15e7b688f996c2daf/doc/mini.txt#L5516-L5544).
+
+This update was prompted after the [release of 'mini.ai'](2022-07-28-announce-mini-ai.qmd) which can create custom textobjects. Its initial implementation was based on 'mini.surround' but in the process it got transformed into much more powerful design (at cost of some code and documentation complexity). Ironically, 'mini.surround' is now updated to share as much with 'mini.ai' as possible, which provides more integrated experience.
+
+New features:
+
+- **New surrounding specification format for updated, more powerful search logic**. This allows creating more flexible surroundings based on Lua patterns and functions. This also enables creating aliases (like new builtin `b` for brackets and `q`for quotes). **This is a breaking change for those who defined custom input surroundings**. Previous format will work until next release and transition to new one [is pretty straightforward](https://github.com/nvim-mini/mini.nvim/blob/085baefa6aca44526be621b15e7b688f996c2daf/doc/mini.txt#L5411-L5420).
+- **Tree-sitter support**. Thanks to new specification format you can now use tree-sitter based surroundings. More information is in the [help file](https://github.com/nvim-mini/mini.nvim/blob/085baefa6aca44526be621b15e7b688f996c2daf/doc/mini.txt#L5727-L5826). Note, that for full experience with function call surrounding, better update 'nvim-treesitter/nvim-treesitter-textobjects' to at least include changes from [this PR](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/250) (merged around 3 days ago).
+- **"Last"/"next" extended mappings**. With the same idea as in 'mini.ai', you can now use mappings with special suffixes (`l` for "last", `n` for "next") to operate on previous or next surrounding. This can be done for actions involving searching surrounding (delete, replace, find, highlight) but proved to be especially useful for finding next surrounding (as shown in demo).
+- **Support of `v:count` for input surrounding**. Now, for example, you can type `2sdf` to delete second (based on search method) function call.
+- For 'tpope/vim-surround' lovers, **open bracket identifiers (`(`, `[`, `{`, `<`) now include padding**: for input it will use all edge whitespace, for output - single space.
+
+Check it out and tell me what you think. Thanks!

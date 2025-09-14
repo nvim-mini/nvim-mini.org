@@ -1,0 +1,41 @@
+---
+title: "Release 0.9.0"
+author: Evgeni Chasnovski
+date: 2023-06-08
+categories: [release, reddit]
+description: Colors, comments, and maintenance
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/14498im/mininvim_release_090_colors_comments_and/)*
+
+Hello, Neovim users!
+
+I am once again greatly pleased to share the news about the release of [mini.nvim](https://github.com/nvim-mini/mini.nvim) version 0.9.0. It is mostly about three new modules related to colors, exciting new features of 'mini.comment', and some maintenance work.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.9.0) if you are curious.
+
+------
+
+Three new modules came out of beta-testing (all related to colors):
+
+- [mini.colors](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-colors.md) - Tweak and save any color scheme. This is my deep dive into color theory and Neovim color schemes in order to help other users solve common problems like "I generally like this color scheme but want it to be lighter / darker / more saturated / less saturated/ have transparent background / support `cterm` attributes / and more".
+- [mini.hues](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hues.md) - Generate configurable color scheme. After gaining more insight into color theory, I was confident enough to attempt and make my own color scheme generator (not following some pre-defined standards, like [mini.base16](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-base16.md)). And I like the result. Especially the `randomhue` color scheme which is my daily driver now.
+- [mini.hipatterns](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hipatterns.md) (**module number 30**) - Highlight patterns in text. Think about it as a more flexible middle ground between [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) and [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) with slightly more possibilities.
+
+------
+
+[mini.comment](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-comment.md) got substantial update following new features in Neovim 0.9.0:
+
+- **Tree-sitter aware local commenting out of the box** which uses tree-sitter information about locally active language to infer 'commentstring' option value. Works in most cases and usually ['JoosepAlviste/nvim-ts-context-commentstring'](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) is not needed anymore. Unfortunately, not in all cases, as some (overly) complex cases, like TSX, still need it.
+- New `options.custom_commentstring` option for a more granular customization of comment structure. This is where 'JoosepAlviste/nvim-ts-context-commentstring' can be used now.
+- New `get_commentstring()` function representing built-in logic of computing relevant 'commentstring'.
+
+------
+
+There were a lot of maintenance work related to long awaited deprecation of Neovim<=0.6 support. This means that 'mini.nvim' can finally use Lua API for common tasks like autocommands, mappings, and default highlight group creation. This also results into less exported functions (which were mostly there to work with autocommands and mappings) reducing tests and documentation.
+
+------
+
+If you feel adventurous to try new color scheme, tweak your own, add highlights to some patterns, or start using tree-sitter aware comments out of the box, this is a good opportunity to do it!
+
+Thanks for reading! Hope to see you in the next module release!

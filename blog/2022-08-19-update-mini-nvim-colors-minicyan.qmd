@@ -1,0 +1,23 @@
+---
+title: "Update of 'mini.base16' and a new minicyan color scheme"
+author: Evgeni Chasnovski
+date: 2022-08-19
+categories: [update, reddit]
+description: 25 new plugin integrations in 'mini.base16' plus 'minicyan' colorscheme
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/wsboke/mininvim_color_updates_25_new_plugin_integrations/)*
+
+!['minicyan' dark](2022-08-19-update-mini-nvim-colors-minicyan/demo-dark.png)
+!['minicyan' light](2022-08-19-update-mini-nvim-colors-minicyan/demo-light.png)
+
+Hello, Neovim users!
+
+I'd like to make a post about color updates in ['mini.nvim'](https://github.com/nvim-mini/mini.nvim) (collection of 20+ independent Lua plugins improving Neovim>=0.5 experience with minimal effort):
+
+- ['mini.base16'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-base16.md) got new 25 plugin integrations along with option to granularly control what highlight groups are created (to squeeze precious milliseconds of startup time). Here is a [full list of available integrations](https://github.com/nvim-mini/mini.nvim/blob/cc8d6bca1be014c865d99f19882bfc2549c8484e/doc/mini.txt#L1027-L1056) and [how they can be controlled](https://github.com/nvim-mini/mini.nvim/blob/cc8d6bca1be014c865d99f19882bfc2549c8484e/doc/mini.txt#L1159-L1175). Full disclosure: not all integrations are explicit (i.e. have new highlight groups created); some have very nice defaults which I chose not to override (like 'nvim-lualine/lualine.nvim'). Nevertheless, they will be monitored from time to time to see if any adjustment should be done.
+- There is a new 'minicyan' color scheme (shown in these screenshots). It is created with 'mini.base16' via its own [palette generator](https://github.com/nvim-mini/mini.nvim/blob/c1866193e1660fc02a2bc09c69e653d251b69b33/doc/mini.txt#L1114): it just needs foreground, background and accent chroma values to generate readable and coherent base16 palette (I am really proud of it somehow, to be honest). It has cyan and grey main colors which resulted into moderate contrast and saturation palette. Base cyan color came as inspiration from my [contribution to popular Neovim color schemes](https://echasnovski.com/blog/2022-07-20-i-contributed-to-toprated-neovim-color-schemes.html) journey.
+
+If you are looking for fast and fully featured color scheme, try 'mini.base16' with its palette generator and tell me what you think. Thanks!
+
+(Side note: I was **really** impressed with UI of [mason.nvim](https://github.com/mason-org/mason.nvim); check it out if you haven't already)

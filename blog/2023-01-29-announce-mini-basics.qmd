@@ -1,0 +1,31 @@
+---
+title: "Announcing 'mini.basics'"
+author: Evgeni Chasnovski
+date: 2023-01-29
+categories: [announce, reddit]
+description: Common configuration presets for options/mappings/autocommands
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/10o5sjm/minibasics_common_configuration_presets_for/)*
+
+{{< video 2023-01-29-announce-mini-basics/demo.mp4 >}}
+
+Hello, Neovim users!
+
+It is me again, posting this time about [mini.basics](https://github.com/nvim-mini/mini.nvim/blob/basics/readmes/mini-basics.md) - a module of [mini.nvim](https://github.com/nvim-mini/mini.nvim/tree/main) with common configuration presets for options, mappings, and autocommands. You can also install from a [standalone Git repository](https://github.com/nvim-mini/mini.basics).
+
+A while back I did a public Neovim options survey ([here are the results](https://echasnovski.com/blog/2022-12-08-results-of-neovim-builtin-options-survey.html)). One of the goals was to gather a commonly used option values to create a "crowd-sourced" moderate version of [tpope/vim-sensible](https://github.com/tpope/vim-sensible). Well, this is it.
+
+It has the following features:
+
+- **Presets for common options** (like 'termguicolors', 'number', 'ignorecase', etc.). It will only change option if it wasn't manually set before. For more info see [this portion of help file](https://github.com/nvim-mini/mini.nvim/blob/41940bbdb2a030ed0ddce0f2b1b4083ad5055c4e/doc/mini-basics.txt#L109) and/or [this part of source code](https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua#L405).
+- **Presets for common mappings** (like `j`/`k` to move by visible lines, `<C-s>` to save, toggle common options, and **much more**). For more info see [this portion of help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-basics.txt#L190) and/or [this part of source code](https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua#L513).
+- **Presets for common autocommands** (like highlight on yank, start Insert mode when opening terminal, etc.). For more info see [this portion of help file](https://github.com/nvim-mini/mini.nvim/blob/41940bbdb2a030ed0ddce0f2b1b4083ad5055c4e/doc/mini-basics.txt#L301) and/or [this part of source code](https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua#L639).
+
+Main goal of 'mini.basics' is to provide a relatively easier way for new-ish Neovim users to have a better "works out of the box" experience while having documented relevant options/mappings/autocommands to study. But more seasoned users almost surely will find something useful. Browsing source code and copying only some options/mappings/autocommands is ok, of course.
+
+Amusingly, development of this "basic" module led to creation of two other "less basic" modules: [mini.move](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-move.md) (here is a [the announcement](2023-01-15-announce-mini-move.qmd)) and one more that needs polishing. Initially I planned to incorporate most of [tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired) in 'mini.basics', but decided to use here only option toggling mappings (with default `\` prefix; can be configured); "next/previous" functionality will be in separate module. Stay tuned!
+
+Please, check it out and tell me what you think! Either here in comments or in dedicated [beta-testing](https://github.com/nvim-mini/mini.nvim/issues/209) issue.
+
+Thanks!

@@ -1,0 +1,55 @@
+---
+title: "Announcing 'mini.deps'"
+author: Evgeni Chasnovski
+date: 2024-02-11
+categories: [announce, reddit]
+description: Plugin manager with minimal yet sufficient user experience
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1aodopi/minideps_a_plugin_manager_with_minimal_yet/)*
+
+{{< video 2024-02-11-announce-mini-deps/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am happy to share with you a release of [mini.deps](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) which acts as a plugin manager to install and manage other plugins. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.deps).
+
+------
+
+This was one of the toughest modules to write as of yet. Although overall goal of managing plugins seems more or less straightforward, actually designing the balance between simplicity and usability has proved to be not as trivial. I ended up redesigning the overall approach three times. Combined with slow iteration process of simulating plugin updates, not trivial testing, and some real life issues, this took waaaay longer than I would've liked. Despite all this, it is now fully designed, implemented, tested, and documented.
+
+Overall, it uses Git and built-in packages to install, update, clean, and snapshot plugins. It is far less feature-rich than ['folke/lazy.nvim'](https://github.com/folke/lazy.nvim) and slightly more user-friendly than ['savq/paq-nvim'](https://github.com/savq/paq-nvim). In my opinion it ended up somewhere near ['junegunn/vim-plug'](https://github.com/junegunn/vim-plug) when talking about user experience.
+
+------
+
+Features:
+
+- Manage plugins utilizing Git and built-in packages with these actions:
+    - Add plugin to current session, download if absent.
+    - Update with/without confirm, with/without parallel download of new data.
+    - Delete unused plugins with/without confirm.
+    - Get / set / save / load snapshot.
+
+- Minimal yet flexible plugin specification:
+    - Plugin source.
+    - Name of target plugin directory.
+    - Checkout target: branch, commit, tag, etc.
+    - Monitor branch to track updates without checking out.
+    - Dependencies to be set up prior to the target plugin.
+    - Hooks to call before/after plugin is created/changed.
+
+- Helpers implementing two-stage startup: `now()` and `later()`.
+
+For slightly more details, see [overview in README](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md#overview).
+
+For even more information, see these tags in help file:
+- [`*MiniDeps-plugin-specification*`](https://github.com/nvim-mini/mini.nvim/blob/490dd84b69008f75bcd5e593b7a92b06832d5b16/doc/mini-deps.txt#L240)
+- [`*MiniDeps-commands*`](https://github.com/nvim-mini/mini.nvim/blob/490dd84b69008f75bcd5e593b7a92b06832d5b16/doc/mini-deps.txt#L286)
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/689).
+
+I do want to point out that it is a good idea to first try this without affecting your main config. Here is one example with [two quick steps of how to do this](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md#overview).
+
+Thanks!

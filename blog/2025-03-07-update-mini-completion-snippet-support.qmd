@@ -1,0 +1,36 @@
+---
+title: "Updates of 'mini.completion': snippet support (finally)"
+author: Evgeni Chasnovski
+date: 2025-03-07
+categories: [update, reddit]
+description: Plus many small improvements like scrolling and better highlighting in info/signature windows, and more.
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1j5n8y7/minicompletion_now_finally_has_snippet_support/)*
+
+Hello, Neovim users!
+
+The ['mini.completion'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-completion.md) module of 'mini.nvim' plugin has accumulated visible number of changes on latest `main` branch. As some of them were requested fairly often, I decided to make a separate post about it.
+
+The main improvement is (finally) added snippet support. That is, 'mini.completion' now can properly insert snippet completion entries. The main attention has gone into making it work with enabled ['mini.snippets'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md) module, but there is automated fallback to `vim.snippet` (on Neovim>=0.10).
+
+Other updates include:
+- Default mappings for scrolling down/up in both info/signature windows. Those are `<C-f>` and `<C-b>`, but can be configured (be careful with `<C-d>` and `<C-u>`, as they have special meaning during active built-in completion popup).
+- Significantly better highlighting in info/signature windows.
+- Support for `isIncomplete`, which means there will be automated update of completion list on the next key press if initial response from LSP server did not contain all possible items.
+- Better handling of label details and documentation, i.e. which goes into initial popup and which goes into info window.
+- Slightly different default UI for info and signature window: with border and title.
+
+Here is a [CHANGELOG entry](https://github.com/nvim-mini/mini.nvim/blob/main/CHANGELOG.md#minicompletion) with more details thus far and here is an [updated demo](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-completion.md#demo) (done in Neovim=0.11 which soon-ish should be released as stable).
+
+---
+
+These updates took **a lot** longer than I would have liked. Ignoring non-development related issues, this seems to be a result of my personal mental block when working with LSP related things. I think this is due to multiplied complexity from 1) LSP specification; 2) having to deal with different servers implementing it slightly differently; and 3) sometimes Neovim itself (mostly by having to deal with Vim's legacy part).
+
+Doing one small step at a time definitely helped me here and I am happy this part is over. There are still plans for LSP related functionality (making in-process LSP server for snippets loaded with 'mini.snippets' and adding create/rename/delete LSP support in 'mini.files'), so time to relax will not be long :)
+
+---
+
+Thanks for taking interest in 'mini.nvim' project and 'mini.completion' in particular! If you experience issues after these updates (and I imagine there will be), please create an issue/discussion and we can look into it.
+
+Hope to see you soon with new and exciting updates!

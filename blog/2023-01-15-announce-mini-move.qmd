@@ -1,0 +1,34 @@
+---
+title: "Announcing 'mini.move'"
+author: Evgeni Chasnovski
+date: 2023-01-15
+categories: [announce, reddit]
+description: Move any selection in any direction
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/10cigze/minimove_move_any_selection_in_any_direction/)*
+
+{{< video 2023-01-15-announce-mini-move/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Let me introduce you to [mini.move](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-move.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) which adds ability to move current visual selection or current line in all four directions (left, right, down, up). It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.move).
+
+To be perfectly honest, I didn't plan to write this module, as most of its functionality can be replicated using basic Vim actions. But while doing research for another upcoming module, I stumbled upon this kind of functionality in a form of simple mappings. It worked only for vertical movement in Visual mode and had several "quality of life" drawbacks (lack of `v:count` support, handling of undo, etc.). So **of course** it got me thinking if I can make it better without much complications (there are plugins with this functionality already, but their implementation feels disproportionally complex). Several couples of days later we got this module and I can appreciate visual feedback of this movement approach :)
+
+Main features:
+
+- Works in two modes:
+    - Visual mode. Select text (charwise with `v`, linewise with `V`, and blockwise with `CTRL-V`) and press customizable mapping to move in all four directions (left, right, down, up). It keeps Visual mode.
+    - Normal mode. Press customizable mapping to move current line in all four directions (left, right, down, up).
+    - Vertical linewise movement gets reindented with `=`. Horizontal linewise movement is same as indent with `>` and dedent with `<`.
+- Provides both mappings and Lua functions for motions.
+- Respects `v:count`. Movement mappings can be preceded by a number which multiplies command effect.
+- All consecutive moves (regardless of direction) can be undone by a single `u`.
+- Respects preferred column for vertical movement. It will vertically move selection as how cursor is moving (not strictly vertically if target column is not present in target line).
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-move.txt).
+
+Please, check it out and tell me what you think! Either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/199).
+
+Thanks!

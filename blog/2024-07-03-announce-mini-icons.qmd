@@ -1,0 +1,65 @@
+---
+title: "Announcing 'mini.icons'"
+author: Evgeni Chasnovski
+date: 2024-07-03
+categories: [announce, reddit]
+description: General icon provider. Several categories (file, directory, OS, LSP, etc.) and styles, better blending with color scheme, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1duf3w7/miniicons_general_icon_provider_several/)*
+
+![Default "glyph" style and dark color scheme](2024-07-03-announce-mini-icons/demo-glyph-dark.png)
+
+![Default "glyph" style and light color scheme](2024-07-03-announce-mini-icons/demo-glyph-light.png)
+
+![Fallback "ascii" style](2024-07-03-announce-mini-icons/demo-ascii.png)
+
+Hello, Neovim users!
+
+Let us rejoice at the release of [mini.icons](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-icons.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) intended to be a general icon provider. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.icons).
+
+------
+
+As recent releases of 'mini.diff' and 'mini.git' allowed 'mini.statusline' to require one less external dependency ('lewis6991/gitsigns.nvim'), I've got curious if 'nvim-tree/nvim-web-devicons' replacement can be fit in 'mini.nvim' design. Having custom solution for icons would benefit at least four modules (and probably more), so it seemed worth it. In the end, I found the approach that works for me and is based on several ideas:
+
+- Have the same "one main function to get icon and its highlight group" idea as 'nvim-web-devicons', but be more flexible and future proof. It explicitly requires category (like "file", "extension", "directory", etc.) and icon names (while 'nvim-web-devicons' mostly has only "file", "extension", and "filetype").
+
+- Follow an already established route in 'mini.nvim' and provide a fixed set of highlight groups which are used in the module. This allows better color scheme integration (both out of the box and inside color scheme) and easier bulk customization.
+
+- Provide fallback for users which can not use Nerd Fonts glyphs but still want their Neovim experience to be as beautiful as possible. This is achieved with `config.style = 'ascii'` setting (see screenshots).
+
+------
+
+Although the actual code logic is comparatively small, the major time consuming hurdles with 'mini.icons' were around it:
+
+- Compile common cases to explicitly support for various categories. The most effort needed to be put in 'filetype' support, as it is used as a fallback for richer Neovim integration. The current count of supported filetypes is a whopping 780!
+
+- Go through each icon to actually assign Nerd Fonts glyph and highlighting. It was monotonous but fun experience.
+
+- Make PRs to popular Neovim color schemes for you to have a better out of the box experience right after 'mini.icons' release. Ended up with 16 PRs!
+
+- Update relevant modules to prefer 'mini.icons' instead of 'nvim-web-devicons' (in backwards compatible way, of course). So now all 'mini.statusline', 'mini.tabline', 'mini.files', and 'mini.pick' use 'mini.icons' (if it is set up).
+
+------
+
+Features:
+
+- Provide icons with their highlighting via a single `MiniIcons.get()` for various categories: filetype, file/directory path, extension, operating system, LSP kind values. Icons and category defaults can be overridden.
+
+- Configurable styles: "glyph" (icon glyphs) or "ascii" (non-glyph fallback).
+
+- Fixed set of highlight groups (linked to built-in groups by default) for better blend with color scheme.
+
+- Caching for maximum performance.
+
+- Integration with `vim.filetype.add()` and `vim.filetype.match()`.
+
+- Mocking methods of 'nvim-tree/nvim-web-devicons' for better integrations with plugins outside 'mini.nvim'. See [`MiniIcons.mock_nvim_web_devicons()`](https://github.com/nvim-mini/mini.nvim/blob/bc6c0f7b49d71716c996a9422a46bbe5badec8ca/doc/mini-icons.txt#L356).
+
+------
+
+I sincerely hope that you give 'mini.icons' a try. With its final result, I think it is a better alternative to 'nvim-web-devicons'; both for end users and plugin authors. Here are the more detailed comparisons [for users](https://github.com/nvim-mini/mini.nvim/blob/bc6c0f7b49d71716c996a9422a46bbe5badec8ca/doc/mini-icons.txt#L58) and [for plugin authors](https://github.com/nvim-mini/mini.nvim/blob/bc6c0f7b49d71716c996a9422a46bbe5badec8ca/doc/mini-icons.txt#L85). Besides, as a user you can add `MiniIcons.mock_nvim_web_devicons()` to your config and it should work with other plugins which support only 'nvim-web-devicons' (yet).
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/1007).
+
+Thanks!

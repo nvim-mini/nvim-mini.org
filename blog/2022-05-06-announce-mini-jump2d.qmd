@@ -1,0 +1,45 @@
+---
+title: "Announcing 'mini.jump2d'"
+author: Evgeni Chasnovski
+date: 2022-05-06
+categories: [announce, reddit]
+description: Jump to customizable spots within visible lines
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/ujn88v/minijump2d_jump_to_customizable_spots_within/)*
+
+{{< video 2022-05-06-announce-mini-jump2d/demo.mp4 >}}
+
+*Immediate note: demo gif is made on a very slow laptop which resulted in a frame loss. In reality any reaction to typed key is instantaneous.*
+
+Hello, Neovim users!
+
+I am happy to release [mini.jump2d](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump2d.md) - yet another module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) plugin. Unlike 'mini.jump', it is about jumping within visible lines in both directions (not only forward/backward). Idea is very similar to [phaazon/hop.nvim](https://github.com/phaazon/hop.nvim): lock eyes on where you want to place cursor, start jumping (shows all possible jump spots labeled with single character), type labels appearing over target place until it is unambiguously filtered (usually takes about 2-3 keystrokes).
+
+Features:
+
+- Customizable:
+    - Way of computing possible jump spots with opinionated default (here is [its description](https://github.com/nvim-mini/mini.nvim/blob/b9eedc761c60aace3fc5498a0af2c7ebbd281e6d/doc/mini.txt#L2431-L2446)).
+    - Characters used to label jump spots during iterative filtering.
+    - Action hooks to be executed at certain events during jump.
+    - Allowed windows: current and/or not current.
+    - Allowed lines: whether to process blank or folded lines, lines before/at/after cursor line, etc.
+    Example: user can configure to look for word starts only inside current window at or after cursor line with 'j' and 'k' labels performing some action after jump.
+
+- Preconfigured ways of computing jump spots: line start, word start, to single or multiple characters (typed by user).
+
+- Works in Visual and Operator-pending modes with same command.
+
+- Works with multibyte characters.
+
+Main differences from 'phaazon/hop.nvim':
+
+- 'hop.nvim' computes labels (called "hints") based on current cursor position, while 'mini.jump2d' deliberately does not take cursor into account.
+
+- 'hop.nvim' visualizes labels differently. It is designed to show whole sequences at once, while 'mini.jump2d' intentionally shows only current one at a time.
+
+- 'hop.nvim' exports many targeted commands for builtin jump types, while 'mini.jump2d' has preconfigured basic options leaving others to customization with Lua code.
+
+- 'mini.jump2d' has opinionated default algorithm of computing jump spots.
+
+Please try it out and share your thoughts (here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/74)). Thanks!

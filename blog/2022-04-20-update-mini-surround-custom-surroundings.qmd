@@ -1,0 +1,45 @@
+---
+title: "Updates of 'mini.surround': custom surroundings"
+author: Evgeni Chasnovski
+date: 2022-04-20
+categories: [update, reddit]
+description: New features like custom surroundings and search method
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/u7v9ex/minisurround_new_features_custom_surroundings_and/)*
+
+Hello, Neovim users!
+
+I would like to share with you two new features of ['mini.surround'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-surround.md), which is one of the many modules of my ['mini.nvim'](https://github.com/nvim-mini/mini.nvim) plugin. It is a module for working with text surrounding (think Lua implementation of 'tpope/vim-surround' or 'machakann/vim-sandwich' but with additional features). It supports add, delete, replace, find, and highlight surrounding. All of this is dot-repeatable and has extra builtin surroundings: 'function call', 'tag' and 'interactive' (prompts user to enter parts). And now it also has two big new features.
+
+## Custom surroundings
+
+You can define your own or modify existing surrounding with `config.custom_surroundings`. This way user can extend setup to meet their needs, like adding brackets with spaces, custom surrounding for Latex command or Lua long brackets (`[[...]]`), etc. Here is an example:
+
+```lua
+require('mini.surround').setup({
+  custom_surroundings = {
+    -- Lua long brackets
+    s = {
+      -- Configuration for "input" (like for delete) is done with Lua patterns
+      input = { find = '%[%[.-%]%]', extract = '^(..).*(..)$' },
+      -- Configuration for "output" (like for add) is done with plain text
+      output = { left = '[[', right = ']]' },
+    },
+    -- Use `(` to insert with spaces, `)` will still add without them
+    ['('] = { output = { left = '( ', right = ' )' } },
+  },
+})
+```
+
+So now, for example, typing `sds` (`sd` - 'surround delete', `s` - identifier of custom surrounding) will search for Lua's long bracket and delete it. See [documentation](https://github.com/nvim-mini/mini.nvim/blob/8134370549e73a5a72d24ffc7ea6a881cf4502ad/doc/mini.txt#L3795) for more information.
+
+## Search method
+
+Before this feature, 'mini.surround' searched only for "covering" surrounding: left part is before cursor, right part - after. Now this behavior is customizable with `config.search_method` option. So, for example, with its value `'cover_or_next'` you can type `sd)` in the beginning of line `aaa (bbb)` and it will edit like `aaa bbb`. Available methods are a more or less simplified version of how 'wellle/targets.vim' does it. See [documentation](https://github.com/nvim-mini/mini.nvim/blob/8134370549e73a5a72d24ffc7ea6a881cf4502ad/doc/mini.txt#L3880) for more information.
+
+---
+
+Both of these features were long overdue, but I didn't want to interfere with code much as there are many edge cases. Now that I've pulled myself together and written automated tests, it feels much safer to do so.
+
+Please, try this out and tell me what you think!

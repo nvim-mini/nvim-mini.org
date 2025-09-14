@@ -1,0 +1,64 @@
+---
+title: "Announcing 'mini.diff'"
+author: Evgeni Chasnovski
+date: 2024-03-28
+categories: [announce, reddit]
+description: Work with diff hunks. Interactively visualize difference between current and reference text
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1bq0cxy/minidiff_work_with_diff_hunks_interactively/)*
+
+{{< video 2024-03-28-announce-mini-diff/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Please join me in cheering the release of [mini.diff](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for visualizing difference between buffer and reference text which is updated as you type. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.diff).
+
+------
+
+TL;DR: this is mostly similar to ['lewis6991/gitsigns.nvim'](https://github.com/lewis6991/gitsigns.nvim), but with slight differences:
+
+- Reference text source is configurable and not tied to Git (although it is used by default). This makes 'mini.diff' more flexible and future proof.
+- There is a special overlay view that **persistently** shows more diff details in text area. For me this became a much better way to review diff than `preview_hunk()` from 'gitsigns.nvim'.
+- There are built-in reasonable mappings to work with hunks: apply/reset/textobject/navigate.
+
+------
+
+For a very long time I hesitated writing 'gitsigns.nvim' alternative to be included in 'mini.nvim'. Mostly because it seemed to be almost impossible to squeeze all the diffing and Git functionality into a reasonably small file (which is a design goal for all 'mini.nvim' modules).
+
+But after looking at how it is done in 'gitsigns.nvim', I realized that it utilizes built-in [`vim.diff()`](https://neovim.io/doc/user/lua.html#vim.diff) authored by Lewis Russell (a.k.a lewis6991) himself, and suddenly it became feasible. So I am really grateful for Lewis's work in core, as without it this module would probably never happen.
+
+------
+
+Features:
+
+- Visualize difference between buffer text and its configurable reference interactively (updates as you type). This is done per line showing whether it is inside added, changed, or deleted part of difference (called hunk). Visualization can be with customizable colored signs or line numbers.
+
+- Special toggleable overlay view with more hunk details inside text area.
+
+- Completely configurable per buffer source of reference text used to keep it up to date and define interactions with it. By default uses buffer's file content in Git index.
+
+- Configurable mappings to manage diff hunks:
+    - Apply and reset hunks inside region (selected visually or with a dot-repeatable operator).
+    - "Hunk range under cursor" textobject to be used as operator target.
+    - Navigate to first/previous/next/last hunk.
+
+What it doesn't do:
+
+- Provide functionality to work directly with Git outside of visualizing and staging (applying) hunks with (default) Git source. In particular, unstaging hunks is not supported.
+
+For slightly more details, see [overview in README](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md#overview).
+
+For even more information, see these tags in help file:
+
+- [`*MiniDiff-source-specification*`](https://github.com/nvim-mini/mini.nvim/blob/0ec3216d3224ebd6828e5637fa9a10a00ba67113/doc/mini-diff.txt#L300)
+
+- [`*MiniDiff-hunk-specification*`](https://github.com/nvim-mini/mini.nvim/blob/0ec3216d3224ebd6828e5637fa9a10a00ba67113/doc/mini-diff.txt#L88)
+
+- [`*MiniDiff-diff-summary*`](https://github.com/nvim-mini/mini.nvim/blob/0ec3216d3224ebd6828e5637fa9a10a00ba67113/doc/mini-diff.txt#L182)
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/773).
+
+Thanks!

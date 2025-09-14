@@ -1,0 +1,67 @@
+---
+title: "Announcing 'mini.snippets'"
+author: Evgeni Chasnovski
+date: 2024-12-23
+categories: [announce, reddit]
+description: Manage and expand snippets. LSP snippet syntax, flexible loaders, fuzzy prefix matching, interactive snippet session with rich visualization, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1hknze1/minisnippets_manage_and_expand_snippets_lsp/)*
+
+{{< video 2024-12-23-announce-mini-snippets/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Let's celebrate passed December solstice with the long overdue release of [mini.snippets](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) that can manage and expand snippets. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.snippets).
+
+------
+
+Snippets are a vital part of my editing workflow. That's why I wanted to have 'mini.snippets' for about 3 years now. My initial plan was to wait and utilize snippet expansion capabilities in core and implement only snippet management (find/load/match/etc). And indeed, when `vim.snippet` became a thing in 0.10 back in May I used it together with some small set of commonly used snippets.
+
+Due to time consuming development of 'mini.icons' and cleaning 'mini.nvim' feature backlog, I started 'mini.snippets' mid-September. It proved to be outstandingly long development period for various reasons: both external and internal. Some of them are:
+
+- Desire to make things "right": robust yet flexible, out-of-the-box yet customizable. There were many iterations of back and forth, which were as late as several days ago. Eventually it converged into *something*, let's hope it is enough.
+
+- Although very capable already, some decisions about `vim.snippet` direction proved to not sit well with me (not wanting to add dedicated events and forcing `<Tab>`/`<S-Tab>` overrides are the main ones). It resulted in a long internal debate about whether having own snippet parsing and interactive session is worth it. The fact that I needed to interact with LSP specification (which I am not very good at) made own implementation even less compelling.
+
+  In the end I managed to come up with several distinctive snippet session features that I realized I wanted to have for a long time: no Select mode mappings (extra complexity and visually not adjustable), dynamic highlighting, ability to not stop session immediately at final tabstop, etc. That eventually got me nerd-sniped (by myself, mind you) into deciding to take it on.
+
+- Snippet LSP specification is compact, but at the same time allows a lot of weird cases which need to be accounted for (mostly because of nested placeholders and linked tabstops). Finding and addressing them also took many sleepless nights.
+
+  Plus all the tests and documentation... **a lot** of tests and documentation.
+
+But the main thing is that 'mini.snippets' is out and it is **good**. This should take a bit of weight out of my shoulders.
+
+Next thing (after a bit of backlog cleanup) is to add another long overdue feature: snippet support in 'mini.completion'. As it also requires LSP related work, it might take a while (again).
+
+------
+
+Features:
+
+- Manage snippet collection by adding it explicitly or with a flexible set of performant built-in loaders. See [`MiniSnippets.gen_loader`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L702).
+
+- Configured snippets are efficiently resolved before every expand based on current local context. This, for example, allows using different snippets in different local tree-sitter languages (like in markdown code blocks). See [`MiniSnippets.default_prepare()`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L837).
+
+- Match which snippet to insert based on the currently typed text. Supports both exact and fuzzy matching. See [`MiniSnippets.default_match()`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L884).
+
+- Select from several matched snippets via `vim.ui.select()`. See [`MiniSnippets.default_select()`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L923).
+
+- Insert, jump, and edit during snippet session in a configurable manner:
+    - Configurable mappings for jumping and stopping.
+    - Jumping wraps around the tabstops for easier navigation.
+    - Easy to reason rules for when session automatically stops.
+    - Text synchronization of linked tabstops.
+    - Dynamic tabstop state visualization (current/visited/unvisited, etc.)
+    - Inline visualization of empty tabstops (requires Neovim>=0.10).
+    - Works inside comments by preserving comment leader on new lines.
+    - Supports nested sessions (expand snippet while there is an one active).
+
+    See [`MiniSnippets.default_insert()`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L943).
+
+- Exported function to parse snippet body into easy-to-reason data structure. See [`MiniSnippets.parse()`](https://github.com/nvim-mini/mini.nvim/blob/2011aff270bcd3e1f3ad088253ace2d574967bed/doc/mini-snippets.txt#L1127).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/1428).
+
+Thanks!

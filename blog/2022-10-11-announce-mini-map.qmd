@@ -1,0 +1,40 @@
+---
+title: "Announcing 'mini.map'"
+author: Evgeni Chasnovski
+date: 2022-10-11
+categories: [announce, reddit]
+description: Window with buffer text overview, scrollbar, and highlights
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/y1balh/minimap_window_with_buffer_text_overview/)*
+
+{{< video 2022-10-11-announce-mini-map/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am here to announce a [mini.map](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-map.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for showing buffer text overview with scrollbar and highlights. It is shown in automatically updated full-height floating window stuck to either side (left or right).
+
+Prior to writing this, I didn't use any "buffer overview" plugins. I accidentally happened to see a [wfxr/minimap.vim](https://github.com/wfxr/minimap.vim) plugin, which uses Rust dependency to render text overview. This made me really curious if I could implement similar functionality in Lua with at least comparable speed. Turned out, I could! Benchmarking 'mini.map' and 'wfxr/minimap.vim' for first map window opening on 'builtin.txt' help page (9338 lines) shows around 70-90 milliseconds of computation time. Both are much faster on smaller files, of course.
+
+'mini.map' has the following features:
+
+- Updates are **really fast** and **asynchronous** (non-blocking).
+
+- Show scrollbar next to map content. It represents current line and view (top and bottom visible lines). Can be the only thing shown, making map window a "pure scrollbar".
+
+- Highlight map lines representing certain data in current buffer. This is done via extensible set of callables, called integrations. There are pre-built generators for common integrations:
+    - Builtin search.
+    - Builtin diagnostic.
+    - Git line status (requires [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)).
+
+- Focus on map window to quickly browse current (source) buffer. Moving inside map window updates cursor position in source window enabling fast and targeted buffer exploration. To focus back, hit `<CR>` to accept current explored position or `<Esc>` to go back to original position.
+
+- Customizable:
+    - Encoding symbols used to display binary information of different resolution (default is 3x2). There are pre-built generators for different basic character families and resolutions (block, dot, shade).
+    - Scrollbar symbols, separate for line and view. Can have any width (even zero, which virtually disables scrollbar).
+    - Integrations producing map line highlights.
+    - Window options: side (left/right), width, 'winblend', and more.
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-map.txt). [Here](https://github.com/nvim-mini/mini.nvim/blob/48b924e4f3b37f62246873d237a4a89704d88948/doc/mini-map.txt#L93) is a comparison to other similar plugins.
+
+Please, check it out and tell me what you think! Either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/140). Thanks!

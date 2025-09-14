@@ -1,0 +1,54 @@
+---
+title: "Release 0.8.0"
+author: Evgeni Chasnovski
+date: 2023-04-02
+categories: [release, reddit]
+description: "Two new modules, 'mini.comment' and 'mini.jump2d' updates"
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/129iwqy/mininvim_release_of_version_080/)*
+
+Hello, Neovim users!
+
+I am here to tell you about version 0.8.0 release of [mini.nvim](https://github.com/nvim-mini/mini.nvim). It is mostly about two new modules and cleaning up issue backlog (both issues and feature requests).
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.8.0) if you are curious, while I'll mention the most prominent ones here.
+
+------
+
+Two new modules came out of beta-testing:
+
+- [mini.bracketed](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-bracketed.md) - Go forward/backward with square brackets. It is virtually a 'tpope/vim-unimpaired' Lua evolution with much more capabilities. This one feels to me like having the cleanest API design of all 'mini.nvim' modules up to date.
+- [mini.splitjoin](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-splitjoin.md) - Split and join arguments.
+
+------
+
+There is a new design principle of silencing module's non-error feedback. All modules which can do that (like 'mini.ai', 'mini.jump2d', 'mini.surround') now have `config.silent` option.
+
+------
+
+'mini.comment' got quite substantial update allowing more customization. Users can now control whether to:
+
+- Recognize as comment only lines without indent.
+- Ignore blank lines.
+- Ensure single space pad for comment leaders.
+
+------
+
+'mini.jump2d' got also some customization options. User now can control:
+
+- How many label steps ahead to show.
+- Whether to dim lines with at least one jump spot.
+- Highlighting of spots with unique label for next step.
+
+It is now visually on par with [phaazon/hop.nvim](https://github.com/phaazon/hop.nvim) while also having [several differences](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-jump2d.txt#L80) (most are matter of taste, but to me seem more natural). [Demo is also updated](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump2d.md#demo) showing these new capabilities.
+
+------
+
+'mini.surround' now can be configured to respect selection type when adding and deleting surroundings. For example, adding surroundings to linewise visual selection places them on separate lines while indenting selection once.
+
+------
+
+If you were waiting for new modules to come out of beta-testing or just curious to try new features, this is the time to do it!
+
+Thanks for reading!

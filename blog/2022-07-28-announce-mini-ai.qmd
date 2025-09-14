@@ -1,0 +1,45 @@
+---
+title: "Announcing 'mini.ai'"
+author: Evgeni Chasnovski
+date: 2022-07-28
+categories: [announce, reddit]
+description: Extend and create a/i textobjects (like 'targets.vim', but in Lua and a bit different)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/wa819w/miniai_extend_and_create_ai_textobjects_like/)*
+
+{{< video 2022-07-28-announce-mini-ai/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am incredibly happy to announce [mini.ai](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-ai.md) - module #20 of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for extending and creating `a`/`i` textobjects (like in `di(` or `va"`). It enhances some builtin textobjects (like `a(`, `a)`, `a'`, and more), creates new ones (like `a*`, `a<Space>`, `af`, `a?`, and more), and allows user to create their own.
+
+Features:
+
+- Customizable creation of `a`/`i` textobjects using Lua patterns and functions. Supports:
+    - Dot-repeat.
+    - `v:count`.
+    - Different search methods (`cover`, `cover_or_next`, `cover_or_prev`, `cover_or_nearest`). **Edit**: now there is also `next`, `prev` (power `an`/`in`/`al`/`il` textobjects), and `nearest`.
+    - Consecutive application (update selection without leaving Visual mode).
+    - Aliases for multiple textobjects.
+
+- Comprehensive builtin textobjects (they are shown in video):
+    - Balanced brackets (with and without whitespace) plus alias.
+    - Balanced quotes plus alias.
+    - Derived from user prompt.
+    - Tag.
+    - Function call.
+    - Argument.
+    - Default for punctuation, digit, or whitespace single character.
+
+- Motions for jumping to left/right edge of textobject.
+
+- As a part of **all 'mini.nvim' modules'** functionality, runtime configuration settings can be set locally to a buffer. This leads to ability of defining custom textobjects only for certain conditions (like per filetype).
+
+More information can be found in [help file](https://github.com/nvim-mini/mini.nvim/blob/bca7dabca76606ab101009e7b0fe128fa037bf54/doc/mini.txt#L245). Here are [some examples](https://github.com/nvim-mini/mini.nvim/blob/bca7dabca76606ab101009e7b0fe128fa037bf54/doc/mini.txt#L507-L547) of which textobjects can be defined with 'mini.ai'.
+
+This was the [first module request](https://github.com/nvim-mini/mini.nvim/issues/4) I got for 'mini.nvim', and I happy to finally implement it. Initially I planned this to have the same "backend" as [mini.surround](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-surround.md). But then I got an idea about slight change in textobject definition and algorithm, which enabled many more powerful textobjects (like aliases, etc.). After 'mini.ai' is publicly beta-tested, I plan to move its logic to 'mini.surround' (which will lead to some graceful soft deprecation of current custom textobject definition).
+
+Try it out and tell me your thoughts! Either here or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/98). I am especially interested in your thoughts about default textobjects (more info in beta-testing issue).
+
+Also simply sharing information about 'mini.nvim' plugin is a huge help. Thanks!

@@ -1,0 +1,35 @@
+---
+title: "Announcing 'mini.test'"
+author: Evgeni Chasnovski
+date: 2022-07-01
+categories: [announce, reddit]
+description: Test Neovim plugins with parametrization, screen tests, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/vp17jm/minitest_test_neovim_plugins_with_parametrization/)*
+
+{{< video 2022-07-01-announce-mini-test/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am thrilled to announce [mini.test](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-test.md) - module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) with framework for writing extensive Neovim plugin tests. It is very feature-rich, which makes me both proud and not proud. It took me too long to implement everything I wanted to see in testing framework and the outcome is too big for my taste (it is ~80% larger by line count than the next largest module). But... **it is awesome**.
+
+It has:
+
+- Hierarchical organization of tests with custom hooks, parametrization, and user data.
+- Predefined small yet usable set of expectations (`assert`-like functions).
+- Helper for creating child Neovim process which is designed to be used in tests. It has helpers for using it directly (like `child.o.lines` returns `vim.o.lines` executed inside child process, etc.). It can also create a **screenshot of current state**. Together with dedicated expectation it makes quite easy testing visual effects (like highlighting, extmarks, etc.).
+- Emulation of 'Olivine-Labs/busted' interface (`describe`, `it`, etc.).
+- Test case filtering. There are predefined wrappers for testing a file and case at a location like current cursor position.
+- Customizable reporter of output results. There are two predefined ones: for interactive usage and for headless Neovim (like from command line or continuous integration services).
+- And more.
+
+Sources for more information:
+
+- 'mini.test' section of [help file](https://github.com/nvim-mini/mini.nvim/blob/2dfc6bf0b88c03106e5d21335336e1da36e3320e/doc/mini.txt).
+- [TESTING.md](https://github.com/nvim-mini/mini.nvim/blob/main/TESTING.md) for a hands-on introduction based on examples.
+- [Tests of 'mini.nvim'](https://github.com/nvim-mini/mini.nvim/tree/main/tests).
+
+With release of this module I hope to finally fully pay this plugin's technical debt. Previously it had no tests which slowed down bug fixes and feature implementations. Now, judging by size, it has three times bigger tests than actual code (granted, most of it is screenshots). Now I hope to work on more tightly focused modules.
+
+Neovim plugin authors, try it and tell me what you think. Either here, in [dedicated issue](https://github.com/nvim-mini/mini.nvim/issues/93), or in [Discussions](https://github.com/nvim-mini/mini.nvim/discussions). Thanks!

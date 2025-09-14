@@ -1,0 +1,30 @@
+---
+title: "Announcing 'mini.indentscope'"
+author: Evgeni Chasnovski
+date: 2022-02-10
+categories: [announce, reddit]
+description: Visualize and operate on indent scope
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/spc16j/miniindentscope_visualize_and_operate_on_indent/)*
+
+{{< video 2022-02-10-announce-mini-indentscope/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am happy to announce new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) - [mini.indentscope](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-indentscope.md). It is built around a notion of "indent scope" - minimal set of lines containing reference one (usually cursor line) and every line having indent not less than a reference (usually computed using indent of cursor line). Core functionalities:
+
+- Interactively visualize current indent scope. It is done in non-blocking way with customizable animation (there are some popular easing functions built in; of course no animation is also possible) and debounce delay.
+- Customizable way of computing scope. Like:
+    - What is considered a scope border (useful for certain filetypes, like Python).
+    - Whether to incorporate cursor column in computing reference indent (like behavior in animation).
+    - Whether to try and recognize line as border first (useful to place cursor on function header and visualize its body).
+- Move cursor to either side of scope.
+- Use scope textobject, both without and with border.
+
+How it compares to 'lukas-reineke/indent-blankline.nvim':
+
+- Main purpose of 'indent-blankline.nvim' is to show static indent guides. This module is intended to show what is a current indent scope (yes, 'indent-blankline.nvim' has similar functionality also, but not that general).
+- They both use Neovim's extmarks for visualization (in fact, I used 'indent-blankline.nvim' source code for some reference solutions). This doesn't cause big conflict, but one of visualizations will be placed on top of another (at the moment, it is a 'mini.indentscope's one).
+
+Try it out! Feedback is greatly appreciated. Feel free to drop a comment here or use a [dedicated issue](https://github.com/nvim-mini/mini.nvim/issues/46).

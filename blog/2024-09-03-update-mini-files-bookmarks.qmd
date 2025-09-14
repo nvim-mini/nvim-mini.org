@@ -1,0 +1,36 @@
+---
+title: "Updates of 'mini.files': bookmarks"
+author: Evgeni Chasnovski
+date: 2024-09-03
+categories: [update, reddit]
+description: Also better file manipulation, prettier confirmation info, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1f7zrjt/minifiles_updates_bookmarks_better_file/)*
+
+Hello, Neovim users!
+
+TL;DR: here is a [full list of changes since last release](https://github.com/nvim-mini/mini.nvim/blob/main/CHANGELOG.md#minifiles). I'd be grateful if you could test them and give your feedback before the next 'mini.nvim' release.
+
+------
+
+During the current version iteration of ['mini.nvim'](https://github.com/nvim-mini/mini.nvim/) I decided to spread my attention to already existing modules for overall maintenance and backlog cleanup. 'mini.files' got the most attention among those, so I'd like to ask its users to test new changes before the next 'mini.nvim' release. The full list of changes is at the beginning of the post, but here are important highlights of recent activity:
+
+- 'mini.files' now implements bookmarks, which act similar to built-in marks:
+    - `m<char>` sets directory path of focused window as bookmark with id `<char>`.
+    - `'<char>` makes bookmark path focused.
+    - `set_bookmark()` can set custom bookmarks from script. Here is [an example](https://github.com/nvim-mini/mini.nvim/blob/eb0f557a5797cfe9c720ed84a71582c22bccb4f8/doc/mini-files.txt#L521).
+
+    The main motivation for this was that move/copy files across different directories was tricky without quick way to switch between them. Now they are a single `'a` / `'b` away from each other (needs conscious decision of creating them, though).
+
+- Complex cases of file manipulation (like delete 'file-a' and copy 'file-b' as 'file-a' in a single synchronization) are now properly resolved. It is not 100% full proof (intentionally), so I'd still suggest splitting tasks into independent steps.
+
+- Confirmation info now uses relative paths inside action description as much as possible. It is also now intentionally aligned.
+
+- `get_target_window()` is now soft deprecated (works for now, but will be removed after the next 'mini.nvim' release) in favor of a `get_explorer_state().target_window`. This was an oversight because I didn't want to fix the whole `explorer` data structure (and later realised that I didn't have to). Sorry about that.
+
+You can leave your feedback/issues/suggestions here, create a [question](https://github.com/nvim-mini/mini.nvim/discussions/categories/q-a) (if it wasn't [already asked before](https://github.com/nvim-mini/mini.nvim/discussions/categories/q-a?discussions_q=is%3Aclose+category%3AQ%26A+label%3Amini.files)), or create an issue (if it wasn't already create before).
+
+Thanks!
+
+**Edit**: if you are curious to read about my journey to implementing bookmarks, [this issue](https://github.com/nvim-mini/mini.nvim/issues/928) contains some thought process for possible future reference.

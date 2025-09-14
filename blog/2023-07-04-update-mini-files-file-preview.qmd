@@ -1,0 +1,37 @@
+---
+title: "Updates of 'mini.files': file preview"
+author: Evgeni Chasnovski
+date: 2023-07-04
+categories: [update, reddit]
+description: Also prefix customization, change target window, and more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/14qb5l2/minifiles_updates_file_preview_prefix/)*
+
+![Explorer with preview](2023-07-04-update-mini-files-file-preview/demo.png)
+
+Hello, Neovim users!
+
+Around two weeks ago [I've announced](2023-06-22-announce-mini-files.qmd) the release of [mini.files](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md) - a file explorer module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) with column view navigation and "edit text to manipulate file system" design. This resulted into a great feedback from the community, much of which turned into new features.
+
+I don't really do a follow up post with plugin updates, as it is usually fairly complete before release. This time is an exception.
+
+Here is a list of new additions to 'mini.files':
+
+- **File preview** (with highlighting): set `windows.preview = true` and navigate over file. Initially I was skeptical about adding this due to code design. However, having preview visible for directories and not visible for files resulted into some uncomfortable behavior during deeply nested exploration, so I changed my mind. Big thanks to /u/folke for the help on how to efficiently add text highlighting in file previews!
+
+- **Customizable preview width** via `windows.width_preview`. Following previous change, this seemed necessary for a better file preview.
+
+- **Prefix (icon) customization** via `content.prefix`, including no icons at all (see [examples in help](https://github.com/nvim-mini/mini.nvim/blob/bb8ef7cfaf7b0c4492836f318df0b61e92ea3de1/doc/mini-files.txt#L369)). Again, initially skeptical about adding due to code design, but I figured out a way to make even a better choices to enable customizable prefix.
+
+- **Non-permanent delete** via `options.permanent_delete = false`. This is a module-specific "move to trash" approach which will move file/directory into 'mini.files/trash' directory of 'data' standard path. Didn't use regular trash mostly due to it being OS dependent.
+
+- **Ability to set new target window** from inside explorer. Here is [an example](https://github.com/nvim-mini/mini.nvim/blob/bb8ef7cfaf7b0c4492836f318df0b61e92ea3de1/doc/mini-files.txt#L415) of creating mappings for vertical/horizontal split of target window (should be followed by explicit file open afterwards).
+
+- **Events after successful file system action** (see [this list](https://github.com/nvim-mini/mini.nvim/blob/bb8ef7cfaf7b0c4492836f318df0b61e92ea3de1/doc/mini-files.txt#L331)). This was one of the first questions/requests I've got after the release, as it makes possible to utilize `didCreateFiles`/`didRenameFiles`/`didDeleteFiles` LSP notifications.
+
+- **Various small tweaks**, like support `[count]` for `go_in`/`go_out` keys, make non-delete file system actions to never override existing data, etc.
+
+And that's about it. 'mini.files' will still be in beta-testing for a while until 'mini.nvim' 0.10.0 release, but I consider its features to be mostly complete.
+
+If you didn't try it yet, give it a shot and tell me what you think! Either here in comments or in a (already pretty crowded, though) [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/377). Thanks!

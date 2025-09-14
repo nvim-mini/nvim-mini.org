@@ -1,0 +1,49 @@
+---
+title: "Announcing 'mini.splitjoin'"
+author: Evgeni Chasnovski
+date: 2023-03-09
+categories: [announce, reddit]
+description: Split and join arguments
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/11mtm3m/minisplitjoin_split_and_join_arguments/)*
+
+{{< video 2023-03-09-announce-mini-splitjoin/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I would like to announce the release of [mini.splitjoin](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-splitjoin.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) to split and join arguments. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.splitjoin).
+
+Main features:
+
+- Mappings and Lua functions that modify arguments (regions inside brackets between allowed separators) under cursor.
+
+  Supported actions:
+    - Toggle - split if arguments are on single line, join otherwise. Main supported function of the module.
+    - Split - make every argument separator be on end of separate line.
+    - Join - make all arguments be on single line.
+
+- Mappings are dot-repeatable in Normal mode and work in Visual mode.
+
+- Customizable argument detection (see `MiniSplitjoin.config.detect` in help file):
+    - Which brackets can contain arguments.
+    - Which strings can separate arguments.
+    - Which regions exclude when looking for separators (like inside nested brackets or quotes).
+
+- Customizable pre and post hooks for both split and join.
+
+- Works inside comments by using modified notion of indent.
+
+- Provides low-level Lua functions for split and join at positions.
+
+Notes:
+
+- Search for arguments is done using Lua patterns (regex-like approach). Certain amount of false positives is to be expected.
+
+- This module is mostly designed around `MiniSplitjoin.toggle()`. If initial split positions are on different lines, join first and then split.
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-splitjoin.txt).
+
+Please, check it out and tell me what you think! Either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/260).
+
+Thanks!

@@ -1,0 +1,55 @@
+---
+title: "Announcing 'mini.bracketed'"
+author: Evgeni Chasnovski
+date: 2023-02-21
+categories: [announce, reddit]
+description: Go forward/backward with square brackets (like 'tpope/vim-unimpaired' but in configurable Lua and with *much more targets*)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/118511i/minibracketed_go_forwardbackward_with_square/)*
+
+{{< video 2023-02-21-announce-mini-bracketed/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Let me present you [mini.bracketed](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-bracketed.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for going forward/backward with square brackets. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.bracketed).
+
+Initially I planned to make a Neovim take on 'tpope/vim-unimpaired' as a part of [mini.basics](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-basics.md) module, but got a bit carried away with features. General idea is to have `[` / `]` mappings (along with Lua functions) which iterate to next/previous/first/last element of certain kind. Judging by experience, mastering this type of mappings leads to a huge productivity boost (or at least feels like it :) ).
+
+Main features:
+
+- Configurable Lua functions to go forward/backward to a certain target. Each function can be customized with direction, number of times, whether to wrap on edges, etc.
+
+- Mappings using square brackets. They are created using configurable target suffix and can be selectively disabled.
+
+- Supported targets (for more information see help for corresponding Lua function):
+
+    | Target       | Mappings            | Lua function                                                                                                   |
+    |--------------|---------------------|----------------------------------------------------------------------------------------------------------------|
+    | Buffer       | `[B` `[b` `]b` `]B` | [`MiniBracketed.buffer()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L197)     |
+    | Comment      | `[C` `[c` `]c` `]C` | [`MiniBracketed.comment()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L212)    |
+    | Conflict     | `[X` `[x` `]x` `]X` | [`MiniBracketed.conflict()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L231)   |
+    | Diagnostic   | `[D` `[d` `]d` `]D` | [`MiniBracketed.diagnostic()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L254) |
+    | File on disk | `[F` `[f` `]f` `]F` | [`MiniBracketed.file()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L283)       |
+    | Indent       | `[I` `[i` `]i` `]I` | [`MiniBracketed.indent()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L301)     |
+    | Jump         | `[J` `[j` `]j` `]J` | [`MiniBracketed.jump()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L326)       |
+    | Location     | `[L` `[l` `]l` `]L` | [`MiniBracketed.location()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L344)   |
+    | Old files    | `[O` `[o` `]o` `]O` | [`MiniBracketed.oldfile()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L361)    |
+    | Quickfix     | `[Q` `[q` `]q` `]Q` | [`MiniBracketed.quickfix()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L384)   |
+    | Tree-sitter  | `[T` `[t` `]t` `]T` | [`MiniBracketed.treesitter()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L401) |
+    | Undo states  | `[U` `[u` `]u` `]U` | [`MiniBracketed.undo()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L424)       |
+    | Window       | `[W` `[w` `]w` `]W` | [`MiniBracketed.window()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L491)     |
+    | Yank         | `[Y` `[y` `]y` `]Y` | [`MiniBracketed.yank()`](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt#L508)       |
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/91f7a680fe5765b68456ab6e7b910d478da083b9/doc/mini-bracketed.txt).
+
+Besides some obvious ones (buffer, location, quickfix, window, etc.), I am especially excited about the following targets:
+
+- `oldfile` - old files from previous and current sessions ordered by recency.
+- `treesitter` -  move to start/end of current node and its parents.
+- `undo`  - undo to the previous visited undo state; see demo.
+- `yank` - replace previous paste region with yank history, a.k.a. yank-ring targets.
+
+Please, check it out and tell me what you think! Either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/235).
+
+Thanks!

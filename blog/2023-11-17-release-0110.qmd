@@ -1,0 +1,42 @@
+---
+title: "Release 0.11.0"
+author: Evgeni Chasnovski
+date: 2023-11-17
+categories: [release, reddit]
+description: New fuzzy picker in town, major hipatterns update, and many more
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/17xhmgz/mininvim_release_0110_new_fuzzy_picker_in_town/)*
+
+Hello, Neovim users!
+
+Today is the day to update [mini.nvim](https://github.com/nvim-mini/mini.nvim) to version 0.11.0. It includes two big plugins coming out of beta-testing and many small updates to other modules as a result of backlog cleanup.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.11.0) if you are curious.
+
+------
+
+Two new modules are about making a performant picker with minimal UI and a lot of preconfigured pickers:
+
+- [mini.pick](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pick.md) - pick anything. A general picker as alternative to Telescope and Fzf-Lua. Both of these plugins are great, but I wanted to have a slightly different UI and UX: a one window design with on demand preview. I am daily driving it for about two and a half months now and don't miss anything. Here is a link to [the announcement](2023-10-13-announce-mini-pick.qmd).
+
+- [mini.extra](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md) - extra functionality for 'mini.nvim' modules. Its main goal is mostly to contain 20+ preconfigured pickers for 'mini.pick' (like for built-in diagnostic, LSP, Neovim histories, etc.) and several textobject specifications for 'mini.ai' (line, buffer, indent, etc.), while still allowing more diverse functionality in the future. Here is a link to [the announcement](2023-11-02-announce-mini-extra.qmd).
+
+------
+
+'mini.hipatterns' got a substantial update:
+
+- Highlighter can now have an array of patterns to highlight, not just a single one.
+- Highlighter can now define more general `extmark_opts`. This allows highlighting not only with single highlight group over the matched range, but adding virtual text (like covering some sensitive words with `x`), highlighting whole line of the match, add sign, etc.
+- Built-in hex color highlighter now can highlight using inline extmarks (so that colored symbols appear to the left of the color and not over it). But only on Neovim>=0.10.
+- There is a new `get_matches()` function to get current matches with their positions. This powers the `pickers.hipatterns` picker form 'mini.extra'.
+
+------
+
+There are also small-ish feature updates for 'mini.bufremove', 'mini.clue', 'mini.comment', 'mini.completion', 'mini.files', 'mini.map', 'mini.misc', 'mini.starter', and 'mini.test'.
+
+------
+
+On another note, 'mini.nvim' just passed the 3000 GitHub stars mark. Thank you all for continuous support. I love you 3000!
+
+Thanks for reading! Hope to see you in the next module release!

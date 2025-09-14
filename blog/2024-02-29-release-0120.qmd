@@ -1,0 +1,38 @@
+---
+title: "Release 0.12.0"
+author: Evgeni Chasnovski
+date: 2024-02-29
+categories: [release, reddit]
+description: Three new modules, a few updates to already present ones
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1b342yx/mininvim_release_0120_three_new_modules_a_few/)*
+
+Hello, Neovim users!
+
+Let's celebrate the leap year day by making a long overdue 0.12.0 release of [mini.nvim](https://github.com/nvim-mini/mini.nvim). It includes three major plugins coming out of beta-testing and quite a few small updates to other modules.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.12.0) if you are curious.
+
+------
+
+Three new modules coming out of beta-testing:
+
+- [mini.visits](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-visits.md) - module to track and reuse file system visits. This is a 'mini.nvim' version of 'nvim-telescope/telescope-frecency.nvim' (persistently track file visits and select from them) partially combined with 'ThePrimeagen/harpoon' (persistently add/remove labels to paths and select based on them).
+
+- [mini.notify](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-notify.md) - module to show notifications. It provides custom 'vim.notify' maker so that users can have pretty and less intrusive plugin notifications. Also by default it sets up notifications for LSP progress updates (feature I didn't know I needed until I tried it).
+
+- [mini.deps](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md) - plugin manager module. Although 'mini.nvim' already includes most of the necessary editor functionality, there are other great plugins out there. 'mini.deps' helps installing/updating/cleaning/snapshotting other plugins with minimal yet sufficient user experience (in my opinion it ended up somewhere near 'junegunn/vim-plug' in that regard).
+
+------
+
+Already present modules got their fair share of updates:
+
+- 'mini.comment' now calls hooks with data about commenting action.
+- 'mini.hues' now implements support for the new tree-sitter captures introduced in 'nvim-treesitter' and Neovim>=0.10.
+- 'mini.statusline' now has `search_count` section in default content.
+- And more...
+
+------
+
+Thanks for reading! Hope to see you soon in the next module release!

@@ -1,0 +1,56 @@
+---
+title: "Release 0.13.0"
+author: Evgeni Chasnovski
+date: 2024-06-13
+categories: [release, reddit]
+description: Two new modules, visible updates to 'mini.comment' and 'mini.statusline'
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1df0qzu/mininvim_release_0130_two_new_modules_visible/)*
+
+Hello, Neovim users!
+
+Today is the release day of [mini.nvim](https://github.com/nvim-mini/mini.nvim) version 0.13.0. It includes two new quite feature-rich modules coming out of beta-testing, some breaking features for existing modules, and a few small updates for other modules.
+
+This release marks the crossing of curiously aligned milestones. The 'mini.nvim' project now has:
+- 40+ modules.
+- 4000+ GitHub stars (thank you all for your support ❤️).
+- 4000+ test cases.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.13.0) if you are curious.
+
+------
+
+Two new modules coming out of beta-testing:
+
+- [mini.diff](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md) - module to interactively visualize difference between buffer text and its reference. This is basically a 'mini.nvim' version of 'lewis6991/gitsigns.nvim', but with more general design towards reference text (not only from Git index) and a bit different way to show inline difference (called "overlay").
+
+- [mini.git](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-git.md) - module for a tighter Git integration. Its primary goal is to track per buffer Git related data to be shown in statusline. However, it also includes two other big sets of features: `:Git` command for a more direct use of Git within current Neovim session and helper functions for a more interactive Git history exploration. It is **not intended** as 'tpope/vim-fugitive' or full featured Git client replacement.
+
+------
+
+Two plugins got visible breaking updates:
+
+- 'mini.comment' now treats whitespace more coherently (updated during the preparation for its essentially [upstreaming to core](https://echasnovski.com/blog/2024-04-05-neovim-now-has-builtin-commenting.html)):
+    - Blank lines are ignored when deciding whether to comment or uncomment. In practice it means that region with commented and blank lines will be uncommented rather than commented.
+    - Whitespace in 'commentstring' is now treated more explicitly. With default config this is rarely noticeable, but might matter for people using `options.pad_comment_parts = false`.
+
+- 'mini.statusline' got several big updates:
+    - The new 'mini.diff' and 'mini.git' modules now take precedence over 'lewis6991/gitsigns.nvim'. Meaning the latter now is not required for 'mini.statusline' to show its full potential.
+    - `section_diagnostics()` now does not depend on whether there is an LSP server attached to the buffer (which is more aligned with section's purpose).
+    - There are two new sections added and immediately are now used in default active statusline content: `section_diff()` and `section_lsp()`. For users with default 'mini.statusline' config this mostly means that diff is shown with extra icon and there is an indicator for the number of attached LSP servers.
+
+------
+
+Several plugins got small-ish but useful updates:
+
+- 'mini.deps' now highlights commit messages which indicate breaking change in a conventional commit style (which 'mini.nvim' itself now uses and I am very happy with it).
+- 'mini.map' got `gen_integration.diff()` integration to highlight hunks from 'mini.diff'.
+- 'mini.tabline' got an option to format tab labels.
+- And more...
+
+------
+
+Thanks for reading and showing interest in 'mini.nvim' project!
+
+Hope to see you soon in the next module release (there are some **really** nice things planned)!

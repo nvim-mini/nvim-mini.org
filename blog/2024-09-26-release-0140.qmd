@@ -1,0 +1,63 @@
+---
+title: "Release 0.14.0"
+author: Evgeni Chasnovski
+date: 2024-09-26
+categories: [release, reddit]
+description: Icons... icons everywhere... plus a lot of small features and maintaining
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1fpx6q3/mininvim_release_0140_icons_icons_everywhere_plus/)*
+
+Hello, Neovim users!
+
+Today is the day for yet another stable release of [mini.nvim](https://github.com/nvim-mini/mini.nvim), now version 0.14.0 (they grow up so fast). Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.14.0) if you are curious.
+
+------
+
+This release marks only a single module coming out of beta-testing:
+
+- [mini.icons](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-icons.md) - a general icons provider. It is meant to be a more versatile 'nvim-tree/nvim-web-devicons' replacement which relies on built-in `vim.filetype.match()` for a more fine-grained icon detection rules and which implements highlight group design with easier blending for any color scheme. You can also read [this release post](2024-07-03-announce-mini-icons.qmd).
+
+This module came with a lot of extra burden:
+
+- Switch existing modules which rely on 'nvim-web-devicons' to prefer 'mini.icons' instead. Those are 'mini.files', 'mini.pick', 'mini.statusline', 'mini.tabline'.
+
+- Update popular color schemes to define 'mini.icons' highlight groups for a better "out of the box" experience for most users.
+
+- Make changes to Neovim itself for a faster `vim.filetype.match()`. Unfortunately, this took **a lot** of mental effort to both get right and debate with core maintainers that it is even worth merging.
+
+------
+
+The rest of release cycle I decided to dedicate to clean up feature backlog and do overall maintenance. As a result, a lot of existing plugins got new and exciting features. Here are the highlights:
+
+- 'mini.files' got the most attention: bookmarks, better file manipulation, and more. Here is a [separate post](2024-09-03-update-mini-files-bookmarks.qmd) about it.
+
+- 'mini.completion' now also integrates with 'mini.icons':
+    - It can show icons near LSP item kind (like "Function", "Class", etc.) after an indirect call to [`MiniIcons.tweak_lsp_kind()`](https://github.com/nvim-mini/mini.nvim/blob/64e95aa77587d04f97a5579b2106a82a08a7d968/doc/mini-icons.txt#L481).
+    - It can highlight LSP item kind. Requires set up 'mini.icons' and Neovim>=0.11 (current Nightly).
+
+- 'mini.misc' got new `setup_termbg_sync()` function which can set up terminal background synchronization to remove possible "frame" around current Neovim instance. Or you can use advice from [this post](https://echasnovski.com/blog/2024-08-01-remove-padding-around-neovim-instance.html).
+
+- 'mini.pick' now uses full height character "│" instead of previous ":" to separate file name, line, column, and text. The full change is slightly more complicated, though, so see changelog.
+
+- Many pickers from 'mini.extra' now also integrate 'mini.icons': both for file and LSP kind.
+
+- 'mini.test' now can work on Windows. All that was missing was essentially a one line change in how pipe is created. Huge thanks to [@cameronr](https://github.com/cameronr) for [this PR](https://github.com/nvim-mini/mini.nvim/pull/1101).
+
+- And many more.
+
+------
+
+Overall maintenance also was fruitful:
+
+- Help pages now use Neovim-specific way of highlighting code blocks.
+
+- Thanks to 'mini.test' PR, I was finally able to set up CI tests for Windows (and also decided to add MacOS). Updating tests themselves required a gruesome amount of tedious effort (as I don't have local access to any of those OSs), but it was worth it.
+
+- All modules now uniformly ensure that their highlight groups are defined for any color scheme. It was not the case previously as usually the `:colorscheme ...` call clears all highlight groups before defining its own and 'mini.nvim' did not account for that.
+
+------
+
+Thanks for expressing an ever growing interest in 'mini.nvim' project!
+
+Hope to see you soon with some exciting updates!

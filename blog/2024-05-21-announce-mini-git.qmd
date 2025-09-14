@@ -1,0 +1,64 @@
+---
+title: "Announcing 'mini.git'"
+author: Evgeni Chasnovski
+date: 2024-05-21
+categories: [announce, reddit]
+description: Git integration with tracking Git-related data, `:Git` command, and interactive Git history inspection
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1cxbegq/minigit_git_integration_with_tracking_gitrelated/)*
+
+{{< video 2024-05-21-announce-mini-git/demo.mp4 >}}
+
+Hello, Neovim users!
+
+Let's together celebrate the release of [mini.git](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-git.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) for better Git integration. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini-git).
+
+------
+
+First things first. This release marks 'mini.nvim' reaching two important milestones:
+- It is already module number 40. They grow up so fast.
+- The project recently reached 4000 GitHub stars. Thank you for your support and trust!
+
+------
+
+Briefly about module itself. This is **not** intended as a one-to-one 'tpope/vim-fugitive' or full featured Git client replacement!
+
+Git related functionality was [one of the oldest module requests](https://github.com/nvim-mini/mini.nvim/issues/139) dating back to October 2022. After some thoughts, I have finally come up with a scope that I feel strikes an important balance between features and maintainability.
+
+Its initial goal was to track Git related data in a way that can be used in statusline (can be seen used inside statusline in demo). This should pair nicely with what ['mini.diff'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md) already does for diff hunks. The 'mini.statusline' module now uses 'mini.git' and 'mini.diff' by default for Git-diff-related sections (with fallback to 'lewis6991/gitsigns.nvim', so no major breaking).
+
+After some thinking, I've also decided to add Fugitive-style `:Git` command and helpers for history navigation. Demo video showcases them both nicely.
+
+------
+
+Features:
+
+- Automated tracking of [Git](https://git-scm.com/) related data: root path, status, HEAD, etc. Exposes buffer-local variables for convenient use in statusline.
+
+- `:Git` command for executing any `git` call inside file's repository root with deeper current instance integration (show output as notification/buffer, use to edit commit messages, etc.).
+
+- Helper functions to inspect Git history:
+    - `MiniGit.show_range_history()` shows how certain line range evolved.
+    - `MiniGit.show_diff_source()` shows file state as it was at diff entry.
+    - `MiniGit.show_at_cursor()` shows Git related data depending on context.
+
+What it doesn't do:
+
+- Replace fully featured Git client. Rule of thumb: if feature does not rely on a state of current Neovim (opened buffers, etc.), it is out of scope. For more functionality, use either ['mini.diff'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md) or fully featured Git client.
+
+To read more information, see these tags in help file:
+
+- [`*:Git*`](https://github.com/nvim-mini/mini.nvim/blob/e94945129780fa5b43447ecc0a4b0273892043e3/doc/mini-git.txt#L138)
+
+- [`*MiniGit-examples*`](https://github.com/nvim-mini/mini.nvim/blob/e94945129780fa5b43447ecc0a4b0273892043e3/doc/mini-git.txt#L73)
+
+- [`*MiniGit.enable()*`](https://github.com/nvim-mini/mini.nvim/blob/e94945129780fa5b43447ecc0a4b0273892043e3/doc/mini-git.txt#L357)
+
+- [`*MiniGit.get_buf_data()*`](https://github.com/nvim-mini/mini.nvim/blob/e94945129780fa5b43447ecc0a4b0273892043e3/doc/mini-git.txt#L396)
+
+-----
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/898).
+
+Thanks!

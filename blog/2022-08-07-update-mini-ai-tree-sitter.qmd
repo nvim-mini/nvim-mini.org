@@ -1,0 +1,21 @@
+---
+title: "Update of 'mini.ai'"
+author: Evgeni Chasnovski
+date: 2022-08-07
+categories: [update, reddit]
+description: Now supports textobjects based on tree-sitter
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/wiamjt/miniai_now_supports_textobjects_based_on/)*
+
+{{< video 2022-08-07-update-mini-ai-tree-sitter/demo.mp4 >}}
+
+['mini.ai'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-ai.md) is a module of ['mini.nvim'](https://github.com/nvim-mini/mini.nvim) plugin for extending and creating `a`/`i` textobjects (like in `di(` or `va"`). You can see more info in [the announcement](2022-07-28-announce-mini-ai.qmd) and [help file](https://github.com/nvim-mini/mini.nvim/blob/55618446b0bb4d3ed37ff7f9f8cf6db56d34e139/doc/mini.txt#L254).
+
+Now it has support for tree-sitter specifications via exported `MiniAI.gen_spec.treesitter()` function. In order for this to work, user should have 'textobjects' query files with specified captures for every target language. Can have them either by just installing ['nvim-treesitter/nvim-treesitter-textobjects'](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) (but not enabling textobjects) or creating manually inside 'after/queries/\<language>/textobjects.scm' files.
+
+You can see [here](https://github.com/nvim-mini/mini.nvim/blob/c173c9fa0cecdf287787501679ce0bad058096d5/doc/mini.txt#L336-L345) a detailed comparison between 'mini.ai' and 'nvim-treesitter-textobjects'. In short: 'nvim-treesitter-textobjects' ships with queries while 'mini.ai' doesn't; 'mini.ai' supports `v:count`, different search methods, consecutive application (incremental selection of same textobjects), and `next`/`last` textobject variations while 'nvim-treesitter-textobjects' doesn't.
+
+Although the main purpose of 'mini.ai' is to create plain text textobjects which are useful most of the times (brackets, quotes, underscores, etc), it was designed to allow extensions via Lua functions. After a bit of beta-testing, [Oliver Leete](https://github.com/Oliver-Leete) made a [great suggestion](https://github.com/nvim-mini/mini.nvim/discussions/36#discussioncomment-3320103) about a minimal change in API to enable very convenient textobject specifications. Thanks to that, now it is possible.
+
+**Edit**: thanks to suggestion, latest `main` branch now supports array of captures instead of a single capture. So users can define something like `MiniAi.gen_spec.treesitter({ a = { '@conditional.outer', '@loop.outer' }, i = { '@conditional.inner', '@loop.inner' } })` (it will pick best region among all supplied matches).

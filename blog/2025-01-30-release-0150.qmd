@@ -1,0 +1,50 @@
+---
+title: "Release 0.15.0"
+author: Evgeni Chasnovski
+date: 2025-01-30
+categories: [release, reddit]
+description: Snippets plus various features here and there
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1idnotw/mininvim_release_0150_snippets_plus_various/)*
+
+Hello, Neovim users!
+
+The [mini.nvim](https://github.com/nvim-mini/mini.nvim) plugin has released a new 0.15.0 version. It has been a bit more than four months and 168 commits since the latest release, so the new one is long overdue. Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.15.0) if you are curious.
+
+------
+
+The main new feature is that one (big and important) module is coming out of beta-testing:
+
+- [mini.snippets](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md) - manage and expand snippets. It is a minimal yet feature-rich way of managing snippets combined with own implementation of LSP snippet parsing/insert. You can read more in [this release post](2024-12-23-announce-mini-snippets.qmd).
+
+It proved to be one of the most tasking module to write, for various reasons. But we've overcome this :)
+
+------
+
+The rest of release cycle I wanted to dedicate to adding snippet support to 'mini.completion' (including 'mini.snippets' integration through in-process LSP server) and overall backlog cleaning. The cleaning is taking too long (for again various reasons) and is not even finished yet. So I decided to make a release now (especially with so much time after the previous one) and improve 'mini.completion' later.
+
+A lot of existing plugins got new updates. Here are the highlights:
+
+- 'mini.files' confirm approach was updated:
+    - Synchronization can now be canceled (instead of only skipping applying file system actions). This will return to the explorer's state as it was prior to sync start.
+    - Closing explorer now asks for confirmation only if there are pending file system actions (and not *just* modified buffers).
+
+- 'mini.hues' has two more saturation levels: `'lowmedium'` and `'mediumhigh'`.
+
+- 'mini.indentscope' now is:
+    - More responsive on huge (10K+) scopes via introducing `n_lines` option that limits the scope computation.
+    - More customizable via `draw.predicate`, which can be used to decide when a scope is drawn.
+
+- 'mini.pick' got substantial updates:
+    - `grep` and `grep_live` pickers now allow `globs` to limit search in particular globs. There is also a new built-in `<C-o>` mapping to add a single glob pattern.
+    - Picker window now sets window-local working directory (the one that is printed with `:pwd`) to picker's working directory for a more correct processing when picker's cwd differs from a Neovim's one.
+    - A new `MiniPickMatch` event allows customizing picker on every query match update (like customizing height to only fit matches).
+
+- And more.
+
+------
+
+Thanks for the continued support of 'mini.nvim' project! We are past 6.4K stars now ❤️
+
+Hope to see you soon with new and exciting updates!

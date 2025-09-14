@@ -1,0 +1,52 @@
+---
+title: "Announcing 'mini.files'"
+author: Evgeni Chasnovski
+date: 2023-06-22
+categories: [announce, reddit]
+description: Navigate and manipulate file system (with column view and editing text)
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/14g36rs/minifiles_navigate_and_manipulate_file_system/)*
+
+{{< video 2023-06-22-announce-mini-files/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am thrilled to tell you about the release of [mini.files](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) to navigate and manipulate file system. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.files).
+
+------
+
+Writing a file explorer for Neovim was a dream goal of mine for almost a couple of years now. But I didn't have any interesting ideas while popular alternatives worked OK. Until about a month ago a thought came to me: how about a combination of a column view for file navigation and a great approach of "manipulate files by editing text" (as in [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim))? And thus (after a full bucket of sweat and tears) the 'mini.files' module now starts the fourth decade of 'mini.nvim' modules.
+
+------
+
+Here are main features of 'mini.files':
+
+- Navigate file system using column view (Miller columns) to display nested directories. See [`*MiniFiles-navigation*` tag](https://github.com/nvim-mini/mini.nvim/blob/4b0881b9fa22ddce26ba30cdf3711226e89ba81f/doc/mini-files.txt#L98) in help file for overview.
+
+- Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See [`*MiniFiles-manipulation*` tag](https://github.com/nvim-mini/mini.nvim/blob/4b0881b9fa22ddce26ba30cdf3711226e89ba81f/doc/mini-files.txt#L195) in help file for overview.
+
+- Use as default file explorer instead of `netrw`.
+
+- Configurable:
+    - Filter/sort of file system entries.
+    - Mappings used for common explorer actions.
+    - UI options: whether to show preview of directory under cursor, etc.
+
+See ["Quick start"](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md#quick-start) section of README for some quick start.
+
+See [`*MiniFiles-examples*` tag](https://github.com/nvim-mini/mini.nvim/blob/4b0881b9fa22ddce26ba30cdf3711226e89ba81f/doc/mini-files.txt#L315) in help file for some common configuration examples.
+
+Notes:
+
+- This module is written and thoroughly tested on Linux. Support for other platform/OS (like Windows or MacOS) is a goal, but there is no guarantee.
+
+- Works on all supported versions but using Neovim>=0.9 is recommended.
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-files.txt).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/377).
+
+Thanks!

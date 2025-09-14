@@ -1,0 +1,40 @@
+---
+title: "Release 0.7.0"
+author: Evgeni Chasnovski
+date: 2023-02-12
+categories: [release, reddit]
+description: "Three new modules, some breaking changes, many new features"
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/110ea8n/mininvim_new_version_070_is_released/)*
+
+Hello, Neovim users!
+
+I am glad to finally announce that [mini.nvim](https://github.com/nvim-mini/mini.nvim) had a release of version 0.7.0.
+
+If you are following `main` branch (on 'mini.nvim' itself or any of its standalone repositories) or Reddit posts, there is not much news for you (apart from new modules are now out of beta-testing phase).
+
+If you are following `stable` branch or latest tag (like with 'folke/lazy.nvim'), there are some new modules, features, and breaking changes.
+
+Here is a [relevant part of changelog](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.7.0). A quick summary:
+
+- There are **three new modules** (main part of release):
+    - [mini.animate](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-animate.md) - Animate common Neovim actions.
+    - [mini.basics](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-basics.md) - Common configuration presets.
+    - [mini.move](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-move.md) - Move any selection in any direction.
+- There are **four breaking changes** (most previous behavior still works but will be removed soon in `main` branch):
+    - In 'mini.ai' the `separators` option for argument specification is deprecated in favor of `separator`. See [here about migration](https://github.com/nvim-mini/mini.nvim/blob/427751024313e2270ca723eb16af7b218c83a7fc/doc/mini-ai.txt#L591).
+    - In 'mini.completion' the `window_dimensions` option is renamed to `window` to handle more general configuration.
+    - In 'mini.indentscope' the `gen_animation` is now a table with methods instead of a function. See [here about migration](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-indentscope.txt#L319).
+    - In 'mini.indentscope' the `MiniIndentscopePrefix` highlighting group is deprecated as it is no longer needed.
+- There are **five new features**:
+    - 'mini.misc' got `setup_auto_root()` and `find_root()` functions for root finding functionality (a.k.a "simplified vim-rooter").
+    - 'mini.misc' got `setup_restore_cursor()` function to automatically restore latest cursor position on file reopen. Thanks [@cryptomilk](https://github.com/cryptomilk) for most part of the work!
+    - 'mini.completion' can now customize borders of info and signature windows.
+    - 'mini.indentscope' now doesn't obscure region to the left of vertical line. Specifically, it means that it works with 'lukas-reineke/indent-blankline.nvim'.
+    - 'mini.ai' can now define separator for argument textobject via Lua pattern instead of an array of single characters.
+- **Support for Neovim 0.6 is now soft deprecated**. All versions prior Neovim 0.7.0 will stop working some time after Neovim 0.9.0 release.
+
+If you were waiting for new modules to come out of beta-testing, this is the time to try them out!
+
+Thanks for reading!

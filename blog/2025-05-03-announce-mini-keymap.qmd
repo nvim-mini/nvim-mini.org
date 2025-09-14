@@ -1,0 +1,45 @@
+---
+title: "Announcing 'mini.keymap'"
+author: Evgeni Chasnovski
+date: 2025-05-03
+categories: [announce, reddit]
+description: "Make special key mappings: multi-step actions (like \"smart\" tab, shift-tab, enter, backspace) and combos (more general \"better escape\" like behavior)"
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1kdrhjn/minikeymap_make_special_key_mappings_multistep/)*
+
+{{< video 2025-05-03-announce-mini-keymap/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I invite you to break a long pause between new [mini.nvim](https://github.com/nvim-mini/mini.nvim) module releases together with ['mini.keymap'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-keymap.md). It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.keymap).
+
+------
+
+This module is aimed to solve three pressing issues:
+
+- Provide a way to tie together different modules/plugins which can use `<Tab>` / `<S-Tab>` / `<CR>` / `<BS>` keys in Insert mode. These are usually known as "smart" keys, but 'mini.keymap' offers a more general and customizable alternative of "multi-step actions".
+
+- Resolve [the oldest open feature request](https://github.com/nvim-mini/mini.nvim/issues/86) for adding "better escape" like functionality into 'mini.nvim'. I personally prefer exiting into Normal mode with `<C-S>` (which also saves), but I can see the appeal of `jk`. Maybe I'll try to get used to it. Besides, the end result in 'mini.keymap' (called "combo") is more versatile.
+
+- The upcoming 'mini.nvim' release 0.16.0 will be mostly about [new 'mini.completion' features](2025-03-07-update-mini-completion-snippet-support.qmd) and many new features in other modules. But I'd like for every stable release to provide at least one new module. So here we are.
+
+------
+
+Features of 'mini.keymap':
+
+- Map keys to perform configurable multi-step actions: if condition for step one is true - execute step one action, else check step two, and so on until falling back to executing original keys. This is usually referred to as "smart" keys (like "smart tab").
+
+  There are many built-in steps targeted for Insert mode mappings of special keys like `<Tab>`, `<S-Tab>`, `<CR>`, and `<BS>`. Here is the [full list](https://github.com/nvim-mini/mini.nvim/blob/ee23e1abc206efc6d6cce19ec8c0a3da7a897035/doc/mini-keymap.txt#L220-L261) and [some common examples](https://github.com/nvim-mini/mini.nvim/blob/ee23e1abc206efc6d6cce19ec8c0a3da7a897035/doc/mini-keymap.txt#L81-L126). More plugin might support in the future (like for accepting inline completion and "next text edit"), but having as much coverage as possible is not the goal.
+
+- Map keys as "combo": each key acts immediately plus execute extra action if all are typed within configurable delay between each other. Some of the common use cases include:
+    - Map insertable keys to exit into Normal mode (as this won't have side effects like `inoremap jk <Esc>`).
+    - Show a notification if there are too many same navigation keys pressed (to break bad habits).
+
+  Here are [more examples](https://github.com/nvim-mini/mini.nvim/blob/ee23e1abc206efc6d6cce19ec8c0a3da7a897035/doc/mini-keymap.txt#L127-L182).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/1780). I'd also like to collect ideas about useful combos that are not convenient to be done as a regular mapping.
+
+Thanks!

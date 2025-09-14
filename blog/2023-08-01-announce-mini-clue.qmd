@@ -1,0 +1,74 @@
+---
+title: "Announcing 'mini.clue'"
+author: Evgeni Chasnovski
+date: 2023-08-01
+categories: [announce, reddit]
+description: Show next key clues. Basically a 'which-key' + 'hydra' combo with different UI, implementation, and configuration
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/15fc34y/miniclue_show_next_key_clues_basically_a_whichkey/)*
+
+{{< video 2023-08-01-announce-mini-clue/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am relieved to finally make the release of [mini.clue](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-clue.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) to show next key clues. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.clue).
+
+------
+
+'mini.clue' is basically a [folke/which-key.nvim](https://github.com/folke/which-key.nvim) but with different implementation of how user input is processed. This allows it to have 'hydra'-like submodes and be independent from 'timeoutlen' (built-in duration after which currently typed keys are forced to execute).
+
+One important distinction from 'folke/which-key.nvim' is that 'mini.clue' can't create mappings during its setup. It needs to be done separately, mostly because I believe that this (separation of mapping creation and showing setup) leads to a cleaner user config.
+
+I love how this module turned out. Originally, I thought that it would be not hard to implement, but it became a really painful process to try to mitigate all Neovim's built-in quirks (especially for Operator-pending mode). It is a huge relief to finally release this.
+
+On a slightly sad note, this will replace the last Folke's plugin in my config :(
+
+------
+
+Here are main features of 'mini.clue':
+
+- Implement custom key query process to reach target key combination:
+    - Starts after customizable opt-in triggers (mode + keys).
+
+    - Each key press narrows down set of possible targets.
+
+      Pressing `<BS>` removes previous user entry.
+
+      Pressing `<Esc>` or `<C-c>` leads to an early stop.
+
+      Doesn't depend on 'timeoutlen' and has basic support for 'langmap'.
+
+    - Ends when there is at most one target left or user pressed `<CR>`. Results into emulating pressing all query keys plus possible postkeys.
+
+- Show window (after configurable delay) with clues. It lists available next keys along with their descriptions (auto generated from descriptions present keymaps and user-supplied clues).
+
+- Configurable "postkeys" for key combinations - keys which will be emulated after combination is reached during key query process.
+
+- Provide customizable sets of clues for common built-in keys/concepts:
+    - `g` key.
+    - `z` key.
+    - Window commands.
+    - Built-in completion.
+    - Marks.
+    - Registers.
+
+- Lua functions to disable/enable triggers globally or per buffer.
+
+For more details see these tags in help:
+
+- [MiniClue-key-query-process](https://github.com/nvim-mini/mini.nvim/blob/609b449fb4e536a88543a32d23e81f98f907a12a/doc/mini-clue.txt#L120)
+
+- [MiniClue-examples](https://github.com/nvim-mini/mini.nvim/blob/609b449fb4e536a88543a32d23e81f98f907a12a/doc/mini-clue.txt#L206)
+
+- [MiniClue.config](https://github.com/nvim-mini/mini.nvim/blob/609b449fb4e536a88543a32d23e81f98f907a12a/doc/mini-clue.txt#L453)
+
+- [MiniClue.gen_clues](https://github.com/nvim-mini/mini.nvim/blob/609b449fb4e536a88543a32d23e81f98f907a12a/doc/mini-clue.txt#L581)
+
+For more information, see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-clue.txt).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/430).
+
+Thanks!

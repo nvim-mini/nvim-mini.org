@@ -1,0 +1,52 @@
+---
+title: "Announcing 'mini.operators'"
+author: Evgeni Chasnovski
+date: 2023-08-15
+categories: [announce, reddit]
+description: "Text edit operators: replace, exchange, multiply, sort, evaluate; with count and dot-repeat support"
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/15rv9gn/minioperators_text_edit_operators_replace/)*
+
+{{< video 2023-08-15-announce-mini-operators/demo.mp4 >}}
+
+Hello, Neovim users!
+
+I am overjoyed to release [mini.operators](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-operators.md) - new module of [mini.nvim](https://github.com/nvim-mini/mini.nvim) with various text edit operators. It can also be installed using [separate GitHub repository](https://github.com/nvim-mini/mini.operators).
+
+------
+
+Initially I planned to do a 'mini.exchange' module for only "exchange" operator. After exploration of other useful operators, I got a little excited with possibilities. As they all mostly fit into "various text edit operators" category, I decided to upgrade my plans to include more operators.
+
+At first, some of them didn't seem that useful, but continuous practice unveiled interesting minor "quality of life" improvements in frequent mundane tasks:
+
+- Dot-repeatability of "replace" operator really adds up for several quick replacements.
+
+- Hitting `grr`/`gmm` to replace/multiply current line feels more ergonomic than `VP`/`yyp`. Plus they reuse current indent (which often saves extra keystrokes) and don't affect `"` register.
+
+- "Evaluate" operator is really useful for exploring some big Lua object inside a buffer and is slightly quicker to use than [`put_text()` from 'mini.misc'](https://github.com/nvim-mini/mini.nvim/blob/2c622382236328316b9fc15d8282fd47585d5844/doc/mini-misc.txt#L99).
+
+------
+
+Here are main features of 'mini.operators':
+
+- Operators:
+    - Evaluate text and replace with output.
+    - Exchange text regions.
+    - Multiply (duplicate) text.
+    - Replace text with register.
+    - Sort text.
+
+- Automated configurable mappings to operate on textobject, line, selection. Can be disabled in favor of more control with `MiniOperators.make_mappings()`.
+
+- All operators support `[count]` and dot-repeat.
+
+See [MiniOperators-overview](https://github.com/nvim-mini/mini.nvim/blob/fd071ff88eb2bb0b930265e14e626bf30013ea55/doc/mini-operators.txt#L80) and [MiniOperators.config](https://github.com/nvim-mini/mini.nvim/blob/fd071ff88eb2bb0b930265e14e626bf30013ea55/doc/mini-operators.txt#L163) for more details.
+
+For full documentation see [help file](https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-operators.txt).
+
+------
+
+Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in [dedicated beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/439).
+
+Thanks!

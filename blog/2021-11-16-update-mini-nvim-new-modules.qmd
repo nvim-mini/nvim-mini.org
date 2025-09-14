@@ -1,0 +1,29 @@
+---
+title: "Updates of 'mini.nvim'"
+author: Evgeni Chasnovski
+date: 2021-11-16
+categories: [update, reddit]
+description: Version 0.1.0; call for beta-testing new modules ('sessions', 'starter', 'jump') before 0.2.0
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/qve1eu/updates_of_mininvim_version_010_call_for/)*
+
+Hello, Neovim users!
+
+This is a post about updates to my [mini.nvim](https://github.com/nvim-mini/mini.nvim) plugin with some changes after [previous post](2021-10-13-announce-mini-nvim.qmd).
+
+I decided to adopt two branch approach with `main` (default) having latest development version of plugin and `stable` updating only upon releases after public beta-testing. After reacting to a handful of useful feedback there was a [0.1.0](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.1.0) release. Before making 0.2.0 I need your help in beta-testing some big updates (*especially if you use Windows*). Their general design is mostly stable, but I would like to hear your feedback about undesired behavior (a.k.a bugs), naming (are configuration and function names intuitive), default values (are they convenient), and documentation (is it clear enough).
+
+New modules:
+
+- [`mini.sessions`](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-sessions.md) is a module for session management (read, write, delete) which works using builtin `mksession`. It was heavily inspired by 'vim-startify' and should work out of the box with sessions created by it (only provide path to where it stored them). Names of main functions are different from 'vim-startify' on purpose as I think they are more appropriate when it comes to managing session files.
+- [`mini.starter`](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-starter.md) is a minimal, fast, and flexible start screen which I am *really excited about*. Displayed items are fully customizable both in terms of what they do and how they look (with reasonable defaults). Item selection can be done using prefix query with instant visual feedback. Has example configurations similar to 'vim-startify' and 'dashboard-nvim'. I also made some [benchmarks](https://github.com/nvim-mini/mini.nvim/blob/main/benchmarks/starter/startup-summary.md) testing its effect on overall startup time (along with alternative plugins).
+- [`mini.jump`](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump.md) is a module for smarter jumping to a single character (something like [clever-f.vim](https://github.com/rhysd/clever-f.vim)). Initial idea and implementation by [Adam Blažek](https://github.com/xigoi).
+
+Existing modules:
+
+- [`mini.pairs`](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pairs.md) got an update for a more user-friendly custom mappings. Now they can be done inside `setup()` call and can be automatically registered for `<BS>` and `<CR>` keys.
+
+Feel free to drop your feedback in comments here or in dedicated GitHub issues ([sessions](https://github.com/nvim-mini/mini.nvim/issues/13), [starter](https://github.com/nvim-mini/mini.nvim/issues/14), [jump](https://github.com/nvim-mini/mini.nvim/issues/15)). If you end up adopting new modules right away, please keep in mind that there might be a slight turbulence as a result of this public beta-testing (which I hope will stop after 0.2.0 release planned in a couple of weeks).
+
+Thanks!

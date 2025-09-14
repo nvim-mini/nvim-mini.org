@@ -1,0 +1,50 @@
+---
+title: "Release 0.16.0"
+author: Evgeni Chasnovski
+date: 2025-05-20
+categories: [release, reddit]
+description: Smart mappings, better autocompletion, and many small improvements
+---
+
+*Originally [posted on Reddit](https://www.reddit.com/r/neovim/comments/1kr4or7/mininvim_release_0160_smart_mappings_better/)*
+
+Hello, Neovim users!
+
+The [mini.nvim](https://github.com/nvim-mini/mini.nvim) plugin has released a new 0.16.0 version. The previous release was about 4 months and 250 commits ago, so it felt like the right time. Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.16.0) if you are curious.
+
+---
+
+There is only one new module, but it fixes some common issues when it comes to mappings:
+
+- [mini.keymap](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-keymap.md) - Special key mappings. It has two main features: multi-step actions (like "smart" tab, shift-tab, enter, backspace) and combos (more general "better escape" like behavior). You can read more in [this release post](2025-05-03-announce-mini-keymap.qmd).
+
+---
+
+The main attention in this release cycle went towards revamping 'mini.completion' with long overdue features like snippet support (made fully possible after release of 'mini.snippets'), better highlighting and scroll support in info/signature windows, overall more proper coverage of LSP capabilities, and various quality of life improvements. There was a [release post](2025-03-07-update-mini-completion-snippet-support.qmd), but full changelog is [here](https://github.com/nvim-mini/mini.nvim/blob/main/CHANGELOG.md#minicompletion) (there were new changes after the post).
+
+---
+
+A lot of effort was put into unifying certain behavior across all modules:
+
+- How floating windows are displayed: better titles, 'single' border by default but respecting new 'winborder' options, etc.
+- Naming scheme for special module-specific buffers, which makes buffer list and some custom actions clearer.
+- Stop handling general options behind `set_vim_settings` config value in favor of setting them automatically if they were not already set by the user.
+
+---
+
+Various plugins got small and not so much updates. Here are some of them:
+
+- 'mini.ai' and 'mini.surround' got better support of tree-sitter captures and non-latin textobject/surrounding identifiers.
+- 'mini.diff' got the ability to set array of sources to attempt to attach them one at a time. This allows having setup like "try attach Git source, but fall back to custom Mercurial source" (there might be built-in sources for other VCS in the future).
+- 'mini.operators' now remaps built-in `gx` (open URL under cursor) to `gX` if the `exchange` operator is about to override it.
+- 'mini.pairs' now support multibyte characters in pairs.
+- 'mini.pick' now has more highlighting customizations of prompt and better scripting capabilities for setting current and marked matches.
+- 'mini.snippets' has `start_lsp_server()` that starts an in-process LSP server that provides completion suggestions from snippets loaded via 'mini.snippets'. This integrates well with 'mini.completion'.
+- 'mini.tabline' now shows special truncation symbols on left and/or right if there are more text to the left/right.
+
+------
+
+Thanks for the continued support of 'mini.nvim' project! We are past 7.2K stars now 🌟❤️
+I still have a lot of ideas I want to add to 'mini.nvim' to make it even better. I also plan to spend some time implementing several important features in upstream Neovim. So stay tuned!
+
+Hope to see you soon with new and exciting updates!
