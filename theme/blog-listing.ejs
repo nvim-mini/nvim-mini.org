@@ -1,0 +1,20 @@
+```{=html}
+<div class="blog-listing list">
+<% for (const item of items) { %>
+  <div class="blog-listing-item" <%= metadataAttrs(item) %>>
+    <div>
+      <a href="<%- item.path %>" class="blog-listing-item-title"><span><%= item.title %></span></a>
+    </div>
+    <div>
+      <a href="<%- item.path %>" class="blog-listing-item-metadata"><%= item.date %> <%= item.author %></a>
+      <% for (const c of item.categories) { %>
+        <a href="/blog.html#category=<%= c %>" class="blog-listing-item-category"><%= c %></a>
+      <% } %>
+    </div>
+    <div>
+      <a href="<%- item.path %>" class="blog-listing-item-description"><span><%= item.description %></span></a>
+    </div>
+  </div>
+<% } %>
+</div>
+```

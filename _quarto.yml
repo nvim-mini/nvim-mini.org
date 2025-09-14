@@ -1,0 +1,55 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: MINI
+  favicon: assets/logo-mini_180x180.png
+  description: 'Modular Independent Neovim Improvements'
+  site-url: https://nvim-mini.org
+  repo-url: https://github.com/nvim-mini
+
+  open-graph:
+    site-name: "MINI"
+    locale: en_US
+  twitter-card:
+    image: "assets/logo-mini.png"
+
+  navbar:
+    search: true
+    left:
+      - href: blog.qmd
+        text: Blog
+    right:
+      - icon: github
+        href: https://github.com/nvim-mini
+      - icon: rss-fill
+        href: blog.xml
+        aria-label: RSS
+
+  page-footer:
+    center: "© Evgeni Chasnovski, [MIT](https://choosealicense.com/licenses/mit/)"
+
+format:
+  html:
+    theme:
+      dark:
+        - default
+        - brand
+      light:
+        - default
+        - brand
+    toc: true
+    respect-user-color-scheme: true
+    code-overflow: scroll
+    highlight-style:
+      dark: theme/miniwinter-dark.theme
+      light: theme/minisummer-light.theme
+    include-after-body: assets/traffic-counter.html
+
+brand:
+  light: theme/brand-light.yml
+  dark: theme/brand-dark.yml
+
+execute:
+  freeze: true
