@@ -3,5 +3,5 @@ _deps/mini.nvim:
 	@mkdir -p _deps
 	git clone --filter=blob:none https://github.com/nvim-mini/mini.nvim $@
 
-mini_nvim_readmes: _deps/mini.nvim
-	chmod u+x _scripts/mini_nvim_readmes.sh && _scripts/mini_nvim_readmes.sh
+mini_nvim: _deps/mini.nvim
+	chmod u+x _scripts/mini_nvim.sh && _scripts/mini_nvim.sh
