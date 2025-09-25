@@ -10,6 +10,7 @@ then
   mkdir -p mini.nvim/scripts
   cp _deps/mini.nvim/scripts/init-deps-example.lua mini.nvim/scripts/init-deps-example.lua
   cp -r _deps/mini.nvim/readmes mini.nvim/readmes
+  cp -r _deps/mini.nvim/doc mini.nvim/doc
 fi
 
 nvim --headless --noplugin -u ./_scripts/mini_nvim.lua
