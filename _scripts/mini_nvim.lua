@@ -1,3 +1,24 @@
+-- Utility ====================================================================
+local reflow = function(lines)
+  local new_lines = vim.split(table.concat(lines, '\n'), '\n')
+  for i, l in ipairs(new_lines) do
+    lines[i] = l
+  end
+end
+
+local is_blank = function(x) return x:find('^%s*$') ~= nil end
+
+local make_anchor = function(x)
+  -- Improve anchor for versions. This also removes any prerelease indicators.
+  if x:find('^[Vv]ersion ') ~= nil then x = 'v' .. x:match('[%d%.]+') end
+
+  -- Manual heading anchors in Pandoc (like "# Heading {#my-heading}") don't
+  -- work with a lot of non-alphanumeric chars (like "(" / ")" / "'"). Remove
+  -- them to sanitaize anchors.
+  -- The `<xxx>` in anchor can be confused for HTML tag. Escape it.
+  return (x:lower():gsub('[^%w%.%-_]', ''):gsub('%s', '-'):gsub('<(.-)>', '\\<%1\\>'))
+end
+
 -- Help files =================================================================
 local get_help_tags = function()
   local tags_path = '_deps/mini.nvim/doc/tags'
@@ -11,20 +32,12 @@ local get_help_tags = function()
   return tags
 end
 
-local reflow = function(lines)
-  local new_lines = vim.split(table.concat(lines, '\n'), '\n')
-  for i, l in ipairs(new_lines) do
-    lines[i] = l
-  end
-end
-
-local is_blank = function(x) return x:find('^%s*$') ~= nil end
-
 local make_codeblocks = function(lines)
   local codeblock_start, cur_indent
   local empty_at_codeblock_start = {}
   for i, l in ipairs(lines) do
-    if codeblock_start == nil and l:find(' *>%w*$') then
+    local is_codeblock_start = l:find(' +>%w*$') ~= nil or l:find('^>%w*$') ~= nil
+    if codeblock_start == nil and is_codeblock_start then
       codeblock_start, cur_indent = i, string.rep(' ', 200)
 
       -- Most of code blocks are padded with empty/blank line at the top for
@@ -87,69 +100,128 @@ local add_empty_lines = function(lines)
   reflow(lines)
 end
 
-local add_help_syntax = function(lines)
+local add_help_syntax = function(lines, tags)
   local code_ranges = {}
-  local replace_not_in_code_ranges = function(s, pat, repl_format)
+
+  local replace_not_in_code_ranges = function(s, pat, repl)
     local res = s:gsub(pat, function(col, text)
       for _, range in ipairs(code_ranges) do
         if range[1] <= col and col < range[2] then return end
       end
-      local repl = string.format(repl_format, text)
-      return repl
+      return type(repl) == 'string' and string.format(repl, text) or repl(text)
     end)
     return res
   end
 
-  for i, l in iter_noncode(lines) do
-    -- Collect `xxx` ranges within line to not act inside of them
+  local populate_code_ranges = function(s)
     code_ranges = {}
-    l:gsub('`().-()`', function(from, to) table.insert(code_ranges, { from, to }) end)
+    s:gsub('`().-()`', function(from, to) table.insert(code_ranges, { from, to }) end)
+  end
 
-    -- `<xxx>` is used to show keys and (often) table fields.
-    -- Escape to not be treated as HTML tags.
-    lines[i] = replace_not_in_code_ranges(l, '()<(%S-)>', '<span class="help-syntax-keys">\\<%s\\></span>')
+  local repl_link = function(m)
+    -- Escpe special characters to be usable inside markdown link
+    if tags[m] == nil then
+      local text_escaped = m:gsub('[)(]', '\\%1')
+      return string.format('[`%s`](https://neovim.io/doc/user/helptag.html?tag=%s)', m, text_escaped)
+    end
+
+    return string.format('[`%s`](%s.qmd#%s)', m, tags[m], make_anchor(m))
+  end
+
+  local repl_right_anchor = function(m)
+    -- Transform right anchor into a heading (for table of contents entry).
+    -- Compute more natural title. Common tag->title transformations:
+    -- - `*MiniAi*` -> "Overview"
+    -- - `*MiniAi.find_textobject()*` -> "find_textobject()"
+    -- - `*MiniAi-builtin-textobjects*` -> "Builtin textobjects"
+    -- - `:DepsAdd` -> ":DepsAdd"
+    local text = m:find('^Mini%w+$') ~= nil and 'Overview' or (m:match('^Mini%w+(%W.+)$') or m)
+    local char_one, char_two = text:sub(1, 1), text:sub(2, 2)
+    local title = char_one == '.' and text:sub(2)
+      or (char_one == '-' and (char_two:upper() .. text:sub(3):gsub('%-', ' ')) or text)
+
+    -- Preserve original tag as anchor for other links to work more naturally
+    return string.format('### %s {#%s}\n', title, make_anchor(m))
+  end
+
+  local repl_anchor = function(m)
+    if not tags[m] then return m end
+    -- `<a name="%s" href="%s"></a>` adds actual anchor and acts as a link to
+    -- itself for easier copy (make it bold to visually show this).
+    local anchor = make_anchor(m)
+    return string.format('<a name="%s" href="%s.qmd#%s"><b>%s</b></a>', anchor, tags[m], anchor, m)
+  end
+
+  local repl_section_header = function(m)
+    -- Treat "raw" section headers "Title ~" as "# Title ~"
+    local prefix = m:sub(1, 1) == '#' and '' or '# '
+    return '###' .. prefix .. m .. '\n'
+  end
+
+  for i, _ in iter_noncode(lines) do
+    -- Collect `xxx` ranges within line to not act inside of them
+    populate_code_ranges(lines[i])
+
+    -- `|xxx|` is used to add a a link to a tag anchor
+    lines[i] = replace_not_in_code_ranges(lines[i], '()|([%w%.-_<>%(%)]-)|', repl_link)
+    -- - Recompute code ranges because adding links adds one
+    populate_code_ranges(lines[i])
+
+    -- `<xxx>` is used to show keys and (often) table fields. Escape to not be
+    -- treated as HTML tags. Do so before adding any custom HTML tags.
+    lines[i] = replace_not_in_code_ranges(lines[i], '()<(%S-)>', '<span class="help-syntax-keys">\\<%s\\></span>')
 
     -- `{xxx}` is used to add special highlighting. Usually arguments.
     lines[i] = replace_not_in_code_ranges(lines[i], '(){(%S-)}', '<span class="help-syntax-special">{%s}</span>')
 
-    -- `Xxx ~` is used to add highlighted section start
-    -- TODO: Decide maybe to treat it like a markdown header?
-    lines[i] = lines[i]:gsub('^(.+) ~$', '<span class="help-syntax-section">%1</span>')
+    -- `*xxx*` is used to add an anchor to a tag. Treat right aligned anchors
+    -- as start of the section (adds to table of contents).
+    lines[i] = lines[i]:gsub('^ +%*(.-)%*$', repl_right_anchor)
+    lines[i] = replace_not_in_code_ranges(lines[i], '()%*(%S-)%*', repl_anchor)
+
+    -- `Xxx ~` is used to add subsections within section denoted by ruler
+    lines[i] = lines[i]:gsub('^(.+) ~$', repl_section_header)
   end
+
+  reflow(lines)
 end
 
 local adjust_alignment = function(lines)
-  -- Replace manually right and center aligned elements with dedicated tags
   for i, l in iter_noncode(lines) do
-    local right_tag_anchor = l:match('^ +(%*.-%*)$')
-    if right_tag_anchor ~= nil then lines[i] = '<p align="right">' .. right_tag_anchor .. '</p>' end
-
+    -- Transform center aligned signature or section "name"
     local center_signature = l:match('^ +(`.-`%b())$') or l:match('^ +(`.-`)$')
     if center_signature ~= nil then lines[i] = '<p align="center">' .. center_signature .. '</p>' end
   end
 end
 
-local replace_tags_with_links = function(lines, tags)
-  local repl_anchor = function(m)
-    local text = m:match('^%*(.+)%*$')
-    if not tags[text] then return m end
-    -- `<a name="%s"></a>` adds actual anchor; `class="" data-anchor-id=""`
-    -- adds "chain" icon revealed on hover to get the link.
-    -- Alternative is to have `<a name="%s" href="%s">%s</a>`, but it shows
-    -- tags as plain links. May be acceptable, though.
-    return string.format('<a name="%s"></a><b class="anchored" data-anchor-id="%s">%s</b>', text, text, text)
-  end
-
-  local repl_link = function(m)
-    local text = m:match('^|(.+)|$')
-    -- Escpe special characters to be usable inside markdown link
-    local text_escaped = text:gsub('[)(]', '\\%1')
-    return tags[text] ~= nil and string.format('[`%s`](%s.qmd#%s)', text, tags[text], text_escaped)
-      or string.format('[`%s`](https://neovim.io/doc/user/helptag.html?tag=%s)', text, text_escaped)
-  end
-
+local add_hierarchical_heading_anchors = function(lines)
+  local anchor_stack = {}
   for i, l in iter_noncode(lines) do
-    lines[i] = l:gsub('%*.-%*', repl_anchor):gsub('|[%w%p]-|', repl_link)
+    -- Reuse already present anchor (like from right aligned tag heading)
+    -- They should only be present for the "top level" headings.
+    local header_prefix, header_name, header_anchor = l:match('^(#+)%s+(.-) {#(.-)}$')
+    if header_anchor == nil then
+      header_prefix, header_name = l:match('^(#+)%s+(.+)$')
+    end
+
+    if header_prefix ~= nil and header_name ~= nil then
+      header_anchor = header_anchor or make_anchor(header_name)
+
+      -- Modify stack
+      local header_level = header_prefix:len()
+      anchor_stack[header_level] = header_anchor
+      -- NOTE: Take into account that `anchor_stack` can have holes if headings
+      -- are not in consecutive levels
+      for k, _ in pairs(anchor_stack) do
+        if k > header_level then anchor_stack[k] = nil end
+      end
+
+      -- Add anchor
+      local keys = vim.tbl_keys(anchor_stack)
+      table.sort(keys)
+      local anchor = table.concat(vim.tbl_map(function(k) return anchor_stack[k] end, keys), '-')
+      lines[i] = string.format('%s %s {#%s}', header_prefix, header_name, anchor)
+    end
   end
 end
 
@@ -157,8 +229,9 @@ local adjust_header_footer = function(lines, title)
   -- Add informative header for better search
   table.insert(lines, 1, '---')
   table.insert(lines, 2, string.format('title: "%s"', title))
-  table.insert(lines, 3, '---')
-  table.insert(lines, 4, '')
+  table.insert(lines, 3, 'toc-depth: 5')
+  table.insert(lines, 4, '---')
+  table.insert(lines, 5, '')
 
   -- Remove modeline
   if lines[#lines]:find('^ vim:') then
@@ -179,9 +252,9 @@ local create_help = function()
       make_codeblocks(lines)
       adjust_rulers(lines)
       add_empty_lines(lines)
-      add_help_syntax(lines)
+      add_help_syntax(lines, help_tags)
       adjust_alignment(lines)
-      replace_tags_with_links(lines, help_tags)
+      add_hierarchical_heading_anchors(lines)
       adjust_header_footer(lines, basename:gsub('%-', '.') .. ' documentation')
 
       local out_path = string.format('%s/%s.qmd', help_path, basename)
@@ -212,12 +285,12 @@ local replace_help_links = function(lines)
   end
 end
 
-local add_tag_links = function(lines)
+local add_doc_links = function(lines)
   local help_tags = get_help_tags()
   local repl = function(m)
     local code = m:match('^`:h (.-)`$') or m:match('^`(.-)`$')
     if help_tags[code] == nil then return m end
-    return string.format('[%s](../doc/%s.qmd#%s)', m, help_tags[code], code)
+    return string.format('[%s](../doc/%s.qmd#%s)', m, help_tags[code], make_anchor(code))
   end
   for i, l in ipairs(lines) do
     lines[i] = l:gsub('`.-`', repl)
@@ -234,8 +307,8 @@ local adjust_readmes = function()
 
       replace_demo_link(lines)
       replace_help_links(lines)
-      add_info_header(lines, 'mini.' .. file:match('(%w+)%.md$'))
-      add_tag_links(lines)
+      adjust_header_footer(lines, 'mini.' .. file:match('(%w+)%.md$'))
+      add_doc_links(lines)
 
       vim.fn.writefile(lines, path)
     end
@@ -244,7 +317,7 @@ local adjust_readmes = function()
   -- Main README
   local path = vim.fs.joinpath('mini.nvim/index.md')
   local lines = vim.fn.readfile(path)
-  add_info_header(lines, 'mini.nvim')
+  adjust_header_footer(lines, 'mini.nvim')
   replace_help_links(lines)
   vim.fn.writefile(lines, path)
 end
@@ -253,42 +326,12 @@ local _, err_msg_readmes = pcall(adjust_readmes)
 if err_msg_readmes then io.write('Error during adjusting readmes:\n' .. err_msg_readmes) end
 
 -- CHANGELOG ==================================================================
-local parse_md_line = function(line, state)
-  -- Detect code blocks and don't detect headers inside of them
-  local is_codeblock_edge = line:find('^%s*```%S*%s*$') ~= nil
-  if is_codeblock_edge then
-    state.is_in_codeblock = not state.is_in_codeblock
-    return line
-  end
-  if state.is_in_codeblock then return line end
-
-  -- Detect header
-  local header_prefix, header_name = line:match('^(#+)%s+(.+)$')
-  if not (header_prefix ~= nil and header_name ~= nil) then return line end
-
-  -- Sanitize header for cleaner anchor
-  if vim.startswith(header_name, 'Version') then header_name = 'v' .. header_name:match('[%d%.]+') end
-  header_name = header_name:lower()
-
-  -- Modify stack
-  local header_level = header_prefix:len()
-  state.header_stack[header_level] = header_name
-  for n = header_level + 1, #state.header_stack do
-    state.header_stack[n] = nil
-  end
-
-  -- Add anchor
-  local anchor = table.concat(state.header_stack, '-'):gsub('%s+', '-')
-  return string.format('%s {#%s}', line, anchor)
-end
-
 local adjust_changelog = function()
   local path = 'mini.nvim/CHANGELOG.md'
   local lines = vim.fn.readfile(path)
-  local state = { header_stack = {}, is_in_codeblock = false }
-  for i, l in ipairs(lines) do
-    lines[i] = parse_md_line(l, state)
-  end
+
+  add_hierarchical_heading_anchors(lines)
+
   vim.fn.writefile(lines, path)
 end
 
