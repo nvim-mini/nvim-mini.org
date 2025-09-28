@@ -101,11 +101,11 @@ local add_empty_lines = function(lines)
 end
 
 local add_help_syntax = function(lines, tags)
-  local code_ranges = {}
+  local bad_ranges = {}
 
-  local replace_not_in_code_ranges = function(s, pat, repl)
+  local replace_not_in_ranges = function(s, pat, repl)
     local res = s:gsub(pat, function(col, text)
-      for _, range in ipairs(code_ranges) do
+      for _, range in ipairs(bad_ranges) do
         if range[1] <= col and col < range[2] then return end
       end
       return type(repl) == 'string' and string.format(repl, text) or repl(text)
@@ -113,9 +113,10 @@ local add_help_syntax = function(lines, tags)
     return res
   end
 
-  local populate_code_ranges = function(s)
-    code_ranges = {}
-    s:gsub('`().-()`', function(from, to) table.insert(code_ranges, { from, to }) end)
+  local populate_bad_ranges = function(s)
+    bad_ranges = {}
+    s:gsub('`().-()`', function(from, to) table.insert(bad_ranges, { from, to }) end)
+    s:gsub('()%b[]%b()()', function(from, to) table.insert(bad_ranges, { from, to }) end)
   end
 
   local repl_link = function(m)
@@ -131,11 +132,14 @@ local add_help_syntax = function(lines, tags)
   local repl_right_anchor = function(m)
     -- Transform right anchor into a heading (for table of contents entry).
     -- Compute more natural title. Common tag->title transformations:
-    -- - `*MiniAi*` -> "Overview"
+    -- - `*MiniAi*` -> "Module" ("Overview" is commonly used later as
+    --   a 'MiniXxx-overview' tag).
     -- - `*MiniAi.find_textobject()*` -> "find_textobject()"
     -- - `*MiniAi-builtin-textobjects*` -> "Builtin textobjects"
+    -- - `*mini.nvim-disabling-recipes*` -> "Disabling recipes"
     -- - `:DepsAdd` -> ":DepsAdd"
-    local text = m:find('^Mini%w+$') ~= nil and 'Overview' or (m:match('^Mini%w+(%W.+)$') or m)
+    local text = m:find('^Mini%w+$') ~= nil and 'Module'
+      or (m:match('^Mini%w+(%W.+)$') or m:match('^mini%.%w+(%W.+)$') or m)
     local char_one, char_two = text:sub(1, 1), text:sub(2, 2)
     local title = char_one == '.' and text:sub(2)
       or (char_one == '-' and (char_two:upper() .. text:sub(3):gsub('%-', ' ')) or text)
@@ -160,24 +164,24 @@ local add_help_syntax = function(lines, tags)
 
   for i, _ in iter_noncode(lines) do
     -- Collect `xxx` ranges within line to not act inside of them
-    populate_code_ranges(lines[i])
+    populate_bad_ranges(lines[i])
 
     -- `|xxx|` is used to add a a link to a tag anchor
-    lines[i] = replace_not_in_code_ranges(lines[i], '()|([%w%.-_<>%(%)]-)|', repl_link)
+    lines[i] = replace_not_in_ranges(lines[i], '()|(%S-)|', repl_link)
     -- - Recompute code ranges because adding links adds one
-    populate_code_ranges(lines[i])
+    populate_bad_ranges(lines[i])
 
     -- `<xxx>` is used to show keys and (often) table fields. Escape to not be
     -- treated as HTML tags. Do so before adding any custom HTML tags.
-    lines[i] = replace_not_in_code_ranges(lines[i], '()<(%S-)>', '<span class="help-syntax-keys">\\<%s\\></span>')
+    lines[i] = replace_not_in_ranges(lines[i], '()<(%S-)>', '<span class="help-syntax-keys">\\<%s\\></span>')
 
     -- `{xxx}` is used to add special highlighting. Usually arguments.
-    lines[i] = replace_not_in_code_ranges(lines[i], '(){(%S-)}', '<span class="help-syntax-special">{%s}</span>')
+    lines[i] = replace_not_in_ranges(lines[i], '(){(%S-)}', '<span class="help-syntax-special">{%s}</span>')
 
     -- `*xxx*` is used to add an anchor to a tag. Treat right aligned anchors
     -- as start of the section (adds to table of contents).
     lines[i] = lines[i]:gsub('^ +%*(.-)%*$', repl_right_anchor)
-    lines[i] = replace_not_in_code_ranges(lines[i], '()%*(%S-)%*', repl_anchor)
+    lines[i] = replace_not_in_ranges(lines[i], '()%*(%S-)%*', repl_anchor)
 
     -- `Xxx ~` is used to add subsections within section denoted by ruler
     lines[i] = lines[i]:gsub('^(.+) ~$', repl_section_header)
@@ -225,6 +229,11 @@ local add_hierarchical_heading_anchors = function(lines)
   end
 end
 
+local add_source_note = function(lines)
+  table.insert(lines, 1, "_Generated from the `main` branch of 'mini.nvim'_")
+  table.insert(lines, 2, '')
+end
+
 local adjust_header_footer = function(lines, title)
   -- Add informative header for better search
   table.insert(lines, 1, '---')
@@ -255,6 +264,7 @@ local create_help = function()
       add_help_syntax(lines, help_tags)
       adjust_alignment(lines)
       add_hierarchical_heading_anchors(lines)
+      add_source_note(lines)
       adjust_header_footer(lines, basename:gsub('%-', '.') .. ' documentation')
 
       local out_path = string.format('%s/%s.qmd', help_path, basename)
@@ -307,6 +317,7 @@ local adjust_readmes = function()
 
       replace_demo_link(lines)
       replace_help_links(lines)
+      add_source_note(lines)
       adjust_header_footer(lines, 'mini.' .. file:match('(%w+)%.md$'))
       add_doc_links(lines)
 
@@ -330,6 +341,7 @@ local adjust_changelog = function()
   local path = 'mini.nvim/CHANGELOG.md'
   local lines = vim.fn.readfile(path)
 
+  add_source_note(lines)
   add_hierarchical_heading_anchors(lines)
 
   vim.fn.writefile(lines, path)
