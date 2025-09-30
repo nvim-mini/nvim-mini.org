@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.hipatterns documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.hipatterns documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.hipatterns documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minihipatterns" id="toc-minihipatterns" class="nav-link active" data-scroll-target="#minihipatterns">Module</a>
+  <ul>
+  <li><a href="#minihipatterns-setup" id="toc-minihipatterns-setup" class="nav-link" data-scroll-target="#minihipatterns-setup">Setup</a></li>
+  <li><a href="#minihipatterns-comparisons" id="toc-minihipatterns-comparisons" class="nav-link" data-scroll-target="#minihipatterns-comparisons">Comparisons</a></li>
+  <li><a href="#minihipatterns-highlightgroups" id="toc-minihipatterns-highlightgroups" class="nav-link" data-scroll-target="#minihipatterns-highlightgroups">Highlight groups</a></li>
+  <li><a href="#minihipatterns-disabling" id="toc-minihipatterns-disabling" class="nav-link" data-scroll-target="#minihipatterns-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns-examples" id="toc-minihipatterns-examples" class="nav-link" data-scroll-target="#minihipatterns-examples">Examples</a>
+  <ul>
+  <li><a href="#minihipatterns-examples-commonconfigurationexamples" id="toc-minihipatterns-examples-commonconfigurationexamples" class="nav-link" data-scroll-target="#minihipatterns-examples-commonconfigurationexamples">Common configuration examples</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.setup" id="toc-minihipatterns.setup" class="nav-link" data-scroll-target="#minihipatterns.setup">setup()</a>
+  <ul>
+  <li><a href="#minihipatterns.setup-parameters" id="toc-minihipatterns.setup-parameters" class="nav-link" data-scroll-target="#minihipatterns.setup-parameters">Parameters</a></li>
+  <li><a href="#minihipatterns.setup-usage" id="toc-minihipatterns.setup-usage" class="nav-link" data-scroll-target="#minihipatterns.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.config" id="toc-minihipatterns.config" class="nav-link" data-scroll-target="#minihipatterns.config">config</a>
+  <ul>
+  <li><a href="#minihipatterns.config-defaults" id="toc-minihipatterns.config-defaults" class="nav-link" data-scroll-target="#minihipatterns.config-defaults">Defaults</a></li>
+  <li><a href="#minihipatterns.config-highlighters" id="toc-minihipatterns.config-highlighters" class="nav-link" data-scroll-target="#minihipatterns.config-highlighters">Highlighters</a></li>
+  <li><a href="#minihipatterns.config-delay" id="toc-minihipatterns.config-delay" class="nav-link" data-scroll-target="#minihipatterns.config-delay">Delay</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.enable" id="toc-minihipatterns.enable" class="nav-link" data-scroll-target="#minihipatterns.enable">enable()</a>
+  <ul>
+  <li><a href="#minihipatterns.enable-parameters" id="toc-minihipatterns.enable-parameters" class="nav-link" data-scroll-target="#minihipatterns.enable-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.disable" id="toc-minihipatterns.disable" class="nav-link" data-scroll-target="#minihipatterns.disable">disable()</a>
+  <ul>
+  <li><a href="#minihipatterns.disable-parameters" id="toc-minihipatterns.disable-parameters" class="nav-link" data-scroll-target="#minihipatterns.disable-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.toggle" id="toc-minihipatterns.toggle" class="nav-link" data-scroll-target="#minihipatterns.toggle">toggle()</a>
+  <ul>
+  <li><a href="#minihipatterns.toggle-parameters" id="toc-minihipatterns.toggle-parameters" class="nav-link" data-scroll-target="#minihipatterns.toggle-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.update" id="toc-minihipatterns.update" class="nav-link" data-scroll-target="#minihipatterns.update">update()</a>
+  <ul>
+  <li><a href="#minihipatterns.update-parameters" id="toc-minihipatterns.update-parameters" class="nav-link" data-scroll-target="#minihipatterns.update-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.get_enabled_buffers" id="toc-minihipatterns.get_enabled_buffers" class="nav-link" data-scroll-target="#minihipatterns.get_enabled_buffers">get_enabled_buffers()</a>
+  <ul>
+  <li><a href="#minihipatterns.get_enabled_buffers-return" id="toc-minihipatterns.get_enabled_buffers-return" class="nav-link" data-scroll-target="#minihipatterns.get_enabled_buffers-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.get_matches" id="toc-minihipatterns.get_matches" class="nav-link" data-scroll-target="#minihipatterns.get_matches">get_matches()</a>
+  <ul>
+  <li><a href="#minihipatterns.get_matches-parameters" id="toc-minihipatterns.get_matches-parameters" class="nav-link" data-scroll-target="#minihipatterns.get_matches-parameters">Parameters</a></li>
+  <li><a href="#minihipatterns.get_matches-return" id="toc-minihipatterns.get_matches-return" class="nav-link" data-scroll-target="#minihipatterns.get_matches-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.gen_highlighter" id="toc-minihipatterns.gen_highlighter" class="nav-link" data-scroll-target="#minihipatterns.gen_highlighter">gen_highlighter</a></li>
+  <li><a href="#minihipatterns.gen_highlighter.hex_color" id="toc-minihipatterns.gen_highlighter.hex_color" class="nav-link" data-scroll-target="#minihipatterns.gen_highlighter.hex_color">gen_highlighter.hex_color()</a>
+  <ul>
+  <li><a href="#minihipatterns.gen_highlighter.hex_color-parameters" id="toc-minihipatterns.gen_highlighter.hex_color-parameters" class="nav-link" data-scroll-target="#minihipatterns.gen_highlighter.hex_color-parameters">Parameters</a></li>
+  <li><a href="#minihipatterns.gen_highlighter.hex_color-return" id="toc-minihipatterns.gen_highlighter.hex_color-return" class="nav-link" data-scroll-target="#minihipatterns.gen_highlighter.hex_color-return">Return</a></li>
+  <li><a href="#minihipatterns.gen_highlighter.hex_color-usage" id="toc-minihipatterns.gen_highlighter.hex_color-usage" class="nav-link" data-scroll-target="#minihipatterns.gen_highlighter.hex_color-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minihipatterns.compute_hex_color_group" id="toc-minihipatterns.compute_hex_color_group" class="nav-link" data-scroll-target="#minihipatterns.compute_hex_color_group">compute_hex_color_group()</a>
+  <ul>
+  <li><a href="#minihipatterns.compute_hex_color_group-parameters" id="toc-minihipatterns.compute_hex_color_group-parameters" class="nav-link" data-scroll-target="#minihipatterns.compute_hex_color_group-parameters">Parameters</a></li>
+  <li><a href="#minihipatterns.compute_hex_color_group-return" id="toc-minihipatterns.compute_hex_color_group-return" class="nav-link" data-scroll-target="#minihipatterns.compute_hex_color_group-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.hipatterns documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.hipatterns" href="../../mini.nvim/doc/mini-hipatterns.html#mini.hipatterns"><b>mini.hipatterns</b></a> Highlight patterns in text</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minihipatterns" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Highlight text with configurable patterns and highlight groups (can be string or callable).</p></li>
+<li><p>Highlighting is updated asynchronously with configurable debounce delay.</p></li>
+<li><p>Function to get matches in a buffer (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.get_matches"><code>MiniHipatterns.get_matches()</code></a>).</p></li>
+</ul>
+<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns-examples"><code>MiniHipatterns-examples</code></a> for common configuration examples.</p>
+<p>Notes:</p>
+<ul>
+<li><p>It does not define any highlighters by default. Add to <code>config.highlighters</code> to have a visible effect.</p></li>
+<li><p>Sometimes (especially during frequent buffer updates on same line numbers) highlighting can be outdated or not applied when it should be. This is due to asynchronous nature of updates reacting to text changes (via <code>on_lines</code> of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_attach()"><code>nvim_buf_attach()</code></a>). To make them up to date, use one of the following:</p>
+<ul>
+<li><p>Scroll window (for example, with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-E"><code>CTRL-E</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y"><code>CTRL-Y</code></a>). This will ensure up to date highlighting inside window view.</p></li>
+<li><p>Hide and show buffer.</p></li>
+<li><p>Execute <code>:edit</code> (if you enabled highlighting with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>).</p></li>
+<li><p>Manually call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.update"><code>MiniHipatterns.update()</code></a>.</p></li>
+</ul></li>
+<li><p>If you experience flicker when typing near highlighted pattern in Insert mode, it might be due to <code>delay</code> configuration of <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> or using built-in completion. For better experience with ‘mini.completion’, make sure that its <code>delay.completion</code> is less than this module’s <code>delay.text_change</code> (which it is by default). The reason for this is (currently unresolvable) limitations of Neovim’s built-in completion implementation.</p></li>
+</ul>
+<section id="minihipatterns-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns-setup">Setup</h4>
+<p>Setting up highlights can be done in two ways:</p>
+<ul>
+<li><p>Manually for every buffer with <code>require('mini.hipatterns').enable()</code>. This will enable highlighting only in one particular buffer until it is unloaded (which also includes calling <code>:edit</code> on current file).</p></li>
+<li><p>Globally with <code>require('mini.hipatterns').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). This will auto-enable highlighting in “normal” buffers (see ‘buftype’). Use <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a> to manually enable in other buffers. It will also create global Lua table <code>MiniHipatterns</code> which you can use for scripting or manually (with <code>:lua MiniHipatterns.*</code>).</p></li>
+</ul>
+<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings (like highlighters and delays) locally to buffer inside <code>vim.b.minihipatterns_config</code> which should have same structure as <code>MiniHipatterns.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minihipatterns-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/folke/todo-comments">folke/todo-comments</a>:</p>
+<ul>
+<li><p>Oriented for “TODO”, “NOTE”, “FIXME” like patterns, while this module can work with any Lua patterns and computable highlight groups.</p></li>
+<li><p>Has functionality beyond text highlighting (sign placing, “telescope.nvim” extension, etc.), while this module only focuses on highlighting text.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/folke/paint.nvim">folke/paint.nvim</a>:</p>
+<ul>
+<li>Mostly similar to this module, but with slightly less functionality, such as computed pattern and highlight group, asynchronous delay, etc.</li>
+</ul></li>
+<li><p><a href="https://github.com/NvChad/nvim-colorizer.lua">NvChad/nvim-colorizer.lua</a>:</p>
+<ul>
+<li><p>Oriented for color highlighting, while this module can work with any Lua patterns and computable highlight groups.</p></li>
+<li><p>Has more built-in color spaces to highlight, while this module out of the box provides only hex color highlighting (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color"><code>MiniHipatterns.gen_highlighter.hex_color()</code></a>). Other types are also possible to implement.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/uga-rosa/ccc.nvim">uga-rosa/ccc.nvim</a>:</p>
+<ul>
+<li>Has more than color highlighting functionality, which is compared to this module in the same way as ‘NvChad/nvim-colorizer.lua’.</li>
+</ul></li>
+</ul>
+</section>
+<section id="minihipatterns-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniHipatternsFixme</code> - suggested group to use for <code>FIXME</code>-like patterns.</p></li>
+<li><p><code>MiniHipatternsHack</code> - suggested group to use for <code>HACK</code>-like patterns.</p></li>
+<li><p><code>MiniHipatternsTodo</code> - suggested group to use for <code>TODO</code>-like patterns.</p></li>
+<li><p><code>MiniHipatternsNote</code> - suggested group to use for <code>NOTE</code>-like patterns.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="minihipatterns-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns-disabling">Disabling</h4>
+<p>This module can be disabled in three ways:</p>
+<ul>
+<li><p>Globally: set <code>vim.g.minihipatterns_disable</code> to <code>true</code>.</p></li>
+<li><p>Locally for buffer permanently: set <code>vim.b.minihipatterns_disable</code> to <code>true</code>.</p></li>
+<li><p>Locally for buffer temporarily (until next auto-enabling event if set up with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>): call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a>.</p></li>
+</ul>
+<p>Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns-examples" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns-examples">Examples</h3>
+<section id="minihipatterns-examples-commonconfigurationexamples" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns-examples-commonconfigurationexamples">Common configuration examples</h4>
+<ul>
+<li><p>Special words used to convey different level of attention:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">fixme</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'FIXME'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="st">'MiniHipatternsFixme'</span> <span class="op">},</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">hack</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'HACK'</span><span class="op">,</span>  <span class="va">group</span> <span class="op">=</span> <span class="st">'MiniHipatternsHack'</span>  <span class="op">},</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">todo</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'TODO'</span><span class="op">,</span>  <span class="va">group</span> <span class="op">=</span> <span class="st">'MiniHipatternsTodo'</span>  <span class="op">},</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">note</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'NOTE'</span><span class="op">,</span>  <span class="va">group</span> <span class="op">=</span> <span class="st">'MiniHipatternsNote'</span>  <span class="op">},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>To match only when pattern appears as a standalone word, use frontier patterns <code>%f</code>. For example, instead of <code>'TODO'</code> pattern use <code>'%f[%w]()TODO()%f[%W]'</code>. In this case, for example, ‘TODOING’ or ‘MYTODO’ won’t match, but ‘TODO’ and ‘TODO:’ will.</p></li>
+<li><p>Color hex (like <code>#rrggbb</code>) highlighting:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hipatterns</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">hipatterns</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">hex_color</span> <span class="op">=</span> <span class="va">hipatterns</span><span class="op">.</span><span class="va">gen_highlighter</span><span class="op">.</span>hex_color<span class="op">(),</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can customize which part of hex color is highlighted by using <code>style</code> field of input options. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color"><code>MiniHipatterns.gen_highlighter.hex_color()</code></a>.</p></li>
+<li><p>Colored words:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">words</span> <span class="op">=</span> <span class="op">{</span> <span class="va">red</span> <span class="op">=</span> <span class="st">'#ff0000'</span><span class="op">,</span> <span class="va">green</span> <span class="op">=</span> <span class="st">'#00ff00'</span><span class="op">,</span> <span class="va">blue</span> <span class="op">=</span> <span class="st">'#0000ff'</span> <span class="op">}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">word_color_group</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="fu">match</span><span class="op">)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">hex</span> <span class="op">=</span> <span class="va">words</span><span class="op">[</span><span class="fu">match</span><span class="op">]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">hex</span> <span class="op">==</span> <span class="kw">nil</span> <span class="cf">then</span> <span class="cf">return</span> <span class="kw">nil</span> <span class="cf">end</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniHipatterns</span><span class="op">.</span>compute_hex_color_group<span class="op">(</span><span class="va">hex</span><span class="op">,</span> <span class="st">'bg'</span><span class="op">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hipatterns</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">hipatterns</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">word_color</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'%S+'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="va">word_color_group</span> <span class="op">},</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Trailing whitespace (if don’t want to use more specific <a href="../../mini.nvim/doc/mini-trailspace.html#mini.trailspace"><code>mini.trailspace</code></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'%f[%s]%s*$'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="st">'Error'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Censor certain sensitive information:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">censor_extmark_opts</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="fu">match</span><span class="op">,</span> <span class="cn">_</span><span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">mask</span> <span class="op">=</span> <span class="fu">string.rep</span><span class="op">(</span><span class="st">'x'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>strchars<span class="op">(</span><span class="fu">match</span><span class="op">))</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">virt_text</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span> <span class="va">mask</span><span class="op">,</span> <span class="st">'Comment'</span> <span class="op">}</span> <span class="op">},</span> <span class="va">virt_text_pos</span> <span class="op">=</span> <span class="st">'overlay'</span><span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">priority</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span> <span class="va">right_gravity</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">censor</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">pattern</span> <span class="op">=</span> <span class="st">'password: ()%S+()'</span><span class="op">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">group</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">extmark_opts</span> <span class="op">=</span> <span class="va">censor_extmark_opts</span><span class="op">,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Enable only in certain filetypes. There are at least these ways to do it:</p>
+<ul>
+<li><p>(Suggested) With <code>vim.b.minihipatterns_config</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-plugin"><code>filetype-plugin</code></a>. Basically, create “after/ftplugin/<span class="help-syntax-keys">&lt;filetype&gt;</span>.lua” file in your config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME"><code>$XDG_CONFIG_HOME</code></a>) and define <code>vim.b.minihipatterns_config</code> there with filetype specific highlighters.</p>
+<p>This assumes <code>require('mini.hipatterns').setup()</code> call.</p>
+<p>For example, to highlight keywords in EmmyLua comments in Lua files, create “after/ftplugin/lua.lua” with the following content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minihipatterns_config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">emmylua</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'^%s*%-%-%-()@%w+()'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="st">'Special'</span> <span class="op">}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Use callable <code>pattern</code> with condition. For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">emmylua</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="va">pattern</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">[</span><span class="va">buf_id</span><span class="op">].</span><span class="va">filetype</span> <span class="op">~=</span> <span class="st">'lua'</span> <span class="cf">then</span> <span class="cf">return</span> <span class="kw">nil</span> <span class="cf">end</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'^%s*%-%-%-()@%w+()'</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">group</span> <span class="op">=</span> <span class="st">'Special'</span><span class="op">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>Disable only in certain filetypes. Enable with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> and set <code>vim.b.minihipatterns_disable</code> buffer-local variable to <code>true</code> for buffer you want disabled. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for more examples.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.setup">setup()</h3>
+<p align="center">
+<code>MiniHipatterns.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minihipatterns.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>.</p>
+</section>
+<section id="minihipatterns.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="co">-- needs `highlighters` field present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.config" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.config">config</h3>
+<p align="center">
+<code>MiniHipatterns.config</code>
+</p>
+<section id="minihipatterns.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniHipatterns</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Table with highlighters (see |MiniHipatterns.config| for more details).</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Nothing is defined by default. Add manually for visible effect.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous highlighting process</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after every text change</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after window scroll</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">scroll</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minihipatterns.config-highlighters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.config-highlighters">Highlighters</h4>
+<p><code>highlighters</code> table defines which patterns will be highlighted by placing <a href="https://neovim.io/doc/user/helptag.html?tag=extmark"><code>extmark</code></a> at the match start. It might or might not have explicitly named fields, but having them is recommended and is required for proper use of <code>vim.b.minihipatterns_config</code> as buffer-local config. By default it is empty expecting user definition.</p>
+<p>Each entry defines single highlighter as a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string|function|table)</code> - Lua pattern to highlight. Can be either string, callable returning the string, or an array of those. If string:</p>
+<ul>
+<li>It can have submatch delimited by placing <code>()</code> on start and end, NOT by surrounding with it. Otherwise it will result in error containing <code>number expected, got string</code>. Example: <code>xx()abcd()xx</code> will match <code>abcd</code> only if <code>xx</code> is placed before and after it.</li>
+</ul>
+<p>If callable:</p>
+<ul>
+<li><p>It will be called for every enabled buffer with its identifier as input.</p></li>
+<li><p>It can return <code>nil</code> meaning this particular highlighter will not work in this particular buffer.</p></li>
+</ul>
+<p>If array:</p>
+<ul>
+<li>Each element is matched and highlighted with the same highlight group.</li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;group&gt;</span> <code>(string|function)</code> - name of highlight group to use. Can be either string or callable returning the string. If callable:</p>
+<ul>
+<li><p>It will be called for every pattern match with the following arguments:</p>
+<ul>
+<li><p><code>buf_id</code> - buffer identifier.</p></li>
+<li><p><code>match</code> - string pattern match to be highlighted.</p></li>
+<li><p><code>data</code> - extra table with information about the match. It has at least these fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;full_match&gt;</span> - string with full pattern match.</p></li>
+<li><p><span class="help-syntax-keys">&lt;line&gt;</span> - match line number (1-indexed).</p></li>
+<li><p><span class="help-syntax-keys">&lt;from_col&gt;</span> - match starting byte column (1-indexed).</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_col&gt;</span> - match ending byte column (1-indexed, inclusive).</p></li>
+</ul></li>
+</ul></li>
+<li><p>It can return <code>nil</code> meaning this particular match will not be highlighted.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;extmark_opts&gt;</span> <code>(table|function|nil)</code> - optional extra options for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_extmark()"><code>nvim_buf_set_extmark()</code></a>. If callable, will be called in the same way as callable <span class="help-syntax-keys">&lt;group&gt;</span> (<code>data</code> will also contain <code>hl_group</code> key with <span class="help-syntax-keys">&lt;group&gt;</span> value) and should return a table with all options for extmark (including <code>end_row</code>, <code>end_col</code>, <code>hl_group</code>, and <code>priority</code>).</p></li>
+</ul>
+<p>See “Common use cases” section for the examples.</p>
+</section>
+<section id="minihipatterns.config-delay" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.config-delay">Delay</h4>
+<p><code>delay</code> is a table defining delays in milliseconds used for asynchronous highlighting process.</p>
+<p><code>delay.text_change</code> is used to delay highlighting updates by accumulating them (in debounce fashion). Smaller values will lead to faster response but more frequent updates. Bigger - slower response but less frequent updates.</p>
+<p><code>delay.scroll</code> is used to delay updating highlights in current window view during scrolling (see <a href="https://neovim.io/doc/user/helptag.html?tag=WinScrolled"><code>WinScrolled</code></a> event). These updates are present to ensure up to date highlighting after scroll.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.enable" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.enable">enable()</h3>
+<p align="center">
+<code>MiniHipatterns.enable</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{config}</span>)
+</p>
+<p>Enable highlighting in buffer</p>
+<p>Notes:</p>
+<ul>
+<li><p>With default config it will highlight nothing, as there are no default highlighters.</p></li>
+<li><p>Buffer highlighting is enabled until buffer is unloaded from memory or <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a> on this buffer is called.</p></li>
+<li><p><code>:edit</code> disables this, as it is mostly equivalent to closing and opening buffer. In order for highlighting to persist after <code>:edit</code>, call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>.</p></li>
+</ul>
+<section id="minihipatterns.enable-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.enable-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Optional buffer-local config. Should have the same structure as <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>. Values will be taken in this order:</p>
+<ul>
+<li><p>From this <code>config</code> argument (if supplied).</p></li>
+<li><p>From buffer-local config in <code>vim.b.minihipatterns_config</code> (if present).</p></li>
+<li><p>From global config (if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> was called).</p></li>
+<li><p>From default values.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.disable" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.disable">disable()</h3>
+<p align="center">
+<code>MiniHipatterns.disable</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Disable highlighting in buffer</p>
+<p>Note that if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> was called, the effect is present until the next auto-enabling event. To permanently disable highlighting in buffer, set <code>vim.b.minihipatterns_disable</code> to <code>true</code></p>
+<section id="minihipatterns.disable-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.disable-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.toggle" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.toggle">toggle()</h3>
+<p align="center">
+<code>MiniHipatterns.toggle</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{config}</span>)
+</p>
+<p>Toggle highlighting in buffer</p>
+<p>Call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a> if enabled; <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a> otherwise.</p>
+<section id="minihipatterns.toggle-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.toggle-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.update" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.update">update()</h3>
+<p align="center">
+<code>MiniHipatterns.update</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{from_line}</span>, <span class="help-syntax-special">{to_line}</span>)
+</p>
+<p>Update highlighting in range</p>
+<p>Works only in buffer with enabled highlighting. Effect takes immediately without delay.</p>
+<section id="minihipatterns.update-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.update-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
+<p><span class="help-syntax-special">{from_line}</span> <code>(number|nil)</code> Start line from which to update (1-indexed).</p>
+<p><span class="help-syntax-special">{to_line}</span> <code>(number|nil)</code> End line from which to update (1-indexed, inclusive).</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.get_enabled_buffers" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.get_enabled_buffers">get_enabled_buffers()</h3>
+<p align="center">
+<code>MiniHipatterns.get_enabled_buffers</code>()
+</p>
+<p>Get an array of enabled buffers</p>
+<section id="minihipatterns.get_enabled_buffers-return" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.get_enabled_buffers-return">Return</h4>
+<p><code>(table)</code> Array of buffer identifiers with enabled highlighting.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.get_matches" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.get_matches">get_matches()</h3>
+<p align="center">
+<code>MiniHipatterns.get_matches</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{highlighters}</span>)
+</p>
+<p>Get buffer matches</p>
+<section id="minihipatterns.get_matches-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.get_matches-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier for which to return matches. Default: <code>nil</code> for current buffer.</p>
+<p><span class="help-syntax-special">{highlighters}</span> <code>(table|nil)</code> Array of highlighter identifiers (as in <code>highlighters</code> field of <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>) for which to return matches. Default: all available highlighters (ordered by string representation).</p>
+</section>
+<section id="minihipatterns.get_matches-return" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.get_matches-return">Return</h4>
+<p><code>(table)</code> Array of buffer matches which are tables with following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;bufnr&gt;</span> <code>(number)</code> - buffer identifier of a match.</p></li>
+<li><p><span class="help-syntax-keys">&lt;highlighter&gt;</span> <code>(any)</code> - highlighter identifier which produced the match.</p></li>
+<li><p><span class="help-syntax-keys">&lt;lnum&gt;</span> <code>(number)</code> - line number of the match start (starts with 1).</p></li>
+<li><p><span class="help-syntax-keys">&lt;col&gt;</span> <code>(number)</code> - column number of the match start (starts with 1).</p></li>
+<li><p><span class="help-syntax-keys">&lt;end_lnum&gt;</span> <code>(number|nil)</code> - line number of the match end (starts with 1).</p></li>
+<li><p><span class="help-syntax-keys">&lt;end_col&gt;</span> <code>(number|nil)</code> - column number next to the match end (implements end-exclusive region; starts with 1).</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> <code>(string|nil)</code> - name of match’s highlight group.</p></li>
+</ul>
+<p>Matches are ordered first by supplied <code>highlighters</code>, then by line and column of match start.</p>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.gen_highlighter" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.gen_highlighter">gen_highlighter</h3>
+<p align="center">
+<code>MiniHipatterns.gen_highlighter</code>
+</p>
+<p>Generate builtin highlighters</p>
+<p>This is a table with function elements. Call to actually get highlighter.</p>
+<hr>
+</section>
+<section id="minihipatterns.gen_highlighter.hex_color" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.gen_highlighter.hex_color">gen_highlighter.hex_color()</h3>
+<p align="center">
+<code>MiniHipatterns.gen_highlighter.hex_color</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Highlight hex color string</p>
+<p>This will match color hex string in format <code>#rrggbb</code> and highlight it according to <code>opts.style</code> displaying matched color.</p>
+<p>Highlight group is computed using <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.compute_hex_color_group"><code>MiniHipatterns.compute_hex_color_group()</code></a>, so all its usage notes apply here.</p>
+<section id="minihipatterns.gen_highlighter.hex_color-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.gen_highlighter.hex_color-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - one of:</p>
+<ul>
+<li><p><code>'full'</code> - highlight background of whole hex string with it. Default.</p></li>
+<li><p><code>'#'</code> - highlight background of only <code>#</code>.</p></li>
+<li><p><code>'line'</code> - highlight underline with that color.</p></li>
+<li><p><code>'inline'</code> - highlight text of <span class="help-syntax-keys">&lt;inline_text&gt;</span>. Note: requires Neovim&gt;=0.10.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;priority&gt;</span> <code>(number)</code> - priority of highlighting. Default: 200.</p></li>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - callable object used to filter buffers in which highlighting will take place. It should take buffer identifier as input and return <code>false</code> or <code>nil</code> to not highlight inside this buffer.</p></li>
+<li><p><span class="help-syntax-keys">&lt;inline_text&gt;</span> <code>(string)</code> - string to be placed and highlighted with color to the right of match in case <span class="help-syntax-keys">&lt;style&gt;</span> is “inline”. Default: “█”.</p></li>
+</ul>
+</section>
+<section id="minihipatterns.gen_highlighter.hex_color-return" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.gen_highlighter.hex_color-return">Return</h4>
+<p><code>(table)</code> Highlighter table ready to be used as part of <code>config.highlighters</code>. Both <code>pattern</code> and <code>group</code> are callable.</p>
+</section>
+<section id="minihipatterns.gen_highlighter.hex_color-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.gen_highlighter.hex_color-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hipatterns</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">hipatterns</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">hex_color</span> <span class="op">=</span> <span class="va">hipatterns</span><span class="op">.</span><span class="va">gen_highlighter</span><span class="op">.</span>hex_color<span class="op">(),</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minihipatterns.compute_hex_color_group" class="level3">
+<h3 class="anchored" data-anchor-id="minihipatterns.compute_hex_color_group">compute_hex_color_group()</h3>
+<p align="center">
+<code>MiniHipatterns.compute_hex_color_group</code>(<span class="help-syntax-special">{hex_color}</span>, <span class="help-syntax-special">{style}</span>)
+</p>
+<p>Compute and create group to highlight hex color string</p>
+<p>Notes:</p>
+<ul>
+<li><p>This works properly only with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'"><code>'termguicolors'</code></a>.</p></li>
+<li><p>To increase performance, it caches highlight groups per <code>hex_color</code> and <code>style</code> combination. Needs a call to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> to have these groups be persistent across color scheme changes.</p></li>
+</ul>
+<section id="minihipatterns.compute_hex_color_group-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.compute_hex_color_group-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{hex_color}</span> <code>(string)</code> Hex color string in format <code>#rrggbb</code>.</p>
+<p><span class="help-syntax-special">{style|nil}</span> <code>(string)</code> One of:</p>
+<ul>
+<li><p><code>'bg'</code> - highlight background with <code>hex_color</code> and foreground with black or white (whichever is more visible). Default.</p></li>
+<li><p><code>'fg'</code> - highlight foreground with <code>hex_color</code>.</p></li>
+<li><p><code>'line'</code> - highlight underline with <code>hex_color</code>.</p></li>
+</ul>
+</section>
+<section id="minihipatterns.compute_hex_color_group-return" class="level4">
+<h4 class="anchored" data-anchor-id="minihipatterns.compute_hex_color_group-return">Return</h4>
+<p><code>(string)</code> Name of created highlight group appropriate to show <code>hex_color</code>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

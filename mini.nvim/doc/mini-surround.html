@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.surround documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.surround documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.surround documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minisurround" id="toc-minisurround" class="nav-link active" data-scroll-target="#minisurround">Module</a>
+  <ul>
+  <li><a href="#minisurround-setup" id="toc-minisurround-setup" class="nav-link" data-scroll-target="#minisurround-setup">Setup</a></li>
+  <li><a href="#minisurround-exampleusage" id="toc-minisurround-exampleusage" class="nav-link" data-scroll-target="#minisurround-exampleusage">Example usage</a></li>
+  <li><a href="#minisurround-comparisons" id="toc-minisurround-comparisons" class="nav-link" data-scroll-target="#minisurround-comparisons">Comparisons</a></li>
+  <li><a href="#minisurround-highlightgroups" id="toc-minisurround-highlightgroups" class="nav-link" data-scroll-target="#minisurround-highlightgroups">Highlight groups</a></li>
+  <li><a href="#minisurround-disabling" id="toc-minisurround-disabling" class="nav-link" data-scroll-target="#minisurround-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minisurround-builtin-surroundings" id="toc-minisurround-builtin-surroundings" class="nav-link" data-scroll-target="#minisurround-builtin-surroundings">Builtin surroundings</a></li>
+  <li><a href="#minisurround-glossary" id="toc-minisurround-glossary" class="nav-link" data-scroll-target="#minisurround-glossary">Glossary</a>
+  <ul>
+  <li><a href="#minisurround-glossary-region" id="toc-minisurround-glossary-region" class="nav-link" data-scroll-target="#minisurround-glossary-region">REGION</a></li>
+  <li><a href="#minisurround-glossary-regionpair" id="toc-minisurround-glossary-regionpair" class="nav-link" data-scroll-target="#minisurround-glossary-regionpair">REGION PAIR</a></li>
+  <li><a href="#minisurround-glossary-pattern" id="toc-minisurround-glossary-pattern" class="nav-link" data-scroll-target="#minisurround-glossary-pattern">PATTERN</a></li>
+  <li><a href="#minisurround-glossary-span" id="toc-minisurround-glossary-span" class="nav-link" data-scroll-target="#minisurround-glossary-span">SPAN</a></li>
+  <li><a href="#minisurround-glossary-nestedpattern" id="toc-minisurround-glossary-nestedpattern" class="nav-link" data-scroll-target="#minisurround-glossary-nestedpattern">NESTED PATTERN</a></li>
+  <li><a href="#minisurround-glossary-spanmatchesnestedpattern" id="toc-minisurround-glossary-spanmatchesnestedpattern" class="nav-link" data-scroll-target="#minisurround-glossary-spanmatchesnestedpattern">SPAN MATCHES NESTED PATTERN</a></li>
+  <li><a href="#minisurround-glossary-composedpattern" id="toc-minisurround-glossary-composedpattern" class="nav-link" data-scroll-target="#minisurround-glossary-composedpattern">COMPOSED PATTERN</a></li>
+  <li><a href="#minisurround-glossary-spanmatchescomposedpattern" id="toc-minisurround-glossary-spanmatchescomposedpattern" class="nav-link" data-scroll-target="#minisurround-glossary-spanmatchescomposedpattern">SPAN MATCHES COMPOSED PATTERN</a></li>
+  </ul></li>
+  <li><a href="#minisurround-surrounding-specification" id="toc-minisurround-surrounding-specification" class="nav-link" data-scroll-target="#minisurround-surrounding-specification">Surrounding specification</a>
+  <ul>
+  <li><a href="#minisurround-surrounding-specification-inputsurrounding" id="toc-minisurround-surrounding-specification-inputsurrounding" class="nav-link" data-scroll-target="#minisurround-surrounding-specification-inputsurrounding">Input surrounding</a></li>
+  <li><a href="#minisurround-surrounding-specification-outputsurrounding" id="toc-minisurround-surrounding-specification-outputsurrounding" class="nav-link" data-scroll-target="#minisurround-surrounding-specification-outputsurrounding">Output surrounding</a></li>
+  </ul></li>
+  <li><a href="#minisurround-count-with-actions" id="toc-minisurround-count-with-actions" class="nav-link" data-scroll-target="#minisurround-count-with-actions">Count with actions</a></li>
+  <li><a href="#minisurround-search-algorithm" id="toc-minisurround-search-algorithm" class="nav-link" data-scroll-target="#minisurround-search-algorithm">Search algorithm</a></li>
+  <li><a href="#minisurround.setup" id="toc-minisurround.setup" class="nav-link" data-scroll-target="#minisurround.setup">setup()</a>
+  <ul>
+  <li><a href="#minisurround.setup-parameters" id="toc-minisurround.setup-parameters" class="nav-link" data-scroll-target="#minisurround.setup-parameters">Parameters</a></li>
+  <li><a href="#minisurround.setup-usage" id="toc-minisurround.setup-usage" class="nav-link" data-scroll-target="#minisurround.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minisurround.config" id="toc-minisurround.config" class="nav-link" data-scroll-target="#minisurround.config">config</a>
+  <ul>
+  <li><a href="#minisurround.config-defaults" id="toc-minisurround.config-defaults" class="nav-link" data-scroll-target="#minisurround.config-defaults">Defaults</a></li>
+  <li><a href="#minisurround.config-mappings" id="toc-minisurround.config-mappings" class="nav-link" data-scroll-target="#minisurround.config-mappings">Mappings</a></li>
+  <li><a href="#minisurround.config-customsurroundings" id="toc-minisurround.config-customsurroundings" class="nav-link" data-scroll-target="#minisurround.config-customsurroundings">Custom surroundings</a></li>
+  <li><a href="#minisurround.config-respectselectiontype" id="toc-minisurround.config-respectselectiontype" class="nav-link" data-scroll-target="#minisurround.config-respectselectiontype">Respect selection type</a></li>
+  <li><a href="#minisurround.config-searchmethod" id="toc-minisurround.config-searchmethod" class="nav-link" data-scroll-target="#minisurround.config-searchmethod">Search method</a></li>
+  <li><a href="#minisurround.config-searchsuffixes" id="toc-minisurround.config-searchsuffixes" class="nav-link" data-scroll-target="#minisurround.config-searchsuffixes">Search suffixes</a></li>
+  <li><a href="#minisurround.config-setupsimilartotpopevim-surround" id="toc-minisurround.config-setupsimilartotpopevim-surround" class="nav-link" data-scroll-target="#minisurround.config-setupsimilartotpopevim-surround">Setup similar to ‘tpope/vim-surround’</a></li>
+  </ul></li>
+  <li><a href="#minisurround.add" id="toc-minisurround.add" class="nav-link" data-scroll-target="#minisurround.add">add()</a>
+  <ul>
+  <li><a href="#minisurround.add-parameters" id="toc-minisurround.add-parameters" class="nav-link" data-scroll-target="#minisurround.add-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minisurround.delete" id="toc-minisurround.delete" class="nav-link" data-scroll-target="#minisurround.delete">delete()</a></li>
+  <li><a href="#minisurround.replace" id="toc-minisurround.replace" class="nav-link" data-scroll-target="#minisurround.replace">replace()</a></li>
+  <li><a href="#minisurround.find" id="toc-minisurround.find" class="nav-link" data-scroll-target="#minisurround.find">find()</a></li>
+  <li><a href="#minisurround.highlight" id="toc-minisurround.highlight" class="nav-link" data-scroll-target="#minisurround.highlight">highlight()</a></li>
+  <li><a href="#minisurround.update_n_lines" id="toc-minisurround.update_n_lines" class="nav-link" data-scroll-target="#minisurround.update_n_lines">update_n_lines()</a></li>
+  <li><a href="#minisurround.user_input" id="toc-minisurround.user_input" class="nav-link" data-scroll-target="#minisurround.user_input">user_input()</a></li>
+  <li><a href="#minisurround.gen_spec" id="toc-minisurround.gen_spec" class="nav-link" data-scroll-target="#minisurround.gen_spec">gen_spec</a>
+  <ul>
+  <li><a href="#minisurround.gen_spec-seealso" id="toc-minisurround.gen_spec-seealso" class="nav-link" data-scroll-target="#minisurround.gen_spec-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minisurround.gen_spec.input.treesitter" id="toc-minisurround.gen_spec.input.treesitter" class="nav-link" data-scroll-target="#minisurround.gen_spec.input.treesitter">gen_spec.input.treesitter()</a>
+  <ul>
+  <li><a href="#minisurround.gen_spec.input.treesitter-parameters" id="toc-minisurround.gen_spec.input.treesitter-parameters" class="nav-link" data-scroll-target="#minisurround.gen_spec.input.treesitter-parameters">Parameters</a></li>
+  <li><a href="#minisurround.gen_spec.input.treesitter-return" id="toc-minisurround.gen_spec.input.treesitter-return" class="nav-link" data-scroll-target="#minisurround.gen_spec.input.treesitter-return">Return</a></li>
+  <li><a href="#minisurround.gen_spec.input.treesitter-seealso" id="toc-minisurround.gen_spec.input.treesitter-seealso" class="nav-link" data-scroll-target="#minisurround.gen_spec.input.treesitter-seealso">See also</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.surround documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.surround" href="../../mini.nvim/doc/mini-surround.html#mini.surround"><b>mini.surround</b></a> Surround actions</p>
+<p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
+<hr>
+<section id="minisurround" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround">Module</h3>
+<p>Fast and feature-rich surrounding. Can be configured to have experience similar to <a href="https://github.com/tpope/vim-surround">tpope/vim-surround</a> (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-vim-surround-config"><code>MiniSurround-vim-surround-config</code></a>).</p>
+<p>Features:</p>
+<ul>
+<li><p>Actions (text editing actions are dot-repeatable out of the box and respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>) with configurable mappings:</p>
+<ul>
+<li><p>Add surrounding with <code>sa</code> (in visual mode or on motion).</p></li>
+<li><p>Delete surrounding with <code>sd</code>.</p></li>
+<li><p>Replace surrounding with <code>sr</code>.</p></li>
+<li><p>Find surrounding with <code>sf</code> or <code>sF</code> (move cursor right or left).</p></li>
+<li><p>Highlight surrounding with <code>sh</code>.</p></li>
+</ul></li>
+<li><p>Surrounding is identified by a single character as both “input” (in <code>delete</code> and <code>replace</code> start, <code>find</code>, and <code>highlight</code>) and “output” (in <code>add</code> and <code>replace</code> end):</p>
+<ul>
+<li><p>‘f’ - function call (string of alphanumeric symbols or ’_’ or ‘.’ followed by balanced ‘()’). In “input” finds function call, in “output” prompts user to enter function name.</p></li>
+<li><p>‘t’ - tag. In “input” finds tag with same identifier, in “output” prompts user to enter tag name with possible attributes.</p></li>
+<li><p>All symbols in brackets ‘()’, ‘[]’, ‘<span class="help-syntax-special">{}</span>’, ‘<span class="help-syntax-keys">&lt;&gt;</span>“. In”input’ represents balanced brackets (open - with whitespace pad, close - without), in “output” - left and right parts of brackets.</p></li>
+<li><p>‘?’ - interactive. Prompts user to enter left and right parts.</p></li>
+<li><p>All other single character identifiers (supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()"><code>getcharstr()</code></a>) represent surrounding with identical left and right parts.</p></li>
+</ul></li>
+<li><p>Configurable search methods to find not only covering but possibly next, previous, or nearest surrounding. See more in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>.</p></li>
+<li><p>All actions involving finding surrounding (delete, replace, find, highlight) can be used with suffix that changes search method to find previous/last. See more in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>.</p></li>
+</ul>
+<p>Known issues which won’t be resolved:</p>
+<ul>
+<li><p>Search for surrounding is done using Lua patterns (regex-like approach). So certain amount of false positives should be expected.</p></li>
+<li><p>When searching for “input” surrounding, there is no distinction if it is inside string or comment. So in this case there will be not proper match for a function call: ‘f(a = “)”, b = 1)’.</p></li>
+<li><p>Tags are searched using regex-like methods, so issues are inevitable. Overall it is pretty good, but certain cases won’t work. Like self-nested tags won’t match correctly on both ends: ‘<span class="help-syntax-keys">&lt;a&gt;</span><span class="help-syntax-keys">&lt;a&gt;</span><span class="help-syntax-keys">&lt;/a&gt;</span><span class="help-syntax-keys">&lt;/a&gt;</span>’.</p></li>
+</ul>
+<section id="minisurround-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.surround').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniSurround</code> which you can use for scripting or manually (with <code>:lua MiniSurround.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minisurround_config</code> which should have same structure as <code>MiniSurround.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
+</section>
+<section id="minisurround-exampleusage" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-exampleusage">Example usage</h4>
+<p>Regular mappings:</p>
+<ul>
+<li><p><code>saiw)</code> - add (<code>sa</code>) for inner word (<code>iw</code>) parenthesis (<code>)</code>).</p></li>
+<li><p><code>saiw?[[&lt;CR&gt;]]&lt;CR&gt;</code> - add (<code>sa</code>) for inner word (<code>iw</code>) interactive surrounding (<code>?</code>): <code>[[</code> for left and <code>]]</code> for right.</p></li>
+<li><p><code>2sdf</code> - delete (<code>sd</code>) second (<code>2</code>) surrounding function call (<code>f</code>).</p></li>
+<li><p><code>sr)tdiv&lt;CR&gt;</code> - replace (<code>sr</code>) surrounding parenthesis (<code>)</code>) with tag (<code>t</code>) with identifier ‘div’ (<code>div&lt;CR&gt;</code> in command line prompt).</p></li>
+<li><p><code>sff</code> - find right (<code>sf</code>) part of surrounding function call (<code>f</code>).</p></li>
+<li><p><code>sh}</code> - highlight (<code>sh</code>) for a brief period of time surrounding curly brackets (<code>}</code>).</p></li>
+</ul>
+<p>Extended mappings (temporary force “prev”/“next” search methods):</p>
+<ul>
+<li><p><code>sdnf</code> - delete (<code>sd</code>) next (<code>n</code>) function call (<code>f</code>).</p></li>
+<li><p><code>srlf(</code> - replace (<code>sr</code>) last (<code>l</code>) function call (<code>f</code>) with padded bracket (<code>(</code>).</p></li>
+<li><p><code>2sfnt</code> - find (<code>sf</code>) second (<code>2</code>) next (<code>n</code>) tag (<code>t</code>).</p></li>
+<li><p><code>2shl}</code> - highlight (<code>sh</code>) last (<code>l</code>) second (<code>2</code>) curly bracket (<code>}</code>).</p></li>
+</ul>
+</section>
+<section id="minisurround-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/tpope/vim-surround">tpope/vim-surround</a>:</p>
+<ul>
+<li><p>‘vim-surround’ has completely different, with other focus set of default mappings, while ‘mini.surround’ has a more coherent set.</p></li>
+<li><p>‘mini.surround’ supports dot-repeat, customized search path (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>), customized specifications (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification"><code>MiniSurround-surrounding-specification</code></a>) allowing usage of tree-sitter queries (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec.input.treesitter"><code>MiniSurround.gen_spec.input.treesitter()</code></a>), highlighting and finding surrounding, “last”/“next” extended mappings. While ‘vim-surround’ does not.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/machakann/vim-sandwich">machakann/vim-sandwich</a>:</p>
+<ul>
+<li><p>Both have same keybindings for common actions (add, delete, replace).</p></li>
+<li><p>Otherwise same differences as with ‘tpope/vim-surround’ (except dot-repeat because ‘vim-sandwich’ supports it).</p></li>
+</ul></li>
+<li><p><a href="https://github.com/kylechui/nvim-surround">kylechui/nvim-surround</a>:</p>
+<ul>
+<li><p>‘nvim-surround’ is designed after ‘tpope/vim-surround’ with same default mappings and logic, while ‘mini.surround’ has mappings similar to ‘machakann/vim-sandwich’.</p></li>
+<li><p>‘mini.surround’ has more flexible customization of input surrounding (with composed patterns, region pair(s), search methods).</p></li>
+<li><p>‘mini.surround’ supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> in both input and output surrounding (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-count-with-actions"><code>MiniSurround-count-with-actions</code></a>) while ‘nvim-surround’ doesn’t.</p></li>
+<li><p>‘mini.surround’ supports “last”/“next” extended mappings.</p></li>
+</ul></li>
+<li><p><a href="../../mini.nvim/doc/mini-ai.html#mini.ai"><code>mini.ai</code></a>:</p>
+<ul>
+<li><p>Both use similar logic for finding target: textobject in ‘mini.ai’ and surrounding pair in ‘mini.surround’. While ‘mini.ai’ uses extraction pattern for separate <code>a</code> and <code>i</code> textobjects, ‘mini.surround’ uses it to select left and right surroundings (basically a difference between <code>a</code> and <code>i</code> textobjects).</p></li>
+<li><p>Some builtin specifications are slightly different:</p>
+<ul>
+<li><p>Quotes in ‘mini.ai’ are balanced, in ‘mini.surround’ they are not.</p></li>
+<li><p>The ‘mini.surround’ doesn’t have argument surrounding.</p></li>
+<li><p>Default behavior in ‘mini.ai’ selects one of the edges into <code>a</code> textobject, while ‘mini.surround’ - both.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="minisurround-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-highlightgroups">Highlight groups</h4>
+<ul>
+<li><code>MiniSurround</code> - highlighting of requested surrounding.</li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="minisurround-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minisurround_disable</code> (globally) or <code>vim.b.minisurround_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minisurround-builtin-surroundings" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround-builtin-surroundings">Builtin surroundings</h3>
+<p>This table describes all builtin surroundings along with what they represent. Explanation:</p>
+<ul>
+<li><p><code>Key</code> represents the surrounding identifier: single character which should be typed after action mappings (see “Mappings” in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>).</p></li>
+<li><p><code>Name</code> is a description of surrounding.</p></li>
+<li><p><code>Example line</code> contains a string for which examples are constructed. The <code>*</code> denotes the cursor position over <code>a</code> character.</p></li>
+<li><p><code>Delete</code> shows the result of typing <code>sd</code> followed by surrounding identifier. It aims to demonstrate “input” surrounding which is also used in replace with <code>sr</code> (surrounding id is typed first), highlight with <code>sh</code>, find with <code>sf</code> and <code>sF</code>.</p></li>
+<li><p><code>Replace</code> shows the result of typing <code>sr!</code> followed by surrounding identifier (with possible follow up from user). It aims to demonstrate “output” surrounding which is also used in adding with <code>sa</code> (followed by textobject/motion or in Visual mode).</p></li>
+</ul>
+<p>Example: typing <code>sd)</code> with cursor on <code>*</code> (covers <code>a</code> character) changes line <code>!( *a (bb) )!</code> into <code>! aa (bb) !</code>. Typing <code>sr!)</code> changes same initial line into <code>(( aa (bb) ))</code>.</p>
+<pre><code>┌───┬───────────────┬───────────────┬─────────────┬─────────────────┐
+│Key│     Name      │  Example line │    Delete   │     Replace     │
+├───┴───────────────┴───────────────┴─────────────┴─────────────────┤
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ ( │  Balanced ()  │ !( *a (bb) )! │  !aa (bb)!  │ ( ( aa (bb) ) ) │
+│ [ │  Balanced []  │ ![ *a [bb] ]! │  !aa [bb]!  │ [ [ aa [bb] ] ] │
+│ { │  Balanced {}  │ !{ *a {bb} }! │  !aa {bb}!  │ { { aa {bb} } } │
+│ &lt; │  Balanced &lt;&gt;  │ !&lt; *a &lt;bb&gt; &gt;! │  !aa &lt;bb&gt;!  │ &lt; &lt; aa &lt;bb&gt; &gt; &gt; │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ ) │  Balanced ()  │ !( *a (bb) )! │ ! aa (bb) ! │ (( aa (bb) ))   │
+│ ] │  Balanced []  │ ![ *a [bb] ]! │ ! aa [bb] ! │ [[ aa [bb] ]]   │
+│ } │  Balanced {}  │ !{ *a {bb} }! │ ! aa {bb} ! │ {{ aa {bb} }}   │
+│ &gt; │  Balanced &lt;&gt;  │ !&lt; *a &lt;bb&gt; &gt;! │ ! aa &lt;bb&gt; ! │ &lt;&lt; aa &lt;bb&gt; &gt;&gt;   │
+│ b │  Alias for    │ !( *a {bb} )! │ ! aa {bb} ! │ (( aa {bb} ))   │
+│   │  ), ], or }   │               │             │                 │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ q │  Alias for    │ !'aa'*a'aa'!  │ !'aaaaaa'!  │ "'aa'aa'aa'"    │
+│   │  ", ', or `   │               │             │                 │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ ? │  User prompt  │ !e * o!       │ ! a !       │ ee a oo         │
+│   │(typed e and o)│               │             │                 │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ t │      Tag      │ !&lt;x&gt;*&lt;/x&gt;!    │ !a!         │ &lt;y&gt;&lt;x&gt;a&lt;/x&gt;&lt;/y&gt; │
+│   │               │               │             │ (typed y)       │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│ f │ Function call │ !f(*a, bb)!   │ !aa, bb!    │ g(f(*a, bb))    │
+│   │               │               │             │ (typed g)       │
+├┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┤
+│   │    Default    │ !_a*a_!       │ !aaa!       │ __aaa__         │
+│   │   (typed _)   │               │             │                 │
+└┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┘</code></pre>
+<p>Notes:</p>
+<ul>
+<li><p>All examples assume default <code>config.search_method</code>.</p></li>
+<li><p>Open brackets differ from close brackets by how they treat inner edge whitespace: open includes it left and right parts, close does not.</p></li>
+<li><p>Output value of <code>b</code> alias is same as <code>)</code>. For <code>q</code> alias - same as <code>"</code>.</p></li>
+<li><p>Default surrounding is activated for all characters which are not configured surrounding identifiers. Notes:</p>
+<ul>
+<li><p>Due to special handling of underlying <code>x.-x</code> Lua pattern (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-search-algorithm"><code>MiniSurround-search-algorithm</code></a>), it doesn’t really support non-trivial <code>[count]</code> for “cover” search method.</p></li>
+<li><p>When cursor is exactly on the identifier character while there are two matching candidates on both left and right, the one resulting in region with smaller width is preferred.</p></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="minisurround-glossary" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround-glossary">Glossary</h3>
+<p>Note: this is similar to <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary"><code>MiniAi-glossary</code></a>.</p>
+<section id="minisurround-glossary-region" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-region">REGION</h4>
+<p>Table representing region in a buffer. Fields: <span class="help-syntax-keys">&lt;from&gt;</span> and <span class="help-syntax-keys">&lt;to&gt;</span> for inclusive start and end positions (<span class="help-syntax-keys">&lt;to&gt;</span> might be <code>nil</code> to describe empty region). Each position is also a table with line <span class="help-syntax-keys">&lt;line&gt;</span> and column <span class="help-syntax-keys">&lt;col&gt;</span> (both start at 1). Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span> <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span> <span class="op">}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Empty region</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">10</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">10</span> <span class="op">}</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisurround-glossary-regionpair" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-regionpair">REGION PAIR</h4>
+<p>Table representing regions for left and right surroundings. Fields: <span class="help-syntax-keys">&lt;left&gt;</span> and <span class="help-syntax-keys">&lt;right&gt;</span> with regions. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">left</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span> <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">right</span> <span class="op">=</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">3</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisurround-glossary-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-pattern">PATTERN</h4>
+<p>String describing Lua pattern.</p>
+</section>
+<section id="minisurround-glossary-span" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-span">SPAN</h4>
+<p>Interval inside a string (end-exclusive). Like [1, 5). Equal <code>from</code> and <code>to</code> edges describe empty span at that point.</p>
+<p>Span <code>A = [a1, a2)</code> covers <code>B = [b1, b2)</code> if every element of <code>B</code> is within <code>A</code> (<code>a1 &lt;= b &lt; a2</code>). It also is described as “B is nested inside A”.</p>
+</section>
+<section id="minisurround-glossary-nestedpattern" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-nestedpattern">NESTED PATTERN</h4>
+<p>Array of patterns aimed to describe nested spans.</p>
+</section>
+<section id="minisurround-glossary-spanmatchesnestedpattern" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-spanmatchesnestedpattern">SPAN MATCHES NESTED PATTERN</h4>
+<p>If there is a sequence of consecutively nested spans each matching corresponding pattern within substring of previous span (or input string for first span). Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Nested patterns for balanced `()` with inner space</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^. .* .$'</span> <span class="op">}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example input string (with columns underneath for easier reading):</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>   <span class="st">"( ( () ( ) ) )"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">--  12345678901234</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here are all matching spans [1, 15) and [3, 13). Both [5, 7) and [8, 10) match first pattern but not second. All other combinations of <code>(</code> and <code>)</code> don’t match first pattern (not balanced).</p>
+</section>
+<section id="minisurround-glossary-composedpattern" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-composedpattern">COMPOSED PATTERN</h4>
+<p>Array with each element describing possible pattern (or array of them) at that place. Composed pattern basically defines all possible combinations of nested pattern (their cartesian product). Examples:</p>
+<ol type="1">
+<li><p>Either balanced <code>()</code> or balanced <code>[]</code> but both with inner edge space:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Composed pattern</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'%b[]'</span> <span class="op">},</span> <span class="st">'^. .* .$'</span> <span class="op">}</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Composed pattern expanded into equivalent array of nested patterns</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^. .* .$'</span> <span class="op">}</span> <span class="co">-- and</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%b[]'</span><span class="op">,</span> <span class="st">'^. .* .$'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Either “balanced <code>()</code> with inner edge space” or “balanced <code>[]</code> with no inner edge space”, both with 5 or more characters:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Composed pattern</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="op">{</span> <span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^. .* .$'</span> <span class="op">},</span> <span class="op">{</span> <span class="st">'%b[]'</span><span class="op">,</span> <span class="st">'^.[^ ].*[^ ].$'</span> <span class="op">}</span> <span class="op">},</span> <span class="st">'.....'</span> <span class="op">}</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Composed pattern expanded into equivalent array of nested patterns</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^. .* .$'</span><span class="op">,</span> <span class="st">'.....'</span> <span class="op">}</span> <span class="co">-- and</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%b[]'</span><span class="op">,</span> <span class="st">'^.[^ ].*[^ ].$'</span><span class="op">,</span> <span class="st">'.....'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</section>
+<section id="minisurround-glossary-spanmatchescomposedpattern" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-glossary-spanmatchescomposedpattern">SPAN MATCHES COMPOSED PATTERN</h4>
+<p>If it matches at least one nested pattern from expanded composed pattern.</p>
+<hr>
+</section>
+</section>
+<section id="minisurround-surrounding-specification" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround-surrounding-specification">Surrounding specification</h3>
+<p>Surround specification is a table with keys:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;input&gt;</span> - defines how to find and extract surrounding for “input” operations (like <code>delete</code>). See more in “Input surrounding” section.</p></li>
+<li><p><span class="help-syntax-keys">&lt;output&gt;</span> - defines what to add on left and right for “output” operations (like <code>add</code>). See more in “Output surrounding” section.</p></li>
+</ul>
+<p>Example of surround info for builtin <code>)</code> identifier:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">input</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^.().*().$'</span> <span class="op">},</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">output</span> <span class="op">=</span> <span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="st">'('</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">')'</span> <span class="op">}</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minisurround-surrounding-specification-inputsurrounding" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-surrounding-specification-inputsurrounding">Input surrounding</h4>
+<p>Specification for input surrounding has a structure of composed pattern (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary"><code>MiniSurround-glossary</code></a>) with two differences:</p>
+<ul>
+<li><p>Last pattern(s) should have two or four empty capture groups denoting how the last string should be processed to extract surrounding parts:</p>
+<ul>
+<li><p>Two captures represent left part from start of string to first capture and right part - from second capture to end of string. Example: <code>a()b()c</code> defines left surrounding as ‘a’, right - ‘c’.</p></li>
+<li><p>Four captures define left part inside captures 1 and 2, right part - inside captures 3 and 4. Example: <code>a()()b()c()</code> defines left part as empty, right part as ‘c’.</p></li>
+</ul></li>
+<li><p>Allows callable objects (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.is_callable()"><code>vim.is_callable()</code></a>) in certain places (enables more complex surroundings in exchange of increase in configuration complexity and computations):</p>
+<ul>
+<li><p>If specification itself is a callable, it will be called without arguments and should return one of:</p>
+<ul>
+<li><p>Composed pattern. Useful for implementing user input. Example of simplified variant of input surrounding for function call with name taken from user prompt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">left_edge</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>pesc<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>input<span class="op">(</span><span class="st">'Function name: '</span><span class="op">))</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span> <span class="va">left_edge</span> <span class="op">..</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'^.-%(().*()%)$'</span> <span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Single region pair (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary"><code>MiniSurround-glossary</code></a>). Useful to allow full control over surrounding. Will be taken as is. Example of returning first and last lines of a buffer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">n_lines</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>line<span class="op">(</span><span class="st">'$'</span><span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">left</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getline<span class="op">(</span><span class="dv">1</span><span class="op">):</span><span class="fu">len</span><span class="op">()</span> <span class="op">}</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">right</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="va">n_lines</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="va">n_lines</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getline<span class="op">(</span><span class="va">n_lines</span><span class="op">):</span><span class="fu">len</span><span class="op">()</span> <span class="op">}</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Array of region pairs. Useful for incorporating other instruments, like treesitter (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec.input.treesitter"><code>MiniSurround.gen_spec.input.treesitter()</code></a>). The best region pair will be picked in the same manner as with composed pattern (respecting options <code>n_lines</code>, <code>search_method</code>, etc.) using output region (from start of left region to end of right region). Example using edges of “best” line with display width more than 80:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">make_line_region_pair</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">left</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="va">n</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">right</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="va">n</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getline<span class="op">(</span><span class="va">n</span><span class="op">):</span><span class="fu">len</span><span class="op">()</span> <span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">left</span> <span class="op">=</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="va">left</span><span class="op">,</span> <span class="va">to</span> <span class="op">=</span> <span class="va">left</span> <span class="op">},</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">right</span> <span class="op">=</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="va">right</span><span class="op">,</span> <span class="va">to</span> <span class="op">=</span> <span class="va">right</span> <span class="op">},</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">res</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>line<span class="op">(</span><span class="st">'$'</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getline<span class="op">(</span><span class="va">i</span><span class="op">):</span><span class="fu">len</span><span class="op">()</span> <span class="op">&gt;</span> <span class="dv">80</span> <span class="cf">then</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">table.insert</span><span class="op">(</span><span class="va">res</span><span class="op">,</span> make_line_region_pair<span class="op">(</span><span class="va">i</span><span class="op">))</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">res</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>If there is a callable instead of assumed string pattern, it is expected to have signature <code>(line, init)</code> and behave like <code>pattern:find()</code>. It should return two numbers representing span in <code>line</code> next after or at <code>init</code> (<code>nil</code> if there is no such span). !IMPORTANT NOTE!: it means that output’s <code>from</code> shouldn’t be strictly to the left of <code>init</code> (it will lead to infinite loop). Not allowed as last item (as it should be pattern with captures). Example of matching only balanced parenthesis with big enough width:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'%b()'</span><span class="op">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">,</span> <span class="va">init</span><span class="op">)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">init</span> <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">or</span> <span class="va">s</span><span class="op">:</span><span class="fu">len</span><span class="op">()</span> <span class="op">&lt;</span> <span class="dv">5</span> <span class="cf">then</span> <span class="cf">return</span> <span class="cf">end</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">,</span> <span class="va">s</span><span class="op">:</span><span class="fu">len</span><span class="op">()</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'^.().*().$'</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ul>
+<p>More examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pair of balanced brackets from set (used for builtin `b` identifier)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="op">{</span> <span class="st">'%b()'</span><span class="op">,</span> <span class="st">'%b[]'</span><span class="op">,</span> <span class="st">'%b{}'</span> <span class="op">},</span> <span class="st">'^.().*().$'</span> <span class="op">}</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lua block string</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%[%[().-()%]%]'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec"><code>MiniSurround.gen_spec</code></a> for function wrappers to create commonly used surrounding specifications.</p>
+</section>
+<section id="minisurround-surrounding-specification-outputsurrounding" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround-surrounding-specification-outputsurrounding">Output surrounding</h4>
+<p>Specification for output can be either a table with <span class="help-syntax-keys">&lt;left&gt;</span> and <span class="help-syntax-keys">&lt;right&gt;</span> fields, or a callable returning such table (will be called with no arguments). Strings can contain new lines character “” to add multiline parts.</p>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lua block string</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="st">'[['</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">']]'</span> <span class="op">}</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Brackets on separate lines (indentation is not preserved)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="st">'(</span><span class="sc">\n</span><span class="st">'</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">'</span><span class="sc">\n</span><span class="st">)'</span> <span class="op">}</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Function call</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">function_name</span> <span class="op">=</span> <span class="va">MiniSurround</span><span class="op">.</span>user_input<span class="op">(</span><span class="st">'Function name'</span><span class="op">)</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="va">function_name</span> <span class="op">..</span> <span class="st">'('</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">')'</span> <span class="op">}</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minisurround-count-with-actions" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround-count-with-actions">Count with actions</h3>
+<p><a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> is supported by all actions in the following ways:</p>
+<ul>
+<li><p>In add, two types of <code>[count]</code> is supported in Normal mode: <code>[count1]sa[count2][textobject]</code>. The <code>[count1]</code> defines how many times left and right parts of output surrounding will be repeated and <code>[count2]</code> is used for textobject. In Visual mode <code>[count]</code> is treated as <code>[count1]</code>. Example: <code>2sa3aw)</code> and <code>v3aw2sa)</code> will result into textobject <code>3aw</code> being surrounded by <code>((</code> and <code>))</code>.</p></li>
+<li><p>In delete/replace/find/highlight <code>[count]</code> means “find n-th surrounding and execute operator on it”. Example: <code>2sd)</code> on line <code>(a(b(c)b)a)</code> with cursor on <code>c</code> will result into <code>(ab(c)ba)</code> (and not in <code>(abcba)</code> if it would have meant “delete n times”).</p></li>
+</ul>
+<hr>
+</section>
+<section id="minisurround-search-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround-search-algorithm">Search algorithm</h3>
+<p>Search for the input surrounding relies on these principles:</p>
+<ul>
+<li><p>Input surrounding specification is constructed based on surrounding identifier (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification"><code>MiniSurround-surrounding-specification</code></a>).</p></li>
+<li><p>General search is done by converting some 2d buffer region (neighborhood of reference region) into 1d string (each line is appended with <code>\n</code>). Then search for a best span matching specification is done inside string (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary"><code>MiniSurround-glossary</code></a>). After that, span is converted back into 2d region. Note: first search is done inside reference region lines, and only after that - inside its neighborhood within <code>config.n_lines</code> (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>).</p></li>
+<li><p>The best matching span is chosen by iterating over all spans matching surrounding specification and comparing them with “current best”. Comparison also depends on reference region (tighter covering is better, otherwise closer is better) and search method (if span is even considered).</p></li>
+<li><p>Extract pair of spans (for left and right regions in region pair) based on extraction pattern (last item in nested pattern).</p></li>
+<li><p>For <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> greater than 1, steps are repeated with current best match becoming reference region. One such additional step is also done if final region is equal to reference region.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Iteration over all matched spans is done in depth-first fashion with respect to nested pattern.</p></li>
+<li><p>It is guaranteed that span is compared only once.</p></li>
+<li><p>For the sake of increasing functionality, during iteration over all matching spans, some Lua patterns in composed pattern are handled specially.</p>
+<ul>
+<li><p><code>%bxx</code> (<code>xx</code> is two identical characters). It denotes balanced pair of identical characters and results into “paired” matches. For example, <code>%b""</code> for <code>"aa" "bb"</code> would match <code>"aa"</code> and <code>"bb"</code>, but not middle <code>" "</code>.</p></li>
+<li><p><code>x.-y</code> (<code>x</code> and <code>y</code> are different strings). It results only in matches with smallest width. For example, <code>e.-o</code> for <code>e e o o</code> will result only in middle <code>e o</code>. Note: it has some implications for when parts have quantifiers (like <code>+</code>, etc.), which usually can be resolved with frontier pattern <code>%f[]</code>.</p></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="minisurround.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.setup">setup()</h3>
+<p align="center">
+<code>MiniSurround.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minisurround.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>.</p>
+</section>
+<section id="minisurround.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minisurround.config" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.config">config</h3>
+<p align="center">
+<code>MiniSurround.config</code>
+</p>
+<section id="minisurround.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniSurround</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add custom surroundings to be used on top of builtin ones. For more</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- information with examples, see `:h MiniSurround.config`.</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_surroundings</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Duration (in ms) of highlight when calling `MiniSurround.highlight()`</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlight_duration</span> <span class="op">=</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">add</span> <span class="op">=</span> <span class="st">'sa'</span><span class="op">,</span> <span class="co">-- Add surrounding in Normal and Visual modes</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">delete</span> <span class="op">=</span> <span class="st">'sd'</span><span class="op">,</span> <span class="co">-- Delete surrounding</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">find</span> <span class="op">=</span> <span class="st">'sf'</span><span class="op">,</span> <span class="co">-- Find surrounding (to the right)</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">find_left</span> <span class="op">=</span> <span class="st">'sF'</span><span class="op">,</span> <span class="co">-- Find surrounding (to the left)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">highlight</span> <span class="op">=</span> <span class="st">'sh'</span><span class="op">,</span> <span class="co">-- Highlight surrounding</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">replace</span> <span class="op">=</span> <span class="st">'sr'</span><span class="op">,</span> <span class="co">-- Replace surrounding</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">suffix_last</span> <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span> <span class="co">-- Suffix to search with "prev" method</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">suffix_next</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="co">-- Suffix to search with "next" method</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Number of lines within which surrounding is searched</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">n_lines</span> <span class="op">=</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to respect selection type:</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Place surroundings on separate lines in linewise mode.</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Place surroundings on each line in blockwise mode.</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="va">respect_selection_type</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- How to search for surrounding (first inside current line, then inside</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- see `:h MiniSurround.config`.</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  <span class="va">search_method</span> <span class="op">=</span> <span class="st">'cover'</span><span class="op">,</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This also affects (purely informational) helper messages shown after</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- idle time if user input is required.</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisurround.config-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-mappings">Mappings</h4>
+<p><code>config.mappings</code> defines what mappings are set up for particular actions. By default it uses “prefix style” left hand side starting with “s” (for “surround”): <code>sa</code> - “surround add”, <code>sd</code> - “surround delete”, etc.</p>
+<p>Note: if ‘timeoutlen’ is low enough to cause occasional usage of <a href="https://neovim.io/doc/user/helptag.html?tag=s"><code>s</code></a> key (that deletes character under cursor), disable it with the following call:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">({</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="st">'s'</span><span class="op">,</span> <span class="st">'&lt;Nop&gt;'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisurround.config-customsurroundings" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-customsurroundings">Custom surroundings</h4>
+<p>User can define own surroundings by supplying <code>config.custom_surroundings</code>. It should be a table with keys being single character surrounding identifier (supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()"><code>getcharstr()</code></a>) and values - surround specification (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification"><code>MiniSurround-surrounding-specification</code></a>).</p>
+<p>General recommendations:</p>
+<ul>
+<li><p>In <code>config.custom_surroundings</code> only some data can be defined (like only <code>output</code>). Other fields will be taken from builtin surroundings.</p></li>
+<li><p>Function returning surround info at <span class="help-syntax-keys">&lt;input&gt;</span> or <span class="help-syntax-keys">&lt;output&gt;</span> fields of specification is helpful when user input is needed (like asking for function name). Use <a href="https://neovim.io/doc/user/helptag.html?tag=input()"><code>input()</code></a> or <a href="../../mini.nvim/doc/mini-surround.html#minisurround.user_input"><code>MiniSurround.user_input()</code></a>. Return <code>nil</code> to stop any current surround operation.</p></li>
+<li><p>Keys should use character representation which can be <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()"><code>getcharstr()</code></a> output. For example, <code>'\r'</code> and not <code>'&lt;CR&gt;'</code>.</p></li>
+</ul>
+<p>Examples of using <code>config.custom_surroundings</code> (see more examples at <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec"><code>MiniSurround.gen_spec</code></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">surround</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="va">surround</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_surroundings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make `)` insert parts with spaces. `input` pattern stays the same.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">')'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="va">output</span> <span class="op">=</span> <span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="st">'( '</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">' )'</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use function to compute surrounding info</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'*'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">input</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> <span class="va">n_star</span> <span class="op">=</span> <span class="va">MiniSurround</span><span class="op">.</span>user_input<span class="op">(</span><span class="st">'Number of * to find'</span><span class="op">)</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> <span class="va">many_star</span> <span class="op">=</span> <span class="fu">string.rep</span><span class="op">(</span><span class="st">'%*'</span><span class="op">,</span> <span class="fu">tonumber</span><span class="op">(</span><span class="va">n_star</span><span class="op">)</span> <span class="kw">or</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">{</span> <span class="va">many_star</span> <span class="op">..</span> <span class="st">'().-()'</span> <span class="op">..</span> <span class="va">many_star</span> <span class="op">}</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">output</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> <span class="va">n_star</span> <span class="op">=</span> <span class="va">MiniSurround</span><span class="op">.</span>user_input<span class="op">(</span><span class="st">'Number of * to output'</span><span class="op">)</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> <span class="va">many_star</span> <span class="op">=</span> <span class="fu">string.rep</span><span class="op">(</span><span class="st">'*'</span><span class="op">,</span> <span class="fu">tonumber</span><span class="op">(</span><span class="va">n_star</span><span class="op">)</span> <span class="kw">or</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="va">many_star</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="va">many_star</span> <span class="op">}</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create custom surrounding for Lua's block string `[[...]]`</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use this inside autocommand or 'after/ftplugin/lua.lua' file</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minisurround_config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_surroundings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">s</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>      <span class="va">input</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%[%[().-()%]%]'</span> <span class="op">},</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>      <span class="va">output</span> <span class="op">=</span> <span class="op">{</span> <span class="va">left</span> <span class="op">=</span> <span class="st">'[['</span><span class="op">,</span> <span class="va">right</span> <span class="op">=</span> <span class="st">']]'</span> <span class="op">},</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisurround.config-respectselectiontype" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-respectselectiontype">Respect selection type</h4>
+<p>Boolean option <code>config.respect_selection_type</code> controls whether to respect selection type when adding and deleting surrounding. When enabled:</p>
+<ul>
+<li><p>Linewise adding places surroundings on separate lines while indenting surrounded lines ones.</p></li>
+<li><p>Deleting surroundings which look like they were the result of linewise adding will act to revert it: delete lines with surroundings and dedent surrounded lines ones.</p></li>
+<li><p>Blockwise adding places surroundings on whole edges, not only start and end of selection. Note: it doesn’t really work outside of text and in presence of multibyte characters; and probably won’t due to implementation difficulties.</p></li>
+</ul>
+</section>
+<section id="minisurround.config-searchmethod" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-searchmethod">Search method</h4>
+<p>Value of <code>config.search_method</code> defines how best match search is done. Based on its value, one of the following matches will be selected:</p>
+<ul>
+<li><p>Covering match. Left/right edge is before/after left/right edge of reference region.</p></li>
+<li><p>Previous match. Left/right edge is before left/right edge of reference region.</p></li>
+<li><p>Next match. Left/right edge is after left/right edge of reference region.</p></li>
+<li><p>Nearest match. Whichever is closest among previous and next matches.</p></li>
+</ul>
+<p>Possible values are:</p>
+<ul>
+<li><p><code>'cover'</code> (default) - use only covering match. Don’t use either previous or next; report that there is no surrounding found.</p></li>
+<li><p><code>'cover_or_next'</code> - use covering match. If not found, use next.</p></li>
+<li><p><code>'cover_or_prev'</code> - use covering match. If not found, use previous.</p></li>
+<li><p><code>'cover_or_nearest'</code> - use covering match. If not found, use nearest.</p></li>
+<li><p><code>'next'</code> - use next match.</p></li>
+<li><p><code>'previous'</code> - use previous match.</p></li>
+<li><p><code>'nearest'</code> - use nearest match.</p></li>
+</ul>
+<p>Note: search is first performed on the reference region lines and only after failure - on the whole neighborhood defined by <code>config.n_lines</code>. This means that with <code>config.search_method</code> not equal to <code>'cover'</code>, “previous” or “next” surrounding will end up as search result if they are found on first stage although covering match might be found in bigger, whole neighborhood. This design is based on observation that most of the time operation is done within reference region lines (usually cursor line).</p>
+<p>Here is an example of how replacing <code>)</code> with <code>]</code> surrounding is done based on a value of <code>'config.search_method'</code> when cursor is inside <code>bbb</code> word:</p>
+<ul>
+<li><p><code>'cover'</code>: <code>(a) bbb (c)</code> -&gt; <code>(a) bbb (c)</code> (with message)</p></li>
+<li><p><code>'cover_or_next'</code>: <code>(a) bbb (c)</code> -&gt; <code>(a) bbb [c]</code></p></li>
+<li><p><code>'cover_or_prev'</code>: <code>(a) bbb (c)</code> -&gt; <code>[a] bbb (c)</code></p></li>
+<li><p><code>'cover_or_nearest'</code>: depends on cursor position. For first and second <code>b</code> - as in <code>cover_or_prev</code> (as previous match is nearer), for third - as in <code>cover_or_next</code> (as next match is nearer).</p></li>
+<li><p><code>'next'</code>: <code>(a) bbb (c)</code> -&gt; <code>(a) bbb [c]</code>. Same outcome for <code>(bbb)</code>.</p></li>
+<li><p><code>'prev'</code>: <code>(a) bbb (c)</code> -&gt; <code>[a] bbb (c)</code>. Same outcome for <code>(bbb)</code>.</p></li>
+<li><p><code>'nearest'</code>: depends on cursor position (same as in <code>'cover_or_nearest'</code>).</p></li>
+</ul>
+</section>
+<section id="minisurround.config-searchsuffixes" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-searchsuffixes">Search suffixes</h4>
+<p>To provide more searching possibilities, ‘mini.surround’ creates extended mappings force “prev” and “next” methods for particular search. It does so by appending mapping with certain suffix: <code>config.mappings.suffix_last</code> for mappings which will use “prev” search method, <code>config.mappings.suffix_next</code></p>
+<ul>
+<li>“next” search method.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>It creates new mappings only for actions involving surrounding search: delete, replace, find (right and left), highlight.</p></li>
+<li><p>All new mappings behave the same way as if <code>config.search_method</code> is set to certain search method. They preserve dot-repeat support, respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>.</p></li>
+<li><p>Supply empty string to disable creation of corresponding set of mappings.</p></li>
+</ul>
+<p>Example with default values (<code>n</code> for <code>suffix_next</code>, <code>l</code> for <code>suffix_last</code>) and initial line <code>(aa) (bb) (cc)</code>.</p>
+<ul>
+<li><p>Typing <code>sdn)</code> with cursor inside <code>(aa)</code> results into <code>(aa) bb (cc)</code>.</p></li>
+<li><p>Typing <code>sdl)</code> with cursor inside <code>(cc)</code> results into <code>(aa) bb (cc)</code>.</p></li>
+<li><p>Typing <code>2srn)]</code> with cursor inside <code>(aa)</code> results into <code>(aa) (bb) [cc]</code>.</p></li>
+</ul>
+</section>
+<section id="minisurround.config-setupsimilartotpopevim-surround" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.config-setupsimilartotpopevim-surround">Setup similar to ‘tpope/vim-surround’</h4>
+<p><a name="minisurround-vim-surround-config" href="../../mini.nvim/doc/mini-surround.html#minisurround-vim-surround-config"><b>MiniSurround-vim-surround-config</b></a></p>
+<p>This module is primarily designed after ‘machakann/vim-sandwich’. To get behavior closest to ‘tpope/vim-surround’ (but not identical), use this setup:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">add</span> <span class="op">=</span> <span class="st">'ys'</span><span class="op">,</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">delete</span> <span class="op">=</span> <span class="st">'ds'</span><span class="op">,</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">find</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">find_left</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">highlight</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">replace</span> <span class="op">=</span> <span class="st">'cs'</span><span class="op">,</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Add this only if you don't want to use extended mappings</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">suffix_last</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">suffix_next</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">search_method</span> <span class="op">=</span> <span class="st">'cover_or_next'</span><span class="op">,</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- Remap adding surrounding to Visual mode selection</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>del<span class="op">(</span><span class="st">'x'</span><span class="op">,</span> <span class="st">'ys'</span><span class="op">)</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'x'</span><span class="op">,</span> <span class="st">'S'</span><span class="op">,</span> <span class="vs">[[:&lt;C-u&gt;lua MiniSurround.add('visual')&lt;CR&gt;]]</span><span class="op">,</span> <span class="op">{</span> <span class="va">silent</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- Make special mapping for "add surrounding for line"</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'yss'</span><span class="op">,</span> <span class="st">'ys_'</span><span class="op">,</span> <span class="op">{</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minisurround.add" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.add">add()</h3>
+<p align="center">
+<code>MiniSurround.add</code>(<span class="help-syntax-special">{mode}</span>)
+</p>
+<p>Add surrounding</p>
+<p>No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.setup"><code>MiniSurround.setup()</code></a>.</p>
+<section id="minisurround.add-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.add-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> Mapping mode (normal by default).</p>
+<hr>
+</section>
+</section>
+<section id="minisurround.delete" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.delete">delete()</h3>
+<p align="center">
+<code>MiniSurround.delete</code>()
+</p>
+<p>Delete surrounding</p>
+<p>No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.setup"><code>MiniSurround.setup()</code></a>.</p>
+<hr>
+</section>
+<section id="minisurround.replace" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.replace">replace()</h3>
+<p align="center">
+<code>MiniSurround.replace</code>()
+</p>
+<p>Replace surrounding</p>
+<p>No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.setup"><code>MiniSurround.setup()</code></a>.</p>
+<hr>
+</section>
+<section id="minisurround.find" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.find">find()</h3>
+<p align="center">
+<code>MiniSurround.find</code>()
+</p>
+<p>Find surrounding</p>
+<p>No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.setup"><code>MiniSurround.setup()</code></a>.</p>
+<hr>
+</section>
+<section id="minisurround.highlight" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.highlight">highlight()</h3>
+<p align="center">
+<code>MiniSurround.highlight</code>()
+</p>
+<p>Highlight surrounding</p>
+<p>No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.setup"><code>MiniSurround.setup()</code></a>.</p>
+<hr>
+</section>
+<section id="minisurround.update_n_lines" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.update_n_lines">update_n_lines()</h3>
+<p align="center">
+<code>MiniSurround.update_n_lines</code>()
+</p>
+<p>Update <code>MiniSurround.config.n_lines</code> from user input</p>
+<p>Mapping example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'sn'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua MiniSurround.update_n_lines()&lt;CR&gt;'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="minisurround.user_input" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.user_input">user_input()</h3>
+<p align="center">
+<code>MiniSurround.user_input</code>(<span class="help-syntax-special">{prompt}</span>, <span class="help-syntax-special">{text}</span>)
+</p>
+<p>Ask user for input</p>
+<p>This is mainly a wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=input()"><code>input()</code></a> which allows empty string as input, cancelling with <code>&lt;Esc&gt;</code> and <code>&lt;C-c&gt;</code>, and slightly modifies prompt. Use it to ask for input inside function custom surrounding (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config"><code>MiniSurround.config</code></a>).</p>
+<hr>
+</section>
+<section id="minisurround.gen_spec" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.gen_spec">gen_spec</h3>
+<p align="center">
+<code>MiniSurround.gen_spec</code>
+</p>
+<p>Generate common surrounding specifications</p>
+<p>This is a table with two sets of generator functions: <span class="help-syntax-keys">&lt;input&gt;</span> and <span class="help-syntax-keys">&lt;output&gt;</span> (currently empty). Each is a table with function values generating corresponding surrounding specification.</p>
+<section id="minisurround.gen_spec-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.gen_spec-seealso">See also</h4>
+<p><a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec"><code>MiniAi.gen_spec</code></a></p>
+<hr>
+</section>
+</section>
+<section id="minisurround.gen_spec.input.treesitter" class="level3">
+<h3 class="anchored" data-anchor-id="minisurround.gen_spec.input.treesitter">gen_spec.input.treesitter()</h3>
+<p align="center">
+<code>MiniSurround.gen_spec.input.treesitter</code>(<span class="help-syntax-special">{captures}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Treesitter specification for input surrounding</p>
+<p>This is a specification in function form. When called with a pair of treesitter captures, it returns a specification function outputting an array of region pairs derived from <span class="help-syntax-keys">&lt;outer&gt;</span> and <span class="help-syntax-keys">&lt;inner&gt;</span> captures. It first searches for all matched nodes of outer capture and then completes each one with the biggest match of inner capture inside that node (if any). The result region pair is a difference between regions of outer and inner captures.</p>
+<p>In order for this to work, apart from working treesitter parser for desired language, user should have a reachable language-specific ‘textobjects’ query (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()"><code>vim.treesitter.query.get()</code></a>). The most straightforward way for this is to have ‘textobjects.scm’ query file with treesitter captures stored in some recognized path. This is primarily designed to be compatible with plugin ‘nvim-treesitter/nvim-treesitter-textobjects’, but can be used without it.</p>
+<p>Two most common approaches for having a query file:</p>
+<ul>
+<li><p>Install ‘nvim-treesitter/nvim-treesitter-textobjects’. It has curated and well maintained builtin query files for many languages with a standardized capture names, like <code>call.outer</code>, <code>call.inner</code>, etc.</p></li>
+<li><p>Manually create file ‘after/queries/<language name="">/textobjects.scm’ in your <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME"><code>$XDG_CONFIG_HOME</code></a> directory. It should contain queries with captures (later used to define surrounding parts). See <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query"><code>lua-treesitter-query</code></a>. To verify that query file is reachable, run (example for “lua” language, output should have at least an intended file):</language></p>
+<pre class="vim"><code>:lua print(vim.inspect(vim.treesitter.query.get_files('lua','textobjects')))</code></pre></li>
+</ul>
+<p>Example configuration for function definition textobject with ‘nvim-treesitter/nvim-treesitter-textobjects’ captures:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ts_input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span><span class="va">gen_spec</span><span class="op">.</span><span class="va">input</span><span class="op">.</span><span class="va">treesitter</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_surroundings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use tree-sitter to search for function call</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">f</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">input</span> <span class="op">=</span> ts_input<span class="op">({</span> <span class="va">outer</span> <span class="op">=</span> <span class="st">'@call.outer'</span><span class="op">,</span> <span class="va">inner</span> <span class="op">=</span> <span class="st">'@call.inner'</span> <span class="op">})</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Notes:</p>
+<ul>
+<li><p>Be sure that query files don’t contain unknown <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives"><code>treesitter-directives</code></a> (like <code>#make-range!</code>, for example). Otherwise surrounding with such captures might not be found as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core"><code>lua-treesitter-core</code></a> won’t treat them as captures. Verify with <code>:=vim.treesitter.query.get('lang', 'textobjects')</code> and see if the target capture is recognized as one.</p></li>
+<li><p>It uses buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag=filetype"><code>filetype</code></a> to determine query language.</p></li>
+<li><p>On large files it is slower than pattern-based textobjects. Still very fast though (one search should be magnitude of milliseconds or tens of milliseconds on really large file).</p></li>
+</ul>
+<section id="minisurround.gen_spec.input.treesitter-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.gen_spec.input.treesitter-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{captures}</span> <code>(table)</code> Captures for outer and inner parts of region pair: table with <span class="help-syntax-keys">&lt;outer&gt;</span> and <span class="help-syntax-keys">&lt;inner&gt;</span> fields with captures for outer (<code>[left.form; right.to]</code>) and inner (<code>(left.to; right.from)</code> both edges exclusive, i.e.&nbsp;they won’t be a part of surrounding) regions. Each value should be a string capture starting with <code>'@'</code>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;use_nvim_treesitter&gt;</span> - whether to try to use ‘nvim-treesitter’ plugin (if present) to do the query. It used to implement more advanced behavior and more coherent experience if ‘nvim-treesitter-textobjects’ queries are used. However, as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core"><code>lua-treesitter-core</code></a> methods are more capable now, the option will soon be removed. Only present for backward compatibility. Default: <code>false</code>.</li>
+</ul>
+</section>
+<section id="minisurround.gen_spec.input.treesitter-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.gen_spec.input.treesitter-return">Return</h4>
+<p><code>(function)</code> Function which returns array of current buffer region pairs representing differences between outer and inner captures.</p>
+</section>
+<section id="minisurround.gen_spec.input.treesitter-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minisurround.gen_spec.input.treesitter-seealso">See also</h4>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification"><code>MiniSurround-surrounding-specification</code></a> for how this type of surrounding specification is processed.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()"><code>vim.treesitter.query.get()</code></a> for how query is fetched.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures()"><code>Query:iter_captures()</code></a> for how all query captures are iterated in case of no ‘nvim-treesitter’.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter"><code>MiniAi.gen_spec.treesitter()</code></a> for similar ‘mini.ai’ generator.</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

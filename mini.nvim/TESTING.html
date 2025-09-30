@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>testing – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-test-with-mini.test" id="toc-how-to-test-with-mini.test" class="nav-link active" data-scroll-target="#how-to-test-with-mini.test">How to test with ‘mini.test’</a>
+  <ul class="collapse">
+  <li><a href="#example-plugin" id="toc-example-plugin" class="nav-link" data-scroll-target="#example-plugin">Example plugin</a></li>
+  <li><a href="#quick-demo" id="toc-quick-demo" class="nav-link" data-scroll-target="#quick-demo">Quick demo</a></li>
+  <li><a href="#file-organization" id="toc-file-organization" class="nav-link" data-scroll-target="#file-organization">File organization</a></li>
+  <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running tests</a></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a>
+  <ul class="collapse">
+  <li><a href="#first-test" id="toc-first-test" class="nav-link" data-scroll-target="#first-test">First test</a></li>
+  <li><a href="#builtin-expectations" id="toc-builtin-expectations" class="nav-link" data-scroll-target="#builtin-expectations">Builtin expectations</a></li>
+  <li><a href="#writing-custom-expectation" id="toc-writing-custom-expectation" class="nav-link" data-scroll-target="#writing-custom-expectation">Writing custom expectation</a></li>
+  <li><a href="#hooks" id="toc-hooks" class="nav-link" data-scroll-target="#hooks">Hooks</a></li>
+  <li><a href="#test-parametrization" id="toc-test-parametrization" class="nav-link" data-scroll-target="#test-parametrization">Test parametrization</a></li>
+  <li><a href="#retry" id="toc-retry" class="nav-link" data-scroll-target="#retry">Retry</a></li>
+  <li><a href="#runtime-access-to-current-cases" id="toc-runtime-access-to-current-cases" class="nav-link" data-scroll-target="#runtime-access-to-current-cases">Runtime access to current cases</a></li>
+  <li><a href="#case-helpers" id="toc-case-helpers" class="nav-link" data-scroll-target="#case-helpers">Case helpers</a></li>
+  </ul></li>
+  <li><a href="#customizing-test-run" id="toc-customizing-test-run" class="nav-link" data-scroll-target="#customizing-test-run">Customizing test run</a>
+  <ul class="collapse">
+  <li><a href="#collection-custom-files-and-filter" id="toc-collection-custom-files-and-filter" class="nav-link" data-scroll-target="#collection-custom-files-and-filter">Collection: custom files and filter</a></li>
+  <li><a href="#execution-custom-reporter-and-stop-on-first-error" id="toc-execution-custom-reporter-and-stop-on-first-error" class="nav-link" data-scroll-target="#execution-custom-reporter-and-stop-on-first-error">Execution: custom reporter and stop on first error</a></li>
+  </ul></li>
+  <li><a href="#using-child-process" id="toc-using-child-process" class="nav-link" data-scroll-target="#using-child-process">Using child process</a>
+  <ul class="collapse">
+  <li><a href="#startstoprestart" id="toc-startstoprestart" class="nav-link" data-scroll-target="#startstoprestart">Start/stop/restart</a></li>
+  <li><a href="#executing-lua-code" id="toc-executing-lua-code" class="nav-link" data-scroll-target="#executing-lua-code">Executing Lua code</a></li>
+  <li><a href="#managing-neovim-options-and-state" id="toc-managing-neovim-options-and-state" class="nav-link" data-scroll-target="#managing-neovim-options-and-state">Managing Neovim options and state</a></li>
+  <li><a href="#emulate-typing-keys" id="toc-emulate-typing-keys" class="nav-link" data-scroll-target="#emulate-typing-keys">Emulate typing keys</a></li>
+  <li><a href="#test-screen-state-with-screenshots" id="toc-test-screen-state-with-screenshots" class="nav-link" data-scroll-target="#test-screen-state-with-screenshots">Test screen state with screenshots</a></li>
+  </ul></li>
+  <li><a href="#general-tips" id="toc-general-tips" class="nav-link" data-scroll-target="#general-tips">General tips</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="how-to-test-with-mini.test" class="level1">
+<h1>How to test with ‘mini.test’</h1>
+<p>Writing tests for Neovim Lua plugin is hard. Writing good tests for Neovim Lua plugin is even harder. The ‘mini.test’ module is designed to make it reasonably easier while still allowing lots of flexibility. It deliberately favors a more verbose and program-like style of writing tests, opposite to “human readable, DSL like” approach of <a href="https://github.com/nvim-lua/plenary.nvim">nvim-lua/plenary.nvim</a> (“busted-style testing” from <a href="https://github.com/Olivine-Labs/busted">Olivine-Labs/busted</a>). Although the latter is also possible.</p>
+<p>This file is intended as a hands-on introduction to ‘mini.test’ with examples. For more details, see <a href="doc/mini-test.txt">its documentation</a> and tests of this plugin’s modules.</p>
+<p>General approach of writing test files:</p>
+<ul>
+<li>Organize tests in separate Lua files.</li>
+<li>Each file should be associated with a test set table (output of <code>MiniTest.new_set()</code>). Recommended approach is to create it manually in each test file and then return it.</li>
+<li>Each test action should be defined in separate function assign to an entry of test set.</li>
+<li>It is strongly encouraged to use custom Neovim processes to do actual testing inside test action. See <a href="#using-child-process">Using child process</a>.</li>
+</ul>
+<p><strong>NOTES</strong>:</p>
+<ul>
+<li>All commands are assumed to be executed with current working directory being a root of your Neovim plugin project. That is both for shell and Neovim commands.</li>
+<li>All paths are assumed to be relative to current working directory.</li>
+</ul>
+<section id="example-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="example-plugin">Example plugin</h2>
+<p>In this file we will be testing ‘hello_lines’ plugin (once some basic concepts are introduced). It will have functionality to add prefix ‘Hello’ to lines implemented in a single file ‘lua/hello_lines/init.lua’:</p>
+<details>
+<summary>
+‘lua/hello_lines/init.lua’
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">M</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">--- Prepend 'Hello ' to every element</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">lines</span><span class="co"> table Array. Default: { 'world' }.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@return</span><span class="co"> table Array of strings.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cn">M</span><span class="op">.</span><span class="va">compute</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="fu">lines</span><span class="op">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span> <span class="op">=</span> <span class="fu">lines</span> <span class="kw">or</span> <span class="op">{</span> <span class="st">'world'</span> <span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span>tbl_map<span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="st">'Hello '</span> <span class="op">..</span> <span class="fu">tostring</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">end</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ns_id</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_namespace<span class="op">(</span><span class="st">'hello_lines'</span><span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">--- Set lines with highlighted 'Hello ' prefix</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">buf_id</span><span class="co"> number Buffer handle where lines should be set. Default: 0.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">lines</span><span class="co"> table Array. Default: { 'world' }.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cn">M</span><span class="op">.</span><span class="va">set_lines</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">buf_id</span> <span class="op">=</span> <span class="va">buf_id</span> <span class="kw">or</span> <span class="dv">0</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span> <span class="op">=</span> <span class="fu">lines</span> <span class="kw">or</span> <span class="op">{</span> <span class="st">'world'</span> <span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_clear_namespace<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">ns_id</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="va">buf_id</span> <span class="kw">or</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="cn">M</span><span class="op">.</span>compute<span class="op">(</span><span class="fu">lines</span><span class="op">))</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="fu">lines</span> <span class="cf">do</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">extmark_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">end_row</span> <span class="op">=</span> <span class="va">i</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> <span class="va">end_col</span> <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'Special'</span> <span class="op">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_extmark<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">ns_id</span><span class="op">,</span> <span class="va">i</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">extmark_opts</span><span class="op">)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">M</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="quick-demo" class="level2">
+<h2 class="anchored" data-anchor-id="quick-demo">Quick demo</h2>
+<p>Here is a quick demo of how tests with ‘mini.test’ look like:</p>
+<details>
+<summary>
+‘tests/test_hello_lines.lua’
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Define helper aliases</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect</span><span class="op">,</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">,</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create (but not start) child Neovim object</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Define main test set of this file</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">({</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Register hooks</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- This will be executed before every (even nested) case</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Restart child process with custom 'init.lua' script</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Load tested plugin</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- This will be executed one after all tests from this set are finished</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Test set fields define nested structure</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'compute()'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- Define test action as callable field of test set.</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- If it produces error - test fails.</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'compute()'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Execute Lua code inside child process, get its result and compare with</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- expected result</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="vs">[[M.compute({'a', 'b'})]]</span><span class="op">),</span> <span class="op">{</span> <span class="st">'Hello a'</span><span class="op">,</span> <span class="st">'Hello b'</span> <span class="op">})</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'compute()'</span><span class="op">][</span><span class="st">'uses correct defaults'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="vs">[[M.compute()]]</span><span class="op">),</span> <span class="op">{</span> <span class="st">'Hello world'</span> <span class="op">})</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co">-- Make parametrized tests. This will create three copies of each case</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'set_lines()'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">parametrize</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{},</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span> <span class="op">}</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span> <span class="op">}</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use arguments from test parametrization</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'set_lines()'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Directly modify some options to make better test</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span><span class="op">,</span> <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span> <span class="op">=</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">20</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">bo</span><span class="op">.</span><span class="va">readonly</span> <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Execute Lua code without returning value</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'M.set_lines(...)'</span><span class="op">,</span> <span class="op">{</span> <span class="va">buf_id</span><span class="op">,</span> <span class="fu">lines</span> <span class="op">})</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Test screen state. On first run it will automatically create reference</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- screenshots with text and look information in predefined location. On</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- later runs it will compare current screenshot with reference. Will throw</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- informative error with helpful information if they don't match exactly.</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="va">expect</span><span class="op">.</span>reference_screenshot<span class="op">(</span><span class="va">child</span><span class="op">.</span>get_screenshot<span class="op">())</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co">-- Return test set which will be collected and execute inside `MiniTest.run()`</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="file-organization" class="level2">
+<h2 class="anchored" data-anchor-id="file-organization">File organization</h2>
+<p>It might be a bit overwhelming. It actually is for most of the people. However, it should be done once and then you rarely need to touch it.</p>
+<p>Overview of full file structure used in for testing ‘hello_lines’ plugin:</p>
+<pre><code>.
+├── deps
+│   └── mini.nvim # Mandatory
+├── lua
+│   └── hello_lines
+│       └── init.lua # Mandatory
+├── Makefile # Recommended
+├── scripts
+│   ├── minimal_init.lua # Mandatory
+│   └── minitest.lua # Recommended
+└── tests
+    └── test_hello_lines.lua # Mandatory</code></pre>
+<p>To write tests, you’ll need these files:</p>
+<p>Mandatory:</p>
+<ul>
+<li><p><strong>Your Lua plugin in ‘lua’ directory</strong>. Here we will be testing ‘hello_lines’ plugin.</p></li>
+<li><p><strong>Test files</strong>. By default they should be Lua files located in ‘tests/’ directory and named with ‘test_’ prefix. For example, we will write everything in ‘test_hello_lines.lua’. It is usually a good idea to follow this template (will be assumed for the rest of this file):</p>
+<details>
+<summary>
+<p>Template for test files</p>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect</span><span class="op">,</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">,</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Actual tests definitions will go here</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details></li>
+<li><p><strong>‘mini.nvim’ dependency</strong>. It is needed to use its ‘mini.test’ module. Proposed way to store it is in ‘deps/mini.nvim’ directory. Create it with <code>git</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> deps</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--filter</span><span class="op">=</span>blob:none https://github.com/nvim-mini/mini.nvim deps/mini.nvim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Manual Neovim startup file</strong> (a.k.a ‘init.lua’) with proposed path ‘scripts/minimal_init.lua’. It will be used to ensure that Neovim processes can recognize your tested plugin and ‘mini.nvim’ dependency. Proposed minimal content:</p>
+<details>
+<summary>
+<p>‘scripts/minimal_init.lua’</p>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add current directory to 'runtimepath' to be able to use 'lua' files</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="vs">[[let &amp;rtp.=','.getcwd()]]</span><span class="op">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set up 'mini.test' only when calling headless Neovim (like with `make test`)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">#</span><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_list_uis<span class="op">()</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">then</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add 'mini.nvim' to 'runtimepath' to be able to use 'mini.test'</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Assumed that 'mini.nvim' is stored in 'deps/mini.nvim'</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'set rtp+=deps/mini.nvim'</span><span class="op">)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set up 'mini.test'</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.test'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details></li>
+</ul>
+<p>Recommended:</p>
+<ul>
+<li><p><strong>Makefile</strong>. In order to simplify running tests from shell and inside Continuous Integration services (like Github Actions), it is recommended to define Makefile. It will define steps for running tests. Proposed template:</p>
+<details>
+<summary>
+<p>Template for Makefile</p>
+</summary>
+<pre><code># Run all test files
+test: deps/mini.nvim
+    nvim --headless --noplugin -u ./scripts/minimal_init.lua -c "lua MiniTest.run()"
+
+# Run test from file at `$FILE` environment variable
+test_file: deps/mini.nvim
+    nvim --headless --noplugin -u ./scripts/minimal_init.lua -c "lua MiniTest.run_file('$(FILE)')"
+
+# Download 'mini.nvim' to use its 'mini.test' testing module
+deps/mini.nvim:
+    @mkdir -p deps
+    git clone --filter=blob:none https://github.com/nvim-mini/mini.nvim $@</code></pre>
+</details></li>
+<li><p><strong>‘mini.test’ script</strong> at ‘scripts/minitest.lua’. Use it to customize what is tested (which files, etc.) and how. Usually not needed, but otherwise should have some variant of a call to <code>MiniTest.run()</code>.</p></li>
+</ul>
+</section>
+<section id="running-tests" class="level2">
+<h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
+<p>The ‘mini.test’ module out of the box supports two major ways of running tests:</p>
+<ul>
+<li><strong>Interactive</strong>. All test files will be run directly inside current Neovim session. This proved to be very useful for debugging while writing tests. To run tests, simply execute <code>:lua MiniTest.run()</code> / <code>:lua MiniTest.run_file()</code> / <code>:lua MiniTest.run_at_location()</code> (assuming, you already have ‘mini.test’ set up with <code>require('mini.test').setup()</code>). With default configuration this will result into floating window with information about results of test execution. Press <code>q</code> to close it. <strong>Note</strong>: Be careful though, as it might affect your current setup. To avoid this, <a href="#using-child-process">use child processes</a> inside tests.</li>
+<li><strong>Headless</strong> (from shell). Start headless Neovim process with proper startup file and execute <code>lua MiniTest.run()</code>. Assuming full file organization from previous section, this can be achieved with <code>make test</code>. This will show information about results of test execution directly in shell.</li>
+</ul>
+</section>
+<section id="basics" class="level2">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<p>These sections will show some basic capabilities of ‘mini.test’ and how to use them. In all examples code blocks represent some whole test file (like ‘tests/test_basics.lua’).</p>
+<section id="first-test" class="level3">
+<h3 class="anchored" data-anchor-id="first-test">First test</h3>
+<p>A test is defined as function assigned to a field of test set. If it throws error, test has failed. Test file should return single test set. Here is an example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">x</span> <span class="op">~=</span> <span class="dv">2</span> <span class="cf">then</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">error</span><span class="op">(</span><span class="st">'`x` is not equal to 2'</span><span class="op">)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Writing <code>if .. error() .. end</code> is too tiresome. That is why ‘mini.test’ comes with very minimal but usually quite enough set of <em>expectations</em>: <code>MiniTest.expect</code>. They display the intended expectation between objects and will throw error with informative message if it doesn’t hold. Here is a rewritten previous example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Test sets can be nested. This will be useful in combination with <a href="#hooks">hooks</a> and <a href="#test-parametrization">parametrization</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'big scope'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'big scope'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'big scope'</span><span class="op">][</span><span class="st">'also works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'out of scope'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>NOTE</strong>: ‘mini.test’ supports emulation of busted-style testing by default. So previous example can be written like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>describe<span class="op">(</span><span class="st">'big scope'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  it<span class="op">(</span><span class="st">'works'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  it<span class="op">(</span><span class="st">'also works'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>it<span class="op">(</span><span class="st">'out of scope'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span><span class="al">NOTE</span><span class="co">: when using this style, no test set should be returned</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Although this is possible, the rest of this file will use a recommended test set approach.</p>
+</section>
+<section id="builtin-expectations" class="level3">
+<h3 class="anchored" data-anchor-id="builtin-expectations">Builtin expectations</h3>
+<p>These four builtin expectations are the ones used most commonly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect</span><span class="op">,</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">,</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- This is so frequently used that having short alias proved useful</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'expect.equality'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'expect.no_equality'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">expect</span><span class="op">.</span>no_equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'expect.error'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This expectation will pass because function will throw an error</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">expect</span><span class="op">.</span>error<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">x</span> <span class="op">==</span> <span class="dv">2</span> <span class="cf">then</span> <span class="fu">error</span><span class="op">(</span><span class="st">'Deliberate error'</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'expect.no_error'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This expectation will pass because function will *not* throw an error</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">expect</span><span class="op">.</span>no_error<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">x</span> <span class="op">~=</span> <span class="dv">2</span> <span class="cf">then</span> <span class="fu">error</span><span class="op">(</span><span class="st">'This should not be thrown'</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="writing-custom-expectation" class="level3">
+<h3 class="anchored" data-anchor-id="writing-custom-expectation">Writing custom expectation</h3>
+<p>Although you can use <code>if ... error() ... end</code> approach, there is <code>MiniTest.new_expectation()</code> to simplify this process for some repetitive expectation. Here is an example used in this plugin:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect_match</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_expectation<span class="op">(</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Expectation subject</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'string matching'</span><span class="op">,</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Predicate</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">str</span><span class="op">,</span> <span class="va">pattern</span><span class="op">)</span> <span class="cf">return</span> <span class="va">str</span><span class="op">:</span><span class="fu">find</span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span> <span class="op">~=</span> <span class="kw">nil</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Fail context</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">str</span><span class="op">,</span> <span class="va">pattern</span><span class="op">)</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">string.format</span><span class="op">(</span><span class="st">'Pattern: %s</span><span class="sc">\n</span><span class="st">Observed string: %s'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">pattern</span><span class="op">),</span> <span class="va">str</span><span class="op">)</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'string matching'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="st">'abcd'</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This will pass</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  expect_match<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="st">'^a'</span><span class="op">)</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This will fail</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  expect_match<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="st">'x'</span><span class="op">)</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Executing this content from file ‘tests/test_basics.lua’ will fail with the following message:</p>
+<pre><code>FAIL in "tests/test_basics.lua | string matching":
+  Failed expectation for string matching.
+  Pattern: "x"
+  Observed string: abcd
+  Traceback:
+    tests/test_basics.lua:20</code></pre>
+</section>
+<section id="hooks" class="level3">
+<h3 class="anchored" data-anchor-id="hooks">Hooks</h3>
+<p>Hooks are functions that will be called without arguments at predefined stages of test execution. They are defined for a test set. There are four types of hooks:</p>
+<ul>
+<li><strong>pre_once</strong> - executed before first (filtered) node.</li>
+<li><strong>pre_case</strong> - executed before each case (even nested).</li>
+<li><strong>post_case</strong> - executed after each case (even nested).</li>
+<li><strong>post_once</strong> - executed after last (filtered) node.</li>
+</ul>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect</span><span class="op">,</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">,</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">n</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">increase_n</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">n</span> <span class="op">=</span> <span class="va">n</span> <span class="op">+</span> <span class="dv">1</span> <span class="kw">end</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'hooks'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pre_once</span> <span class="op">=</span> <span class="va">increase_n</span><span class="op">,</span> <span class="va">pre_case</span> <span class="op">=</span> <span class="va">increase_n</span><span class="op">,</span> <span class="va">post_case</span> <span class="op">=</span> <span class="va">increase_n</span><span class="op">,</span> <span class="va">post_once</span> <span class="op">=</span> <span class="va">increase_n</span> <span class="op">},</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'hooks'</span><span class="op">][</span><span class="st">'work'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- `n` will be increased twice: in `pre_once` and `pre_case`</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">n</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'hooks'</span><span class="op">][</span><span class="st">'work again'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- `n` will be increased twice: in `post_case` from previous case and</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- `pre_case` before this one</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">n</span><span class="op">,</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'after hooks set'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- `n` will be again increased twice: in `post_case` from previous case and</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- `post_once` after last case in T['hooks'] test set</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">n</span><span class="op">,</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test-parametrization" class="level3">
+<h3 class="anchored" data-anchor-id="test-parametrization">Test parametrization</h3>
+<p>One of the distinctive features of ‘mini.test’ is ability to leverage test parametrization. As hooks, it is a feature of test set.</p>
+<p>Example of simple parametrization:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Each parameter should be an array to allow parametrizing multiple arguments</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">parametrize</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span> <span class="dv">1</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">2</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- This will result into two cases. First will fail.</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- Parametrization can be nested. Cases are "multiplied" with every combination</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- of parameters.</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize'</span><span class="op">][</span><span class="st">'nested'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">parametrize</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span> <span class="st">'1'</span> <span class="op">},</span> <span class="op">{</span> <span class="st">'2'</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- This will result into four cases. Two of them will fail.</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize'</span><span class="op">][</span><span class="st">'nested'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="fu">tostring</span><span class="op">(</span><span class="va">x</span><span class="op">),</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Parametrizing multiple arguments</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize multiple arguments'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">parametrize</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">2</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- This will result into two cases. Both will pass.</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'parametrize multiple arguments'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="retry" class="level3">
+<h3 class="anchored" data-anchor-id="retry">Retry</h3>
+<p>Some tests can be inherently flaky (can randomly fail even if its tested feature is correct). For example, testing that sequence of events is executed with correct delay between each other. Such tests can work reliably on fast machines, but can spuriously fail on slow ones (like during Continuous Integrations checks) while underlying feature is correct.</p>
+<p>To reduce flakiness, there is a feature of test set called <code>n_retry</code>: a maximum number of times to retry each its test case until success.</p>
+<p>Example of how it can be used:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Each case will be attempted until first success at most 5 times</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'n_retry'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">n_retry</span> <span class="op">=</span> <span class="dv">5</span> <span class="op">})</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- With default `n_retry = 1` this case will fail 1 out of 2 runs.</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- With `n_retry = 5` this case will fail 1 out of 32 runs.</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'n_retry'</span><span class="op">][</span><span class="st">'case'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">math.randomseed</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>hrtime<span class="op">())</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assert</span><span class="op">(</span><span class="fu">math.random</span><span class="op">()</span> <span class="op">&lt;</span> <span class="dv">0.5</span><span class="op">)</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="runtime-access-to-current-cases" class="level3">
+<h3 class="anchored" data-anchor-id="runtime-access-to-current-cases">Runtime access to current cases</h3>
+<p>There is <code>MiniTest.current</code> table containing information about “current” test cases. It has <code>all_cases</code> and <code>case</code> fields with all currently executed tests and <em>the</em> current case.</p>
+<p>Test case is a single unit of sequential test execution. It contains all information needed to execute test case along with data about its execution. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'MiniTest.current.all_cases'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- A useful hack: show runtime data with expecting it to be something else</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">MiniTest</span><span class="op">.</span><span class="va">current</span><span class="op">.</span><span class="va">all_cases</span><span class="op">,</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'MiniTest.current.case'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">MiniTest</span><span class="op">.</span><span class="va">current</span><span class="op">.</span><span class="va">case</span><span class="op">,</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will result into following lengthy fails:</p>
+<details>
+<summary>
+Fail information
+</summary>
+<pre><code>FAIL in "tests/test_basics.lua | MiniTest.current.all_cases":
+  Failed expectation for equality.
+  Left: { {
+      args = {},
+      data = {},
+      desc = { "tests/test_basics.lua", "MiniTest.current.all_cases" },
+      exec = {
+        fails = {},
+        notes = {},
+        state = "Executing test"
+      },
+      hooks = {
+        post = {},
+        pre = {}
+      },
+      test = &lt;function 1&gt;
+    }, {
+      args = {},
+      data = {},
+      desc = { "tests/test_basics.lua", "MiniTest.current.case" },
+      hooks = {
+        post = {},
+        pre = {}
+      },
+      test = &lt;function 2&gt;
+    } }
+  Right: 0
+  Traceback:
+    tests/test_basics.lua:8
+
+FAIL in "tests/test_basics.lua | MiniTest.current.case":
+  Failed expectation for equality.
+  Left: {
+    args = {},
+    data = {},
+    desc = { "tests/test_basics.lua", "MiniTest.current.case" },
+    exec = {
+      fails = {},
+      notes = {},
+      state = "Executing test"
+    },
+    hooks = {
+      post = {},
+      pre = {}
+    },
+    test = &lt;function 1&gt;
+  }
+  Right: 0
+  Traceback:
+    tests/test_basics.lua:12</code></pre>
+</details>
+</section>
+<section id="case-helpers" class="level3">
+<h3 class="anchored" data-anchor-id="case-helpers">Case helpers</h3>
+<p>There are some functions intended to help writing more robust cases: <code>skip()</code>, <code>finally()</code>, and <code>add_note()</code>. The <code>MiniTest.current</code> table contains useful information about the current state of tests execution.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- `MiniTest.skip()` allows skipping rest of test execution while giving an</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- informative note. This test will pass with notes.</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'skip()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span> <span class="cf">then</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniTest</span><span class="op">.</span>skip<span class="op">(</span><span class="st">'Apparently, 1 + 1 is 2'</span><span class="op">)</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">error</span><span class="op">(</span><span class="st">'1 + 1 is not 2'</span><span class="op">)</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- `MiniTest.add_note()` allows adding notes. Final state will have</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- "with notes" suffix.</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'add_note()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span>add_note<span class="op">(</span><span class="st">'This test is not important.'</span><span class="op">)</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">error</span><span class="op">(</span><span class="st">'Custom error.'</span><span class="op">)</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- `MiniTest.finally()` allows registering some function to be executed after</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">-- this case is finished executing (with or without an error).</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'finally()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add note only if test fails</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniTest</span><span class="op">.</span>finally<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">#</span><span class="va">MiniTest</span><span class="op">.</span><span class="va">current</span><span class="op">.</span><span class="va">case</span><span class="op">.</span><span class="va">exec</span><span class="op">.</span><span class="va">fails</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>      <span class="va">MiniTest</span><span class="op">.</span>add_note<span class="op">(</span><span class="st">'This test is flaky.'</span><span class="op">)</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">error</span><span class="op">(</span><span class="st">'Expected error from time to time'</span><span class="op">)</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will result into following messages:</p>
+<pre><code>NOTE in "tests/test_basics.lua | skip()": Apparently, 1 + 1 is 2
+
+FAIL in "tests/test_basics.lua | add_note()": tests/test_basics.lua:16: Custom error.
+NOTE in "tests/test_basics.lua | add_note()": This test is not important.
+
+FAIL in "tests/test_basics.lua | finally()": tests/test_basics.lua:28: Expected error from time to time
+NOTE in "tests/test_basics.lua | finally()": This test is flaky.</code></pre>
+</section>
+</section>
+<section id="customizing-test-run" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-test-run">Customizing test run</h2>
+<p>Test run consists from two stages:</p>
+<ul>
+<li><strong>Collection</strong>. It will source each appropriate file (customizable), combine all test sets into single test set, convert it from hierarchical to sequential form (array of test cases), and filter cases based on customizable predicate.</li>
+<li><strong>Execution</strong>. It will safely execute array of test cases (with each pre-hooks, test action, post-hooks) one after another in scheduled asynchronous fashion while collecting information about how it went and calling customizable reporter methods.</li>
+</ul>
+<p>All configuration goes into <code>opts</code> argument of <code>MiniTest.run()</code>.</p>
+<section id="collection-custom-files-and-filter" class="level3">
+<h3 class="anchored" data-anchor-id="collection-custom-files-and-filter">Collection: custom files and filter</h3>
+<p>You can customize which files will be sourced and which cases will be later executed. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> new_set<span class="op">()</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use `data` field to pass custom information for easier test management</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'fast'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">data</span> <span class="op">=</span> <span class="op">{</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'fast'</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'fast'</span><span class="op">][</span><span class="st">'first test'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="kw">end</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'fast'</span><span class="op">][</span><span class="st">'second test'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="kw">end</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'slow'</span><span class="op">]</span> <span class="op">=</span> new_set<span class="op">({</span> <span class="va">data</span> <span class="op">=</span> <span class="op">{</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'slow'</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'slow'</span><span class="op">][</span><span class="st">'first test'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>sleep<span class="op">(</span><span class="dv">1000</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'slow'</span><span class="op">][</span><span class="st">'second test'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>sleep<span class="op">(</span><span class="dv">1000</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can run only this file (‘tests/test_basics.lua’) and only “fast” cases with this call:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniTest</span><span class="op">.</span>run<span class="op">({</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">collect</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">find_files</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="op">{</span> <span class="st">'tests/test_basics.lua'</span> <span class="op">}</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">filter_cases</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">case</span><span class="op">)</span> <span class="cf">return</span> <span class="va">case</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">type</span> <span class="op">==</span> <span class="st">'fast'</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="execution-custom-reporter-and-stop-on-first-error" class="level3">
+<h3 class="anchored" data-anchor-id="execution-custom-reporter-and-stop-on-first-error">Execution: custom reporter and stop on first error</h3>
+<p>You can customize execution of test cases with custom reporter (how test results are displayed in real time) and whether to stop execution after the first test case fail/error. Execution doesn’t result into any output, instead it updates <code>MiniTest.current.all_cases</code> in place: each case gets an <code>exec</code> field with information about how its execution went.</p>
+<p>Example of showing status summary table in the command line after everything is finished:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">reporter</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Other used methods are `start(cases)` and `update(case_num)`</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">finish</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">summary</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">c</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">MiniTest</span><span class="op">.</span><span class="va">current</span><span class="op">.</span><span class="va">all_cases</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">state</span> <span class="op">=</span> <span class="va">c</span><span class="op">.</span><span class="va">exec</span><span class="op">.</span><span class="va">state</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">summary</span><span class="op">[</span><span class="va">state</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span><span class="va">summary</span><span class="op">[</span><span class="va">state</span><span class="op">]</span> <span class="kw">or</span> <span class="dv">0</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">summary</span><span class="op">,</span> <span class="op">{</span> <span class="va">newline</span> <span class="op">=</span> <span class="st">' '</span><span class="op">,</span> <span class="va">indent</span> <span class="op">=</span> <span class="st">''</span> <span class="op">}))</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="va">MiniTest</span><span class="op">.</span>run<span class="op">({</span> <span class="fu">execute</span> <span class="op">=</span> <span class="op">{</span> <span class="va">reporter</span> <span class="op">=</span> <span class="va">reporter</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="using-child-process" class="level2">
+<h2 class="anchored" data-anchor-id="using-child-process">Using child process</h2>
+<p>Main feature of ‘mini.test’ which makes it different from other Lua testing frameworks is its design towards <strong>custom usage of child Neovim process inside tests</strong>. Ultimately, each test should be done with fresh Neovim process initialized with bare minimum setup (like allowing to load your plugin). To make this easier, there is a dedicated function <code>MiniTest.new_child_neovim()</code>. It returns an object with many useful helper methods, like for start/stop/restart, redirected execution (write code in current process, it gets executed in child one), emulating typing keys, <strong>testing screen state</strong>, etc.</p>
+<section id="startstoprestart" class="level3">
+<h3 class="anchored" data-anchor-id="startstoprestart">Start/stop/restart</h3>
+<p>You can start/stop/restart child process associated with this child Neovim object. Current (from which testing is initiated) and child Neovim processes can “talk” to each through RPC messages (see <code>:h RPC</code>). It means you can programmatically execute code inside child process, get its output inside current process, and test if it meets your expectation. Child process is headless but fully functioning process which allows you to test things such as extmarks, floating windows, etc.</p>
+<p>Although this approach proved to be useful and efficient, it is not ideal. Here are some limitations: - Due to current RPC protocol implementation functions and userdata can’t be used in both input and output with child process. Indicator of this issue is a <code>Cannot convert given lua type</code> error. Usual solution is to move some logic on the side of child process, like create and use global functions (note that they will be “forgotten” after next restart). - Sometimes hanging process will occur: it stops executing without any output. Most of the time it is because Neovim process is “blocked”, i.e.&nbsp;it waits for user input and won’t return from other call. Common causes are active hit-enter-prompt (solution: increase prompt height to a bigger value) or Operator-pending mode (solution: exit it). To mitigate this experience, most helper methods will throw an error if they can deduce that immediate execution will lead to hanging state.</p>
+<p>Here is recommended setup for managing child processes. It will make fresh Neovim process before every test case:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Restart child process with custom 'init.lua' script</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Load tested plugin</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Stop once all test cases are finished</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- Define some tests here</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="executing-lua-code" class="level3">
+<h3 class="anchored" data-anchor-id="executing-lua-code">Executing Lua code</h3>
+<p>Previous section already demonstrated that there is a <code>child.lua()</code> method. It will execute arbitrary Lua code in the form of a single string. This is basically a wrapper for <code>vim.api.nvim_exec_lua()</code>. There is also a convenience wrapper <code>child.lua_get()</code> which is essentially a <code>child.lua('return ' .. s, ...)</code>. Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'lua()'</span><span class="op">]</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'lua()'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'_G.n = 0; _G.n = _G.n + 1'</span><span class="op">)</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'return _G.n'</span><span class="op">),</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'lua()'</span><span class="op">][</span><span class="st">'can use tested plugin'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'return M.compute()'</span><span class="op">),</span> <span class="op">{</span> <span class="st">'Hello world'</span> <span class="op">})</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[return M.compute({'a', 'b'})]]</span><span class="op">),</span> <span class="op">{</span> <span class="st">'Hello a'</span><span class="op">,</span> <span class="st">'Hello b'</span> <span class="op">})</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'lua_get()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'_G.n = 0'</span><span class="op">)</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'_G.n'</span><span class="op">),</span> <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'return _G.n'</span><span class="op">))</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="managing-neovim-options-and-state" class="level3">
+<h3 class="anchored" data-anchor-id="managing-neovim-options-and-state">Managing Neovim options and state</h3>
+<p>Although ability to execute arbitrary Lua code is technically enough to write any tests, it gets cumbersome very quickly due it using only string input. That is why there are many convenience helpers with the same idea: write code inside current Neovim process that will be automatically executed same way in child process. Here is the showcase:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_set</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">new_set</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- These methods will "redirect" execution to child through `vim.rpcrequest()`</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- and `vim.rpcnotify()` respectively. Any call `child.api.xxx(...)` returns</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- the output of `vim.api.xxx(...)` executed inside child process.</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'api()/api_notify()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set option. For some reason, first buffer is 'readonly' which leads to</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- high delay in test execution</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_option_value<span class="op">(</span><span class="st">'readonly'</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="op">{</span> <span class="va">buf</span> <span class="op">=</span> <span class="dv">0</span> <span class="op">})</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set all lines</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="op">{</span> <span class="st">'aaa'</span> <span class="op">})</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Get all lines and test with expected ones</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_get_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">),</span> <span class="op">{</span> <span class="st">'aaa'</span> <span class="op">})</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- Execute Vimscript with or without capturing its output</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'cmd()/cmd()'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'hi Comment guifg=#aaaaaa'</span><span class="op">)</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span>cmd_capture<span class="op">(</span><span class="st">'hi Comment'</span><span class="op">),</span> <span class="st">'Comment        xxx guifg=#aaaaaa'</span><span class="op">)</span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="co">-- There are redirection tables for most of the main Neovim functionality</span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'various redirection tables with methods'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>fnamemodify<span class="op">(</span><span class="st">'hello_lines.lua'</span><span class="op">,</span> <span class="st">':t:r'</span><span class="op">),</span> <span class="st">'hello_lines'</span><span class="op">)</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>hrtime<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">true</span><span class="op">)</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">lsp</span><span class="op">.</span>get_clients<span class="op">(),</span> <span class="op">{})</span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- And more</span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">-- There are redirection tables for scoped (buffer, window, etc.) variables</span></span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co">-- You can use them to both set and get values</span></span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'redirection tables for variables'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span><span class="op">,</span> <span class="kw">true</span><span class="op">)</span></span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span><span class="op">,</span> <span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'vim.b.aaa'</span><span class="op">))</span></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a><span class="co">-- There are redirection tables for scoped (buffer, window, etc.) options</span></span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a><span class="co">-- You can use them to both set and get values</span></span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'redirection tables for options'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span><span class="op">,</span> <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span> <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">12</span></span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span><span class="op">,</span> <span class="dv">5</span><span class="op">)</span></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">({</span> <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span><span class="op">,</span> <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span> <span class="op">},</span> <span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'{ vim.o.lines, vim.o.columns }'</span><span class="op">))</span></span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="emulate-typing-keys" class="level3">
+<h3 class="anchored" data-anchor-id="emulate-typing-keys">Emulate typing keys</h3>
+<p>Very important part of testing is emulating user typing keys. There is a special <code>child.type_keys()</code> helper method for that. Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span><span class="va">bo</span><span class="op">.</span><span class="va">readonly</span> <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">get_lines</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_get_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'type_keys()'</span><span class="op">]</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">()</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'type_keys()'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- It can take one string</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'iabcde&lt;Esc&gt;'</span><span class="op">)</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span>get_lines<span class="op">(),</span> <span class="op">{</span> <span class="st">'abcde'</span> <span class="op">})</span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span><span class="va">child</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>mode<span class="op">(),</span> <span class="st">'n'</span><span class="op">)</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Or several strings which improves readability</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'cc'</span><span class="op">,</span> <span class="st">'fghij'</span><span class="op">,</span> <span class="st">'&lt;Esc&gt;'</span><span class="op">)</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span>get_lines<span class="op">(),</span> <span class="op">{</span> <span class="st">'fghij'</span> <span class="op">})</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Or tables of strings (possibly nested)</span></span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>type_keys<span class="op">({</span> <span class="st">'cc'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'j'</span><span class="op">,</span> <span class="st">'k'</span><span class="op">,</span> <span class="st">'l'</span><span class="op">,</span> <span class="st">'m'</span><span class="op">,</span> <span class="st">'n'</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span>get_lines<span class="op">(),</span> <span class="op">{</span> <span class="st">'jklmn'</span> <span class="op">})</span></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'type_keys()'</span><span class="op">][</span><span class="st">'allows custom delay'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This adds delay of 500 ms after each supplied string (three times here)</span></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="dv">500</span><span class="op">,</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'abcde'</span><span class="op">,</span> <span class="st">'&lt;Esc&gt;'</span><span class="op">)</span></span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>  eq<span class="op">(</span>get_lines<span class="op">(),</span> <span class="op">{</span> <span class="st">'abcde'</span> <span class="op">})</span></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test-screen-state-with-screenshots" class="level3">
+<h3 class="anchored" data-anchor-id="test-screen-state-with-screenshots">Test screen state with screenshots</h3>
+<p>One of the main difficulties in testing Neovim plugins is verifying that something is actually displayed in the way you intend. Like general highlighting, statusline, tabline, sign column, extmarks, etc. Testing screen state with screenshots makes this a lot easier. There is a <code>child.get_screenshot()</code> method which basically calls <code>screenstring()</code> (<code>:h screenstring()</code>) and <code>screenattr()</code> (<code>:h screenattr()</code>) for every visible cell (row from 1 to ‘lines’ option, column from 1 to ‘columns’ option). It then returns screenshot with two layers:</p>
+<ul>
+<li><code>text</code> - “2d array” (row-column) of single characters displayed at particular cells.</li>
+<li><code>attr</code> - “2d array” (row-column) of symbols representing how text is displayed (basically, “coded” appearance/highlighting). They should be used only in relation to each other: same/different symbols for two cells mean same/different visual appearance. Note: there will be false positives if there are more than 94 different attribute values. To make output more portable and visually useful, outputs of <code>screenattr()</code> are coded with single character symbols.</li>
+</ul>
+<p>Couple of caveats:</p>
+<ul>
+<li>As is apparent from use of <code>screenattr()</code>, these screenshots <strong>can’t tell how exactly cell is highlighted</strong>, only <strong>if two cells are highlighted the same</strong>. This is due to the currently lacking functionality in Neovim itself. This might change in the future.</li>
+</ul>
+<p>To help manage testing screen state, there is a special <code>MiniTest.expect.reference_screenshot(screenshot, path, opts)</code> method. It takes screenshot table along with optional path of where to save this screenshot (if not supplied, inferred from test case description and put in ‘tests/screenshots’ directory). On first run it will automatically create reference screenshot at <code>path</code>. On later runs it will compare current screenshot with reference. Will throw informative error with helpful information if they don’t match exactly.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="cn">T</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">pre_case</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span><span class="va">bo</span><span class="op">.</span><span class="va">readonly</span> <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">post_once</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span><span class="va">stop</span><span class="op">,</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'set_lines()'</span><span class="op">]</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_set<span class="op">({</span> <span class="va">parametrize</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{},</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span> <span class="op">}</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span> <span class="op">}</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="cn">T</span><span class="op">[</span><span class="st">'set_lines()'</span><span class="op">][</span><span class="st">'works'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span><span class="op">,</span> <span class="va">child</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span> <span class="op">=</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">15</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'M.set_lines(...)'</span><span class="op">,</span> <span class="op">{</span> <span class="va">buf_id</span><span class="op">,</span> <span class="fu">lines</span> <span class="op">})</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">expect</span><span class="op">.</span>reference_screenshot<span class="op">(</span><span class="va">child</span><span class="op">.</span>get_screenshot<span class="op">())</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="cn">T</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will result into three files in ‘tests/screenshots’ with names containing test case description along with supplied arguments. Here is example reference screenshot for <code>{ 0, { 1, 2, 3 } }</code> arguments (line numbers and ruler for columns is added as file specification to make it easier to find differences between two screenshots):</p>
+<pre><code>--|---------|-----
+01|Hello 1        
+02|Hello 2        
+03|Hello 3        
+04|~              
+05|~              
+06|~              
+07|~              
+08|~              
+09|&lt;e] [+] 1,1 All
+10|               
+
+--|---------|-----
+01|000001111111111
+02|000001111111111
+03|000001111111111
+04|222222222222222
+05|222222222222222
+06|222222222222222
+07|222222222222222
+08|222222222222222
+09|333333333333333
+10|444444444444444</code></pre>
+<p>To update already existing screenshot either delete the corresponding screenshot file and rerun test case or temporarily add <code>{ force = true }</code> option to <code>reference_screenshot()</code> to force updating the screenshot file.</p>
+</section>
+</section>
+<section id="general-tips" class="level2">
+<h2 class="anchored" data-anchor-id="general-tips">General tips</h2>
+<ul>
+<li>Create a ‘tests/helpers.lua’ file with code that can be useful in multiple files. It can have “monkey-patched” versions of ‘mini.test’ functions. Example:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">Helpers</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="va">Helpers</span><span class="op">.</span><span class="va">new_child_neovim</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">child</span><span class="op">.</span><span class="va">setup</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">child</span><span class="op">.</span>restart<span class="op">({</span><span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span><span class="op">})</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">child</span><span class="op">.</span><span class="va">bo</span><span class="op">.</span><span class="va">readonly</span> <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="vs">[[M = require('hello_lines')]]</span><span class="op">)</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">child</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="va">Helpers</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Write aliases for commonly used functions at top of the file. It will make your life a little bit easier and usually will lead to more readable tests. Example:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Some code setting up `child`</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_lines</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="fu">lines</span><span class="op">)</span> <span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span> <span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>When working with automatically named screenshots, beware of the following caveats:</p>
+<ul>
+<li>Some systems are case insensitive (like usually Windows and MacOS). So having two different file names which are the same ignoring case will introduce problems for users to properly install plugin.</li>
+<li>Some system setups have restrictions on full path length (like 260 bytes on some Git+Windows combinations) or file name length (like 255 bytes on ext4 Windows partitions and 143 bytes on eCryptfs Linux partitions). Restriction on full path is hard to accommodate for (apart from limiting file name size to some reasonable number), but trying to not have file names longer than 143 bytes (by having shorter test case names) should be reasonable.</li>
+</ul></li>
+<li><p>To make reading strings that contain Lua code easier (for <code>child.lua</code> and <code>child.lua_get</code>), you can add the following tree-sitter capture to your personal configuration. Put it in the file ‘after/queries/lua/injections.scm’. Don’t forget to add <code>; extends</code> at the beginning of the file (see <code>:h treesitter-query-modeline-extends</code>):</p>
+<pre class="query"><code>; extends
+(function_call
+  name: (dot_index_expression
+    table: (identifier) @_table
+    field: (identifier) @_field)
+  arguments: (arguments
+    (string
+      content: (string_content) @injection.content))
+  (#eq? @_table child)
+  (#any-of? @_field lua lua_get)
+  (#set! injection.language "lua"))</code></pre></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.icons documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.icons documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.icons documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#miniicons" id="toc-miniicons" class="nav-link active" data-scroll-target="#miniicons">Module</a>
+  <ul>
+  <li><a href="#miniicons-dependencies" id="toc-miniicons-dependencies" class="nav-link" data-scroll-target="#miniicons-dependencies">Dependencies</a></li>
+  <li><a href="#miniicons-setup" id="toc-miniicons-setup" class="nav-link" data-scroll-target="#miniicons-setup">Setup</a></li>
+  <li><a href="#miniicons-comparisons" id="toc-miniicons-comparisons" class="nav-link" data-scroll-target="#miniicons-comparisons">Comparisons</a></li>
+  <li><a href="#miniicons-highlightgroups" id="toc-miniicons-highlightgroups" class="nav-link" data-scroll-target="#miniicons-highlightgroups">Highlight groups</a></li>
+  </ul></li>
+  <li><a href="#miniicons.setup" id="toc-miniicons.setup" class="nav-link" data-scroll-target="#miniicons.setup">setup()</a>
+  <ul>
+  <li><a href="#miniicons.setup-parameters" id="toc-miniicons.setup-parameters" class="nav-link" data-scroll-target="#miniicons.setup-parameters">Parameters</a></li>
+  <li><a href="#miniicons.setup-usage" id="toc-miniicons.setup-usage" class="nav-link" data-scroll-target="#miniicons.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniicons.config" id="toc-miniicons.config" class="nav-link" data-scroll-target="#miniicons.config">config</a>
+  <ul>
+  <li><a href="#miniicons.config-defaults" id="toc-miniicons.config-defaults" class="nav-link" data-scroll-target="#miniicons.config-defaults">Defaults</a></li>
+  <li><a href="#miniicons.config-style" id="toc-miniicons.config-style" class="nav-link" data-scroll-target="#miniicons.config-style">Style</a></li>
+  <li><a href="#miniicons.config-customizationpercategory" id="toc-miniicons.config-customizationpercategory" class="nav-link" data-scroll-target="#miniicons.config-customizationpercategory">Customization per category</a></li>
+  <li><a href="#miniicons.config-usingextensionduringfileresolution" id="toc-miniicons.config-usingextensionduringfileresolution" class="nav-link" data-scroll-target="#miniicons.config-usingextensionduringfileresolution">Using extension during file resolution</a></li>
+  </ul></li>
+  <li><a href="#miniicons.get" id="toc-miniicons.get" class="nav-link" data-scroll-target="#miniicons.get">get()</a>
+  <ul>
+  <li><a href="#miniicons.get-parameters" id="toc-miniicons.get-parameters" class="nav-link" data-scroll-target="#miniicons.get-parameters">Parameters</a></li>
+  <li><a href="#miniicons.get-return" id="toc-miniicons.get-return" class="nav-link" data-scroll-target="#miniicons.get-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniicons.list" id="toc-miniicons.list" class="nav-link" data-scroll-target="#miniicons.list">list()</a>
+  <ul>
+  <li><a href="#miniicons.list-parameters" id="toc-miniicons.list-parameters" class="nav-link" data-scroll-target="#miniicons.list-parameters">Parameters</a></li>
+  <li><a href="#miniicons.list-return" id="toc-miniicons.list-return" class="nav-link" data-scroll-target="#miniicons.list-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniicons.mock_nvim_web_devicons" id="toc-miniicons.mock_nvim_web_devicons" class="nav-link" data-scroll-target="#miniicons.mock_nvim_web_devicons">mock_nvim_web_devicons()</a></li>
+  <li><a href="#miniicons.tweak_lsp_kind" id="toc-miniicons.tweak_lsp_kind" class="nav-link" data-scroll-target="#miniicons.tweak_lsp_kind">tweak_lsp_kind()</a>
+  <ul>
+  <li><a href="#miniicons.tweak_lsp_kind-parameters" id="toc-miniicons.tweak_lsp_kind-parameters" class="nav-link" data-scroll-target="#miniicons.tweak_lsp_kind-parameters">Parameters</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.icons documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.icons" href="../../mini.nvim/doc/mini-icons.html#mini.icons"><b>mini.icons</b></a> Icon provider</p>
+<p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
+<hr>
+<section id="miniicons" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Provide icons with their highlighting via a single <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for various categories: filetype, file/directory path, extension, operating system, LSP kind values. Icons and category defaults can be overridden.</p></li>
+<li><p>Configurable styles: “glyph” (icon glyphs) or “ascii” (non-glyph fallback).</p></li>
+<li><p>Fixed set of highlight groups (linked to built-in groups by default) for better blend with color scheme.</p></li>
+<li><p>Caching for maximum performance.</p></li>
+<li><p>Integration with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add()"><code>vim.filetype.add()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a>.</p></li>
+<li><p>Mocking methods of ‘nvim-tree/nvim-web-devicons’ for better integrations with plugins outside ‘mini.nvim’. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons"><code>MiniIcons.mock_nvim_web_devicons()</code></a>.</p></li>
+<li><p>Tweaking built-in maps for “LSP kind” to include icons. In particular, this makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> use icons in LSP step. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind"><code>MiniIcons.tweak_lsp_kind()</code></a>.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>It is not a goal to become a collection of icons for as much use cases as possible. There are specific criteria for icon data to be included as built-in in each category (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>). The main supported category is “filetype”.</li>
+</ul>
+<p>Recommendations for plugin authors using ‘mini.icons’ as a dependency:</p>
+<ul>
+<li><p>Check if <code>_G.MiniIcons</code> table is present (which means that user explicitly enabled ‘mini.icons’) and provide icons only if it is.</p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> function to get icon string and more data about it.</p></li>
+<li><p>For file icons prefer using full path instead of relative or only basename. It makes a difference if path matches pattern that uses parent directories. The <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a> has an example of that.</p></li>
+</ul>
+<section id="miniicons-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons-dependencies">Dependencies</h4>
+<p>Suggested dependencies:</p>
+<ul>
+<li><p>Terminal emulator that supports showing special utf8 glyphs, possibly with “overflow” view (displaying is done not in one but two visual cells). Most modern feature-rich terminal emulators support this out of the box: WezTerm, Kitty, Alacritty, iTerm2, Ghostty. Not having “overflow” feature only results into smaller icons. Not having support for special utf8 glyphs will result into seemingly random symbols (or question mark squares) instead of icon glyphs.</p></li>
+<li><p>Font that supports Nerd Fonts (https://www.nerdfonts.com) icons from version 3.0.0+ (in particular <code>nf-md-*</code> class). This should be configured on terminal emulator level either by using font patched with Nerd Fonts icons or using <code>NerdFontsSymbolsOnly</code> font as a fallback for glyphs that are not supported in main font.</p></li>
+</ul>
+<p>If using terminal emulator and/or font with icon support is impossible, use <code>config.style = 'ascii'</code>. It will use a (less visually appealing) set of non-glyph icons.</p>
+</section>
+<section id="miniicons-setup" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.icons').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniIcons</code> which you can use for scripting or manually (with <code>:lua MiniIcons.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a> for <code>config</code> structure and default values.</p>
+</section>
+<section id="miniicons-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for users):</p>
+<ul>
+<li><p>Sets individual colors to each icon with separate specific highlight groups, while this modules uses fixed set of highlight groups. This makes it easier to customize in bulk and actually blend with any color scheme.</p></li>
+<li><p>This module prefers richer set of <code>nf-md-*</code> (from “Material design” set) Nerd Fonts icons while ‘nvim-web-devicons’ mostly prefers <code>nf-dev-*</code> (from “devicons” set).</p></li>
+<li><p>Supported categories are slightly different (with much overlap).</p></li>
+<li><p>Both support customization of any icon. Only this module supports customization of default ones per supported category.</p></li>
+<li><p>Using this module can occasionally result in small delays when used synchronously for many times to get icons for not typical files (like in <a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a>). This is due to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> fallback and is present only during first call, as value is cached for later uses.</p></li>
+<li><p>This module supports different icon styles (like “ascii” for when using glyphs is not possible), while ‘nvim-web-devicons’ does not.</p></li>
+<li><p>This module provides <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons"><code>MiniIcons.mock_nvim_web_devicons()</code></a> function which when called imitates installed ‘nvim-web-devicons’ plugin to support other plugins which do not provide ‘mini.icons’ yet.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for plugin developers):</p>
+<ul>
+<li><p>Both have main “get icon” type of function:</p>
+<ul>
+<li><p>Both return tuple of icon and highlight group strings.</p></li>
+<li><p>This module always returns icon data possibly falling back to user’s configured default, while ‘nvim-web-devicons’ is able to return <code>nil</code>. This module’s approach is more aligned with the most common use case of always showing an icon instead or near some data. There is a third returned value indicating if output is a result of a fallback (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>).</p></li>
+<li><p>This module uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> as a fallback for “file” and “extension” categories, while ‘nvim-web-devicons’ completely relies on the manually maintained tables of supported filenames and extensions. Using fallback results in a wider support and deeper integration with Neovim’s filetype detection at the cost of occasional slower first call. The difference is reduced as much as is reasonable by preferring faster file extension resolution over filetype matching.</p></li>
+<li><p>This module caches all its return values resulting in really fast next same argument calls, while ‘nvim-web-devicons’ doesn’t do that.</p></li>
+<li><p>This module works with full file/directory paths as input.</p></li>
+</ul></li>
+<li><p>Different sets of supported categories (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>):</p>
+<ul>
+<li><p>Both support “file”, “extension”, “filetype”, “operating system”. Albeit in different volumes: ‘nvim-web-devicons’ covers more cases for “operating system”, while this module has better eventual coverage for other cases.</p></li>
+<li><p>This module supports “directory” and “lsp” categories.</p></li>
+<li><p>‘nvim-web-devicons’ covers “desktop environment” and “window management” categories. This modules does not include them due to relatively low demand.</p></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://github.com/onsails/lspkind.nvim">onsails/lspkind.nvim</a>:</p>
+<ul>
+<li><p>Provides icons only for <code>CompletionItemKind</code>, while this module also has icons for <code>SymbolKind</code> and other non-LSP categories.</p></li>
+<li><p>Provides dedicated formatting function for ‘hrsh7th/nvim-cmp’ while this module intentionally does not (adding icons should be straightforward to manually implement while anything else is out of scope).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="miniicons-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons-highlightgroups">Highlight groups</h4>
+<p>Only the following set of highlight groups is used as icon highlight. It is recommended that they all only define colored foreground:</p>
+<ul>
+<li><p><code>MiniIconsAzure</code> - azure.</p></li>
+<li><p><code>MiniIconsBlue</code> - blue.</p></li>
+<li><p><code>MiniIconsCyan</code> - cyan.</p></li>
+<li><p><code>MiniIconsGreen</code> - green.</p></li>
+<li><p><code>MiniIconsGrey</code> - grey.</p></li>
+<li><p><code>MiniIconsOrange</code> - orange.</p></li>
+<li><p><code>MiniIconsPurple</code> - purple.</p></li>
+<li><p><code>MiniIconsRed</code> - red.</p></li>
+<li><p><code>MiniIconsYellow</code> - yellow.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="miniicons.setup" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.setup">setup()</h3>
+<p align="center">
+<code>MiniIcons.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="miniicons.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>.</p>
+</section>
+<section id="miniicons.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniicons.config" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.config">config</h3>
+<p align="center">
+<code>MiniIcons.config</code>
+</p>
+<section id="miniicons.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Icon style: 'glyph' or 'ascii'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">style</span> <span class="op">=</span> <span class="st">'glyph'</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customize per category. See `:h MiniIcons.config` for details.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">default</span>   <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">directory</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">extension</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">file</span>      <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">filetype</span>  <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">lsp</span>       <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">os</span>        <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Control which extensions will be considered during "file" resolution</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">use_file_extension</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ext</span><span class="op">,</span> <span class="va">file</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">true</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniicons.config-style" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.config-style">Style</h4>
+<p><code>config.style</code> is a string defining which icon style to use. It can be:</p>
+<ul>
+<li><p><code>'glyph'</code> (default) - use glyph icons (like 󰈔 and 󰉋 ).</p></li>
+<li><p><code>'ascii'</code> - use fallback ASCII-compatible icons. Those are computed as an upper first character of the icon’s resolved name inside its category. Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'Makefile'</span><span class="op">)</span> <span class="co">-- Has `'M'` as icon</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'extension'</span><span class="op">,</span> <span class="st">'lua'</span><span class="op">)</span> <span class="co">-- Has `'L'` as icon</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'file.lua'</span><span class="op">)</span> <span class="co">-- Has `'L'` as icon; it is resolved to</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="co">-- come from 'lua' 'extension' category</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'myfile'</span><span class="op">)</span>   <span class="co">-- Has `'F'` as icon; it is resolved to</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="co">-- come from 'file' 'default' category</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="miniicons.config-customizationpercategory" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.config-customizationpercategory">Customization per category</h4>
+<p>The following entries can be used to customize icons for supported categories:</p>
+<ul>
+<li><p><code>config.default</code></p></li>
+<li><p><code>config.directory</code></p></li>
+<li><p><code>config.extension</code></p></li>
+<li><p><code>config.file</code></p></li>
+<li><p><code>config.filetype</code></p></li>
+<li><p><code>config.lsp</code></p></li>
+<li><p><code>config.os</code></p></li>
+</ul>
+<p>Customization should be done by supplying a table with <span class="help-syntax-keys">&lt;glyph&gt;</span> (icon glyph) and/or <span class="help-syntax-keys">&lt;hl&gt;</span> (name of highlight group) string fields as a value for an icon name entry. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">default</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Override default glyph for "file" category (reuse highlight group)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">file</span> <span class="op">=</span> <span class="op">{</span> <span class="va">glyph</span> <span class="op">=</span> <span class="st">'󰈤'</span> <span class="op">},</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">extension</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Override highlight group (not necessary from 'mini.icons')</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">lua</span> <span class="op">=</span> <span class="op">{</span> <span class="va">hl</span> <span class="op">=</span> <span class="st">'Special'</span> <span class="op">},</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Add icons for custom extension. This will also be used in</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- 'file' category for input like 'file.my.ext'.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'my.ext'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="va">glyph</span> <span class="op">=</span> <span class="st">'󰻲'</span><span class="op">,</span> <span class="va">hl</span> <span class="op">=</span> <span class="st">'MiniIconsRed'</span> <span class="op">},</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Notes:</p>
+<ul>
+<li><p>These customizations only take effect inside <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup"><code>MiniIcons.setup()</code></a> call. | Changing interactively via <code>:lua MiniIcons.config.xxx = { | }</code> does not work | for performance reasons.</p></li>
+<li><p>Use lower case names for categories which are matched ignoring case. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for more details.</p></li>
+</ul>
+</section>
+<section id="miniicons.config-usingextensionduringfileresolution" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.config-usingextensionduringfileresolution">Using extension during file resolution</h4>
+<p><code>config.use_file_extension</code> is a function which can be used to control which extensions will be considered as a source of icon data during “file” category resolution (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for more details). Default: function which always returns <code>true</code> (i.e.&nbsp;consider all extensions).</p>
+<p>Will be called once for the biggest suffix after dot found in the file name. The arguments will be <code>ext</code> (found extension; lowercase) and <code>file</code> (input for which icon is computed; as is). Should explicitly return <code>true</code> if <code>ext</code> is to be considered (i.e.&nbsp;call <code>MiniIcons.get('extension', ext)</code> and use its output if it is not default). Otherwise extension won’t be even considered.</p>
+<p>The primary use case for this setting is to ensure that some extensions are ignored in order for resolution to reach <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> stage. This is needed if there is a set up filetype detection for files with recognizable extension and conflicting icons (which you want to use). Note: if problematic filetype detection involves only known in advance file names, prefer using <code>config.file</code> customization.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Built-in filetype detection recognizes files like "queries/.*%.scm"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- as "query" filetype. However, without special setup, 'mini.icons' will</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- use "scm" extension to resolve as Scheme file. Here is a setup to ignore</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- "scm" extension and completely rely on `vim.filetype.match()` fallback.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Check last letters explicitly to account for dots in file name</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">use_file_extension</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ext</span><span class="op">)</span> <span class="cf">return</span> <span class="va">ext</span><span class="op">:</span><span class="fu">sub</span><span class="op">(-</span><span class="dv">3</span><span class="op">)</span> <span class="op">~=</span> <span class="st">'scm'</span> <span class="kw">end</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Another common choices for extensions to ignore: "yml", "json", "txt".</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniicons.get" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.get">get()</h3>
+<p align="center">
+<code>MiniIcons.get</code>(<span class="help-syntax-special">{category}</span>, <span class="help-syntax-special">{name}</span>)
+</p>
+<p>Get icon data</p>
+<p>Usage example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Results into `icon='󰢱'`, `hl='MiniIconsAzure'`, `is_default=false`</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">icon</span><span class="op">,</span> <span class="va">hl</span><span class="op">,</span> <span class="va">is_default</span> <span class="op">=</span> <span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'file.lua'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Notes:</p>
+<ul>
+<li><p>Always returns some data, even if icon name is not explicitly supported within target category. Category “default” is used as a fallback. Use third output value to check if this particular case is a result of a fallback.</p></li>
+<li><p>Glyphs are explicitly preferred (when reasonable) from a richer set of <code>nf-md-*</code> class (“Material design” set) of Nerd Fonts icons.</p></li>
+<li><p>Output is cached after the first call to increase performance of next calls with same arguments. To reset cache, call <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup"><code>MiniIcons.setup()</code></a>.</p></li>
+<li><p>To increase first call performance for “extension” and “file” categories, add frequently used values in <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>. They will be preferred over executing <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a>.</p></li>
+<li><p>Matching icon name for “file” and “directory” categories is done exactly and respecting case. Others are done ignoring case.</p></li>
+</ul>
+<section id="miniicons.get-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.get-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{category}</span> <code>(string)</code> Category name. Supported categories:</p>
+<ul>
+<li><p><code>'default'</code> - icon data used as fallback for any category. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any supported category name.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: only supported category names.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'default'</span><span class="op">,</span> <span class="st">'file'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'directory'</code> - icon data for directory path. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string, but only basename is used. Works with not present paths (no check is done).</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: popular directory names not tied to language/software (with few notable exceptions like Neovim, Git, etc.).</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these will result in the same output</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'directory'</span><span class="op">,</span> <span class="st">'.config'</span><span class="op">)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'directory'</span><span class="op">,</span> <span class="st">'~/.config'</span><span class="op">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'directory'</span><span class="op">,</span> <span class="st">'/home/user/.config'</span><span class="op">)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Results in different output</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'directory'</span><span class="op">,</span> <span class="st">'.Config'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'extension'</code> - icon data for extension. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string (without extra dot prefix).</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: popular extensions without associated filetype plus a set for which filetype detection gives not good enough result.</p></li>
+</ul>
+<p>Icon data is attempted to be resolved in the following order:</p>
+<ul>
+<li><p>List of user configured and built-in extensions (for better results). Run <code>:=MiniIcons.list('extension')</code> to see them. Used also if present as suffix after the dot (widest one preferred).</p></li>
+<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with placeholder file name. Uses icon data from “filetype” category.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these will result in the same output</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'extension'</span><span class="op">,</span> <span class="st">'lua'</span><span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'extension'</span><span class="op">,</span> <span class="st">'LUA'</span><span class="op">)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'extension'</span><span class="op">,</span> <span class="st">'my.lua'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'file'</code> - icon data for file path. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string. Works with not present paths (no check is done).</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: popular file names not tied to language/software (with few notable exceptions like Neovim, Git, etc.) plus a set which has recognizable extension but has special detectable filetype.</p></li>
+</ul>
+<p>Icon data is attempted to be resolved in the following order:</p>
+<ul>
+<li><p>List of user configured and built-in file names (matched to basename of the input exactly). Run <code>:=MiniIcons.list('file')</code> to see them.</p></li>
+<li><p>Basename extension:</p>
+<ul>
+<li><p>Matched directly as <code>get('extension', ext)</code>, where <code>ext</code> is the widest suffix after the dot.</p></li>
+<li><p>Considered only if <code>config.use_file_extension</code> returned <code>true</code>.</p></li>
+<li><p>Only recognizable extensions (i.e.&nbsp;not default fallback) are used.</p></li>
+</ul></li>
+<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with full input (not basename) as <code>filename</code>. Uses icon data from “filetype” category.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these will result in the same output</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'init.lua'</span><span class="op">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'~/.config/nvim/init.lua'</span><span class="op">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'/home/user/.config/nvim/init.lua'</span><span class="op">)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Results in different output</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'Init.lua'</span><span class="op">)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'init.LUA'</span><span class="op">)</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Respects full path input in `vim.filetype.match()`</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'.git/info/attributes'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'filetype'</code> - icon data for ‘filetype’ values. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: any filetype that is reasonably used in Neovim ecosystem. This category is intended as a widest net for supporting use cases. Users are encouraged to have a specific filetype detection set up.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'filetype'</span><span class="op">,</span> <span class="st">'lua'</span><span class="op">)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'filetype'</span><span class="op">,</span> <span class="st">'help'</span><span class="op">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'filetype'</span><span class="op">,</span> <span class="st">'minifiles'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'lsp'</code> - icon data for various “LSP kind” values. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: only namesspace entries from LSP specification that are can be displayed to user. Like <code>CompletionItemKind</code>, <code>SymbolKind</code>, etc.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'lsp'</span><span class="op">,</span> <span class="st">'array'</span><span class="op">)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'lsp'</span><span class="op">,</span> <span class="st">'keyword'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>'os'</code> - icon data for popular operating systems. Icon names:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: only operating systems which have <code>nf-md-*</code> class icon.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'os'</span><span class="op">,</span> <span class="st">'linux'</span><span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'os'</span><span class="op">,</span> <span class="st">'arch'</span><span class="op">)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'os'</span><span class="op">,</span> <span class="st">'macos'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p><span class="help-syntax-special">{name}</span> <code>(string)</code> Icon name within category. Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.list"><code>MiniIcons.list()</code></a> to get icon names which are explicitly supported for specific category.</p>
+</section>
+<section id="miniicons.get-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.get-return">Return</h4>
+<p><code>(...)</code> Tuple of icon string, highlight group name it is suggested to be highlighted with, and boolean indicating whether this icon was returned as a result of fallback to default. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Results into `icon='󰢱'`, `hl='MiniIconsAzure'`, `is_default=false`</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">icon</span><span class="op">,</span> <span class="va">hl</span><span class="op">,</span> <span class="va">is_default</span> <span class="op">=</span> <span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'file.lua'</span><span class="op">)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Results into `icon='󰈔'`, `hl='MiniIconsGrey'`, `is_default=true`</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">icon</span><span class="op">,</span> <span class="va">hl</span><span class="op">,</span> <span class="va">is_default</span> <span class="op">=</span> <span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'not-supported'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniicons.list" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.list">list()</h3>
+<p align="center">
+<code>MiniIcons.list</code>(<span class="help-syntax-special">{category}</span>)
+</p>
+<p>List explicitly supported icon names</p>
+<section id="miniicons.list-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.list-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{category}</span> <code>(string)</code> Category name supported by <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>.</p>
+</section>
+<section id="miniicons.list-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.list-return">Return</h4>
+<p><code>(table)</code> Array of icon names which are explicitly supported for category. Note, that <code>'file'</code> and <code>'extension'</code> categories support much more icon names via their fallback to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with <code>'filetype'</code> category.</p>
+<hr>
+</section>
+</section>
+<section id="miniicons.mock_nvim_web_devicons" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.mock_nvim_web_devicons">mock_nvim_web_devicons()</h3>
+<p align="center">
+<code>MiniIcons.mock_nvim_web_devicons</code>()
+</p>
+<p>Mock ‘nvim-web-devicons’ module</p>
+<p>Call this function to mock exported functions of ‘nvim-tree/nvim-web-devicons’ plugin. It will mock all its functions which return icon data by using <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> equivalent.</p>
+<p>This function is useful if any plugins relevant to you depend solely on ‘nvim-web-devicons’ and have not yet added an integration with ‘mini.icons’.</p>
+<p>Full example of usage:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>mock_nvim_web_devicons<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Works without installed ‘nvim-web-devicons’ and even with it installed (needs to be called after ‘nvim-web-devicons’ is set up).</p>
+<hr>
+</section>
+<section id="miniicons.tweak_lsp_kind" class="level3">
+<h3 class="anchored" data-anchor-id="miniicons.tweak_lsp_kind">tweak_lsp_kind()</h3>
+<p align="center">
+<code>MiniIcons.tweak_lsp_kind</code>(<span class="help-syntax-special">{mode}</span>)
+</p>
+<p>Tweak built-in LSP kind names</p>
+<p>Update in place appropriate maps in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol"><code>vim.lsp.protocol</code></a> (<code>CompletionItemKind</code> and <code>SymbolKind</code>) by using icon strings from “lsp” category. Only “numeric id to kind name” part is updated (to preserve data from original map).</p>
+<p>Updating is done in one of these modes:</p>
+<ul>
+<li><p>Append: add icon after text.</p></li>
+<li><p>Prepend: add icon before text (default).</p></li>
+<li><p>Replace: use icon instead of text.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> show icons, as it uses built-in protocol map.</p></li>
+<li><p>Results in loading whole <code>vim.lsp</code> module, so might add significant amount of time on startup. Call it lazily. For example, with <a href="../../mini.nvim/doc/mini-deps.html#minideps.later"><code>MiniDeps.later()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniDeps</span><span class="op">.</span>later<span class="op">(</span><span class="va">MiniIcons</span><span class="op">.</span><span class="va">tweak_lsp_kind</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="miniicons.tweak_lsp_kind-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniicons.tweak_lsp_kind-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> One of “prepend” (default), “append”, “replace”.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

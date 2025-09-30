@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.basics documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.basics documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.basics documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minibasics" id="toc-minibasics" class="nav-link active" data-scroll-target="#minibasics">Module</a>
+  <ul>
+  <li><a href="#minibasics-setup" id="toc-minibasics-setup" class="nav-link" data-scroll-target="#minibasics-setup">Setup</a></li>
+  <li><a href="#minibasics-comparisons" id="toc-minibasics-comparisons" class="nav-link" data-scroll-target="#minibasics-comparisons">Comparisons</a></li>
+  </ul></li>
+  <li><a href="#minibasics.setup" id="toc-minibasics.setup" class="nav-link" data-scroll-target="#minibasics.setup">setup()</a>
+  <ul>
+  <li><a href="#minibasics.setup-parameters" id="toc-minibasics.setup-parameters" class="nav-link" data-scroll-target="#minibasics.setup-parameters">Parameters</a></li>
+  <li><a href="#minibasics.setup-usage" id="toc-minibasics.setup-usage" class="nav-link" data-scroll-target="#minibasics.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minibasics.config" id="toc-minibasics.config" class="nav-link" data-scroll-target="#minibasics.config">config</a>
+  <ul>
+  <li><a href="#minibasics.config-defaults" id="toc-minibasics.config-defaults" class="nav-link" data-scroll-target="#minibasics.config-defaults">Defaults</a></li>
+  <li><a href="#minibasics.config-options" id="toc-minibasics.config-options" class="nav-link" data-scroll-target="#minibasics.config-options">Options</a>
+  <ul>
+  <li><a href="#minibasics.config-options-options.basic" id="toc-minibasics.config-options-options.basic" class="nav-link" data-scroll-target="#minibasics.config-options-options.basic">options.basic</a></li>
+  <li><a href="#minibasics.config-options-options.extra_ui" id="toc-minibasics.config-options-options.extra_ui" class="nav-link" data-scroll-target="#minibasics.config-options-options.extra_ui">options.extra_ui</a></li>
+  <li><a href="#minibasics.config-options-options.win_borders" id="toc-minibasics.config-options-options.win_borders" class="nav-link" data-scroll-target="#minibasics.config-options-options.win_borders">options.win_borders</a></li>
+  </ul></li>
+  <li><a href="#minibasics.config-mappings" id="toc-minibasics.config-mappings" class="nav-link" data-scroll-target="#minibasics.config-mappings">Mappings</a>
+  <ul>
+  <li><a href="#minibasics.config-mappings-mappings.basic" id="toc-minibasics.config-mappings-mappings.basic" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.basic">mappings.basic</a></li>
+  <li><a href="#minibasics.config-mappings-mappings.option_toggle_prefix" id="toc-minibasics.config-mappings-mappings.option_toggle_prefix" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.option_toggle_prefix">mappings.option_toggle_prefix</a></li>
+  <li><a href="#minibasics.config-mappings-mappings.windows" id="toc-minibasics.config-mappings-mappings.windows" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.windows">mappings.windows</a></li>
+  <li><a href="#minibasics.config-mappings-mappings.move_with_alt" id="toc-minibasics.config-mappings-mappings.move_with_alt" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.move_with_alt">mappings.move_with_alt</a></li>
+  </ul></li>
+  <li><a href="#minibasics.config-autocommands" id="toc-minibasics.config-autocommands" class="nav-link" data-scroll-target="#minibasics.config-autocommands">Autocommands</a>
+  <ul>
+  <li><a href="#minibasics.config-autocommands-autocommands.basic" id="toc-minibasics.config-autocommands-autocommands.basic" class="nav-link" data-scroll-target="#minibasics.config-autocommands-autocommands.basic">autocommands.basic</a></li>
+  <li><a href="#minibasics.config-autocommands-autocommands.relnum_in_visual_mode" id="toc-minibasics.config-autocommands-autocommands.relnum_in_visual_mode" class="nav-link" data-scroll-target="#minibasics.config-autocommands-autocommands.relnum_in_visual_mode">autocommands.relnum_in_visual_mode</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#minibasics.toggle_diagnostic" id="toc-minibasics.toggle_diagnostic" class="nav-link" data-scroll-target="#minibasics.toggle_diagnostic">toggle_diagnostic()</a>
+  <ul>
+  <li><a href="#minibasics.toggle_diagnostic-return" id="toc-minibasics.toggle_diagnostic-return" class="nav-link" data-scroll-target="#minibasics.toggle_diagnostic-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.basics documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.basics" href="../../mini.nvim/doc/mini-basics.html#mini.basics"><b>mini.basics</b></a> Common configuration presets</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minibasics" class="level3">
+<h3 class="anchored" data-anchor-id="minibasics">Module</h3>
+<p>Install, create ‘init.lua’, add <code>require('mini.basics').setup()</code>, and you are good to go.</p>
+<p>Features:</p>
+<ul>
+<li><p>Presets for common options. It will only change option if it wasn’t manually set before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options"><code>MiniBasics.config.options</code></a>.</p></li>
+<li><p>Presets for common mappings. It will only add a mapping if it wasn’t manually created before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings"><code>MiniBasics.config.mappings</code></a>.</p></li>
+<li><p>Presets for common autocommands. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.autocommands"><code>MiniBasics.config.autocommands</code></a>.</p></li>
+<li><p>Reverse compatibility is a high priority. Any decision to change already present behavior will be made with great care.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Main goal of this module is to provide a relatively easier way for new-ish Neovim users to have better “works out of the box” experience while having documented relevant options/mappings/autocommands to study. It is based partially on survey among Neovim users and partially is coming from personal preferences.</p>
+<p>However, more seasoned users almost surely will find something useful.</p>
+<p>Still, it is recommended to read about used options/mappings/autocommands and decide if they are needed. The main way to do that is by reading Neovim’s help pages (linked in help file) and this module’s source code (thoroughly documented for easier comprehension).</p></li>
+</ul>
+<section id="minibasics-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.basics').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBasics</code> which you can use for scripting or manually (with <code>:lua MiniBasics.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config"><code>MiniBasics.config</code></a> for available config settings.</p>
+<p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
+</section>
+<section id="minibasics-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/tpope/vim-sensible">tpope/vim-sensible</a>:</p>
+<ul>
+<li>Most of ‘tpope/vim-sensible’ is already incorporated as default options in Neovim (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim-defaults"><code>nvim-defaults</code></a>). This module has a much broader effect.</li>
+</ul></li>
+<li><p><a href="https://github.com/tpope/vim-unimpaired">tpope/vim-unimpaired</a>:</p>
+<ul>
+<li>The ‘tpope/vim-unimpaired’ has mapping for toggling options with <code>yo</code> prefix. This module implements similar functionality with <code>\</code> prefix (see <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings"><code>MiniBasics.config.mappings</code></a>).</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibasics.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minibasics.setup">setup()</h3>
+<p align="center">
+<code>MiniBasics.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minibasics.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config"><code>MiniBasics.config</code></a>.</p>
+</section>
+<section id="minibasics.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.basics'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.basics'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minibasics.config" class="level3">
+<h3 class="anchored" data-anchor-id="minibasics.config">config</h3>
+<p align="center">
+<code>MiniBasics.config</code>
+</p>
+<section id="minibasics.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniBasics</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Options. Set field to `false` to disable.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Basic options ('number', 'ignorecase', and many more)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Extra UI features ('winblend', 'listchars', 'pumheight', ...)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">extra_ui</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Presets for window borders ('single', 'double', ...)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">win_borders</span> <span class="op">=</span> <span class="st">'default'</span><span class="op">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Mappings. Set field to `false` to disable.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Basic mappings (better 'jk', save with Ctrl+S, ...)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Prefix for mappings that toggle common options ('wrap', 'spell', ...).</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Supply empty string to not create these mappings.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">option_toggle_prefix</span> <span class="op">=</span> <span class="vs">[[\]]</span><span class="op">,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Window navigation with &lt;C-hjkl&gt;, resize with &lt;C-arrow&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">windows</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move cursor in Insert, Command, and Terminal mode with &lt;M-hjkl&gt;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">move_with_alt</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autocommands. Set field to `false` to disable</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocommands</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Basic autocommands (highlight on yank, start Insert in terminal, ...)</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Set 'relativenumber' only in linewise and blockwise Visual mode</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">relnum_in_visual_mode</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minibasics.config-options" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.config-options">Options</h4>
+<p><a name="minibasics.config.options" href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options"><b>MiniBasics.config.options</b></a></p>
+<p>Usage example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.basics'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">extra_ui</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">win_borders</span> <span class="op">=</span> <span class="st">'double'</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minibasics.config-options-options.basic" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-options-options.basic">options.basic</h5>
+<p>The <code>config.options.basic</code> sets certain options to values which are quite commonly used (judging by study of available Neovim pre-configurations, public dotfiles, and surveys). Any option is changed only if it was not set manually beforehand. For exact changes, please see source code (‘lua/mini/basics.lua’).</p>
+<p>Here is the list of affected options (put cursor on it and press <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-%5D"><code>CTRL-]</code></a>):</p>
+<ul>
+<li><p>General:</p>
+<ul>
+<li><p>Sets <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> key to <a href="https://neovim.io/doc/user/helptag.html?tag=%3CSpace%3E"><code>&lt;Space&gt;</code></a>. Be sure to make all Leader mappings after this (otherwise they are made with default <span class="help-syntax-keys">&lt;Leader&gt;</span>).</p></li>
+<li><p>Runs <code>:filetype plugin indent on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:filetype-overview"><code>:filetype-overview</code></a>)</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='backup'"><code>'backup'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='mouse'"><code>'mouse'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='undofile'"><code>'undofile'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='writebackup'"><code>'writebackup'</code></a></p></li>
+</ul></li>
+<li><p>Appearance</p>
+<ul>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='breakindent'"><code>'breakindent'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'"><code>'cursorline'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'"><code>'fillchars'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='linebreak'"><code>'linebreak'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ruler'"><code>'ruler'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='showmode'"><code>'showmode'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'"><code>'signcolumn'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='shortmess'"><code>'shortmess'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitbelow'"><code>'splitbelow'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitkeep'"><code>'splitkeep'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitright'"><code>'splitright'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'"><code>'termguicolors'</code></a> (on Neovim&lt;0.10; later versions have it smartly enabled)</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a></p></li>
+</ul></li>
+<li><p>Editing</p>
+<ul>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'"><code>'completeopt'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='formatoptions'"><code>'formatoptions'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'"><code>'ignorecase'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='incsearch'"><code>'incsearch'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='infercase'"><code>'infercase'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'"><code>'smartcase'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartindent'"><code>'smartindent'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='virtualedit'"><code>'virtualedit'</code></a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minibasics.config-options-options.extra_ui" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-options-options.extra_ui">options.extra_ui</h5>
+<p>The <code>config.options.extra_ui</code> sets certain options for visual appearance which might not be aligned with common preferences, but still worth trying. Any option is changed only if it was not set manually beforehand. For exact changes, please see source code (‘lua/mini/basics.lua’).</p>
+<p>List of affected options:</p>
+<ul>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='list'"><code>'list'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='listchars'"><code>'listchars'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumblend'"><code>'pumblend'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumheight'"><code>'pumheight'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='winblend'"><code>'winblend'</code></a></p></li>
+<li><p>Runs <code>:syntax on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:syntax-on"><code>:syntax-on</code></a>)</p></li>
+</ul>
+</section>
+<section id="minibasics.config-options-options.win_borders" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-options-options.win_borders">options.win_borders</h5>
+<p>The <code>config.options.win_borders</code> updates <a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'"><code>'fillchars'</code></a> to have a consistent set of characters for window border (<code>vert</code>, <code>horiz</code>, etc.).</p>
+<p>Available values:</p>
+<ul>
+<li><p><code>'bold'</code> - bold lines.</p></li>
+<li><p><code>'dot'</code> - dot in every cell.</p></li>
+<li><p><code>'double'</code> - double line.</p></li>
+<li><p><code>'single'</code> - single line.</p></li>
+<li><p><code>'solid'</code> - no symbol, only background.</p></li>
+</ul>
+</section>
+</section>
+<section id="minibasics.config-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.config-mappings">Mappings</h4>
+<p><a name="minibasics.config.mappings" href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings"><b>MiniBasics.config.mappings</b></a></p>
+<p>Usage example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.basics'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">option_toggle_prefix</span> <span class="op">=</span> <span class="vs">[[\]]</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">windows</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">move_with_alt</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you don’t want only some mappings to be made at all, use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.del()"><code>vim.keymap.del()</code></a> after calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup"><code>MiniBasics.setup()</code></a>.</p>
+<section id="minibasics.config-mappings-mappings.basic" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.basic">mappings.basic</h5>
+<p>The <code>config.mappings.basic</code> creates mappings for certain commonly mapped actions (judging by study of available Neovim pre-configurations and public dotfiles).</p>
+<p>Some of the mappings override built-in ones to either improve their behavior or override its default not very useful action. It will only add a mapping if it wasn’t manually created before.</p>
+<p>Here is a table with created mappings :</p>
+<pre><code>|Keys   |     Modes       |                  Description                  |
+|-------|-----------------|-----------------------------------------------|
+| j     | Normal, Visual  | Move down by visible lines with no [count]    |
+| k     | Normal, Visual  | Move up by visible lines with no [count]      |
+| go    | Normal          | Add [count] empty lines after cursor          |
+| gO    | Normal          | Add [count] empty lines before cursor         |
+| gy    | Normal, Visual  | Copy to system clipboard                      |
+| gp    | Normal, Visual  | Paste from system clipboard                   |
+| gV    | Normal          | Visually select latest changed or yanked text |
+| g/    | Visual          | Search inside current visual selection        |
+| *     | Visual          | Search forward for current visual selection   |
+| #     | Visual          | Search backward for current visual selection  |
+| &lt;C-s&gt; | Normal, Visual, | Save and go to Normal mode                    |
+|       |     Insert      |                                               |</code></pre>
+<p>Notes:</p>
+<ul>
+<li><p>See <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for its meaning.</p></li>
+<li><p>On Neovim&gt;=0.10 mappings for <code>#</code> and <code>*</code> are not created as their enhanced variants are made built-in. See <a href="https://neovim.io/doc/user/helptag.html?tag=v_star-default"><code>v_star-default</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_#-default"><code>v_#-default</code></a>.</p></li>
+<li><p>On Neovim&gt;=0.11 there are <a href="https://neovim.io/doc/user/helptag.html?tag=%5B%3CSpace%3E"><code>[&lt;Space&gt;</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%5D%3Cspan%20class=%22help-syntax-keys%22%3E%3CSpace%3E%3C/span%3E"><code>]&lt;Space&gt;</code></a> for adding empty lines. The <code>gO</code> and <code>go</code> mappings are still created as they are more aligned with similarly purposed <a href="https://neovim.io/doc/user/helptag.html?tag=O"><code>O</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=o"><code>o</code></a> keys (although sometimes conflict with <a href="https://neovim.io/doc/user/helptag.html?tag=gO"><code>gO</code></a>).</p></li>
+</ul>
+</section>
+<section id="minibasics.config-mappings-mappings.option_toggle_prefix" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.option_toggle_prefix">mappings.option_toggle_prefix</h5>
+<p>The <code>config.mappings.option_toggle_prefix</code> defines a prefix used for creating mappings that toggle common options. The result mappings will be <code>&lt;prefix&gt; + &lt;suffix&gt;</code>. For example, with default value, <code>\w</code> will toggle <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a>.</p>
+<p>Other viable choices for prefix are</p>
+<ul>
+<li><p><code>,</code> (as a mnemonic for several values to toggle).</p></li>
+<li><p><code>|</code> (as a same mnemonic).</p></li>
+<li><p><code>yo</code> (used in ‘tpope/vim-unimpaired’)</p></li>
+<li><p>Something with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> key, like <code>&lt;Leader&gt;t</code> (<code>t</code> for “toggle”). Note: if your prefix contains <code>&lt;Leader&gt;</code> key, make sure to set it before calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup"><code>MiniBasics.setup()</code></a> (as is done with default <code>basic</code> field of <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options"><code>MiniBasics.config.options</code></a>).</p></li>
+</ul>
+<p>After toggling, there will be a feedback about the current option value if prior to <code>require('mini.basics').setup()</code> module wasn’t silenced (see “Silencing” section in <a href="../../mini.nvim/doc/mini-basics.html#mini.basics"><code>mini.basics</code></a>).</p>
+<p>It will only add a mapping if it wasn’t manually created before.</p>
+<p>Here is a list of suffixes for created toggling mappings (all in Normal mode):</p>
+<ul>
+<li><p><code>b</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='background'"><code>'background'</code></a>.</p></li>
+<li><p><code>c</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'"><code>'cursorline'</code></a>.</p></li>
+<li><p><code>C</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorcolumn'"><code>'cursorcolumn'</code></a>.</p></li>
+<li><p><code>d</code> - diagnostic (via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic"><code>vim.diagnostic</code></a> functions).</p></li>
+<li><p><code>h</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='hlsearch'"><code>'hlsearch'</code></a> (or <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch"><code>v:hlsearch</code></a> to be precise).</p></li>
+<li><p><code>i</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'"><code>'ignorecase'</code></a>.</p></li>
+<li><p><code>l</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='list'"><code>'list'</code></a>.</p></li>
+<li><p><code>n</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a>.</p></li>
+<li><p><code>r</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'"><code>'relativenumber'</code></a>.</p></li>
+<li><p><code>s</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='spell'"><code>'spell'</code></a>.</p></li>
+<li><p><code>w</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a>.</p></li>
+</ul>
+</section>
+<section id="minibasics.config-mappings-mappings.windows" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.windows">mappings.windows</h5>
+<p>The <code>config.mappings.windows</code> creates mappings for easiere window manipulation.</p>
+<p>It will only add a mapping if it wasn’t manually created before.</p>
+<p>Here is a list with created Normal mode mappings (all respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>):</p>
+<ul>
+<li><p>Window navigation:</p>
+<ul>
+<li><p><code>&lt;C-h&gt;</code> - focus on left window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_H"><code>CTRL-W_H</code></a>).</p></li>
+<li><p><code>&lt;C-j&gt;</code> - focus on below window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_J"><code>CTRL-W_J</code></a>).</p></li>
+<li><p><code>&lt;C-k&gt;</code> - focus on above window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K"><code>CTRL-W_K</code></a>).</p></li>
+<li><p><code>&lt;C-l&gt;</code> - focus on right window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_L"><code>CTRL-W_L</code></a>).</p></li>
+</ul></li>
+<li><p>Window resize (all use arrow keys; variants of <a href="https://neovim.io/doc/user/helptag.html?tag=:resize"><code>:resize</code></a>; respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>):</p>
+<ul>
+<li><p><code>&lt;C-left&gt;</code> - decrease window width.</p></li>
+<li><p><code>&lt;C-down&gt;</code> - decrease window height.</p></li>
+<li><p><code>&lt;C-up&gt;</code> - increase window height.</p></li>
+<li><p><code>&lt;C-right&gt;</code> - increase window width.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minibasics.config-mappings-mappings.move_with_alt" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.move_with_alt">mappings.move_with_alt</h5>
+<p>The <code>config.mappings.move_with_alt</code> creates mappings for a more consistent cursor move in Insert, Command, and Terminal modes. For example, it proves useful in combination of autopair plugin (like <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a>) to move right outside of inserted pairs (no matter what the pair is).</p>
+<p>It will only add a mapping if it wasn’t manually created before.</p>
+<p>Here is a list of created mappings (<code>&lt;M-x&gt;</code> means <code>Alt</code>/<code>Meta</code> plus <code>x</code>):</p>
+<ul>
+<li><p><code>&lt;M-h&gt;</code> - move cursor left. Modes: Insert, Terminal, Command.</p></li>
+<li><p><code>&lt;M-j&gt;</code> - move cursor down. Modes: Insert, Terminal.</p></li>
+<li><p><code>&lt;M-k&gt;</code> - move cursor up. Modes: Insert, Terminal.</p></li>
+<li><p><code>&lt;M-l&gt;</code> - move cursor right. Modes: Insert, Terminal, Command.</p></li>
+</ul>
+</section>
+</section>
+<section id="minibasics.config-autocommands" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.config-autocommands">Autocommands</h4>
+<p><a name="minibasics.config.autocommands" href="../../mini.nvim/doc/mini-basics.html#minibasics.config.autocommands"><b>MiniBasics.config.autocommands</b></a></p>
+<p>Usage example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.basics'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocommands</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">relnum_in_visual_mode</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minibasics.config-autocommands-autocommands.basic" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-autocommands-autocommands.basic">autocommands.basic</h5>
+<p>The <code>config.autocommands.basic</code> creates some common autocommands:</p>
+<ul>
+<li><p>Starts insert mode when opening terminal (see <a href="https://neovim.io/doc/user/helptag.html?tag=:startinsert"><code>:startinsert</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=TermOpen"><code>TermOpen</code></a>).</p></li>
+<li><p>Highlights yanked text for a brief period of time (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()"><code>vim.hl.on_yank()</code></a>; on Neovim&lt;0.11 - <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()"><code>vim.hl.on_yank()</code></a>) and <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost"><code>TextYankPost</code></a>).</p></li>
+</ul>
+</section>
+<section id="minibasics.config-autocommands-autocommands.relnum_in_visual_mode" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-autocommands-autocommands.relnum_in_visual_mode">autocommands.relnum_in_visual_mode</h5>
+<p>The <code>config.autocommands.relnum_in_visual_mode</code> creates autocommands that enable <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'"><code>'relativenumber'</code></a> in linewise and blockwise Visual modes and disable otherwise. See <a href="https://neovim.io/doc/user/helptag.html?tag=ModeChanged"><code>ModeChanged</code></a>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="minibasics.toggle_diagnostic" class="level3">
+<h3 class="anchored" data-anchor-id="minibasics.toggle_diagnostic">toggle_diagnostic()</h3>
+<p align="center">
+<code>MiniBasics.toggle_diagnostic</code>()
+</p>
+<p>Toggle diagnostic for current buffer</p>
+<p>This uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic"><code>vim.diagnostic</code></a> functions per buffer.</p>
+<section id="minibasics.toggle_diagnostic-return" class="level4">
+<h4 class="anchored" data-anchor-id="minibasics.toggle_diagnostic-return">Return</h4>
+<p><code>(string)</code> String indicator for new state. Similar to what <a href="https://neovim.io/doc/user/helptag.html?tag=:set"><code>:set</code></a> <code>{option}?</code> shows.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

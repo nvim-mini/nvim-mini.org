@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.splitjoin documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.splitjoin documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.splitjoin documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minisplitjoin" id="toc-minisplitjoin" class="nav-link active" data-scroll-target="#minisplitjoin">Module</a>
+  <ul>
+  <li><a href="#minisplitjoin-setup" id="toc-minisplitjoin-setup" class="nav-link" data-scroll-target="#minisplitjoin-setup">Setup</a></li>
+  <li><a href="#minisplitjoin-comparisons" id="toc-minisplitjoin-comparisons" class="nav-link" data-scroll-target="#minisplitjoin-comparisons">Comparisons</a></li>
+  <li><a href="#minisplitjoin-disabling" id="toc-minisplitjoin-disabling" class="nav-link" data-scroll-target="#minisplitjoin-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin-glossary" id="toc-minisplitjoin-glossary" class="nav-link" data-scroll-target="#minisplitjoin-glossary">Glossary</a>
+  <ul>
+  <li><a href="#minisplitjoin-glossary-position" id="toc-minisplitjoin-glossary-position" class="nav-link" data-scroll-target="#minisplitjoin-glossary-position">POSITION</a></li>
+  <li><a href="#minisplitjoin-glossary-region" id="toc-minisplitjoin-glossary-region" class="nav-link" data-scroll-target="#minisplitjoin-glossary-region">REGION</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.setup" id="toc-minisplitjoin.setup" class="nav-link" data-scroll-target="#minisplitjoin.setup">setup()</a>
+  <ul>
+  <li><a href="#minisplitjoin.setup-parameters" id="toc-minisplitjoin.setup-parameters" class="nav-link" data-scroll-target="#minisplitjoin.setup-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.setup-usage" id="toc-minisplitjoin.setup-usage" class="nav-link" data-scroll-target="#minisplitjoin.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.config" id="toc-minisplitjoin.config" class="nav-link" data-scroll-target="#minisplitjoin.config">config</a>
+  <ul>
+  <li><a href="#minisplitjoin.config-defaults" id="toc-minisplitjoin.config-defaults" class="nav-link" data-scroll-target="#minisplitjoin.config-defaults">Defaults</a></li>
+  <li><a href="#minisplitjoin.config-detection" id="toc-minisplitjoin.config-detection" class="nav-link" data-scroll-target="#minisplitjoin.config-detection">Detection</a>
+  <ul>
+  <li><a href="#minisplitjoin.config-detection-outerbrackets" id="toc-minisplitjoin.config-detection-outerbrackets" class="nav-link" data-scroll-target="#minisplitjoin.config-detection-outerbrackets">Outer brackets</a></li>
+  <li><a href="#minisplitjoin.config-detection-separator" id="toc-minisplitjoin.config-detection-separator" class="nav-link" data-scroll-target="#minisplitjoin.config-detection-separator">Separator</a></li>
+  <li><a href="#minisplitjoin.config-detection-excludedregions" id="toc-minisplitjoin.config-detection-excludedregions" class="nav-link" data-scroll-target="#minisplitjoin.config-detection-excludedregions">Excluded regions</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.config-hooks" id="toc-minisplitjoin.config-hooks" class="nav-link" data-scroll-target="#minisplitjoin.config-hooks">Hooks</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.toggle" id="toc-minisplitjoin.toggle" class="nav-link" data-scroll-target="#minisplitjoin.toggle">toggle()</a>
+  <ul>
+  <li><a href="#minisplitjoin.toggle-parameters" id="toc-minisplitjoin.toggle-parameters" class="nav-link" data-scroll-target="#minisplitjoin.toggle-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.toggle-return" id="toc-minisplitjoin.toggle-return" class="nav-link" data-scroll-target="#minisplitjoin.toggle-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.split" id="toc-minisplitjoin.split" class="nav-link" data-scroll-target="#minisplitjoin.split">split()</a>
+  <ul>
+  <li><a href="#minisplitjoin.split-parameters" id="toc-minisplitjoin.split-parameters" class="nav-link" data-scroll-target="#minisplitjoin.split-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.split-return" id="toc-minisplitjoin.split-return" class="nav-link" data-scroll-target="#minisplitjoin.split-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.join" id="toc-minisplitjoin.join" class="nav-link" data-scroll-target="#minisplitjoin.join">join()</a>
+  <ul>
+  <li><a href="#minisplitjoin.join-parameters" id="toc-minisplitjoin.join-parameters" class="nav-link" data-scroll-target="#minisplitjoin.join-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.join-return" id="toc-minisplitjoin.join-return" class="nav-link" data-scroll-target="#minisplitjoin.join-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.gen_hook" id="toc-minisplitjoin.gen_hook" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook">gen_hook</a></li>
+  <li><a href="#minisplitjoin.gen_hook.pad_brackets" id="toc-minisplitjoin.gen_hook.pad_brackets" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.pad_brackets">gen_hook.pad_brackets()</a>
+  <ul>
+  <li><a href="#minisplitjoin.gen_hook.pad_brackets-parameters" id="toc-minisplitjoin.gen_hook.pad_brackets-parameters" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.pad_brackets-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.gen_hook.pad_brackets-return" id="toc-minisplitjoin.gen_hook.pad_brackets-return" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.pad_brackets-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.gen_hook.add_trailing_separator" id="toc-minisplitjoin.gen_hook.add_trailing_separator" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.add_trailing_separator">gen_hook.add_trailing_separator()</a>
+  <ul>
+  <li><a href="#minisplitjoin.gen_hook.add_trailing_separator-parameters" id="toc-minisplitjoin.gen_hook.add_trailing_separator-parameters" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.add_trailing_separator-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.gen_hook.add_trailing_separator-return" id="toc-minisplitjoin.gen_hook.add_trailing_separator-return" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.add_trailing_separator-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.gen_hook.del_trailing_separator" id="toc-minisplitjoin.gen_hook.del_trailing_separator" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.del_trailing_separator">gen_hook.del_trailing_separator()</a>
+  <ul>
+  <li><a href="#minisplitjoin.gen_hook.del_trailing_separator-parameters" id="toc-minisplitjoin.gen_hook.del_trailing_separator-parameters" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.del_trailing_separator-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.gen_hook.del_trailing_separator-return" id="toc-minisplitjoin.gen_hook.del_trailing_separator-return" class="nav-link" data-scroll-target="#minisplitjoin.gen_hook.del_trailing_separator-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.split_at" id="toc-minisplitjoin.split_at" class="nav-link" data-scroll-target="#minisplitjoin.split_at">split_at()</a>
+  <ul>
+  <li><a href="#minisplitjoin.split_at-parameters" id="toc-minisplitjoin.split_at-parameters" class="nav-link" data-scroll-target="#minisplitjoin.split_at-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.split_at-return" id="toc-minisplitjoin.split_at-return" class="nav-link" data-scroll-target="#minisplitjoin.split_at-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.join_at" id="toc-minisplitjoin.join_at" class="nav-link" data-scroll-target="#minisplitjoin.join_at">join_at()</a>
+  <ul>
+  <li><a href="#minisplitjoin.join_at-parameters" id="toc-minisplitjoin.join_at-parameters" class="nav-link" data-scroll-target="#minisplitjoin.join_at-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.join_at-return" id="toc-minisplitjoin.join_at-return" class="nav-link" data-scroll-target="#minisplitjoin.join_at-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.get_visual_region" id="toc-minisplitjoin.get_visual_region" class="nav-link" data-scroll-target="#minisplitjoin.get_visual_region">get_visual_region()</a>
+  <ul>
+  <li><a href="#minisplitjoin.get_visual_region-return" id="toc-minisplitjoin.get_visual_region-return" class="nav-link" data-scroll-target="#minisplitjoin.get_visual_region-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.get_indent_part" id="toc-minisplitjoin.get_indent_part" class="nav-link" data-scroll-target="#minisplitjoin.get_indent_part">get_indent_part()</a>
+  <ul>
+  <li><a href="#minisplitjoin.get_indent_part-parameters" id="toc-minisplitjoin.get_indent_part-parameters" class="nav-link" data-scroll-target="#minisplitjoin.get_indent_part-parameters">Parameters</a></li>
+  <li><a href="#minisplitjoin.get_indent_part-return" id="toc-minisplitjoin.get_indent_part-return" class="nav-link" data-scroll-target="#minisplitjoin.get_indent_part-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minisplitjoin.operator" id="toc-minisplitjoin.operator" class="nav-link" data-scroll-target="#minisplitjoin.operator">operator()</a>
+  <ul>
+  <li><a href="#minisplitjoin.operator-parameters" id="toc-minisplitjoin.operator-parameters" class="nav-link" data-scroll-target="#minisplitjoin.operator-parameters">Parameters</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.splitjoin documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.splitjoin" href="../../mini.nvim/doc/mini-splitjoin.html#mini.splitjoin"><b>mini.splitjoin</b></a> Split and join arguments</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minisplitjoin" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Mappings and Lua functions that modify arguments (regions inside brackets between allowed separators) under cursor.</p>
+<p>Supported actions:</p>
+<ul>
+<li><p>Toggle - split if arguments are on single line, join otherwise. Main supported function of the module. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle"><code>MiniSplitjoin.toggle()</code></a>.</p></li>
+<li><p>Split - make every argument separator be on end of separate line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a>.</p></li>
+<li><p>Join - make all arguments be on single line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p></li>
+</ul></li>
+<li><p>Mappings are dot-repeatable in Normal mode and work in Visual mode.</p></li>
+<li><p>Customizable argument detection (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>):</p>
+<ul>
+<li><p>Which brackets can contain arguments.</p></li>
+<li><p>Which strings can separate arguments.</p></li>
+<li><p>Which regions are excluded when looking for separators (like inside nested brackets or quotes).</p></li>
+</ul></li>
+<li><p>Customizable pre and post hooks for both split and join. See <code>split</code> and <code>join</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>. There are several built-in ones in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook"><code>MiniSplitjoin.gen_hook</code></a>.</p></li>
+<li><p>Works inside comments by using modified notion of indent. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>.</p></li>
+<li><p>Provides low-level Lua functions for split and join at positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a>.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Search for arguments is done using Lua patterns (regex-like approach). Certain amount of false positives is to be expected.</p></li>
+<li><p>This module is mostly designed around <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle"><code>MiniSplitjoin.toggle()</code></a>. If target split positions are on different lines, join first and then split.</p></li>
+<li><p>Actions can be done on Visual mode selection, which mostly present as a safety route in case of incorrect detection of initial region. It uses <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_visual_region"><code>MiniSplitjoin.get_visual_region()</code></a> which treats selection as full brackets (include brackets in selection).</p></li>
+</ul>
+<section id="minisplitjoin-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.splitjoin').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniSplitjoin</code> which you can use for scripting or manually (with <code>:lua MiniSplitjoin.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> for available config settings.</p>
+<p>You can override runtime config settings (like action hooks) locally to buffer inside <code>vim.b.minisplitjoin_config</code> which should have same structure as <code>MiniSplitjoin.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minisplitjoin-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/FooSoft/vim-argwrap">FooSoft/vim-argwrap</a>:</p>
+<ul>
+<li><p>Mostly has the same design as this module.</p></li>
+<li><p>Doesn’t work inside comments, while this module does.</p></li>
+<li><p>Has more built-in ways to control split and join, while this module intentionally provides only handful.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/AndrewRadev/splitjoin.vim">AndrewRadev/splitjoin.vim</a>:</p>
+<ul>
+<li>More oriented towards language-depended transformations, while this module intntionally deals with more generic text-related functionality.</li>
+</ul></li>
+<li><p><a href="https://github.com/Wansmer/treesj">Wansmer/treesj</a>:</p>
+<ul>
+<li><p>Operates based on tree-sitter nodes. This is more accurate in some edge cases, but requires tree-sitter parser.</p></li>
+<li><p>Doesn’t work inside comments or strings.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minisplitjoin-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin-disabling">Disabling</h4>
+<p>To disable, set <code>g:minisplitjoin_disable</code> (globally) or <code>b:minisplitjoin_disable</code> (for a buffer) to <code>v:true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin-glossary" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin-glossary">Glossary</h3>
+<section id="minisplitjoin-glossary-position" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin-glossary-position">POSITION</h4>
+<p>Table with fields <span class="help-syntax-keys">&lt;line&gt;</span> and <span class="help-syntax-keys">&lt;col&gt;</span> containing line and column numbers respectively. Both are 1-indexed. Example: <code>{ line = 2, col = 1 }</code>.</p>
+</section>
+<section id="minisplitjoin-glossary-region" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin-glossary-region">REGION</h4>
+<p>Table representing region in a buffer. Fields: <span class="help-syntax-keys">&lt;from&gt;</span> and <span class="help-syntax-keys">&lt;to&gt;</span> for inclusive start and end positions. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span> <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.setup">setup()</h3>
+<p align="center">
+<code>MiniSplitjoin.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minisplitjoin.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+</section>
+<section id="minisplitjoin.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.splitjoin'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.splitjoin'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.config" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.config">config</h3>
+<p align="center">
+<code>MiniSplitjoin.config</code>
+</p>
+<section id="minisplitjoin.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniSplitjoin</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Created for both Normal and Visual modes.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">toggle</span> <span class="op">=</span> <span class="st">'gS'</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">split</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">join</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Detection options: where split/join should be done</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">detect</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Array of Lua patterns to detect region with arguments.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: { '%b()', '%b[]', '%b{}' }</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">brackets</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- String Lua pattern defining argument separator</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">separator</span> <span class="op">=</span> <span class="st">','</span><span class="op">,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Array of Lua patterns for sub-regions to exclude separators from.</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Enables correct detection in presence of nested brackets and quotes.</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: { '%b()', '%b[]', '%b{}', '%b""', "%b''" }</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">exclude_regions</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Split options</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">split</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">hooks_pre</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">hooks_post</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Join options</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="va">join</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">hooks_pre</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">hooks_post</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minisplitjoin.config-detection" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.config-detection">Detection</h4>
+<p><a name="minisplitjoin.config.detect" href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><b>MiniSplitjoin.config.detect</b></a></p>
+<p>The table at <code>config.detect</code> controls how arguments are detected using Lua patterns. General idea is to convert whole buffer into a single line, perform string search, and convert results back into 2d positions.</p>
+<p>Example configuration:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.splitjoin'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">detect</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Detect only inside balanced parenthesis</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b()'</span> <span class="op">},</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Allow both `,` and `;` to separate arguments</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">separator</span> <span class="op">=</span> <span class="st">'[,;]'</span><span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make any separator define an argument</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">exclude_regions</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minisplitjoin.config-detection-outerbrackets" class="level5">
+<h5 class="anchored" data-anchor-id="minisplitjoin.config-detection-outerbrackets">Outer brackets</h5>
+<p><code>detect.brackets</code> is an array of Lua patterns used to find enclosing region. It is done by traversing whole buffer to find the smallest region matching any supplied pattern.</p>
+<p>Default: <code>nil</code>, inferred as <code>{ '%b()', '%b[]', '%b{}' }</code>. So an argument can be inside a balanced <code>()</code>, <code>[]</code>, or <code>{}</code>.</p>
+<p>Example: <code>brackets = { '%b()' }</code> will search for arguments only inside balanced <code>()</code>.</p>
+</section>
+<section id="minisplitjoin.config-detection-separator" class="level5">
+<h5 class="anchored" data-anchor-id="minisplitjoin.config-detection-separator">Separator</h5>
+<p><code>detect.separator</code> is a single Lua pattern defining which strings should be treated as argument separators.</p>
+<p>Empty string in <code>detect.separator</code> will result in only surrounding brackets used as separators.</p>
+<p>Only end of pattern match will be used as split/join positions.</p>
+<p>Default: <code>','</code>. So an argument can be separated only with comma.</p>
+<p>Example: <code>separator = { '[,;]' }</code> will treat both <code>,</code> and <code>;</code> as separators.</p>
+</section>
+<section id="minisplitjoin.config-detection-excludedregions" class="level5">
+<h5 class="anchored" data-anchor-id="minisplitjoin.config-detection-excludedregions">Excluded regions</h5>
+<p><code>detect.exclude_regions</code> is an array of Lua patterns for sub-regions from which to exclude separators. Enables correct detection in case of nested brackets and quotes.</p>
+<p>Default: <code>nil</code>; inferred as <code>{ '%b()', '%b[]', '%b{}', '%b""', "%b''" }</code>. So a separator can not be inside a balanced <code>()</code>, <code>[]</code>, <code>{}</code> (representing nested argument regions) or <code>""</code>, <code>''</code> (representing strings).</p>
+<p>Example: <code>exclude_regions = {}</code> will not exclude any regions. So in case of <code>f(a, { b, c })</code> it will detect both commas as argument separators.</p>
+</section>
+</section>
+<section id="minisplitjoin.config-hooks" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.config-hooks">Hooks</h4>
+<p><code>split.hooks_pre</code>, <code>split.hooks_post</code>, <code>join.hooks_pre</code>, and <code>join.hooks_post</code> are arrays of hook functions. If empty (default) no hook is applied.</p>
+<p>Hooks should take and return array of positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a>.</p>
+<p>They can be used to tweak actions:</p>
+<ul>
+<li><p>Pre-hooks are called before action. Each is applied on the output of previous one. Input of first hook are detected split/join positions. Output of last one is actually used to perform split/join.</p></li>
+<li><p>Post-hooks are called after action. Each is applied on the output of previous one. Input of first hook are split/join positions from actual action plus its region’s right end as last position (for easier hook code). Output of last one is used as action return value.</p></li>
+</ul>
+<p>For more specific details see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p>
+<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook"><code>MiniSplitjoin.gen_hook</code></a> for generating common hooks with examples.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.toggle" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.toggle">toggle()</h3>
+<p align="center">
+<code>MiniSplitjoin.toggle</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Toggle arguments</p>
+<p>Overview:</p>
+<ul>
+<li><p>Detect region at input position: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding position. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
+<li><p>If region spans single line, use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a> with found region. Otherwise use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p></li>
+</ul>
+<section id="minisplitjoin.toggle-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.toggle-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p>Following extra optional fields are allowed:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.toggle-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.toggle-return">Return</h4>
+<p><code>(any)</code> Output of chosen <code>split()</code> or <code>join()</code> action.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.split" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.split">split()</h3>
+<p align="center">
+<code>MiniSplitjoin.split</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Split arguments</p>
+<p>Overview:</p>
+<ul>
+<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
+<li><p>Find separator positions using <code>separator</code> and <code>exclude_regions</code> from <code>opts</code>. Both brackets are treated as separators. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details. Note: stop if no separator positions are found.</p></li>
+<li><p>Modify separator positions to represent split positions. Last split position (which is inferred from right bracket) is moved one column to left so that right bracket would move on new line.</p></li>
+<li><p>Apply all hooks from <code>opts.split.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step. Output of last one is used as split positions in next step.</p></li>
+<li><p>Split and update split positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a>.</p></li>
+<li><p>Apply all hooks from <code>opts.split.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step plus region’s right end (for easier hook code). Output of last one is used as function return value.</p></li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>By design, it doesn’t detect if argument should be split, so application on arguments spanning multiple lines can lead to undesirable result.</li>
+</ul>
+<section id="minisplitjoin.split-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.split-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p>Following extra optional fields are allowed:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.split-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.split-return">Return</h4>
+<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> if no split positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a> application.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.join" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.join">join()</h3>
+<p align="center">
+<code>MiniSplitjoin.join</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Join arguments</p>
+<p>Overview:</p>
+<ul>
+<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
+<li><p>Compute join positions to be line ends of all but last region lines. Note: stop if no join positions are found.</p></li>
+<li><p>Apply all hooks from <code>opts.join.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step. Output of last one is used as join positions in next step.</p></li>
+<li><p>Join and update join positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a>.</p></li>
+<li><p>Apply all hooks from <code>opts.join.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step plus region’s right end for easier hook code. Output of last one is used as function return value.</p></li>
+</ul>
+<section id="minisplitjoin.join-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.join-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p>Following extra optional fields are allowed:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.join-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.join-return">Return</h4>
+<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> of no join positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a> application.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.gen_hook" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.gen_hook">gen_hook</h3>
+<p align="center">
+<code>MiniSplitjoin.gen_hook</code>
+</p>
+<p>Generate common hooks</p>
+<p>This is a table with function elements. Call to actually get hook.</p>
+<p>All generated post-hooks return updated versions of their input reflecting changes done inside hook.</p>
+<p>Example for <code>lua</code> filetype (place it in ‘lua.lua’ filetype plugin, <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin"><code>ftplugin</code></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">gen_hook</span> <span class="op">=</span> <span class="va">MiniSplitjoin</span><span class="op">.</span><span class="va">gen_hook</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">curly</span> <span class="op">=</span> <span class="op">{</span> <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b{}'</span> <span class="op">}</span> <span class="op">}</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add trailing comma when splitting inside curly brackets</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">add_comma_curly</span> <span class="op">=</span> <span class="va">gen_hook</span><span class="op">.</span>add_trailing_separator<span class="op">(</span><span class="va">curly</span><span class="op">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Delete trailing comma when joining inside curly brackets</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">del_comma_curly</span> <span class="op">=</span> <span class="va">gen_hook</span><span class="op">.</span>del_trailing_separator<span class="op">(</span><span class="va">curly</span><span class="op">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pad curly brackets with single space after join</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">pad_curly</span> <span class="op">=</span> <span class="va">gen_hook</span><span class="op">.</span>pad_brackets<span class="op">(</span><span class="va">curly</span><span class="op">)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create buffer-local config</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minisplitjoin_config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">split</span> <span class="op">=</span> <span class="op">{</span> <span class="va">hooks_post</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add_comma_curly</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">join</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">hooks_post</span> <span class="op">=</span> <span class="op">{</span> <span class="va">del_comma_curly</span><span class="op">,</span> <span class="va">pad_curly</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="minisplitjoin.gen_hook.pad_brackets" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.gen_hook.pad_brackets">gen_hook.pad_brackets()</h3>
+<p align="center">
+<code>MiniSplitjoin.gen_hook.pad_brackets</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate hook to pad brackets</p>
+<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<section id="minisplitjoin.gen_hook.pad_brackets-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.pad_brackets-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;pad&gt;</span> <code>(string)</code> - pad to add after first and before last join positions. Default: <code>' '</code> (single space).</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.gen_hook.pad_brackets-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.pad_brackets-return">Return</h4>
+<p><code>(function)</code> A hook which adds inner pad to first and last join positions and returns updated input join positions.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.gen_hook.add_trailing_separator" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.gen_hook.add_trailing_separator">gen_hook.add_trailing_separator()</h3>
+<p align="center">
+<code>MiniSplitjoin.gen_hook.add_trailing_separator</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate hook to add trailing separator</p>
+<p>This is a split post-hook. Use in <code>split.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<section id="minisplitjoin.gen_hook.add_trailing_separator-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.add_trailing_separator-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;sep&gt;</span> <code>(string)</code> - separator to add before last split position. Default: <code>','</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.gen_hook.add_trailing_separator-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.add_trailing_separator-return">Return</h4>
+<p><code>(function)</code> A hook which adds separator before last split position and returns updated input split positions.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.gen_hook.del_trailing_separator" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.gen_hook.del_trailing_separator">gen_hook.del_trailing_separator()</h3>
+<p align="center">
+<code>MiniSplitjoin.gen_hook.del_trailing_separator</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate hook to delete trailing separator</p>
+<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<section id="minisplitjoin.gen_hook.del_trailing_separator-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.del_trailing_separator-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;sep&gt;</span> <code>(string)</code> - separator to remove before last join position. Default: <code>','</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+</ul>
+</section>
+<section id="minisplitjoin.gen_hook.del_trailing_separator-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.del_trailing_separator-return">Return</h4>
+<p><code>(function)</code> A hook which adds separator before last split position and returns updated input split positions.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.split_at" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.split_at">split_at()</h3>
+<p align="center">
+<code>MiniSplitjoin.split_at</code>(<span class="help-syntax-special">{positions}</span>)
+</p>
+<p>Split at positions</p>
+<p>Overview:</p>
+<ul>
+<li><p>For each position move all characters after it to next line and make it have same indent as current one (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>). Also remove trailing whitespace at position line.</p></li>
+<li><p>Increase indent of inner lines by a single pad: tab in case of <a href="https://neovim.io/doc/user/helptag.html?tag='noexpandtab'"><code>'noexpandtab'</code></a> or <a href="https://neovim.io/doc/user/helptag.html?tag=shiftwidth()"><code>shiftwidth()</code></a> number of spaces otherwise.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Cursor is adjusted to follow text updates.</p></li>
+<li><p>Use output of this function to keep track of input positions.</p></li>
+</ul>
+<section id="minisplitjoin.split_at-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.split_at-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform split. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for their structure. Note: they don’t have to be ordered, but first and last ones will be used to infer lines for which indent will be increased.</p>
+</section>
+<section id="minisplitjoin.split_at-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.split_at-return">Return</h4>
+<p><code>(table)</code> Array of new positions to where input <code>positions</code> were moved.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.join_at" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.join_at">join_at()</h3>
+<p align="center">
+<code>MiniSplitjoin.join_at</code>(<span class="help-syntax-special">{positions}</span>)
+</p>
+<p>Join at positions</p>
+<p>Overview:</p>
+<ul>
+<li>For each position join its line with the next line. Joining is done by replacing trailing whitespace of the line and indent of its next line (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>) with a pad string (single space except empty string for first and last positions). To adjust this, use hooks (for example, see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook.pad_brackets"><code>MiniSplitjoin.gen_hook.pad_brackets()</code></a>).</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Cursor is adjusted to follow text updates.</p></li>
+<li><p>Use output of this function to keep track of input positions.</p></li>
+</ul>
+<section id="minisplitjoin.join_at-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.join_at-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform join. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for their structure. Note: they don’t have to be ordered, but first and last ones will have different pad string.</p>
+</section>
+<section id="minisplitjoin.join_at-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.join_at-return">Return</h4>
+<p><code>(table)</code> Array of new positions to where input <code>positions</code> were moved.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.get_visual_region" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.get_visual_region">get_visual_region()</h3>
+<p align="center">
+<code>MiniSplitjoin.get_visual_region</code>()
+</p>
+<p>Get previous visual region</p>
+<p>Get previous visual selection using <a href="https://neovim.io/doc/user/helptag.html?tag='%3C"><code>'&lt;</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%3E"><code>'&gt;</code></a> marks in the format of region (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a>). Used in Visual mode mappings.</p>
+<p>Note:</p>
+<ul>
+<li><p>Both marks are included in region.</p></li>
+<li><p>In linewise mode start is at column 1 and end is at line’s last character.</p></li>
+</ul>
+<section id="minisplitjoin.get_visual_region-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.get_visual_region-return">Return</h4>
+<p><code>(table)</code> A region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for exact structure.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.get_indent_part" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.get_indent_part">get_indent_part()</h3>
+<p align="center">
+<code>MiniSplitjoin.get_indent_part</code>(<span class="help-syntax-special">{line}</span>, <span class="help-syntax-special">{respect_comments}</span>)
+</p>
+<p>Get string’s indent part</p>
+<section id="minisplitjoin.get_indent_part-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.get_indent_part-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{line}</span> <code>(string)</code> String for which to compute indent.</p>
+<p><span class="help-syntax-special">{respect_comments}</span> <code>(boolean|nil)</code> Whether to respect comments as indent part. Default: <code>true</code>.</p>
+</section>
+<section id="minisplitjoin.get_indent_part-return" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.get_indent_part-return">Return</h4>
+<p><code>(string)</code> Part of input representing line’s indent. Can be empty string. Use <code>string.len()</code> to compute indent in bytes.</p>
+<hr>
+</section>
+</section>
+<section id="minisplitjoin.operator" class="level3">
+<h3 class="anchored" data-anchor-id="minisplitjoin.operator">operator()</h3>
+<p align="center">
+<code>MiniSplitjoin.operator</code>(<span class="help-syntax-special">{task}</span>)
+</p>
+<p>Operator for Normal mode mappings</p>
+<p>Main function to be used in expression mappings. No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.setup"><code>MiniSplitjoin.setup()</code></a>.</p>
+<section id="minisplitjoin.operator-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minisplitjoin.operator-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{task}</span> <code>(string)</code> Name of task.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

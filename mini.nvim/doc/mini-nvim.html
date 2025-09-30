@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.nvim documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.nvim documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.nvim documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mini.nvim-table-of-contents" id="toc-mini.nvim-table-of-contents" class="nav-link active" data-scroll-target="#mini.nvim-table-of-contents">Table of contents</a></li>
+  <li><a href="#mini.nvim-general-principles" id="toc-mini.nvim-general-principles" class="nav-link" data-scroll-target="#mini.nvim-general-principles">General principles</a>
+  <ul>
+  <li><a href="#mini.nvim-general-principles-design" id="toc-mini.nvim-general-principles-design" class="nav-link" data-scroll-target="#mini.nvim-general-principles-design">Design</a></li>
+  <li><a href="#mini.nvim-general-principles-independence" id="toc-mini.nvim-general-principles-independence" class="nav-link" data-scroll-target="#mini.nvim-general-principles-independence">Independence</a></li>
+  <li><a href="#mini.nvim-general-principles-structure" id="toc-mini.nvim-general-principles-structure" class="nav-link" data-scroll-target="#mini.nvim-general-principles-structure">Structure</a></li>
+  <li><a href="#mini.nvim-general-principles-setup" id="toc-mini.nvim-general-principles-setup" class="nav-link" data-scroll-target="#mini.nvim-general-principles-setup">Setup</a></li>
+  <li><a href="#mini.nvim-general-principles-bufferlocalconfiguration" id="toc-mini.nvim-general-principles-bufferlocalconfiguration" class="nav-link" data-scroll-target="#mini.nvim-general-principles-bufferlocalconfiguration">Buffer local configuration</a></li>
+  <li><a href="#mini.nvim-general-principles-buffernames" id="toc-mini.nvim-general-principles-buffernames" class="nav-link" data-scroll-target="#mini.nvim-general-principles-buffernames">Buffer names</a></li>
+  <li><a href="#mini.nvim-general-principles-disabling" id="toc-mini.nvim-general-principles-disabling" class="nav-link" data-scroll-target="#mini.nvim-general-principles-disabling">Disabling</a></li>
+  <li><a href="#mini.nvim-general-principles-silencing" id="toc-mini.nvim-general-principles-silencing" class="nav-link" data-scroll-target="#mini.nvim-general-principles-silencing">Silencing</a></li>
+  <li><a href="#mini.nvim-general-principles-highlighting" id="toc-mini.nvim-general-principles-highlighting" class="nav-link" data-scroll-target="#mini.nvim-general-principles-highlighting">Highlighting</a></li>
+  <li><a href="#mini.nvim-general-principles-stability" id="toc-mini.nvim-general-principles-stability" class="nav-link" data-scroll-target="#mini.nvim-general-principles-stability">Stability</a></li>
+  <li><a href="#mini.nvim-general-principles-notfiletypeandlanguagespecific" id="toc-mini.nvim-general-principles-notfiletypeandlanguagespecific" class="nav-link" data-scroll-target="#mini.nvim-general-principles-notfiletypeandlanguagespecific">Not filetype and language specific</a></li>
+  </ul></li>
+  <li><a href="#mini.nvim-module-list" id="toc-mini.nvim-module-list" class="nav-link" data-scroll-target="#mini.nvim-module-list">Module list</a></li>
+  <li><a href="#mini.nvim-disabling-recipes" id="toc-mini.nvim-disabling-recipes" class="nav-link" data-scroll-target="#mini.nvim-disabling-recipes">Disabling recipes</a>
+  <ul>
+  <li><a href="#mini.nvim-disabling-recipes-manualdisabling" id="toc-mini.nvim-disabling-recipes-manualdisabling" class="nav-link" data-scroll-target="#mini.nvim-disabling-recipes-manualdisabling">Manual disabling</a></li>
+  <li><a href="#mini.nvim-disabling-recipes-automateddisabling" id="toc-mini.nvim-disabling-recipes-automateddisabling" class="nav-link" data-scroll-target="#mini.nvim-disabling-recipes-automateddisabling">Automated disabling</a></li>
+  </ul></li>
+  <li><a href="#mini.nvim-buffer-local-config" id="toc-mini.nvim-buffer-local-config" class="nav-link" data-scroll-target="#mini.nvim-buffer-local-config">Buffer local config</a></li>
+  <li><a href="#mini.nvim-color-schemes" id="toc-mini.nvim-color-schemes" class="nav-link" data-scroll-target="#mini.nvim-color-schemes">Color schemes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.nvim documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.nvim" href="../../mini.nvim/doc/mini-nvim.html#mini.nvim"><b>mini.nvim</b></a> Collection of minimal, independent and fast Lua modules</p>
+<p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
+<hr>
+<section id="mini.nvim-table-of-contents" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-table-of-contents">Table of contents</h3>
+<p><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim"><code>mini.nvim</code></a> is a collection of minimal, independent, and fast Lua modules dedicated to improve Neovim (version 0.9 and higher) experience. Each module can be considered as a separate sub-plugin.</p>
+<p>Table of contents:</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>General principles</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-general-principles"><code>mini.nvim-general-principles</code></a></td>
+</tr>
+<tr class="even">
+<td>Module list</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-module-list"><code>mini.nvim-module-list</code></a></td>
+</tr>
+<tr class="odd">
+<td>Disabling recipes</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a></td>
+</tr>
+<tr class="even">
+<td>Buffer-local config</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a></td>
+</tr>
+<tr class="odd">
+<td>Plugin color schemes</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-color-schemes"><code>mini.nvim-color-schemes</code></a></td>
+</tr>
+<tr class="even">
+<td>Extend and create a/i textobjects</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-ai.html#mini.ai"><code>mini.ai</code></a></td>
+</tr>
+<tr class="odd">
+<td>Align text interactively</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-align.html#mini.align"><code>mini.align</code></a></td>
+</tr>
+<tr class="even">
+<td>Animate common Neovim actions</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-animate.html#mini.animate"><code>mini.animate</code></a></td>
+</tr>
+<tr class="odd">
+<td>Base16 colorscheme creation</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-base16.html#mini.base16"><code>mini.base16</code></a></td>
+</tr>
+<tr class="even">
+<td>Common configuration presets</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-basics.html#mini.basics"><code>mini.basics</code></a></td>
+</tr>
+<tr class="odd">
+<td>Go forward/backward with square brackets</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#mini.bracketed"><code>mini.bracketed</code></a></td>
+</tr>
+<tr class="even">
+<td>Remove buffers</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bufremove.html#mini.bufremove"><code>mini.bufremove</code></a></td>
+</tr>
+<tr class="odd">
+<td>Show next key clues</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-clue.html#mini.clue"><code>mini.clue</code></a></td>
+</tr>
+<tr class="even">
+<td>Tweak and save any color scheme</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-colors.html#mini.colors"><code>mini.colors</code></a></td>
+</tr>
+<tr class="odd">
+<td>Comment lines</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-comment.html#mini.comment"><code>mini.comment</code></a></td>
+</tr>
+<tr class="even">
+<td>Completion and signature help</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a></td>
+</tr>
+<tr class="odd">
+<td>Autohighlight word under cursor</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-cursorword.html#mini.cursorword"><code>mini.cursorword</code></a></td>
+</tr>
+<tr class="even">
+<td>Plugin manager</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-deps.html#mini.deps"><code>mini.deps</code></a></td>
+</tr>
+<tr class="odd">
+<td>Work with diff hunks</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a></td>
+</tr>
+<tr class="even">
+<td>Generate Neovim help files</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-doc.html#mini.doc"><code>mini.doc</code></a></td>
+</tr>
+<tr class="odd">
+<td>Extra ‘mini.nvim’ functionality</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-extra.html#mini.extra"><code>mini.extra</code></a></td>
+</tr>
+<tr class="even">
+<td>Navigate and manipulate file system</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a></td>
+</tr>
+<tr class="odd">
+<td>Fuzzy matching</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-fuzzy.html#mini.fuzzy"><code>mini.fuzzy</code></a></td>
+</tr>
+<tr class="even">
+<td>Git integration</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-git.html#mini.git"><code>mini.git</code></a></td>
+</tr>
+<tr class="odd">
+<td>Highlight patterns in text</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-hipatterns.html#mini.hipatterns"><code>mini.hipatterns</code></a></td>
+</tr>
+<tr class="even">
+<td>Generate configurable color scheme</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-hues.html#mini.hues"><code>mini.hues</code></a></td>
+</tr>
+<tr class="odd">
+<td>Icon provider</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a></td>
+</tr>
+<tr class="even">
+<td>Visualize and work with indent scope</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope"><code>mini.indentscope</code></a></td>
+</tr>
+<tr class="odd">
+<td>Jump to next/previous single character</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-jump.html#mini.jump"><code>mini.jump</code></a></td>
+</tr>
+<tr class="even">
+<td>Jump within visible lines</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-jump2d.html#mini.jump2d"><code>mini.jump2d</code></a></td>
+</tr>
+<tr class="odd">
+<td>Special key mappings</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-keymap.html#mini.keymap"><code>mini.keymap</code></a></td>
+</tr>
+<tr class="even">
+<td>Window with buffer text overview</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-map.html#mini.map"><code>mini.map</code></a></td>
+</tr>
+<tr class="odd">
+<td>Miscellaneous functions</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-misc.html#mini.misc"><code>mini.misc</code></a></td>
+</tr>
+<tr class="even">
+<td>Move any selection in any direction</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-move.html#mini.move"><code>mini.move</code></a></td>
+</tr>
+<tr class="odd">
+<td>Show notifications</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-notify.html#mini.notify"><code>mini.notify</code></a></td>
+</tr>
+<tr class="even">
+<td>Text edit operators</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-operators.html#mini.operators"><code>mini.operators</code></a></td>
+</tr>
+<tr class="odd">
+<td>Autopairs</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a></td>
+</tr>
+<tr class="even">
+<td>Pick anything</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a></td>
+</tr>
+<tr class="odd">
+<td>Session management</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-sessions.html#mini.sessions"><code>mini.sessions</code></a></td>
+</tr>
+<tr class="even">
+<td>Manage and expand snippets</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets"><code>mini.snippets</code></a></td>
+</tr>
+<tr class="odd">
+<td>Split and join arguments</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-splitjoin.html#mini.splitjoin"><code>mini.splitjoin</code></a></td>
+</tr>
+<tr class="even">
+<td>Start screen</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-starter.html#mini.starter"><code>mini.starter</code></a></td>
+</tr>
+<tr class="odd">
+<td>Statusline</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-statusline.html#mini.statusline"><code>mini.statusline</code></a></td>
+</tr>
+<tr class="even">
+<td>Surround actions</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-surround.html#mini.surround"><code>mini.surround</code></a></td>
+</tr>
+<tr class="odd">
+<td>Tabline</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-tabline.html#mini.tabline"><code>mini.tabline</code></a></td>
+</tr>
+<tr class="even">
+<td>Test Neovim plugins</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-test.html#mini.test"><code>mini.test</code></a></td>
+</tr>
+<tr class="odd">
+<td>Trailspace (highlight and remove)</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-trailspace.html#mini.trailspace"><code>mini.trailspace</code></a></td>
+</tr>
+<tr class="even">
+<td>Track and reuse file system visits</td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-visits.html#mini.visits"><code>mini.visits</code></a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="mini.nvim-general-principles" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-general-principles">General principles</h3>
+<section id="mini.nvim-general-principles-design" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-design">Design</h4>
+<p>Each module is designed to solve a particular problem targeting balance between feature-richness (handling as many edge-cases as possible) and simplicity of implementation/support. Granted, not all of them ended up with the same balance, but it is the goal nevertheless.</p>
+</section>
+<section id="mini.nvim-general-principles-independence" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-independence">Independence</h4>
+<p>Modules are independent of each other and can be run without external dependencies. Although some of them may need dependencies for full experience.</p>
+</section>
+<section id="mini.nvim-general-principles-structure" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-structure">Structure</h4>
+<p>Each module is a submodule for a placeholder “mini” module. For example, “surround” module should be referred to as “mini.surround”. As later will be explained, this plugin can also be referred to as “MiniSurround”.</p>
+</section>
+<section id="mini.nvim-general-principles-setup" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-setup">Setup</h4>
+<ul>
+<li><p>Each module you want to use should be enabled separately with <code>require(&lt;name of module&gt;).setup({})</code>. Possibly replace <code>{}</code> with your config table or omit altogether to use defaults. You can supply only parts of config, the rest will be inferred from defaults.</p></li>
+<li><p>Call to module’s <code>setup()</code> always creates a global Lua object with coherent camel-case name: <code>require('mini.surround').setup()</code> creates <code>_G.MiniSurround</code>. This allows for a simpler usage of plugin available from <code>v:lua</code> like <code>v:lua.MiniSurround</code>. Considering this, “module” and “Lua object” names can be used interchangeably: ‘mini.surround’ and ‘MiniSurround’ will mean the same thing.</p></li>
+<li><p>Each supplied <code>config</code> table (after extending with default values) is stored in <code>config</code> field of global object. Like <code>MiniSurround.config</code>.</p></li>
+<li><p>Values of <code>config</code>, which affect runtime activity, can be changed on the fly to have effect. For example, <code>MiniSurround.config.n_lines</code> can be changed during runtime; but changing <code>MiniSurround.config.mappings</code> won’t have any effect (as mappings are created once during <code>setup()</code>).</p></li>
+<li><p>If module works best with some specific non-default option value, it is set during <code>setup()</code>. If the value is not essential to module’s functionality, it is done only if user or another plugin hasn’t set it beforehand (no matter the value).</p></li>
+</ul>
+</section>
+<section id="mini.nvim-general-principles-bufferlocalconfiguration" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-bufferlocalconfiguration">Buffer local configuration</h4>
+<p>Each module can be additionally configured to use certain runtime config settings locally to buffer. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more information.</p>
+</section>
+<section id="mini.nvim-general-principles-buffernames" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-buffernames">Buffer names</h4>
+<p>All module-related buffers are named according to the following format: <code>mini&lt;module-name&gt;://&lt;buffer-number&gt;/&lt;useful-info&gt;</code> (forward slashes are used on any platform; <code>&lt;useful-info&gt;</code> may be empty). This structure allows creating identifiable, reasonably unique, and useful buffer names. For example, <a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a> buffers are created per displayed directory/file with names like <code>minifiles://10/path/to/displayed/directory</code>.</p>
+</section>
+<section id="mini.nvim-general-principles-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-disabling">Disabling</h4>
+<p>Each module’s core functionality can be disabled globally or locally to buffer. See “Disabling” section in module’s help page for more details. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+</section>
+<section id="mini.nvim-general-principles-silencing" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-silencing">Silencing</h4>
+<p>Each module can be configured to not show non-error feedback globally or locally to buffer. See “Silencing” section in module’s help for more details.</p>
+</section>
+<section id="mini.nvim-general-principles-highlighting" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-highlighting">Highlighting</h4>
+<p>Appearance of module’s output is controlled by certain set of highlight groups (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups"><code>highlight-groups</code></a>). By default they usually link to some semantically close built-in highlight group. Use <a href="https://neovim.io/doc/user/helptag.html?tag=:highlight"><code>:highlight</code></a> command or <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a> Lua function to customize highlighting. To see a more calibrated look, use <a href="../../mini.nvim/doc/mini-hues.html#mini.hues"><code>mini.hues</code></a>, <a href="../../mini.nvim/doc/mini-base16.html#minibase16"><code>MiniBase16</code></a>, or plugin’s colorschemes.</p>
+</section>
+<section id="mini.nvim-general-principles-stability" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-stability">Stability</h4>
+<p>Each module upon release is considered to be relatively stable: both in terms of setup and functionality. Any non-bugfix backward-incompatible change will be released gradually as much as possible.</p>
+</section>
+<section id="mini.nvim-general-principles-notfiletypeandlanguagespecific" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-general-principles-notfiletypeandlanguagespecific">Not filetype and language specific</h4>
+<p>Including functionality which needs several filetype/language specific implementations is an explicit no-goal of this project. This is mostly due to the potential increase in maintenance to keep implementation up to date. However, any part which might need filetype/language specific tuning should be designed to allow it by letting user set proper buffer options and/or local configuration.</p>
+<hr>
+</section>
+</section>
+<section id="mini.nvim-module-list" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-module-list">Module list</h3>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-ai.html#mini.ai"><code>mini.ai</code></a> - extend and create <code>a</code>/<code>i</code> textobjects (like in <code>di(</code> or <code>va"</code>). It enhances some builtin <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects"><code>text-objects</code></a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=a("><code>a(</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a)"><code>a)</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a'"><code>a'</code></a>, and more), creates new ones (like <code>a*</code>, <code>a&lt;Space&gt;</code>, <code>af</code>, <code>a?</code>, and more), and allows user to create their own (like based on treesitter, and more). Supports dot-repeat, <code>v:count</code>, different search methods, consecutive application, and customization via Lua patterns or functions. Has builtins for brackets, quotes, function call, argument, tag, user prompt, and any punctuation/digit/whitespace character.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-align.html#mini.align"><code>mini.align</code></a> - align text interactively (with or without instant preview). Allows rich and flexible customization of both alignment rules and user interaction. Works with charwise, linewise, and blockwise selections in both Normal mode (on textobject/motion; with dot-repeat) and Visual mode.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-animate.html#mini.animate"><code>mini.animate</code></a> - animate common Neovim actions. Has “works out of the box” builtin animations for cursor movement, scroll, resize, window open and close. All of them can be customized and enabled/disabled independently.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-base16.html#minibase16"><code>MiniBase16</code></a> - fast implementation of base16 theme for manually supplied palette. Supports 30+ plugin integrations. Has unique palette generator which needs only background and foreground colors.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-basics.html#mini.basics"><code>mini.basics</code></a> - common configuration presets. Has configurable presets for options, mappings, and autocommands. It doesn’t change option or mapping if it was manually created.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-bracketed.html#mini.bracketed"><code>mini.bracketed</code></a> - go forward/backward with square brackets. Among others, supports variety of non-trivial targets: comments, files on disk, indent changes, tree-sitter nodes, linear undo states, yank history entries.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-bufremove.html#mini.bufremove"><code>mini.bufremove</code></a> - buffer removing (unshow, delete, wipeout) while saving window layout.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-clue.html#mini.clue"><code>mini.clue</code></a> - show next key clues. Implements custom key query process with customizable opt-in triggers, next key descriptions (clues), hydra-like submodes, window delay/config. Provides clue sets for some built-in concepts: <code>g</code>/<code>z</code> keys, window commands, etc.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-colors.html#mini.colors"><code>mini.colors</code></a> - tweak and save any color scheme. Can create colorscheme object with methods to invert/set/modify/etc. lightness/saturation/hue/temperature/etc. of foreground/background/all colors, infer cterm attributes, add transparency, save to a file and more. Has functionality for interactive experiments and animation of transition between color schemes.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-comment.html#mini.comment"><code>mini.comment</code></a> - fast and familiar per-line code commenting.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> - async (with customizable ‘debounce’ delay) ‘two-stage chain completion’: first builtin LSP, then configurable fallback. Also has functionality for completion item info and function signature (both in floating window appearing after customizable delay).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-cursorword.html#mini.cursorword"><code>mini.cursorword</code></a> - automatic highlighting of word under cursor (displayed after customizable delay). Current word under cursor can be highlighted differently.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#mini.deps"><code>mini.deps</code></a> - plugin manager for plugins outside of ‘mini.nvim’. Uses Git and built-in packages to install, update, clean, and snapshot plugins.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> - visualize difference between buffer text and its reference interactively (with colored signs or line numbers). Uses Git index as default reference. Provides toggleable overview in text area, built-in apply/reset/textobject/goto mappings.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-doc.html#mini.doc"><code>mini.doc</code></a> - generation of help files from EmmyLua-like annotations. Allows flexible customization of output via hook functions. Used for documenting this plugin.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-extra.html#mini.extra"><code>mini.extra</code></a> - extra ‘mini.nvim’ functionality. Contains ‘mini.pick’ pickers, ‘mini.ai’ textobjects, and more.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a> - navigate and manipulate file system. A file explorer with column view capable of manipulating file system by editing text. Can create/delete/rename/copy/move files/directories inside and across directories. For full experience needs enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module (but works without it).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-fuzzy.html#mini.fuzzy"><code>mini.fuzzy</code></a> - functions for fast and simple fuzzy matching. It has not only functions to perform fuzzy matching of one string to others, but also a sorter for ‘nvim-telescope/telescope.nvim’.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#mini.git"><code>mini.git</code></a> - Git integration (https://git-scm.com/). Implements tracking of Git related data (root, branch, etc.), <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command for better integration with running Neovim instance, and various helpers to explore Git history.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-hipatterns.html#mini.hipatterns"><code>mini.hipatterns</code></a> - highlight patterns in text with configurable highlighters (pattern and/or highlight group can be string or callable). Works asynchronously with configurable debounce delay.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-hues.html#mini.hues"><code>mini.hues</code></a> - generate configurable color scheme. Takes only background and foreground colors as required arguments. Can adjust number of hues for non-base colors, saturation, accent color, plugin integration.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> - icon provider with fixed set of highlight groups. Supports various categories, icon and style customizations, caching for performance. Integrates with Neovim’s filetype matching.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope"><code>mini.indentscope</code></a> - visualize and operate on indent scope. Supports customization of debounce delay, animation style, and different granularity of options for scope computing algorithm.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-jump.html#mini.jump"><code>mini.jump</code></a> - minimal and fast module for smarter jumping to a single character.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d"><code>MiniJump2d</code></a> - minimal and fast Lua plugin for jumping (moving cursor) within visible lines via iterative label filtering. Supports custom jump targets (spots), labels, hooks, allowed windows and lines, and more.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-keymap.html#mini.keymap"><code>mini.keymap</code></a> - utilities to make special key mappings: multi-step actions (with built-in steps for “smart” <span class="help-syntax-keys">&lt;Tab&gt;</span>, <span class="help-syntax-keys">&lt;S-Tab&gt;</span>, <span class="help-syntax-keys">&lt;CR&gt;</span>, <span class="help-syntax-keys">&lt;BS&gt;</span>), combos (more general version of “better escape” like behavior).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map"><code>mini.map</code></a> - window with buffer text overview, scrollbar, and highlights. Allows configurable symbols for line encode and scrollbar, extensible highlight integration (with pre-built ones for builtin search, diagnostic, git line status), window properties, and more.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-misc.html#mini.misc"><code>mini.misc</code></a> - collection of miscellaneous useful functions. Like <code>put()</code> and <code>put_text()</code> which print Lua objects to command line and current buffer respectively.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-move.html#mini.move"><code>mini.move</code></a> - move any selection in any direction. Supports any Visual mode (charwise, linewise, blockwise) and Normal mode (current line) for all four directions (left, right, down, up). Respects <code>count</code> and undo.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-notify.html#mini.notify"><code>mini.notify</code></a> - show one or more highlighted notifications in a single window. Provides both low-level functions (add, update, remove, clear) and maker of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> implementation. Sets up automated LSP progress updates.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-operators.html#mini.operators"><code>mini.operators</code></a> - various text edit operators: replace, exchange, multiply, sort, evaluate. Creates mappings to operate on textobject, line, and visual selection. Supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> and dot-repeat.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a> - autopairs plugin which has minimal defaults and functionality to do per-key expression mappings.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a> - general purpose interactive non-blocking picker with toggleable preview. Has fast default matching with fuzzy/exact/grouped modes. Provides most used built-in pickers for files, pattern matches, buffers, etc. For full experience needs enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module (but works without it).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-sessions.html#mini.sessions"><code>mini.sessions</code></a> - session management (read, write, delete) which works using <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession"><code>:mksession</code></a>. Implements both global (from configured directory) and local (from current directory) sessions.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets"><code>mini.snippets</code></a> - manage and expand snippets. Supports only syntax from LSP specification. Provides flexible loaders to manage snippet files, exact and fuzzy prefix matching, interactive selection, and rich interactive snippet session experience with dynamic tabstop visualization.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-splitjoin.html#mini.splitjoin"><code>mini.splitjoin</code></a> - split and join arguments (regions inside brackets between allowed separators). Has customizable pre and post hooks. Works inside comments.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-starter.html#mini.starter"><code>mini.starter</code></a> - minimal, fast, and flexible start screen. Displayed items are fully customizable both in terms of what they do and how they look (with reasonable defaults). Item selection can be done using prefix query with instant visual feedback.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-statusline.html#mini.statusline"><code>mini.statusline</code></a> - minimal and fast statusline. Has ability to use custom content supplied with concise function (using module’s provided section functions) along with builtin default. For full experience needs enabled <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a>, <a href="../../mini.nvim/doc/mini-git.html#mini.git"><code>mini.git</code></a>, and <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> modules (but works without any of them).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#mini.surround"><code>mini.surround</code></a> - fast and feature-rich surround plugin. Add, delete, replace, find, highlight surrounding (like pair of parenthesis, quotes, etc.). Supports dot-repeat, <code>v:count</code>, different search methods, “last”/“next” extended mappings, customization via Lua patterns or functions, and more. Has builtins for brackets, function call, tag, user prompt, and any alphanumeric/punctuation/whitespace character.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-test.html#mini.test"><code>mini.test</code></a> - framework for writing extensive Neovim plugin tests. Supports hierarchical tests, hooks, parametrization, filtering (like from current file or cursor position), screen tests, “busted-style” emulation, customizable reporters, and more. Designed to be used with provided wrapper for managing child Neovim processes.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-tabline.html#mini.tabline"><code>mini.tabline</code></a> - minimal tabline which always shows listed (see ‘buflisted’) buffers. Allows showing extra information section in case of multiple vim tabpages. For full experience needs enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module (but works without it).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-trailspace.html#mini.trailspace"><code>mini.trailspace</code></a> - automatic highlighting of trailing whitespace with functionality to remove it.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#mini.visits"><code>mini.visits</code></a> - track and reuse file system visits. Tracks data about each file/directory visit (after delay) and stores it (only) locally. This can be used to get a list of “recent”/“frequent”/“frecent” visits. Allows persistently adding labels to visits enabling flexible workflow.</p></li>
+</ul>
+<hr>
+</section>
+<section id="mini.nvim-disabling-recipes" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-disabling-recipes">Disabling recipes</h3>
+<p>Each module’s core functionality can be disabled globally or buffer-locally by creating appropriate global or buffer-scoped variables equal to <a href="https://neovim.io/doc/user/helptag.html?tag=v:true"><code>v:true</code></a>. Functionality is disabled if at least one of <a href="https://neovim.io/doc/user/helptag.html?tag=g:"><code>g:</code></a> or <a href="https://neovim.io/doc/user/helptag.html?tag=b:"><code>b:</code></a> variables is <code>v:true</code>.</p>
+<p>Variable names have the same structure: <code>{g,b}:mini*_disable</code> where <code>*</code> is module’s lowercase name. For example, <code>g:minianimate_disable</code> disables <a href="../../mini.nvim/doc/mini-animate.html#mini.animate"><code>mini.animate</code></a> globally and <code>b:minianimate_disable</code> - for current buffer. Note: in this section disabling ‘mini.animate’ is used as example; everything holds for other module variables.</p>
+<p>Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user.</p>
+<section id="mini.nvim-disabling-recipes-manualdisabling" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-disabling-recipes-manualdisabling">Manual disabling</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable globally</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">g</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable for current buffer</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Toggle (disable if enabled, enable if disabled)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">g</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span><span class="va">g</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="co">-- globally</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minianimate_disable</span> <span class="co">-- for buffer</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="mini.nvim-disabling-recipes-automateddisabling" class="level4">
+<h4 class="anchored" data-anchor-id="mini.nvim-disabling-recipes-automateddisabling">Automated disabling</h4>
+<p>Automated disabling is suggested to be done inside autocommands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable for a certain filetype (for example, "lua")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">f</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span> <span class="kw">end</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'Filetype'</span><span class="op">,</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'lua'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">f</span> <span class="op">})</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Enable only for certain filetypes (for example, "lua" and "help")</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">f</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">ft</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">filetype</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">ft</span> <span class="op">==</span> <span class="st">'lua'</span> <span class="kw">or</span> <span class="va">ft</span> <span class="op">==</span> <span class="st">'help'</span> <span class="cf">then</span> <span class="cf">return</span> <span class="cf">end</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'Filetype'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">f</span> <span class="op">})</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable in Visual mode</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">f_en</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">false</span> <span class="kw">end</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">enable_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'[vV</span><span class="sc">\x16</span><span class="st">]*:*'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">f_en</span> <span class="op">}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'ModeChanged'</span><span class="op">,</span> <span class="va">enable_opts</span><span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">f_dis</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span> <span class="kw">end</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">disable_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'*:[vV</span><span class="sc">\x16</span><span class="st">]*'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">f_dis</span> <span class="op">}</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'ModeChanged'</span><span class="op">,</span> <span class="va">disable_opts</span><span class="op">)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable in Terminal buffer</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">f</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minianimate_disable</span> <span class="op">=</span> <span class="kw">true</span> <span class="kw">end</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'TermOpen'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">f</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="mini.nvim-buffer-local-config" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-buffer-local-config">Buffer local config</h3>
+<p>Each module can be additionally configured locally to buffer by creating appropriate buffer-scoped variable with values to override. It affects only runtime options and not those used once during setup (like most <code>mappings</code>).</p>
+<p>Variable names have the same structure: <code>b:mini*_config</code> where <code>*</code> is module’s lowercase name. For example, <code>b:minianimate_config</code> can store information about how <a href="../../mini.nvim/doc/mini-animate.html#mini.animate"><code>mini.animate</code></a> will act inside current buffer. Its value should be a table with same structure as module’s <code>config</code>. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable scroll animation in current buffer</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minianimate_config</span> <span class="op">=</span> <span class="op">{</span> <span class="va">scroll</span> <span class="op">=</span> <span class="op">{</span> <span class="va">enable</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">}</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Considering high number of different scenarios and customization intentions, writing exact rules for module’s buffer local configuration is left to user. It is done in similar fashion to <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a>.</p>
+<hr>
+</section>
+<section id="mini.nvim-color-schemes" class="level3">
+<h3 class="anchored" data-anchor-id="mini.nvim-color-schemes">Color schemes</h3>
+<ul>
+<li><p>Color schemes based on <a href="../../mini.nvim/doc/mini-hues.html#mini.hues"><code>mini.hues</code></a>: <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes"><code>MiniHues-color-schemes</code></a>.</p></li>
+<li><p>Color schemes based on <a href="../../mini.nvim/doc/mini-base16.html#mini.base16"><code>mini.base16</code></a>: <a href="../../mini.nvim/doc/mini-base16.html#minibase16-color-schemes"><code>MiniBase16-color-schemes</code></a>.</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

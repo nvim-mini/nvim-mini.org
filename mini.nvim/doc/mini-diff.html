@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.diff documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.diff documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.diff documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minidiff" id="toc-minidiff" class="nav-link active" data-scroll-target="#minidiff">Module</a>
+  <ul>
+  <li><a href="#minidiff-setup" id="toc-minidiff-setup" class="nav-link" data-scroll-target="#minidiff-setup">Setup</a></li>
+  <li><a href="#minidiff-comparisons" id="toc-minidiff-comparisons" class="nav-link" data-scroll-target="#minidiff-comparisons">Comparisons</a></li>
+  <li><a href="#minidiff-highlightgroups" id="toc-minidiff-highlightgroups" class="nav-link" data-scroll-target="#minidiff-highlightgroups">Highlight groups</a></li>
+  <li><a href="#minidiff-disabling" id="toc-minidiff-disabling" class="nav-link" data-scroll-target="#minidiff-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minidiff-overview" id="toc-minidiff-overview" class="nav-link" data-scroll-target="#minidiff-overview">Overview</a>
+  <ul>
+  <li><a href="#minidiff-overview-diffsandhunks" id="toc-minidiff-overview-diffsandhunks" class="nav-link" data-scroll-target="#minidiff-overview-diffsandhunks">Diffs and hunks</a></li>
+  <li><a href="#minidiff-overview-hunkspecification" id="toc-minidiff-overview-hunkspecification" class="nav-link" data-scroll-target="#minidiff-overview-hunkspecification">Hunk specification</a></li>
+  <li><a href="#minidiff-overview-lifecycle" id="toc-minidiff-overview-lifecycle" class="nav-link" data-scroll-target="#minidiff-overview-lifecycle">Life cycle</a></li>
+  <li><a href="#minidiff-overview-overlay" id="toc-minidiff-overview-overlay" class="nav-link" data-scroll-target="#minidiff-overview-overlay">Overlay</a></li>
+  <li><a href="#minidiff-overview-mappings" id="toc-minidiff-overview-mappings" class="nav-link" data-scroll-target="#minidiff-overview-mappings">Mappings</a></li>
+  <li><a href="#minidiff-overview-buffer-localvariables" id="toc-minidiff-overview-buffer-localvariables" class="nav-link" data-scroll-target="#minidiff-overview-buffer-localvariables">Buffer-local variables</a></li>
+  </ul></li>
+  <li><a href="#minidiff.setup" id="toc-minidiff.setup" class="nav-link" data-scroll-target="#minidiff.setup">setup()</a>
+  <ul>
+  <li><a href="#minidiff.setup-parameters" id="toc-minidiff.setup-parameters" class="nav-link" data-scroll-target="#minidiff.setup-parameters">Parameters</a></li>
+  <li><a href="#minidiff.setup-usage" id="toc-minidiff.setup-usage" class="nav-link" data-scroll-target="#minidiff.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minidiff.config" id="toc-minidiff.config" class="nav-link" data-scroll-target="#minidiff.config">config</a>
+  <ul>
+  <li><a href="#minidiff.config-defaults" id="toc-minidiff.config-defaults" class="nav-link" data-scroll-target="#minidiff.config-defaults">Defaults</a></li>
+  <li><a href="#minidiff.config-view" id="toc-minidiff.config-view" class="nav-link" data-scroll-target="#minidiff.config-view">View</a></li>
+  <li><a href="#minidiff.config-source" id="toc-minidiff.config-source" class="nav-link" data-scroll-target="#minidiff.config-source">Source</a></li>
+  <li><a href="#minidiff.config-delay" id="toc-minidiff.config-delay" class="nav-link" data-scroll-target="#minidiff.config-delay">Delay</a></li>
+  <li><a href="#minidiff.config-mappings" id="toc-minidiff.config-mappings" class="nav-link" data-scroll-target="#minidiff.config-mappings">Mappings</a></li>
+  <li><a href="#minidiff.config-options" id="toc-minidiff.config-options" class="nav-link" data-scroll-target="#minidiff.config-options">Options</a></li>
+  </ul></li>
+  <li><a href="#minidiff.enable" id="toc-minidiff.enable" class="nav-link" data-scroll-target="#minidiff.enable">enable()</a>
+  <ul>
+  <li><a href="#minidiff.enable-parameters" id="toc-minidiff.enable-parameters" class="nav-link" data-scroll-target="#minidiff.enable-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.disable" id="toc-minidiff.disable" class="nav-link" data-scroll-target="#minidiff.disable">disable()</a>
+  <ul>
+  <li><a href="#minidiff.disable-parameters" id="toc-minidiff.disable-parameters" class="nav-link" data-scroll-target="#minidiff.disable-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.toggle" id="toc-minidiff.toggle" class="nav-link" data-scroll-target="#minidiff.toggle">toggle()</a>
+  <ul>
+  <li><a href="#minidiff.toggle-parameters" id="toc-minidiff.toggle-parameters" class="nav-link" data-scroll-target="#minidiff.toggle-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.toggle_overlay" id="toc-minidiff.toggle_overlay" class="nav-link" data-scroll-target="#minidiff.toggle_overlay">toggle_overlay()</a>
+  <ul>
+  <li><a href="#minidiff.toggle_overlay-parameters" id="toc-minidiff.toggle_overlay-parameters" class="nav-link" data-scroll-target="#minidiff.toggle_overlay-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.export" id="toc-minidiff.export" class="nav-link" data-scroll-target="#minidiff.export">export()</a>
+  <ul>
+  <li><a href="#minidiff.export-parameters" id="toc-minidiff.export-parameters" class="nav-link" data-scroll-target="#minidiff.export-parameters">Parameters</a></li>
+  <li><a href="#minidiff.export-return" id="toc-minidiff.export-return" class="nav-link" data-scroll-target="#minidiff.export-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minidiff.get_buf_data" id="toc-minidiff.get_buf_data" class="nav-link" data-scroll-target="#minidiff.get_buf_data">get_buf_data()</a>
+  <ul>
+  <li><a href="#minidiff.get_buf_data-parameters" id="toc-minidiff.get_buf_data-parameters" class="nav-link" data-scroll-target="#minidiff.get_buf_data-parameters">Parameters</a></li>
+  <li><a href="#minidiff.get_buf_data-return" id="toc-minidiff.get_buf_data-return" class="nav-link" data-scroll-target="#minidiff.get_buf_data-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minidiff.set_ref_text" id="toc-minidiff.set_ref_text" class="nav-link" data-scroll-target="#minidiff.set_ref_text">set_ref_text()</a>
+  <ul>
+  <li><a href="#minidiff.set_ref_text-parameters" id="toc-minidiff.set_ref_text-parameters" class="nav-link" data-scroll-target="#minidiff.set_ref_text-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.gen_source" id="toc-minidiff.gen_source" class="nav-link" data-scroll-target="#minidiff.gen_source">gen_source</a></li>
+  <li><a href="#minidiff.gen_source.git" id="toc-minidiff.gen_source.git" class="nav-link" data-scroll-target="#minidiff.gen_source.git">gen_source.git()</a>
+  <ul>
+  <li><a href="#minidiff.gen_source.git-return" id="toc-minidiff.gen_source.git-return" class="nav-link" data-scroll-target="#minidiff.gen_source.git-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minidiff.gen_source.none" id="toc-minidiff.gen_source.none" class="nav-link" data-scroll-target="#minidiff.gen_source.none">gen_source.none()</a>
+  <ul>
+  <li><a href="#minidiff.gen_source.none-return" id="toc-minidiff.gen_source.none-return" class="nav-link" data-scroll-target="#minidiff.gen_source.none-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minidiff.gen_source.save" id="toc-minidiff.gen_source.save" class="nav-link" data-scroll-target="#minidiff.gen_source.save">gen_source.save()</a>
+  <ul>
+  <li><a href="#minidiff.gen_source.save-return" id="toc-minidiff.gen_source.save-return" class="nav-link" data-scroll-target="#minidiff.gen_source.save-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minidiff.do_hunks" id="toc-minidiff.do_hunks" class="nav-link" data-scroll-target="#minidiff.do_hunks">do_hunks()</a>
+  <ul>
+  <li><a href="#minidiff.do_hunks-parameters" id="toc-minidiff.do_hunks-parameters" class="nav-link" data-scroll-target="#minidiff.do_hunks-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.goto_hunk" id="toc-minidiff.goto_hunk" class="nav-link" data-scroll-target="#minidiff.goto_hunk">goto_hunk()</a>
+  <ul>
+  <li><a href="#minidiff.goto_hunk-parameters" id="toc-minidiff.goto_hunk-parameters" class="nav-link" data-scroll-target="#minidiff.goto_hunk-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.operator" id="toc-minidiff.operator" class="nav-link" data-scroll-target="#minidiff.operator">operator()</a>
+  <ul>
+  <li><a href="#minidiff.operator-parameters" id="toc-minidiff.operator-parameters" class="nav-link" data-scroll-target="#minidiff.operator-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minidiff.textobject" id="toc-minidiff.textobject" class="nav-link" data-scroll-target="#minidiff.textobject">textobject()</a></li>
+  <li><a href="#minidiff.fail_attach" id="toc-minidiff.fail_attach" class="nav-link" data-scroll-target="#minidiff.fail_attach">fail_attach()</a>
+  <ul>
+  <li><a href="#minidiff.fail_attach-parameters" id="toc-minidiff.fail_attach-parameters" class="nav-link" data-scroll-target="#minidiff.fail_attach-parameters">Parameters</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.diff documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.diff" href="../../mini.nvim/doc/mini-diff.html#mini.diff"><b>mini.diff</b></a> Work with diff hunks</p>
+<p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
+<hr>
+<section id="minidiff" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Visualize difference between buffer text and its configurable reference interactively (updates as you type). This is done per line showing whether it is inside added, changed, or deleted part of difference (called hunk). Visualization can be with customizable colored signs or line numbers.</p></li>
+<li><p>Special toggleable overlay view with more hunk details inside text area. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay"><code>MiniDiff.toggle_overlay()</code></a>.</p></li>
+<li><p>Completely configurable per buffer source(s) of reference text used to keep it up to date and define interactions with it. Can be array of sources which are attempted to attach in order. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>. By default uses Git source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</p></li>
+<li><p>Configurable mappings to manage diff hunks:</p>
+<ul>
+<li><p>Apply and reset hunks inside region (selected visually or with a dot-repeatable operator).</p></li>
+<li><p>“Hunk range under cursor” textobject to be used as operator target.</p></li>
+<li><p>Navigate to first/previous/next/last hunk. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk"><code>MiniDiff.goto_hunk()</code></a>.</p></li>
+</ul></li>
+</ul>
+<p>What it doesn’t do:</p>
+<ul>
+<li>Provide functionality to work directly with Git outside of visualizing and staging (applying) hunks with (default) Git source. In particular, unstaging hunks is not supported. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</li>
+</ul>
+<p>Sources with more details:</p>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-overview"><code>MiniDiff-overview</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a></p></li>
+</ul>
+<section id="minidiff-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.diff').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniDiff</code> which you can use for scripting or manually (with <code>:lua MiniDiff.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minidiff_config</code> which should have same structure as <code>MiniDiff.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minidiff-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a>:</p>
+<ul>
+<li><p>Main inspiration for this module, so there are many similarities.</p></li>
+<li><p>Can display only Git hunks, while this module has extensible design.</p></li>
+<li><p>Provides more functionality to work with Git outside of hunks. This module does not (by design).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minidiff-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniDiffSignAdd</code> - “add” hunk lines visualization.</p></li>
+<li><p><code>MiniDiffSignChange</code> - “change” hunk lines visualization.</p></li>
+<li><p><code>MiniDiffSignDelete</code> - “delete” hunk lines visualization.</p></li>
+<li><p><code>MiniDiffOverAdd</code> - added buffer text shown in overlay.</p></li>
+<li><p><code>MiniDiffOverChange</code> - changed reference text shown in overlay.</p></li>
+<li><p><code>MiniDiffOverChangeBuf</code> - changed buffer text shown in overlay.</p></li>
+<li><p><code>MiniDiffOverContext</code> - context of a change shown in reference overlay.</p></li>
+<li><p><code>MiniDiffOverContextBuf</code> - context of a change shown in buffer overlay.</p></li>
+<li><p><code>MiniDiffOverDelete</code> - deleted reference text shown in overlay.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="minidiff-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-disabling">Disabling</h4>
+<p>To temporarily disable features without relying on <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a>, set <code>vim.g.minidiff_disable</code> (globally) or <code>vim.b.minidiff_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff-overview" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff-overview">Overview</h3>
+<section id="minidiff-overview-diffsandhunks" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-diffsandhunks">Diffs and hunks</h4>
+<p>The “diff” (short for “difference”) is a result of computing how two text strings differ from one another. This is done on per line basis, i.e.&nbsp;the goal is to compute sequences of lines common to both files, interspersed with groups of differing lines (called “hunks”).</p>
+<p>Although computing diff is a general concept (used on its own, in Git, etc.), this module computes difference between current text in a buffer and some reference text which is kept up to date specifically for that buffer. For example, default reference text is computed as file content in Git index. This can be customized in <code>config.source</code> (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>).</p>
+</section>
+<section id="minidiff-overview-hunkspecification" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-hunkspecification">Hunk specification</h4>
+<p><a name="minidiff-hunk-specification" href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><b>MiniDiff-hunk-specification</b></a></p>
+<p>Hunk describes two sets (one from buffer text, one - from reference) of consecutive lines which are different. In this module hunk is stored as a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;buf_start&gt;</span> <code>(number)</code> - start of hunk buffer lines. First line is 1. Can be 0 if first reference lines are deleted.</p></li>
+<li><p><span class="help-syntax-keys">&lt;buf_count&gt;</span> <code>(number)</code> - number of consecutive buffer lines. Can be 0 in case reference lines are deleted.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ref_start&gt;</span> <code>(number)</code> - start of hunk reference lines. First line is 1. Can be 0 if lines are added before first reference line.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ref_count&gt;</span> <code>(number)</code> - number of consecutive reference lines. Can be 0 in case buffer lines are added.</p></li>
+<li><p><span class="help-syntax-keys">&lt;type&gt;</span> <code>(string)</code> - hunk type. Can be one of:</p>
+<ul>
+<li><p>“add” - lines are present in buffer but absent in reference.</p></li>
+<li><p>“change” - lines are present in both buffer and reference.</p></li>
+<li><p>“delete” - lines are absent in buffer but present in reference.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minidiff-overview-lifecycle" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-lifecycle">Life cycle</h4>
+<ul>
+<li><p>When entering proper (not already enabled, valid, showing text) buffer, it is attempted to be enabled for diff processing.</p></li>
+<li><p>During enabling, attempt attaching the source. This should set up how reference text is kept up to date.</p></li>
+<li><p>On every text change, diff computation is scheduled in debounced fashion after customizable delay (200 ms by default).</p></li>
+<li><p>After the diff is computed, do the following:</p>
+<ul>
+<li><p>Update visualization based on configurable style: either by placing colored text in sign column or coloring line numbers. Colors for both styles are defined per hunk type in corresponding <code>MiniDiffSign*</code> highlight group (see <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a>) and sign text for “sign” style can be configured in <code>view.signs</code> of <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a>.</p></li>
+<li><p>Update overlay view (if it is enabled).</p></li>
+<li><p>Update <code>vim.b.minidiff_summary</code> and <code>vim.b.minidiff_summary_string</code> buffer-local variables. These can be used, for example, in statusline.</p></li>
+<li><p><a name="minidiff-update-event" href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event"><b>MiniDiff-update-event</b></a> Trigger <code>MiniDiffUpdated</code> <code>User</code> event. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a> for example of how to use it.</p></li>
+</ul></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:edit"><code>:edit</code></a> to reset (disable and re-enable) current buffer.</p></li>
+<li><p>To work with BOM bytes, set ‘bomb’ and have <code>ucs-bom</code> in ‘fileencodings’.</p></li>
+</ul>
+</section>
+<section id="minidiff-overview-overlay" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-overlay">Overlay</h4>
+<p>Along with basic visualization, there is a special view called “overlay”. Although it is meant for temporary overview of diff details and can be manually toggled via <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay"><code>MiniDiff.toggle_overlay()</code></a>, text can be changed with overlay reacting accordingly.</p>
+<p>It shows more diff details inside text area:</p>
+<ul>
+<li><p>Added buffer lines are highlighted with <code>MiniDiffOverAdd</code> highlight group.</p></li>
+<li><p>Deleted reference lines are shown as virtual lines and highlighted with <code>MiniDiffOverDelete</code> highlight group.</p></li>
+<li><p>“Change” hunks with equal number of buffer/reference lines show “word diff”. This is usually the case when <code>options.linematch</code> is enabled (as by default). Reference line is shown next to its buffer counterpart. Changed parts are highlighted with <code>MiniDiffOverChange</code> and <code>MiniDiffOverChangeBuf</code> in reference and buffer lines. The rest of lines have <code>MiniDiffOverContext</code> and <code>MiniDiffOverContextBuf</code> highlighting.</p>
+<p>Change with unequal number of buffer/reference lines is shown with reference part as virtual lines highlighted with <code>MiniDiffOverChange</code> group. Corresponding buffer lines are treated as context for the change and are highlighted with <code>MiniDiffOverContextBuf</code> group.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Word diff has non-zero context width. This means if changed characters are close enough, whole range between them is also colored. This usually reduces visual noise.</p></li>
+<li><p>Virtual lines above line 1 (like deleted or changed lines) need manual scroll to become visible (with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y"><code>CTRL-Y</code></a>).</p></li>
+</ul>
+</section>
+<section id="minidiff-overview-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-mappings">Mappings</h4>
+<p>This module provides mappings for common actions with diffs, like:</p>
+<ul>
+<li><p>Apply and reset hunks.</p></li>
+<li><p>“Hunk range under cursor” textobject.</p></li>
+<li><p>Go to first/previous/next/last hunk range.</p></li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><p><code>vip</code> followed by <code>gh</code> / <code>gH</code> applies/resets hunks inside current paragraph. Same can be achieved in operator form <code>ghip</code> / <code>gHip</code>, which has the advantage of being dot-repeatable (see <a href="https://neovim.io/doc/user/helptag.html?tag=single-repeat"><code>single-repeat</code></a>).</p></li>
+<li><p><code>gh_</code> / <code>gH_</code> applies/resets current line (even if it is not a full hunk).</p></li>
+<li><p><code>ghgh</code> / <code>gHgh</code> applies/resets hunk range under cursor.</p></li>
+<li><p><code>dgh</code> deletes hunk range under cursor.</p></li>
+<li><p><code>[H</code> / <code>[h</code> / <code>]h</code> / <code>]H</code> navigate cursor to the first / previous / next / last hunk range of the current buffer.</p></li>
+</ul>
+<p>Mappings for some functionality are assumed to be done manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator"><code>MiniDiff.operator()</code></a>.</p>
+</section>
+<section id="minidiff-overview-buffer-localvariables" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff-overview-buffer-localvariables">Buffer-local variables</h4>
+<p><a name="minidiff-diff-summary" href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><b>MiniDiff-diff-summary</b></a></p>
+<p>Each enabled buffer has the following buffer-local variables which can be used in custom statusline to show an overview of hunks in current buffer:</p>
+<ul>
+<li><p><code>vim.b.minidiff_summary</code> is a table with the following fields:</p>
+<ul>
+<li><p><code>source_name</code> - name of the active source.</p></li>
+<li><p><code>n_ranges</code> - number of hunk ranges (sequences of contiguous hunks).</p></li>
+<li><p><code>add</code> - number of added lines.</p></li>
+<li><p><code>change</code> - number of changed lines.</p></li>
+<li><p><code>delete</code> - number of deleted lines.</p></li>
+</ul></li>
+<li><p><code>vim.b.minidiff_summary_string</code> is a string representation of summary with a fixed format. It is expected to be used as is. To achieve different formatting, use <code>vim.b.minidiff_summary</code> to construct one. The best way to do this is by overriding <code>vim.b.minidiff_summary_string</code> in the callback for <a href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event"><code>MiniDiff-update-event</code></a> event:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">format_summary</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">summary</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">data</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minidiff_summary</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">t</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">summary</span><span class="op">.</span><span class="va">add</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="fu">table.insert</span><span class="op">(</span><span class="va">t</span><span class="op">,</span> <span class="st">'+'</span> <span class="op">..</span> <span class="va">summary</span><span class="op">.</span><span class="va">add</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">summary</span><span class="op">.</span><span class="va">change</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="fu">table.insert</span><span class="op">(</span><span class="va">t</span><span class="op">,</span> <span class="st">'~'</span> <span class="op">..</span> <span class="va">summary</span><span class="op">.</span><span class="va">change</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">summary</span><span class="op">.</span><span class="va">delete</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="fu">table.insert</span><span class="op">(</span><span class="va">t</span><span class="op">,</span> <span class="st">'-'</span> <span class="op">..</span> <span class="va">summary</span><span class="op">.</span><span class="va">delete</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">data</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minidiff_summary_string</span> <span class="op">=</span> <span class="fu">table.concat</span><span class="op">(</span><span class="va">t</span><span class="op">,</span> <span class="st">' '</span><span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">au_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniDiffUpdated'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">format_summary</span> <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="va">au_opts</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minidiff.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.setup">setup()</h3>
+<p align="center">
+<code>MiniDiff.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minidiff.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a>.</p>
+</section>
+<section id="minidiff.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minidiff.config" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.config">config</h3>
+<p align="center">
+<code>MiniDiff.config</code>
+</p>
+<section id="minidiff.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniDiff</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Options for how hunks are visualized</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">view</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Visualization style. Possible values are 'sign' and 'number'.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: 'number' if line numbers are enabled, 'sign' otherwise.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">style</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">go</span><span class="op">.</span><span class="va">number</span> <span class="kw">and</span> <span class="st">'number'</span> <span class="kw">or</span> <span class="st">'sign'</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Signs used for hunks with 'sign' view</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">signs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">change</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">delete</span> <span class="op">=</span> <span class="st">'▒'</span> <span class="op">},</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Priority of used visualization extmarks</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">priority</span> <span class="op">=</span> <span class="dv">199</span><span class="op">,</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Source(s) for how reference text is computed/updated/etc</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Uses content from Git index by default</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">source</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous processes</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait before update following every text change</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Apply hunks inside a visual/operator region</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">apply</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Reset hunks inside a visual/operator region</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span> <span class="op">=</span> <span class="st">'gH'</span><span class="op">,</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Hunk range textobject to be used inside operator</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Works also in Visual mode if mapping differs from apply and reset</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">textobject</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Go to hunk range in corresponding direction</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_first</span> <span class="op">=</span> <span class="st">'[H'</span><span class="op">,</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_prev</span> <span class="op">=</span> <span class="st">'[h'</span><span class="op">,</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_next</span> <span class="op">=</span> <span class="st">']h'</span><span class="op">,</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_last</span> <span class="op">=</span> <span class="st">']H'</span><span class="op">,</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Various options</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Diff algorithm. See `:h vim.diff()`.</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">algorithm</span> <span class="op">=</span> <span class="st">'histogram'</span><span class="op">,</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use "indent heuristic". See `:h vim.diff()`.</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">indent_heuristic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- The amount of second-stage diff to align lines</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    <span class="va">linematch</span> <span class="op">=</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to wrap around edges during hunk navigation</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="va">wrap_goto</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minidiff.config-view" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-view">View</h4>
+<p><code>config.view</code> contains settings for how diff hunks are visualized. Example of using custom signs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">view</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">style</span> <span class="op">=</span> <span class="st">'sign'</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">signs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add</span> <span class="op">=</span> <span class="st">'+'</span><span class="op">,</span> <span class="va">change</span> <span class="op">=</span> <span class="st">'~'</span><span class="op">,</span> <span class="va">delete</span> <span class="op">=</span> <span class="st">'-'</span> <span class="op">},</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>view.style</code> is a string defining visualization style. Can be one of “sign” (as a colored sign in a <a href="https://neovim.io/doc/user/helptag.html?tag=sign-column"><code>sign-column</code></a>) or “number” (colored line number). Default: “number” if <a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a> option is enabled, “sign” otherwise. Note: with “sign” style it is better to have <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'"><code>'signcolumn'</code></a> always shown.</p>
+<p><code>view.signs</code> is a table with one or two character strings used as signs for corresponding (“add”, “change”, “delete”) hunks. Default: all hunks use “▒” character resulting in a contiguous colored lines.</p>
+<p><code>view.priority</code> is a number with priority used for visualization and overlay <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a>. Default: 199 which is one less than <code>user</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities"><code>vim.hl.priorities</code></a> (on Neovim&lt;0.11 see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities"><code>vim.hl.priorities</code></a>) to have higher priority than automated extmarks but not as in user enabled ones.</p>
+</section>
+<section id="minidiff.config-source" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-source">Source</h4>
+<p><a name="minidiff-source-specification" href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><b>MiniDiff-source-specification</b></a></p>
+<p><code>config.source</code> is a table with single source or array of them. Single source defines how reference text is managed in a particular buffer. Sources in array are attempted to attach in order; call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a> if none attaches.</p>
+<p>A single source table can have the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;attach&gt;</span> <code>(function)</code> - callable which defines how and when reference text is updated inside a particular buffer. It is used inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable"><code>MiniDiff.enable()</code></a> with a buffer identifier as a single argument.</p>
+<p>Should execute logic which results into calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> when reference text for buffer needs to be updated. Like inside callback for an <a href="https://neovim.io/doc/user/helptag.html?tag=autocommand"><code>autocommand</code></a> or file watcher (see <a href="https://neovim.io/doc/user/helptag.html?tag=watch-file"><code>watch-file</code></a>).</p>
+<p>For example, default Git source watches when “.git/index” file is changed and computes reference text as the one from Git index for current file.</p>
+<p>Can return <code>false</code> to indicate that attach has failed. If attach fail can not be inferred immediately (for example, due to asynchronous execution), should explicitly call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.fail_attach"><code>MiniDiff.fail_attach()</code></a> with appropriate arguments. This is important to properly process array of sources.</p>
+<p>No default value, should be always supplied.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string|nil)</code> - source name. String <code>"unknown"</code> is used if not supplied.</p></li>
+<li><p><span class="help-syntax-keys">&lt;detach&gt;</span> <code>(function|nil)</code> - callable with cleanup action to be done when buffer is disabled. It is called inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a> with a buffer identifier as a single argument.</p>
+<p>If not supplied, nothing is done during detaching.</p></li>
+<li><p><span class="help-syntax-keys">&lt;apply_hunks&gt;</span> <code>(function|nil)</code> - callable which defines how hunks are applied. It is called with buffer identifier as first argument and array of hunks (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a>) as second. It should eventually update reference text: either by explicitly calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> or performing action triggering its call.</p>
+<p>For example, default Git source computes patch based on the hunks and applies it inside file’s git repo.</p>
+<p>If not supplied, applying hunks throws an error.</p></li>
+</ul>
+<p>Default: a single <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</p>
+</section>
+<section id="minidiff.config-delay" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-delay">Delay</h4>
+<p><code>config.delay</code> contains settings for delays in asynchronous processes.</p>
+<p><code>delay.text_change</code> is a number (in ms) defining how long to wait after latest text change (in debounced fashion) before updating diff and visualization. Default: 200.</p>
+</section>
+<section id="minidiff.config-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-mappings">Mappings</h4>
+<p><code>config.mappings</code> contains keys which are mapped during <a href="../../mini.nvim/doc/mini-diff.html#minidiff.setup"><code>MiniDiff.setup()</code></a>.</p>
+<p><code>mappings.apply</code> keys can be used to apply hunks inside visual/operator region. What exactly “apply hunks” means depends on the source and its <code>apply_hunks()</code>. For example, in default Git source it means stage hunks.</p>
+<p><code>mappings.reset</code> keys can be used to reset hunks inside visual/operator region. Reset means replacing buffer text in region with corresponding reference text.</p>
+<p><code>mappings.textobject</code> keys define “hunk range under cursor” textobject which can be used in Operator-pending mode as target for operator (like <a href="https://neovim.io/doc/user/helptag.html?tag=d"><code>d</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=y"><code>y</code></a>, apply/reset hunks, etc.). It is also set up in Visual mode if keys do not conflict with <code>mappings.apply</code> and <code>mappings.reset</code>. “Hunk range” is used in a sense that contiguous (back-to-back) hunks are considered as parts of a same hunk range.</p>
+<p><code>mappings.goto_first</code> / <code>mappings.goto_prev</code> / <code>mappings.goto_next</code> / <code>mappings.goto_last</code> keys can be used to navigate to first / previous / next / last hunk range in the current buffer.</p>
+</section>
+<section id="minidiff.config-options" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.config-options">Options</h4>
+<p><code>config.options</code> contains various customization options.</p>
+<p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()"><code>vim.diff()</code></a> for possible values.</p>
+<p><code>options.indent_heuristic</code> is a boolean defining whether to use indent heuristic for a (possibly) more naturally aligned hunks. Default: <code>true</code>.</p>
+<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()"><code>vim.diff()</code></a> and ‘diffopt’ for more details.</p>
+<p><code>options.wrap_goto</code> is a boolean indicating whether to wrap around edges during hunk navigation (with <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk"><code>MiniDiff.goto_hunk()</code></a> or <code>goto_*</code> mappings). Like if cursor is after the last hunk, going “next” will put cursor on the first hunk. Default: <code>false</code>.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.enable" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.enable">enable()</h3>
+<p align="center">
+<code>MiniDiff.enable</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Enable diff processing in buffer</p>
+<section id="minidiff.enable-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.enable-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.disable" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.disable">disable()</h3>
+<p align="center">
+<code>MiniDiff.disable</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Disable diff processing in buffer</p>
+<section id="minidiff.disable-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.disable-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.toggle" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.toggle">toggle()</h3>
+<p align="center">
+<code>MiniDiff.toggle</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Toggle diff processing in buffer</p>
+<p>Enable if disabled, disable if enabled.</p>
+<section id="minidiff.toggle-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.toggle-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.toggle_overlay" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.toggle_overlay">toggle_overlay()</h3>
+<p align="center">
+<code>MiniDiff.toggle_overlay</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Toggle overlay view in buffer</p>
+<section id="minidiff.toggle_overlay-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.toggle_overlay-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.export" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.export">export()</h3>
+<p align="center">
+<code>MiniDiff.export</code>(<span class="help-syntax-special">{format}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Export hunks</p>
+<p>Get and convert hunks from current/all buffers. Example of using it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set quickfix list from all available hunks</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>setqflist<span class="op">(</span><span class="va">MiniDiff</span><span class="op">.</span>export<span class="op">(</span><span class="st">'qf'</span><span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minidiff.export-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.export-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{format}</span> <code>(string)</code> Output format. Currently only <code>'qf'</code> value is supported.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - scope defining from which buffers to use hunks. One of “all” (all enabled buffers) or “current”.</li>
+</ul>
+</section>
+<section id="minidiff.export-return" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.export-return">Return</h4>
+<p><code>(table)</code> Result of export. Depends on the <code>format</code>:</p>
+<ul>
+<li>If “qf”, an array compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=setqflist()"><code>setqflist()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=setloclist()"><code>setloclist()</code></a>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minidiff.get_buf_data" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.get_buf_data">get_buf_data()</h3>
+<p align="center">
+<code>MiniDiff.get_buf_data</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Get buffer data</p>
+<section id="minidiff.get_buf_data-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.get_buf_data-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+</section>
+<section id="minidiff.get_buf_data-return" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.get_buf_data-return">Return</h4>
+<p><code>(table|nil)</code> Table with buffer diff data or <code>nil</code> if buffer is not enabled. Table has the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;config&gt;</span> <code>(table)</code> - config used for this particular buffer.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hunks&gt;</span> <code>(table)</code> - array of hunks. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;overlay&gt;</span> <code>(boolean)</code> - whether an overlay view is shown.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ref_text&gt;</span> <code>(string|nil)</code> - current value of reference text. Lines are separated with newline character (<code>'\n'</code>). Can be <code>nil</code> indicating that reference text was not yet set (for example, if source did not yet react).</p></li>
+<li><p><span class="help-syntax-keys">&lt;summary&gt;</span> <code>(table)</code> - overall diff summary. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minidiff.set_ref_text" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.set_ref_text">set_ref_text()</h3>
+<p align="center">
+<code>MiniDiff.set_ref_text</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{text}</span>)
+</p>
+<p>Set reference text for the buffer</p>
+<p>Note: this will call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable"><code>MiniDiff.enable()</code></a> for target buffer if it is not already enabled.</p>
+<section id="minidiff.set_ref_text-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.set_ref_text-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<p><span class="help-syntax-special">{text}</span> <code>(string|table)</code> New reference text. Either a string with <code>\n</code> used to separate lines or array of lines. Use empty table to unset current reference text (results into no hunks shown). Default: <code>{}</code>. Note: newline character is appended at the end (if it is not there already) for better diffs.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.gen_source" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.gen_source">gen_source</h3>
+<p align="center">
+<code>MiniDiff.gen_source</code>
+</p>
+<p>Generate builtin sources</p>
+<p>This is a table with function elements. Call to actually get source. Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">diff</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Single `save` source</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">diff</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="va">diff</span><span class="op">.</span><span class="va">gen_source</span><span class="op">.</span>save<span class="op">()</span> <span class="op">})</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Multiple sources (attempted to attach in order)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="va">diff</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="op">{</span> <span class="va">diff</span><span class="op">.</span><span class="va">gen_source</span><span class="op">.</span>git<span class="op">(),</span> <span class="va">diff</span><span class="op">.</span><span class="va">gen_source</span><span class="op">.</span>save<span class="op">()</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="minidiff.gen_source.git" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.gen_source.git">gen_source.git()</h3>
+<p align="center">
+<code>MiniDiff.gen_source.git</code>()
+</p>
+<p>Git source</p>
+<p>Default source. Uses file text from Git index as reference. This results in:</p>
+<ul>
+<li><p>“Add” hunks represent text present in current buffer, but not in index.</p></li>
+<li><p>“Change” hunks represent modified text already present in index.</p></li>
+<li><p>“Delete” hunks represent text deleted from index.</p></li>
+</ul>
+<p>Applying hunks means staging, a.k.a adding to index. Notes:</p>
+<ul>
+<li><p>Requires Git version at least 2.38.0.</p></li>
+<li><p>There is no capability for unstaging hunks. Use full Git client for that.</p></li>
+</ul>
+<section id="minidiff.gen_source.git-return" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.gen_source.git-return">Return</h4>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.gen_source.none" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.gen_source.none">gen_source.none()</h3>
+<p align="center">
+<code>MiniDiff.gen_source.none</code>()
+</p>
+<p>“Do nothing” source</p>
+<p>Allows buffers to be enabled while not setting any reference text. Use this if the goal is to rely on manual <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> calls.</p>
+<section id="minidiff.gen_source.none-return" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.gen_source.none-return">Return</h4>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.gen_source.save" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.gen_source.save">gen_source.save()</h3>
+<p align="center">
+<code>MiniDiff.gen_source.save</code>()
+</p>
+<p>Latest save source</p>
+<p>Uses text at latest save as the reference. This results into diff showing difference after the latest save.</p>
+<section id="minidiff.gen_source.save-return" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.gen_source.save-return">Return</h4>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.do_hunks" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.do_hunks">do_hunks()</h3>
+<p align="center">
+<code>MiniDiff.do_hunks</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{action}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Perform action on hunks in region</p>
+<p>Compute hunks inside a target region (even for hunks only partially inside it) and perform apply/reset/yank operation on them.</p>
+<p>The “yank” action yanks all reference lines of target hunks into a specified register (should be one of <a href="https://neovim.io/doc/user/helptag.html?tag=registers"><code>registers</code></a>).</p>
+<p>Notes:</p>
+<ul>
+<li><p>Whether hunk is inside a region is computed based on position of its buffer lines.</p></li>
+<li><p>If “change” or “delete” is only partially inside a target region, all reference lines are used in computed “intersection” hunk.</p></li>
+</ul>
+<p>Used directly in <code>config.mappings.apply</code> and <code>config.mappings.reset</code>. Usually there is no need to use this function manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator"><code>MiniDiff.operator()</code></a> for how to set up a mapping for “yank”.</p>
+<section id="minidiff.do_hunks-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.do_hunks-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
+<p><span class="help-syntax-special">{action}</span> <code>(string)</code> One of “apply”, “reset”, “yank”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;line_start&gt;</span> <code>(number)</code> - start line of the region. Default: 1.</p></li>
+<li><p><span class="help-syntax-keys">&lt;line_end&gt;</span> <code>(number)</code> - start line of the region. Default: last buffer line.</p></li>
+<li><p><span class="help-syntax-keys">&lt;register&gt;</span> <code>(string)</code> - register to yank reference lines into. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:register"><code>v:register</code></a>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minidiff.goto_hunk" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.goto_hunk">goto_hunk()</h3>
+<p align="center">
+<code>MiniDiff.goto_hunk</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Go to hunk range in current buffer</p>
+<section id="minidiff.goto_hunk-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.goto_hunk-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “prev”, “next”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;line_start&gt;</span> <code>(number)</code> - Line number to start from for directions “prev” and “next”. Default: cursor line.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>options.wrap</code> value of the config.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minidiff.operator" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.operator">operator()</h3>
+<p align="center">
+<code>MiniDiff.operator</code>(<span class="help-syntax-special">{mode}</span>)
+</p>
+<p>Perform action over region</p>
+<p>Perform action over region defined by marks. Used in mappings.</p>
+<p>Example of a mapping to yank reference lines of hunk range under cursor (assuming default ‘config.mappings.textobject’):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="va">MiniDiff</span><span class="op">.</span>operator<span class="op">(</span><span class="st">'yank'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'gh'</span> <span class="kw">end</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'ghy'</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">expr</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minidiff.operator-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.operator-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> One of “apply”, “reset”, “yank”, or the ones used in <a href="https://neovim.io/doc/user/helptag.html?tag=g@"><code>g@</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minidiff.textobject" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.textobject">textobject()</h3>
+<p align="center">
+<code>MiniDiff.textobject</code>()
+</p>
+<p>Select hunk range textobject</p>
+<p>Selects all contiguous lines adjacent to cursor line which are in any (not necessarily same) hunk (if cursor line itself is in hunk). Used in default mappings.</p>
+<hr>
+</section>
+<section id="minidiff.fail_attach" class="level3">
+<h3 class="anchored" data-anchor-id="minidiff.fail_attach">fail_attach()</h3>
+<p align="center">
+<code>MiniDiff.fail_attach</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Indicate source attach fail</p>
+<p>Try to attach next source; if there is none - call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a>.</p>
+<section id="minidiff.fail_attach-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minidiff.fail_attach-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(integer)</code> Buffer identifier for which attach has failed.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

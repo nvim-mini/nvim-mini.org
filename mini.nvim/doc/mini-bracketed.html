@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.bracketed documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.bracketed documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.bracketed documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minibracketed" id="toc-minibracketed" class="nav-link active" data-scroll-target="#minibracketed">Module</a>
+  <ul>
+  <li><a href="#minibracketed-setup" id="toc-minibracketed-setup" class="nav-link" data-scroll-target="#minibracketed-setup">Setup</a></li>
+  <li><a href="#minibracketed-comparisons" id="toc-minibracketed-comparisons" class="nav-link" data-scroll-target="#minibracketed-comparisons">Comparisons</a></li>
+  <li><a href="#minibracketed-disabling" id="toc-minibracketed-disabling" class="nav-link" data-scroll-target="#minibracketed-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.setup" id="toc-minibracketed.setup" class="nav-link" data-scroll-target="#minibracketed.setup">setup()</a>
+  <ul>
+  <li><a href="#minibracketed.setup-parameters" id="toc-minibracketed.setup-parameters" class="nav-link" data-scroll-target="#minibracketed.setup-parameters">Parameters</a></li>
+  <li><a href="#minibracketed.setup-usage" id="toc-minibracketed.setup-usage" class="nav-link" data-scroll-target="#minibracketed.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.config" id="toc-minibracketed.config" class="nav-link" data-scroll-target="#minibracketed.config">config</a>
+  <ul>
+  <li><a href="#minibracketed.config-defaults" id="toc-minibracketed.config-defaults" class="nav-link" data-scroll-target="#minibracketed.config-defaults">Defaults</a></li>
+  <li><a href="#minibracketed.config-options" id="toc-minibracketed.config-options" class="nav-link" data-scroll-target="#minibracketed.config-options">Options</a>
+  <ul>
+  <li><a href="#minibracketed.config-options-suffix" id="toc-minibracketed.config-options-suffix" class="nav-link" data-scroll-target="#minibracketed.config-options-suffix">Suffix</a></li>
+  <li><a href="#minibracketed.config-options-options" id="toc-minibracketed.config-options-options" class="nav-link" data-scroll-target="#minibracketed.config-options-options">Options</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#minibracketed.buffer" id="toc-minibracketed.buffer" class="nav-link" data-scroll-target="#minibracketed.buffer">buffer()</a>
+  <ul>
+  <li><a href="#minibracketed.buffer-parameters" id="toc-minibracketed.buffer-parameters" class="nav-link" data-scroll-target="#minibracketed.buffer-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.comment" id="toc-minibracketed.comment" class="nav-link" data-scroll-target="#minibracketed.comment">comment()</a>
+  <ul>
+  <li><a href="#minibracketed.comment-parameters" id="toc-minibracketed.comment-parameters" class="nav-link" data-scroll-target="#minibracketed.comment-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.conflict" id="toc-minibracketed.conflict" class="nav-link" data-scroll-target="#minibracketed.conflict">conflict()</a>
+  <ul>
+  <li><a href="#minibracketed.conflict-parameters" id="toc-minibracketed.conflict-parameters" class="nav-link" data-scroll-target="#minibracketed.conflict-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.diagnostic" id="toc-minibracketed.diagnostic" class="nav-link" data-scroll-target="#minibracketed.diagnostic">diagnostic()</a>
+  <ul>
+  <li><a href="#minibracketed.diagnostic-parameters" id="toc-minibracketed.diagnostic-parameters" class="nav-link" data-scroll-target="#minibracketed.diagnostic-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.file" id="toc-minibracketed.file" class="nav-link" data-scroll-target="#minibracketed.file">file()</a>
+  <ul>
+  <li><a href="#minibracketed.file-parameters" id="toc-minibracketed.file-parameters" class="nav-link" data-scroll-target="#minibracketed.file-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.indent" id="toc-minibracketed.indent" class="nav-link" data-scroll-target="#minibracketed.indent">indent()</a>
+  <ul>
+  <li><a href="#minibracketed.indent-parameters" id="toc-minibracketed.indent-parameters" class="nav-link" data-scroll-target="#minibracketed.indent-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.jump" id="toc-minibracketed.jump" class="nav-link" data-scroll-target="#minibracketed.jump">jump()</a>
+  <ul>
+  <li><a href="#minibracketed.jump-parameters" id="toc-minibracketed.jump-parameters" class="nav-link" data-scroll-target="#minibracketed.jump-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.location" id="toc-minibracketed.location" class="nav-link" data-scroll-target="#minibracketed.location">location()</a>
+  <ul>
+  <li><a href="#minibracketed.location-parameters" id="toc-minibracketed.location-parameters" class="nav-link" data-scroll-target="#minibracketed.location-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.oldfile" id="toc-minibracketed.oldfile" class="nav-link" data-scroll-target="#minibracketed.oldfile">oldfile()</a>
+  <ul>
+  <li><a href="#minibracketed.oldfile-parameters" id="toc-minibracketed.oldfile-parameters" class="nav-link" data-scroll-target="#minibracketed.oldfile-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.quickfix" id="toc-minibracketed.quickfix" class="nav-link" data-scroll-target="#minibracketed.quickfix">quickfix()</a>
+  <ul>
+  <li><a href="#minibracketed.quickfix-parameters" id="toc-minibracketed.quickfix-parameters" class="nav-link" data-scroll-target="#minibracketed.quickfix-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.treesitter" id="toc-minibracketed.treesitter" class="nav-link" data-scroll-target="#minibracketed.treesitter">treesitter()</a>
+  <ul>
+  <li><a href="#minibracketed.treesitter-parameters" id="toc-minibracketed.treesitter-parameters" class="nav-link" data-scroll-target="#minibracketed.treesitter-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.undo" id="toc-minibracketed.undo" class="nav-link" data-scroll-target="#minibracketed.undo">undo()</a>
+  <ul>
+  <li><a href="#minibracketed.undo-parameters" id="toc-minibracketed.undo-parameters" class="nav-link" data-scroll-target="#minibracketed.undo-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.register_undo_state" id="toc-minibracketed.register_undo_state" class="nav-link" data-scroll-target="#minibracketed.register_undo_state">register_undo_state()</a></li>
+  <li><a href="#minibracketed.window" id="toc-minibracketed.window" class="nav-link" data-scroll-target="#minibracketed.window">window()</a>
+  <ul>
+  <li><a href="#minibracketed.window-parameters" id="toc-minibracketed.window-parameters" class="nav-link" data-scroll-target="#minibracketed.window-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.yank" id="toc-minibracketed.yank" class="nav-link" data-scroll-target="#minibracketed.yank">yank()</a>
+  <ul>
+  <li><a href="#minibracketed.yank-latestputregion" id="toc-minibracketed.yank-latestputregion" class="nav-link" data-scroll-target="#minibracketed.yank-latestputregion">Latest put region</a></li>
+  <li><a href="#minibracketed.yank-parameters" id="toc-minibracketed.yank-parameters" class="nav-link" data-scroll-target="#minibracketed.yank-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.register_put_region" id="toc-minibracketed.register_put_region" class="nav-link" data-scroll-target="#minibracketed.register_put_region">register_put_region()</a>
+  <ul>
+  <li><a href="#minibracketed.register_put_region-parameters" id="toc-minibracketed.register_put_region-parameters" class="nav-link" data-scroll-target="#minibracketed.register_put_region-parameters">Parameters</a></li>
+  <li><a href="#minibracketed.register_put_region-return" id="toc-minibracketed.register_put_region-return" class="nav-link" data-scroll-target="#minibracketed.register_put_region-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minibracketed.advance" id="toc-minibracketed.advance" class="nav-link" data-scroll-target="#minibracketed.advance">advance()</a>
+  <ul>
+  <li><a href="#minibracketed.advance-parameters" id="toc-minibracketed.advance-parameters" class="nav-link" data-scroll-target="#minibracketed.advance-parameters">Parameters</a></li>
+  <li><a href="#minibracketed.advance-return" id="toc-minibracketed.advance-return" class="nav-link" data-scroll-target="#minibracketed.advance-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.bracketed documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.bracketed" href="../../mini.nvim/doc/mini-bracketed.html#mini.bracketed"><b>mini.bracketed</b></a> Go forward/backward with square brackets</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minibracketed" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Configurable Lua functions to go forward/backward to a certain target. Each function can be customized with:</p>
+<ul>
+<li><p>Direction. One of “forward”, “backward”, “first” (forward starting from first one), “last” (backward starting from last one).</p></li>
+<li><p>Number of times to go.</p></li>
+<li><p>Whether to wrap on edges (going forward on last one goes to first).</p></li>
+<li><p>Some other target specific options.</p></li>
+</ul></li>
+<li><p>Mappings using square brackets. They are created using configurable target suffix and can be selectively disabled.</p>
+<p>Each mapping supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat) modes are supported.</p>
+<p>Using <code>lower-suffix</code> and <code>upper-suffix</code> (lower and upper case suffix) for a single target the following mappings are created:</p>
+<ul>
+<li><p><code>[</code> + <code>upper-suffix</code> : go first.</p></li>
+<li><p><code>[</code> + <code>lower-suffix</code> : go backward.</p></li>
+<li><p><code>]</code> + <code>lower-suffix</code> : go forward.</p></li>
+<li><p><code>]</code> + <code>upper-suffix</code> : go last.</p></li>
+</ul></li>
+<li><p>Supported targets (for more information see help for corresponding Lua function):</p></li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>Target</code></th>
+<th><code>Mappings</code></th>
+<th style="text-align: right;"><code>Lua function</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Buffer</td>
+<td><code>[B</code> <code>[b</code> <code>]b</code> <code>]B</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer"><code>MiniBracketed.buffer()</code></a></td>
+</tr>
+<tr class="even">
+<td>Comment block</td>
+<td><code>[C</code> <code>[c</code> <code>]c</code> <code>]C</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.comment"><code>MiniBracketed.comment()</code></a></td>
+</tr>
+<tr class="odd">
+<td>Conflict marker</td>
+<td><code>[X</code> <code>[x</code> <code>]x</code> <code>]X</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.conflict"><code>MiniBracketed.conflict()</code></a></td>
+</tr>
+<tr class="even">
+<td>Diagnostic</td>
+<td><code>[D</code> <code>[d</code> <code>]d</code> <code>]D</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.diagnostic"><code>MiniBracketed.diagnostic()</code></a></td>
+</tr>
+<tr class="odd">
+<td>File on disk</td>
+<td><code>[F</code> <code>[f</code> <code>]f</code> <code>]F</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.file"><code>MiniBracketed.file()</code></a></td>
+</tr>
+<tr class="even">
+<td>Indent change</td>
+<td><code>[I</code> <code>[i</code> <code>]i</code> <code>]I</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent"><code>MiniBracketed.indent()</code></a></td>
+</tr>
+<tr class="odd">
+<td>Jump inside current buffer</td>
+<td><code>[J</code> <code>[j</code> <code>]j</code> <code>]J</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.jump"><code>MiniBracketed.jump()</code></a></td>
+</tr>
+<tr class="even">
+<td>Location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list"><code>location-list</code></a></td>
+<td><code>[L</code> <code>[l</code> <code>]l</code> <code>]L</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.location"><code>MiniBracketed.location()</code></a></td>
+</tr>
+<tr class="odd">
+<td>Old files</td>
+<td><code>[O</code> <code>[o</code> <code>]o</code> <code>]O</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.oldfile"><code>MiniBracketed.oldfile()</code></a></td>
+</tr>
+<tr class="even">
+<td>Quickfix entry from <a href="https://neovim.io/doc/user/helptag.html?tag=Quickfix"><code>Quickfix</code></a></td>
+<td><code>[Q</code> <code>[q</code> <code>]q</code> <code>]Q</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.quickfix"><code>MiniBracketed.quickfix()</code></a></td>
+</tr>
+<tr class="odd">
+<td>Tree-sitter node and parents</td>
+<td><code>[T</code> <code>[t</code> <code>]t</code> <code>]T</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.treesitter"><code>MiniBracketed.treesitter()</code></a></td>
+</tr>
+<tr class="even">
+<td>Undo from linear history</td>
+<td><code>[U</code> <code>[u</code> <code>]u</code> <code>]U</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.undo"><code>MiniBracketed.undo()</code></a></td>
+</tr>
+<tr class="odd">
+<td>Window in current tab</td>
+<td><code>[W</code> <code>[w</code> <code>]w</code> <code>]W</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.window"><code>MiniBracketed.window()</code></a></td>
+</tr>
+<tr class="even">
+<td>Yank entry over put region</td>
+<td><code>[Y</code> <code>[y</code> <code>]y</code> <code>]Y</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank"><code>MiniBracketed.yank()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li>The <code>undo</code> target remaps <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> keys to register undo state after undo and redo respectively. If this conflicts with your setup, either disable <code>undo</code> target or make your remaps after calling <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a>. To use <code>undo</code> target, remap your undo/redo keys to call <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state"><code>MiniBracketed.register_undo_state()</code></a> after the action.</li>
+</ul>
+<section id="minibracketed-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.bracketed').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBracketed</code> which you can use for scripting or manually (with <code>:lua MiniBracketed.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config"><code>MiniBracketed.config</code></a> for available config settings.</p>
+<p>You can override runtime config settings (like target options) locally to buffer inside <code>vim.b.minibracketed_config</code> which should have same structure as <code>MiniBracketed.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minibracketed-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/tpope/vim-unimpaired">tpope/vim-unimpaired</a>:</p>
+<ul>
+<li><p>Supports buffer, conflict, file, location, and quickfix targets mostly via built-in commands (like <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious"><code>:bprevious</code></a>, etc.) without configuration.</p></li>
+<li><p>Supports files from argument list and tags. This module does not.</p></li>
+<li><p>Doesn’t support most other this module’s targets (comment, indent, …).</p></li>
+</ul></li>
+<li><p><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope"><code>mini.indentscope</code></a>:</p>
+<ul>
+<li><p>Target <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent"><code>MiniBracketed.indent()</code></a> target can go to “first” and “last” indent change. It also can go not only to line with smaller indent, but also bigger or different one.</p></li>
+<li><p>Mappings from ‘mini.indentscope’ have more flexibility in computation of indent scope, like how to treat empty lines near border or whether to compute indent at cursor.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minibracketed-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minibracketed_disable</code> (globally) or <code>vim.b.minibracketed_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minibracketed.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.setup">setup()</h3>
+<p align="center">
+<code>MiniBracketed.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minibracketed.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config"><code>MiniBracketed.config</code></a>.</p>
+</section>
+<section id="minibracketed.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minibracketed.config" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.config">config</h3>
+<p align="center">
+<code>MiniBracketed.config</code>
+</p>
+<section id="minibracketed.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniBracketed</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- First-level elements are tables describing behavior of a target:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - &lt;suffix&gt; - single character suffix. Used after `[` / `]` in mappings.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">--   For example, with `b` creates `[B`, `[b`, `]b`, `]B` mappings.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">--   Supply empty string `''` to not create mappings.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - &lt;options&gt; - table overriding target options.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- See `:h MiniBracketed.config` for more info.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">buffer</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'b'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">comment</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'c'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">conflict</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">diagnostic</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'d'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">file</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'f'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">indent</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">jump</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'j'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">location</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">oldfile</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'o'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">quickfix</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">treesitter</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'t'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">undo</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'u'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'w'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="va">yank</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'y'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minibracketed.config-options" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.config-options">Options</h4>
+<p>Each entry configures target with the same name and can have data configuring mapping suffix and target options.</p>
+<p>Example of configuration:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Map [N, [n, ]n, ]N for conflict marker like in 'tpope/vim-unimpaired'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">conflict</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'n'</span> <span class="op">},</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Make diagnostic advance only by errors</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">diagnostic</span> <span class="op">=</span> <span class="op">{</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{</span> <span class="va">severity</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">diagnostic</span><span class="op">.</span><span class="va">severity</span><span class="op">.</span><span class="cn">ERROR</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Disable creation of mappings for `indent` target (for example,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- in favor of ones from |mini.indentscope|)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">indent</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">''</span> <span class="op">},</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Disable mappings for `window` target in favor of custom ones</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">''</span> <span class="op">},</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create custom `window` mappings</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span><span class="va">set</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;wH'</span><span class="op">,</span> <span class="st">"&lt;Cmd&gt;lua MiniBracketed.window('first')&lt;CR&gt;"</span><span class="op">)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;wh'</span><span class="op">,</span> <span class="st">"&lt;Cmd&gt;lua MiniBracketed.window('backward')&lt;CR&gt;"</span><span class="op">)</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;wl'</span><span class="op">,</span> <span class="st">"&lt;Cmd&gt;lua MiniBracketed.window('forward')&lt;CR&gt;"</span><span class="op">)</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;wL'</span><span class="op">,</span> <span class="st">"&lt;Cmd&gt;lua MiniBracketed.window('last')&lt;CR&gt;"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minibracketed.config-options-suffix" class="level5">
+<h5 class="anchored" data-anchor-id="minibracketed.config-options-suffix">Suffix</h5>
+<p>The <code>suffix</code> key is used to create target mappings.</p>
+<p>Supply empty string to disable mapping creation for that particular target. To create a completely different mapping (like with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a>) use target function manually.</p>
+<p>Using <code>lower-suffix</code> and <code>upper-suffix</code> (lower and upper case suffix) for a single target the following mappings are created:</p>
+<ul>
+<li><p><code>[</code> + <code>upper-suffix</code> : go first.</p></li>
+<li><p><code>[</code> + <code>lower-suffix</code> : go backward.</p></li>
+<li><p><code>]</code> + <code>lower-suffix</code> : go forward.</p></li>
+<li><p><code>]</code> + <code>upper-suffix</code> : go last.</p></li>
+</ul>
+<p>When supplied with a non-letter, only forward/backward mappings are created.</p>
+</section>
+<section id="minibracketed.config-options-options" class="level5">
+<h5 class="anchored" data-anchor-id="minibracketed.config-options-options">Options</h5>
+<p>The <code>options</code> key is directly forwarded as <code>opts</code> to corresponding Lua function.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="minibracketed.buffer" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.buffer">buffer()</h3>
+<p align="center">
+<code>MiniBracketed.buffer</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Listed buffer</p>
+<p>Go to next/previous listed buffer. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>).</p>
+<p>Direction “forward” increases number, “backward” - decreases.</p>
+<section id="minibracketed.buffer-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.buffer-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.comment" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.comment">comment()</h3>
+<p align="center">
+<code>MiniBracketed.comment</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Comment block</p>
+<p>Go to next/previous comment block. Only linewise comments using ‘commentsring’ are recognized.</p>
+<p>Direction “forward” increases line number, “backward” - decreases.</p>
+<section id="minibracketed.comment-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.comment-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;block_side&gt;</span> <code>(string)</code> - which side of comment block to use. One of “near” (default; use nearest side), “start” (use first line), “end” (use last line), “both” (use both first and last lines).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.conflict" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.conflict">conflict()</h3>
+<p align="center">
+<code>MiniBracketed.conflict</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Git conflict marker</p>
+<p>Go to next/previous lines containing Git conflict marker. That is, if it starts with “&lt;&lt;&lt;&lt;&lt;&lt;&lt;”, “&gt;&gt;&gt;&gt;&gt;&gt;&gt;”, or is “=======”.</p>
+<p>Direction “forward” increases line number, “backward” - decreases.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Using this target in Operator-pending mode allows the following approach at resolving merge conflicts:</p>
+<ul>
+<li><p>Place cursor on <code>=======</code> line.</p></li>
+<li><p>Execute one of these: <code>d]x[xdd</code> (choose upper part) or <code>d[x]xdd</code> (choose lower part).</p></li>
+</ul></li>
+</ul>
+<section id="minibracketed.conflict-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.conflict-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.diagnostic" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.diagnostic">diagnostic()</h3>
+<p align="center">
+<code>MiniBracketed.diagnostic</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Diagnostic</p>
+<p>Go to next/previous diagnostic. This is mostly similar to built-in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.jump()"><code>vim.diagnostic.jump()</code></a> (on Neovim&lt;0.11 it is <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()"><code>vim.diagnostic.goto_next()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_prev()"><code>vim.diagnostic.goto_prev()</code></a>) which has an interface and behavior consistent with other methods of the module.</p>
+<p>Direction “forward” increases line number, “backward” - decreases.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Using <code>severity</code> option, this target can be used in mappings like “go to next/previous error” (), etc. Using code similar to this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">severity_error</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">diagnostic</span><span class="op">.</span><span class="va">severity</span><span class="op">.</span><span class="cn">ERROR</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use these inside custom mappings</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniBracketed</span><span class="op">.</span>diagnostic<span class="op">(</span><span class="st">'forward'</span><span class="op">,</span> <span class="op">{</span> <span class="va">severity</span> <span class="op">=</span> <span class="va">severity_error</span> <span class="op">})</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniBracketed</span><span class="op">.</span>diagnostic<span class="op">(</span><span class="st">'backward'</span><span class="op">,</span> <span class="op">{</span> <span class="va">severity</span> <span class="op">=</span> <span class="va">severity_error</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="minibracketed.diagnostic-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.diagnostic-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;float&gt;</span> <code>(boolean|table)</code> - control floating window after movement. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()"><code>vim.diagnostic.goto_next()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;severity&gt;</span> <code>(string|table)</code> - which severity to use. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=diagnostic-severity"><code>diagnostic-severity</code></a>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.file" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.file">file()</h3>
+<p align="center">
+<code>MiniBracketed.file</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>File on disk</p>
+<p>Go to next/previous file on disk alphabetically. Files are taken from directory of file in current buffer (or current working directory if buffer doesn’t contain a readable file). Only first-level files are used, i.e.&nbsp;it doesn’t go inside subdirectories.</p>
+<p>Direction “forward” goes forward alphabetically, “backward” - backward.</p>
+<section id="minibracketed.file-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.file-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.indent" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.indent">indent()</h3>
+<p align="center">
+<code>MiniBracketed.indent</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Indent change</p>
+<p>Go to next/previous line with different indent (see <a href="https://neovim.io/doc/user/helptag.html?tag=indent()"><code>indent()</code></a>). Can be used to go to lines with smaller, bigger, or different indent.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Directions “first” and “last” work differently from most other targets for performance reasons. They are essentially “backward” and “forward” with very big <code>n_times</code> option.</p></li>
+<li><p>For similar reasons, <code>wrap</code> is not supported.</p></li>
+<li><p>Blank line inherit indent from near non-blank line in direction of movement.</p></li>
+</ul>
+<p>Direction “forward” increases line number, “backward” - decreases.</p>
+<section id="minibracketed.indent-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.indent-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;change_type&gt;</span> <code>(string)</code> - which type of indent change to use. One of “less” (default; smaller indent), “more” (bigger indent), “diff” (different indent).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.jump" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.jump">jump()</h3>
+<p align="center">
+<code>MiniBracketed.jump</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Jump inside current buffer</p>
+<p>Go to next/previous jump from <a href="https://neovim.io/doc/user/helptag.html?tag=jumplist"><code>jumplist</code></a> which is inside current buffer.</p>
+<p>Notes:</p>
+<ul>
+<li>There are no Visual mode mappings due to implementation problems.</li>
+</ul>
+<p>Direction “forward” increases jump number, “backward” - decreases.</p>
+<section id="minibracketed.jump-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.jump-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.location" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.location">location()</h3>
+<p align="center">
+<code>MiniBracketed.location</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Location from location list</p>
+<p>Go to next/previous location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list"><code>location-list</code></a>. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:lfirst"><code>:lfirst</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lprevious"><code>:lprevious</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lnext"><code>:lnext</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:llast"><code>:llast</code></a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “first”/“last” direction.</p>
+<p>Direction “forward” increases location number, “backward” - decreases.</p>
+<section id="minibracketed.location-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.location-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.oldfile" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.oldfile">oldfile()</h3>
+<p align="center">
+<code>MiniBracketed.oldfile</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Old files from previous and current sessions</p>
+<p>Go to older/newer readable file either from previous session (see <a href="https://neovim.io/doc/user/helptag.html?tag=v:oldfiles"><code>v:oldfiles</code></a>) or the current one (updated automatically after <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> call).</p>
+<p>Direction “forward” goes to more recent files, “backward” - to older.</p>
+<p>Notes:</p>
+<ul>
+<li><p>In current session it tracks only normal buffers (see <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'"><code>'buftype'</code></a>) for some readable file.</p></li>
+<li><p>No new file is tracked when advancing this target. Only after buffer change is done not through this target (like with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer"><code>MiniBracketed.buffer()</code></a>), it updates recency of last advanced and new buffers.</p></li>
+</ul>
+<section id="minibracketed.oldfile-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.oldfile-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.quickfix" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.quickfix">quickfix()</h3>
+<p align="center">
+<code>MiniBracketed.quickfix</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Quickfix from quickfix list</p>
+<p>Go to next/previous entry from <a href="https://neovim.io/doc/user/helptag.html?tag=quickfix"><code>quickfix</code></a> list. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:cfirst"><code>:cfirst</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cprevious"><code>:cprevious</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cnext"><code>:cnext</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:clast"><code>:clast</code></a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “first”/“last” direction.</p>
+<p>Direction “forward” increases location number, “backward” - decreases.</p>
+<section id="minibracketed.quickfix-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.quickfix-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.treesitter" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.treesitter">treesitter()</h3>
+<p align="center">
+<code>MiniBracketed.treesitter</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Tree-sitter node</p>
+<p>Go to end/start of current tree-sitter node and its parents (except root).</p>
+<p>Notes:</p>
+<ul>
+<li><p>Requires loaded tree-sitter parser in the current buffer.</p></li>
+<li><p>Directions “first” and “last” work differently from most other targets for performance reasons. They are essentially “backward” and “forward” with very big <code>n_times</code> option.</p></li>
+<li><p>For similar reasons, <code>wrap</code> is not supported.</p></li>
+</ul>
+<p>Direction “forward” moves cursor forward to node’s end, “backward” - backward to node’s start.</p>
+<section id="minibracketed.treesitter-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.treesitter-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.undo" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.undo">undo()</h3>
+<p align="center">
+<code>MiniBracketed.undo</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Undo along a tracked linear history</p>
+<p>In a nutshell:</p>
+<ul>
+<li><p>Keys <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> (although remapped) can be used as usual, but every their execution new state is recorded in this module’s linear undo history.</p></li>
+<li><p>Advancing this target goes along linear undo history revealing undo states in order they actually appeared.</p></li>
+<li><p>One big difference with built-in methods is that tracked linear history can repeat undo states (not consecutively, though).</p></li>
+</ul>
+<p>Neovim’s default way of managing undo history is through branches (see <a href="https://neovim.io/doc/user/helptag.html?tag=undo-branches"><code>undo-branches</code></a>). Basically it means that if you undo several changes and then make new ones, it creates new undo branch while usually (see <a href="https://neovim.io/doc/user/helptag.html?tag='undolevels'"><code>'undolevels'</code></a>) saving previous buffer states in another branch. While there are commands to navigate by time of undo state creation (like <a href="https://neovim.io/doc/user/helptag.html?tag=:earlier"><code>:earlier</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:later"><code>:later</code></a>), there is no intuitive way to cycle through them. Existing <a href="https://neovim.io/doc/user/helptag.html?tag=g-"><code>g-</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=g+"><code>g+</code></a> cycle through undo states based on their creation time, which often gets confusing really guickly in extensively edited buffer.</p>
+<p>This <code>undo()</code> target provides a way to cycle through linear undo history in order states actually appeared. It does so by registering any new undo states plus every time <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state"><code>MiniBracketed.register_undo_state()</code></a> is called. To have more “out of the box” experience, <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> are remapped to call it after they perform their undo/redo.</p>
+<p>Example:</p>
+<p>To show more clearly the difference between advancing this target and using built-in functionality, here is an example:</p>
+<ul>
+<li><p>Create undo history in a new buffer (<a href="https://neovim.io/doc/user/helptag.html?tag=:new"><code>:new</code></a>):</p>
+<ul>
+<li><p>Enter <code>one two three</code> text.</p></li>
+<li><p>Delete first word with <code>daw</code> and undo the change with <code>u</code>.</p></li>
+<li><p>Delete second word with <code>daw</code> and undo the change with <code>u</code>.</p></li>
+<li><p>Delete third word with <code>daw</code> and undo the change with <code>u</code>.</p></li>
+</ul></li>
+<li><p>Now try one of the following (each one after performing previous steps in separate new buffer):</p>
+<ul>
+<li><p>Press <code>u</code>. It goes back to empty buffer. Press <code>&lt;C-R&gt;</code> twice and it goes to the latest change (<code>one two</code>). No way to get to other states (like <code>two three</code> or <code>one three</code>) with these two keys.</p></li>
+<li><p>Press <code>g-</code>. It goes to an empty buffer. Press <code>g+</code> 4 times. It cycles through all available undo states in order they were created.</p></li>
+<li><p>Finally, press <code>[u</code>. It goes back to <code>one two</code> - state which was previously visited by the user. Another <code>[u</code> restores <code>one two three</code>. Use <code>]U</code> to go to latest visited undo state.</p></li>
+</ul></li>
+</ul>
+<section id="minibracketed.undo-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.undo-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.register_undo_state" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.register_undo_state">register_undo_state()</h3>
+<p align="center">
+<code>MiniBracketed.register_undo_state</code>()
+</p>
+<p>Register state for undo target</p>
+<p>Use this function to add current undo state to this module’s linear undo history. It is used in <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> to remap <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> keys to add their new state to linear undo history.</p>
+<hr>
+</section>
+<section id="minibracketed.window" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.window">window()</h3>
+<p align="center">
+<code>MiniBracketed.window</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Normal window</p>
+<p>Go to next/previous normal window. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=winnr()"><code>winnr()</code></a>).</p>
+<p>Direction “forward” increases window number, “backward” - decreases.</p>
+<p>Only normal (non-floating) windows are used.</p>
+<section id="minibracketed.window-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.window-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.yank" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.yank">yank()</h3>
+<p align="center">
+<code>MiniBracketed.yank</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Replace “latest put region” with yank history entry</p>
+<p>After <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> is called, on every yank/delete/change operation (technically, every trigger of <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost"><code>TextYankPost</code></a> event) the object of operation is added to yank history. Advancing this target will replace the region of latest put operation with entry from yank history.</p>
+<p>By default works best if called right after text paste (like with <a href="https://neovim.io/doc/user/helptag.html?tag=p"><code>p</code></a> or <a href="https://neovim.io/doc/user/helptag.html?tag=P"><code>P</code></a>).</p>
+<p>To better detect “latest put region”, use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a> as described later.</p>
+<p>Direction “forward” goes to newer yank history entry, “backward” - to older.</p>
+<p>Example:</p>
+<ul>
+<li><p>Type <code>one two three</code>.</p></li>
+<li><p>Yank each word with <code>yiw</code>.</p></li>
+<li><p>Create new line and press <code>p</code>. This should paste <code>three</code>.</p></li>
+<li><p>Type <code>[y</code>. This should replace latest <code>three</code> with <code>two</code>.</p></li>
+</ul>
+<section id="minibracketed.yank-latestputregion" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.yank-latestputregion">Latest put region</h4>
+<p>“Latest put region” is (in order of decreasing priority):</p>
+<ul>
+<li><p>The one from latest advance of this target.</p></li>
+<li><p>The one registered by user with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a>.</p></li>
+<li><p>The one taken from <a href="https://neovim.io/doc/user/helptag.html?tag='%5B"><code>'[</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%5D"><code>']</code></a> marks.</p></li>
+</ul>
+<p>For users there are these approaches to manage which region will be used:</p>
+<ul>
+<li><p>Do nothing. In this case region between <code>[</code> / <code>]</code> marks will always be used for first <code>yank</code> advance. Although doable, this has several drawbacks: it will use latest yanked or changed region or the entire buffer if marks are not set. If remember to advance this target only after recent put operation, this should work as expected.</p></li>
+<li><p>Remap common put operations to use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a>. After that, only regions from mapped put operations will be used for first advance. Example of custom mappings (note use of <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">put_keys</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'p'</span><span class="op">,</span> <span class="st">'P'</span> <span class="op">}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">lhs</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">put_keys</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="st">'v:lua.MiniBracketed.register_put_region("'</span> <span class="op">..</span> <span class="va">lhs</span> <span class="op">..</span> <span class="st">'")'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">({</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">expr</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="minibracketed.yank-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.yank-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;operators&gt;</span> <code>(table)</code> - array of operator names (“c”, “d”, or “y”) for which yank entry should be used to advance. For example, use <code>{ "y" }</code> to advance only by entries actually resulted from yank operation with <a href="https://neovim.io/doc/user/helptag.html?tag=y"><code>y</code></a>. Default: <code>{ 'c', 'd', 'y' }</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.register_put_region" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.register_put_region">register_put_region()</h3>
+<p align="center">
+<code>MiniBracketed.register_put_region</code>(<span class="help-syntax-special">{put_key}</span>)
+</p>
+<p>Register “latest put region”</p>
+<p>This function should be called after put register becomes relevant (<a href="https://neovim.io/doc/user/helptag.html?tag=v:register"><code>v:register</code></a> is appropriately set) but before put operation takes place (<a href="https://neovim.io/doc/user/helptag.html?tag='%5B"><code>'[</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%5D"><code>']</code></a> marks become relevant).</p>
+<p>Designed to be used in a user-facing expression mapping (see <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a>). For mapping examples see <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank"><code>MiniBracketed.yank()</code></a>.</p>
+<section id="minibracketed.register_put_region-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.register_put_region-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{put_key}</span> <code>(string)</code> Put keys to be remapped.</p>
+</section>
+<section id="minibracketed.register_put_region-return" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.register_put_region-return">Return</h4>
+<p><code>(string)</code> Returns <code>put_key</code> for a better usage inside expression mappings.</p>
+<hr>
+</section>
+</section>
+<section id="minibracketed.advance" class="level3">
+<h3 class="anchored" data-anchor-id="minibracketed.advance">advance()</h3>
+<p align="center">
+<code>MiniBracketed.advance</code>(<span class="help-syntax-special">{iterator}</span>, <span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Advance iterator</p>
+<p>This is the main function which performs any forward/backward/first/last advance in this module. Its basic idea is to take iterator (object containing information about current state and how to go to next/previous one) and go in certain direction until needed/allowed.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Directions “first” and “last” are convenience wrappers for “forward” and “backward” with pre-setting initial state to <code>start_edge</code> and <code>end_edge</code>.</p></li>
+<li><p>Iterators <code>next()</code> and <code>prev()</code> methods should be able to handle <code>nil</code> as input.</p></li>
+<li><p>This function only returns new state and doesn’t modify <code>iterator.state</code>.</p></li>
+</ul>
+<section id="minibracketed.advance-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.advance-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{iterator}</span> <code>(table)</code> Table:</p>
+<ul>
+<li><p>Methods:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;next&gt;</span> - given state, return state in forward direction (no wrap).</p></li>
+<li><p><span class="help-syntax-keys">&lt;prev&gt;</span> - given state, return state in backward direction (no wrap).</p></li>
+</ul></li>
+<li><p>Fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;state&gt;</span> - object describing current state.</p></li>
+<li><p><span class="help-syntax-keys">&lt;start_edge&gt;</span> (optional) - object with <code>forward(start_edge)</code> describing first state. If <code>nil</code>, can’t wrap forward or use direction “first”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;end_edge&gt;</span> (optional) - object with <code>backward(end_edge)</code> describing last state. If <code>nil</code>, can’t wrap backward or use direction “last”.</p></li>
+</ul></li>
+</ul>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> Direction. One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options with the following keys:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - number of times to go in input direction. Default: <code>v:count1</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - whether to wrap around edges when <code>next()</code> or <code>prev()</code> return <code>nil</code>. Default: <code>true</code>.</p></li>
+</ul>
+</section>
+<section id="minibracketed.advance-return" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.advance-return">Return</h4>
+<p><code>(any)</code> Result state. If <code>nil</code>, could not reach any valid result state.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

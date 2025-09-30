@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.notify documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.notify documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.notify documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mininotify" id="toc-mininotify" class="nav-link active" data-scroll-target="#mininotify">Module</a>
+  <ul>
+  <li><a href="#mininotify-setup" id="toc-mininotify-setup" class="nav-link" data-scroll-target="#mininotify-setup">Setup</a></li>
+  <li><a href="#mininotify-comparisons" id="toc-mininotify-comparisons" class="nav-link" data-scroll-target="#mininotify-comparisons">Comparisons</a></li>
+  <li><a href="#mininotify-highlightgroups" id="toc-mininotify-highlightgroups" class="nav-link" data-scroll-target="#mininotify-highlightgroups">Highlight groups</a></li>
+  <li><a href="#mininotify-disabling" id="toc-mininotify-disabling" class="nav-link" data-scroll-target="#mininotify-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#mininotify-specification" id="toc-mininotify-specification" class="nav-link" data-scroll-target="#mininotify-specification">Specification</a>
+  <ul>
+  <li><a href="#mininotify-specification-notificationspecification" id="toc-mininotify-specification-notificationspecification" class="nav-link" data-scroll-target="#mininotify-specification-notificationspecification">Notification specification</a></li>
+  </ul></li>
+  <li><a href="#mininotify.setup" id="toc-mininotify.setup" class="nav-link" data-scroll-target="#mininotify.setup">setup()</a>
+  <ul>
+  <li><a href="#mininotify.setup-parameters" id="toc-mininotify.setup-parameters" class="nav-link" data-scroll-target="#mininotify.setup-parameters">Parameters</a></li>
+  <li><a href="#mininotify.setup-usage" id="toc-mininotify.setup-usage" class="nav-link" data-scroll-target="#mininotify.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#mininotify.config" id="toc-mininotify.config" class="nav-link" data-scroll-target="#mininotify.config">config</a>
+  <ul>
+  <li><a href="#mininotify.config-defaults" id="toc-mininotify.config-defaults" class="nav-link" data-scroll-target="#mininotify.config-defaults">Defaults</a></li>
+  <li><a href="#mininotify.config-content" id="toc-mininotify.config-content" class="nav-link" data-scroll-target="#mininotify.config-content">Content</a></li>
+  <li><a href="#mininotify.config-lspprogress" id="toc-mininotify.config-lspprogress" class="nav-link" data-scroll-target="#mininotify.config-lspprogress">LSP progress</a></li>
+  <li><a href="#mininotify.config-window" id="toc-mininotify.config-window" class="nav-link" data-scroll-target="#mininotify.config-window">Window</a></li>
+  </ul></li>
+  <li><a href="#mininotify.make_notify" id="toc-mininotify.make_notify" class="nav-link" data-scroll-target="#mininotify.make_notify">make_notify()</a>
+  <ul>
+  <li><a href="#mininotify.make_notify-parameters" id="toc-mininotify.make_notify-parameters" class="nav-link" data-scroll-target="#mininotify.make_notify-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#mininotify.add" id="toc-mininotify.add" class="nav-link" data-scroll-target="#mininotify.add">add()</a>
+  <ul>
+  <li><a href="#mininotify.add-parameters" id="toc-mininotify.add-parameters" class="nav-link" data-scroll-target="#mininotify.add-parameters">Parameters</a></li>
+  <li><a href="#mininotify.add-return" id="toc-mininotify.add-return" class="nav-link" data-scroll-target="#mininotify.add-return">Return</a></li>
+  </ul></li>
+  <li><a href="#mininotify.update" id="toc-mininotify.update" class="nav-link" data-scroll-target="#mininotify.update">update()</a>
+  <ul>
+  <li><a href="#mininotify.update-parameters" id="toc-mininotify.update-parameters" class="nav-link" data-scroll-target="#mininotify.update-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#mininotify.remove" id="toc-mininotify.remove" class="nav-link" data-scroll-target="#mininotify.remove">remove()</a>
+  <ul>
+  <li><a href="#mininotify.remove-parameters" id="toc-mininotify.remove-parameters" class="nav-link" data-scroll-target="#mininotify.remove-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#mininotify.clear" id="toc-mininotify.clear" class="nav-link" data-scroll-target="#mininotify.clear">clear()</a></li>
+  <li><a href="#mininotify.refresh" id="toc-mininotify.refresh" class="nav-link" data-scroll-target="#mininotify.refresh">refresh()</a></li>
+  <li><a href="#mininotify.get" id="toc-mininotify.get" class="nav-link" data-scroll-target="#mininotify.get">get()</a>
+  <ul>
+  <li><a href="#mininotify.get-parameters" id="toc-mininotify.get-parameters" class="nav-link" data-scroll-target="#mininotify.get-parameters">Parameters</a></li>
+  <li><a href="#mininotify.get-return" id="toc-mininotify.get-return" class="nav-link" data-scroll-target="#mininotify.get-return">Return</a></li>
+  </ul></li>
+  <li><a href="#mininotify.get_all" id="toc-mininotify.get_all" class="nav-link" data-scroll-target="#mininotify.get_all">get_all()</a>
+  <ul>
+  <li><a href="#mininotify.get_all-return" id="toc-mininotify.get_all-return" class="nav-link" data-scroll-target="#mininotify.get_all-return">Return</a></li>
+  </ul></li>
+  <li><a href="#mininotify.show_history" id="toc-mininotify.show_history" class="nav-link" data-scroll-target="#mininotify.show_history">show_history()</a></li>
+  <li><a href="#mininotify.default_format" id="toc-mininotify.default_format" class="nav-link" data-scroll-target="#mininotify.default_format">default_format()</a>
+  <ul>
+  <li><a href="#mininotify.default_format-parameters" id="toc-mininotify.default_format-parameters" class="nav-link" data-scroll-target="#mininotify.default_format-parameters">Parameters</a></li>
+  <li><a href="#mininotify.default_format-return" id="toc-mininotify.default_format-return" class="nav-link" data-scroll-target="#mininotify.default_format-return">Return</a></li>
+  </ul></li>
+  <li><a href="#mininotify.default_sort" id="toc-mininotify.default_sort" class="nav-link" data-scroll-target="#mininotify.default_sort">default_sort()</a>
+  <ul>
+  <li><a href="#mininotify.default_sort-parameters" id="toc-mininotify.default_sort-parameters" class="nav-link" data-scroll-target="#mininotify.default_sort-parameters">Parameters</a></li>
+  <li><a href="#mininotify.default_sort-return" id="toc-mininotify.default_sort-return" class="nav-link" data-scroll-target="#mininotify.default_sort-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.notify documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.notify" href="../../mini.nvim/doc/mini-notify.html#mini.notify"><b>mini.notify</b></a> Show notifications</p>
+<p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
+<hr>
+<section id="mininotify" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Show one or more highlighted notifications in a single floating window.</p></li>
+<li><p>Manage notifications (add, update, remove, clear).</p></li>
+<li><p>Custom <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify"><code>MiniNotify.make_notify()</code></a> or save-restore <code>vim.notify</code> manually after calling <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a>.</p></li>
+<li><p>Automated show of LSP progress report.</p></li>
+<li><p>Track history which can be accessed with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get_all"><code>MiniNotify.get_all()</code></a> and shown with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.show_history"><code>MiniNotify.show_history()</code></a>.</p></li>
+</ul>
+<section id="mininotify-setup" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.notify').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniNotify</code> which you can use for scripting or manually (with <code>:lua MiniNotify.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config"><code>MiniNotify.config</code></a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.mininotify_config</code> which should have same structure as <code>MiniNotify.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="mininotify-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/j-hui/fidget.nvim">j-hui/fidget.nvim</a>:</p>
+<ul>
+<li><p>Basic goals of providing interface for notifications are similar.</p></li>
+<li><p>Has more configuration options and visual effects, while this module does not (by design).</p></li>
+</ul></li>
+<li><p><a href="https://github.com/rcarriga/nvim-notify">rcarriga/nvim-notify</a>:</p>
+<ul>
+<li>Similar to ‘j-hui/fidget.nvim’.</li>
+</ul></li>
+</ul>
+</section>
+<section id="mininotify-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniNotifyBorder</code> - window border.</p></li>
+<li><p><code>MiniNotifyLspProgress</code> - notifications from built-in LSP progress report.</p></li>
+<li><p><code>MiniNotifyNormal</code> - basic foreground/background highlighting.</p></li>
+<li><p><code>MiniNotifyTitle</code> - window title.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="mininotify-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify-disabling">Disabling</h4>
+<p>To disable showing notifications, set <code>vim.g.mininotify_disable</code> (globally) or <code>vim.b.mininotify_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify-specification" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify-specification">Specification</h3>
+<section id="mininotify-specification-notificationspecification" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify-specification-notificationspecification">Notification specification</h4>
+<p>Notification is a table with the following keys:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;msg&gt;</span> <code>(string)</code> - single string with notification message. Use <code>\n</code> to delimit several lines.</p></li>
+<li><p><span class="help-syntax-keys">&lt;level&gt;</span> <code>(string)</code> - notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels"><code>vim.log.levels</code></a>. Like “ERROR”, “WARN”, “INFO”, etc.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> <code>(string)</code> - highlight group with which notification is shown.</p></li>
+<li><p><span class="help-syntax-keys">&lt;data&gt;</span> <code>(table)</code> - extra data to store in notification (like <code>source</code>, etc.).</p></li>
+<li><p><span class="help-syntax-keys">&lt;ts_add&gt;</span> <code>(number)</code> - timestamp of when notification is added.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ts_update&gt;</span> <code>(number)</code> - timestamp of the latest notification update.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ts_remove&gt;</span> <code>(number|nil)</code> - timestamp of when notification is removed. It is <code>nil</code> if notification was never removed and thus considered “active”.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Timestamps are compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=strftime()"><code>strftime()</code></a> and have fractional part.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="mininotify.setup" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.setup">setup()</h3>
+<p align="center">
+<code>MiniNotify.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<p>This will also:</p>
+<ul>
+<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> custom implementation (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify"><code>MiniNotify.make_notify()</code></a>).</p></li>
+<li><p>Clean the history. Use <code>MiniNotify.setup(MiniNotify.config)</code> to force clean history while preserving the config.</p></li>
+</ul>
+<section id="mininotify.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config"><code>MiniNotify.config</code></a>.</p>
+</section>
+<section id="mininotify.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="mininotify.config" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.config">config</h3>
+<p align="center">
+<code>MiniNotify.config</code>
+</p>
+<section id="mininotify.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniNotify</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Content management</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">content</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Function which formats the notification message</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- By default prepends message with notification time</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Function which orders notification array from most to least important</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- By default orders first by level and then by update timestamp</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Notifications about LSP progress</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">lsp_progress</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to enable showing</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">enable</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Notification level</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">level</span> <span class="op">=</span> <span class="st">'INFO'</span><span class="op">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Duration (in ms) of how long last message should be shown</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">duration_last</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Window options</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Floating window config</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum window width as share (between 0 and 1) of available columns</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_width_share</span> <span class="op">=</span> <span class="dv">0.382</span><span class="op">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Value of 'winblend' option</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">winblend</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="mininotify.config-content" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.config-content">Content</h4>
+<p><code>config.content</code> defines how notifications are shown.</p>
+<p><code>content.format</code> is a function which takes single notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>) and returns a string to be used directly when showing notification. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_format"><code>MiniNotify.default_format()</code></a>.</p>
+<p><code>content.sort</code> is a function which takes array of notification objects (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>) and returns an array of such objects. It can be used to define custom order and/or filter for notifications which are shown simultaneously. Note: Input contains notifications before applying <code>content.format</code>. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_sort"><code>MiniNotify.default_sort()</code></a>.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">content</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use notification message as is for LSP progress</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">notif</span><span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">notif</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">source</span> <span class="op">==</span> <span class="st">'lsp_progress'</span> <span class="cf">then</span> <span class="cf">return</span> <span class="va">notif</span><span class="op">.</span><span class="va">msg</span> <span class="cf">end</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">MiniNotify</span><span class="op">.</span>default_format<span class="op">(</span><span class="va">notif</span><span class="op">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show more recent notifications first</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">notif_arr</span><span class="op">)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">table.sort</span><span class="op">(</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">notif_arr</span><span class="op">,</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">,</span> <span class="va">b</span><span class="op">)</span> <span class="cf">return</span> <span class="va">a</span><span class="op">.</span><span class="va">ts_update</span> <span class="op">&gt;</span> <span class="va">b</span><span class="op">.</span><span class="va">ts_update</span> <span class="kw">end</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="op">)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">notif_arr</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="mininotify.config-lspprogress" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.config-lspprogress">LSP progress</h4>
+<p><code>config.lsp_progress</code> defines automated notifications for LSP progress. It is implemented as a single updating notification per progress with all information about it. Setting up is done inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a> via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a>’ed setting of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a> for “$/progress” method.</p>
+<p><code>lsp_progress.enable</code> is a boolean indicating whether LSP progress should be shown in notifications. Can be disabled in current session. Default: <code>true</code>. Note: Should be <code>true</code> during <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a> call to be able to enable it in current session.</p>
+<p><code>lsp_progress.level</code> is a level to be used in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>. Default: <code>'INFO'</code>.</p>
+<p><code>lsp_progress.duration_last</code> is a number of milliseconds for the last progress report to be shown on screen before removing it. Default: 1000.</p>
+<p>Notes:</p>
+<ul>
+<li><p>This respects previously set handler by saving and calling it.</p></li>
+<li><p>Overriding “$/progress” method of <code>vim.lsp.handlers</code> disables notifications.</p></li>
+<li><p>All LSP progress notifications set the following fields in <code>data</code>:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;source&gt;</span> is <code>"lsp_progress"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;client_name&gt;</span> is set to client’s name (provided by client or inferred).</p></li>
+<li><p><span class="help-syntax-keys">&lt;context&gt;</span> is the latest LSP request context (<code>ctx</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;response&gt;</span> is the latest LSP response (<code>result</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a>).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="mininotify.config-window" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.config-window">Window</h4>
+<p><code>config.window</code> defines behavior of notification window.</p>
+<p><code>window.config</code> is a table defining floating window characteristics or a callable returning such table (will be called with identifier of window’s buffer already showing notifications). It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()"><code>nvim_open_win()</code></a>. It has the following default values which show notifications in the upper right corner with upper limit on width:</p>
+<ul>
+<li><p><code>width</code> is chosen to fit buffer content but at most <code>window.max_width_share</code> share of ‘columns’. To have higher maximum width, use function in <code>config.window</code> which computes dimensions inside of it (based on buffer content).</p></li>
+<li><p><code>height</code> is chosen to fit buffer content with enabled ‘wrap’ (assuming default value of <code>width</code>).</p></li>
+<li><p><code>anchor</code>, <code>col</code>, and <code>row</code> are “NE”, ‘columns’, and 0 or 1 (depending on tabline).</p></li>
+<li><p><code>border</code> is “single”.</p></li>
+<li><p><code>zindex</code> is 999 to be as much on top as reasonably possible.</p></li>
+</ul>
+<p><code>window.max_width_share</code> defines maximum window width as a share of ‘columns’. Should be a number between 0 (not included) and 1. Default: 0.382.</p>
+<p>Example for showing notifications in bottom right corner:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">win_config</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">has_statusline</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">laststatus</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">pad</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">cmdheight</span> <span class="op">+</span> <span class="op">(</span><span class="va">has_statusline</span> <span class="kw">and</span> <span class="dv">1</span> <span class="kw">or</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'SE'</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span><span class="op">,</span> <span class="va">row</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span> <span class="op">-</span> <span class="va">pad</span> <span class="op">}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">window</span> <span class="op">=</span> <span class="op">{</span> <span class="va">config</span> <span class="op">=</span> <span class="va">win_config</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>window.winblend</code> defines ‘winblend’ value for notification window. Default: 25.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.make_notify" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.make_notify">make_notify()</h3>
+<p align="center">
+<code>MiniNotify.make_notify</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Make vim.notify wrapper</p>
+<p>Calling this function creates an implementation of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> powered by this module. General idea is to show notification as soon as safely possible (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule_wrap()"><code>vim.schedule_wrap()</code></a>) and remove it after a configurable amount of time.</p>
+<p>All notifications set <code>source = "vim.notify"</code> in their <code>data</code> field.</p>
+<p>This is used with default options inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a>. To adjust, call manually after <code>setup()</code>. For example, to show errors longer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">notify</span> <span class="op">=</span> <span class="va">MiniNotify</span><span class="op">.</span>make_notify<span class="op">({</span> <span class="cn">ERROR</span> <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">10000</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To preserve original <code>vim.notify</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">notify_orig</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">notify</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">notify</span> <span class="op">=</span> <span class="va">notify_orig</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="mininotify.make_notify-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.make_notify-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options to configure behavior of notification <code>level</code> (as in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>). Fields are the same as names of <code>vim.log.levels</code> with values being tables with possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;duration&gt;</span> <code>(number)</code> - duration (in ms) of how much a notification should be shown. If 0 or negative, notification is not shown at all.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> <code>(string)</code> - highlight group of notification. Only data different to default can be supplied.</p></li>
+</ul>
+<p>Default:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cn">ERROR</span> <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">5000</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'DiagnosticError'</span>  <span class="op">},</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cn">WARN</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">5000</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'DiagnosticWarn'</span>   <span class="op">},</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cn">INFO</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">5000</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'DiagnosticInfo'</span>   <span class="op">},</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cn">DEBUG</span> <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>    <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'DiagnosticHint'</span>   <span class="op">},</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRACE</span> <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>    <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'DiagnosticOk'</span>     <span class="op">},</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cn">OFF</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>    <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'MiniNotifyNormal'</span> <span class="op">},</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="mininotify.add" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.add">add()</h3>
+<p align="center">
+<code>MiniNotify.add</code>(<span class="help-syntax-special">{msg}</span>, <span class="help-syntax-special">{level}</span>, <span class="help-syntax-special">{hl_group}</span>, <span class="help-syntax-special">{data}</span>)
+</p>
+<p>Add notification</p>
+<p>Add notification to history. It is considered “active” and is shown. To hide, call <a href="../../mini.nvim/doc/mini-notify.html#mininotify.remove"><code>MiniNotify.remove()</code></a> with identifier this function returns.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">id</span> <span class="op">=</span> <span class="va">MiniNotify</span><span class="op">.</span>add<span class="op">(</span><span class="st">'Hello'</span><span class="op">,</span> <span class="st">'WARN'</span><span class="op">,</span> <span class="st">'Comment'</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span>defer_fn<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="va">MiniNotify</span><span class="op">.</span>remove<span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="kw">end</span><span class="op">,</span> <span class="dv">1000</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="mininotify.add-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.add-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{msg}</span> <code>(string)</code> Notification message.</p>
+<p><span class="help-syntax-special">{level}</span> <code>(string|nil)</code> Notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels"><code>vim.log.levels</code></a>. Default: <code>'INFO'</code>.</p>
+<p><span class="help-syntax-special">{hl_group}</span> <code>(string|nil)</code> Notification highlight group. Default: <code>'MiniNotifyNormal'</code>.</p>
+<p><span class="help-syntax-special">{data}</span> <code>(table|nil)</code> Extra data to store in the notification. Default: <code>{}</code>.</p>
+</section>
+<section id="mininotify.add-return" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.add-return">Return</h4>
+<p><code>(number)</code> Notification identifier.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.update" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.update">update()</h3>
+<p align="center">
+<code>MiniNotify.update</code>(<span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{new}</span>)
+</p>
+<p>Update active notification</p>
+<p>Modify contents of active notification.</p>
+<section id="mininotify.update-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.update-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{id}</span> <code>(number)</code> Identifier of currently active notification as returned by <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>.</p>
+<p><span class="help-syntax-special">{new}</span> <code>(table)</code> Table with contents to update. Keys should be as non-timestamp fields of <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a> and values - new content values. If present, field <code>data</code> is updated as is. Use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get"><code>MiniNotify.get()</code></a> together with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend()"><code>vim.tbl_deep_extend()</code></a> to change only part of it.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.remove" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.remove">remove()</h3>
+<p align="center">
+<code>MiniNotify.remove</code>(<span class="help-syntax-special">{id}</span>)
+</p>
+<p>Remove notification</p>
+<p>If notification is active, make it not active (by setting <code>ts_remove</code> field). If not active, do nothing.</p>
+<section id="mininotify.remove-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.remove-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{id}</span> <code>(number|nil)</code> Identifier of previously added notification. If it is not, nothing is done (silently).</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.clear" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.clear">clear()</h3>
+<p align="center">
+<code>MiniNotify.clear</code>()
+</p>
+<p>Remove all active notifications</p>
+<p>Hide all active notifications and stop showing window (if shown).</p>
+<hr>
+</section>
+<section id="mininotify.refresh" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.refresh">refresh()</h3>
+<p align="center">
+<code>MiniNotify.refresh</code>()
+</p>
+<p>Refresh notification window</p>
+<p>Make notification window show relevant information:</p>
+<ul>
+<li><p>Create an array of active notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p></li>
+<li><p>Apply <code>config.content.sort</code> to an array. If output has zero notifications, make notification window to not show.</p></li>
+<li><p>Apply <code>config.content.format</code> to each element of notification array and update its message.</p></li>
+<li><p>Construct content from notifications and show them in a window.</p></li>
+</ul>
+<p>Note: effects are delayed if inside fast event (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.in_fast_event()"><code>vim.in_fast_event()</code></a>).</p>
+<hr>
+</section>
+<section id="mininotify.get" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.get">get()</h3>
+<p align="center">
+<code>MiniNotify.get</code>(<span class="help-syntax-special">{id}</span>)
+</p>
+<p>Get previously added notification by id</p>
+<section id="mininotify.get-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.get-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{id}</span> <code>(number)</code> Identifier of notification.</p>
+</section>
+<section id="mininotify.get-return" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.get-return">Return</h4>
+<p><code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.get_all" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.get_all">get_all()</h3>
+<p align="center">
+<code>MiniNotify.get_all</code>()
+</p>
+<p>Get all previously added notifications</p>
+<p>Get map of used notifications with keys being notification identifiers.</p>
+<p>Can be used to get only active notification objects. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get active notifications</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span>tbl_filter<span class="op">(</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">notif</span><span class="op">)</span> <span class="cf">return</span> <span class="va">notif</span><span class="op">.</span><span class="va">ts_remove</span> <span class="op">==</span> <span class="kw">nil</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniNotify</span><span class="op">.</span>get_all<span class="op">()</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="mininotify.get_all-return" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.get_all-return">Return</h4>
+<p><code>(table)</code> Map with notification object values (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>). Note: messages are taken from last valid update.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.show_history" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.show_history">show_history()</h3>
+<p align="center">
+<code>MiniNotify.show_history</code>()
+</p>
+<p>Show history</p>
+<p>Open or reuse a scratch buffer with all previously shown notifications.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Content is ordered from oldest to newest based on latest update time.</p></li>
+<li><p>Message is formatted with <code>config.content.format</code>.</p></li>
+</ul>
+<hr>
+</section>
+<section id="mininotify.default_format" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.default_format">default_format()</h3>
+<p align="center">
+<code>MiniNotify.default_format</code>(<span class="help-syntax-special">{notif}</span>)
+</p>
+<p>Default content format</p>
+<p>Used by default as <code>config.content.format</code>. Prepends notification message with the human readable update time and a separator.</p>
+<section id="mininotify.default_format-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.default_format-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{notif}</span> <code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+</section>
+<section id="mininotify.default_format-return" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.default_format-return">Return</h4>
+<p><code>(string)</code> Formatted notification message.</p>
+<hr>
+</section>
+</section>
+<section id="mininotify.default_sort" class="level3">
+<h3 class="anchored" data-anchor-id="mininotify.default_sort">default_sort()</h3>
+<p align="center">
+<code>MiniNotify.default_sort</code>(<span class="help-syntax-special">{notif_arr}</span>)
+</p>
+<p>Default content sort</p>
+<p>Used by default as <code>config.content.sort</code>. First sorts by notification’s <code>level</code> (“ERROR” &gt; “WARN” &gt; “INFO” &gt; “DEBUG” &gt; “TRACE” &gt; “OFF”; the bigger the more important); if draw - by latest update time (the later the more important).</p>
+<section id="mininotify.default_sort-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.default_sort-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{notif_arr}</span> <code>(table)</code> Array of notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+</section>
+<section id="mininotify.default_sort-return" class="level4">
+<h4 class="anchored" data-anchor-id="mininotify.default_sort-return">Return</h4>
+<p><code>(table)</code> Sorted array of notifications.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

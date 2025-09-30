@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.clue documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.clue documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.clue documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#miniclue" id="toc-miniclue" class="nav-link active" data-scroll-target="#miniclue">Module</a>
+  <ul>
+  <li><a href="#miniclue-setup" id="toc-miniclue-setup" class="nav-link" data-scroll-target="#miniclue-setup">Setup</a></li>
+  <li><a href="#miniclue-comparisons" id="toc-miniclue-comparisons" class="nav-link" data-scroll-target="#miniclue-comparisons">Comparisons</a></li>
+  <li><a href="#miniclue-highlightgroups" id="toc-miniclue-highlightgroups" class="nav-link" data-scroll-target="#miniclue-highlightgroups">Highlight groups</a></li>
+  <li><a href="#miniclue-disabling" id="toc-miniclue-disabling" class="nav-link" data-scroll-target="#miniclue-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#miniclue-key-query-process" id="toc-miniclue-key-query-process" class="nav-link" data-scroll-target="#miniclue-key-query-process">Key query process</a>
+  <ul>
+  <li><a href="#miniclue-key-query-process-generalinfo" id="toc-miniclue-key-query-process-generalinfo" class="nav-link" data-scroll-target="#miniclue-key-query-process-generalinfo">General info</a></li>
+  <li><a href="#miniclue-key-query-process-lifecycle" id="toc-miniclue-key-query-process-lifecycle" class="nav-link" data-scroll-target="#miniclue-key-query-process-lifecycle">Lifecycle</a></li>
+  <li><a href="#miniclue-key-query-process-cluewindow" id="toc-miniclue-key-query-process-cluewindow" class="nav-link" data-scroll-target="#miniclue-key-query-process-cluewindow">Clue window</a></li>
+  </ul></li>
+  <li><a href="#miniclue-examples" id="toc-miniclue-examples" class="nav-link" data-scroll-target="#miniclue-examples">Examples</a>
+  <ul>
+  <li><a href="#miniclue-examples-fullstarterexample" id="toc-miniclue-examples-fullstarterexample" class="nav-link" data-scroll-target="#miniclue-examples-fullstarterexample">Full starter example</a></li>
+  <li><a href="#miniclue-examples-leaderclues" id="toc-miniclue-examples-leaderclues" class="nav-link" data-scroll-target="#miniclue-examples-leaderclues">Leader clues</a></li>
+  <li><a href="#miniclue-examples-clueswithoutmappings" id="toc-miniclue-examples-clueswithoutmappings" class="nav-link" data-scroll-target="#miniclue-examples-clueswithoutmappings">Clues without mappings</a></li>
+  <li><a href="#miniclue-examples-triggersinspecialbuffers" id="toc-miniclue-examples-triggersinspecialbuffers" class="nav-link" data-scroll-target="#miniclue-examples-triggersinspecialbuffers">Triggers in special buffers</a></li>
+  <li><a href="#miniclue-examples-submodes" id="toc-miniclue-examples-submodes" class="nav-link" data-scroll-target="#miniclue-examples-submodes">Submodes</a>
+  <ul>
+  <li><a href="#miniclue-examples-submodes-submodeexamples" id="toc-miniclue-examples-submodes-submodeexamples" class="nav-link" data-scroll-target="#miniclue-examples-submodes-submodeexamples">Submode examples</a></li>
+  </ul></li>
+  <li><a href="#miniclue-examples-windowconfig" id="toc-miniclue-examples-windowconfig" class="nav-link" data-scroll-target="#miniclue-examples-windowconfig">Window config</a></li>
+  </ul></li>
+  <li><a href="#miniclue.setup" id="toc-miniclue.setup" class="nav-link" data-scroll-target="#miniclue.setup">setup()</a>
+  <ul>
+  <li><a href="#miniclue.setup-parameters" id="toc-miniclue.setup-parameters" class="nav-link" data-scroll-target="#miniclue.setup-parameters">Parameters</a></li>
+  <li><a href="#miniclue.setup-usage" id="toc-miniclue.setup-usage" class="nav-link" data-scroll-target="#miniclue.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniclue.config" id="toc-miniclue.config" class="nav-link" data-scroll-target="#miniclue.config">config</a>
+  <ul>
+  <li><a href="#miniclue.config-defaults" id="toc-miniclue.config-defaults" class="nav-link" data-scroll-target="#miniclue.config-defaults">Defaults</a></li>
+  <li><a href="#miniclue.config-generalinfo" id="toc-miniclue.config-generalinfo" class="nav-link" data-scroll-target="#miniclue.config-generalinfo">General info</a></li>
+  <li><a href="#miniclue.config-clues" id="toc-miniclue.config-clues" class="nav-link" data-scroll-target="#miniclue.config-clues">Clues</a></li>
+  <li><a href="#miniclue.config-triggers" id="toc-miniclue.config-triggers" class="nav-link" data-scroll-target="#miniclue.config-triggers">Triggers</a></li>
+  <li><a href="#miniclue.config-window" id="toc-miniclue.config-window" class="nav-link" data-scroll-target="#miniclue.config-window">Window</a></li>
+  </ul></li>
+  <li><a href="#miniclue.enable_all_triggers" id="toc-miniclue.enable_all_triggers" class="nav-link" data-scroll-target="#miniclue.enable_all_triggers">enable_all_triggers()</a></li>
+  <li><a href="#miniclue.enable_buf_triggers" id="toc-miniclue.enable_buf_triggers" class="nav-link" data-scroll-target="#miniclue.enable_buf_triggers">enable_buf_triggers()</a>
+  <ul>
+  <li><a href="#miniclue.enable_buf_triggers-parameters" id="toc-miniclue.enable_buf_triggers-parameters" class="nav-link" data-scroll-target="#miniclue.enable_buf_triggers-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniclue.disable_all_triggers" id="toc-miniclue.disable_all_triggers" class="nav-link" data-scroll-target="#miniclue.disable_all_triggers">disable_all_triggers()</a></li>
+  <li><a href="#miniclue.disable_buf_triggers" id="toc-miniclue.disable_buf_triggers" class="nav-link" data-scroll-target="#miniclue.disable_buf_triggers">disable_buf_triggers()</a>
+  <ul>
+  <li><a href="#miniclue.disable_buf_triggers-parameters" id="toc-miniclue.disable_buf_triggers-parameters" class="nav-link" data-scroll-target="#miniclue.disable_buf_triggers-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniclue.ensure_all_triggers" id="toc-miniclue.ensure_all_triggers" class="nav-link" data-scroll-target="#miniclue.ensure_all_triggers">ensure_all_triggers()</a></li>
+  <li><a href="#miniclue.ensure_buf_triggers" id="toc-miniclue.ensure_buf_triggers" class="nav-link" data-scroll-target="#miniclue.ensure_buf_triggers">ensure_buf_triggers()</a>
+  <ul>
+  <li><a href="#miniclue.ensure_buf_triggers-parameters" id="toc-miniclue.ensure_buf_triggers-parameters" class="nav-link" data-scroll-target="#miniclue.ensure_buf_triggers-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniclue.set_mapping_desc" id="toc-miniclue.set_mapping_desc" class="nav-link" data-scroll-target="#miniclue.set_mapping_desc">set_mapping_desc()</a>
+  <ul>
+  <li><a href="#miniclue.set_mapping_desc-parameters" id="toc-miniclue.set_mapping_desc-parameters" class="nav-link" data-scroll-target="#miniclue.set_mapping_desc-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues" id="toc-miniclue.gen_clues" class="nav-link" data-scroll-target="#miniclue.gen_clues">gen_clues</a></li>
+  <li><a href="#miniclue.gen_clues.builtin_completion" id="toc-miniclue.gen_clues.builtin_completion" class="nav-link" data-scroll-target="#miniclue.gen_clues.builtin_completion">gen_clues.builtin_completion()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.builtin_completion-return" id="toc-miniclue.gen_clues.builtin_completion-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.builtin_completion-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.g" id="toc-miniclue.gen_clues.g" class="nav-link" data-scroll-target="#miniclue.gen_clues.g">gen_clues.g()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.g-return" id="toc-miniclue.gen_clues.g-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.g-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.square_brackets" id="toc-miniclue.gen_clues.square_brackets" class="nav-link" data-scroll-target="#miniclue.gen_clues.square_brackets">gen_clues.square_brackets()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.square_brackets-return" id="toc-miniclue.gen_clues.square_brackets-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.square_brackets-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.marks" id="toc-miniclue.gen_clues.marks" class="nav-link" data-scroll-target="#miniclue.gen_clues.marks">gen_clues.marks()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.marks-return" id="toc-miniclue.gen_clues.marks-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.marks-return">Return</a></li>
+  <li><a href="#miniclue.gen_clues.marks-seealso" id="toc-miniclue.gen_clues.marks-seealso" class="nav-link" data-scroll-target="#miniclue.gen_clues.marks-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.registers" id="toc-miniclue.gen_clues.registers" class="nav-link" data-scroll-target="#miniclue.gen_clues.registers">gen_clues.registers()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.registers-parameters" id="toc-miniclue.gen_clues.registers-parameters" class="nav-link" data-scroll-target="#miniclue.gen_clues.registers-parameters">Parameters</a></li>
+  <li><a href="#miniclue.gen_clues.registers-return" id="toc-miniclue.gen_clues.registers-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.registers-return">Return</a></li>
+  <li><a href="#miniclue.gen_clues.registers-seealso" id="toc-miniclue.gen_clues.registers-seealso" class="nav-link" data-scroll-target="#miniclue.gen_clues.registers-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.windows" id="toc-miniclue.gen_clues.windows" class="nav-link" data-scroll-target="#miniclue.gen_clues.windows">gen_clues.windows()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.windows-parameters" id="toc-miniclue.gen_clues.windows-parameters" class="nav-link" data-scroll-target="#miniclue.gen_clues.windows-parameters">Parameters</a></li>
+  <li><a href="#miniclue.gen_clues.windows-return" id="toc-miniclue.gen_clues.windows-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.windows-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniclue.gen_clues.z" id="toc-miniclue.gen_clues.z" class="nav-link" data-scroll-target="#miniclue.gen_clues.z">gen_clues.z()</a>
+  <ul>
+  <li><a href="#miniclue.gen_clues.z-return" id="toc-miniclue.gen_clues.z-return" class="nav-link" data-scroll-target="#miniclue.gen_clues.z-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.clue documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.clue" href="../../mini.nvim/doc/mini-clue.html#mini.clue"><b>mini.clue</b></a> Show next key clues</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="miniclue" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Implement custom key query process to reach target key combination:</p>
+<ul>
+<li><p>Starts after customizable opt-in triggers (mode + keys).</p></li>
+<li><p>Each key press narrows down set of possible targets. Pressing <code>&lt;BS&gt;</code> removes previous user entry. Pressing <code>&lt;Esc&gt;</code> or <code>&lt;C-c&gt;</code> leads to an early stop. Doesn’t depend on ‘timeoutlen’ and has basic support for ‘langmap’.</p></li>
+<li><p>Ends when there is at most one target left or user pressed <code>&lt;CR&gt;</code>. Results into emulating pressing all query keys plus possible postkeys.</p></li>
+</ul></li>
+<li><p>Show window (after configurable delay) with clues. It lists available next keys along with their descriptions (auto generated from descriptions present keymaps and user-supplied clues; preferring the former).</p></li>
+<li><p>Configurable “postkeys” for key combinations - keys which will be emulated after combination is reached during key query process.</p></li>
+<li><p>Provide customizable sets of clues for common built-in keys/concepts:</p>
+<ul>
+<li><p><code>g</code> key.</p></li>
+<li><p><code>z</code> key.</p></li>
+<li><p>Window commands.</p></li>
+<li><p>Built-in completion.</p></li>
+<li><p>Marks.</p></li>
+<li><p>Registers.</p></li>
+</ul></li>
+<li><p>Lua functions to disable/enable triggers globally or per buffer.</p></li>
+</ul>
+<p>For more details see:</p>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-clue.html#miniclue-key-query-process"><code>MiniClue-key-query-process</code></a>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-clue.html#miniclue-examples"><code>MiniClue-examples</code></a>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-clue.html#miniclue.config"><code>MiniClue.config</code></a>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-clue.html#miniclue.gen_clues"><code>MiniClue.gen_clues</code></a>.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>There is no functionality to create mappings while defining clues. This is done to clearly separate these two different actions. The best suggested practice is to manually create mappings with descriptions (<code>desc</code> field in options), as they will be automatically used inside clue window.</p></li>
+<li><p>Triggers are implemented as special buffer-local mappings. This leads to several caveats:</p>
+<ul>
+<li><p>They will override same regular buffer-local mappings and have precedence over global one.</p>
+<p>Example: having set <code>&lt;C-w&gt;</code> as Normal mode trigger means that there should not be another <code>&lt;C-w&gt;</code> mapping.</p></li>
+<li><p>They need to be the latest created buffer-local mappings or they will not function properly. Most common indicator of this is that some mapping starts to work only after clue window is shown.</p>
+<p>Example: <code>g</code> is set as Normal mode trigger, but <code>gcc</code> from <a href="../../mini.nvim/doc/mini-comment.html#mini.comment"><code>mini.comment</code></a> doesn’t work right away. This is probably because there are some other buffer-local mappings starting with <code>g</code> which were created after mapping for <code>g</code> trigger. Most common places for this are in LSP server’s <code>on_attach</code> or during tree-sitter start in buffer.</p>
+<p>To check if trigger is the most recent buffer-local mapping, execute <code>:&lt;mode-char&gt;map &lt;trigger-keys&gt;</code> (like <code>:nmap g</code> for previous example). Mapping for trigger should be the first listed.</p>
+<p>This module makes the best effort to work out of the box and cover most common cases, but it is not foolproof. The solution here is to ensure that triggers are created after making all buffer-local mappings: run either <a href="../../mini.nvim/doc/mini-clue.html#miniclue.setup"><code>MiniClue.setup()</code></a> or <a href="../../mini.nvim/doc/mini-clue.html#miniclue.ensure_buf_triggers"><code>MiniClue.ensure_buf_triggers()</code></a>.</p></li>
+</ul></li>
+<li><p>Descriptions from existing mappings take precedence over user-supplied clues. This is to ensure that information shown in clue window is as relevant as possible. To add/customize description of an already existing mapping, use <a href="../../mini.nvim/doc/mini-clue.html#miniclue.set_mapping_desc"><code>MiniClue.set_mapping_desc()</code></a>.</p></li>
+<li><p>Due to technical difficulties, there is no foolproof support for Operator-pending mode triggers (like <code>a</code>/<code>i</code> from <a href="../../mini.nvim/doc/mini-ai.html#mini.ai"><code>mini.ai</code></a>):</p>
+<ul>
+<li><p>Doesn’t work as part of a command in “temporary Normal mode” (like after <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O"><code>i_CTRL-O</code></a>) due to implementation difficulties.</p></li>
+<li><p>Can have unexpected behavior with custom operators.</p></li>
+</ul></li>
+<li><p>Has (mostly solved) issues with macros:</p>
+<ul>
+<li><p>All triggers are disabled during macro recording due to technical reasons.</p></li>
+<li><p>The <code>@</code> and <code>Q</code> keys are specially mapped inside <a href="../../mini.nvim/doc/mini-clue.html#miniclue.setup"><code>MiniClue.setup()</code></a> (if the key is not already mapped) to temporarily disable triggers.</p></li>
+</ul></li>
+</ul>
+<section id="miniclue-setup" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.clue').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniClue</code> which you can use for scripting or manually (with <code>:lua MiniClue.*</code>).</p>
+<p>Config table needs to have triggers configured, none is set up by default.</p>
+<p>See <a href="../../mini.nvim/doc/mini-clue.html#miniclue.config"><code>MiniClue.config</code></a> for available config settings.</p>
+<p>You can override runtime config settings (like clues or window options) locally to a buffer inside <code>vim.b.miniclue_config</code> which should have same structure as <code>MiniClue.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="miniclue-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/folke/which-key.nvim">folke/which-key.nvim</a>:</p>
+<ul>
+<li><p>Both have the same main goal: show available next keys along with their customizable descriptions.</p></li>
+<li><p>Has different UI and content layout.</p></li>
+<li><p>Allows creating mappings inside its configuration, while this module doesn’t have this by design (to clearly separate two different tasks).</p></li>
+<li><p>Doesn’t allow creating submodes, while this module does (via <code>postkeys</code>).</p></li>
+</ul></li>
+<li><p><a href="https://github.com/anuvyklack/hydra.nvim">anuvyklack/hydra.nvim</a>:</p>
+<ul>
+<li><p>Both allow creating submodes: state which starts at certain key combination; treats some keys differently; ends after <code>&lt;Esc&gt;</code>.</p></li>
+<li><p>Doesn’t show information about available next keys (outside of submodes), while that is this module’s main goal.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="miniclue-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniClueBorder</code> - window border.</p></li>
+<li><p><code>MiniClueDescGroup</code> - group description in clue window.</p></li>
+<li><p><code>MiniClueDescSingle</code> - single target description in clue window.</p></li>
+<li><p><code>MiniClueNextKey</code> - next key label in clue window.</p></li>
+<li><p><code>MiniClueNextKeyWithPostkeys</code> - next key label with postkeys in clue window.</p></li>
+<li><p><code>MiniClueSeparator</code> - separator in clue window.</p></li>
+<li><p><code>MiniClueTitle</code> - window title.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="miniclue-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-disabling">Disabling</h4>
+<p>To disable creating triggers, set <code>vim.g.miniclue_disable</code> (globally) or <code>vim.b.miniclue_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue-key-query-process" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue-key-query-process">Key query process</h3>
+<section id="miniclue-key-query-process-generalinfo" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-key-query-process-generalinfo">General info</h4>
+<p>This module implements custom key query process imitating a usual built-in mechanism of user pressing keys in order to execute a mapping. General idea is the same: narrow down key combinations until the target is reached.</p>
+<p>Main goals of its existence are:</p>
+<ul>
+<li><p>Allow reaching certain mappings be independent of ‘timeoutlen’. That is, there is no fixed timeout after which currently typed keys are executed.</p></li>
+<li><p>Enable automated showing of next key clues after user-supplied delay (also independent of ‘timeoutlen’).</p></li>
+<li><p>Allow emulating configurable key presses after certain key combination is reached. This granular control allows creating so called “submodes”. See more at <a href="../../mini.nvim/doc/mini-clue.html#miniclue-examples-submodes"><code>MiniClue-examples-submodes</code></a>.</p></li>
+</ul>
+<p>This process is primarily designed for nested <code>&lt;Leader&gt;</code> mappings in Normal mode but works in all other main modes: Visual, Insert, Operator-pending (with caveats; no foolproof guarantees), Command-line, Terminal.</p>
+</section>
+<section id="miniclue-key-query-process-lifecycle" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-key-query-process-lifecycle">Lifecycle</h4>
+<ul>
+<li><p>Key query process starts when user types a trigger: certain keys in certain mode. Those keys are put into key query as a single user input. All possible mode key combinations are filtered to ones starting with the trigger keys.</p>
+<p>Note: trigger is implemented as a regular mapping, so if it has at least two keys, they should be pressed within ‘timeoutlen’ milliseconds.</p></li>
+<li><p>Wait (indefinitely) for user to press a key. Advance depending on the key:</p>
+<ul>
+<li><p>Special key:</p>
+<ul>
+<li><p>If <code>&lt;Esc&gt;</code> or <code>&lt;C-c&gt;</code>, stop the process without any action.</p></li>
+<li><p>If <code>&lt;CR&gt;</code>, stop the process and execute current key query, meaning emulate (with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys()"><code>nvim_feedkeys()</code></a>) user pressing those keys.</p></li>
+<li><p>If <code>&lt;BS&gt;</code>, remove previous user input from the query. If query becomes empty, stop the process without any action.</p></li>
+<li><p>If a key for scrolling clue window (<code>scroll_down</code> / <code>scroll_up</code> in <code>config.window</code>; <code>&lt;C-d&gt;</code> / <code>&lt;C-u&gt;</code> by default), scroll clue window and wait for the next user key. Note: if clue window is not shown, treated as a not special key.</p></li>
+</ul></li>
+<li><p>Not special key. Add key to the query while filtering all available key combinations to start with the current key query. Advance:</p>
+<ul>
+<li><p>If there is a single available key combination matching current key query, execute it.</p></li>
+<li><p>If there is no key combinations starting with the current query, execute it. This, for instance, allows a seamless execution of operators in presence of a longer key combinations. Example: with</p>
+<p align="center">
+</p><p><code>g</code> as trigger in Normal mode and available mappings <code>gc</code> / <code>gcc</code></p>
+<p></p>
+<p>(like from <a href="../../mini.nvim/doc/mini-comment.html#mini.comment"><code>mini.comment</code></a>), this allows typing <code>gcip</code> to comment current paragraph, although there are no key combinations starting with <code>gci</code>.</p></li>
+<li><p>Otherwise wait for the new user key press.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="miniclue-key-query-process-cluewindow" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-key-query-process-cluewindow">Clue window</h4>
+<p>After initiating key query process and after each key press, a timer is started to show a clue window: floating window with information about available next keys along with their descriptions. Note: if window is already shown, its content is updated right away.</p>
+<p>Clues can have these types:</p>
+<ul>
+<li><p>“Terminal next key”: when pressed, will lead to query execution.</p></li>
+<li><p>“Terminal next key with postkeys”: when pressed, will lead to query execution plus some configured postkeys.</p></li>
+<li><p>“Group next key”: when pressed, will narrow down available key combinations and wait for another key press. Note: can have configured description (inside <code>config.clues</code>) or it will be auto generated based on the number of available key combinations.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="miniclue-examples" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue-examples">Examples</h3>
+<section id="miniclue-examples-fullstarterexample" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-fullstarterexample">Full starter example</h4>
+<p>If not sure where to start, try this example with all provided clues from this module plus all <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> mappings in Normal and Visual modes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">miniclue</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">miniclue</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Leader triggers</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- `[` and `]` keys</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Built-in completion</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- `g` key</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">},</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">},</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Marks</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">},</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">},</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">},</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">},</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Registers</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">},</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">},</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'c'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Window commands</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-w&gt;'</span> <span class="op">},</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- `z` key</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">},</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">},</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Enhance this by adding descriptions for &lt;Leader&gt; mapping groups</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>square_brackets<span class="op">(),</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>builtin_completion<span class="op">(),</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>g<span class="op">(),</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>marks<span class="op">(),</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>registers<span class="op">(),</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>windows<span class="op">(),</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>z<span class="op">(),</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniclue-examples-leaderclues" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-leaderclues">Leader clues</h4>
+<p>Assume there are these <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> mappings set up:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set `&lt;Leader&gt;` before making any mappings and configuring 'mini.clue'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">g</span><span class="op">.</span><span class="va">mapleader</span> <span class="op">=</span> <span class="st">' '</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">nmap_leader</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">suffix</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">..</span> <span class="va">suffix</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">xmap_leader</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">suffix</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'x'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">..</span> <span class="va">suffix</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>nmap_leader<span class="op">(</span><span class="st">'bd'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua MiniBufremove.delete()&lt;CR&gt;'</span><span class="op">,</span>  <span class="st">'Delete'</span><span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>nmap_leader<span class="op">(</span><span class="st">'bw'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua MiniBufremove.wipeout()&lt;CR&gt;'</span><span class="op">,</span> <span class="st">'Wipeout'</span><span class="op">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>nmap_leader<span class="op">(</span><span class="st">'lf'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua vim.lsp.buf.format()&lt;CR&gt;'</span><span class="op">,</span>     <span class="st">'Format'</span><span class="op">)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>xmap_leader<span class="op">(</span><span class="st">'lf'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua vim.lsp.buf.format()&lt;CR&gt;'</span><span class="op">,</span>     <span class="st">'Format'</span><span class="op">)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>nmap_leader<span class="op">(</span><span class="st">'lr'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua vim.lsp.buf.rename()&lt;CR&gt;'</span><span class="op">,</span>     <span class="st">'Rename'</span><span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>nmap_leader<span class="op">(</span><span class="st">'lR'</span><span class="op">,</span> <span class="st">'&lt;Cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;'</span><span class="op">,</span> <span class="st">'References'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The following setup will enable <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> as trigger in Normal and Visual modes and add descriptions to mapping groups:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Register `&lt;Leader&gt;` as trigger</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add descriptions for mapping groups</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;b'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'+Buffers'</span> <span class="op">},</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;l'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'+LSP'</span> <span class="op">},</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniclue-examples-clueswithoutmappings" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-clueswithoutmappings">Clues without mappings</h4>
+<p>Clues can be shown not only for actually present mappings. This is helpful for showing clues for built-in key combinations. Here is an example of clues for a subset of built-in completion (see <a href="../../mini.nvim/doc/mini-clue.html#miniclue.gen_clues.builtin_completion"><code>MiniClue.gen_clues.builtin_completion()</code></a> to generate clues for all available completion sources):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Make `&lt;C-x&gt;` a trigger. Otherwise, key query process won't start.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;'</span> <span class="op">},</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Register custom clues</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;&lt;C-f&gt;'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'File names'</span> <span class="op">},</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;&lt;C-l&gt;'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Whole lines'</span> <span class="op">},</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;&lt;C-o&gt;'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Omni completion'</span> <span class="op">},</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;&lt;C-s&gt;'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Spelling suggestions'</span> <span class="op">},</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;&lt;C-u&gt;'</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">"With 'completefunc'"</span> <span class="op">},</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniclue-examples-triggersinspecialbuffers" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-triggersinspecialbuffers">Triggers in special buffers</h4>
+<p>By default triggers are automatically created in listed (‘buflisted’) and some special non-listed buffers. Use <a href="../../mini.nvim/doc/mini-clue.html#miniclue.ensure_buf_triggers"><code>MiniClue.ensure_buf_triggers()</code></a> to manually enable in when you need them. For example:</p>
+<pre class="vim"><code>au FileType special_ft lua MiniClue.ensure_buf_triggers()</code></pre>
+</section>
+<section id="miniclue-examples-submodes" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-submodes">Submodes</h4>
+<p><a name="miniclue-examples-submodes" href="../../mini.nvim/doc/mini-clue.html#miniclue-examples-submodes"><b>MiniClue-examples-submodes</b></a></p>
+<p>Submode is a state initiated after pressing certain key combination (“prefix”) during which some keys are interpreted differently.</p>
+<p>In this module submode can be implemented following these steps:</p>
+<ul>
+<li><p>Create mappings for each key inside submode. Left hand side of mappings should consist from prefix followed by the key.</p></li>
+<li><p>Create clue for each key inside submode with <code>postkeys</code> value equal to prefix. It would mean that after executing particular key combination from this submode, pressing its prefix will be automatically emulated (leading back to being inside submode).</p></li>
+<li><p>Register submode prefix (or some of its starting part) as trigger.</p></li>
+</ul>
+<section id="miniclue-examples-submodes-submodeexamples" class="level5">
+<h5 class="anchored" data-anchor-id="miniclue-examples-submodes-submodeexamples">Submode examples</h5>
+<ul>
+<li><p>Submode for moving with <a href="../../mini.nvim/doc/mini-move.html#mini.move"><code>mini.move</code></a>:</p>
+<ul>
+<li><p>Press <code>&lt;Leader&gt;m</code> to start submode.</p></li>
+<li><p>Press any of <code>h</code>/<code>j</code>/<code>k</code>/<code>l</code> to move selection/line.</p></li>
+<li><p>Press <code>&lt;Esc&gt;</code> to stop submode.</p></li>
+</ul>
+<p>The code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.move'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">left</span>       <span class="op">=</span> <span class="st">'&lt;Leader&gt;mh'</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">right</span>      <span class="op">=</span> <span class="st">'&lt;Leader&gt;ml'</span><span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">down</span>       <span class="op">=</span> <span class="st">'&lt;Leader&gt;mj'</span><span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">up</span>         <span class="op">=</span> <span class="st">'&lt;Leader&gt;mk'</span><span class="op">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">line_left</span>  <span class="op">=</span> <span class="st">'&lt;Leader&gt;mh'</span><span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">line_right</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;ml'</span><span class="op">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">line_down</span>  <span class="op">=</span> <span class="st">'&lt;Leader&gt;mj'</span><span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">line_up</span>    <span class="op">=</span> <span class="st">'&lt;Leader&gt;mk'</span><span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mh'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mj'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mk'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;ml'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mh'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mj'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;mk'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;ml'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;m'</span> <span class="op">},</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Submode for iterating buffers and windows with <a href="../../mini.nvim/doc/mini-bracketed.html#mini.bracketed"><code>mini.bracketed</code></a>:</p>
+<ul>
+<li><p>Press <code>[</code> or <code>]</code> to start key query process for certain direction.</p></li>
+<li><p>Press <code>b</code> / <code>w</code> to iterate buffers/windows until reach target one.</p></li>
+<li><p>Press <code>&lt;Esc&gt;</code> to stop submode.</p></li>
+</ul>
+<p>The code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']b'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']w'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'[b'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'[w'</span><span class="op">,</span> <span class="va">postkeys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Submode for window commands using <a href="../../mini.nvim/doc/mini-clue.html#miniclue.gen_clues.windows"><code>MiniClue.gen_clues.windows()</code></a>:</p>
+<ul>
+<li><p>Press <code>&lt;C-w&gt;</code> to start key query process.</p></li>
+<li><p>Press keys which move / change focus / resize windows.</p></li>
+<li><p>Press <code>&lt;Esc&gt;</code> to stop submode.</p></li>
+</ul>
+<p>The code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">miniclue</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">miniclue</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-w&gt;'</span> <span class="op">},</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>windows<span class="op">({</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">submode_move</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">submode_navigate</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">submode_resize</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">})</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+</section>
+<section id="miniclue-examples-windowconfig" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue-examples-windowconfig">Window config</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">}</span> <span class="op">},</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show window immediately</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">delay</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Compute window width automatically</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">width</span> <span class="op">=</span> <span class="st">'auto'</span><span class="op">,</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Use double-line border</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">border</span> <span class="op">=</span> <span class="st">'double'</span><span class="op">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniclue.setup" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.setup">setup()</h3>
+<p align="center">
+<code>MiniClue.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="miniclue.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-clue.html#miniclue.config"><code>MiniClue.config</code></a>.</p>
+</section>
+<section id="miniclue.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                               <span class="co">-- needs `triggers` field present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniclue.config" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.config">config</h3>
+<p align="center">
+<code>MiniClue.config</code>
+</p>
+<section id="miniclue.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniClue</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Array of extra clues to show</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">clues</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Array of opt-in triggers which start custom key query process.</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- **Needs to have something in order to show clues**.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">triggers</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Clue window settings</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Floating window config</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Delay before showing clue window</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">delay</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Keys to scroll inside the clue window</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">scroll_down</span> <span class="op">=</span> <span class="st">'&lt;C-d&gt;'</span><span class="op">,</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">scroll_up</span> <span class="op">=</span> <span class="st">'&lt;C-u&gt;'</span><span class="op">,</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniclue.config-generalinfo" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.config-generalinfo">General info</h4>
+<ul>
+<li><p>To use <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> as part of the config (either as trigger or inside clues), set it prior to running <a href="../../mini.nvim/doc/mini-clue.html#miniclue.setup"><code>MiniClue.setup()</code></a>.</p></li>
+<li><p>See <a href="../../mini.nvim/doc/mini-clue.html#miniclue-examples"><code>MiniClue-examples</code></a> for examples.</p></li>
+</ul>
+</section>
+<section id="miniclue.config-clues" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.config-clues">Clues</h4>
+<p><code>config.clues</code> is an array with extra information about key combinations. Each element can be one of:</p>
+<ul>
+<li><p>Clue table.</p></li>
+<li><p>Array (possibly nested) of clue tables.</p></li>
+<li><p>Callable (function) returning either of the previous two.</p></li>
+</ul>
+<p>A clue table is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;mode&gt;</span> <code>(string)</code> - single character describing single mode short-name of key combination as in <code>nvim_set_keymap()</code> (‘n’, ‘x’, ‘i’, ‘o’, ‘c’, etc.).</p></li>
+<li><p><span class="help-syntax-keys">&lt;keys&gt;</span> <code>(string)</code> - key combination for which clue will be shown. “Human-readable” key names as in <a href="https://neovim.io/doc/user/helptag.html?tag=key-notation"><code>key-notation</code></a> (like “<span class="help-syntax-keys">&lt;Leader&gt;</span>”, “<span class="help-syntax-keys">&lt;Space&gt;</span>”, “<span class="help-syntax-keys">&lt;Tab&gt;</span>”, etc.) are allowed.</p></li>
+<li><p><span class="help-syntax-keys">&lt;desc&gt;</span> <code>(string|function|nil)</code> - optional key combination description which is shown in clue window. If function, should return string description.</p></li>
+<li><p><span class="help-syntax-keys">&lt;postkeys&gt;</span> <code>(string|nil)</code> - optional postkeys which will be executed automatically after <code>keys</code>. Allows creation of submodes (see <a href="../../mini.nvim/doc/mini-clue.html#miniclue-examples-submodes"><code>MiniClue-examples-submodes</code></a>).</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Postkeys are literal simulation of keypresses with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys()"><code>nvim_feedkeys()</code></a>.</p></li>
+<li><p>Suggested approach to configuring clues is to create mappings with <code>desc</code> field while supplying to <code>config.clues</code> only elements describing groups, postkeys, and built-in mappings.</p></li>
+</ul>
+</section>
+<section id="miniclue.config-triggers" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.config-triggers">Triggers</h4>
+<p><code>config.triggers</code> is an array with information when <a href="../../mini.nvim/doc/mini-clue.html#miniclue-key-query-process"><code>MiniClue-key-query-process</code></a> should start. Each element is a trigger table with the fields <span class="help-syntax-keys">&lt;mode&gt;</span> and <span class="help-syntax-keys">&lt;keys&gt;</span> which are treated the same as in clue table.</p>
+</section>
+<section id="miniclue.config-window" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.config-window">Window</h4>
+<p><code>config.window</code> defines behavior of clue window.</p>
+<p><code>config.window.delay</code> is a number of milliseconds after which clue window will appear. Can be 0 to show immediately.</p>
+<p><code>config.window.config</code> is a table defining floating window characteristics or a callable returning such table (will be called with identifier of window’s buffer already showing all clues). It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()"><code>nvim_open_win()</code></a> with the following enhancements:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;width&gt;</span> field can be equal to <code>"auto"</code> leading to window width being computed automatically based on its content. Default is fixed width of 30.</p></li>
+<li><p><span class="help-syntax-keys">&lt;row&gt;</span> and <span class="help-syntax-keys">&lt;col&gt;</span> can be equal to <code>"auto"</code> in which case they will be computed to “stick” to set anchor (“SE” by default; see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()"><code>nvim_open_win()</code></a>). This allows changing corner in which window is shown:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pick one anchor</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'NW'</span> <span class="co">-- top-left</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'NE'</span> <span class="co">-- top-right</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'SW'</span> <span class="co">-- bottom-left</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'SE'</span> <span class="co">-- bottom-right</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span> <span class="op">=</span> <span class="op">{</span> <span class="va">anchor</span> <span class="op">=</span> <span class="va">anchor</span><span class="op">,</span> <span class="va">row</span> <span class="op">=</span> <span class="st">'auto'</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="st">'auto'</span> <span class="op">},</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p><code>config.window.scroll_down</code> / <code>config.window.scroll_up</code> are strings defining keys which will scroll clue window down / up which is useful in case not all clues fit in current window height. Set to empty string <code>''</code> to disable either of them.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.enable_all_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.enable_all_triggers">enable_all_triggers()</h3>
+<p align="center">
+<code>MiniClue.enable_all_triggers</code>()
+</p>
+<p>Enable triggers in all listed buffers</p>
+<hr>
+</section>
+<section id="miniclue.enable_buf_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.enable_buf_triggers">enable_buf_triggers()</h3>
+<p align="center">
+<code>MiniClue.enable_buf_triggers</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Enable triggers in buffer</p>
+<section id="miniclue.enable_buf_triggers-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.enable_buf_triggers-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier. Default: current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.disable_all_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.disable_all_triggers">disable_all_triggers()</h3>
+<p align="center">
+<code>MiniClue.disable_all_triggers</code>()
+</p>
+<p>Disable triggers in all buffers</p>
+<hr>
+</section>
+<section id="miniclue.disable_buf_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.disable_buf_triggers">disable_buf_triggers()</h3>
+<p align="center">
+<code>MiniClue.disable_buf_triggers</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Disable triggers in buffer</p>
+<section id="miniclue.disable_buf_triggers-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.disable_buf_triggers-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier. Default: current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.ensure_all_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.ensure_all_triggers">ensure_all_triggers()</h3>
+<p align="center">
+<code>MiniClue.ensure_all_triggers</code>()
+</p>
+<p>Ensure all triggers are valid</p>
+<hr>
+</section>
+<section id="miniclue.ensure_buf_triggers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.ensure_buf_triggers">ensure_buf_triggers()</h3>
+<p align="center">
+<code>MiniClue.ensure_buf_triggers</code>(<span class="help-syntax-special">{buf_id}</span>)
+</p>
+<p>Ensure buffer triggers are valid</p>
+<section id="miniclue.ensure_buf_triggers-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.ensure_buf_triggers-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier. Default: current buffer.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.set_mapping_desc" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.set_mapping_desc">set_mapping_desc()</h3>
+<p align="center">
+<code>MiniClue.set_mapping_desc</code>(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{desc}</span>)
+</p>
+<p>Update description of an existing mapping</p>
+<p>Notes:</p>
+<ul>
+<li>Uses buffer-local mapping in case there are both global and buffer-local mappings with same mode and LHS. Similar to <a href="https://neovim.io/doc/user/helptag.html?tag=maparg()"><code>maparg()</code></a>.</li>
+</ul>
+<section id="miniclue.set_mapping_desc-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.set_mapping_desc-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> Mapping mode (as in <code>maparg()</code>).</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> Mapping left hand side (as <code>name</code> in <code>maparg()</code>).</p>
+<p><span class="help-syntax-special">{desc}</span> <code>(string)</code> New description to set.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues">gen_clues</h3>
+<p align="center">
+<code>MiniClue.gen_clues</code>
+</p>
+<p>Generate pre-configured clues</p>
+<p>This is a table with function elements. Call to actually get array of clues.</p>
+<hr>
+</section>
+<section id="miniclue.gen_clues.builtin_completion" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.builtin_completion">gen_clues.builtin_completion()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.builtin_completion</code>()
+</p>
+<p>Generate clues for built-in completion</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="miniclue.gen_clues.builtin_completion-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.builtin_completion-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.g" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.g">gen_clues.g()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.g</code>()
+</p>
+<p>Generate clues for <code>g</code> key</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="miniclue.gen_clues.g-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.g-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.square_brackets" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.square_brackets">gen_clues.square_brackets()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.square_brackets</code>()
+</p>
+<p>Generate clues for <code>[</code> and <code>]</code> keys</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="miniclue.gen_clues.square_brackets-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.square_brackets-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.marks" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.marks">gen_clues.marks()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.marks</code>()
+</p>
+<p>Generate clues for marks</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"g'"</span> <span class="op">}</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">}</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g`'</span> <span class="op">}</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">}</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"g'"</span> <span class="op">}</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">}</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g`'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: if you use “g” as trigger (like to enable <a href="../../mini.nvim/doc/mini-clue.html#miniclue.gen_clues.g"><code>MiniClue.gen_clues.g()</code></a>), don’t add “g’” and “g`” as triggers: they already will be taken into account.</p>
+<section id="miniclue.gen_clues.marks-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.marks-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+</section>
+<section id="miniclue.gen_clues.marks-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.marks-seealso">See also</h4>
+<p><a href="https://neovim.io/doc/user/helptag.html?tag=mark-motions"><code>mark-motions</code></a></p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.registers" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.registers">gen_clues.registers()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.registers</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate clues for registers</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">}</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">}</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'c'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="miniclue.gen_clues.registers-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.registers-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible keys:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;show_contents&gt;</span> <code>(boolean)</code> - whether to show contents of all possible registers. If <code>false</code>, only description of special registers is shown. Default: <code>false</code>.</li>
+</ul>
+</section>
+<section id="miniclue.gen_clues.registers-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.registers-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+</section>
+<section id="miniclue.gen_clues.registers-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.registers-seealso">See also</h4>
+<p><a href="https://neovim.io/doc/user/helptag.html?tag=registers"><code>registers</code></a></p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.windows" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.windows">gen_clues.windows()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.windows</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate clues for window commands</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-w&gt;'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: only non-duplicated commands are included. For full list see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W"><code>CTRL-W</code></a>.</p>
+<section id="miniclue.gen_clues.windows-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.windows-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible keys:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;submode_move&gt;</span> <code>(boolean)</code> - whether to make move (change layout) commands a submode by using <code>postkeys</code> field. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;submode_navigate&gt;</span> <code>(boolean)</code> - whether to make navigation (change focus) commands a submode by using <code>postkeys</code> field. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;submode_resize&gt;</span> <code>(boolean)</code> - whether to make resize (change size) commands a submode by using <code>postkeys</code> field. Default: <code>false</code>.</p></li>
+</ul>
+</section>
+<section id="miniclue.gen_clues.windows-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.windows-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+<hr>
+</section>
+</section>
+<section id="miniclue.gen_clues.z" class="level3">
+<h3 class="anchored" data-anchor-id="miniclue.gen_clues.z">gen_clues.z()</h3>
+<p align="center">
+<code>MiniClue.gen_clues.z</code>()
+</p>
+<p>Generate clues for <code>z</code> key</p>
+<p>Contains clues for the following triggers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'n'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="miniclue.gen_clues.z-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniclue.gen_clues.z-return">Return</h4>
+<p><code>(table)</code> Array of clues.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

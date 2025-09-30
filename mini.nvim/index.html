@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.nvim – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.nvim – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:image" content="https://echasnovski.github.io/mini-site/mini.nvim/logo.png">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:alt" content="mini.nvim">
+<meta property="og:image:height" content="105">
+<meta property="og:image:width" content="555">
+<meta name="twitter:title" content="mini.nvim – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../mini.nvim/index.html" aria-current="page"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of contents</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a>
+  <ul>
+  <li><a href="#text-editing" id="toc-text-editing" class="nav-link" data-scroll-target="#text-editing">Text editing</a></li>
+  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link" data-scroll-target="#general-workflow">General workflow</a></li>
+  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance">Appearance</a></li>
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
+  </ul></li>
+  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles">General principles</a>
+  <ul>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
+  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#buffer-local-configuration" id="toc-buffer-local-configuration" class="nav-link" data-scroll-target="#buffer-local-configuration">Buffer local configuration</a></li>
+  <li><a href="#buffer-names" id="toc-buffer-names" class="nav-link" data-scroll-target="#buffer-names">Buffer names</a></li>
+  <li><a href="#disabling" id="toc-disabling" class="nav-link" data-scroll-target="#disabling">Disabling</a></li>
+  <li><a href="#silencing" id="toc-silencing" class="nav-link" data-scroll-target="#silencing">Silencing</a></li>
+  <li><a href="#highlighting" id="toc-highlighting" class="nav-link" data-scroll-target="#highlighting">Highlighting</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability">Stability</a></li>
+  <li><a href="#not-filetype-and-language-specific" id="toc-not-filetype-and-language-specific" class="nav-link" data-scroll-target="#not-filetype-and-language-specific">Not filetype and language specific</a></li>
+  </ul></li>
+  <li><a href="#plugin-color-schemes" id="toc-plugin-color-schemes" class="nav-link" data-scroll-target="#plugin-color-schemes">Plugin color schemes</a></li>
+  <li><a href="#planned-modules" id="toc-planned-modules" class="nav-link" data-scroll-target="#planned-modules">Planned modules</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.nvim</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p align="center">
+<img src="logo.png" alt="mini.nvim" style="max-width:100%;border:solid 2px">
+</p>
+<p>Library of 40+ independent Lua modules improving overall <a href="https://github.com/neovim/neovim">Neovim</a> (version 0.9 and higher) experience with minimal effort. They all share same configuration approaches and general design principles.</p>
+<p>Think about this project as “Swiss Army knife” among Neovim plugins: it has many different independent tools (modules) suitable for most common tasks. Each module can be used separately without any startup and usage overhead.</p>
+<p>If you want to help this project grow but don’t know where to start, check out <a href="../mini.nvim/CONTRIBUTING.html">contributing guides</a> or leave a Github star for ‘mini.nvim’ project and/or any its standalone Git repositories.</p>
+<p>For a history of changes, including current development version, see <a href="../mini.nvim/CHANGELOG.html">change log</a>.</p>
+<blockquote class="blockquote">
+<p>[!NOTE] This was previously hosted at <code>echasnovski/mini.nvim</code>. It was transferred to a dedicated organization to improve long term project stability. See more details <a href="https://github.com/nvim-mini/mini.nvim/discussions/1970">here</a>.</p>
+</blockquote>
+<section id="table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#general-principles">General principles</a></li>
+<li><a href="#plugin-color-schemes">Plugin color schemes</a></li>
+<li><a href="#planned-modules">Planned modules</a></li>
+</ul>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>There are two branches to install from:</p>
+<ul>
+<li><code>main</code> (default, <strong>recommended</strong>) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).</li>
+<li><code>stable</code> will be updated only upon releases with code tested during public beta-testing phase in <code>main</code> branch.</li>
+</ul>
+<p>Here are code snippets for some common installation methods:</p>
+<ul>
+<li>Manually with <code>git clone</code> (compatible with <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md">mini.deps</a>):</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Put this at the top of 'init.lua'</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">path_package</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'data'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'/site'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">mini_path</span> <span class="op">=</span> <span class="va">path_package</span> <span class="op">..</span> <span class="st">'/pack/deps/start/mini.nvim'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>fs_stat<span class="op">(</span><span class="va">mini_path</span><span class="op">)</span> <span class="cf">then</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'echo "Installing `mini.nvim`" | redraw'</span><span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">clone_cmd</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'git'</span><span class="op">,</span> <span class="st">'clone'</span><span class="op">,</span> <span class="st">'--filter=blob:none'</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Uncomment next line to use 'stable' branch</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- '--branch', 'stable',</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://github.com/nvim-mini/mini.nvim'</span><span class="op">,</span> <span class="va">mini_path</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>system<span class="op">(</span><span class="va">clone_cmd</span><span class="op">)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'packadd mini.nvim | helptags ALL'</span><span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'echo "Installed `mini.nvim`" | redraw'</span><span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>:</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Branch</th>
+<th>Code snippet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Main</td>
+<td><code>{ 'nvim-mini/mini.nvim', version = false },</code></td>
+</tr>
+<tr class="even">
+<td>Stable</td>
+<td><code>{ 'nvim-mini/mini.nvim', version = '*' },</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>:</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Branch</th>
+<th>Code snippet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Main</td>
+<td><code>Plug 'nvim-mini/mini.nvim'</code></td>
+</tr>
+<tr class="even">
+<td>Stable</td>
+<td><code>Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Every module is also distributed as a standalone Git repository. Check out module’s information for more details.</li>
+</ul>
+<p><strong>Important</strong>: don’t forget to call module’s <code>setup()</code> (if required) to enable its functionality.</p>
+<p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
+<ul>
+<li>Enable corresponding git global config value: <code>git config --system core.longpaths true</code>. Then try to reinstall.</li>
+<li>Install plugin in other place with shorter path.</li>
+</ul>
+</section>
+<section id="modules" class="level2">
+<h2 class="anchored" data-anchor-id="modules">Modules</h2>
+<p>‘mini.nvim’ contains many modules which is slightly daunting at first. All of them can be used independently, one at a time.</p>
+<p>For easier exploration, here they are presented in groups based on module’s primary functionality (although some modules can fit in several groups). See more detailed listing <a href="../mini.nvim/doc/mini-nvim.html">here</a>.</p>
+<section id="text-editing" class="level3">
+<h3 class="anchored" data-anchor-id="text-editing">Text editing</h3>
+<p>These modules improve your text editing experience. Start with ‘mini.ai’, ‘mini.operators’, and ‘mini.surround’.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Description</th>
+<th>Overview</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mini.ai</td>
+<td>Extend and create <code>a</code>/<code>i</code> textobjects</td>
+<td><a href="../mini.nvim/readmes/mini-ai.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-ai.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.align</td>
+<td>Align text interactively</td>
+<td><a href="../mini.nvim/readmes/mini-align.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-align.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.comment</td>
+<td>Comment lines</td>
+<td><a href="../mini.nvim/readmes/mini-comment.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-comment.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.completion</td>
+<td>Completion and signature help</td>
+<td><a href="../mini.nvim/readmes/mini-completion.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-completion.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.keymap</td>
+<td>Special key mappings</td>
+<td><a href="../mini.nvim/readmes/mini-keymap.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-keymap.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.move</td>
+<td>Move any selection in any direction</td>
+<td><a href="../mini.nvim/readmes/mini-move.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-move.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.operators</td>
+<td>Text edit operators</td>
+<td><a href="../mini.nvim/readmes/mini-operators.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-operators.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.pairs</td>
+<td>Autopairs</td>
+<td><a href="../mini.nvim/readmes/mini-pairs.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-pairs.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.snippets</td>
+<td>Manage and expand snippets</td>
+<td><a href="../mini.nvim/readmes/mini-snippets.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-snippets.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.splitjoin</td>
+<td>Split and join arguments</td>
+<td><a href="../mini.nvim/readmes/mini-splitjoin.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-splitjoin.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.surround</td>
+<td>Surround actions</td>
+<td><a href="../mini.nvim/readmes/mini-surround.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-surround.html">Documentation</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="general-workflow">General workflow</h3>
+<p>These modules improve your general workflow. Start with ‘mini.bracketed’, ‘mini.files’, and ‘mini.pick’.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Description</th>
+<th>Overview</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mini.basics</td>
+<td>Common configuration presets</td>
+<td><a href="../mini.nvim/readmes/mini-basics.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-basics.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.bracketed</td>
+<td>Go forward/backward with square brackets</td>
+<td><a href="../mini.nvim/readmes/mini-bracketed.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-bracketed.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.bufremove</td>
+<td>Remove buffers</td>
+<td><a href="../mini.nvim/readmes/mini-bufremove.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-bufremove.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.clue</td>
+<td>Show next key clues</td>
+<td><a href="../mini.nvim/readmes/mini-clue.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-clue.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.deps</td>
+<td>Plugin manager</td>
+<td><a href="../mini.nvim/readmes/mini-deps.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-deps.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.diff</td>
+<td>Work with diff hunks</td>
+<td><a href="../mini.nvim/readmes/mini-diff.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-diff.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.extra</td>
+<td>Extra ‘mini.nvim’ functionality</td>
+<td><a href="../mini.nvim/readmes/mini-extra.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-extra.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.files</td>
+<td>Navigate and manipulate file system</td>
+<td><a href="../mini.nvim/readmes/mini-files.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-files.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.git</td>
+<td>Git integration</td>
+<td><a href="../mini.nvim/readmes/mini-git.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-git.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.jump</td>
+<td>Jump to next/previous single character</td>
+<td><a href="../mini.nvim/readmes/mini-jump.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-jump.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.jump2d</td>
+<td>Jump within visible lines</td>
+<td><a href="../mini.nvim/readmes/mini-jump2d.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-jump2d.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.misc</td>
+<td>Miscellaneous functions</td>
+<td><a href="../mini.nvim/readmes/mini-misc.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-misc.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.pick</td>
+<td>Pick anything</td>
+<td><a href="../mini.nvim/readmes/mini-pick.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-pick.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.sessions</td>
+<td>Session management</td>
+<td><a href="../mini.nvim/readmes/mini-sessions.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-sessions.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.visits</td>
+<td>Track and reuse file system visits</td>
+<td><a href="../mini.nvim/readmes/mini-visits.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-visits.html">Documentation</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="appearance" class="level3">
+<h3 class="anchored" data-anchor-id="appearance">Appearance</h3>
+<p>These modules improve your Neovim appearance. Start with ‘mini.hues’, ‘mini.icons’, and ‘mini.statusline’.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Description</th>
+<th>Overview</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mini.animate</td>
+<td>Animate common Neovim actions</td>
+<td><a href="../mini.nvim/readmes/mini-animate.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-animate.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.base16</td>
+<td>Base16 colorscheme creation</td>
+<td><a href="../mini.nvim/readmes/mini-base16.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-base16.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.colors</td>
+<td>Tweak and save any color scheme</td>
+<td><a href="../mini.nvim/readmes/mini-colors.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-colors.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.cursorword</td>
+<td>Autohighlight word under cursor</td>
+<td><a href="../mini.nvim/readmes/mini-cursorword.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-cursorword.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.hipatterns</td>
+<td>Highlight patterns in text</td>
+<td><a href="../mini.nvim/readmes/mini-hipatterns.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-hipatterns.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.hues</td>
+<td>Generate configurable color scheme</td>
+<td><a href="../mini.nvim/readmes/mini-hues.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-hues.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.icons</td>
+<td>Icon provider</td>
+<td><a href="../mini.nvim/readmes/mini-icons.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-icons.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.indentscope</td>
+<td>Visualize and work with indent scope</td>
+<td><a href="../mini.nvim/readmes/mini-indentscope.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-indentscope.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.map</td>
+<td>Window with buffer text overview</td>
+<td><a href="../mini.nvim/readmes/mini-map.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-map.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.notify</td>
+<td>Show notifications</td>
+<td><a href="../mini.nvim/readmes/mini-notify.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-notify.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.starter</td>
+<td>Start screen</td>
+<td><a href="../mini.nvim/readmes/mini-starter.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-starter.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.statusline</td>
+<td>Statusline</td>
+<td><a href="../mini.nvim/readmes/mini-statusline.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-statusline.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.tabline</td>
+<td>Tabline</td>
+<td><a href="../mini.nvim/readmes/mini-tabline.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-tabline.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.trailspace</td>
+<td>Trailspace (highlight and remove)</td>
+<td><a href="../mini.nvim/readmes/mini-trailspace.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-trailspace.html">Documentation</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other" class="level3">
+<h3 class="anchored" data-anchor-id="other">Other</h3>
+<p>These modules don’t quite fit in any of the previous categories.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Description</th>
+<th>Overview</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mini.doc</td>
+<td>Generate Neovim help files</td>
+<td><a href="../mini.nvim/readmes/mini-doc.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-doc.html">Documentation</a></td>
+</tr>
+<tr class="even">
+<td>mini.fuzzy</td>
+<td>Fuzzy matching</td>
+<td><a href="../mini.nvim/readmes/mini-fuzzy.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-fuzzy.html">Documentation</a></td>
+</tr>
+<tr class="odd">
+<td>mini.test</td>
+<td>Test Neovim plugins</td>
+<td><a href="../mini.nvim/readmes/mini-test.html">README</a></td>
+<td><a href="../mini.nvim/doc/mini-test.html">Documentation</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="general-principles" class="level2">
+<h2 class="anchored" data-anchor-id="general-principles">General principles</h2>
+<section id="design" class="level3">
+<h3 class="anchored" data-anchor-id="design">Design</h3>
+<p>Each module is designed to solve a particular problem targeting balance between feature-richness (handling as many edge-cases as possible) and simplicity of implementation/support. Granted, not all of them ended up with the same balance, but it is the goal nevertheless.</p>
+</section>
+<section id="independence" class="level3">
+<h3 class="anchored" data-anchor-id="independence">Independence</h3>
+<p>Modules are independent of each other and can be run without external dependencies. Although some of them may need dependencies for full experience.</p>
+</section>
+<section id="structure" class="level3">
+<h3 class="anchored" data-anchor-id="structure">Structure</h3>
+<p>Each module is a submodule for a placeholder “mini” module. So, for example, “surround” module should be referred to as “mini.surround”. As later will be explained, this plugin can also be referred to as “MiniSurround”.</p>
+</section>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<ul>
+<li><p>Each module you want to use should be enabled separately with <code>require(&lt;name of module&gt;).setup({})</code>. Possibly replace <code>{}</code> with your config table or omit altogether to use defaults. You can supply only parts of config, the rest will be inferred from defaults.</p></li>
+<li><p>Call to module’s <code>setup()</code> always creates a global Lua object with coherent camel-case name: <code>require('mini.surround').setup()</code> creates <code>_G.MiniSurround</code>. This allows for a simpler usage of plugin functionality: instead of <code>require('mini.surround')</code> use <code>MiniSurround</code> (or manually <code>:lua MiniSurround.*</code> in command line); available from <code>v:lua</code> like <code>v:lua.MiniSurround</code>. Considering this, “module” and “Lua object” names can be used interchangeably: ‘mini.surround’ and ‘MiniSurround’ will mean the same thing.</p></li>
+<li><p>Each supplied <code>config</code> table is stored in <code>config</code> field of global object. Like <code>MiniSurround.config</code>.</p></li>
+<li><p>Values of <code>config</code> which affect runtime activity can be changed on the fly to have effect. For example, <code>MiniSurround.config.n_lines</code> can be changed during runtime; but changing <code>MiniSurround.config.mappings</code> won’t have any effect (as mappings are created once during <code>setup()</code>).</p></li>
+<li><p>If module works best with some specific non-default option value, it is set during <code>setup()</code>. If the value is not essential to module’s functionality, it is done only if user or another plugin hasn’t set it beforehand (no matter the value).</p></li>
+</ul>
+</section>
+<section id="buffer-local-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="buffer-local-configuration">Buffer local configuration</h3>
+<p>Each module can be additionally configured to use certain runtime config settings locally to buffer. See <code>mini.nvim-buffer-local-config</code> section in help file for more information.</p>
+</section>
+<section id="buffer-names" class="level3">
+<h3 class="anchored" data-anchor-id="buffer-names">Buffer names</h3>
+<p>All module-related buffers are named according to the following format: <code>mini&lt;module-name&gt;://&lt;buffer-number&gt;/&lt;useful-info&gt;</code> (forward slashes are used on any platform; <code>&lt;useful-info&gt;</code> may be empty). This structure allows creating identifiable, reasonably unique, and useful buffer names. For example, ‘mini.files’ buffers are created per displayed directory/file with names like <code>minifiles://10/path/to/displayed/directory</code>.</p>
+</section>
+<section id="disabling" class="level3">
+<h3 class="anchored" data-anchor-id="disabling">Disabling</h3>
+<p>Each module’s core functionality can be disabled globally or locally to buffer. See “Disabling” section in module’s help page for more details. See <code>mini.nvim-disabling-recipes</code> section in main help file for common recipes.</p>
+</section>
+<section id="silencing" class="level3">
+<h3 class="anchored" data-anchor-id="silencing">Silencing</h3>
+<p>Each module providing non-error feedback can be configured to not do that by setting <code>config.silent = true</code> (either inside <code>setup()</code> call or on the fly).</p>
+</section>
+<section id="highlighting" class="level3">
+<h3 class="anchored" data-anchor-id="highlighting">Highlighting</h3>
+<p>Appearance of module’s output is controlled by certain set of highlight groups (see <code>:h highlight-groups</code>). By default they usually link to some semantically close built-in highlight group and are ensured to be defined after any color scheme takes effect. Use <code>:highlight</code> command or <code>vim.api.nvim_set_hl()</code> Lua function to customize highlighting. To see a more calibrated look, use ‘mini.hues’, ‘mini.base16’, or plugin’s color scheme.</p>
+</section>
+<section id="stability" class="level3">
+<h3 class="anchored" data-anchor-id="stability">Stability</h3>
+<p>Each module upon release is considered to be relatively stable: both in terms of setup and functionality. Any non-bugfix backward-incompatible change will be released gradually as much as possible.</p>
+</section>
+<section id="not-filetype-and-language-specific" class="level3">
+<h3 class="anchored" data-anchor-id="not-filetype-and-language-specific">Not filetype and language specific</h3>
+<p>Including functionality which needs several filetype/language specific implementations is an explicit no-goal of this project. This is mostly due to the potential increase in maintenance to keep implementation up to date. However, any part which might need filetype/language specific tuning should be designed to allow it by letting user set proper buffer options and/or local configuration.</p>
+</section>
+</section>
+<section id="plugin-color-schemes" class="level2">
+<h2 class="anchored" data-anchor-id="plugin-color-schemes">Plugin color schemes</h2>
+<p>This plugin comes with several color schemes (all have both dark and light variants). Activate any of them as a regular <code>colorscheme</code> (like <code>:colorscheme miniwinter</code> or <code>vim.cmd.colorscheme('miniwinter')</code>).</p>
+<ul>
+<li><p>Based on <a href="../mini.nvim/readmes/mini-hues.html">‘mini.hues’</a> (recommended):</p>
+<ul>
+<li><code>miniwinter</code>: “icy winter” palette with azure background.</li>
+<li><code>minispring</code>: “blooming spring” palette with green background.</li>
+<li><code>minisummer</code>: “hot summer” palette with brown/yellow background.</li>
+<li><code>miniautumn</code>: “cooling autumn” palette with purple background.</li>
+<li><code>randomhue</code>: random background and foreground of the same hue with medium saturation.</li>
+</ul>
+<p>You can see how they look in <a href="../mini.nvim/readmes/mini-hues.html#bundled-color-schemes">‘mini.hues’ README</a>.</p></li>
+<li><p>Based on <a href="../mini.nvim/readmes/mini-base16.html">‘mini.base16’</a>:</p>
+<ul>
+<li><code>minicyan</code>: cyan and grey main colors with medium contrast and saturation palette.</li>
+<li><code>minischeme</code>: blue and yellow main colors with high contrast and saturation palette.</li>
+</ul>
+<p>You can see how they look in <a href="../mini.nvim/readmes/mini-base16.html#demo">‘mini.base16’ README</a>.</p></li>
+</ul>
+</section>
+<section id="planned-modules" class="level2">
+<h2 class="anchored" data-anchor-id="planned-modules">Planned modules</h2>
+<p>This is the list of modules I currently intend to implement eventually (as my free time and dedication will allow), in alphabetical order:</p>
+<ul>
+<li>‘mini.abbrev’ - helper to manage/setup Insert mode abbreviations.</li>
+<li>‘mini.cmdline’ - improved Command line. Possibly with custom <code>vim.ui.input</code> implementation.</li>
+<li>‘mini.cycle’ - cycle through alternatives with pre-defined rules. Something like <a href="https://github.com/monaqa/dial.nvim">monaqa/dial.nvim</a> and <a href="https://github.com/AndrewRadev/switch.vim">AndrewRadev/switch.vim</a></li>
+<li>‘mini.folds’ - more capable and user-friendly folds.</li>
+<li>‘mini.repl’ - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.</li>
+<li>‘mini.sendtext’ - send text between buffers. In particular between regular and built-in terminal buffers.</li>
+<li>‘mini.statuscolumn’ - customizable ‘statuscolumn’.</li>
+<li>‘mini.terminals’ - coherently manage interactive terminal buffers. Something like <a href="https://github.com/kassio/neoterm">kassio/neoterm</a>. Might also incorporate functionality to asynchronously run code in shell with post-processed results.</li>
+<li>‘mini.quickfix’ - more capable and user-friendly quickfix list. Possibly with preview and inline editing for search-and-replace workflow.</li>
+<li>‘mini.windows’ - window manager. Interactive picker, layout organizer, and maybe more.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

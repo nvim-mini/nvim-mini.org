@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.jump2d documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.jump2d documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.jump2d documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minijump2d" id="toc-minijump2d" class="nav-link active" data-scroll-target="#minijump2d">Module</a>
+  <ul>
+  <li><a href="#minijump2d-setup" id="toc-minijump2d-setup" class="nav-link" data-scroll-target="#minijump2d-setup">Setup</a></li>
+  <li><a href="#minijump2d-exampleusage" id="toc-minijump2d-exampleusage" class="nav-link" data-scroll-target="#minijump2d-exampleusage">Example usage</a></li>
+  <li><a href="#minijump2d-comparisons" id="toc-minijump2d-comparisons" class="nav-link" data-scroll-target="#minijump2d-comparisons">Comparisons</a></li>
+  <li><a href="#minijump2d-highlightgroups" id="toc-minijump2d-highlightgroups" class="nav-link" data-scroll-target="#minijump2d-highlightgroups">Highlight groups</a></li>
+  <li><a href="#minijump2d-disabling" id="toc-minijump2d-disabling" class="nav-link" data-scroll-target="#minijump2d-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.setup" id="toc-minijump2d.setup" class="nav-link" data-scroll-target="#minijump2d.setup">setup()</a>
+  <ul>
+  <li><a href="#minijump2d.setup-parameters" id="toc-minijump2d.setup-parameters" class="nav-link" data-scroll-target="#minijump2d.setup-parameters">Parameters</a></li>
+  <li><a href="#minijump2d.setup-usage" id="toc-minijump2d.setup-usage" class="nav-link" data-scroll-target="#minijump2d.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.config" id="toc-minijump2d.config" class="nav-link" data-scroll-target="#minijump2d.config">config</a>
+  <ul>
+  <li><a href="#minijump2d.config-defaults" id="toc-minijump2d.config-defaults" class="nav-link" data-scroll-target="#minijump2d.config-defaults">Defaults</a></li>
+  <li><a href="#minijump2d.config-spotterfunction" id="toc-minijump2d.config-spotterfunction" class="nav-link" data-scroll-target="#minijump2d.config-spotterfunction">Spotter function</a></li>
+  <li><a href="#minijump2d.config-view" id="toc-minijump2d.config-view" class="nav-link" data-scroll-target="#minijump2d.config-view">View</a></li>
+  <li><a href="#minijump2d.config-allowedlines" id="toc-minijump2d.config-allowedlines" class="nav-link" data-scroll-target="#minijump2d.config-allowedlines">Allowed lines</a></li>
+  <li><a href="#minijump2d.config-hooks" id="toc-minijump2d.config-hooks" class="nav-link" data-scroll-target="#minijump2d.config-hooks">Hooks</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.start" id="toc-minijump2d.start" class="nav-link" data-scroll-target="#minijump2d.start">start()</a>
+  <ul>
+  <li><a href="#minijump2d.start-firstcomputationofpossiblejumpspots" id="toc-minijump2d.start-firstcomputationofpossiblejumpspots" class="nav-link" data-scroll-target="#minijump2d.start-firstcomputationofpossiblejumpspots">First computation of possible jump spots</a></li>
+  <li><a href="#minijump2d.start-visualization" id="toc-minijump2d.start-visualization" class="nav-link" data-scroll-target="#minijump2d.start-visualization">Visualization</a></li>
+  <li><a href="#minijump2d.start-iterativefiltering" id="toc-minijump2d.start-iterativefiltering" class="nav-link" data-scroll-target="#minijump2d.start-iterativefiltering">Iterative filtering</a></li>
+  <li><a href="#minijump2d.start-parameters" id="toc-minijump2d.start-parameters" class="nav-link" data-scroll-target="#minijump2d.start-parameters">Parameters</a></li>
+  <li><a href="#minijump2d.start-usage" id="toc-minijump2d.start-usage" class="nav-link" data-scroll-target="#minijump2d.start-usage">Usage</a></li>
+  <li><a href="#minijump2d.start-seealso" id="toc-minijump2d.start-seealso" class="nav-link" data-scroll-target="#minijump2d.start-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.stop" id="toc-minijump2d.stop" class="nav-link" data-scroll-target="#minijump2d.stop">stop()</a></li>
+  <li><a href="#minijump2d.gen_spotter" id="toc-minijump2d.gen_spotter" class="nav-link" data-scroll-target="#minijump2d.gen_spotter">gen_spotter</a></li>
+  <li><a href="#minijump2d.gen_spotter.pattern" id="toc-minijump2d.gen_spotter.pattern" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.pattern">gen_spotter.pattern()</a>
+  <ul>
+  <li><a href="#minijump2d.gen_spotter.pattern-parameters" id="toc-minijump2d.gen_spotter.pattern-parameters" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.pattern-parameters">Parameters</a></li>
+  <li><a href="#minijump2d.gen_spotter.pattern-return" id="toc-minijump2d.gen_spotter.pattern-return" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.pattern-return">Return</a></li>
+  <li><a href="#minijump2d.gen_spotter.pattern-usage" id="toc-minijump2d.gen_spotter.pattern-usage" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.pattern-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.gen_spotter.vimpattern" id="toc-minijump2d.gen_spotter.vimpattern" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.vimpattern">gen_spotter.vimpattern()</a>
+  <ul>
+  <li><a href="#minijump2d.gen_spotter.vimpattern-parameters" id="toc-minijump2d.gen_spotter.vimpattern-parameters" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.vimpattern-parameters">Parameters</a></li>
+  <li><a href="#minijump2d.gen_spotter.vimpattern-return" id="toc-minijump2d.gen_spotter.vimpattern-return" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.vimpattern-return">Return</a></li>
+  <li><a href="#minijump2d.gen_spotter.vimpattern-usage" id="toc-minijump2d.gen_spotter.vimpattern-usage" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.vimpattern-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.gen_spotter.union" id="toc-minijump2d.gen_spotter.union" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.union">gen_spotter.union()</a>
+  <ul>
+  <li><a href="#minijump2d.gen_spotter.union-parameters" id="toc-minijump2d.gen_spotter.union-parameters" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.union-parameters">Parameters</a></li>
+  <li><a href="#minijump2d.gen_spotter.union-return" id="toc-minijump2d.gen_spotter.union-return" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.union-return">Return</a></li>
+  <li><a href="#minijump2d.gen_spotter.union-usage" id="toc-minijump2d.gen_spotter.union-usage" class="nav-link" data-scroll-target="#minijump2d.gen_spotter.union-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.default_spotter" id="toc-minijump2d.default_spotter" class="nav-link" data-scroll-target="#minijump2d.default_spotter">default_spotter()</a></li>
+  <li><a href="#minijump2d.builtin_opts" id="toc-minijump2d.builtin_opts" class="nav-link" data-scroll-target="#minijump2d.builtin_opts">builtin_opts</a>
+  <ul>
+  <li><a href="#minijump2d.builtin_opts-usage" id="toc-minijump2d.builtin_opts-usage" class="nav-link" data-scroll-target="#minijump2d.builtin_opts-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minijump2d.builtin_opts.default" id="toc-minijump2d.builtin_opts.default" class="nav-link" data-scroll-target="#minijump2d.builtin_opts.default">builtin_opts.default</a></li>
+  <li><a href="#minijump2d.builtin_opts.line_start" id="toc-minijump2d.builtin_opts.line_start" class="nav-link" data-scroll-target="#minijump2d.builtin_opts.line_start">builtin_opts.line_start</a></li>
+  <li><a href="#minijump2d.builtin_opts.word_start" id="toc-minijump2d.builtin_opts.word_start" class="nav-link" data-scroll-target="#minijump2d.builtin_opts.word_start">builtin_opts.word_start</a></li>
+  <li><a href="#minijump2d.builtin_opts.single_character" id="toc-minijump2d.builtin_opts.single_character" class="nav-link" data-scroll-target="#minijump2d.builtin_opts.single_character">builtin_opts.single_character</a></li>
+  <li><a href="#minijump2d.builtin_opts.query" id="toc-minijump2d.builtin_opts.query" class="nav-link" data-scroll-target="#minijump2d.builtin_opts.query">builtin_opts.query</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.jump2d documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.jump2d" href="../../mini.nvim/doc/mini-jump2d.html#mini.jump2d"><b>mini.jump2d</b></a> Jump within visible lines</p>
+<p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
+<hr>
+<section id="minijump2d" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d">Module</h3>
+<p>Jump within visible lines via iterative label filtering.</p>
+<p>Features:</p>
+<ul>
+<li><p>Make jump by iterative filtering of possible, equally considered jump spots until there is only one. Filtering is done by typing a label character that is visualized at jump spot.</p></li>
+<li><p>Customizable (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>):</p>
+<ul>
+<li><p>Way of computing possible jump spots with opinionated default.</p></li>
+<li><p>Characters used to label jump spots during iterative filtering.</p></li>
+<li><p>Visual effects: how many steps ahead to show; dim lines with spots.</p></li>
+<li><p>Action hooks to be executed at certain events during jump.</p></li>
+<li><p>Allowed windows: current and/or not current.</p></li>
+<li><p>Allowed lines: whether to process blank or folded lines, lines before/at/after cursor line, etc. Example: user can configure to look for spots only inside current window at or after cursor line. Example: user can configure to look for word starts only inside current window at or after cursor line with ‘j’ and ‘k’ labels performing some action after jump.</p></li>
+</ul></li>
+<li><p>Works in Visual and Operator-pending (with dot-repeat) modes.</p></li>
+<li><p>Preconfigured ways of computing jump spots (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>):</p>
+<ul>
+<li><p>Starts of lines.</p></li>
+<li><p>Starts of words.</p></li>
+<li><p>Single character from user input.</p></li>
+<li><p>Variable length query from user input.</p></li>
+</ul></li>
+<li><p>Works with multibyte characters.</p></li>
+</ul>
+<p>General overview of how jump is intended to be performed:</p>
+<ul>
+<li><p>Lock eyes on desired location (“spot”) recognizable by future jump. Should be within visible lines at place where cursor can be placed.</p></li>
+<li><p>Initiate jump. Either by custom keybinding or with a call to <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> (allows customization options). This will highlight all possible jump spots with their labels (letters from “a” to “z” by default). For more details, read <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>.</p></li>
+<li><p>Type character that appeared over desired location. If its label was unique, jump is performed. If it wasn’t unique, possible jump spots are filtered to those having the same label character.</p></li>
+<li><p>Repeat previous step until there is only one possible jump spot or type <span class="help-syntax-keys">&lt;CR&gt;</span> to jump to first available jump spot. Typing anything else stops jumping without moving cursor.</p></li>
+</ul>
+<section id="minijump2d-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.jump2d').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniJump2d</code> which you can use for scripting or manually (with <code>:lua MiniJump2d.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> for available config settings.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minijump2d_config</code> which should have same structure as <code>MiniJump2d.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
+</section>
+<section id="minijump2d-exampleusage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d-exampleusage">Example usage</h4>
+<ul>
+<li><p>Modify default jumping to use only current window at or after cursor line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_lines</span> <span class="op">=</span> <span class="op">{</span> <span class="va">cursor_before</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_windows</span> <span class="op">=</span> <span class="op">{</span> <span class="va">not_current</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Jump to line start using combination of options supplied in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start"><code>MiniJump2d.builtin_opts.line_start</code></a>:</p>
+<pre class="vim"><code>:lua MiniJump2d.start(MiniJump2d.builtin_opts.line_start)</code></pre></li>
+<li><p>Jump to a single character typed after executing this command:</p>
+<pre class="vim"><code>:lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)</code></pre></li>
+<li><p>See more examples in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>.</p></li>
+</ul>
+</section>
+<section id="minijump2d-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/phaazon/hop.nvim">phaazon/hop.nvim</a>:</p>
+<ul>
+<li><p>Both are fast, customizable, and extensible (user can write their own ways to define jump spots).</p></li>
+<li><p>‘hop.nvim’ visualizes all steps at once. While this module can show configurable number of steps ahead.</p></li>
+<li><p>Both have several builtin ways to specify type of jump (word start, line start, one character or query based on user input). ‘hop.nvim’ does that by exporting many targeted Neovim commands, while this module has preconfigured basic options leaving others to customization with Lua code (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>).</p></li>
+<li><p>‘hop.nvim’ computes labels (called “hints”) differently. Contrary to this module deliberately not having preference of one jump spot over another, ‘hop.nvim’ uses specialized algorithm that produces sequence of keys in a slightly biased manner: some sequences are intentionally shorter than the others (leading to fewer average keystrokes). They are put near cursor (by default) and highlighted differently. Final order of sequences is based on distance to the cursor.</p></li>
+<li><p>‘mini.jump2d’ has opinionated default algorithm of computing jump spots. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter"><code>MiniJump2d.default_spotter()</code></a>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minijump2d-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniJump2dSpot</code> - highlighting of jump spot’s next step. By default it uses label with highest contrast while not being too visually demanding: white on black for dark ‘background’, black on white for light. If it doesn’t suit your liking, try couple of these alternatives (or choose your own, of course):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Reverse underlying colors (mostly *very* visible in any colorscheme)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_hl<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">'MiniJump2dSpot'</span><span class="op">,</span> <span class="op">{</span> <span class="fu">reverse</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Bold italic</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_hl<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">'MiniJump2dSpot'</span><span class="op">,</span> <span class="op">{</span> <span class="va">bold</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">italic</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Red undercurl</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_hl<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">'MiniJump2dSpot'</span><span class="op">,</span> <span class="op">{</span> <span class="va">sp</span> <span class="op">=</span> <span class="st">'Red'</span><span class="op">,</span> <span class="va">undercurl</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>MiniJump2dSpotUnique</code> - highlighting of jump spot’s next step if it has unique label. By default links to <code>MiniJump2dSpot</code>.</p></li>
+<li><p><code>MiniJump2dSpotAhead</code> - highlighting of jump spot’s future steps. By default similar to <code>MiniJump2dSpot</code> but with less contrast and visibility.</p></li>
+<li><p><code>MiniJump2dDim</code> - highlighting of lines with at least one jump spot. Make it non-bright in order for jump spot labels to be more visible. By default linked to <code>Comment</code> highlight group.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="minijump2d-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minijump2d_disable</code> (globally) or <code>vim.b.minijump2d_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minijump2d.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.setup">setup()</h3>
+<p align="center">
+<code>MiniJump2d.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minijump2d.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>.</p>
+</section>
+<section id="minijump2d.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minijump2d.config" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.config">config</h3>
+<p align="center">
+<code>MiniJump2d.config</code>
+</p>
+<section id="minijump2d.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Function producing jump spots (byte indexed) for a particular line.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- For more information see |MiniJump2d.start()|.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- If `nil` (default) - use |MiniJump2d.default_spotter()|</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">spotter</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Characters used for labels of jump spots (in supplied order)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">labels</span> <span class="op">=</span> <span class="st">'abcdefghijklmnopqrstuvwxyz'</span><span class="op">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Options for visual effects</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">view</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to dim lines with at least one jump spot</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">dim</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How many steps ahead to show. Set to big number to show all steps.</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">n_steps_ahead</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Which lines are used for computing spots</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_lines</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">blank</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="co">-- Blank line (not sent to spotter even if `true`)</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">cursor_before</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="co">-- Lines before cursor line</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">cursor_at</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="co">-- Cursor line</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">cursor_after</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="co">-- Lines after cursor line</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="va">fold</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="co">-- Start of fold (not sent to spotter even if `true`)</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Which windows from current tabpage are used for visible lines</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_windows</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">current</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">not_current</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Functions to be executed at certain events</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">before_start</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span> <span class="co">-- Before jump start</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">after_jump</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span> <span class="co">-- After jump was actually done</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">start_jumping</span> <span class="op">=</span> <span class="st">'&lt;CR&gt;'</span><span class="op">,</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This also affects (purely informational) helper messages shown after</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- idle time if user input is required.</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minijump2d.config-spotterfunction" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.config-spotterfunction">Spotter function</h4>
+<p>Actual computation of possible jump spots is done through spotter function. It should have the following arguments:</p>
+<ul>
+<li><p><code>line_num</code> is a line number inside buffer.</p></li>
+<li><p><code>args</code> - table with additional arguments:</p>
+<ul>
+<li><p><span class="help-syntax-special">{win_id}</span> - identifier of a window where input line number is from.</p></li>
+<li><p><span class="help-syntax-special">{win_id_init}</span> - identifier of a window which was current when <code>MiniJump2d.start()</code> was called.</p></li>
+</ul></li>
+</ul>
+<p>Its output is a list of byte-indexed positions that should be considered as possible jump spots for this particular line in this particular window. Note: for a more aligned visualization this list should be (but not strictly necessary) sorted increasingly.</p>
+<p>Note: spotter function is always called with <code>win_id</code> window being “temporary current” (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_win_call()"><code>nvim_win_call()</code></a>). This allows using builtin Vimscript functions that operate only inside current window.</p>
+</section>
+<section id="minijump2d.config-view" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.config-view">View</h4>
+<p>Option <code>view.n_steps_ahead</code> controls how many steps ahead to show along with the currently required label. Those future steps are shown with different (less visible) highlight group (“MiniJump2dSpotAhead”). Usually it is a good idea to use this with a spotter which doesn’t result into many jump spots (like, for example, <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.word_start"><code>MiniJump2d.builtin_opts.word_start</code></a>). Default is 0 to not show anything ahead as it reduces visual noise.</p>
+<p>Option <code>view.dim</code> controls whether to dim lines with at least one jump spot. Dimming is done by applying “MiniJump2dDim” highlight group to the whole line.</p>
+</section>
+<section id="minijump2d.config-allowedlines" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.config-allowedlines">Allowed lines</h4>
+<p>Option <code>allowed_lines</code> controls which lines will be used for computing possible jump spots:</p>
+<ul>
+<li><p>If <code>blank</code> or <code>fold</code> is <code>true</code>, it is possible to jump to first column of blank line (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=prevnonblank()"><code>prevnonblank()</code></a>) or first folded one (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=foldclosed()"><code>foldclosed()</code></a>) respectively. Otherwise they are skipped. These lines are not processed by spotter function even if the option is <code>true</code>.</p></li>
+<li><p>If <code>cursor_before</code>, (<code>cursor_at</code>, <code>cursor_after</code>) is <code>true</code>, lines before (at, after) cursor line of all processed windows are forwarded to spotter function. Otherwise, they don’t. This allows control of jump “direction”.</p></li>
+</ul>
+</section>
+<section id="minijump2d.config-hooks" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.config-hooks">Hooks</h4>
+<p>Following hook functions can be used to further tweak jumping experience:</p>
+<ul>
+<li><p><code>before_start</code> - called without arguments first thing when jump starts. One of the possible use cases is to ask for user input and update spotter function with it.</p></li>
+<li><p><code>after_jump</code> - called after jump was actually done. Useful to make post-adjustments (like move cursor to first non-whitespace character).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minijump2d.start" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.start">start()</h3>
+<p align="center">
+<code>MiniJump2d.start</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Start jumping</p>
+<p>Compute possible jump spots, visualize them and wait for iterative filtering.</p>
+<section id="minijump2d.start-firstcomputationofpossiblejumpspots" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-firstcomputationofpossiblejumpspots">First computation of possible jump spots</h4>
+<ul>
+<li><p>Process allowed windows (current and/or not current; controlled by <code>allowed_windows</code> option) by visible lines from top to bottom. For each one see if it is allowed (controlled by <code>allowed_lines</code> option). If not allowed, then do nothing. If allowed and should be processed by <code>spotter</code>, process it.</p></li>
+<li><p>Apply spotter function from <code>spotter</code> option for each appropriate line and concatenate outputs. This means that eventual order of jump spots aligns with lexicographical order within “window id” - “line number” - “position in <code>spotter</code> output” tuples.</p></li>
+<li><p>For each possible jump compute its label: a single character from <code>labels</code> option used to filter jump spots. Each possible label character might be used more than once to label several “consecutive” jump spots. It is done in an optimal way under assumption of no preference of one spot over another. Basically, it means “use all labels at each step of iterative filtering as equally as possible”.</p></li>
+</ul>
+</section>
+<section id="minijump2d.start-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-visualization">Visualization</h4>
+<p>Current label for each possible jump spot is shown at that position overriding everything underneath it.</p>
+</section>
+<section id="minijump2d.start-iterativefiltering" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-iterativefiltering">Iterative filtering</h4>
+<p>Labels of possible jump spots are computed in order to use them as equally as possible.</p>
+<p>Example:</p>
+<ul>
+<li><p>With <code>abc</code> as <code>labels</code> option, initial labels for 10 possible jumps are “aaaabbbccc”. As there are 10 spots which should be “coded” with 3 symbols, at least 2 symbols need 3 steps to filter them out. With current implementation those are always the “first ones”.</p></li>
+<li><p>After typing <code>a</code>, it filters first four jump spots and recomputes its labels to be “aabc”.</p></li>
+<li><p>After typing <code>a</code> again, it filters first two spots and recomputes its labels to be “ab”.</p></li>
+<li><p>After typing either <code>a</code> or <code>b</code> it filters single spot and makes jump.</p></li>
+</ul>
+<p>With default 26 labels for most real-world cases 2 steps is enough for default spotter function. Rarely 3 steps are needed with several windows.</p>
+</section>
+<section id="minijump2d.start-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Configuration of jumping, overriding global and buffer local values. Has the same structure as <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> without <span class="help-syntax-keys">&lt;mappings&gt;</span> field. Extra allowed fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> - highlight group for first step. Default: <code>"MiniJump2dSpot"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group_ahead&gt;</span> - highlight group for second and later steps. Default: <code>"MiniJump2dSpotAhead"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group_dim&gt;</span> - highlight group for dimming used lines. Default: <code>"MiniJump2dDim"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl_group_unique&gt;</span> - highlight group for unique next step. Default: <code>"MiniJump2dSpotUnique"</code>.</p></li>
+</ul>
+</section>
+<section id="minijump2d.start-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start default jumping</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span>start<span class="op">()</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump to word start</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span>start<span class="op">(</span><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">builtin_opts</span><span class="op">.</span><span class="va">word_start</span><span class="op">)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump to single character from user input (follow by typing one character)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span>start<span class="op">(</span><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">builtin_opts</span><span class="op">.</span><span class="va">single_character</span><span class="op">)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump to first character of punctuation group only inside current window</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- which is placed at cursor line; visualize with `Search`</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span>start<span class="op">({</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">spotter</span> <span class="op">=</span> <span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'%p+'</span><span class="op">),</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_lines</span> <span class="op">=</span> <span class="op">{</span> <span class="va">cursor_before</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span> <span class="va">cursor_after</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_windows</span> <span class="op">=</span> <span class="op">{</span> <span class="va">not_current</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'Search'</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minijump2d.start-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.start-seealso">See also</h4>
+<p><a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a></p>
+<hr>
+</section>
+</section>
+<section id="minijump2d.stop" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.stop">stop()</h3>
+<p align="center">
+<code>MiniJump2d.stop</code>()
+</p>
+<p>Stop jumping</p>
+<hr>
+</section>
+<section id="minijump2d.gen_spotter" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.gen_spotter">gen_spotter</h3>
+<p align="center">
+<code>MiniJump2d.gen_spotter</code>
+</p>
+<p>Generate spotter</p>
+<p>This is a table with function elements. Call to actually get a spotter.</p>
+<hr>
+</section>
+<section id="minijump2d.gen_spotter.pattern" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern">gen_spotter.pattern()</h3>
+<p align="center">
+<code>MiniJump2d.gen_spotter.pattern</code>(<span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{side}</span>)
+</p>
+<p>Generate spotter for Lua pattern</p>
+<section id="minijump2d.gen_spotter.pattern-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Lua pattern. Default: <code>'[^%s%p]+'</code> which matches group of “non-whitespace non-punctuation characters” (basically a way of saying “group of alphanumeric characters” that works with multibyte characters).</p>
+<p><span class="help-syntax-special">{side}</span> <code>(string|nil)</code> Which side of pattern match should be considered as jumping spot. Should be one of ‘start’ (start of match, default), ‘end’ (inclusive end of match), or ‘none’ (match for spot is done manually inside pattern with plain <code>()</code> matching group).</p>
+</section>
+<section id="minijump2d.gen_spotter.pattern-return" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern-return">Return</h4>
+<p><code>(function)</code> Spotter function.</p>
+</section>
+<section id="minijump2d.gen_spotter.pattern-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match any punctuation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'%p'</span><span class="op">)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match first from line start non-whitespace character</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'^%s*%S'</span><span class="op">,</span> <span class="st">'end'</span><span class="op">)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match start of last word</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'[^%s%p]+[%s%p]-$'</span><span class="op">,</span> <span class="st">'start'</span><span class="op">)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match letter followed by another letter (example of manual matching</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- inside pattern)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'%a()%a'</span><span class="op">,</span> <span class="st">'none'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minijump2d.gen_spotter.vimpattern" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern">gen_spotter.vimpattern()</h3>
+<p align="center">
+<code>MiniJump2d.gen_spotter.vimpattern</code>(<span class="help-syntax-special">{pattern}</span>)
+</p>
+<p>Generate spotter for Vimscript pattern</p>
+<section id="minijump2d.gen_spotter.vimpattern-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Vimscript <a href="https://neovim.io/doc/user/helptag.html?tag=pattern"><code>pattern</code></a>. Default: <code>\k\+</code> to match group of “keyword characters” (see ‘iskeyword’).</p>
+</section>
+<section id="minijump2d.gen_spotter.vimpattern-return" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-return">Return</h4>
+<p><code>(function)</code> Spotter function.</p>
+</section>
+<section id="minijump2d.gen_spotter.vimpattern-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match start of a keyword</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>vimpattern<span class="op">(</span><span class="st">'</span><span class="sc">\\</span><span class="st">k</span><span class="sc">\\</span><span class="st">+'</span><span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match end of a keyword</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>vimpattern<span class="op">(</span><span class="st">'</span><span class="sc">\\</span><span class="st">k*</span><span class="sc">\\</span><span class="st">zs</span><span class="sc">\\</span><span class="st">k'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minijump2d.gen_spotter.union" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.gen_spotter.union">gen_spotter.union()</h3>
+<p align="center">
+<code>MiniJump2d.gen_spotter.union</code>(<span class="help-syntax-special">{…}</span>)
+</p>
+<p>Generate union of spotters</p>
+<section id="minijump2d.gen_spotter.union-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.union-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{…}</span> <code>(any)</code> Each argument should be a valid spotter. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> for more details.</p>
+</section>
+<section id="minijump2d.gen_spotter.union-return" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.union-return">Return</h4>
+<p><code>(function)</code> Spotter producing union of spots.</p>
+</section>
+<section id="minijump2d.gen_spotter.union-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.union-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Match start and end of non-blank character groups:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">nonblank_start</span> <span class="op">=</span> <span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'%S+'</span><span class="op">,</span> <span class="st">'start'</span><span class="op">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">nonblank_end</span> <span class="op">=</span> <span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>pattern<span class="op">(</span><span class="st">'%S+'</span><span class="op">,</span> <span class="st">'end'</span><span class="op">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">spotter</span> <span class="op">=</span> <span class="va">MiniJump2d</span><span class="op">.</span><span class="va">gen_spotter</span><span class="op">.</span>union<span class="op">(</span><span class="va">nonblank_start</span><span class="op">,</span> <span class="va">nonblank_end</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minijump2d.default_spotter" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.default_spotter">default_spotter()</h3>
+<p align="center">
+<code>MiniJump2d.default_spotter</code>
+</p>
+<p>Default spotter function</p>
+<p>Spot is possible for jump if it is one of the following:</p>
+<ul>
+<li><p>Start or end of non-whitespace character group.</p></li>
+<li><p>Alphanumeric character followed or preceded by punctuation (useful for snake case names).</p></li>
+<li><p>Start of uppercase character group (useful for camel case names). Usually only Latin alphabet is recognized due to Lua patterns shortcomings.</p></li>
+</ul>
+<p>These rules are derived in an attempt to balance between two intentions:</p>
+<ul>
+<li><p>Allow as much useful jumping spots as possible.</p></li>
+<li><p>Make labeled jump spots easily distinguishable.</p></li>
+</ul>
+<p>Usually takes from 2 to 3 keystrokes to get to destination.</p>
+<hr>
+</section>
+<section id="minijump2d.builtin_opts" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts">builtin_opts</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts</code>
+</p>
+<p>Table with builtin <code>opts</code> values for <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a></p>
+<p>Each element of table is itself a table defining one or several options for <code>MiniJump2d.start()</code>. Read help description to see which options it defines (like in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start"><code>MiniJump2d.builtin_opts.line_start</code></a>).</p>
+<section id="minijump2d.builtin_opts-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minijump2d.builtin_opts-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Using `MiniJump2d.builtin_opts.line_start` as example:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Command</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">:</span><span class="va">lua</span> <span class="va">MiniJump2d</span><span class="op">.</span>start<span class="op">(</span><span class="va">MiniJump2d</span><span class="op">.</span><span class="va">builtin_opts</span><span class="op">.</span><span class="va">line_start</span><span class="op">)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Custom mapping</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;CR&gt;'</span><span class="op">,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Cmd&gt;lua MiniJump2d.start(MiniJump2d.builtin_opts.line_start)&lt;CR&gt;'</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Inside `MiniJump2d.setup()` (make sure to use all defined options)</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">jump2d</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">jump_line_start</span> <span class="op">=</span> <span class="va">jump2d</span><span class="op">.</span><span class="va">builtin_opts</span><span class="op">.</span><span class="va">line_start</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="va">jump2d</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">spotter</span> <span class="op">=</span> <span class="va">jump_line_start</span><span class="op">.</span><span class="va">spotter</span><span class="op">,</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span> <span class="va">after_jump</span> <span class="op">=</span> <span class="va">jump_line_start</span><span class="op">.</span><span class="va">hooks</span><span class="op">.</span><span class="va">after_jump</span> <span class="op">}</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minijump2d.builtin_opts.default" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts.default">builtin_opts.default</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts.default</code>
+</p>
+<p>Jump with <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter"><code>MiniJump2d.default_spotter()</code></a></p>
+<p>Defines <code>spotter</code>.</p>
+<hr>
+</section>
+<section id="minijump2d.builtin_opts.line_start" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts.line_start">builtin_opts.line_start</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts.line_start</code>
+</p>
+<p>Jump to line start</p>
+<p>Defines <code>spotter</code> and <code>hooks.after_jump</code>.</p>
+<hr>
+</section>
+<section id="minijump2d.builtin_opts.word_start" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts.word_start">builtin_opts.word_start</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts.word_start</code>
+</p>
+<p>Jump to word start</p>
+<p>Respects ‘iskeyword’ when computing word start.</p>
+<p>Defines <code>spotter</code>.</p>
+<hr>
+</section>
+<section id="minijump2d.builtin_opts.single_character" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts.single_character">builtin_opts.single_character</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts.single_character</code>
+</p>
+<p>Jump to single character taken from user input</p>
+<p>Defines <code>spotter</code>, <code>allowed_lines.blank</code>, <code>allowed_lines.fold</code>, and <code>hooks.before_start</code>.</p>
+<hr>
+</section>
+<section id="minijump2d.builtin_opts.query" class="level3">
+<h3 class="anchored" data-anchor-id="minijump2d.builtin_opts.query">builtin_opts.query</h3>
+<p align="center">
+<code>MiniJump2d.builtin_opts.query</code>
+</p>
+<p>Jump to query taken from user input</p>
+<p>Defines <code>spotter</code>, <code>allowed_lines.blank</code>, <code>allowed_lines.fold</code>, and <code>hooks.before_start</code>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

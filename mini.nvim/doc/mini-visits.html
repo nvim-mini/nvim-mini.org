@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.visits documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.visits documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.visits documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minivisits" id="toc-minivisits" class="nav-link active" data-scroll-target="#minivisits">Module</a>
+  <ul>
+  <li><a href="#minivisits-setup" id="toc-minivisits-setup" class="nav-link" data-scroll-target="#minivisits-setup">Setup</a></li>
+  <li><a href="#minivisits-comparisons" id="toc-minivisits-comparisons" class="nav-link" data-scroll-target="#minivisits-comparisons">Comparisons</a></li>
+  <li><a href="#minivisits-disabling" id="toc-minivisits-disabling" class="nav-link" data-scroll-target="#minivisits-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minivisits-overview" id="toc-minivisits-overview" class="nav-link" data-scroll-target="#minivisits-overview">Overview</a>
+  <ul>
+  <li><a href="#minivisits-overview-trackingvisits" id="toc-minivisits-overview-trackingvisits" class="nav-link" data-scroll-target="#minivisits-overview-trackingvisits">Tracking visits</a></li>
+  <li><a href="#minivisits-overview-reusingvisits" id="toc-minivisits-overview-reusingvisits" class="nav-link" data-scroll-target="#minivisits-overview-reusingvisits">Reusing visits</a></li>
+  </ul></li>
+  <li><a href="#minivisits-index-specification" id="toc-minivisits-index-specification" class="nav-link" data-scroll-target="#minivisits-index-specification">Index specification</a>
+  <ul>
+  <li><a href="#minivisits-index-specification-structure" id="toc-minivisits-index-specification-structure" class="nav-link" data-scroll-target="#minivisits-index-specification-structure">Structure</a></li>
+  <li><a href="#minivisits-index-specification-storage" id="toc-minivisits-index-specification-storage" class="nav-link" data-scroll-target="#minivisits-index-specification-storage">Storage</a></li>
+  <li><a href="#minivisits-index-specification-normalization" id="toc-minivisits-index-specification-normalization" class="nav-link" data-scroll-target="#minivisits-index-specification-normalization">Normalization</a></li>
+  </ul></li>
+  <li><a href="#minivisits-examples" id="toc-minivisits-examples" class="nav-link" data-scroll-target="#minivisits-examples">Examples</a>
+  <ul>
+  <li><a href="#minivisits-examples-usedifferentsorting" id="toc-minivisits-examples-usedifferentsorting" class="nav-link" data-scroll-target="#minivisits-examples-usedifferentsorting">Use different sorting</a></li>
+  <li><a href="#minivisits-examples-usemanuallabels" id="toc-minivisits-examples-usemanuallabels" class="nav-link" data-scroll-target="#minivisits-examples-usemanuallabels">Use manual labels</a></li>
+  <li><a href="#minivisits-examples-usefixedlabels" id="toc-minivisits-examples-usefixedlabels" class="nav-link" data-scroll-target="#minivisits-examples-usefixedlabels">Use fixed labels</a></li>
+  <li><a href="#minivisits-examples-useautomatedlabels" id="toc-minivisits-examples-useautomatedlabels" class="nav-link" data-scroll-target="#minivisits-examples-useautomatedlabels">Use automated labels</a></li>
+  </ul></li>
+  <li><a href="#minivisits.setup" id="toc-minivisits.setup" class="nav-link" data-scroll-target="#minivisits.setup">setup()</a>
+  <ul>
+  <li><a href="#minivisits.setup-parameters" id="toc-minivisits.setup-parameters" class="nav-link" data-scroll-target="#minivisits.setup-parameters">Parameters</a></li>
+  <li><a href="#minivisits.setup-usage" id="toc-minivisits.setup-usage" class="nav-link" data-scroll-target="#minivisits.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minivisits.config" id="toc-minivisits.config" class="nav-link" data-scroll-target="#minivisits.config">config</a>
+  <ul>
+  <li><a href="#minivisits.config-defaults" id="toc-minivisits.config-defaults" class="nav-link" data-scroll-target="#minivisits.config-defaults">Defaults</a></li>
+  <li><a href="#minivisits.config-list" id="toc-minivisits.config-list" class="nav-link" data-scroll-target="#minivisits.config-list">List</a></li>
+  <li><a href="#minivisits.config-silent" id="toc-minivisits.config-silent" class="nav-link" data-scroll-target="#minivisits.config-silent">Silent</a></li>
+  <li><a href="#minivisits.config-store" id="toc-minivisits.config-store" class="nav-link" data-scroll-target="#minivisits.config-store">Store</a></li>
+  <li><a href="#minivisits.config-track" id="toc-minivisits.config-track" class="nav-link" data-scroll-target="#minivisits.config-track">Track</a></li>
+  </ul></li>
+  <li><a href="#minivisits.register_visit" id="toc-minivisits.register_visit" class="nav-link" data-scroll-target="#minivisits.register_visit">register_visit()</a>
+  <ul>
+  <li><a href="#minivisits.register_visit-parameters" id="toc-minivisits.register_visit-parameters" class="nav-link" data-scroll-target="#minivisits.register_visit-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.add_path" id="toc-minivisits.add_path" class="nav-link" data-scroll-target="#minivisits.add_path">add_path()</a>
+  <ul>
+  <li><a href="#minivisits.add_path-parameters" id="toc-minivisits.add_path-parameters" class="nav-link" data-scroll-target="#minivisits.add_path-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.add_label" id="toc-minivisits.add_label" class="nav-link" data-scroll-target="#minivisits.add_label">add_label()</a>
+  <ul>
+  <li><a href="#minivisits.add_label-parameters" id="toc-minivisits.add_label-parameters" class="nav-link" data-scroll-target="#minivisits.add_label-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.remove_path" id="toc-minivisits.remove_path" class="nav-link" data-scroll-target="#minivisits.remove_path">remove_path()</a>
+  <ul>
+  <li><a href="#minivisits.remove_path-parameters" id="toc-minivisits.remove_path-parameters" class="nav-link" data-scroll-target="#minivisits.remove_path-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.remove_label" id="toc-minivisits.remove_label" class="nav-link" data-scroll-target="#minivisits.remove_label">remove_label()</a>
+  <ul>
+  <li><a href="#minivisits.remove_label-parameters" id="toc-minivisits.remove_label-parameters" class="nav-link" data-scroll-target="#minivisits.remove_label-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.list_paths" id="toc-minivisits.list_paths" class="nav-link" data-scroll-target="#minivisits.list_paths">list_paths()</a>
+  <ul>
+  <li><a href="#minivisits.list_paths-parameters" id="toc-minivisits.list_paths-parameters" class="nav-link" data-scroll-target="#minivisits.list_paths-parameters">Parameters</a></li>
+  <li><a href="#minivisits.list_paths-return" id="toc-minivisits.list_paths-return" class="nav-link" data-scroll-target="#minivisits.list_paths-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.list_labels" id="toc-minivisits.list_labels" class="nav-link" data-scroll-target="#minivisits.list_labels">list_labels()</a>
+  <ul>
+  <li><a href="#minivisits.list_labels-parameters" id="toc-minivisits.list_labels-parameters" class="nav-link" data-scroll-target="#minivisits.list_labels-parameters">Parameters</a></li>
+  <li><a href="#minivisits.list_labels-return" id="toc-minivisits.list_labels-return" class="nav-link" data-scroll-target="#minivisits.list_labels-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.select_path" id="toc-minivisits.select_path" class="nav-link" data-scroll-target="#minivisits.select_path">select_path()</a>
+  <ul>
+  <li><a href="#minivisits.select_path-parameters" id="toc-minivisits.select_path-parameters" class="nav-link" data-scroll-target="#minivisits.select_path-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.select_label" id="toc-minivisits.select_label" class="nav-link" data-scroll-target="#minivisits.select_label">select_label()</a>
+  <ul>
+  <li><a href="#minivisits.select_label-parameters" id="toc-minivisits.select_label-parameters" class="nav-link" data-scroll-target="#minivisits.select_label-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.iterate_paths" id="toc-minivisits.iterate_paths" class="nav-link" data-scroll-target="#minivisits.iterate_paths">iterate_paths()</a>
+  <ul>
+  <li><a href="#minivisits.iterate_paths-parameters" id="toc-minivisits.iterate_paths-parameters" class="nav-link" data-scroll-target="#minivisits.iterate_paths-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.get_index" id="toc-minivisits.get_index" class="nav-link" data-scroll-target="#minivisits.get_index">get_index()</a>
+  <ul>
+  <li><a href="#minivisits.get_index-return" id="toc-minivisits.get_index-return" class="nav-link" data-scroll-target="#minivisits.get_index-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.set_index" id="toc-minivisits.set_index" class="nav-link" data-scroll-target="#minivisits.set_index">set_index()</a>
+  <ul>
+  <li><a href="#minivisits.set_index-parameters" id="toc-minivisits.set_index-parameters" class="nav-link" data-scroll-target="#minivisits.set_index-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.reset_index" id="toc-minivisits.reset_index" class="nav-link" data-scroll-target="#minivisits.reset_index">reset_index()</a></li>
+  <li><a href="#minivisits.normalize_index" id="toc-minivisits.normalize_index" class="nav-link" data-scroll-target="#minivisits.normalize_index">normalize_index()</a>
+  <ul>
+  <li><a href="#minivisits.normalize_index-parameters" id="toc-minivisits.normalize_index-parameters" class="nav-link" data-scroll-target="#minivisits.normalize_index-parameters">Parameters</a></li>
+  <li><a href="#minivisits.normalize_index-return" id="toc-minivisits.normalize_index-return" class="nav-link" data-scroll-target="#minivisits.normalize_index-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.read_index" id="toc-minivisits.read_index" class="nav-link" data-scroll-target="#minivisits.read_index">read_index()</a>
+  <ul>
+  <li><a href="#minivisits.read_index-parameters" id="toc-minivisits.read_index-parameters" class="nav-link" data-scroll-target="#minivisits.read_index-parameters">Parameters</a></li>
+  <li><a href="#minivisits.read_index-return" id="toc-minivisits.read_index-return" class="nav-link" data-scroll-target="#minivisits.read_index-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.write_index" id="toc-minivisits.write_index" class="nav-link" data-scroll-target="#minivisits.write_index">write_index()</a>
+  <ul>
+  <li><a href="#minivisits.write_index-parameters" id="toc-minivisits.write_index-parameters" class="nav-link" data-scroll-target="#minivisits.write_index-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minivisits.rename_in_index" id="toc-minivisits.rename_in_index" class="nav-link" data-scroll-target="#minivisits.rename_in_index">rename_in_index()</a>
+  <ul>
+  <li><a href="#minivisits.rename_in_index-parameters" id="toc-minivisits.rename_in_index-parameters" class="nav-link" data-scroll-target="#minivisits.rename_in_index-parameters">Parameters</a></li>
+  <li><a href="#minivisits.rename_in_index-return" id="toc-minivisits.rename_in_index-return" class="nav-link" data-scroll-target="#minivisits.rename_in_index-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.gen_filter" id="toc-minivisits.gen_filter" class="nav-link" data-scroll-target="#minivisits.gen_filter">gen_filter</a></li>
+  <li><a href="#minivisits.gen_filter.default" id="toc-minivisits.gen_filter.default" class="nav-link" data-scroll-target="#minivisits.gen_filter.default">gen_filter.default()</a>
+  <ul>
+  <li><a href="#minivisits.gen_filter.default-return" id="toc-minivisits.gen_filter.default-return" class="nav-link" data-scroll-target="#minivisits.gen_filter.default-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.gen_filter.this_session" id="toc-minivisits.gen_filter.this_session" class="nav-link" data-scroll-target="#minivisits.gen_filter.this_session">gen_filter.this_session()</a>
+  <ul>
+  <li><a href="#minivisits.gen_filter.this_session-return" id="toc-minivisits.gen_filter.this_session-return" class="nav-link" data-scroll-target="#minivisits.gen_filter.this_session-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.gen_sort" id="toc-minivisits.gen_sort" class="nav-link" data-scroll-target="#minivisits.gen_sort">gen_sort</a></li>
+  <li><a href="#minivisits.gen_sort.default" id="toc-minivisits.gen_sort.default" class="nav-link" data-scroll-target="#minivisits.gen_sort.default">gen_sort.default()</a>
+  <ul>
+  <li><a href="#minivisits.gen_sort.default-parameters" id="toc-minivisits.gen_sort.default-parameters" class="nav-link" data-scroll-target="#minivisits.gen_sort.default-parameters">Parameters</a></li>
+  <li><a href="#minivisits.gen_sort.default-return" id="toc-minivisits.gen_sort.default-return" class="nav-link" data-scroll-target="#minivisits.gen_sort.default-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.gen_sort.z" id="toc-minivisits.gen_sort.z" class="nav-link" data-scroll-target="#minivisits.gen_sort.z">gen_sort.z()</a>
+  <ul>
+  <li><a href="#minivisits.gen_sort.z-return" id="toc-minivisits.gen_sort.z-return" class="nav-link" data-scroll-target="#minivisits.gen_sort.z-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minivisits.gen_normalize" id="toc-minivisits.gen_normalize" class="nav-link" data-scroll-target="#minivisits.gen_normalize">gen_normalize</a></li>
+  <li><a href="#minivisits.gen_normalize.default" id="toc-minivisits.gen_normalize.default" class="nav-link" data-scroll-target="#minivisits.gen_normalize.default">gen_normalize.default()</a>
+  <ul>
+  <li><a href="#minivisits.gen_normalize.default-parameters" id="toc-minivisits.gen_normalize.default-parameters" class="nav-link" data-scroll-target="#minivisits.gen_normalize.default-parameters">Parameters</a></li>
+  <li><a href="#minivisits.gen_normalize.default-return" id="toc-minivisits.gen_normalize.default-return" class="nav-link" data-scroll-target="#minivisits.gen_normalize.default-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.visits documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.visits" href="../../mini.nvim/doc/mini-visits.html#mini.visits"><b>mini.visits</b></a> Track and reuse file system visits</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minivisits" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Persistently track file system visits (both files and directories) per project directory. Store visit index is human readable and editable.</p></li>
+<li><p>Visit index is normalized on every write to contain relevant information. Exact details can be customized. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p></li>
+<li><p>Built-in ability to persistently add labels to path for later use. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label"><code>MiniVisits.add_label()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label"><code>MiniVisits.remove_label()</code></a>.</p></li>
+<li><p>Exported functions to reuse visit data:</p>
+<ul>
+<li><p>List visited paths/labels with custom filter and sort (uses “robust frecency” by default). Can be used as source for pickers. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter"><code>MiniVisits.gen_filter</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort"><code>MiniVisits.gen_sort</code></a>.</p></li>
+<li><p>Select visited paths/labels using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label"><code>MiniVisits.select_label()</code></a>.</p></li>
+<li><p>Iterate through visit paths in target direction (“forward”, “backward”, “first”, “last”). See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths"><code>MiniVisits.iterate_paths()</code></a>.</p></li>
+</ul></li>
+<li><p>Exported functions to manually update visit index allowing persistent track of any user information. See <code>*_index()</code> functions.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>All data is stored <em>only</em> in in-session Lua variable (for quick operation) and at <code>config.store.path</code> on disk (for persistent usage).</p></li>
+<li><p>Most of functions affect an in-session data which gets written to disk only before Neovim is closing or when users asks to.</p></li>
+<li><p>It doesn’t account for paths being renamed or moved (because there is no general way to detect that). Usually a manual intervention to the visit index is required after the change but <em>before</em> the next writing to disk (usually before closing current session) because it will treat previous path as deleted and remove it from index. There is a <a href="../../mini.nvim/doc/mini-visits.html#minivisits.rename_in_index"><code>MiniVisits.rename_in_index()</code></a> helper for that. If rename/move is done with <a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a>, index is autoupdated.</p></li>
+</ul>
+<p>Sources with more details:</p>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a></p></li>
+</ul>
+<section id="minivisits-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.visits').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniVisits</code> which you can use for scripting or manually (with <code>:lua MiniVisits.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minivisits_config</code> which should have same structure as <code>MiniVisits.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minivisits-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/nvim-telescope/telescope-frecency.nvim">nvim-telescope/telescope-frecency.nvim</a>:</p>
+<ul>
+<li><p>It stores array of actual visit timestamps, while this module tracks only total number and latest timestamp of visits. This is by design as a different trade-off between how much data is being used/stored and complexity of underlying “frecency” sorting.</p></li>
+<li><p>By default tracks a buffer only once per session, while this module tracks on every meaningful buffer enter. This leads to a more relevant in-session sorting.</p></li>
+<li><p>Implements an original frecency algorithm of Firefox’s address bar, while this module uses own “robust frecency” approach.</p></li>
+<li><p>Mostly designed to work with ‘nvim-telescope/telescope.nvim’, while this module provides general function to list paths and select with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a>.</p></li>
+<li><p>Does not allow use of custom data (like labels), while this module does.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/ThePrimeagen/harpoon">ThePrimeagen/harpoon</a>:</p>
+<ul>
+<li><p>Has slightly different concept than general labeling, which more resembles adding paths to an ordered stack. This module implements a more common labeling which does not imply order with ability to make it automated depending on the task and/or preference.</p></li>
+<li><p>Implements marks as positions in a path, while this module labels paths.</p></li>
+<li><p>Writes data on disk after every meaning change, while this module is more conservative and read only when Neovim closes or when asked to.</p></li>
+<li><p>Has support for labeling terminals, while this modules is oriented only towards paths.</p></li>
+<li><p>Has dedicated UI to manage marks, while this module does not by design. There are functions for adding and removing label from the path.</p></li>
+<li><p>Does not provide functionality to track and reuse any visited path, while this module does.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="minivisits-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-disabling">Disabling</h4>
+<p>To disable automated tracking, set <code>vim.g.minivisits_disable</code> (globally) or <code>vim.b.minivisits_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits-overview" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits-overview">Overview</h3>
+<section id="minivisits-overview-trackingvisits" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-overview-trackingvisits">Tracking visits</h4>
+<p>File system visits (both directory and files) tracking is done in two steps:</p>
+<ul>
+<li><p>On every dedicated event (<code>config.track.event</code>, <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter"><code>BufEnter</code></a> by default) timer is (re)started to actually register visit after certain amount of time (<code>config.track.delay</code> milliseconds, 1000 by default). It is not registered immediately to allow navigation to target buffer in several steps (for example, with series of <a href="https://neovim.io/doc/user/helptag.html?tag=:bnext"><code>:bnext</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious"><code>:bprevious</code></a>).</p></li>
+<li><p>When delay time passes without any dedicated events being triggered (meaning user is “settled” on certain buffer), <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit"><code>MiniVisits.register_visit()</code></a> is called if all of the following conditions are met:</p>
+<ul>
+<li><p>Module is not disabled (see “Disabling” section in <a href="../../mini.nvim/doc/mini-visits.html#mini.visits"><code>mini.visits</code></a>).</p></li>
+<li><p>Buffer is normal with non-empty name (used as visit path).</p></li>
+<li><p>Visit path does not equal to the latest tracked one. This is to allow temporary enter of non-normal buffers (like help, terminal, etc.) without artificial increase of visit count.</p></li>
+</ul></li>
+</ul>
+<p>Visit is autoregistered for <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> and leads to increase of count and latest time of visit. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a> for more details.</p>
+<p>Notes:</p>
+<ul>
+<li><p>All data is stored <em>only</em> in in-session Lua variable (for quick operation) and at <code>config.store.path</code> on disk (for persistent usage). It is automatically written to disk before every Neovim exit (if <code>config.store.autowrite</code> is set).</p></li>
+<li><p>Tracking can be disabled by supplying empty string as <code>track.event</code>. Then it is up to the user to properly call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit"><code>MiniVisits.register_visit()</code></a>.</p></li>
+</ul>
+</section>
+<section id="minivisits-overview-reusingvisits" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-overview-reusingvisits">Reusing visits</h4>
+<p>Visit data can be reused in at least these ways:</p>
+<ul>
+<li><p>Get a list of visited paths (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>) and use it to visualize/pick/navigate visit history.</p></li>
+<li><p>Select one of the visited paths to open it (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a>).</p></li>
+<li><p>Move along visit history (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths"><code>MiniVisits.iterate_paths()</code></a>).</p></li>
+<li><p>Utilize labels. Any visit can be added one or more labels (like “core”, “tmp”, etc.). They are bound to the visit (path registered for certain directory) and are stored persistently. Labels can be used to manually create groups of files and/or directories that have particular interest to the user. There is no one right way to use them, though. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a> for some inspiration.</p></li>
+<li><p>Utilizing custom data. Visit index can be manipulated manually using <code>_index()</code> set of functions. All “storable” (i.e.&nbsp;not functions or metatables) user data inside index is then stored on disk, so it can be used to create any kind of workflow user wants.</p></li>
+</ul>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a> for some actual configuration and workflow examples.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits-index-specification" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits-index-specification">Index specification</h3>
+<section id="minivisits-index-specification-structure" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-index-specification-structure">Structure</h4>
+<p>Visit index is a table containing actual data in two level deep nested tables.</p>
+<p>First level keys are paths of project directory (a.k.a “cwd”) for which visits are registered.</p>
+<p>Second level keys are actual visit paths. Their values are tables with visit data which should follow these requirements:</p>
+<ul>
+<li><p>Field <span class="help-syntax-keys">&lt;count&gt;</span> should be present and be a number. It represents the number of times this path was visited under particular cwd.</p></li>
+<li><p>Field <span class="help-syntax-keys">&lt;latest&gt;</span> should be present and be a number. It represents the time of latest path visit under particular cwd. By default computed with <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()"><code>os.time()</code></a> (up to a second).</p></li>
+<li><p>Field <span class="help-syntax-keys">&lt;labels&gt;</span> might not be present. If present, it should be a table with string labels as keys and <code>true</code> as values. It represents labels of the path under particular cwd.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>All paths are absolute.</p></li>
+<li><p>Visit path should not necessarily be a part of corresponding cwd.</p></li>
+<li><p>Both <code>count</code> and <code>latest</code> can be any number: whole, fractional, negative, etc.</p></li>
+</ul>
+<p>Example of an index data:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">'/home/user/project_1'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'home/user/project_1/file'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="va">count</span> <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="va">latest</span> <span class="op">=</span> <span class="dv">1699796000</span> <span class="op">},</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'home/user/project_1/subdir'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="va">count</span> <span class="op">=</span> <span class="dv">10</span><span class="op">,</span> <span class="va">latest</span> <span class="op">=</span> <span class="dv">1699797000</span><span class="op">,</span> <span class="va">labels</span> <span class="op">=</span> <span class="op">{</span> <span class="va">core</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">},</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">'/home/user/project_2'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'home/user/project_1/file'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">count</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> <span class="va">latest</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> <span class="va">labels</span> <span class="op">=</span> <span class="op">{</span> <span class="va">other</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'home/user/project_2/README'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="va">count</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">latest</span> <span class="op">=</span> <span class="dv">1699798000</span> <span class="op">},</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minivisits-index-specification-storage" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-index-specification-storage">Storage</h4>
+<p>When stored on disk, visit index is a file containing Lua code returning visit index table. It can be edited by hand as long as it contains a valid Lua code (to be executed with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()"><code>dofile()</code></a>).</p>
+<p>Notes:</p>
+<ul>
+<li>Storage is implemented in such a way that it doesn’t really support more than one parallel Neovim processes. Meaning that if there are two or more simultaneous Neovim processes with same visit index storage path, the last one writing to it will preserve its visit history while others - won’t.</li>
+</ul>
+</section>
+<section id="minivisits-index-specification-normalization" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-index-specification-normalization">Normalization</h4>
+<p>To ensure that visit index contains mostly relevant data, it gets normalized: automatically inside <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index"><code>MiniVisits.write_index()</code></a> or via <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p>
+<p>What normalization actually does can be configured in <code>config.store.normalize</code>.</p>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a> for default normalization approach.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits-examples" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits-examples">Examples</h3>
+<p>This module provides a flexible framework for working with file system visits. Exact choice of how to organize workflow is left to the user. Here are some examples for inspiration which can be combined together.</p>
+<section id="minivisits-examples-usedifferentsorting" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-examples-usedifferentsorting">Use different sorting</h4>
+<p>Default sorting in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> allows flexible adjustment of which feature to prefer more: recency or frequency. Here is an example of how to make set of keymaps for three types of sorting combined with two types of scopes (all visits and only for current cwd):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">make_select_path</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">select_global</span><span class="op">,</span> <span class="va">recency_weight</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">visits</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">sort</span> <span class="op">=</span> <span class="va">visits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="va">recency_weight</span> <span class="op">})</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">select_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="fu">sort</span> <span class="op">=</span> <span class="fu">sort</span> <span class="op">}</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">cwd</span> <span class="op">=</span> <span class="va">select_global</span> <span class="kw">and</span> <span class="st">''</span> <span class="kw">or</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getcwd<span class="op">()</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">visits</span><span class="op">.</span>select_path<span class="op">(</span><span class="va">cwd</span><span class="op">,</span> <span class="va">select_opts</span><span class="op">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lhs</span><span class="op">,</span> <span class="va">desc</span><span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> make_select_path<span class="op">(...),</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Adjust LHS and description to your liking</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vr'</span><span class="op">,</span> <span class="st">'Select recent (all)'</span><span class="op">,</span>   <span class="kw">true</span><span class="op">,</span>  <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vR'</span><span class="op">,</span> <span class="st">'Select recent (cwd)'</span><span class="op">,</span>   <span class="kw">false</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vy'</span><span class="op">,</span> <span class="st">'Select frecent (all)'</span><span class="op">,</span>  <span class="kw">true</span><span class="op">,</span>  <span class="dv">0.5</span><span class="op">)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vY'</span><span class="op">,</span> <span class="st">'Select frecent (cwd)'</span><span class="op">,</span>  <span class="kw">false</span><span class="op">,</span> <span class="dv">0.5</span><span class="op">)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vf'</span><span class="op">,</span> <span class="st">'Select frequent (all)'</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span>  <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vF'</span><span class="op">,</span> <span class="st">'Select frequent (cwd)'</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="dv">0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths"><code>MiniExtra.pickers.visit_paths()</code></a>.</p>
+</section>
+<section id="minivisits-examples-usemanuallabels" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-examples-usemanuallabels">Use manual labels</h4>
+<p>Labels is a powerful tool to create groups of associated paths. Usual workflow consists of:</p>
+<ul>
+<li><p>Add label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label"><code>MiniVisits.add_label()</code></a> (prompts for actual label).</p></li>
+<li><p>Remove label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label"><code>MiniVisits.remove_label()</code></a> (prompts for actual label).</p></li>
+<li><p>When need to use labeled groups, call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label"><code>MiniVisits.select_label()</code></a> which will then call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> to select path among those having selected label. Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a>.</p></li>
+</ul>
+<p>To make this workflow smoother, here is an example of keymaps:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_vis</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">keys</span><span class="op">,</span> <span class="va">call</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="st">'&lt;Cmd&gt;lua MiniVisits.'</span> <span class="op">..</span> <span class="va">call</span> <span class="op">..</span> <span class="st">'&lt;CR&gt;'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">..</span> <span class="va">keys</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vv'</span><span class="op">,</span> <span class="st">'add_label()'</span><span class="op">,</span>          <span class="st">'Add label'</span><span class="op">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vV'</span><span class="op">,</span> <span class="st">'remove_label()'</span><span class="op">,</span>       <span class="st">'Remove label'</span><span class="op">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vl'</span><span class="op">,</span> <span class="st">'select_label("", "")'</span><span class="op">,</span> <span class="st">'Select label (all)'</span><span class="op">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vL'</span><span class="op">,</span> <span class="st">'select_label()'</span><span class="op">,</span>       <span class="st">'Select label (cwd)'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minivisits-examples-usefixedlabels" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-examples-usefixedlabels">Use fixed labels</h4>
+<p>During work on every project there is usually a handful of files where core activity is concentrated. This can be made easier by creating mappings which add/remove special fixed label (for example, “core”) and select paths with that label for both all and current cwd. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create and select</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_vis</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">keys</span><span class="op">,</span> <span class="va">call</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="st">'&lt;Cmd&gt;lua MiniVisits.'</span> <span class="op">..</span> <span class="va">call</span> <span class="op">..</span> <span class="st">'&lt;CR&gt;'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">..</span> <span class="va">keys</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vv'</span><span class="op">,</span> <span class="st">'add_label("core")'</span><span class="op">,</span>                     <span class="st">'Add to core'</span><span class="op">)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vV'</span><span class="op">,</span> <span class="st">'remove_label("core")'</span><span class="op">,</span>                  <span class="st">'Remove from core'</span><span class="op">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vc'</span><span class="op">,</span> <span class="st">'select_path("", { filter = "core" })'</span><span class="op">,</span>  <span class="st">'Select core (all)'</span><span class="op">)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>map_vis<span class="op">(</span><span class="st">'vC'</span><span class="op">,</span> <span class="st">'select_path(nil, { filter = "core" })'</span><span class="op">,</span> <span class="st">'Select core (cwd)'</span><span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Iterate based on recency</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_latest</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">})</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_iterate_core</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lhs</span><span class="op">,</span> <span class="va">direction</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'core'</span><span class="op">,</span> <span class="fu">sort</span> <span class="op">=</span> <span class="va">sort_latest</span><span class="op">,</span> <span class="va">wrap</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniVisits</span><span class="op">.</span>iterate_paths<span class="op">(</span><span class="va">direction</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>getcwd<span class="op">(),</span> <span class="va">opts</span><span class="op">)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>map_iterate_core<span class="op">(</span><span class="st">'[{'</span><span class="op">,</span> <span class="st">'last'</span><span class="op">,</span>     <span class="st">'Core label (earliest)'</span><span class="op">)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>map_iterate_core<span class="op">(</span><span class="st">'[['</span><span class="op">,</span> <span class="st">'forward'</span><span class="op">,</span>  <span class="st">'Core label (earlier)'</span><span class="op">)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>map_iterate_core<span class="op">(</span><span class="st">']]'</span><span class="op">,</span> <span class="st">'backward'</span><span class="op">,</span> <span class="st">'Core label (later)'</span><span class="op">)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>map_iterate_core<span class="op">(</span><span class="st">']}'</span><span class="op">,</span> <span class="st">'first'</span><span class="op">,</span>    <span class="st">'Core label (latest)'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minivisits-examples-useautomatedlabels" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits-examples-useautomatedlabels">Use automated labels</h4>
+<p>When using version control system (such as Git), usually there is already an identifier that groups files you are working with - branch name. Here is an example of keymaps to add/remove label equal to branch name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_branch</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">keys</span><span class="op">,</span> <span class="va">action</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">branch</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>system<span class="op">(</span><span class="st">'git rev-parse --abbrev-ref HEAD'</span><span class="op">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">vim</span><span class="op">.</span><span class="va">v</span><span class="op">.</span><span class="va">shell_error</span> <span class="op">~=</span> <span class="dv">0</span> <span class="cf">then</span> <span class="cf">return</span> <span class="kw">nil</span> <span class="cf">end</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">branch</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>trim<span class="op">(</span><span class="va">branch</span><span class="op">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">)[</span><span class="va">action</span><span class="op">](</span><span class="va">branch</span><span class="op">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">..</span> <span class="va">keys</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>map_branch<span class="op">(</span><span class="st">'vb'</span><span class="op">,</span> <span class="st">'add_label'</span><span class="op">,</span>    <span class="st">'Add branch label'</span><span class="op">)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>map_branch<span class="op">(</span><span class="st">'vB'</span><span class="op">,</span> <span class="st">'remove_label'</span><span class="op">,</span> <span class="st">'Remove branch label'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minivisits.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.setup">setup()</h3>
+<p align="center">
+<code>MiniVisits.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minivisits.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a>.</p>
+</section>
+<section id="minivisits.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minivisits.config" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.config">config</h3>
+<p align="center">
+<code>MiniVisits.config</code>
+</p>
+<section id="minivisits.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- How visit index is converted to list of paths</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">list</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Predicate for which paths to include (all by default)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">filter</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Sort paths based on the visit data (robust frecency by default)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- How visit index is stored</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">store</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to write all visits before Neovim is closed</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">autowrite</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Function to ensure that written index is relevant</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">normalize</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Path to store visit index</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">path</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'data'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'/mini-visits-index'</span><span class="op">,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- How visit tracking is done</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">track</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Start visit register timer at this event</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Supply empty string (`''`) to not do this automatically</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">event</span> <span class="op">=</span> <span class="st">'BufEnter'</span><span class="op">,</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Debounce delay after event to register a visit</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">delay</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minivisits.config-list" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.config-list">List</h4>
+<p><a name="minivisits.config.list" href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><b>MiniVisits.config.list</b></a></p>
+<p><code>config.list</code> defines how visit index is converted to a path list by default.</p>
+<p><code>list.filter</code> is a callable which should take a path data and return <code>true</code> if this path should be present in the list. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a>.</p>
+<p>Path data is a table with at least these fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - absolute path of visit.</p></li>
+<li><p><span class="help-syntax-keys">&lt;count&gt;</span> <code>(number)</code> - number of visits.</p></li>
+<li><p><span class="help-syntax-keys">&lt;latest&gt;</span> <code>(number)</code> - timestamp of latest visit.</p></li>
+<li><p><span class="help-syntax-keys">&lt;labels&gt;</span> <code>(table|nil)</code> - table of labels (has string keys with <code>true</code> values).</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Both <code>count</code> and <code>latest</code> (in theory) can be any number. But built-in tracking results into positive integer <code>count</code> and <code>latest</code> coming from <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()"><code>os.time()</code></a>.</p></li>
+<li><p>There can be other entries if they are set by user as index entry.</p></li>
+</ul>
+<p><code>list.sort</code> is a callable which should take an array of path data and return a sorted array of path data (or at least tables each containing <span class="help-syntax-keys">&lt;path&gt;</span> field). Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a>. Single path data entry is a table with a same structure as for <code>list.filter</code>.</p>
+<p>Note, that <code>list.sort</code> can be used both to filter, sort, or even return paths unrelated to the input.</p>
+</section>
+<section id="minivisits.config-silent" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.config-silent">Silent</h4>
+<p><code>config.silent</code> is a boolean controlling whether to show non-error feedback (like adding/removing labels, etc.). Default: <code>false</code>.</p>
+</section>
+<section id="minivisits.config-store" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.config-store">Store</h4>
+<p><code>config.store</code> defines how visit index is stored on disk to enable persistent data across several sessions.</p>
+<p><code>store.autowrite</code> is a boolean controlling whether to write visit data to disk on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre"><code>VimLeavePre</code></a> event. Default: <code>true</code>.</p>
+<p><code>store.normalize</code> is a callable which should take visit index (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a>) as input and return “normalized” visit index as output. This is used to ensure that visit index is up to date and contains only relevant data. For example, it controls how old and irrelevant visits are “forgotten”, and more. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a>.</p>
+<p><code>store.path</code> is a path to which visit index is written. See “Storage” section of <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a> for more details. Note: set to empty string to disable any writing with not explicitly set path (including the one on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre"><code>VimLeavePre</code></a>). Default: “mini-visits-index” file inside <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_DATA_HOME"><code>$XDG_DATA_HOME</code></a>.</p>
+</section>
+<section id="minivisits.config-track" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.config-track">Track</h4>
+<p><code>config.track</code> defines how visits are tracked (index entry is autoupdated). See “Tracking visits” section in <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a> for more details.</p>
+<p><code>track.event</code> is a proper Neovim <a href="https://neovim.io/doc/user/helptag.html?tag=%7Bevent%7D"><code>{event}</code></a> on which track get triggered. Note: set to empty string to disable automated tracking. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter"><code>BufEnter</code></a>.</p>
+<p><code>track.delay</code> is a delay in milliseconds after event is triggered and visit is autoregistered. Default: 1000 (to allow navigation between buffers without tracking intermediate ones).</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.register_visit" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.register_visit">register_visit()</h3>
+<p align="center">
+<code>MiniVisits.register_visit</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)
+</p>
+<p>Register visit</p>
+<p>Steps:</p>
+<ul>
+<li><p>Ensure that there is an entry for path-cwd pair.</p></li>
+<li><p>Add 1 to visit <code>count</code>.</p></li>
+<li><p>Set <code>latest</code> visit time to equal current time.</p></li>
+</ul>
+<section id="minivisits.register_visit-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.register_visit-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.add_path" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.add_path">add_path()</h3>
+<p align="center">
+<code>MiniVisits.add_path</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)
+</p>
+<p>Add path to index</p>
+<p>Ensures that there is a (one or more) entry for path-cwd pair. If entry is already present, does nothing. If not - creates it with both <code>count</code> and <code>latest</code> set to 0.</p>
+<section id="minivisits.add_path-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.add_path-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.add_label" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.add_label">add_label()</h3>
+<p align="center">
+<code>MiniVisits.add_label</code>(<span class="help-syntax-special">{label}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)
+</p>
+<p>Add label to path</p>
+<p>Steps:</p>
+<ul>
+<li><p>Ensure that there is an entry for path-cwd pair.</p></li>
+<li><p>Add label to the entry.</p></li>
+</ul>
+<section id="minivisits.add_label-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.add_label-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{label}</span> <code>(string|nil)</code> Label string. Default: <code>nil</code> to ask from user.</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.remove_path" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.remove_path">remove_path()</h3>
+<p align="center">
+<code>MiniVisits.remove_path</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)
+</p>
+<p>Remove path</p>
+<p>Deletes a (one or more) entry for path-cwd pair from an index. If entry is already absent, does nothing.</p>
+<p>Notes:</p>
+<ul>
+<li>Affects only in-session Lua variable. Call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index"><code>MiniVisits.write_index()</code></a> to make it persistent.</li>
+</ul>
+<section id="minivisits.remove_path-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.remove_path-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.remove_label" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.remove_label">remove_label()</h3>
+<p align="center">
+<code>MiniVisits.remove_label</code>(<span class="help-syntax-special">{label}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)
+</p>
+<p>Remove label from path</p>
+<p>Steps:</p>
+<ul>
+<li><p>Remove label from (one or more) index entry.</p></li>
+<li><p>If it was last label in an entry, remove <code>labels</code> key.</p></li>
+</ul>
+<section id="minivisits.remove_label-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.remove_label-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{label}</span> <code>(string|nil)</code> Label string. Default: <code>nil</code> to ask from user.</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.list_paths" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.list_paths">list_paths()</h3>
+<p align="center">
+<code>MiniVisits.list_paths</code>(<span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>List visit paths</p>
+<p>Convert visit index for certain cwd into an ordered list of visited paths. Supports custom filtering and sorting.</p>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get paths sorted from most to least recent</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_recent</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">})</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_paths<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="op">{</span> <span class="fu">sort</span> <span class="op">=</span> <span class="va">sort_recent</span> <span class="op">})</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get paths from all cwd sorted from most to least frequent</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_frequent</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="dv">0</span> <span class="op">})</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_paths<span class="op">(</span><span class="st">''</span><span class="op">,</span> <span class="op">{</span> <span class="fu">sort</span> <span class="op">=</span> <span class="va">sort_frequent</span> <span class="op">})</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get paths not including hidden</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">is_not_hidden</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">path_data</span><span class="op">)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span>startswith<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>fnamemodify<span class="op">(</span><span class="va">path_data</span><span class="op">.</span><span class="va">path</span><span class="op">,</span> <span class="st">':t'</span><span class="op">),</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_paths<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="va">is_not_hidden</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minivisits.list_paths-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.list_paths-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> as its default.</p></li>
+</ul>
+</section>
+<section id="minivisits.list_paths-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.list_paths-return">Return</h4>
+<p><code>(table)</code> Array of visited paths.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.list_labels" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.list_labels">list_labels()</h3>
+<p align="center">
+<code>MiniVisits.list_labels</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>List visit labels</p>
+<p>Convert visit index for certain path-cwd pair into an ordered list of labels. Supports custom filtering for paths. Result is ordered from most to least frequent label.</p>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get labels for current path-cwd pair</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_labels<span class="op">()</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get labels for current path across all cwd</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_labels<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="st">''</span><span class="op">)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get all available labels excluding ones from hidden files</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">is_not_hidden</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">path_data</span><span class="op">)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span>startswith<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>fnamemodify<span class="op">(</span><span class="va">path_data</span><span class="op">.</span><span class="va">path</span><span class="op">,</span> <span class="st">':t'</span><span class="op">),</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_labels<span class="op">(</span><span class="st">''</span><span class="op">,</span> <span class="st">''</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="va">is_not_hidden</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minivisits.list_labels-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.list_labels-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> as its default.</p></li>
+</ul>
+</section>
+<section id="minivisits.list_labels-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.list_labels-return">Return</h4>
+<p><code>(table)</code> Array of available labels.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.select_path" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.select_path">select_path()</h3>
+<p align="center">
+<code>MiniVisits.select_path</code>(<span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Select visit path</p>
+<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a> and calls <a href="https://neovim.io/doc/user/helptag.html?tag=:edit"><code>:edit</code></a> on the chosen item.</p>
+<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a> and <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths"><code>MiniExtra.pickers.visit_paths()</code></a>.</p>
+<p>Examples:</p>
+<ul>
+<li><p>Select from all visited paths: <code>MiniVisits.select_path('')</code></p></li>
+<li><p>Select from paths under current directory sorted from most to least recent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_recent</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">})</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>select_path<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="op">{</span> <span class="fu">sort</span> <span class="op">=</span> <span class="va">sort_recent</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="minivisits.select_path-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.select_path-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.select_label" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.select_label">select_label()</h3>
+<p align="center">
+<code>MiniVisits.select_label</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Select visit label</p>
+<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a> and calls <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> to get target paths with selected label.</p>
+<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a>.</p>
+<p>Examples:</p>
+<ul>
+<li><p>Select from labels of current path: <code>MiniVisits.select_label()</code></p></li>
+<li><p>Select from all visited labels: <code>MiniVisits.select_label('', '')</code></p></li>
+<li><p>Select from current project labels and sort paths (after choosing) from most to least recent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_recent</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">})</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>select_label<span class="op">(</span><span class="st">''</span><span class="op">,</span> <span class="kw">nil</span><span class="op">,</span> <span class="op">{</span> <span class="fu">sort</span> <span class="op">=</span> <span class="va">sort_recent</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="minivisits.select_label-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.select_label-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to both <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> (after choosing a label).</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.iterate_paths" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.iterate_paths">iterate_paths()</h3>
+<p align="center">
+<code>MiniVisits.iterate_paths</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Iterate visit paths</p>
+<p>Steps:</p>
+<ul>
+<li><p>Compute a sorted array of target paths using <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
+<li><p>Identify the current index inside the array based on path of current buffer.</p></li>
+<li><p>Iterate through the array certain amount of times in a dedicated direction:</p>
+<ul>
+<li><p>For “first” direction - forward starting from index 0 (so that single first iteration leads to first path).</p></li>
+<li><p>For “backward” direction - backward starting from current index.</p></li>
+<li><p>For “forward” direction - forward starting from current index.</p></li>
+<li><p>For “last” direction - backward starting from index after the last one (so that single first iteration leads to the last path).</p></li>
+</ul></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Mostly designed to be used as a mapping. See <code>MiniVisits-examples</code>.</p></li>
+<li><p>If path from current buffer is not in the output of <code>MiniVisits.list_paths()</code>, starting index is inferred such that first iteration lands on first item (if iterating forward) or last item (if iterating backward).</p></li>
+<li><p>Navigation with this function is not tracked (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a>). This is done to allow consecutive application without affecting underlying list of paths.</p></li>
+</ul>
+<p>Examples assuming underlying array of files <code>{ "file1", "file2", "file3" }</code>:</p>
+<ul>
+<li><p><code>MiniVisits("first")</code> results into focusing on “file1”.</p></li>
+<li><p><code>MiniVisits("backward", { n_times = 2 })</code> from “file3” results into “file1”.</p></li>
+<li><p><code>MiniVisits("forward", { n_times = 10 })</code> from “file1” results into “file3”.</p></li>
+<li><p><code>MiniVisits("last", { n_times = 4, wrap = true })</code> results into “file3”.</p></li>
+</ul>
+<section id="minivisits.iterate_paths-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.iterate_paths-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - number of steps to go in certain direction. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - whether to wrap around list edges. Default: <code>false</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minivisits.get_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.get_index">get_index()</h3>
+<p align="center">
+<code>MiniVisits.get_index</code>()
+</p>
+<p>Get active visit index</p>
+<section id="minivisits.get_index-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.get_index-return">Return</h4>
+<p><code>(table)</code> Copy of currently active visit index table.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.set_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.set_index">set_index()</h3>
+<p align="center">
+<code>MiniVisits.set_index</code>(<span class="help-syntax-special">{index}</span>)
+</p>
+<p>Set active visit index</p>
+<section id="minivisits.set_index-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.set_index-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{index}</span> <code>(table)</code> Visit index table.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.reset_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.reset_index">reset_index()</h3>
+<p align="center">
+<code>MiniVisits.reset_index</code>()
+</p>
+<p>Reset active visit index</p>
+<p>Set currently active visit index to the output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index"><code>MiniVisits.read_index()</code></a>. Does nothing if reading the index failed.</p>
+<hr>
+</section>
+<section id="minivisits.normalize_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.normalize_index">normalize_index()</h3>
+<p align="center">
+<code>MiniVisits.normalize_index</code>(<span class="help-syntax-special">{index}</span>)
+</p>
+<p>Normalize visit index</p>
+<p>Applies <code>config.store.normalize</code> (<a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a> by default) to the input index object and returns the output (if it fits in the definition of index object; see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a>).</p>
+<section id="minivisits.normalize_index-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.normalize_index-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{index}</span> <code>(table|nil)</code> Index object. Default: copy of the current index.</p>
+</section>
+<section id="minivisits.normalize_index-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.normalize_index-return">Return</h4>
+<p><code>(table)</code> Normalized index object.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.read_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.read_index">read_index()</h3>
+<p align="center">
+<code>MiniVisits.read_index</code>(<span class="help-syntax-special">{store_path}</span>)
+</p>
+<p>Read visit index from disk</p>
+<section id="minivisits.read_index-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.read_index-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{store_path}</span> <code>(string|nil)</code> Path on the disk containing visit index data. Default: <code>config.store.path</code>. Notes:</p>
+<ul>
+<li><p>Can return <code>nil</code> if path is empty string or file is not readable.</p></li>
+<li><p>File is sourced with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()"><code>dofile()</code></a> as a regular Lua file.</p></li>
+</ul>
+</section>
+<section id="minivisits.read_index-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.read_index-return">Return</h4>
+<p><code>(table|nil)</code> Output of the file source.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.write_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.write_index">write_index()</h3>
+<p align="center">
+<code>MiniVisits.write_index</code>(<span class="help-syntax-special">{store_path}</span>, <span class="help-syntax-special">{index}</span>)
+</p>
+<p>Write visit index to disk</p>
+<p>Steps:</p>
+<ul>
+<li><p>Normalize index with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p></li>
+<li><p>Ensure path is valid (all parent directories are created, etc.).</p></li>
+<li><p>Write index object to the path so that it is readable with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index"><code>MiniVisits.read_index()</code></a>.</p></li>
+</ul>
+<section id="minivisits.write_index-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.write_index-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{store_path}</span> <code>(string|nil)</code> Path on the disk where to write visit index data. Default: <code>config.store.path</code>. Note: if empty string, nothing is written.</p>
+<p><span class="help-syntax-special">{index}</span> <code>(table|nil)</code> Index object to write to disk. Default: current session index.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.rename_in_index" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.rename_in_index">rename_in_index()</h3>
+<p align="center">
+<code>MiniVisits.rename_in_index</code>(<span class="help-syntax-special">{path_from}</span>, <span class="help-syntax-special">{path_to}</span>, <span class="help-syntax-special">{index}</span>)
+</p>
+<p>Rename path in index</p>
+<p>A helper to react for a path rename/move in order to preserve its visit data. It works both for file and directory paths.</p>
+<p>Notes:</p>
+<ul>
+<li><p>It does not update current index, but returns a modified index object. Use <a href="../../mini.nvim/doc/mini-visits.html#minivisits.set_index"><code>MiniVisits.set_index()</code></a> to make it current.</p></li>
+<li><p>Use only full paths.</p></li>
+<li><p>Do not append <code>/</code> to directory paths. Use same format as for files.</p></li>
+</ul>
+<p>Assuming <code>path_from</code> and <code>path_to</code> are variables containing full paths before and after rename/move, here is an example to update current index:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">new_index</span> <span class="op">=</span> <span class="va">MiniVisits</span><span class="op">.</span>rename_in_index<span class="op">(</span><span class="va">path_from</span><span class="op">,</span> <span class="va">path_to</span><span class="op">)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>set_index<span class="op">(</span><span class="va">new_index</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minivisits.rename_in_index-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.rename_in_index-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path_from}</span> <code>(string)</code> Full path to be renamed.</p>
+<p><span class="help-syntax-special">{path_to}</span> <code>(string)</code> Full path to be replaced with.</p>
+<p><span class="help-syntax-special">{index}</span> <code>(table|nil)</code> Index object inside which to perform renaming. Default: current session index.</p>
+</section>
+<section id="minivisits.rename_in_index-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.rename_in_index-return">Return</h4>
+<p><code>(table)</code> Index object with renamed path.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.gen_filter" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_filter">gen_filter</h3>
+<p align="center">
+<code>MiniVisits.gen_filter</code>
+</p>
+<p>Generate filter function</p>
+<p>This is a table with function elements. Call to actually get specification.</p>
+<hr>
+</section>
+<section id="minivisits.gen_filter.default" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_filter.default">gen_filter.default()</h3>
+<p align="center">
+<code>MiniVisits.gen_filter.default</code>()
+</p>
+<p>Default filter</p>
+<p>Always returns <code>true</code> resulting in no actual filter.</p>
+<section id="minivisits.gen_filter.default-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_filter.default-return">Return</h4>
+<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.gen_filter.this_session" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_filter.this_session">gen_filter.this_session()</h3>
+<p align="center">
+<code>MiniVisits.gen_filter.this_session</code>()
+</p>
+<p>Filter visits from current session</p>
+<section id="minivisits.gen_filter.this_session-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_filter.this_session-return">Return</h4>
+<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.gen_sort" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_sort">gen_sort</h3>
+<p align="center">
+<code>MiniVisits.gen_sort</code>
+</p>
+<p>Generate sort function</p>
+<p>This is a table with function elements. Call to actually get specification.</p>
+<hr>
+</section>
+<section id="minivisits.gen_sort.default" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_sort.default">gen_sort.default()</h3>
+<p align="center">
+<code>MiniVisits.gen_sort.default</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Default sort</p>
+<p>Sort paths using “robust frecency” approach. It relies on the rank operation: based on certain reference number for every item, assign it a number between 1 (best) and number of items (worst). Ties are dealt with “average rank” approach: each element with a same reference number is assigned an average rank among such elements. This way total rank sum depends only on number of paths.</p>
+<p>Here is an algorithm outline:</p>
+<ul>
+<li><p>Rank paths based on frequency (<code>count</code> value): from most to least frequent.</p></li>
+<li><p>Rank paths based on recency (<code>latest</code> value): from most to least recent.</p></li>
+<li><p>Combine ranks from previous steps with weights: <code>score = (1 - w) * rank_frequency + w * rank_recency</code>, where <code>w</code> is “recency weight”. The smaller this weight the less recency affects outcome.</p></li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><p>Default recency weight 0.5 results into “robust frecency” sorting: it combines both frequency and recency. This is called a “robust frecency” because actual values don’t have direct effect on the outcome, only ordering matters. For example, if there is a very frequent file with <code>count = 100</code> while all others have <code>count = 5</code>, it will not massively dominate the outcome as long as it is not very recent.</p></li>
+<li><p>Having recency weight 1 results into “from most to least recent” sorting.</p></li>
+<li><p>Having recency weight 0 results into “from most to least frequent” sorting.</p></li>
+</ul>
+<section id="minivisits.gen_sort.default-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_sort.default-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Option. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;recency_weight&gt;</span> <code>(number)</code> - a number between 0 and 1 for recency weight. Default: 0.5.</li>
+</ul>
+</section>
+<section id="minivisits.gen_sort.default-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_sort.default-return">Return</h4>
+<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.gen_sort.z" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_sort.z">gen_sort.z()</h3>
+<p align="center">
+<code>MiniVisits.gen_sort.z</code>()
+</p>
+<p>Z sort</p>
+<p>Sort as in https://github.com/rupa/z.</p>
+<section id="minivisits.gen_sort.z-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_sort.z-return">Return</h4>
+<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<hr>
+</section>
+</section>
+<section id="minivisits.gen_normalize" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_normalize">gen_normalize</h3>
+<p align="center">
+<code>MiniVisits.gen_normalize</code>
+</p>
+<p>Generate normalize function</p>
+<p>This is a table with function elements. Call to actually get specification.</p>
+<hr>
+</section>
+<section id="minivisits.gen_normalize.default" class="level3">
+<h3 class="anchored" data-anchor-id="minivisits.gen_normalize.default">gen_normalize.default()</h3>
+<p align="center">
+<code>MiniVisits.gen_normalize.default</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Generate default normalize function</p>
+<p>Steps:</p>
+<ul>
+<li><p>Prune visits, i.e.&nbsp;remove outdated visits:</p>
+<ul>
+<li><p>If <code>count</code> number of visits is below prune threshold, remove that visit entry from particular cwd (it can still be present in others).</p></li>
+<li><p>If either first (cwd) or second (path) level key doesn’t represent an actual path on disk, remove the whole associated value.</p></li>
+<li><p>NOTE: if visit has any label, it is not automatically pruned.</p></li>
+</ul></li>
+<li><p>Decay visits, i.e.&nbsp;possibly make visits more outdated. This is an important part to the whole usability: together with pruning it results into automated removing of paths which were visited long ago and are not relevant.</p>
+<p>Decay is done per cwd if its total <code>count</code> values sum exceeds decay threshold. It is performed through multiplying each <code>count</code> by same coefficient so that the new total sum of <code>count</code> is equal to some smaller target value. Note: only two decimal places are preserved, so the sum might not be exact.</p></li>
+<li><p>Prune once more to ensure that there are no outdated paths after decay.</p></li>
+</ul>
+<section id="minivisits.gen_normalize.default-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_normalize.default-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;decay_threshold&gt;</span> <code>(number)</code> - decay threshold. Default: 1000.</p></li>
+<li><p><span class="help-syntax-keys">&lt;decay_target&gt;</span> <code>(number)</code> - decay target. Default: 800.</p></li>
+<li><p><span class="help-syntax-keys">&lt;prune_threshold&gt;</span> <code>(number)</code> - prune threshold. Default: 0.5.</p></li>
+<li><p><span class="help-syntax-keys">&lt;prune_paths&gt;</span> <code>(boolean)</code> - whether to prune outdated paths. Default: <code>true</code>.</p></li>
+</ul>
+</section>
+<section id="minivisits.gen_normalize.default-return" class="level4">
+<h4 class="anchored" data-anchor-id="minivisits.gen_normalize.default-return">Return</h4>
+<p><code>(function)</code> Visit index normalize function. See “Store” in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

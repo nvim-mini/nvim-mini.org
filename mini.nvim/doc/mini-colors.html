@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.colors documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.colors documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.colors documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minicolors" id="toc-minicolors" class="nav-link active" data-scroll-target="#minicolors">Module</a>
+  <ul>
+  <li><a href="#minicolors-tweakquickstart" id="toc-minicolors-tweakquickstart" class="nav-link" data-scroll-target="#minicolors-tweakquickstart">Tweak quick start</a></li>
+  <li><a href="#minicolors-setup" id="toc-minicolors-setup" class="nav-link" data-scroll-target="#minicolors-setup">Setup</a></li>
+  <li><a href="#minicolors-comparisons" id="toc-minicolors-comparisons" class="nav-link" data-scroll-target="#minicolors-comparisons">Comparisons</a></li>
+  </ul></li>
+  <li><a href="#minicolors-recipes" id="toc-minicolors-recipes" class="nav-link" data-scroll-target="#minicolors-recipes">Recipes</a></li>
+  <li><a href="#minicolors-color-spaces" id="toc-minicolors-color-spaces" class="nav-link" data-scroll-target="#minicolors-color-spaces">Color spaces</a>
+  <ul>
+  <li><a href="#minicolors-color-spaces-gamutclip" id="toc-minicolors-color-spaces-gamutclip" class="nav-link" data-scroll-target="#minicolors-color-spaces-gamutclip">Gamut clip</a></li>
+  </ul></li>
+  <li><a href="#minicolors-channels" id="toc-minicolors-channels" class="nav-link" data-scroll-target="#minicolors-channels">Channels</a></li>
+  <li><a href="#minicolors-colorscheme" id="toc-minicolors-colorscheme" class="nav-link" data-scroll-target="#minicolors-colorscheme">Colorscheme</a>
+  <ul>
+  <li><a href="#minicolors-colorscheme-class" id="toc-minicolors-colorscheme-class" class="nav-link" data-scroll-target="#minicolors-colorscheme-class">Class</a></li>
+  <li><a href="#minicolors-colorscheme-fields" id="toc-minicolors-colorscheme-fields" class="nav-link" data-scroll-target="#minicolors-colorscheme-fields">Fields</a></li>
+  <li><a href="#minicolors-colorscheme-methods" id="toc-minicolors-colorscheme-methods" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods">Methods</a>
+  <ul>
+  <li><a href="#minicolors-colorscheme-methods-add_cterm_attributes" id="toc-minicolors-colorscheme-methods-add_cterm_attributes" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-add_cterm_attributes">add_cterm_attributes()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-add_terminal_colors" id="toc-minicolors-colorscheme-methods-add_terminal_colors" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-add_terminal_colors">add_terminal_colors()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-add_transparency" id="toc-minicolors-colorscheme-methods-add_transparency" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-add_transparency">add_transparency()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-apply" id="toc-minicolors-colorscheme-methods-apply" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-apply">apply()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_add" id="toc-minicolors-colorscheme-methods-chan_add" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_add">chan_add()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_invert" id="toc-minicolors-colorscheme-methods-chan_invert" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_invert">chan_invert()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_modify" id="toc-minicolors-colorscheme-methods-chan_modify" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_modify">chan_modify()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_multiply" id="toc-minicolors-colorscheme-methods-chan_multiply" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_multiply">chan_multiply()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_repel" id="toc-minicolors-colorscheme-methods-chan_repel" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_repel">chan_repel()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-chan_set" id="toc-minicolors-colorscheme-methods-chan_set" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-chan_set">chan_set()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-color_modify" id="toc-minicolors-colorscheme-methods-color_modify" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-color_modify">color_modify()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-compress" id="toc-minicolors-colorscheme-methods-compress" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-compress">compress()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-get_palette" id="toc-minicolors-colorscheme-methods-get_palette" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-get_palette">get_palette()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-resolve_links" id="toc-minicolors-colorscheme-methods-resolve_links" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-resolve_links">resolve_links()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-simulate_cvd" id="toc-minicolors-colorscheme-methods-simulate_cvd" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-simulate_cvd">simulate_cvd()</a></li>
+  <li><a href="#minicolors-colorscheme-methods-write" id="toc-minicolors-colorscheme-methods-write" class="nav-link" data-scroll-target="#minicolors-colorscheme-methods-write">write()</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#minicolors.setup" id="toc-minicolors.setup" class="nav-link" data-scroll-target="#minicolors.setup">setup()</a>
+  <ul>
+  <li><a href="#minicolors.setup-colorscheme" id="toc-minicolors.setup-colorscheme" class="nav-link" data-scroll-target="#minicolors.setup-colorscheme">:Colorscheme</a></li>
+  <li><a href="#minicolors.setup-parameters" id="toc-minicolors.setup-parameters" class="nav-link" data-scroll-target="#minicolors.setup-parameters">Parameters</a></li>
+  <li><a href="#minicolors.setup-usage" id="toc-minicolors.setup-usage" class="nav-link" data-scroll-target="#minicolors.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minicolors.config" id="toc-minicolors.config" class="nav-link" data-scroll-target="#minicolors.config">config</a>
+  <ul>
+  <li><a href="#minicolors.config-defaults" id="toc-minicolors.config-defaults" class="nav-link" data-scroll-target="#minicolors.config-defaults">Defaults</a></li>
+  </ul></li>
+  <li><a href="#minicolors.as_colorscheme" id="toc-minicolors.as_colorscheme" class="nav-link" data-scroll-target="#minicolors.as_colorscheme">as_colorscheme()</a>
+  <ul>
+  <li><a href="#minicolors.as_colorscheme-parameters" id="toc-minicolors.as_colorscheme-parameters" class="nav-link" data-scroll-target="#minicolors.as_colorscheme-parameters">Parameters</a></li>
+  <li><a href="#minicolors.as_colorscheme-return" id="toc-minicolors.as_colorscheme-return" class="nav-link" data-scroll-target="#minicolors.as_colorscheme-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minicolors.get_colorscheme" id="toc-minicolors.get_colorscheme" class="nav-link" data-scroll-target="#minicolors.get_colorscheme">get_colorscheme()</a>
+  <ul>
+  <li><a href="#minicolors.get_colorscheme-parameters" id="toc-minicolors.get_colorscheme-parameters" class="nav-link" data-scroll-target="#minicolors.get_colorscheme-parameters">Parameters</a></li>
+  <li><a href="#minicolors.get_colorscheme-return" id="toc-minicolors.get_colorscheme-return" class="nav-link" data-scroll-target="#minicolors.get_colorscheme-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minicolors.interactive" id="toc-minicolors.interactive" class="nav-link" data-scroll-target="#minicolors.interactive">interactive()</a>
+  <ul>
+  <li><a href="#minicolors.interactive-generalprinciples" id="toc-minicolors.interactive-generalprinciples" class="nav-link" data-scroll-target="#minicolors.interactive-generalprinciples">General principles</a></li>
+  <li><a href="#minicolors.interactive-parameters" id="toc-minicolors.interactive-parameters" class="nav-link" data-scroll-target="#minicolors.interactive-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minicolors.animate" id="toc-minicolors.animate" class="nav-link" data-scroll-target="#minicolors.animate">animate()</a>
+  <ul>
+  <li><a href="#minicolors.animate-parameters" id="toc-minicolors.animate-parameters" class="nav-link" data-scroll-target="#minicolors.animate-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minicolors.convert" id="toc-minicolors.convert" class="nav-link" data-scroll-target="#minicolors.convert">convert()</a>
+  <ul>
+  <li><a href="#minicolors.convert-parameters" id="toc-minicolors.convert-parameters" class="nav-link" data-scroll-target="#minicolors.convert-parameters">Parameters</a></li>
+  <li><a href="#minicolors.convert-return" id="toc-minicolors.convert-return" class="nav-link" data-scroll-target="#minicolors.convert-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minicolors.modify_channel" id="toc-minicolors.modify_channel" class="nav-link" data-scroll-target="#minicolors.modify_channel">modify_channel()</a>
+  <ul>
+  <li><a href="#minicolors.modify_channel-parameters" id="toc-minicolors.modify_channel-parameters" class="nav-link" data-scroll-target="#minicolors.modify_channel-parameters">Parameters</a></li>
+  <li><a href="#minicolors.modify_channel-return" id="toc-minicolors.modify_channel-return" class="nav-link" data-scroll-target="#minicolors.modify_channel-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minicolors.simulate_cvd" id="toc-minicolors.simulate_cvd" class="nav-link" data-scroll-target="#minicolors.simulate_cvd">simulate_cvd()</a>
+  <ul>
+  <li><a href="#minicolors.simulate_cvd-parameters" id="toc-minicolors.simulate_cvd-parameters" class="nav-link" data-scroll-target="#minicolors.simulate_cvd-parameters">Parameters</a></li>
+  <li><a href="#minicolors.simulate_cvd-return" id="toc-minicolors.simulate_cvd-return" class="nav-link" data-scroll-target="#minicolors.simulate_cvd-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.colors documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.colors" href="../../mini.nvim/doc/mini-colors.html#mini.colors"><b>mini.colors</b></a> Tweak and save any color scheme</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minicolors" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Create colorscheme object: either manually (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme"><code>MiniColors.as_colorscheme()</code></a>) or by querying present color schemes (including currently active one; see <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme"><code>MiniColors.get_colorscheme()</code></a>).</p></li>
+<li><p>Infer data about color scheme and/or modify based on it:</p>
+<ul>
+<li><p>Add transparency by removing background color (requires transparency in terminal emulator).</p></li>
+<li><p>Infer cterm attributes (<a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors"><code>cterm-colors</code></a>) based on gui colors making it compatible with ‘notermguicolors’.</p></li>
+<li><p>Resolve highlight group links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link"><code>:highlight-link</code></a>).</p></li>
+<li><p>Compress by removing redundant highlight groups.</p></li>
+<li><p>Extract palette of used colors and/or infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>) based on it.</p></li>
+</ul></li>
+<li><p>Modify colors to better fit your taste and/or goals (see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a>):</p>
+<ul>
+<li><p>Apply any function to color hex string.</p></li>
+<li><p>Update channels (like lightness, saturation, hue, temperature, red, green, blue, etc.; see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>). Use either own function or one of the implemented methods:</p>
+<ul>
+<li><p>Add value to channel or multiply it by coefficient. Like “add 10 to saturation of every color” or “multiply saturation by 2” to make colors more saturated (less gray).</p></li>
+<li><p>Invert. Like “invert lightness” to convert between dark/light theme.</p></li>
+<li><p>Set to one or more values (picks closest to current one). Like “set to one or two hues” to make mono- or dichromatic color scheme.</p></li>
+<li><p>Repel from certain source(s) with stronger effect for closer values. Like “repel from hue 30” to remove red color from color scheme. Repel hue (how much is removed) is configurable.</p></li>
+</ul></li>
+<li><p>Simulate color vision deficiency.</p></li>
+</ul></li>
+<li><p>Once color scheme is ready, either apply it to see effects right away or write it into a Lua file as a fully functioning separate color scheme.</p></li>
+<li><p>Experiment interactively with a feedback (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive"><code>MiniColors.interactive()</code></a>).</p></li>
+<li><p>Animate transition between color schemes either with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate"><code>MiniColors.animate()</code></a> or with <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a> user command.</p></li>
+<li><p>Convert within supported color spaces (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a>):</p>
+<ul>
+<li><p>Hex string.</p></li>
+<li><p>8-bit number (terminal colors).</p></li>
+<li><p>RGB.</p></li>
+<li><p>Oklab, Oklch, Okhsl (https://bottosson.github.io/posts/oklab/).</p></li>
+</ul></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>There is a collection of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes"><code>MiniColors-recipes</code></a> with code snippets for some common tasks.</p></li>
+<li><p>There is no goal to support as many color spaces as possible, only the already present ones.</p></li>
+</ul>
+<section id="minicolors-tweakquickstart" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-tweakquickstart">Tweak quick start</h4>
+<ul>
+<li><p>Execute <code>:lua require('mini.colors').interactive()</code>.</p></li>
+<li><p>Experiment by writing calls to exposed color scheme methods and applying them with <code>&lt;M-a&gt;</code>. For more information, see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes"><code>MiniColors-recipes</code></a>.</p></li>
+<li><p>If you are happy with result, write color scheme with <code>&lt;M-w&gt;</code>. If not, reset to initial color scheme with <code>&lt;M-r&gt;</code>.</p></li>
+<li><p>If only some highlight groups can be made better, adjust them manually inside written color scheme file.</p></li>
+</ul>
+</section>
+<section id="minicolors-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-setup">Setup</h4>
+<p>This module doesn’t need setup, but it can be done to improve usability. Setup with <code>require('mini.colors').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniColors</code> which you can use for scripting or manually (with <code>:lua MiniColors.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config"><code>MiniColors.config</code></a> for <code>config</code> structure and default values.</p>
+<p>This module doesn’t have runtime options, so using <code>vim.b.minicolors_config</code> will have no effect here.</p>
+</section>
+<section id="minicolors-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/rktjmp/lush.nvim">rktjmp/lush.nvim</a>:</p>
+<ul>
+<li><p>Oriented towards tweaking separate highlight groups, while ‘mini.colors’ is more designed to work with color scheme as a whole.</p></li>
+<li><p>Uses HSL and HSLuv color spaces, while ‘mini.colors’ uses Oklab, Oklch, and Okhsl which have slightly better perceptual uniformity properties.</p></li>
+<li><p>Doesn’t have functionality to infer and repair missing data in color scheme (like cterm attributes, terminal colors, transparency, etc.), while ‘mini.colors’ does.</p></li>
+<li><p>Doesn’t implement animation of color scheme transition, while ‘mini.colors’ does.</p></li>
+</ul></li>
+<li><p><a href="https://github.com/lifepillar/vim-colortemplate">lifepillar/vim-colortemplate</a>:</p>
+<ul>
+<li>Comparisons are similar to that of ‘rktjmp/lush.nvim’.</li>
+</ul></li>
+<li><p><a href="https://github.com/tjdevries/colorbuddy.nvim">tjdevries/colorbuddy.nvim</a>:</p>
+<ul>
+<li>Comparisons are similar to that of ‘rktjmp/lush.nvim’.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minicolors-recipes" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors-recipes">Recipes</h3>
+<p>All following code snippets assume to be executed inside interactive buffer (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive"><code>MiniColors.interactive()</code></a>). They are directly copy-pasteable.</p>
+<p>To apply single method to current color scheme, use</p>
+<pre class="vim"><code>:lua MiniColors.get_colorscheme():&lt;method goes here&gt;:apply().</code></pre>
+<p>Recipes:</p>
+<ul>
+<li><p>Tweak lightness:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Invert dark/light color scheme to be light/dark</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chan_invert<span class="op">(</span><span class="st">'lightness'</span><span class="op">,</span> <span class="op">{</span> <span class="va">gamut_clip</span> <span class="op">=</span> <span class="st">'cusp'</span> <span class="op">})</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Ensure constant contrast ratio</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'lightness'</span><span class="op">,</span> <span class="dv">15</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'bg'</span> <span class="op">})</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'lightness'</span><span class="op">,</span> <span class="dv">85</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'fg'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Tweak saturation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Make background colors less saturated and foreground - more</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chan_add<span class="op">(</span><span class="st">'saturation'</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'bg'</span> <span class="op">})</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>chan_add<span class="op">(</span><span class="st">'saturation'</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span>  <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'fg'</span> <span class="op">})</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Convert to grayscale</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'saturation'</span><span class="op">,</span> <span class="dv">0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Tweak hue:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create monochromatic variant (this uses green color)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">135</span><span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create dichromatic variant (this uses Neovim-themed hues)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="op">{</span> <span class="dv">140</span><span class="op">,</span> <span class="dv">245</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Tweak temperature:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Invert temperature (make cold theme become warm and vice versa)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>chan_invert<span class="op">(</span><span class="st">'temperature'</span><span class="op">)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Make background colors colder and foreground warmer</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>chan_add<span class="op">(</span><span class="st">'temperature'</span><span class="op">,</span> <span class="op">-</span><span class="dv">40</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'bg'</span> <span class="op">})</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>chan_add<span class="op">(</span><span class="st">'temperature'</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span>  <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'fg'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Counter color vision deficiency (try combinations of these to see which one works best for you):</p>
+<ul>
+<li><p>Improve text saturation contrast (usually the best starting approach):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'saturation'</span><span class="op">,</span> <span class="op">{</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">90</span> <span class="op">},</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="st">'fg'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Remove certain hues from all colors (use 30 for red, 90 for yellow, 135 for green, 270 for blue):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Repel red color</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>chan_repel<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">45</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Force equally spaced palette (remove ones with which you know you have trouble):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Might be a good choice for red-green color blindness</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="op">{</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span><span class="op">,</span> <span class="dv">270</span><span class="op">})</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Might be a good choice for blue-yellow color blindness</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>chan_set<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Inverting temperature or pressure can sometimes improve readability:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chan_invert<span class="op">(</span><span class="st">'temperature'</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>chan_invert<span class="op">(</span><span class="st">'pressure'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>If all hope is lost, hue random generation might help if you are lucky:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chan_modify<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="fu">math.random</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">359</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>For color scheme creators use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemesimulate_cvd"><code>MiniColors-colorscheme:simulate_cvd()</code></a> to simulate various color vision deficiency types to see how color scheme would look in the eyes of color blind person.</p></li>
+</ul>
+<hr>
+</section>
+<section id="minicolors-color-spaces" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors-color-spaces">Color spaces</h3>
+<p>Color space is a way to quantitatively describe a color. In this module color spaces are used both as source for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a> and inputs for <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a></p>
+<p>List of supported color spaces (along with their id in parenthesis):</p>
+<ul>
+<li><p>8-bit (<code>8-bit</code>) - integer between 16 and 255. Usually values 0-15 are also supported, but they depend on terminal emulator theme which is not reliable. See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit .</p></li>
+<li><p>Hex (<code>hex</code>) - string of the form “#xxxxxx” where <code>x</code> is a hexadecimal number.</p></li>
+<li><p>RGB (<code>rgb</code>) - table with numeric fields <code>r</code> (red), <code>g</code> (green), <code>b</code> (blue). Visible range is from 0 to 255.</p></li>
+<li><p>Oklab (<code>oklab</code>) - table with fields <code>l</code> (lightness; numeric in [0; 100]), <code>a</code>, <code>b</code> (both are unbounded numeric; visible range is usually between -30 to 30). Field <code>l</code> describes how light is color; <code>a</code> - how “green-red” it is; <code>b</code> - how “blue-yellow” it is.</p></li>
+<li><p>Oklch (<code>oklch</code>) - table with fields <code>l</code> (same as in Oklab), <code>c</code> (chroma; positive numeric, visible range usually lower than 32), <code>h</code> (<code>nil</code> for grays or periodic numeric in [0, 360)). Field <code>c</code> describes how colorful a color is; <code>h</code> is a value of “true color” on color circle/wheel. NOTE: gray colors, being achromatic by nature, don’t have hue.</p></li>
+<li><p>Okhsl (<code>okhsl</code>) - Oklch but with <code>c</code> replaced by <code>s</code> (saturation; numeric in [0; 100]). Field <code>s</code> describes a percent of chroma relative to maximum visible chroma for the particular lightness and hue combination. Note, that mathematical model used to compute maximum visible chroma is approximate which might lead to inaccuracies for highly saturated colors with relatively low or high lightness.</p></li>
+</ul>
+<p>Sources for Oklab/Oklch/Okhsl:</p>
+<ul>
+<li><p>https://bottosson.github.io/posts/oklab/ - initial derivation and introduction of Oklab and Oklch.</p></li>
+<li><p>https://bottosson.github.io/misc/colorpicker - interactive color picker. Great way for a hands-on introduction to concepts of lightness, chroma, saturation, and hue.</p></li>
+</ul>
+<p>Note that Oklab/Oklch/Okhsl use channel normalization for <code>l</code>, <code>a</code>, <code>b</code>, <code>c</code>, <code>s</code> that is more oriented towards integer numbers (according to the above sources). Some implementations (like in CSS) are more oriented towards [0; 1] range or percentages. Adjust accordingly by dividing/multiplying output by 100. Also use <code>adjust_lightness = false</code> in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a>.</p>
+<section id="minicolors-color-spaces-gamutclip" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-color-spaces-gamutclip">Gamut clip</h4>
+<p><a name="minicolors-gamut-clip" href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><b>MiniColors-gamut-clip</b></a></p>
+<p>In Neovim highlight group colors are usually specified by their red, green, and blue values from 0 to 255 in the form of HEX string (see <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors"><code>gui-colors</code></a>). Although plenty, these are not all possible colors.</p>
+<p>When performing color manipulation using <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a>, it is possible to end up with “impossible” color (which can’t be directly converted to HEX string). For example, inverting lightness of color “#fce094” will lead to a color <code>{ l = 10, c = 10, h = 90 }</code> in Oklch space, i.e. “dark yellow” which is impossible to show in HEX.</p>
+<p>Gamut clipping is an action of converting color outside of visible gamut (colors representable with HEX string) to be inside it while preserving certain perceptual characteristics as much as possible.</p>
+<p>Gamut clipping in this module is done inside Oklch color space. The goal is to preserve hue as much as possible while manipulating lightness and/or chroma.</p>
+<p>List of supported gamut clip methods (along with their id in parenthesis):</p>
+<ul>
+<li><p>Clip chroma (<code>'chroma'</code>) - reduce chroma while preserving lightness until color is inside visible gamut. Default method.</p></li>
+<li><p>Clip lightness (<code>'lightness'</code>) - reduce lightness while preserving chroma until color is inside visible gamut.</p></li>
+<li><p>Clip according to “cusp” (<code>'cusp'</code>) - reduce both lightness and chroma in a compromise way depending on hue. Cusp is a color with the highest chroma inside slice of visible gamut with the same hue (hue leaf). It is called that way because the slice has a roughly triangular shape with points at (0, 0) - (0, 100) - “cusp” in (chroma, lightness) coordinates. Gamut clipping using “cusp” as reference is done by changing color towards (0, cusp_lightness) point (gray with lightness equal to that of a current cusp) until color is inside visible gamut.</p></li>
+</ul>
+<p>In short:</p>
+<ul>
+<li><p>Usually <code>'chroma'</code> is enough.</p></li>
+<li><p>If colors are too desaturated - try <code>'cusp'</code>.</p></li>
+<li><p>If still not colorful enough - try <code>'lightness'</code>.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Currently implemented formulas are approximate (by design; to reduce code complexity) so there might be problems for highly saturated colors with relatively low or high lightness.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minicolors-channels" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors-channels">Channels</h3>
+<p>A color channel is a number describing one particular aspect of a color. It is usually direct or modified coordinate of a color space. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a> for information on color spaces.</p>
+<p>List of supported channels (along with their id in parenthesis):</p>
+<ul>
+<li><p>Lightness (<code>lightness</code>) - corrected <code>l</code> component of Oklch. Describes how light is a color. Ranges from 0 (black dark) to 100 (white light).</p></li>
+<li><p>Chroma (<code>chroma</code>) - <code>c</code> component of Oklch. Describes how colorful is a color in absolute units. Ranges from 0 (gray) to infinity (more like around 30 in practice).</p></li>
+<li><p>Saturation (<code>saturation</code>) - <code>s</code> component of Okhsl. Describes how colorful is color in relative units. Ranges from 0 (gray) to 100 (maximum saturation for a given lightness-hue pair).</p></li>
+<li><p>Hue (<code>hue</code>) - <code>h</code> component of Oklch. Describes “true color value” (like red/green/blue) as a number. It is a periodic value from 0 (included) to 360 (not included). Best perceived as a degree on a color circle/wheel.</p>
+<p>Approximate values for common color names:</p>
+<ul>
+<li><p>0 - pink.</p></li>
+<li><p>30 - red.</p></li>
+<li><p>60 - orange.</p></li>
+<li><p>90 - yellow.</p></li>
+<li><p>135 - green.</p></li>
+<li><p>180 - cyan.</p></li>
+<li><p>225 - light blue.</p></li>
+<li><p>270 - blue.</p></li>
+<li><p>315 - magenta/purple.</p></li>
+</ul></li>
+<li><p>Temperature (<code>temperature</code>) - circular distance from current hue to hue 270 angle (blue). Ranges from 0 (cool) to 180 (hot) anchored at hues 270 (blue) and 90 (yellow). Similar to <code>b</code> channel but tries to preserve chroma.</p></li>
+<li><p>Pressure (<code>pressure</code>) - circular distance from current hue to hue 180. Ranges from 0 (low; green-ish) to 180 (high; red-ish) anchored at hues 180 and 0. Similar to <code>a</code> channel but tries to preserve chroma. Not widely used; added to have something similar to temperature.</p></li>
+<li><p>a (<code>a</code>) - <code>a</code> component of Oklab. Describes how “green-red” a color is. Can have any value. Negative values are “green-ish”, positive - “red-ish”.</p></li>
+<li><p>b (<code>b</code>) - <code>b</code> component of Oklab. Describes how “blue-yellow” a color is. Can have any value. Negative values are “blue-ish”, positive - “yellow-ish”.</p></li>
+<li><p>Red (<code>red</code>) - <code>r</code> component of RGB. Describes how much red a color has. Ranges from 0 (no red) to 255 (full red).</p></li>
+<li><p>Green (<code>green</code>) - <code>g</code> component of RGB. Describes how much green a color has. Ranges from 0 (no green) to 255 (full green).</p></li>
+<li><p>Blue (<code>blue</code>) - <code>b</code> component of RGB. Describes how much blue a color has. Ranges from 0 (no blue) to 255 (full blue).</p></li>
+</ul>
+<hr>
+</section>
+<section id="minicolors-colorscheme" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors-colorscheme">Colorscheme</h3>
+<p>Colorscheme object is a central structure of this module. It contains all data relevant to colors in fields and provides methods to modify it.</p>
+<p>Create colorscheme object manually with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme"><code>MiniColors.as_colorscheme()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span>as_colorscheme<span class="op">({</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">'my_cs'</span><span class="op">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">groups</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">Normal</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">fg</span> <span class="op">=</span> <span class="st">'#dddddd'</span><span class="op">,</span> <span class="va">bg</span> <span class="op">=</span> <span class="st">'#222222'</span> <span class="op">},</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">SpellBad</span> <span class="op">=</span> <span class="op">{</span> <span class="va">sp</span> <span class="op">=</span> <span class="st">'#dd2222'</span><span class="op">,</span> <span class="va">undercurl</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">},</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">terminal</span> <span class="op">=</span> <span class="op">{</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="st">'#222222'</span><span class="op">,</span> <span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="st">'#dd2222'</span> <span class="op">},</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Get any registered color scheme (including currently active) as colorscheme object with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme"><code>MiniColors.get_colorscheme()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get current color scheme</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span>get_colorscheme<span class="op">()</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get registered color scheme by name</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span>get_colorscheme<span class="op">(</span><span class="st">'minischeme'</span><span class="op">,</span> <span class="op">{</span> <span class="va">new_name</span> <span class="op">=</span> <span class="st">'maxischeme'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minicolors-colorscheme-class" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-colorscheme-class">Class</h4>
+<p><span class="help-syntax-special">{Colorscheme}</span></p>
+<p><a name="minicolors-colorscheme-fields" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-fields"><b>MiniColors-colorscheme-fields</b></a></p>
+</section>
+<section id="minicolors-colorscheme-fields" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-colorscheme-fields">Fields</h4>
+<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of the color scheme (as in <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a>).</p>
+<p><span class="help-syntax-special">{groups}</span> <code>(table|nil)</code> Table with highlight groups data. Keys are group names appropriate for <code>name</code> argument of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>, values - tables appropriate for its <code>val</code> argument. Note: gui colors are accepted only in short form (<code>fg</code>, <code>bg</code>, <code>sp</code>).</p>
+<p><span class="help-syntax-special">{terminal}</span> <code>(table|nil)</code> Table with terminal colors data (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>). Keys are numbers from 0 to 15, values - strings representing color (hex string or plain color name; see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_get_color_by_name()"><code>nvim_get_color_by_name()</code></a>).</p>
+</section>
+<section id="minicolors-colorscheme-methods" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors-colorscheme-methods">Methods</h4>
+<p><a name="minicolors-colorscheme-methods" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><b>MiniColors-colorscheme-methods</b></a></p>
+<p>Notes about all methods:</p>
+<ul>
+<li><p>They never modify underlying colorscheme object instead returning deep copy with modified fields.</p></li>
+<li><p>They accept <code>self</code> colorscheme object as first argument meaning they should be called with <code>:</code> notation (like <code>cs:method()</code>).</p></li>
+</ul>
+<p>Example calling methods:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get current color scheme, set hue of colors to 135, infer cterm</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- attributes and apply</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">cs</span> <span class="op">=</span> <span class="va">MiniColors</span><span class="op">.</span>get_colorscheme<span class="op">()</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">cs</span><span class="op">:</span>chan_set<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">135</span><span class="op">):</span>add_cterm_attributes<span class="op">():</span>apply<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minicolors-colorscheme-methods-add_cterm_attributes" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_cterm_attributes">add_cterm_attributes()</h5>
+<p><a name="minicolors-colorschemeadd_cterm_attributes" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes"><b>MiniColors-colorscheme:add_cterm_attributes()</b></a></p>
+<p>Infer <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors"><code>cterm-colors</code></a> based on present <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors"><code>gui-colors</code></a>. It updates <code>ctermbg</code>/<code>ctermfg</code> based on <code>fg</code>/<code>bg</code> by approximating in perceptually uniform distance in Oklab space (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a>).</p>
+<section id="minicolors-colorscheme-methods-add_cterm_attributes-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_cterm_attributes-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;force&gt;</span> <code>(boolean)</code> - Whether to replace already present cterm attributes with inferred ones. Default: <code>true</code>.</li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-add_terminal_colors" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_terminal_colors">add_terminal_colors()</h5>
+<p><a name="minicolors-colorschemeadd_terminal_colors" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_terminal_colors"><b>MiniColors-colorscheme:add_terminal_colors()</b></a></p>
+<p>Infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>) based on colorscheme palette (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><code>MiniColors-colorscheme:get_palette()</code></a>). It updates <code>terminal</code> field based on color scheme’s palette by picking the most appropriate entry to represent terminal color. Colors from 0 to 7 are attempted to be black, red, green, yellow, blue, magenta, cyan, white. Colors from 8 to 15 are the same as from 0 to 7.</p>
+<section id="minicolors-colorscheme-methods-add_terminal_colors-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_terminal_colors-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;force&gt;</span> <code>(boolean)</code> - Whether to replace already present terminal colors with inferred ones. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;palette_args&gt;</span> <code>(table)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><code>MiniColors-colorscheme:get_palette()</code></a> arguments.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-add_transparency" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_transparency">add_transparency()</h5>
+<p><a name="minicolors-colorschemeadd_transparency" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_transparency"><b>MiniColors-colorscheme:add_transparency()</b></a></p>
+<p>Add transparency by removing background from a certain highlight groups. Requires actual transparency from terminal emulator to experience visible transparency.</p>
+<section id="minicolors-colorscheme-methods-add_transparency-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_transparency-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields can be used to configure which sets of highlight groups to update:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;general&gt;</span> <code>(boolean)</code> - general groups (like <code>Normal</code>). Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;float&gt;</span> <code>(boolean)</code> - built-in groups for floating windows. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;statuscolumn&gt;</span> <code>(boolean)</code> - groups related to ‘statuscolumn’ (signcolumn, numbercolumn, foldcolumn). Also updates groups for all currently defined signs. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;statusline&gt;</span> <code>(boolean)</code> - built-in groups for ‘statusline’. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;tabline&gt;</span> <code>(boolean)</code> - built-in groups for ‘tabline’. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;winbar&gt;</span> <code>(boolean)</code> - built-in groups for ‘winbar’. Default: <code>false</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-apply" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-apply">apply()</h5>
+<p><a name="minicolors-colorschemeapply" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeapply"><b>MiniColors-colorscheme:apply()</b></a></p>
+<p>Apply colorscheme:</p>
+<ul>
+<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a> to a <code>name</code> field.</p></li>
+<li><p>Apply highlight groups in a <code>groups</code> field.</p></li>
+<li><p>Set terminal colors from a <code>terminal</code> field.</p></li>
+</ul>
+<section id="minicolors-colorscheme-methods-apply-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-apply-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;clear&gt;</span> <code>(boolean)</code> - whether to execute <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> first. Default: <code>true</code>.</li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_add" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_add">chan_add()</h5>
+<p><a name="minicolors-colorschemechan_add" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_add"><b>MiniColors-colorscheme:chan_add()</b></a></p>
+<p>Add value to a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<section id="minicolors-colorscheme-methods-chan_add-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_add-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{value}</span> <code>(number)</code> Number to add (can be negative).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_invert" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_invert">chan_invert()</h5>
+<p><a name="minicolors-colorschemechan_invert" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_invert"><b>MiniColors-colorscheme:chan_invert()</b></a></p>
+<p>Invert value in a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<p>Notes:</p>
+<ul>
+<li>Most Oklab/Oklch inversions are not exactly invertible: applying it twice might lead to slightly different colors depending on gamut clip method (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>) like smaller chroma with default <code>'chroma'</code> method.</li>
+</ul>
+<section id="minicolors-colorscheme-methods-chan_invert-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_invert-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_modify" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_modify">chan_modify()</h5>
+<p><a name="minicolors-colorschemechan_modify" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_modify"><b>MiniColors-colorscheme:chan_modify()</b></a></p>
+<p>Modify channel with a callable.</p>
+<section id="minicolors-colorscheme-methods-chan_modify-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_modify-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> - callable which defines modification. Should take current value of a channel and return a new one.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_multiply" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_multiply">chan_multiply()</h5>
+<p><a name="minicolors-colorschemechan_multiply" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_multiply"><b>MiniColors-colorscheme:chan_multiply()</b></a></p>
+<p>Multiply value of a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<section id="minicolors-colorscheme-methods-chan_multiply-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_multiply-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{coef}</span> <code>(number)</code> Number to multiply with (can be negative).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_repel" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_repel">chan_repel()</h5>
+<p><a name="minicolors-colorschemechan_repel" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_repel"><b>MiniColors-colorscheme:chan_repel()</b></a></p>
+<p>Repel from certain sources.</p>
+<p>Given an array of repel centers (<code>sources</code>) and repel degree (<code>coef</code>) add to current channel value some amount (“nudge”) with the following properties:</p>
+<ul>
+<li><p>Nudges from several sources are added together.</p></li>
+<li><p>Nudge is directly proportional to <code>coef</code>: bigger <code>coef</code> means bigger nudge.</p></li>
+<li><p>Nudge is inversely proportional to the distance between current value and source: for positive <code>coef</code> bigger distance means smaller nudge, i.e. repel effect weakens with distance.</p></li>
+<li><p>With positive <code>coef</code> nudges close to source are computed in a way to remove whole <code>[source - coef; source + coef]</code> range.</p></li>
+<li><p>Negative <code>coef</code> results into attraction to source. Nudges in <code>[source - coef; source + coef]</code> range are computed to completely collapse it into <code>source</code>.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Repel hue from red color removing hue in range from 20 to 40</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>chan_repel<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">10</span><span class="op">)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Attract hue to red color collapsing [20; 40] range into 30.</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>chan_repel<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="op">-</span><span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minicolors-colorscheme-methods-chan_repel-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_repel-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{sources}</span> <code>(table|number)</code> Single or multiple source from which to repel.</p>
+<p><span class="help-syntax-special">{coef}</span> <code>(number)</code> Repel degree (can be negative to attract).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-chan_set" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_set">chan_set()</h5>
+<p><a name="minicolors-colorschemechan_set" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_set"><b>MiniColors-colorscheme:chan_set()</b></a></p>
+<p>Set channel to certain value(s). This can be used to ensure that channel has value(s) only within supplied set. If more than one is supplied, closest element to current value is used.</p>
+<section id="minicolors-colorscheme-methods-chan_set-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_set-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{values}</span> <code>(table|number)</code> Single or multiple values to set.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
+<ul>
+<li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-color_modify" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-color_modify">color_modify()</h5>
+<p><a name="minicolors-colorschemecolor_modify" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><b>MiniColors-colorscheme:color_modify()</b></a></p>
+<p>Modify all colors with a callable. It should return new color value (hex string or <code>nil</code> to remove attribute) base on the following input:</p>
+<ul>
+<li><p>Current color as hex string.</p></li>
+<li><p>Data about the color: a table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;attr&gt;</span> - one of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, and <code>'term'</code> for terminal color.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> - name of color source. Either a name of highlight group or string of the form <code>terminal_color_x</code> for terminal color (as in <a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>).</p></li>
+</ul></li>
+</ul>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set to '#dd2222' all foreground colors for groups starting with "N"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>color_modify<span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">hex</span><span class="op">,</span> <span class="va">data</span><span class="op">)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">data</span><span class="op">.</span><span class="va">attr</span> <span class="op">==</span> <span class="st">'fg'</span> <span class="kw">and</span> <span class="va">data</span><span class="op">.</span><span class="va">name</span><span class="op">:</span><span class="fu">find</span><span class="op">(</span><span class="st">'^N'</span><span class="op">)</span> <span class="cf">then</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'#dd2222'</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">hex</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minicolors-colorscheme-methods-color_modify-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-color_modify-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> Callable returning new color value.</p>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-compress" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-compress">compress()</h5>
+<p><a name="minicolors-colorschemecompress" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><b>MiniColors-colorscheme:compress()</b></a></p>
+<p>Remove redundant highlight groups. These are one of the two kinds:</p>
+<ul>
+<li><p>Having values identical to ones after <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> (meaning they usually don’t add new information).</p></li>
+<li><p>Coming from a curated list of plugins with highlight groups usually not worth keeping around. Current list of such plugins:</p>
+<ul>
+<li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a></p></li>
+<li><p><a href="https://github.com/norcalli/nvim-colorizer.lua">norcalli/nvim-colorizer.lua</a></p></li>
+</ul></li>
+</ul>
+<p>This method is useful to reduce size of color scheme before writing into the file with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a>.</p>
+<section id="minicolors-colorscheme-methods-compress-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-compress-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;plugins&gt;</span> <code>(boolean)</code> - whether to remove highlight groups from a curated list of plugins. Default: <code>true</code>.</li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-get_palette" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-get_palette">get_palette()</h5>
+<p><a name="minicolors-colorschemeget_palette" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><b>MiniColors-colorscheme:get_palette()</b></a></p>
+<p>Get commonly used colors. This basically counts number of all color occurrences and filter out rare ones.</p>
+<p>It is usually a good idea to apply both <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><code>MiniColors-colorscheme:compress()</code></a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links"><code>MiniColors-colorscheme:resolve_links()</code></a> before applying this.</p>
+<section id="minicolors-colorscheme-methods-get_palette-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-get_palette-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;threshold&gt;</span> <code>(number)</code> - relative threshold for groups to keep. A group is not included in output if it has less than this many occurrences relative to a total number of colors. Default: 0.01.</li>
+</ul>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-resolve_links" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-resolve_links">resolve_links()</h5>
+<p><a name="minicolors-colorschemeresolve_links" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links"><b>MiniColors-colorscheme:resolve_links()</b></a></p>
+<p>Resolve links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link"><code>:highlight-link</code></a>). This makes all highlight groups with <code>link</code> attribute have data from a linked one.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Resolves nested links.</p></li>
+<li><p>If some group is linked to a group missing in current colorscheme object, it is not resolved.</p></li>
+</ul>
+</section>
+<section id="minicolors-colorscheme-methods-simulate_cvd" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-simulate_cvd">simulate_cvd()</h5>
+<p><a name="minicolors-colorschemesimulate_cvd" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemesimulate_cvd"><b>MiniColors-colorscheme:simulate_cvd()</b></a></p>
+<p>Simulate color vision deficiency (CVD, color blindness). This is basically a wrapper using <a href="../../mini.nvim/doc/mini-colors.html#minicolors.simulate_cvd"><code>MiniColors.simulate_cvd()</code></a> as a part of call to <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a> method.</p>
+<section id="minicolors-colorscheme-methods-simulate_cvd-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-simulate_cvd-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{cvd_type}</span> <code>(string)</code> One of <code>'protan'</code>, <code>'deutan'</code>, <code>'tritan'</code>, <code>'mono'</code>.</p>
+<p><span class="help-syntax-special">{severity}</span> <code>(number|nil)</code> Severity of CVD, number between 0 and 1. Default: 1.</p>
+</section>
+</section>
+<section id="minicolors-colorscheme-methods-write" class="level5">
+<h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-write">write()</h5>
+<p><a name="minicolors-colorschemewrite" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><b>MiniColors-colorscheme:write()</b></a></p>
+<p>Write color scheme to a file. It will be a Lua script readily usable as a regular color scheme. Useful to both save results of color scheme tweaking and making local snapshot of some other color scheme.</p>
+<p>Sourcing this file on startup usually leads to a better performance that sourcing initial color scheme, as it is essentially a conditioned <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> call followed by a series of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a> calls.</p>
+<p>Default writing location is a “colors” directory of your Neovim config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=base-directories"><code>base-directories</code></a>). After writing, it should be available for sourcing with <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme"><code>:colorscheme</code></a> or <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a>.</p>
+<p>Name of the file by default is taken from <code>name</code> field (<code>'mini_colors'</code> is used if it is <code>nil</code>). If color scheme with this name already exists, it appends prefix based on current time to make it unique.</p>
+<p>Notes:</p>
+<ul>
+<li>If colors were updated, it is usually a good idea to infer cterm attributes with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes"><code>MiniColors-colorscheme:add_cterm_attributes()</code></a> prior to writing.</li>
+</ul>
+<section id="minicolors-colorscheme-methods-write-parameters" class="level6">
+<h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-write-parameters">Parameters</h6>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;compress&gt;</span> <code>(boolean)</code> - whether to call <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><code>MiniColors-colorscheme:compress()</code></a> prior to writing. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string|nil)</code> - basename of written file. Default: <code>nil</code> to infer from <code>name</code> field.</p></li>
+<li><p><span class="help-syntax-keys">&lt;directory&gt;</span> <code>(string)</code> - directory to where file should be saved. Default: “colors” subdirectory of Neovim home config (<code>stdpath("config")</code>).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+</section>
+<section id="minicolors.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.setup">setup()</h3>
+<p align="center">
+<code>MiniColors.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minicolors.setup-colorscheme" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.setup-colorscheme">:Colorscheme</h4>
+<p><a name="colorscheme" href="../../mini.nvim/doc/mini-colors.html#colorscheme"><b>:Colorscheme</b></a></p>
+<p>Calling this function creates a <code>:Colorscheme</code> user command. It takes one or more registered color scheme names and performs animated transition between them (starting from currently active color scheme). It uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate"><code>MiniColors.animate()</code></a> with default options.</p>
+</section>
+<section id="minicolors.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config"><code>MiniColors.config</code></a>.</p>
+</section>
+<section id="minicolors.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.colors'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.colors'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minicolors.config" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.config">config</h3>
+<p align="center">
+<code>MiniColors.config</code>
+</p>
+<section id="minicolors.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minicolors.as_colorscheme" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.as_colorscheme">as_colorscheme()</h3>
+<p align="center">
+<code>MiniColors.as_colorscheme</code>(<span class="help-syntax-special">{x}</span>)
+</p>
+<p>Create colorscheme object</p>
+<section id="minicolors.as_colorscheme-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.as_colorscheme-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{x}</span> <code>(table)</code> Table to be transformed into <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> object.</p>
+</section>
+<section id="minicolors.as_colorscheme-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.as_colorscheme-return">Return</h4>
+<p><code>(table)</code> Copy of <code>x</code> transformed into a colorscheme object.</p>
+<hr>
+</section>
+</section>
+<section id="minicolors.get_colorscheme" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.get_colorscheme">get_colorscheme()</h3>
+<p align="center">
+<code>MiniColors.get_colorscheme</code>(<span class="help-syntax-special">{name}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Get colorscheme object from registered color scheme</p>
+<section id="minicolors.get_colorscheme-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.get_colorscheme-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of color scheme to use. If <code>nil</code> (default) creates colorscheme object based on currently active data (<a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a>, highlight groups, terminal colors). If string, converts color scheme with that name to a colorscheme object.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;new_name&gt;</span> <code>(string|nil)</code> - new name of colorscheme object.</li>
+</ul>
+</section>
+<section id="minicolors.get_colorscheme-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.get_colorscheme-return">Return</h4>
+<p><code>(table)</code> Colorscheme object (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a>).</p>
+<hr>
+</section>
+</section>
+<section id="minicolors.interactive" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.interactive">interactive()</h3>
+<p align="center">
+<code>MiniColors.interactive</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Start interactive experiments</p>
+<p>Create a special buffer in which user can write plain Lua code to tweak color scheme and apply to get visual feedback.</p>
+<section id="minicolors.interactive-generalprinciples" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.interactive-generalprinciples">General principles</h4>
+<ul>
+<li><p>Initial colorscheme object is fixed to interactive buffer on its creation.</p></li>
+<li><p>There are special buffer convenience mappings:</p>
+<ul>
+<li><p>Apply (source) current buffer content.</p></li>
+<li><p>Reset color scheme (make initial colorscheme the current one).</p></li>
+<li><p>Write to a file the result of applying current buffer content. This sources current content and calls <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a>.</p></li>
+<li><p>Quit interactive buffer.</p></li>
+</ul></li>
+<li><p>User is expected to iteratively tweak color scheme by writing general Lua code in interactive buffer and applying it using convenience mapping.</p></li>
+<li><p>Application of interactive buffer is essentially these steps:</p>
+<ul>
+<li><p>Expose <code>self</code> as initial colorscheme object on any application. It is always the same for every application.</p></li>
+<li><p>Expose initial colorscheme methods as standalone functions. So instead of writing <code>self = self:add_transparency()</code> user can only write <code>add_transparency()</code>.</p></li>
+<li><p>Source buffer content as plain Lua code.</p></li>
+</ul></li>
+</ul>
+<p>Example of interactive buffer content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>chan_modify<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="fu">math.random</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">359</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>simulate_cvd<span class="op">(</span><span class="st">'protan'</span><span class="op">)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>add_cterm_attributes<span class="op">()</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>add_terminal_colors<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minicolors.interactive-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.interactive-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;colorscheme&gt;</span> <code>(table|nil)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> object to be used as initial colorscheme for executed code. By default uses current color scheme.</p></li>
+<li><p><span class="help-syntax-keys">&lt;mappings&gt;</span> <code>table</code> - buffer mappings for actions. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Apply&gt;</span> <code>(string)</code> - apply buffer code. Default: <code>'&lt;M-a&gt;'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Reset&gt;</span> <code>(string)</code> - apply initial color scheme as is. Default: <code>'&lt;M-r&gt;'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Quit&gt;</span> <code>(string)</code> - close interactive buffer. Default: <code>'&lt;M-q&gt;'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Write&gt;</span> <code>(string)</code> - write result of buffer code into a file. Prompts for file name with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()"><code>vim.ui.input()</code></a> and then uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a> with other options being default. Default: <code>'&lt;M-w&gt;'</code>.</p></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minicolors.animate" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.animate">animate()</h3>
+<p align="center">
+<code>MiniColors.animate</code>(<span class="help-syntax-special">{cs_array}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Animate color scheme change</p>
+<p>Start from currently active color scheme and loop through <code>cs_array</code>.</p>
+<p>Powers <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a> user command created in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.setup"><code>MiniColors.setup()</code></a>.</p>
+<section id="minicolors.animate-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.animate-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{cs_array}</span> <code>(table)</code> Array of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> objects.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;transition_steps&gt;</span> <code>(number)</code> - number of intermediate steps to show during transition between two color schemes. Bigger values result in smoother visual feedback but require more computational power. Default: 25.</p></li>
+<li><p><span class="help-syntax-keys">&lt;transition_duration&gt;</span> <code>(number)</code> - number of milliseconds to spend showing transition. Default: 1000.</p></li>
+<li><p><span class="help-syntax-keys">&lt;show_duration&gt;</span> <code>(number)</code> - number of milliseconds to show intermediate color schemes (all but last in <code>cs_array</code>). Default: 1000.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minicolors.convert" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.convert">convert()</h3>
+<p align="center">
+<code>MiniColors.convert</code>(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{to_space}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Convert between color spaces</p>
+<p>For a list of supported colors spaces see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a>.</p>
+<section id="minicolors.convert-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.convert-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{x}</span> <code>(table|string|number|nil)</code> Color to convert from. Its color space is inferred automatically.</p>
+<p><span class="help-syntax-special">{to_space}</span> <code>(string)</code> Id of allowed color space.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;adjust_lightness&gt;</span> <code>(boolean)</code> - whether to adjust lightness value to have a more uniform progression from 0 to 100. Set <code>false</code> for results more compatible with some other Oklab/Oklch implementations (like in CSS). Source: “Intermission - a new lightness estimate for Oklab” section of https://bottosson.github.io/posts/colorpicker Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+</ul>
+</section>
+<section id="minicolors.convert-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.convert-return">Return</h4>
+<p><code>(table|string|number|nil)</code> Color in space <code>to_space</code> or <code>nil</code> if input is <code>nil</code>.</p>
+<hr>
+</section>
+</section>
+<section id="minicolors.modify_channel" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.modify_channel">modify_channel()</h3>
+<p align="center">
+<code>MiniColors.modify_channel</code>(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{channel}</span>, <span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Modify channel</p>
+<section id="minicolors.modify_channel-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.modify_channel-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{x}</span> <code>(table|string|number|nil)</code> Color which channel will be modified. Color space is inferred automatically.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> Callable which defines modification. Should take current value of a channel and return a new one.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</li>
+</ul>
+</section>
+<section id="minicolors.modify_channel-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.modify_channel-return">Return</h4>
+<p><code>(string|nil)</code> Hex string of color with modified channel or <code>nil</code> if input is <code>nil</code>.</p>
+<hr>
+</section>
+</section>
+<section id="minicolors.simulate_cvd" class="level3">
+<h3 class="anchored" data-anchor-id="minicolors.simulate_cvd">simulate_cvd()</h3>
+<p align="center">
+<code>MiniColors.simulate_cvd</code>(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{cvd_type}</span>, <span class="help-syntax-special">{severity}</span>)
+</p>
+<p>Simulate color vision deficiency</p>
+<section id="minicolors.simulate_cvd-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.simulate_cvd-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{x}</span> <code>(table|string|number|nil)</code> Color to convert from. Its color space is inferred automatically.</p>
+<p><span class="help-syntax-special">{cvd_type}</span> <code>(string)</code> Type of CVD. One of <code>'protan'</code>, <code>'deutan'</code>, or <code>'mono'</code> (equivalent to converting to graysacle).</p>
+<p><span class="help-syntax-special">{severity}</span> <code>(number|nil)</code> Severity of CVD. A number between 0 and 1 (default).</p>
+</section>
+<section id="minicolors.simulate_cvd-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicolors.simulate_cvd-return">Return</h4>
+<p><code>(string|nil)</code> Hex string of simulated color or <code>nil</code> if input is <code>nil</code>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

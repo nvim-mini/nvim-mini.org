@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.files documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="mini.files documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:site_name" content="MINI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="mini.files documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://echasnovski.github.io/mini-site/mini.nvim/doc/assets/logo-mini.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minifiles" id="toc-minifiles" class="nav-link active" data-scroll-target="#minifiles">Module</a>
+  <ul>
+  <li><a href="#minifiles-dependencies" id="toc-minifiles-dependencies" class="nav-link" data-scroll-target="#minifiles-dependencies">Dependencies</a></li>
+  <li><a href="#minifiles-setup" id="toc-minifiles-setup" class="nav-link" data-scroll-target="#minifiles-setup">Setup</a></li>
+  <li><a href="#minifiles-comparisons" id="toc-minifiles-comparisons" class="nav-link" data-scroll-target="#minifiles-comparisons">Comparisons</a></li>
+  <li><a href="#minifiles-highlightgroups" id="toc-minifiles-highlightgroups" class="nav-link" data-scroll-target="#minifiles-highlightgroups">Highlight groups</a></li>
+  <li><a href="#minifiles-disabling" id="toc-minifiles-disabling" class="nav-link" data-scroll-target="#minifiles-disabling">Disabling</a></li>
+  </ul></li>
+  <li><a href="#minifiles-navigation" id="toc-minifiles-navigation" class="nav-link" data-scroll-target="#minifiles-navigation">Navigation</a></li>
+  <li><a href="#minifiles-manipulation" id="toc-minifiles-manipulation" class="nav-link" data-scroll-target="#minifiles-manipulation">Manipulation</a>
+  <ul>
+  <li><a href="#minifiles-manipulation-howdoesitwork" id="toc-minifiles-manipulation-howdoesitwork" class="nav-link" data-scroll-target="#minifiles-manipulation-howdoesitwork">How does it work</a></li>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions" id="toc-minifiles-manipulation-supportedfilesystemactions" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions">Supported file system actions</a>
+  <ul>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions-create" id="toc-minifiles-manipulation-supportedfilesystemactions-create" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-create">Create</a></li>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions-delete" id="toc-minifiles-manipulation-supportedfilesystemactions-delete" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-delete">Delete</a></li>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions-rename" id="toc-minifiles-manipulation-supportedfilesystemactions-rename" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-rename">Rename</a></li>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions-copy" id="toc-minifiles-manipulation-supportedfilesystemactions-copy" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-copy">Copy</a></li>
+  <li><a href="#minifiles-manipulation-supportedfilesystemactions-move" id="toc-minifiles-manipulation-supportedfilesystemactions-move" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-move">Move</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#minifiles-events" id="toc-minifiles-events" class="nav-link" data-scroll-target="#minifiles-events">Events</a>
+  <ul>
+  <li><a href="#minifiles-events-uievents" id="toc-minifiles-events-uievents" class="nav-link" data-scroll-target="#minifiles-events-uievents">UI events</a></li>
+  <li><a href="#minifiles-events-fileactionevents" id="toc-minifiles-events-fileactionevents" class="nav-link" data-scroll-target="#minifiles-events-fileactionevents">File action events</a></li>
+  </ul></li>
+  <li><a href="#minifiles-examples" id="toc-minifiles-examples" class="nav-link" data-scroll-target="#minifiles-examples">Examples</a>
+  <ul>
+  <li><a href="#minifiles-examples-toggleexplorer" id="toc-minifiles-examples-toggleexplorer" class="nav-link" data-scroll-target="#minifiles-examples-toggleexplorer">Toggle explorer</a></li>
+  <li><a href="#minifiles-examples-customizewindows" id="toc-minifiles-examples-customizewindows" class="nav-link" data-scroll-target="#minifiles-examples-customizewindows">Customize windows</a></li>
+  <li><a href="#minifiles-examples-customizeicons" id="toc-minifiles-examples-customizeicons" class="nav-link" data-scroll-target="#minifiles-examples-customizeicons">Customize icons</a></li>
+  <li><a href="#minifiles-examples-createmappingtoshowhidedot-files" id="toc-minifiles-examples-createmappingtoshowhidedot-files" class="nav-link" data-scroll-target="#minifiles-examples-createmappingtoshowhidedot-files">Create mapping to show/hide dot-files</a></li>
+  <li><a href="#minifiles-examples-createmappingstomodifytargetwindowviasplit" id="toc-minifiles-examples-createmappingstomodifytargetwindowviasplit" class="nav-link" data-scroll-target="#minifiles-examples-createmappingstomodifytargetwindowviasplit">Create mappings to modify target window via split</a></li>
+  <li><a href="#minifiles-examples-createmappingswhichusedatafromentryundercursor" id="toc-minifiles-examples-createmappingswhichusedatafromentryundercursor" class="nav-link" data-scroll-target="#minifiles-examples-createmappingswhichusedatafromentryundercursor">Create mappings which use data from entry under cursor</a></li>
+  <li><a href="#minifiles-examples-setcustombookmarks" id="toc-minifiles-examples-setcustombookmarks" class="nav-link" data-scroll-target="#minifiles-examples-setcustombookmarks">Set custom bookmarks</a></li>
+  </ul></li>
+  <li><a href="#minifiles.setup" id="toc-minifiles.setup" class="nav-link" data-scroll-target="#minifiles.setup">setup()</a>
+  <ul>
+  <li><a href="#minifiles.setup-parameters" id="toc-minifiles.setup-parameters" class="nav-link" data-scroll-target="#minifiles.setup-parameters">Parameters</a></li>
+  <li><a href="#minifiles.setup-usage" id="toc-minifiles.setup-usage" class="nav-link" data-scroll-target="#minifiles.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#minifiles.config" id="toc-minifiles.config" class="nav-link" data-scroll-target="#minifiles.config">config</a>
+  <ul>
+  <li><a href="#minifiles.config-defaults" id="toc-minifiles.config-defaults" class="nav-link" data-scroll-target="#minifiles.config-defaults">Defaults</a></li>
+  <li><a href="#minifiles.config-content" id="toc-minifiles.config-content" class="nav-link" data-scroll-target="#minifiles.config-content">Content</a></li>
+  <li><a href="#minifiles.config-mappings" id="toc-minifiles.config-mappings" class="nav-link" data-scroll-target="#minifiles.config-mappings">Mappings</a></li>
+  <li><a href="#minifiles.config-options" id="toc-minifiles.config-options" class="nav-link" data-scroll-target="#minifiles.config-options">Options</a></li>
+  <li><a href="#minifiles.config-windows" id="toc-minifiles.config-windows" class="nav-link" data-scroll-target="#minifiles.config-windows">Windows</a></li>
+  </ul></li>
+  <li><a href="#minifiles.open" id="toc-minifiles.open" class="nav-link" data-scroll-target="#minifiles.open">open()</a>
+  <ul>
+  <li><a href="#minifiles.open-parameters" id="toc-minifiles.open-parameters" class="nav-link" data-scroll-target="#minifiles.open-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minifiles.refresh" id="toc-minifiles.refresh" class="nav-link" data-scroll-target="#minifiles.refresh">refresh()</a>
+  <ul>
+  <li><a href="#minifiles.refresh-parameters" id="toc-minifiles.refresh-parameters" class="nav-link" data-scroll-target="#minifiles.refresh-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minifiles.synchronize" id="toc-minifiles.synchronize" class="nav-link" data-scroll-target="#minifiles.synchronize">synchronize()</a>
+  <ul>
+  <li><a href="#minifiles.synchronize-return" id="toc-minifiles.synchronize-return" class="nav-link" data-scroll-target="#minifiles.synchronize-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minifiles.reset" id="toc-minifiles.reset" class="nav-link" data-scroll-target="#minifiles.reset">reset()</a></li>
+  <li><a href="#minifiles.close" id="toc-minifiles.close" class="nav-link" data-scroll-target="#minifiles.close">close()</a>
+  <ul>
+  <li><a href="#minifiles.close-return" id="toc-minifiles.close-return" class="nav-link" data-scroll-target="#minifiles.close-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minifiles.go_in" id="toc-minifiles.go_in" class="nav-link" data-scroll-target="#minifiles.go_in">go_in()</a>
+  <ul>
+  <li><a href="#minifiles.go_in-parameters" id="toc-minifiles.go_in-parameters" class="nav-link" data-scroll-target="#minifiles.go_in-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minifiles.go_out" id="toc-minifiles.go_out" class="nav-link" data-scroll-target="#minifiles.go_out">go_out()</a></li>
+  <li><a href="#minifiles.trim_left" id="toc-minifiles.trim_left" class="nav-link" data-scroll-target="#minifiles.trim_left">trim_left()</a></li>
+  <li><a href="#minifiles.trim_right" id="toc-minifiles.trim_right" class="nav-link" data-scroll-target="#minifiles.trim_right">trim_right()</a></li>
+  <li><a href="#minifiles.reveal_cwd" id="toc-minifiles.reveal_cwd" class="nav-link" data-scroll-target="#minifiles.reveal_cwd">reveal_cwd()</a></li>
+  <li><a href="#minifiles.show_help" id="toc-minifiles.show_help" class="nav-link" data-scroll-target="#minifiles.show_help">show_help()</a></li>
+  <li><a href="#minifiles.get_fs_entry" id="toc-minifiles.get_fs_entry" class="nav-link" data-scroll-target="#minifiles.get_fs_entry">get_fs_entry()</a>
+  <ul>
+  <li><a href="#minifiles.get_fs_entry-parameters" id="toc-minifiles.get_fs_entry-parameters" class="nav-link" data-scroll-target="#minifiles.get_fs_entry-parameters">Parameters</a></li>
+  <li><a href="#minifiles.get_fs_entry-return" id="toc-minifiles.get_fs_entry-return" class="nav-link" data-scroll-target="#minifiles.get_fs_entry-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minifiles.get_explorer_state" id="toc-minifiles.get_explorer_state" class="nav-link" data-scroll-target="#minifiles.get_explorer_state">get_explorer_state()</a>
+  <ul>
+  <li><a href="#minifiles.get_explorer_state-return" id="toc-minifiles.get_explorer_state-return" class="nav-link" data-scroll-target="#minifiles.get_explorer_state-return">Return</a></li>
+  <li><a href="#minifiles.get_explorer_state-seealso" id="toc-minifiles.get_explorer_state-seealso" class="nav-link" data-scroll-target="#minifiles.get_explorer_state-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minifiles.set_target_window" id="toc-minifiles.set_target_window" class="nav-link" data-scroll-target="#minifiles.set_target_window">set_target_window()</a>
+  <ul>
+  <li><a href="#minifiles.set_target_window-parameters" id="toc-minifiles.set_target_window-parameters" class="nav-link" data-scroll-target="#minifiles.set_target_window-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minifiles.set_branch" id="toc-minifiles.set_branch" class="nav-link" data-scroll-target="#minifiles.set_branch">set_branch()</a>
+  <ul>
+  <li><a href="#minifiles.set_branch-parameters" id="toc-minifiles.set_branch-parameters" class="nav-link" data-scroll-target="#minifiles.set_branch-parameters">Parameters</a></li>
+  <li><a href="#minifiles.set_branch-seealso" id="toc-minifiles.set_branch-seealso" class="nav-link" data-scroll-target="#minifiles.set_branch-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minifiles.set_bookmark" id="toc-minifiles.set_bookmark" class="nav-link" data-scroll-target="#minifiles.set_bookmark">set_bookmark()</a>
+  <ul>
+  <li><a href="#minifiles.set_bookmark-parameters" id="toc-minifiles.set_bookmark-parameters" class="nav-link" data-scroll-target="#minifiles.set_bookmark-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#minifiles.get_latest_path" id="toc-minifiles.get_latest_path" class="nav-link" data-scroll-target="#minifiles.get_latest_path">get_latest_path()</a></li>
+  <li><a href="#minifiles.default_filter" id="toc-minifiles.default_filter" class="nav-link" data-scroll-target="#minifiles.default_filter">default_filter()</a>
+  <ul>
+  <li><a href="#minifiles.default_filter-parameters" id="toc-minifiles.default_filter-parameters" class="nav-link" data-scroll-target="#minifiles.default_filter-parameters">Parameters</a></li>
+  <li><a href="#minifiles.default_filter-return" id="toc-minifiles.default_filter-return" class="nav-link" data-scroll-target="#minifiles.default_filter-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minifiles.default_prefix" id="toc-minifiles.default_prefix" class="nav-link" data-scroll-target="#minifiles.default_prefix">default_prefix()</a>
+  <ul>
+  <li><a href="#minifiles.default_prefix-parameters" id="toc-minifiles.default_prefix-parameters" class="nav-link" data-scroll-target="#minifiles.default_prefix-parameters">Parameters</a></li>
+  <li><a href="#minifiles.default_prefix-return" id="toc-minifiles.default_prefix-return" class="nav-link" data-scroll-target="#minifiles.default_prefix-return">Return</a></li>
+  </ul></li>
+  <li><a href="#minifiles.default_sort" id="toc-minifiles.default_sort" class="nav-link" data-scroll-target="#minifiles.default_sort">default_sort()</a>
+  <ul>
+  <li><a href="#minifiles.default_sort-parameters" id="toc-minifiles.default_sort-parameters" class="nav-link" data-scroll-target="#minifiles.default_sort-parameters">Parameters</a></li>
+  <li><a href="#minifiles.default_sort-return" id="toc-minifiles.default_sort-return" class="nav-link" data-scroll-target="#minifiles.default_sort-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.files documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.files" href="../../mini.nvim/doc/mini-files.html#mini.files"><b>mini.files</b></a> Navigate and manipulate file system</p>
+<p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
+<hr>
+<section id="minifiles" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Navigate file system using column view (Miller columns) to display nested directories. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation"><code>MiniFiles-navigation</code></a> for overview.</p></li>
+<li><p>Opt-in preview of file or directory under cursor.</p></li>
+<li><p>Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>MiniFiles-manipulation</code></a> for overview.</p></li>
+<li><p>Use as default file explorer instead of <code>netrw</code>.</p></li>
+<li><p>Configurable:</p>
+<ul>
+<li><p>Filter/prefix/sort of file system entries.</p></li>
+<li><p>Mappings used for common explorer actions.</p></li>
+<li><p>UI options: whether to show preview of file/directory under cursor, etc.</p></li>
+<li><p>Bookmarks for quicker navigation.</p></li>
+</ul></li>
+</ul>
+<p>What it doesn’t do:</p>
+<ul>
+<li><p>Try to be replacement of system file explorer. It is mostly designed to be used within Neovim to quickly explore file system structure, open files, and perform some quick file system edits.</p></li>
+<li><p>Work on remote locations. Only local file system is supported.</p></li>
+<li><p>Provide built-in interactive toggle of content <code>filter</code> and <code>sort</code>. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a> for some common examples.</p></li>
+<li><p>Provide out of the box extra information like git or diagnostic status. This can be achieved by setting <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a> on appropriate event(s) (see <a href="../../mini.nvim/doc/mini-files.html#minifiles-events"><code>MiniFiles-events</code></a>)</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>This module is written and thoroughly tested on Linux. Support for other platform/OS (like Windows or MacOS) is a goal, but there is no guarantee.</p></li>
+<li><p>This module silently reacts to not enough permissions:</p>
+<ul>
+<li><p>In case of missing file, check its or its parent read permissions.</p></li>
+<li><p>In case of no manipulation result, check write permissions.</p></li>
+</ul></li>
+</ul>
+<section id="minifiles-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-dependencies">Dependencies</h4>
+<p>Suggested dependencies (provide extra functionality, will work without them):</p>
+<ul>
+<li>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module to show icons near file/directory names. Falls back to <a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> plugin or uses default icons.</li>
+</ul>
+</section>
+<section id="minifiles-setup" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.files').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniFiles</code> which you can use for scripting or manually (with <code>:lua MiniFiles.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> for available config settings.</p>
+<p>You can override runtime config settings (like mappings or window options) locally to buffer inside <code>vim.b.minifiles_config</code> which should have same structure as <code>MiniFiles.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+</section>
+<section id="minifiles-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/nvim-tree/nvim-tree.lua">nvim-tree/nvim-tree.lua</a>:</p>
+<ul>
+<li><p>Provides tree view of file system, while this module uses column view.</p></li>
+<li><p>File system manipulation is done with custom set of mappings for each action, while this module is designed to do that by editing text.</p></li>
+<li><p>Has more out of the box functionality with extra configuration, while this module has not (by design).</p></li>
+</ul></li>
+<li><p><a href="https://github.com/stevearc/oil.nvim">stevearc/oil.nvim</a>:</p>
+<ul>
+<li><p>Uses single window to show information only about currently explored directory, while this module uses column view to show whole currently explored branch.</p></li>
+<li><p>Also uses text editing to manipulate file system entries.</p></li>
+<li><p>Can work for remote file systems, while this module can not (by design).</p></li>
+</ul></li>
+<li><p><a href="https://github.com/nvim-neo-tree/neo-tree.nvim">nvim-neo-tree/neo-tree.nvim</a>:</p>
+<ul>
+<li>Compares to this module mostly the same as ‘nvim-tree/nvim-tree.lua’.</li>
+</ul></li>
+</ul>
+</section>
+<section id="minifiles-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-highlightgroups">Highlight groups</h4>
+<ul>
+<li><p><code>MiniFilesBorder</code> - border of regular windows.</p></li>
+<li><p><code>MiniFilesBorderModified</code> - border of windows showing modified buffer.</p></li>
+<li><p><code>MiniFilesCursorLine</code> - cursor line in explorer windows.</p></li>
+<li><p><code>MiniFilesDirectory</code> - text and icon representing directory.</p></li>
+<li><p><code>MiniFilesFile</code> - text representing file.</p></li>
+<li><p><code>MiniFilesNormal</code> - basic foreground/background highlighting.</p></li>
+<li><p><code>MiniFilesTitle</code> - title of regular windows.</p></li>
+<li><p><code>MiniFilesTitleFocused</code> - title of focused window.</p></li>
+</ul>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+</section>
+<section id="minifiles-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-disabling">Disabling</h4>
+<p>This plugin provides only manually started functionality, so no disabling is available.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles-navigation">Navigation</h3>
+<p>Every navigation starts by calling <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>, either directly or via mapping (see its help for examples of some common scenarios). It will show an explorer consisting of side-by-side floating windows with the following principles:</p>
+<ul>
+<li><p>Explorer shows one branch of nested directories at a time.</p></li>
+<li><p>Explorer consists from several windows:</p>
+<ul>
+<li><p>Each window displays entries of a single directory in a modifiable scratch buffer.</p></li>
+<li><p>Windows are organized left to right: for any particular window the left neighbor is its parent directory and right neighbor - its child.</p></li>
+</ul></li>
+<li><p>Explorer windows are the viewport to some part of current branch, meaning that their opening/closing does not affect the branch. This matters, for example, if there are more elements in the branch than can be shown windows.</p></li>
+<li><p>Every buffer line represents separate file system entry following certain format (not visible for users by default; set <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'"><code>'conceallevel'</code></a> to 0 to see it)</p></li>
+<li><p>Once directory is shown, its buffer is not updated automatically following external file system changes. Manually use <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize"><code>MiniFiles.synchronize()</code></a> for that.</p></li>
+</ul>
+<p>After opening explorer, in-buffer navigation is done the same way as any regular buffer, except without some keys reserved for built-in actions.</p>
+<p>Most common ways to navigate are:</p>
+<ul>
+<li><p>Press <code>j</code> to move cursor onto next (lower) entry in current directory.</p></li>
+<li><p>Press <code>k</code> to move cursor onto previous (higher) entry in current directory.</p></li>
+<li><p>Press <code>l</code> to expand entry under cursor (see “Go in” action).</p></li>
+<li><p>Press <code>h</code> to focus on parent directory (see “Go out” action).</p></li>
+</ul>
+<p>Cursor positions in each directory buffer are tracked and saved during navigation. This allows for more convenient repeated navigation to some previously visited branch.</p>
+<p>Available built-in actions (see “Details” for more information):</p>
+<pre><code>| Action      | Keys | Description                                    |
+|-------------|------|------------------------------------------------|
+| Close       |  q   | Close explorer                                 |
+|-------------|------|------------------------------------------------|
+| Go in       |  l   | Expand entry (show directory or open file)     |
+|-------------|------|------------------------------------------------|
+| Go in plus  |  L   | Expand entry plus extra action                 |
+|-------------|------|------------------------------------------------|
+| Go out      |  h   | Focus on parent directory                      |
+|-------------|------|------------------------------------------------|
+| Go out plus |  H   | Focus on parent directory plus extra action    |
+|-------------|------|------------------------------------------------|
+| Go to mark  |  '   | Jump to bookmark (waits for single key id)     |
+|-------------|------|------------------------------------------------|
+| Set mark    |  m   | Set bookmark (waits for single key id)         |
+|-------------|------|------------------------------------------------|
+| Reset       | &lt;BS&gt; | Reset current explorer                         |
+|-------------|------|------------------------------------------------|
+| Reveal cwd  |  @   | Reset current current working directory        |
+|-------------|------|------------------------------------------------|
+| Show help   |  g?  | Show help window                               |
+|-------------|------|------------------------------------------------|
+| Synchronize |  =   | Synchronize user edits and/or external changes |
+|-------------|------|------------------------------------------------|
+| Trim left   |  &lt;   | Trim left part of branch                       |
+|-------------|------|------------------------------------------------|
+| Trim right  |  &gt;   | Trim right part of branch                      |
+|-------------|------|------------------------------------------------|</code></pre>
+<p>Details:</p>
+<ul>
+<li><p>“Go in”:</p>
+<ul>
+<li><p>Always opens file in the latest window before <code>MiniFiles.open()</code> call.</p></li>
+<li><p>Never closes explorer.</p></li>
+<li><p>Works in linewise Visual mode to expand multiple entries.</p></li>
+</ul></li>
+<li><p>“Go in plus” is regular “Go in” but closes explorer after opening a file.</p></li>
+<li><p>“Go out plus” is regular “Go out” but trims right part of branch.</p></li>
+<li><p>“Set mark” and “Go to mark” both wait for user to press a single character of a bookmark id. Example: <code>ma</code> sets directory path of focused window as bookmark “a”; <code>'a</code> jumps (sets as whole branch) to bookmark “a”. Special bookmark “’” always points to path before the latest bookmark jump.</p></li>
+<li><p>“Reset” focuses only on “anchor” directory (the one used to open current explorer) and resets all stored directory cursor positions.</p></li>
+<li><p>“Reveal cwd” extends branch to include <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>. If it is not an ancestor of the current branch, nothing is done.</p></li>
+<li><p>“Show help” results into new window with helpful information about current explorer (like buffer mappings and bookmarks). Press <code>q</code> to close it.</p></li>
+<li><p>“Synchronize” parses user edits in directory buffers, applies them (after confirmation), and updates all directory buffers with the most relevant file system information. Can also be used without user edits to show up to date file system entries. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>MiniFiles-manipulation</code></a> for more info about file system manipulation.</p></li>
+<li><p>“Trim left” and “Trim right” trim parts of the whole branch, not only its currently visible parts.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Each action has exported function with more details about it.</p></li>
+<li><p>Keys can be configured with <code>mappings</code> table of <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p></li>
+</ul>
+<hr>
+</section>
+<section id="minifiles-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles-manipulation">Manipulation</h3>
+<p>File system manipulation is done by editing text inside directory buffers, which are shown inside dedicated window(s). See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation"><code>MiniFiles-navigation</code></a> for more information about navigating to a particular directory.</p>
+<p>General workflow:</p>
+<ul>
+<li><p>Navigate to the directory in which manipulation should be done.</p></li>
+<li><p>Edit buffer in the way representing file system action.</p></li>
+<li><p>Repeat previous steps until all necessary file system actions are recorded. Note: even if directory buffer is hidden, its modifications are preserved, so you can navigate in and out of directory with modified buffer.</p></li>
+<li><p>Execute <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize"><code>MiniFiles.synchronize()</code></a> (default key is <code>=</code>). This will prompt confirmation dialog listing all file system actions (per directory) it is about to perform. READ IT CAREFULLY.</p></li>
+<li><p>Confirm by pressing <code>y</code> / <code>&lt;CR&gt;</code> (apply edits and update buffers) or don’t confirm by pressing <code>n</code> / <code>&lt;Esc&gt;</code> (update buffers without applying edits).</p></li>
+</ul>
+<p>Note: prefer small and not related steps with more frequent synchronization over single complex manipulation. There are (known) cases which won’t work.</p>
+<section id="minifiles-manipulation-howdoesitwork" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-manipulation-howdoesitwork">How does it work</h4>
+<p>All manipulation functionality is powered by creating and keeping track of path indexes: text of the form <code>/xxx</code> (<code>xxx</code> is the number path index) placed at the start of every line representing file system entry.</p>
+<p>By default they are hidden as concealed text (along with prefix separators) for more convenience but you can see them by setting <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'"><code>'conceallevel'</code></a> to 0. DO NOT modify text to the left of entry name.</p>
+<p>During synchronization, actual text for entry name is compared to path index at that line (if present) to deduce which file system action to perform. Note that order of text manipulation steps does not affect performed actions.</p>
+</section>
+<section id="minifiles-manipulation-supportedfilesystemactions" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions">Supported file system actions</h4>
+<section id="minifiles-manipulation-supportedfilesystemactions-create" class="level5">
+<h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-create">Create</h5>
+<ul>
+<li><p>Create file by creating new line with file name (including extension).</p></li>
+<li><p>Create directory by creating new line with directory name followed by <code>/</code>.</p></li>
+<li><p>Create file or directory inside nested directories by creating new line with text like ‘dir/nested-dir/’ or ‘dir/nested-dir/file’. Always use <code>/</code> on any OS.</p></li>
+</ul>
+</section>
+<section id="minifiles-manipulation-supportedfilesystemactions-delete" class="level5">
+<h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-delete">Delete</h5>
+<ul>
+<li><p>Delete file or directory by deleting whole line describing it.</p></li>
+<li><p>If <code>options.permanent_delete</code> is <code>true</code>, delete is permanent. Otherwise file system entry is moved to a module-specific trash directory (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> for more details).</p></li>
+</ul>
+</section>
+<section id="minifiles-manipulation-supportedfilesystemactions-rename" class="level5">
+<h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-rename">Rename</h5>
+<ul>
+<li><p>Rename file or directory by editing its name (not icon or path index to the left of it).</p></li>
+<li><p>With default mappings for <code>h</code> / <code>l</code> it might be not convenient to rename only part of an entry. You can adopt any of the following approaches:</p>
+<ul>
+<li><p>Use different motions, like <a href="https://neovim.io/doc/user/helptag.html?tag=$"><code>$</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=e"><code>e</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=f"><code>f</code></a>, etc.</p></li>
+<li><p>Go into Insert mode and navigate inside it.</p></li>
+<li><p>Change mappings to be more suited for manipulation and not navigation. See “Mappings” section in <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p></li>
+</ul></li>
+<li><p>It is not needed to end directory name with <code>/</code>.</p></li>
+<li><p>Cyclic renames (“a” to “b” and “b” to “a”) are not supported.</p></li>
+</ul>
+</section>
+<section id="minifiles-manipulation-supportedfilesystemactions-copy" class="level5">
+<h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-copy">Copy</h5>
+<ul>
+<li><p>Copy file or directory by copying whole line describing it and pasting it inside buffer of target directory.</p></li>
+<li><p>Change of target path is allowed. Edit only entry name in target location (not icon or path index to the left of it).</p></li>
+<li><p>Copying inside same parent directory is supported only if target path has different name.</p></li>
+<li><p>Copying inside child directory is supported.</p></li>
+</ul>
+</section>
+<section id="minifiles-manipulation-supportedfilesystemactions-move" class="level5">
+<h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-move">Move</h5>
+<ul>
+<li><p>Move file or directory by cutting whole line describing it and then pasting it inside target directory.</p></li>
+<li><p>Change of target path is allowed. Edit only entry name in target location (not icon or path index to the left of it).</p></li>
+<li><p>Moving directory inside itself is not supported.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="minifiles-events" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles-events">Events</h3>
+<p>To allow user customization and integration of external tools, certain <a href="https://neovim.io/doc/user/helptag.html?tag=User"><code>User</code></a> autocommand events are triggered under common circumstances.</p>
+<section id="minifiles-events-uievents" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-events-uievents">UI events</h4>
+<ul>
+<li><p><code>MiniFilesExplorerOpen</code> - just after explorer finishes opening.</p></li>
+<li><p><code>MiniFilesExplorerClose</code> - just before explorer starts closing.</p></li>
+<li><p><code>MiniFilesBufferCreate</code> - when buffer is created to show a particular directory/file. Triggered once per path during explorer session. Can be used to create buffer-local mappings.</p></li>
+<li><p><code>MiniFilesBufferUpdate</code> - when path buffer is updated with new content. Can be used for integrations to set useful <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a>.</p></li>
+<li><p><code>MiniFilesWindowOpen</code> - when new window is opened. Can be used to set window-local settings (like border, ‘winblend’, etc.)</p></li>
+<li><p><code>MiniFilesWindowUpdate</code> - when a window is updated. Triggers VERY frequently. At least after every cursor movement and “go in” / “go out” action.</p></li>
+</ul>
+<p>Callback for each buffer/window UI event will receive <span class="help-syntax-keys">&lt;data&gt;</span> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()"><code>nvim_create_autocmd()</code></a>) with the following information:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;buf_id&gt;</span> - index of target buffer.</p></li>
+<li><p><span class="help-syntax-keys">&lt;win_id&gt;</span> - index of target window. Can be <code>nil</code>, like in <code>MiniFilesBufferCreate</code> and buffer’s first <code>MiniFilesBufferUpdate</code> as they are triggered before window is created.</p></li>
+</ul>
+</section>
+<section id="minifiles-events-fileactionevents" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-events-fileactionevents">File action events</h4>
+<ul>
+<li><p><code>MiniFilesActionCreate</code> - after entry is successfully created.</p></li>
+<li><p><code>MiniFilesActionDelete</code> - after entry is successfully deleted.</p></li>
+<li><p><code>MiniFilesActionRename</code> - after entry is successfully renamed.</p></li>
+<li><p><code>MiniFilesActionCopy</code> - after entry is successfully copied.</p></li>
+<li><p><code>MiniFilesActionMove</code> - after entry is successfully moved.</p></li>
+</ul>
+<p>Callback for each file action event will receive <code>data</code> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()"><code>nvim_create_autocmd()</code></a>) with the following information:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;action&gt;</span> - string with action name.</p></li>
+<li><p><span class="help-syntax-keys">&lt;from&gt;</span> - full path of entry before action (<code>nil</code> for “create” action).</p></li>
+<li><p><span class="help-syntax-keys">&lt;to&gt;</span> - full path of entry after action (<code>nil</code> for permanent “delete” action).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minifiles-examples" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles-examples">Examples</h3>
+<section id="minifiles-examples-toggleexplorer" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-toggleexplorer">Toggle explorer</h4>
+<p>Use a combination of <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.close"><code>MiniFiles.close()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">minifiles_toggle</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(...)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="kw">not</span> <span class="va">MiniFiles</span><span class="op">.</span>close<span class="op">()</span> <span class="cf">then</span> <span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(...)</span> <span class="cf">end</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-customizewindows" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-customizewindows">Customize windows</h4>
+<p>For most of the common customizations using <code>MiniFilesWindowOpen</code> event autocommand is the suggested approach:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesWindowOpen'</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">win_id</span> <span class="op">=</span> <span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">win_id</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Customize window-local settings</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">wo</span><span class="op">[</span><span class="va">win_id</span><span class="op">].</span><span class="va">winblend</span> <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">config</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_win_get_config<span class="op">(</span><span class="va">win_id</span><span class="op">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span><span class="op">.</span><span class="va">border</span><span class="op">,</span> <span class="va">config</span><span class="op">.</span><span class="va">title_pos</span> <span class="op">=</span> <span class="st">'double'</span><span class="op">,</span> <span class="st">'right'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_win_set_config<span class="op">(</span><span class="va">win_id</span><span class="op">,</span> <span class="va">config</span><span class="op">)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, some parts (like window title and height) of window config are later updated internally. Use <code>MiniFilesWindowUpdate</code> event for them:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesWindowUpdate'</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">config</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_win_get_config<span class="op">(</span><span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">win_id</span><span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Ensure fixed height</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span><span class="op">.</span><span class="va">height</span> <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Ensure no title padding</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">n</span> <span class="op">=</span> <span class="op">#</span><span class="va">config</span><span class="op">.</span><span class="va">title</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span><span class="op">.</span><span class="va">title</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="va">config</span><span class="op">.</span><span class="va">title</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">'^ '</span><span class="op">,</span> <span class="st">''</span><span class="op">)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span><span class="op">.</span><span class="va">title</span><span class="op">[</span><span class="va">n</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="va">config</span><span class="op">.</span><span class="va">title</span><span class="op">[</span><span class="va">n</span><span class="op">][</span><span class="dv">1</span><span class="op">]:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">' $'</span><span class="op">,</span> <span class="st">''</span><span class="op">)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_win_set_config<span class="op">(</span><span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">win_id</span><span class="op">,</span> <span class="va">config</span><span class="op">)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-customizeicons" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-customizeicons">Customize icons</h4>
+<p>Use different directory icon (if you don’t use <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">my_prefix</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">fs_entry</span><span class="op">.</span><span class="va">fs_type</span> <span class="op">==</span> <span class="st">'directory'</span> <span class="cf">then</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">NOTE</span><span class="co">: it is usually a good idea to use icon followed by space</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span><span class="op">,</span> <span class="st">'MiniFilesDirectory'</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniFiles</span><span class="op">.</span>default_prefix<span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">content</span> <span class="op">=</span> <span class="op">{</span> <span class="va">prefix</span> <span class="op">=</span> <span class="va">my_prefix</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Show no icons:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">content</span> <span class="op">=</span> <span class="op">{</span> <span class="va">prefix</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="kw">end</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-createmappingtoshowhidedot-files" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-createmappingtoshowhidedot-files">Create mapping to show/hide dot-files</h4>
+<p>Create an autocommand for <code>MiniFilesBufferCreate</code> event which calls <a href="../../mini.nvim/doc/mini-files.html#minifiles.refresh"><code>MiniFiles.refresh()</code></a> with explicit <code>content.filter</code> functions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">show_dotfiles</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">filter_show</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">true</span> <span class="kw">end</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">filter_hide</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span>startswith<span class="op">(</span><span class="va">fs_entry</span><span class="op">.</span><span class="va">name</span><span class="op">,</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">toggle_dotfiles</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">show_dotfiles</span> <span class="op">=</span> <span class="kw">not</span> <span class="va">show_dotfiles</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">new_filter</span> <span class="op">=</span> <span class="va">show_dotfiles</span> <span class="kw">and</span> <span class="va">filter_show</span> <span class="kw">or</span> <span class="va">filter_hide</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniFiles</span><span class="op">.</span>refresh<span class="op">({</span> <span class="va">content</span> <span class="op">=</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="va">new_filter</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesBufferCreate'</span><span class="op">,</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">buf_id</span> <span class="op">=</span> <span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">buf_id</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak left-hand side of mapping to your liking</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'g.'</span><span class="op">,</span> <span class="va">toggle_dotfiles</span><span class="op">,</span> <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="va">buf_id</span> <span class="op">})</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-createmappingstomodifytargetwindowviasplit" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-createmappingstomodifytargetwindowviasplit">Create mappings to modify target window via split</h4>
+<p>Combine <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state"><code>MiniFiles.get_explorer_state()</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window"><code>MiniFiles.set_target_window()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_split</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">direction</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make new window and set it as target</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">cur_target</span> <span class="op">=</span> <span class="va">MiniFiles</span><span class="op">.</span>get_explorer_state<span class="op">().</span><span class="va">target_window</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">new_target</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_win_call<span class="op">(</span><span class="va">cur_target</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="va">direction</span> <span class="op">..</span> <span class="st">' split'</span><span class="op">)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_get_current_win<span class="op">()</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_target_window<span class="op">(</span><span class="va">new_target</span><span class="op">)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- This intentionally doesn't act on file under cursor in favor of</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- explicit "go in" action (`l` / `L`). To immediately open file,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- add appropriate `MiniFiles.go_in()` call instead of this comment.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Adding `desc` will result into `show_help` entries</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Split '</span> <span class="op">..</span> <span class="va">direction</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="va">buf_id</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesBufferCreate'</span><span class="op">,</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">buf_id</span> <span class="op">=</span> <span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">buf_id</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak keys to your liking</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    map_split<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="st">'&lt;C-s&gt;'</span><span class="op">,</span> <span class="st">'belowright horizontal'</span><span class="op">)</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    map_split<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="st">'&lt;C-v&gt;'</span><span class="op">,</span> <span class="st">'belowright vertical'</span><span class="op">)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    map_split<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="st">'&lt;C-t&gt;'</span><span class="op">,</span> <span class="st">'tab'</span><span class="op">)</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-createmappingswhichusedatafromentryundercursor" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-createmappingswhichusedatafromentryundercursor">Create mappings which use data from entry under cursor</h4>
+<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_fs_entry"><code>MiniFiles.get_fs_entry()</code></a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set focused directory as current working directory</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_cwd</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">path</span> <span class="op">=</span> <span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_fs_entry<span class="op">()</span> <span class="kw">or</span> <span class="op">{}).</span><span class="va">path</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">path</span> <span class="op">==</span> <span class="kw">nil</span> <span class="cf">then</span> <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span>notify<span class="op">(</span><span class="st">'Cursor is not on valid entry'</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>chdir<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">fs</span><span class="op">.</span>dirname<span class="op">(</span><span class="va">path</span><span class="op">))</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Yank in register full path of entry under cursor</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">yank_path</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">path</span> <span class="op">=</span> <span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_fs_entry<span class="op">()</span> <span class="kw">or</span> <span class="op">{}).</span><span class="va">path</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">path</span> <span class="op">==</span> <span class="kw">nil</span> <span class="cf">then</span> <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span>notify<span class="op">(</span><span class="st">'Cursor is not on valid entry'</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>setreg<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">v</span><span class="op">.</span><span class="va">register</span><span class="op">,</span> <span class="va">path</span><span class="op">)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Open path with system default handler (useful for non-text files)</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ui_open</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span><span class="va">ui</span><span class="op">.</span>open<span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_fs_entry<span class="op">().</span><span class="va">path</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesBufferCreate'</span><span class="op">,</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">b</span> <span class="op">=</span> <span class="va">args</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">buf_id</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'g~'</span><span class="op">,</span> <span class="va">set_cwd</span><span class="op">,</span>   <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="va">b</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Set cwd'</span> <span class="op">})</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'gX'</span><span class="op">,</span> <span class="va">ui_open</span><span class="op">,</span>   <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="va">b</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'OS open'</span> <span class="op">})</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'gy'</span><span class="op">,</span> <span class="va">yank_path</span><span class="op">,</span> <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="va">b</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Yank path'</span> <span class="op">})</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles-examples-setcustombookmarks" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-examples-setcustombookmarks">Set custom bookmarks</h4>
+<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a> inside <code>MiniFilesExplorerOpen</code> event:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_mark</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span><span class="op">,</span> <span class="va">path</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="va">id</span><span class="op">,</span> <span class="va">path</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="op">{</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniFilesExplorerOpen'</span><span class="op">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">callback</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    set_mark<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'config'</span><span class="op">),</span> <span class="st">'Config'</span><span class="op">)</span> <span class="co">-- path</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    set_mark<span class="op">(</span><span class="st">'w'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span><span class="va">getcwd</span><span class="op">,</span> <span class="st">'Working directory'</span><span class="op">)</span> <span class="co">-- callable</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    set_mark<span class="op">(</span><span class="st">'~'</span><span class="op">,</span> <span class="st">'~'</span><span class="op">,</span> <span class="st">'Home directory'</span><span class="op">)</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minifiles.setup" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.setup">setup()</h3>
+<p align="center">
+<code>MiniFiles.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="minifiles.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p>
+</section>
+<section id="minifiles.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="minifiles.config" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.config">config</h3>
+<p align="center">
+<code>MiniFiles.config</code>
+</p>
+<section id="minifiles.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of shown content</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">content</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Predicate for which file system entries to show</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">filter</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- What prefix to show to the left of file system entry</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">prefix</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- In which order to show file system entries</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings created only inside explorer.</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `''` (empty string) to not create one.</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">close</span>       <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in</span>       <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in_plus</span>  <span class="op">=</span> <span class="st">'L'</span><span class="op">,</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out</span>      <span class="op">=</span> <span class="st">'h'</span><span class="op">,</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out_plus</span> <span class="op">=</span> <span class="st">'H'</span><span class="op">,</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_goto</span>   <span class="op">=</span> <span class="st">"'"</span><span class="op">,</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_set</span>    <span class="op">=</span> <span class="st">'m'</span><span class="op">,</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span>       <span class="op">=</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">reveal_cwd</span>  <span class="op">=</span> <span class="st">'@'</span><span class="op">,</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">show_help</span>   <span class="op">=</span> <span class="st">'g?'</span><span class="op">,</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="va">synchronize</span> <span class="op">=</span> <span class="st">'='</span><span class="op">,</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_left</span>   <span class="op">=</span> <span class="st">'&lt;'</span><span class="op">,</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_right</span>  <span class="op">=</span> <span class="st">'&gt;'</span><span class="op">,</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- General options</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to delete permanently or move into module-specific trash</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">permanent_delete</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use for editing directories</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">use_as_default_explorer</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles.config-content" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.config-content">Content</h4>
+<p><code>content.filter</code> is a predicate which takes file system entry data as input and returns <code>true</code>-ish value if it should be shown. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_filter"><code>MiniFiles.default_filter()</code></a> by default.</p>
+<p>A file system entry data is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+<p><code>content.prefix</code> describes what text (prefix) to show to the left of file system entry name (if any) and how to highlight it. It also takes file system entry data as input and returns tuple of text and highlight group name to be used to highlight prefix. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a> for common examples of how to use it. Note: due to how lines are parsed to detect user edits for file system manipulation, output of <code>content.prefix</code> should not contain <code>/</code> character. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_prefix"><code>MiniFiles.default_prefix()</code></a> by default.</p>
+<p><code>content.sort</code> describes in which order directory entries should be shown in directory buffer. Takes as input and returns as output an array of file system entry data. Note: technically, it can be used to filter and modify its elements as well. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_sort"><code>MiniFiles.default_sort()</code></a> by default.</p>
+</section>
+<section id="minifiles.config-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.config-mappings">Mappings</h4>
+<p><code>mappings</code> table can be used to customize buffer-local mappings created in each directory buffer for built-in actions. Entry name corresponds to the function name of the action, value - right hand side of the mapping. Supply empty string to not create a particular mapping.</p>
+<p>Default mappings are mostly designed for consistent navigation experience. Here are some alternatives:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Close explorer after opening file with `l`</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_in</span> <span class="op">=</span> <span class="st">'L'</span><span class="op">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_in_plus</span> <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Don't use `h`/`l` for easier cursor navigation during text edit</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_in</span> <span class="op">=</span> <span class="st">'L'</span><span class="op">,</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_in_plus</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_out</span> <span class="op">=</span> <span class="st">'H'</span><span class="op">,</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">go_out_plus</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minifiles.config-options" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.config-options">Options</h4>
+<p><code>options.use_as_default_explorer</code> is a boolean indicating whether this module will be used as a default file explorer to edit directory (instead of <code>netrw</code>). Note: to work with directory in <a href="https://neovim.io/doc/user/helptag.html?tag=arglist"><code>arglist</code></a>, do not lazy load this module.</p>
+<p><code>options.permanent_delete</code> is a boolean indicating whether to perform permanent delete or move into special trash directory. This is a module-specific variant of “remove to trash”. Target directory is ‘mini.files/trash’ inside standard path of Neovim data directory (execute <code>:echo stdpath('data')</code> to see its path in your case).</p>
+</section>
+<section id="minifiles.config-windows" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.config-windows">Windows</h4>
+<p><code>windows.max_number</code> is a maximum number of windows allowed to be open simultaneously. For example, use value 1 to always show single window. There is no constraint by default.</p>
+<p><code>windows.preview</code> is a boolean indicating whether to show preview of file/directory under cursor. Notes:</p>
+<ul>
+<li><p>It is always shown, even if current line is for not yet existing path.</p></li>
+<li><p>File preview is highlighted if its size is small enough (less than 1K bytes per line or 1M bytes in total).</p></li>
+</ul>
+<p><code>windows.width_focus</code> and <code>windows.width_nofocus</code> are number of columns used as <code>width</code> for focused and non-focused windows respectively.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.open" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.open">open()</h3>
+<p align="center">
+<code>MiniFiles.open</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{use_latest}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Open file explorer</p>
+<p>Common ways to use this function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Open current working directory in a last used state</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">()</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fresh explorer in current working directory</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="kw">false</span><span class="op">)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Open directory of current file (in last used state) focused on the file</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_get_name<span class="op">(</span><span class="dv">0</span><span class="op">))</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fresh explorer in directory of current file</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_get_name<span class="op">(</span><span class="dv">0</span><span class="op">),</span> <span class="kw">false</span><span class="op">)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Open last used `path` (per tabpage)</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- Current working directory for the first time</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_latest_path<span class="op">())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="minifiles.open-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.open-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid file system path used as anchor. If it is a path to directory, used directly. If it is a path to file, its parent directory is used as anchor while explorer will focus on the supplied file. Default: path of <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{use_latest}</span> <code>(boolean|nil)</code> Whether to load explorer state from history (based on the supplied anchor path). Default: <code>true</code>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options overriding <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> and <code>vim.b.minifiles_config</code> for this particular explorer session.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.refresh" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.refresh">refresh()</h3>
+<p align="center">
+<code>MiniFiles.refresh</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Refresh explorer</p>
+<p>Notes:</p>
+<ul>
+<li>If in <code>opts</code> at least one of <code>content</code> entry is not <code>nil</code>, all directory buffers are forced to update.</li>
+</ul>
+<section id="minifiles.refresh-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.refresh-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options to update.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.synchronize" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.synchronize">synchronize()</h3>
+<p align="center">
+<code>MiniFiles.synchronize</code>()
+</p>
+<p>Synchronize explorer</p>
+<ul>
+<li><p>Parse user edits in directory buffers.</p></li>
+<li><p>Convert edits to file system actions and apply them after confirmation. Choosing “No” skips application while “Cancel” stops synchronization.</p></li>
+<li><p>Update all directory buffers with the most relevant file system information. Can be used without user edits to account for external file system changes.</p></li>
+</ul>
+<section id="minifiles.synchronize-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.synchronize-return">Return</h4>
+<p><code>(boolean)</code> Whether synchronization was done.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.reset" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.reset">reset()</h3>
+<p align="center">
+<code>MiniFiles.reset</code>()
+</p>
+<p>Reset explorer</p>
+<ul>
+<li><p>Show single window focused on anchor directory (which was used as first argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>).</p></li>
+<li><p>Reset all tracked directory cursors to point at first entry.</p></li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.close" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.close">close()</h3>
+<p align="center">
+<code>MiniFiles.close</code>()
+</p>
+<p>Close explorer</p>
+<section id="minifiles.close-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.close-return">Return</h4>
+<p><code>(boolean|nil)</code> Whether closing was done or <code>nil</code> if there was nothing to close.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.go_in" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.go_in">go_in()</h3>
+<p align="center">
+<code>MiniFiles.go_in</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Go in entry under cursor</p>
+<p>Depends on entry under cursor:</p>
+<ul>
+<li><p>If directory, focus on it in the window to the right.</p></li>
+<li><p>If file, open it in the window which was current during <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>. Explorer is not closed after that.</p></li>
+</ul>
+<section id="minifiles.go_in-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.go_in-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;close_on_file&gt;</span> <code>(boolean)</code> - whether to close explorer after going inside a file. Powers the <code>go_in_plus</code> mapping. Default: <code>false</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minifiles.go_out" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.go_out">go_out()</h3>
+<p align="center">
+<code>MiniFiles.go_out</code>()
+</p>
+<p>Go out to parent directory</p>
+<ul>
+<li>Focus on window to the left showing parent of current directory.</li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.trim_left" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.trim_left">trim_left()</h3>
+<p align="center">
+<code>MiniFiles.trim_left</code>()
+</p>
+<p>Trim left part of branch</p>
+<ul>
+<li>Remove all branch paths to the left of currently focused one. This also results into current window becoming the most left one.</li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.trim_right" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.trim_right">trim_right()</h3>
+<p align="center">
+<code>MiniFiles.trim_right</code>()
+</p>
+<p>Trim right part of branch</p>
+<ul>
+<li>Remove all branch paths to the right of currently focused one. This also results into current window becoming the most right one.</li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.reveal_cwd" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.reveal_cwd">reveal_cwd()</h3>
+<p align="center">
+<code>MiniFiles.reveal_cwd</code>()
+</p>
+<p>Reveal current working directory</p>
+<ul>
+<li>Prepend branch with parent paths until current working directory is reached. Do nothing if not inside it.</li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.show_help" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.show_help">show_help()</h3>
+<p align="center">
+<code>MiniFiles.show_help</code>()
+</p>
+<p>Show help window</p>
+<ul>
+<li>Open window with helpful information about currently shown explorer and focus on it. To close it, press <code>q</code>.</li>
+</ul>
+<hr>
+</section>
+<section id="minifiles.get_fs_entry" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.get_fs_entry">get_fs_entry()</h3>
+<p align="center">
+<code>MiniFiles.get_fs_entry</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{line}</span>)
+</p>
+<p>Get file system entry data</p>
+<section id="minifiles.get_fs_entry-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.get_fs_entry-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier of valid directory buffer. Default: current buffer.</p>
+<p><span class="help-syntax-special">{line}</span> <code>(number|nil)</code> Line number of entry for which to return information. Default: cursor line.</p>
+</section>
+<section id="minifiles.get_fs_entry-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.get_fs_entry-return">Return</h4>
+<p><code>(table|nil)</code> Table of file system entry data with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+<p>Returns <code>nil</code> if there is no proper file system entry path at the line.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.get_explorer_state" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.get_explorer_state">get_explorer_state()</h3>
+<p align="center">
+<code>MiniFiles.get_explorer_state</code>()
+</p>
+<p>Get state of active explorer</p>
+<section id="minifiles.get_explorer_state-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.get_explorer_state-return">Return</h4>
+<p><code>(table|nil)</code> Table with explorer state data or <code>nil</code> if no active explorer. State data is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;anchor&gt;</span> <code>(string)</code> - anchor directory path (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;bookmarks&gt;</span> <code>(table)</code> - map from bookmark id (single character) to its data: table with <span class="help-syntax-keys">&lt;path&gt;</span> and <span class="help-syntax-keys">&lt;desc&gt;</span> fields (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;branch&gt;</span> <code>(table)</code> - array of nested paths for currently opened branch.</p></li>
+<li><p><span class="help-syntax-keys">&lt;depth_focus&gt;</span> <code>(number)</code> - an index in <span class="help-syntax-keys">&lt;branch&gt;</span> for currently focused path.</p></li>
+<li><p><span class="help-syntax-keys">&lt;target_window&gt;</span> <code>(number)</code> - identifier of target window.</p></li>
+<li><p><span class="help-syntax-keys">&lt;windows&gt;</span> <code>(table)</code> - array with data about currently opened windows. Each element is a table with <span class="help-syntax-keys">&lt;win_id&gt;</span> (window identifier) and <span class="help-syntax-keys">&lt;path&gt;</span> (path shown in the window) fields.</p></li>
+</ul>
+</section>
+<section id="minifiles.get_explorer_state-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.get_explorer_state-seealso">See also</h4>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_branch"><code>MiniFiles.set_branch()</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window"><code>MiniFiles.set_target_window()</code></a></p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minifiles.set_target_window" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.set_target_window">set_target_window()</h3>
+<p align="center">
+<code>MiniFiles.set_target_window</code>(<span class="help-syntax-special">{win_id}</span>)
+</p>
+<p>Set target window</p>
+<section id="minifiles.set_target_window-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.set_target_window-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{win_id}</span> <code>(number)</code> Window identifier inside which file will be opened.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.set_branch" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.set_branch">set_branch()</h3>
+<p align="center">
+<code>MiniFiles.set_branch</code>(<span class="help-syntax-special">{branch}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Set branch</p>
+<p>Set which paths to display. Preview (if enabled) is applied afterwards.</p>
+<section id="minifiles.set_branch-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.set_branch-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{branch}</span> <code>(table)</code> Array of strings representing actually present on disk paths. Each consecutive pair should represent direct parent-child paths. Should contain at least one directory path. May end with file path (will be previwed). Relative paths are resolved using <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;depth_focus&gt;</span> <code>(number)</code> - an index in <code>branch</code> for path to focus. Will be normalized to fit inside <code>branch</code>. Default: index of deepest directory.</li>
+</ul>
+</section>
+<section id="minifiles.set_branch-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.set_branch-seealso">See also</h4>
+<p><a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state"><code>MiniFiles.get_explorer_state()</code></a></p>
+<hr>
+</section>
+</section>
+<section id="minifiles.set_bookmark" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.set_bookmark">set_bookmark()</h3>
+<p align="center">
+<code>MiniFiles.set_bookmark</code>(<span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Set bookmark</p>
+<section id="minifiles.set_bookmark-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.set_bookmark-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{id}</span> <code>(string)</code> Single character bookmark id.</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|function)</code> Path of a present on disk directory to set as a bookmark’s path. If callable, should return such path.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;desc&gt;</span> <code>(string)</code> - bookmark description (used in help window).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minifiles.get_latest_path" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.get_latest_path">get_latest_path()</h3>
+<p align="center">
+<code>MiniFiles.get_latest_path</code>()
+</p>
+<p>Get latest used anchor path</p>
+<p>Note: if latest used <code>path</code> argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a> was for file, this will return its parent (as it was used as anchor path).</p>
+<hr>
+</section>
+<section id="minifiles.default_filter" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.default_filter">default_filter()</h3>
+<p align="center">
+<code>MiniFiles.default_filter</code>(<span class="help-syntax-special">{fs_entry}</span>)
+</p>
+<p>Default filter of file system entries</p>
+<p>Currently does not filter anything out.</p>
+<section id="minifiles.default_filter-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_filter-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{fs_entry}</span> <code>(table)</code> Table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+</section>
+<section id="minifiles.default_filter-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_filter-return">Return</h4>
+<p><code>(boolean)</code> Always <code>true</code>.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.default_prefix" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.default_prefix">default_prefix()</h3>
+<p align="center">
+<code>MiniFiles.default_prefix</code>(<span class="help-syntax-special">{fs_entry}</span>)
+</p>
+<p>Default prefix of file system entries</p>
+<ul>
+<li><p>If set up <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a>, use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for “directory”/“file” category.</p></li>
+<li><p>Otherwise:</p>
+<ul>
+<li><p>For directory return fixed icon and “MiniFilesDirectory” group name.</p></li>
+<li><p>For file try to use <code>get_icon()</code> from ‘nvim-tree/nvim-web-devicons’. If missing, return fixed icon and ‘MiniFilesFile’ group name.</p></li>
+</ul></li>
+</ul>
+<section id="minifiles.default_prefix-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_prefix-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{fs_entry}</span> <code>(table)</code> Table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+</section>
+<section id="minifiles.default_prefix-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_prefix-return">Return</h4>
+<p><code>(...)</code> Icon and highlight group name. For more details, see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.default_sort" class="level3">
+<h3 class="anchored" data-anchor-id="minifiles.default_sort">default_sort()</h3>
+<p align="center">
+<code>MiniFiles.default_sort</code>(<span class="help-syntax-special">{fs_entries}</span>)
+</p>
+<p>Default sort of file system entries</p>
+<p>Sort directories and files separately (alphabetically ignoring case) and put directories first.</p>
+<section id="minifiles.default_sort-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_sort-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{fs_entries}</span> <code>(table)</code> Array of file system entry data. Each one is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+</section>
+<section id="minifiles.default_sort-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_sort-return">Return</h4>
+<p><code>(table)</code> Sorted array of file system entries.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/echasnovski\.github\.io\/mini-site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
