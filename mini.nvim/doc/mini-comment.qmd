@@ -1,0 +1,303 @@
+---
+title: "mini.comment documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.comment" href="mini-comment.qmd#mini.comment"><b>mini.comment</b></a> Comment lines
+
+MIT License Copyright (c) 2021 Evgeni Chasnovski
+
+---
+
+### Module {#minicomment}
+
+Features:
+
+- Commenting in Normal mode respects [`count`](https://neovim.io/doc/user/helptag.html?tag=count) and is dot-repeatable.
+
+
+- Comment structure by default is inferred from 'commentstring': either
+  from current buffer or from locally active tree-sitter language.
+  It can be customized via `options.custom_commentstring`
+  (see [`MiniComment.config`](mini-comment.qmd#minicomment.config) for details).
+
+
+- Allows custom hooks before and after successful commenting.
+
+
+- Configurable options for some nuanced behavior.
+
+What it doesn't do:
+
+- Block and sub-line comments. This will only support per-line commenting.
+
+
+- Handle indentation with mixed tab and space.
+
+
+- Preserve trailing whitespace in empty lines.
+
+Notes:
+
+- To use tree-sitter aware commenting, global value of 'commentstring'
+  should be `''` (empty string). This is the default value, so make sure to
+  not set it manually to a different value.
+
+#### Setup {#minicomment-setup}
+
+
+This module needs a setup with `require('mini.comment').setup({})` (replace
+`{}` with your `config` table). It will create global Lua table
+`MiniComment` which you can use for scripting or manually (with
+`:lua MiniComment.*`).
+
+See [`MiniComment.config`](mini-comment.qmd#minicomment.config) for `config` structure and default values.
+
+You can override runtime config settings locally to buffer inside
+`vim.b.minicomment_config` which should have same structure as
+`MiniComment.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+
+#### Disabling {#minicomment-disabling}
+
+
+To disable core functionality, set `vim.g.minicomment_disable` (globally) or
+`vim.b.minicomment_disable` (for a buffer) to `true`. Considering high number
+of different scenarios and customization intentions, writing exact rules
+for disabling module's functionality is left to user. See
+[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+
+---
+
+### setup() {#minicomment.setup}
+
+<p align="center">`MiniComment.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#minicomment.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniComment.config`](mini-comment.qmd#minicomment.config).
+
+#### Usage {#minicomment.setup-usage}
+
+
+
+  ```lua
+  require('mini.comment').setup() -- use default config
+  -- OR
+  require('mini.comment').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minicomment.config}
+
+<p align="center">`MiniComment.config`</p>
+#### Defaults {#minicomment.config-defaults}
+
+
+
+  ```lua
+  MiniComment.config = {
+    -- Options which control module behavior
+    options = {
+      -- Function to compute custom 'commentstring' (optional)
+      custom_commentstring = nil,
+
+      -- Whether to ignore blank lines in actions and textobject
+      ignore_blank_line = false,
+
+      -- Whether to recognize as comment only lines without indent
+      start_of_line = false,
+
+      -- Whether to force single space inner padding for comment parts
+      pad_comment_parts = true,
+    },
+
+    -- Module mappings. Use `''` (empty string) to disable one.
+    mappings = {
+      -- Toggle comment (like `gcip` - comment inner paragraph) for both
+      -- Normal and Visual modes
+      comment = 'gc',
+
+      -- Toggle comment on current line
+      comment_line = 'gcc',
+
+      -- Toggle comment on visual selection
+      comment_visual = 'gc',
+
+      -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+      -- Works also in Visual mode if mapping differs from `comment_visual`
+      textobject = 'gc',
+    },
+
+    -- Hook functions to be executed at certain stage of commenting
+    hooks = {
+      -- Before successful commenting. Does nothing by default.
+      pre = function() end,
+      -- After successful commenting. Does nothing by default.
+      post = function() end,
+    },
+  }
+  ```
+
+#### Options {#minicomment.config-options}
+
+
+##### Custom commentstring {#minicomment.config-options-customcommentstring}
+
+
+`options.custom_commentstring` can be a function customizing 'commentstring'
+option used to infer comment structure. It is called once before every
+commenting action with the following arguments:
+
+- `ref_position` - position at which to compute 'commentstring' (might be
+  relevant for a text with locally different commenting rules). Its structure
+  is the same as `opts.ref_position` in [`MiniComment.toggle_lines()`](mini-comment.qmd#minicomment.toggle_lines).
+
+Its output should be a valid 'commentstring' (string containing `%s`).
+
+If not set or the output is `nil`, [`MiniComment.get_commentstring()`](mini-comment.qmd#minicomment.get_commentstring) is used.
+
+For example, this option can be used to always use buffer 'commentstring'
+even in case of present active tree-sitter parser:
+
+  ```lua
+  require('mini.comment').setup({
+    options = {
+      custom_commentstring = function() return vim.bo.commentstring end,
+    }
+  })
+  ```
+
+#### Hooks {#minicomment.config-hooks}
+
+
+`hooks.pre` and `hooks.post` functions are executed before and after successful
+commenting action (toggle or computing textobject). They will be called
+with a single table argument which has the following fields:
+
+- <span class="help-syntax-keys">\<action\></span> `(string)` - action name. One of "toggle" (when actual toggle
+  direction is yet unknown), "comment", "uncomment", "textobject".
+
+- <span class="help-syntax-keys">\<line_start\></span> `(number|nil)` - action start line. Can be absent if yet unknown.
+
+- <span class="help-syntax-keys">\<line_end\></span> `(number|nil)` - action end line. Can be absent if yet unknown.
+
+- <span class="help-syntax-keys">\<ref_position\></span> `(table|nil)` - reference position.
+
+Notes:
+
+- Changing 'commentstring' in `hooks.pre` is allowed and will take effect.
+
+- If hook returns `false`, any further action is terminated.
+
+---
+
+### operator() {#minicomment.operator}
+
+<p align="center">`MiniComment.operator`(<span class="help-syntax-special">{mode}</span>)</p>
+Main function to be mapped
+
+It is meant to be used in expression mappings (see [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>)) to enable
+dot-repeatability and commenting on range. There is no need to do this
+manually, everything is done inside [`MiniComment.setup()`](mini-comment.qmd#minicomment.setup).
+
+It has a somewhat unintuitive logic (because of how expression mapping with
+dot-repeatability works): it should be called without arguments inside
+expression mapping and with argument when action should be performed.
+
+#### Parameters {#minicomment.operator-parameters}
+
+
+
+<span class="help-syntax-special">{mode}</span> `(string|nil)` Optional string with 'operatorfunc' mode (see [`g@`](https://neovim.io/doc/user/helptag.html?tag=g@)).
+
+#### Return {#minicomment.operator-return}
+
+
+`(string|nil)` 'g@' if called without argument, '' otherwise (but after
+  performing action).
+
+---
+
+### toggle_lines() {#minicomment.toggle_lines}
+
+<p align="center">`MiniComment.toggle_lines`(<span class="help-syntax-special">{line_start}</span>, <span class="help-syntax-special">{line_end}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Toggle comments between two line numbers
+
+It uncomments if lines are comment (every line is a comment or blank) and
+comments otherwise. It respects indentation and doesn't insert trailing
+whitespace. Toggle commenting not in visual mode is also dot-repeatable
+and respects [`count`](https://neovim.io/doc/user/helptag.html?tag=count).
+
+#### Notes {#minicomment.toggle_lines-notes}
+
+
+
+- Comment structure is inferred from buffer's 'commentstring' option or
+  local language of tree-sitter parser (if active).
+
+
+- Call to this function will remove all [`extmarks`](https://neovim.io/doc/user/helptag.html?tag=extmarks) from target range.
+
+#### Parameters {#minicomment.toggle_lines-parameters}
+
+
+
+<span class="help-syntax-special">{line_start}</span> `(number)` Start line number (inclusive from 1 to number of lines).
+
+<span class="help-syntax-special">{line_end}</span> `(number)` End line number (inclusive from 1 to number of lines).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<ref_position\></span> `(table)` - A two-value array with `{ row, col }` (both
+    starting at 1) of reference position at which 'commentstring' value
+    will be computed. Default: `{ line_start, 1 }`.
+
+---
+
+### textobject() {#minicomment.textobject}
+
+<p align="center">`MiniComment.textobject`()</p>
+Select comment textobject
+
+This selects all commented lines adjacent to cursor line. If `ignore_blank_line`
+option is enabled (see [`MiniComment.config`](mini-comment.qmd#minicomment.config)), blank lines between commented
+lines are treated as part of textobject.
+Designed to be used with operator mode mappings (see [`mapmode-o`](https://neovim.io/doc/user/helptag.html?tag=mapmode-o)).
+
+---
+
+### get_commentstring() {#minicomment.get_commentstring}
+
+<p align="center">`MiniComment.get_commentstring`(<span class="help-syntax-special">{ref_position}</span>)</p>
+Get 'commentstring'
+
+This function represents default approach of computing relevant
+'commentstring' option in current buffer. Used to infer comment structure.
+
+It has the following logic:
+
+- If there is an active tree-sitter parser, try to get 'commentstring' from
+  the local language at `ref_position`.
+
+
+- If first step is not successful, use buffer's 'commentstring' directly.
+
+#### Parameters {#minicomment.get_commentstring-parameters}
+
+
+
+<span class="help-syntax-special">{ref_position}</span> `(table)` Reference position inside current buffer at which
+  to compute 'commentstring'. Same structure as `opts.ref_position`
+  in [`MiniComment.toggle_lines()`](mini-comment.qmd#minicomment.toggle_lines).
+
+#### Return {#minicomment.get_commentstring-return}
+
+
+`(string)` Relevant value of 'commentstring'.
+

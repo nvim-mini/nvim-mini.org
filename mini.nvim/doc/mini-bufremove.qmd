@@ -1,0 +1,183 @@
+---
+title: "mini.bufremove documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.bufremove" href="mini-bufremove.qmd#mini.bufremove"><b>mini.bufremove</b></a> Remove buffers
+
+MIT License Copyright (c) 2021 Evgeni Chasnovski
+
+---
+
+### Module {#minibufremove}
+
+Features:
+
+- Unshow, delete, and wipeout buffer while saving window layout
+  (opposite to builtin Neovim's commands).
+
+#### Setup {#minibufremove-setup}
+
+
+This module doesn't need setup, but it can be done to improve usability.
+Setup with `require('mini.bufremove').setup({})` (replace `{}` with your
+`config` table). It will create global Lua table `MiniBufremove` which you
+can use for scripting or manually (with `:lua MiniBufremove.*`).
+
+See [`MiniBufremove.config`](mini-bufremove.qmd#minibufremove.config) for `config` structure and default values.
+
+This module doesn't have runtime options, so using `vim.b.minibufremove_config`
+will have no effect here.
+
+To stop module from showing non-error feedback, set `config.silent = true`.
+
+#### Notes {#minibufremove-notes}
+
+
+1. Which buffer to show in window(s) after its current buffer is removed is
+   decided by the algorithm:
+
+   - If alternate buffer (see [`CTRL-^`](https://neovim.io/doc/user/helptag.html?tag=CTRL-^)) is listed (see [`buflisted()`](https://neovim.io/doc/user/helptag.html?tag=buflisted\(\))), use it.
+
+   - If previous listed buffer (see [`:bprevious`](https://neovim.io/doc/user/helptag.html?tag=:bprevious)) is different, use it.
+
+   - Otherwise create a new one with `nvim_create_buf(true, false)` and use it.
+
+#### Disabling {#minibufremove-disabling}
+
+
+To disable core functionality, set `vim.g.minibufremove_disable` (globally) or
+`vim.b.minibufremove_disable` (for a buffer) to `true`. Considering high
+number of different scenarios and customization intentions, writing exact
+rules for disabling module's functionality is left to user. See
+[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+
+---
+
+### setup() {#minibufremove.setup}
+
+<p align="center">`MiniBufremove.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#minibufremove.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniBufremove.config`](mini-bufremove.qmd#minibufremove.config).
+
+#### Usage {#minibufremove.setup-usage}
+
+
+
+  ```lua
+  require('mini.bufremove').setup() -- use default config
+  -- OR
+  require('mini.bufremove').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minibufremove.config}
+
+<p align="center">`MiniBufremove.config`</p>
+#### Defaults {#minibufremove.config-defaults}
+
+
+
+  ```lua
+  MiniBufremove.config = {
+    -- Whether to disable showing non-error feedback
+    silent = false,
+  }
+  ```
+
+---
+
+### delete() {#minibufremove.delete}
+
+<p align="center">`MiniBufremove.delete`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{force}</span>)</p>
+Delete buffer `buf_id` with [`:bdelete`](https://neovim.io/doc/user/helptag.html?tag=:bdelete) after unshowing it
+
+#### Parameters {#minibufremove.delete-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to use.
+  Default: 0 for current.
+
+<span class="help-syntax-special">{force}</span> `(boolean|nil)` Whether to ignore unsaved changes (using `!` version of
+  command). If `false`, calling with unsaved changes will prompt confirm dialog.
+  Default: `false`.
+
+#### Return {#minibufremove.delete-return}
+
+
+`(boolean|nil)` Whether operation was successful. If `nil`, no operation was done.
+
+---
+
+### wipeout() {#minibufremove.wipeout}
+
+<p align="center">`MiniBufremove.wipeout`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{force}</span>)</p>
+Wipeout buffer `buf_id` with [`:bwipeout`](https://neovim.io/doc/user/helptag.html?tag=:bwipeout) after unshowing it
+
+#### Parameters {#minibufremove.wipeout-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to use.
+  Default: 0 for current.
+
+<span class="help-syntax-special">{force}</span> `(boolean|nil)` Whether to ignore unsaved changes (using `!` version of
+  command). If `false`, calling with unsaved changes will prompt confirm dialog.
+  Default: `false`.
+
+#### Return {#minibufremove.wipeout-return}
+
+
+`(boolean|nil)` Whether operation was successful. If `nil`, no operation was done.
+
+---
+
+### unshow() {#minibufremove.unshow}
+
+<p align="center">`MiniBufremove.unshow`(<span class="help-syntax-special">{buf_id}</span>)</p>
+Stop showing buffer `buf_id` in all windows
+
+#### Parameters {#minibufremove.unshow-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to use.
+  Default: 0 for current.
+
+#### Return {#minibufremove.unshow-return}
+
+
+`(boolean|nil)` Whether operation was successful. If `nil`, no operation was done.
+
+---
+
+### unshow_in_window() {#minibufremove.unshow_in_window}
+
+<p align="center">`MiniBufremove.unshow_in_window`(<span class="help-syntax-special">{win_id}</span>)</p>
+Stop showing current buffer of window `win_id`
+
+Notes:
+
+- If `win_id` represents [`cmdline-window`](https://neovim.io/doc/user/helptag.html?tag=cmdline-window), this function will close it.
+
+#### Parameters {#minibufremove.unshow_in_window-parameters}
+
+
+
+<span class="help-syntax-special">{win_id}</span> `(number|nil)` Window identifier (see [`win_getid()`](https://neovim.io/doc/user/helptag.html?tag=win_getid\(\))) to use.
+  Default: 0 for current.
+
+#### Return {#minibufremove.unshow_in_window-return}
+
+
+`(boolean|nil)` Whether operation was successful. If `nil`, no operation was done.
+

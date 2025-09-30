@@ -1,0 +1,158 @@
+---
+title: "mini.git"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-git_readme.png?raw=true" alt="mini.git" style="max-width:100%;border:solid 2px"/> </p>
+
+### Git integration
+
+See more details in [Features](#features) and [Documentation](../doc/mini-git.qmd).
+
+---
+
+> [!NOTE]
+> This was previously hosted at a personal `echasnovski` GitHub account. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+
+⦿ This is a part of [mini.nvim](https://github.com/nvim-mini/mini.nvim) library. Please use [this link](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-git.md) if you want to mention this module.
+
+⦿ All contributions (issues, pull requests, discussions, etc.) are done inside of 'mini.nvim'.
+
+⦿ See the repository page to learn about common design principles and configuration recipes.
+
+---
+
+If you want to help this project grow but don't know where to start, check out [contributing guides of 'mini.nvim'](https://github.com/nvim-mini/mini.nvim/blob/main/CONTRIBUTING.md) or leave a Github star for 'mini.nvim' project and/or any its standalone Git repositories.
+
+## Demo
+
+![](https://github.com/nvim-mini/assets/blob/main/demo/demo-git.mp4?raw=true)
+
+**Note**: This demo uses custom `vim.notify()` from [mini.notify](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-notify.md) and diff line number highlighting from [mini.diff](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md).
+
+## Features
+
+- Automated tracking of [Git](https://git-scm.com/) related data: root path, status, HEAD, etc. Exposes buffer-local variables for convenient use in statusline.
+
+- [`:Git`](../doc/mini-git.qmd#git) command for executing any `git` call inside file's repository root with deeper current instance integration (show output as notification/buffer, use to edit commit messages, etc.).
+
+- Helper functions to inspect Git history:
+    - [`MiniGit.show_range_history()`](../doc/mini-git.qmd#minigit.show_range_history) shows how certain line range evolved.
+    - [`MiniGit.show_diff_source()`](../doc/mini-git.qmd#minigit.show_diff_source) shows file state as it was at diff entry.
+    - [`MiniGit.show_at_cursor()`](../doc/mini-git.qmd#minigit.show_at_cursor) shows Git related data depending on context.
+
+What it doesn't do:
+
+- Replace fully featured Git client. Rule of thumb: if feature does not rely on a state of current Neovim (opened buffers, etc.), it is out of scope. For more functionality, use either ['mini.diff'](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md) or fully featured Git client.
+
+For more information see these parts of help:
+
+- [`:h :Git`](../doc/mini-git.qmd#git)
+- [`:h MiniGit-examples`](../doc/mini-git.qmd#minigit-examples)
+- [`:h MiniGit.enable()`](../doc/mini-git.qmd#minigit.enable)
+- [`:h MiniGit.get_buf_data()`](../doc/mini-git.qmd#minigit.get_buf_data)
+
+## Installation
+
+This plugin can be installed as part of 'mini.nvim' library (**recommended**) or as a standalone Git repository.
+
+There are two branches to install from:
+
+- `main` (default, **recommended**) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).
+- `stable` will be updated only upon releases with code tested during public beta-testing phase in `main` branch.
+
+Here are code snippets for some common installation methods (use only one):
+
+<details>
+<summary>With <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md">mini.deps</a></summary>
+
+- 'mini.nvim' library:
+
+    | Branch | Code snippet                                  |
+    |--------|-----------------------------------------------|
+    | Main   | *Follow recommended ‘mini.deps’ installation* |
+    | Stable | *Follow recommended ‘mini.deps’ installation* |
+
+- Standalone plugin:
+
+    | Branch | Code snippet                                                  |
+    |--------|---------------------------------------------------------------|
+    | Main   | `add(‘nvim-mini/mini-git’)`                                   |
+    | Stable | `add({ source = ‘nvim-mini/mini-git’, checkout = ‘stable’ })` |
+
+</details>
+
+<details>
+<summary>With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a></summary>
+
+- 'mini.nvim' library:
+
+    | Branch | Code snippet                                  |
+    |--------|-----------------------------------------------|
+    | Main   | `{ 'nvim-mini/mini.nvim', version = false },` |
+    | Stable | `{ 'nvim-mini/mini.nvim', version = '*' },`   |
+
+- Standalone plugin:
+
+    | Branch | Code snippet                                 |
+    |--------|----------------------------------------------|
+    | Main   | `{ 'nvim-mini/mini-git', version = false },` |
+    | Stable | `{ 'nvim-mini/mini-git', version = '*' },`   |
+
+</details>
+
+<details>
+<summary>With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a></summary>
+
+- 'mini.nvim' library:
+
+    | Branch | Code snippet                                         |
+    |--------|------------------------------------------------------|
+    | Main   | `Plug 'nvim-mini/mini.nvim'`                         |
+    | Stable | `Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }` |
+
+- Standalone plugin:
+
+    | Branch | Code snippet                                        |
+    |--------|-----------------------------------------------------|
+    | Main   | `Plug 'nvim-mini/mini-git'`                         |
+    | Stable | `Plug 'nvim-mini/mini-git', { 'branch': 'stable' }` |
+
+</details>
+
+**Important**: don't forget to call `require('mini.git').setup()` to enable its functionality.
+
+**Note**: if you are on Windows, there might be problems with too long file paths (like `error: unable to create file <some file name>: Filename too long`). Try doing one of the following:
+
+- Enable corresponding git global config value: `git config --system core.longpaths true`. Then try to reinstall.
+- Install plugin in other place with shorter path.
+
+## Default config
+
+```lua
+-- No need to copy this inside `setup()`. Will be used automatically.
+{
+  -- General CLI execution
+  job = {
+    -- Path to Git executable
+    git_executable = 'git',
+
+    -- Timeout (in ms) for each job before force quit
+    timeout = 30000,
+  },
+
+  -- Options for [`:Git`](../doc/mini-git.qmd#git) command
+  command = {
+    -- Default split direction
+    split = 'auto',
+  },
+}
+```
+
+## Similar plugins
+
+- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+- [NeogitOrg/neogit](https://github.com/NeogitOrg/neogit)
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)

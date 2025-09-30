@@ -1,0 +1,590 @@
+---
+title: "mini.git documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.git" href="mini-git.qmd#mini.git"><b>mini.git</b></a> Git integration
+
+MIT License Copyright (c) 2024 Evgeni Chasnovski
+
+---
+
+### Module {#minigit}
+
+Features:
+
+
+- Automated tracking of Git related data: root path, status, HEAD, etc.
+  Exposes buffer-local variables for convenient use in statusline.
+  See [`MiniGit.enable()`](mini-git.qmd#minigit.enable) and [`MiniGit.get_buf_data()`](mini-git.qmd#minigit.get_buf_data) for more information.
+
+
+- [`:Git`](mini-git.qmd#git) command for executing any `git` call inside file's repository root with
+  deeper current instance integration (show output as notification/buffer,
+  use to edit commit messages, etc.).
+
+
+- Helper functions to inspect Git history:
+
+    - [`MiniGit.show_range_history()`](mini-git.qmd#minigit.show_range_history) shows how certain line range evolved.
+
+    - [`MiniGit.show_diff_source()`](mini-git.qmd#minigit.show_diff_source) shows file state as it was at diff entry.
+
+    - [`MiniGit.show_at_cursor()`](mini-git.qmd#minigit.show_at_cursor) shows Git related data depending on context.
+
+What it doesn't do:
+
+
+- Replace fully featured Git client. Rule of thumb: if feature does not rely
+  on a state of current Neovim (opened buffers, etc.), it is out of scope.
+  For more functionality, use either [`mini.diff`](mini-diff.qmd#mini.diff) or fully featured Git client.
+
+Sources with more details:
+
+- [`:Git`](mini-git.qmd#git)
+
+- [`MiniGit-examples`](mini-git.qmd#minigit-examples)
+
+- [`MiniGit.enable()`](mini-git.qmd#minigit.enable)
+
+- [`MiniGit.get_buf_data()`](mini-git.qmd#minigit.get_buf_data)
+
+#### Setup {#minigit-setup}
+
+
+This module needs a setup with `require('mini.git').setup({})` (replace `{}` with
+your `config` table). It will create global Lua table `MiniGit` which you can use
+for scripting or manually (with `:lua MiniGit.*`).
+
+See [`MiniGit.config`](mini-git.qmd#minigit.config) for `config` structure and default values.
+
+#### Comparisons {#minigit-comparisons}
+
+
+
+- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive):
+
+    - Mostly a dedicated Git client, while this module is not (by design).
+
+    - Provides buffer-local Git data only through fixed statusline component,
+      while this module has richer data in the form of a Lua table.
+
+    - Both provide [`:Git`](mini-git.qmd#git) command with 'vim-fugitive' treating some cases
+      extra specially (like `:Git blame`, etc.), while this module mostly
+      treats all cases the same. See [`MiniGit-examples`](mini-git.qmd#minigit-examples) for how they can be
+      manually customized.
+      Also this module provides slightly different (usually richer)
+      completion suggestions.
+
+
+- [NeogitOrg/neogit](https://github.com/NeogitOrg/neogit):
+
+    - Similar to 'tpope/vim-fugitive', but without `:Git` command.
+
+
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim):
+
+    - Provides buffer-local Git data with emphasis on granular diff status,
+      while this module is more oriented towards repository and file level
+      data (root, HEAD, file status, etc.). Use [`mini.diff`](mini-diff.qmd#mini.diff) for diff tracking.
+
+#### Disabling {#minigit-disabling}
+
+
+To prevent buffer(s) from being tracked, set `vim.g.minigit_disable` (globally)
+or `vim.b.minigit_disable` (for a buffer) to `true`. Considering high number of
+different scenarios and customization intentions, writing exact rules for
+disabling module's functionality is left to user.
+See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+
+---
+
+### Examples {#minigit-examples}
+
+#### Statusline component {#minigit-examples-statuslinecomponent}
+
+
+Tracked buffer data can be used in statusline via `vim.b.minigit_summary_string`
+buffer-local variable. It is expected to be used as is. To show another info,
+tweak buffer-local variable directly inside `MiniGitUpdated` `User` event:
+
+  ```lua
+  -- Use only HEAD name as summary string
+  local format_summary = function(data)
+    -- Utilize buffer-local table summary
+    local summary = vim.b[data.buf].minigit_summary
+    vim.b[data.buf].minigit_summary_string = summary.head_name or ''
+  end
+
+  local au_opts = { pattern = 'MiniGitUpdated', callback = format_summary }
+  vim.api.nvim_create_autocmd('User', au_opts)
+  ```
+
+#### Tweaking command output {#minigit-examples-tweakingcommandoutput}
+
+
+Buffer output of [`:Git`](mini-git.qmd#git) command can be tweaked inside autocommand for
+`MiniGitCommandSplit` `User` event (see [`MiniGit-command-events`](mini-git.qmd#minigit-command-events)).
+For example, to make `:vertical Git blame -- %` align blame output with the
+current window state, use the following code:
+
+  ```lua
+  local align_blame = function(au_data)
+    if au_data.data.git_subcommand ~= 'blame' then return end
+
+    -- Align blame output with source
+    local win_src = au_data.data.win_source
+    vim.wo.wrap = false
+    vim.fn.winrestview({ topline = vim.fn.line('w0', win_src) })
+    vim.api.nvim_win_set_cursor(0, { vim.fn.line('.', win_src), 0 })
+
+    -- Bind both windows so that they scroll together
+    vim.wo[win_src].scrollbind, vim.wo.scrollbind = true, true
+  end
+
+  local au_opts = { pattern = 'MiniGitCommandSplit', callback = align_blame }
+  vim.api.nvim_create_autocmd('User', au_opts)
+  ```
+
+#### History navigation {#minigit-examples-historynavigation}
+
+
+Function [`MiniGit.show_at_cursor()`](mini-git.qmd#minigit.show_at_cursor) is specifically exported to make Git
+history navigation easier. Here are some different ways it can be used:
+
+
+- Call inside buffer for already committed file to show the evolution of
+  the current line (or visually selected range) through history.
+  It is essentially a `:Git log HEAD` with proper `-L` flag.
+  This also works inside output of [`MiniGit.show_diff_source()`](mini-git.qmd#minigit.show_diff_source).
+
+
+- Call with cursor on commit hash to inspect that commit in full.
+  This is usually helpful in the output of `:Git log`.
+
+
+- Call with cursor inside diff entry to inspect its file in the state how it
+  was at certain commit. By default it shows state after commit, unless cursor
+  is on the "deleted" line (i.e. line starting with "-") in which case
+  state before commit is shown.
+
+This workflow can be made more interactive when used with mapping, like this:
+
+  ```lua
+  local rhs = '<Cmd>lua MiniGit.show_at_cursor()<CR>'
+  vim.keymap.set({ 'n', 'x' }, '<Leader>gs', rhs, { desc = 'Show at cursor' })
+  ```
+
+---
+
+### :Git {#git}
+
+The `:Git` user command runs `git` CLI call with extra integration for currently
+opened Neovim process:
+
+- Command is executed inside repository root of the currently active file
+  (or [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory) if file is not tracked by this module).
+
+
+- Command output is shown either in dedicated buffer in window split or as
+  notification via [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)). Which method is used depends on whether
+  particular Git subcommand is supposed to show data for user to inspect
+  (like `log`, `status`, etc.) or not (like `commit`, `push`, etc.). This is
+  determined automatically based on the data Git itself provides.
+  Split window is made current after command execution.
+
+  Use split-related [`:command-modifiers`](https://neovim.io/doc/user/helptag.html?tag=:command-modifiers) ([`:vertical`](https://neovim.io/doc/user/helptag.html?tag=:vertical), [`:horizontal`](https://neovim.io/doc/user/helptag.html?tag=:horizontal), or [`:tab`](https://neovim.io/doc/user/helptag.html?tag=:tab))
+  to force output in a particular type of split. Default split direction is
+  controlled by `command.split` in [`MiniGit.config`](mini-git.qmd#minigit.config).
+
+  Use [`:silent`](https://neovim.io/doc/user/helptag.html?tag=:silent) command modifier to not show any output.
+
+  Errors and warnings are always shown as notifications.
+
+  See [`MiniGit-examples`](mini-git.qmd#minigit-examples) for the example of tweaking command output.
+
+
+- Editor for tasks that require interactive user input (like `:Git commit` or
+  `:Git rebase --interactive`) is opened inside current session in a separate
+  split. Make modifications as in regular buffer, [`:write`](https://neovim.io/doc/user/helptag.html?tag=:write) changes followed by
+  [`:close`](https://neovim.io/doc/user/helptag.html?tag=:close) / [`:quit`](https://neovim.io/doc/user/helptag.html?tag=:quit) for Git CLI command to resume.
+
+Examples of usage:
+
+- `:Git log --oneline` - show compact log of current repository.
+
+- `:vert Git blame -- %` - show latest commits per line in vertical split.
+
+- `:Git help rebase` - show help page for `rebase` subcommand.
+
+- `:Git -C <cwd> status` - execute `git status` inside [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+
+There is also a context aware completion which can be invoked with `<Tab>`:
+
+- If completed word starts with "-", options for the current Git subcommand
+  are shown. Like completion at `:Git log -` will suggest `-L`, `--oneline`, etc.
+
+- If there is an explicit " -- " to the cursor's left, incremental path
+  suggestions will be shown.
+
+- If there is no recognized Git subcommand yet, show list of subcommands.
+  Otherwise for some common subcommands list of its targets will be suggested:
+  like for `:Git branch` it will be list of branches, etc.
+
+Notes:
+
+- Paths are always treated as relative to command's execution directory
+  (file's repository root or [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory) if absent).
+
+- Don't use quotes for entries containing space, escape it with `\` directly.
+  Like `:Git commit -m Hello\ world` and not `:Git commit -m 'Hello world'`
+  (which treats `'Hello` and `world'` as separate arguments).
+
+#### Events {#git-events}
+
+
+<a name="minigit-command-events" href="mini-git.qmd#minigit-command-events"><b>MiniGit-command-events</b></a>
+
+There are several `User` events triggered during command execution:
+
+
+- `MiniGitCommandDone` - after command is done executing. For Lua callbacks it
+  provides a special `data` table with the following fields:
+
+    - <span class="help-syntax-keys">\<cmd_input\></span> `(table)` - structured data about executed command.
+      Has same structure as Lua function input in [`nvim_create_user_command()`](https://neovim.io/doc/user/helptag.html?tag=nvim_create_user_command\(\)).
+
+    - <span class="help-syntax-keys">\<cwd\></span> `(string)` - directory path inside which Git command was executed.
+
+    - <span class="help-syntax-keys">\<exit_code\></span> `(number)` - exit code of CLI process.
+
+    - <span class="help-syntax-keys">\<git_command\></span> `(table)` - array with arguments of full executed command.
+
+    - <span class="help-syntax-keys">\<git_subcommand\></span> `(string)` - detected Git subcommand (like "log", etc.).
+
+    - <span class="help-syntax-keys">\<stderr\></span> `(string)` - `stderr` process output.
+
+    - <span class="help-syntax-keys">\<stdout\></span> `(string)` - `stdout` process output.
+
+
+- `MiniGitCommandSplit` - after command showed its output in a split. Triggered
+  after `MiniGitCommandDone` and provides similar `data` table with extra fields:
+
+    - <span class="help-syntax-keys">\<win_source\></span> `(number)` - window identifier of "source" window (current at
+      the moment before command execution).
+
+    - <span class="help-syntax-keys">\<win_stdout\></span> `(number)` - window identifier of command output.
+
+---
+
+### setup() {#minigit.setup}
+
+<p align="center">`MiniGit.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+Besides general side effects (see [`mini.nvim`](mini-nvim.qmd#mini.nvim)), it also:
+
+- Sets up auto enabling in every normal buffer for an actual file on disk.
+
+- Creates [`:Git`](mini-git.qmd#git) command.
+
+#### Parameters {#minigit.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniGit.config`](mini-git.qmd#minigit.config).
+
+#### Usage {#minigit.setup-usage}
+
+
+
+  ```lua
+  require('mini.git').setup() -- use default config
+  -- OR
+  require('mini.git').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minigit.config}
+
+<p align="center">`MiniGit.config`</p>
+#### Defaults {#minigit.config-defaults}
+
+
+
+  ```lua
+  MiniGit.config = {
+    -- General CLI execution
+    job = {
+      -- Path to Git executable
+      git_executable = 'git',
+
+      -- Timeout (in ms) for each job before force quit
+      timeout = 30000,
+    },
+
+    -- Options for `:Git` command
+    command = {
+      -- Default split direction
+      split = 'auto',
+    },
+  }
+  ```
+
+#### Job {#minigit.config-job}
+
+
+`config.job` contains options for customizing CLI executions.
+
+`job.git_executable` defines a full path to Git executable. Default: "git".
+
+`job.timeout` is a duration (in ms) from job start until it is forced to stop.
+Default: 30000.
+
+#### Command {#minigit.config-command}
+
+
+`config.command` contains options for customizing [`:Git`](mini-git.qmd#git) command.
+
+`command.split` defines default split direction for [`:Git`](mini-git.qmd#git) command output. Can be
+one of "horizontal", "vertical", "tab", or "auto". Value "auto" uses [`:vertical`](https://neovim.io/doc/user/helptag.html?tag=:vertical)
+if only 'mini.git' buffers are shown in the tabpage and [`:tab`](https://neovim.io/doc/user/helptag.html?tag=:tab) otherwise.
+Default: "auto".
+
+---
+
+### show_at_cursor() {#minigit.show_at_cursor}
+
+<p align="center">`MiniGit.show_at_cursor`(<span class="help-syntax-special">{opts}</span>)</p>
+Show Git related data at cursor
+
+
+- If inside [`mini.deps`](mini-deps.qmd#mini.deps) confirmation buffer, show in split relevant commit data.
+
+- If there is a commit-like [`<cword>`](https://neovim.io/doc/user/helptag.html?tag=<cword>), show it in split.
+
+- If possible, show diff source via [`MiniGit.show_diff_source()`](mini-git.qmd#minigit.show_diff_source).
+
+- If possible, show range history via [`MiniGit.show_range_history()`](mini-git.qmd#minigit.show_range_history).
+
+- Otherwise throw an error.
+
+#### Parameters {#minigit.show_at_cursor-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible values:
+
+  - <span class="help-syntax-keys">\<split\></span> `(string)` - split direction. One of "horizontal", "vertical",
+    "tab", or "auto" (default). Value "auto" uses [`:vertical`](https://neovim.io/doc/user/helptag.html?tag=:vertical) if only 'mini.git'
+    buffers are shown in the tabpage and [`:tab`](https://neovim.io/doc/user/helptag.html?tag=:tab) otherwise.
+
+  - Fields appropriate for forwarding to other functions.
+
+---
+
+### show_diff_source() {#minigit.show_diff_source}
+
+<p align="center">`MiniGit.show_diff_source`(<span class="help-syntax-special">{opts}</span>)</p>
+Show diff source
+
+When buffer contains text formatted as unified patch (like after
+`:Git log --patch`, `:Git diff`, or [`MiniGit.show_range_history()`](mini-git.qmd#minigit.show_range_history)),
+show state of the file at the particular state. Target commit/state, path,
+and line number are deduced from cursor position.
+
+Notes:
+
+- Needs [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory) to be the Git root for relative paths to work.
+
+- Needs cursor to be inside hunk lines or on "---" / "+++" lines with paths.
+
+- Only basic forms of `:Git diff` output is supported: `:Git diff`,
+  `:Git diff --cached`, and `:Git diff <commit>`.
+
+#### Parameters {#minigit.show_diff_source-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible values:
+
+  - <span class="help-syntax-keys">\<split\></span> `(string)` - split direction. One of "horizontal", "vertical",
+    "tab", or "auto" (default). Value "auto" uses [`:vertical`](https://neovim.io/doc/user/helptag.html?tag=:vertical) if only 'mini.git'
+    buffers are shown in the tabpage and [`:tab`](https://neovim.io/doc/user/helptag.html?tag=:tab) otherwise.
+
+  - <span class="help-syntax-keys">\<target\></span> `(string)` - which file state to show. One of "before", "after",
+    "both" (both states in vertical split), "auto" (default). Value "auto"
+    shows "before" state if cursor line starts with "-", otherwise - "after".
+
+---
+
+### show_range_history() {#minigit.show_range_history}
+
+<p align="center">`MiniGit.show_range_history`(<span class="help-syntax-special">{opts}</span>)</p>
+Show range history
+
+Compute and show in split data about how particular line range in current
+buffer evolved through Git history. Essentially a `git log` with `-L` flag.
+
+Notes:
+
+- Works well with [`MiniGit.diff_foldexpr()`](mini-git.qmd#minigit.diff_foldexpr).
+
+- Does not work if there are uncommited changes, as there is no easy way to
+  compute effective range line numbers.
+
+#### Parameters {#minigit.show_range_history-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<line_start\></span> `(number)` - range start line.
+
+  - <span class="help-syntax-keys">\<line_end\></span> `(number)` - range end line.
+    If both <span class="help-syntax-keys">\<line_start\></span> and <span class="help-syntax-keys">\<line_end\></span> are not supplied, they default to
+    current line in Normal mode and visual selection in Visual mode.
+
+  - <span class="help-syntax-keys">\<log_args\></span> `(table)` - array of options to append to `git log` call.
+
+  - <span class="help-syntax-keys">\<split\></span> `(string)` - split direction. One of "horizontal", "vertical",
+    "tab", or "auto" (default). Value "auto" uses [`:vertical`](https://neovim.io/doc/user/helptag.html?tag=:vertical) if only 'mini.git'
+    buffers are shown in the tabpage and [`:tab`](https://neovim.io/doc/user/helptag.html?tag=:tab) otherwise.
+
+---
+
+### diff_foldexpr() {#minigit.diff_foldexpr}
+
+<p align="center">`MiniGit.diff_foldexpr`(<span class="help-syntax-special">{lnum}</span>)</p>
+Fold expression for Git logs
+
+Folds contents of hunks, file patches, and log entries in unified diff.
+Useful for filetypes "diff" (like after `:Git diff`) and "git" (like after
+`:Git log --patch` or `:Git show` for commit).
+Works well with [`MiniGit.show_range_history()`](mini-git.qmd#minigit.show_range_history).
+
+General idea of folding levels (use [`zr`](https://neovim.io/doc/user/helptag.html?tag=zr) and [`zm`](https://neovim.io/doc/user/helptag.html?tag=zm) to adjust interactively):
+
+- At level 0 there is one line per whole patch or log entry.
+
+- At level 1 there is one line per patched file.
+
+- At level 2 there is one line per hunk.
+
+- At level 3 there is no folds.
+
+For automated setup, set the following for "git" and "diff" filetypes (either
+inside [`FileType`](https://neovim.io/doc/user/helptag.html?tag=FileType) autocommand or [`ftplugin`](https://neovim.io/doc/user/helptag.html?tag=ftplugin)):
+
+  ```vim
+  setlocal foldmethod=expr foldexpr=v:lua.MiniGit.diff_foldexpr()
+  ```
+
+#### Parameters {#minigit.diff_foldexpr-parameters}
+
+
+
+<span class="help-syntax-special">{lnum}</span> `(number|nil)` Line number for which fold level is computed.
+  Default: [`v:lnum`](https://neovim.io/doc/user/helptag.html?tag=v:lnum).
+
+#### Return {#minigit.diff_foldexpr-return}
+
+
+`(number|string)` Line fold level. See [`fold-expr`](https://neovim.io/doc/user/helptag.html?tag=fold-expr).
+
+---
+
+### enable() {#minigit.enable}
+
+<p align="center">`MiniGit.enable`(<span class="help-syntax-special">{buf_id}</span>)</p>
+Enable Git tracking in a file buffer
+
+Tracking is done by reacting to changes in file content or file's repository
+in the form of keeping buffer data up to date. The data can be used via:
+
+- [`MiniGit.get_buf_data()`](mini-git.qmd#minigit.get_buf_data). See its help for a list of actually tracked data.
+
+- `vim.b.minigit_summary` (table) and `vim.b.minigit_summary_string` (string)
+  buffer-local variables which are more suitable for statusline.
+  `vim.b.minigit_summary_string` contains information about HEAD, file status,
+  and in progress action (see [`MiniGit.get_buf_data()`](mini-git.qmd#minigit.get_buf_data) for more details).
+  See [`MiniGit-examples`](mini-git.qmd#minigit-examples) for how it can be tweaked and used in statusline.
+
+Note: this function is called automatically for all new normal buffers.
+Use it explicitly if buffer was disabled.
+
+`User` event `MiniGitUpdated` is triggered whenever tracking data is updated.
+Note that not all data listed in [`MiniGit.get_buf_data()`](mini-git.qmd#minigit.get_buf_data) can be present (yet)
+at the point of event being triggered.
+
+#### Parameters {#minigit.enable-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number)` Target buffer identifier. Default: 0 for current buffer.
+
+---
+
+### disable() {#minigit.disable}
+
+<p align="center">`MiniGit.disable`(<span class="help-syntax-special">{buf_id}</span>)</p>
+Disable Git tracking in buffer
+
+#### Parameters {#minigit.disable-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number)` Target buffer identifier. Default: 0 for current buffer.
+
+---
+
+### toggle() {#minigit.toggle}
+
+<p align="center">`MiniGit.toggle`(<span class="help-syntax-special">{buf_id}</span>)</p>
+Toggle Git tracking in buffer
+
+Enable if disabled, disable if enabled.
+
+#### Parameters {#minigit.toggle-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number)` Target buffer identifier. Default: 0 for current buffer.
+
+---
+
+### get_buf_data() {#minigit.get_buf_data}
+
+<p align="center">`MiniGit.get_buf_data`(<span class="help-syntax-special">{buf_id}</span>)</p>
+Get buffer data
+
+#### Parameters {#minigit.get_buf_data-parameters}
+
+
+
+<span class="help-syntax-special">{buf_id}</span> `(number)` Target buffer identifier. Default: 0 for current buffer.
+
+#### Return {#minigit.get_buf_data-return}
+
+
+`(table|nil)` Table with buffer Git data or `nil` if buffer is not enabled.
+  If the file is not part of Git repo, table will be empty.
+  Table has the following fields:
+
+  - <span class="help-syntax-keys">\<repo\></span> `(string)` - full path to '.git' directory.
+
+  - <span class="help-syntax-keys">\<root\></span> `(string)` - full path to worktree root.
+
+  - <span class="help-syntax-keys">\<head\></span> `(string)` - full commit of current HEAD.
+
+  - <span class="help-syntax-keys">\<head_name\></span> `(string)` - short name of current HEAD (like "master").
+    For detached HEAD it is "HEAD".
+
+  - <span class="help-syntax-keys">\<status\></span> `(string)` - two character file status as returned by `git status`.
+
+  - <span class="help-syntax-keys">\<in_progress\></span> `(string)` - name of action(s) currently in progress
+    (bisect, merge, etc.). Can be a combination of those separated by ",".
+

@@ -1,0 +1,777 @@
+---
+title: "mini.deps documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.deps" href="mini-deps.qmd#mini.deps"><b>mini.deps</b></a> Plugin manager
+
+MIT License Copyright (c) 2024 Evgeni Chasnovski
+
+---
+
+### Module {#minideps}
+
+Features:
+
+
+- Manage plugins utilizing Git and built-in [`packages`](https://neovim.io/doc/user/helptag.html?tag=packages) with these actions:
+
+    - Add plugin to current session, download if absent. See [`MiniDeps.add()`](mini-deps.qmd#minideps.add).
+
+    - Update with/without confirm, with/without parallel download of new data.
+      See [`MiniDeps.update()`](mini-deps.qmd#minideps.update).
+
+    - Delete unused plugins with/without confirm. See [`MiniDeps.clean()`](mini-deps.qmd#minideps.clean).
+
+    - Get / set / save / load snapshot. See `MiniDeps.snap_*()` functions.
+
+    All main actions are available both as Lua functions and user commands
+    (see [`MiniDeps-commands`](mini-deps.qmd#minideps-commands)).
+
+
+- Minimal yet flexible plugin [`MiniDeps-plugin-specification`](mini-deps.qmd#minideps-plugin-specification):
+
+    - Plugin source.
+
+    - Name of target plugin directory.
+
+    - Checkout target: branch, commit, tag, etc.
+
+    - Monitor branch to track updates without checking out.
+
+    - Dependencies to be set up prior to the target plugin.
+
+    - Hooks to call before/after plugin is created/changed.
+
+
+- Helpers implementing two-stage startup: [`MiniDeps.now()`](mini-deps.qmd#minideps.now) and [`MiniDeps.later()`](mini-deps.qmd#minideps.later).
+  See [`MiniDeps-overview`](mini-deps.qmd#minideps-overview) for how to implement basic lazy loading with them.
+
+What it doesn't do:
+
+
+- Manage plugins which are developed without Git. The suggested approach is
+  to create a separate package (see [`packages`](https://neovim.io/doc/user/helptag.html?tag=packages)).
+
+
+- Provide ways to completely remove or update plugin's functionality in
+  current session. Although this is partially doable, it can not be done
+  in full (yet) because plugins can have untraceable side effects
+  (autocmmands, mappings, etc.).
+  The suggested approach is to restart Nvim.
+
+Sources with more details:
+
+- [`MiniDeps-overview`](mini-deps.qmd#minideps-overview)
+
+- [`MiniDeps-plugin-specification`](mini-deps.qmd#minideps-plugin-specification)
+
+- [`MiniDeps-commands`](mini-deps.qmd#minideps-commands)
+
+#### Dependencies {#minideps-dependencies}
+
+
+For most of its functionality this plugin relies on `git` CLI tool.
+See https://git-scm.com/ for more information about how to install it.
+Actual knowledge of Git is not required but helpful.
+
+#### Setup {#minideps-setup}
+
+
+This module needs a setup with `require('mini.deps').setup({})` (replace
+`{}` with your `config` table). It will create global Lua table `MiniDeps`
+which you can use for scripting or manually (with `:lua MiniDeps.*`).
+
+See [`MiniDeps.config`](mini-deps.qmd#minideps.config) for `config` structure and default values.
+
+You can override runtime config settings locally to buffer inside
+`vim.b.minideps_config` which should have same structure as
+`MiniDeps.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+
+#### Comparisons {#minideps-comparisons}
+
+
+
+- [folke/lazy.nvim](https://github.com/folke/lazy.nvim):
+
+    - More feature-rich and complex.
+
+    - Uses table specification with dedicated functions to add plugins,
+      while this module uses direct function call approach
+      (calling [`MiniDeps.add()`](mini-deps.qmd#minideps.add) ensures that plugin is usable).
+
+    - Uses version tags by default, while this module is more designed towards
+      tracking branches. Using tags is possible too (see [`MiniDeps-overview`](mini-deps.qmd#minideps-overview)).
+
+
+- [savq/paq-nvim](https://github.com/savq/paq-nvim):
+
+    - Overall less feature-rich than this module (by design).
+
+    - Uses array of plugin specifications inside `setup()` call to define which
+      plugins should be installed. Requires separate `:PaqInstall` call to
+      actually install them. This module ensures installation on first load.
+
+
+- [junegunn/vim-plug](https://github.com/junegunn/vim-plug):
+
+    - Written in Vimscript, while this module is in Lua.
+
+    - Similar approach to defining and installing plugins as 'savq/paq-nvim'.
+
+    - Has basic lazy-loading built-in, while this module does not (by design).
+
+#### Highlight groups {#minideps-highlightgroups}
+
+
+Highlight groups are used inside confirmation buffers after
+default [`MiniDeps.update()`](mini-deps.qmd#minideps.update) and [`MiniDeps.clean()`](mini-deps.qmd#minideps.clean).
+
+
+- `MiniDepsChangeAdded`   - added change (commit) during update.
+
+- `MiniDepsChangeRemoved` - removed change (commit) during update.
+
+- `MiniDepsHint`          - various hints.
+
+- `MiniDepsInfo`          - various information.
+
+- `MiniDepsMsgBreaking`   - message for (conventional commit) breaking change.
+
+- `MiniDepsPlaceholder`   - placeholder when there is no valuable information.
+
+- `MiniDepsTitle`         - various titles.
+
+- `MiniDepsTitleError`    - title when plugin had errors during update.
+
+- `MiniDepsTitleSame`     - title when plugin has no changes to update.
+
+- `MiniDepsTitleUpdate`   - title when plugin has changes to update.
+
+To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+
+---
+
+### Overview {#minideps-overview}
+
+#### Directory structure {#minideps-overview-directorystructure}
+
+
+This module uses built-in [`packages`](https://neovim.io/doc/user/helptag.html?tag=packages) to make plugins usable in current session.
+It works with "pack/deps" package inside `config.path.package` directory.
+
+By default "opt" subdirectory is used to install optional plugins which are
+loaded on demand with [`MiniDeps.add()`](mini-deps.qmd#minideps.add).
+Non-optional plugins in "start" subdirectory are supported but only if moved
+there manually after initial install. Use it if you know what you are doing.
+
+#### Add plugin {#minideps-overview-addplugin}
+
+
+Use [`MiniDeps.add()`](mini-deps.qmd#minideps.add) to add plugin to current session. Supply plugin's URL
+source as a string or [`MiniDeps-plugin-specification`](mini-deps.qmd#minideps-plugin-specification) in general. If plugin is
+not present in "pack/deps" package, it will be created (a.k.a. installed)
+before processing anything else.
+
+The recommended way of adding a plugin is by calling [`MiniDeps.add()`](mini-deps.qmd#minideps.add) in the
+[`init.lua`](https://neovim.io/doc/user/helptag.html?tag=init.lua) file (make sure [`MiniDeps.setup()`](mini-deps.qmd#minideps.setup) is called prior):
+
+  ```lua
+  local add = MiniDeps.add
+
+  -- Add to current session (install if absent)
+  add({
+    source = 'neovim/nvim-lspconfig',
+    -- Supply dependencies near target plugin
+    depends = { 'williamboman/mason.nvim' },
+  })
+
+  add({
+    source = 'nvim-treesitter/nvim-treesitter',
+    -- Use 'master' while monitoring updates in 'main'
+    checkout = 'master',
+    monitor = 'main',
+    -- Perform action after every checkout
+    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+  })
+  -- Possible to immediately execute code which depends on the added plugin
+  require('nvim-treesitter.configs').setup({
+    ensure_installed = { 'lua', 'vimdoc' },
+    highlight = { enable = true },
+  })
+  ```
+
+NOTE:
+
+- To increase performance, `add()` only ensures presence on disk and
+  nothing else. In particular, it doesn't ensure `opts.checkout` state.
+  Update or modify plugin state explicitly (see later sections).
+
+#### Lazy loading {#minideps-overview-lazyloading}
+
+
+Any lazy-loading is assumed to be done manually by calling [`MiniDeps.add()`](mini-deps.qmd#minideps.add)
+at appropriate time. This module provides helpers implementing special safe
+two-stage loading:
+
+- [`MiniDeps.now()`](mini-deps.qmd#minideps.now) safely executes code immediately. Use it to load plugins
+  with UI necessary to make initial screen draw.
+
+- [`MiniDeps.later()`](mini-deps.qmd#minideps.later) schedules code to be safely executed later, preserving
+  order. Use it (with caution) for everything else which doesn't need
+  precisely timed effect, as it will be executed some time soon on one of
+  the next event loops.
+
+  ```lua
+  local now, later = MiniDeps.now, MiniDeps.later
+
+  -- Safely execute immediately
+  now(function() vim.cmd('colorscheme miniwinter') end)
+  now(function() require('mini.statusline').setup() end)
+
+  -- Safely execute later
+  later(function() require('mini.pick').setup() end)
+  ```
+
+#### Update {#minideps-overview-update}
+
+
+To update plugins from current session with new data from their sources,
+use [`:DepsUpdate`](mini-deps.qmd#depsupdate). This will download updates (utilizing multiple cores) and
+show confirmation buffer. Follow instructions at its top to finish an update.
+
+NOTE: This updates plugins on disk which most likely won't affect current
+session. Restart Nvim to have them properly loaded.
+
+#### Modify {#minideps-overview-modify}
+
+
+To change plugin's specification (like set different `checkout`, etc.):
+
+- Update corresponding [`MiniDeps.add()`](mini-deps.qmd#minideps.add) call.
+
+- Run `:DepsUpdateOffline <plugin_name>`.
+
+- Review changes and confirm.
+
+- Restart Nvim.
+
+NOTE: if `add()` prior used a single source string, make sure to convert
+its argument to `{ source = '<previous_argument>', checkout = '<state>'}`
+
+#### Snapshots {#minideps-overview-snapshots}
+
+
+Use [`:DepsSnapSave`](mini-deps.qmd#depssnapsave) to save state of all plugins from current session into
+a snapshot file (see `config.path.snapshot`).
+
+Use [`:DepsSnapLoad`](mini-deps.qmd#depssnapload) to load snapshot. This will change (without confirmation)
+state on disk. Plugins present in both snapshot file and current session
+will be affected. Restart Nvim to see the effect.
+
+NOTE: loading snapshot does not change plugin's specification defined inside
+[`MiniDeps.add()`](mini-deps.qmd#minideps.add) call. This means that next update might change plugin's state.
+To make it permanent, freeze plugin in target state manually.
+
+#### Freeze {#minideps-overview-freeze}
+
+
+Modify plugin's specification to have `checkout` pointing to a static
+target: tag, state (commit hash), or 'HEAD' (to freeze in current state).
+
+Frozen plugins will not receive updates. You can monitor any new changes from
+its source by "subscribing" to `monitor` branch which will be shown inside
+confirmation buffer after [`:DepsUpdate`](mini-deps.qmd#depsupdate).
+
+Example: use `checkout = 'v0.10.0'` to freeze plugin at tag "v0.10.0" while
+monitoring new versions in the log from `monitor` (usually default) branch.
+
+#### Rollback {#minideps-overview-rollback}
+
+
+To roll back after an unfortunate update:
+
+- Get identifier of latest working state:
+
+    - Use [`:DepsShowLog`](mini-deps.qmd#depsshowlog) to see update log, look for plugin's name, and copy
+      identifier listed as "State before:".
+
+    - See previously saved snapshot file for plugin's name and copy
+      identifier next to it.
+
+- Freeze plugin at that state while monitoring appropriate branch.
+  Revert to previous shape of [`MiniDeps.add()`](mini-deps.qmd#minideps.add) call to resume updating.
+
+#### Remove {#minideps-overview-remove}
+
+
+
+- Make sure that target plugin is not registered in current session.
+  Usually it means removing corresponding [`MiniDeps.add()`](mini-deps.qmd#minideps.add) call.
+
+- Run [`:DepsClean`](mini-deps.qmd#depsclean). This will show confirmation buffer with a list of plugins to
+  be deleted from disk. Follow instructions at its top to finish cleaning.
+
+Alternatively, manually delete plugin's directory from "pack/deps" package.
+
+---
+
+### Plugin specification {#minideps-plugin-specification}
+
+Each plugin dependency is managed based on its specification (a.k.a. "spec").
+See [`MiniDeps-overview`](mini-deps.qmd#minideps-overview) for some examples.
+
+Specification can be a single string which is inferred as:
+
+- Plugin <span class="help-syntax-keys">\<name\></span> if it doesn't contain "/".
+
+- Plugin <span class="help-syntax-keys">\<source\></span> otherwise.
+
+Primarily, specification is a table with the following fields:
+
+
+- <span class="help-syntax-keys">\<source\></span> `(string|nil)` - field with URI of plugin source used during creation
+  or update. Can be anything allowed by `git clone`.
+  Default: `nil` to rely on source set up during install.
+  Notes:
+
+    - It is required for creating plugin, but can be omitted afterwards.
+
+    - As the most common case, URI of the format "user/repo" (if it contains
+      valid characters) is transformed into "https://github.com/user/repo".
+
+
+- <span class="help-syntax-keys">\<name\></span> `(string|nil)` - directory basename of where to put plugin source.
+  It is put in "pack/deps/opt" subdirectory of `config.path.package`.
+  Default: basename of <span class="help-syntax-keys">\<source\></span> if it is present, otherwise should be
+  provided explicitly.
+
+
+- <span class="help-syntax-keys">\<checkout\></span> `(string|nil)` - checkout target used to set state during update.
+  Can be anything supported by `git checkout` - branch, commit, tag, etc.
+  Default: `nil` for default branch (usually "main" or "master").
+
+
+- <span class="help-syntax-keys">\<monitor\></span> `(string|nil)` - monitor branch used to track new changes from
+  different target than `checkout`. Should be a name of present Git branch.
+  Default: `nil` for default branch (usually "main" or "master").
+
+
+- <span class="help-syntax-keys">\<depends\></span> `(table|nil)` - array of plugin specifications (strings or tables)
+  to be added prior to the target.
+  Default: `nil` for no dependencies.
+
+
+- <span class="help-syntax-keys">\<hooks\></span> `(table|nil)` - table with callable hooks to call on certain events.
+  Possible hook names:
+
+    - <span class="help-syntax-keys">\<pre_install\></span>   - before creating plugin directory.
+
+    - <span class="help-syntax-keys">\<post_install\></span>  - after  creating plugin directory (before [`:packadd`](https://neovim.io/doc/user/helptag.html?tag=:packadd)).
+
+    - <span class="help-syntax-keys">\<pre_checkout\></span>  - before making change in existing plugin.
+
+    - <span class="help-syntax-keys">\<post_checkout\></span> - after  making change in existing plugin.
+  Each hook is executed with the following table as an argument:
+
+    - <span class="help-syntax-keys">\<path\></span> (`string`)   - absolute path to plugin's directory
+      (might not yet exist on disk).
+
+    - <span class="help-syntax-keys">\<source\></span> (`string`) - resolved <span class="help-syntax-keys">\<source\></span> from spec.
+
+    - <span class="help-syntax-keys">\<name\></span> (`string`)   - resolved <span class="help-syntax-keys">\<name\></span> from spec.
+  Default: `nil` for no hooks.
+
+---
+
+### Commands {#minideps-commands}
+
+Note: Most commands have a Lua function alternative which they rely on.
+Like [`:DepsAdd`](mini-deps.qmd#depsadd) uses [`MiniDeps.add()`](mini-deps.qmd#minideps.add), etc.
+
+#### :DepsAdd {#minideps-commands-depsadd}
+
+
+<a name="depsadd" href="mini-deps.qmd#depsadd"><b>:DepsAdd</b></a> with `user/repo` argument makes plugin https://github.com/user/repo
+available in the current session (also creates it, if it is not present).
+`:DepsAdd name` adds already installed plugin `name` to current session.
+Accepts only single string compatible with [`MiniDeps-plugin-specification`](mini-deps.qmd#minideps-plugin-specification).
+To add plugin in every session, put [`MiniDeps.add()`](mini-deps.qmd#minideps.add) in [`init.lua`](https://neovim.io/doc/user/helptag.html?tag=init.lua).
+
+#### :DepsUpdate {#minideps-commands-depsupdate}
+
+
+<a name="depsupdate" href="mini-deps.qmd#depsupdate"><b>:DepsUpdate</b></a> synchronizes plugins with their session specifications and
+updates them with new changes from sources. It shows confirmation buffer in
+a separate [`tabpage`](https://neovim.io/doc/user/helptag.html?tag=tabpage) with information about an upcoming update to review
+and (selectively) apply. See [`MiniDeps.update()`](mini-deps.qmd#minideps.update) for more info.
+
+`:DepsUpdate name` updates plugin `name`. Any number of names is allowed.
+
+`:DepsUpdate!` and `:DepsUpdate! name` update without confirmation.
+You can see what was done in the log file afterwards ([`:DepsShowLog`](mini-deps.qmd#depsshowlog)).
+
+#### :DepsUpdateOffline {#minideps-commands-depsupdateoffline}
+
+
+<a name="depsupdateoffline" href="mini-deps.qmd#depsupdateoffline"><b>:DepsUpdateOffline</b></a> is same as [`:DepsUpdate`](mini-deps.qmd#depsupdate) but doesn't download new updates
+from sources. Useful to only synchronize plugin specification in code and
+on disk without unnecessary downloads.
+
+#### :DepsShowLog {#minideps-commands-depsshowlog}
+
+
+<a name="depsshowlog" href="mini-deps.qmd#depsshowlog"><b>:DepsShowLog</b></a> opens log file to review.
+
+#### :DepsClean {#minideps-commands-depsclean}
+
+
+<a name="depsclean" href="mini-deps.qmd#depsclean"><b>:DepsClean</b></a> deletes plugins from disk not added to current session. It shows
+confirmation buffer in a separate [`tabpage`](https://neovim.io/doc/user/helptag.html?tag=tabpage) with information about an upcoming
+deletes to review and (selectively) apply. See [`MiniDeps.clean()`](mini-deps.qmd#minideps.clean) for more info.
+
+`:DepsClean!` deletes plugins without confirmation.
+
+#### :DepsSnapSave {#minideps-commands-depssnapsave}
+
+
+<a name="depssnapsave" href="mini-deps.qmd#depssnapsave"><b>:DepsSnapSave</b></a> creates snapshot file in default location (see [`MiniDeps.config`](mini-deps.qmd#minideps.config)).
+`:DepsSnapSave path` creates snapshot file at `path`.
+
+#### :DepsSnapLoad {#minideps-commands-depssnapload}
+
+
+<a name="depssnapload" href="mini-deps.qmd#depssnapload"><b>:DepsSnapLoad</b></a> loads snapshot file from default location (see [`MiniDeps.config`](mini-deps.qmd#minideps.config)).
+`:DepsSnapLoad path` loads snapshot file at `path`.
+
+---
+
+### setup() {#minideps.setup}
+
+<p align="center">`MiniDeps.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+Calling this function creates user commands described in [`MiniDeps-commands`](mini-deps.qmd#minideps-commands).
+
+#### Parameters {#minideps.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniDeps.config`](mini-deps.qmd#minideps.config).
+
+#### Usage {#minideps.setup-usage}
+
+
+
+  ```lua
+  require('mini.deps').setup() -- use default config
+  -- OR
+  require('mini.deps').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minideps.config}
+
+<p align="center">`MiniDeps.config`</p>
+#### Defaults {#minideps.config-defaults}
+
+
+
+  ```lua
+  MiniDeps.config = {
+    -- Parameters of CLI jobs
+    job = {
+      -- Number of parallel threads to use. Default: 80% of all available.
+      n_threads = nil,
+
+      -- Timeout (in ms) for each job before force quit
+      timeout = 30000,
+    },
+
+    -- Paths describing where to store data
+    path = {
+      -- Directory for built-in package.
+      -- All plugins are actually stored in 'pack/deps' subdirectory.
+      package = vim.fn.stdpath('data') .. '/site',
+
+      -- Default file path for a snapshot
+      snapshot = vim.fn.stdpath('config') .. '/mini-deps-snap',
+
+      -- Log file
+      log = vim.fn.stdpath('log') .. '/mini-deps.log'
+    },
+
+    -- Whether to disable showing non-error feedback
+    silent = false,
+  }
+  ```
+
+#### Job {#minideps.config-job}
+
+
+`config.job` defines how CLI jobs are run.
+
+`job.n_threads` is a maximum number of parallel jobs used when needed.
+Default: 80% of all available.
+
+`job.timeout` is a duration (in ms) from job start until it is forced to stop.
+Default: 30000.
+
+#### Paths {#minideps.config-paths}
+
+
+`config.path` defines main paths used in this module.
+
+`path.package` is a string with path inside which "pack/deps" package is stored
+(see [`MiniDeps-overview`](mini-deps.qmd#minideps-overview)).
+Default: "site" subdirectory of "data" standard path (see [`stdpath()`](https://neovim.io/doc/user/helptag.html?tag=stdpath\(\))).
+
+`path.snapshot` is a string with default path for snapshot.
+See [`:DepsSnapSave`](mini-deps.qmd#depssnapsave) and [`:DepsSnapLoad`](mini-deps.qmd#depssnapload).
+Default: "mini-deps-snap" file in "config" standard path (see [`stdpath()`](https://neovim.io/doc/user/helptag.html?tag=stdpath\(\))).
+
+`path.log` is a string with path containing log of operations done by module.
+In particular, it contains all changes done after making an update.
+Default: "mini-deps.log" file in "log" standard path (see [`stdpath()`](https://neovim.io/doc/user/helptag.html?tag=stdpath\(\))).
+
+#### Silent {#minideps.config-silent}
+
+
+`config.silent` is a boolean controlling whether to suppress non-error feedback.
+Default: `false`.
+
+---
+
+### add() {#minideps.add}
+
+<p align="center">`MiniDeps.add`(<span class="help-syntax-special">{spec}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Add plugin to current session
+
+
+- Process specification by expanding dependencies into single spec array.
+
+- Ensure plugin is present on disk along with its dependencies by installing
+  (in parallel) absent ones:
+
+    - Execute `opts.hooks.pre_install`.
+
+    - Use `git clone` to clone plugin from its source URI into "pack/deps/opt".
+
+    - Set state according to `opts.checkout`.
+
+    - Execute `opts.hooks.post_install`.
+
+- Register spec(s) in current session.
+
+- Make sure plugin(s) can be used in current session (see [`:packadd`](https://neovim.io/doc/user/helptag.html?tag=:packadd)).
+
+- If not during startup and is needed, source all "after/plugin/" scripts.
+
+Notes:
+
+- Presence of plugin is checked by its name which is the same as the name
+  of its directory inside "pack/deps" package (see [`MiniDeps-overview`](mini-deps.qmd#minideps-overview)).
+
+- To increase performance, this function only ensures presence on disk and
+  nothing else. In particular, it doesn't ensure `opts.checkout` state.
+  Use [`MiniDeps.update()`](mini-deps.qmd#minideps.update) or [`:DepsUpdateOffline`](mini-deps.qmd#depsupdateoffline) explicitly.
+
+- Adding plugin several times updates its session specs.
+
+#### Parameters {#minideps.add-parameters}
+
+
+
+<span class="help-syntax-special">{spec}</span> `(table|string)` Plugin specification. See [`MiniDeps-plugin-specification`](mini-deps.qmd#minideps-plugin-specification).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<bang\></span> `(boolean)` - whether to use `:packadd!` instead of plain [`:packadd`](https://neovim.io/doc/user/helptag.html?tag=:packadd).
+
+---
+
+### update() {#minideps.update}
+
+<p align="center">`MiniDeps.update`(<span class="help-syntax-special">{names}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Update plugins
+
+
+- Synchronize specs with state of plugins on disk (set `source`, etc.).
+
+- Infer data before downloading updates.
+
+- If not offline, download updates (in parallel).
+
+- Infer data after downloading updates.
+
+- If update is forced, apply all changes immediately while updating log
+  file (at `config.path.log`; use [`:DepsShowLog`](mini-deps.qmd#depsshowlog) to review).
+  Otherwise show confirmation buffer with instructions on how to proceed.
+
+#### Parameters {#minideps.update-parameters}
+
+
+
+<span class="help-syntax-special">{names}</span> `(table|nil)` Array of plugin names to update.
+ Default: all plugins from current session (see [`MiniDeps.get_session()`](mini-deps.qmd#minideps.get_session)).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<force\></span> `(boolean)` - whether to force update without confirmation.
+    Default: `false`.
+
+  - <span class="help-syntax-keys">\<offline\></span> `(boolean)` - whether to skip downloading updates from sources.
+    Default: `false`.
+
+---
+
+### clean() {#minideps.clean}
+
+<p align="center">`MiniDeps.clean`(<span class="help-syntax-special">{opts}</span>)</p>
+Clean plugins
+
+
+- Compute absent plugins: not registered in current session
+  (see [`MiniDeps.get_session()`](mini-deps.qmd#minideps.get_session)) but present on disk in dedicated "pack/deps"
+  package (inside `config.path.package`).
+
+- If cleaning is forced, delete all absent plugins from disk.
+  Otherwise show confirmation buffer with instructions on how to proceed.
+
+#### Parameters {#minideps.clean-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<force\></span> `(boolean)` - whether to force delete without confirmation.
+    Default: `false`.
+
+---
+
+### snap_get() {#minideps.snap_get}
+
+<p align="center">`MiniDeps.snap_get`()</p>
+Compute snapshot
+
+#### Return {#minideps.snap_get-return}
+
+
+`(table)` A snapshot table: plugin names as keys and state as values.
+  All plugins in current session are processed.
+
+---
+
+### snap_set() {#minideps.snap_set}
+
+<p align="center">`MiniDeps.snap_set`(<span class="help-syntax-special">{snap}</span>)</p>
+Apply snapshot
+
+Notes:
+
+- Checking out states from snapshot does not update session plugin spec
+  (`checkout` field in particular). Among others, it means that next call
+  to [`MiniDeps.update()`](mini-deps.qmd#minideps.update) might override the result of this function.
+  To make changes permanent, set `checkout` spec field to state from snapshot.
+
+#### Parameters {#minideps.snap_set-parameters}
+
+
+
+<span class="help-syntax-special">{snap}</span> `(table)` A snapshot table: plugin names as keys and state as values.
+  Only plugins in current session are processed.
+
+---
+
+### snap_save() {#minideps.snap_save}
+
+<p align="center">`MiniDeps.snap_save`(<span class="help-syntax-special">{path}</span>)</p>
+Save snapshot
+
+#### Parameters {#minideps.snap_save-parameters}
+
+
+
+<span class="help-syntax-special">{path}</span> `(string|nil)` A valid path on disk where to write snapshot computed
+  with [`MiniDeps.snap_get()`](mini-deps.qmd#minideps.snap_get).
+  Default: `config.path.snapshot`.
+
+---
+
+### snap_load() {#minideps.snap_load}
+
+<p align="center">`MiniDeps.snap_load`(<span class="help-syntax-special">{path}</span>)</p>
+Load snapshot file
+
+Notes from [`MiniDeps.snap_set()`](mini-deps.qmd#minideps.snap_set) also apply here.
+
+#### Parameters {#minideps.snap_load-parameters}
+
+
+
+<span class="help-syntax-special">{path}</span> `(string|nil)` A valid path on disk from where to read snapshot.
+  Default: `config.path.snapshot`.
+
+---
+
+### get_session() {#minideps.get_session}
+
+<p align="center">`MiniDeps.get_session`()</p>
+Get session
+
+Plugin is registered in current session if it either:
+
+- Was added with [`MiniDeps.add()`](mini-deps.qmd#minideps.add) (preserving order of calls).
+
+- Is a "start" plugin and present in 'runtimpath'.
+
+#### Return {#minideps.get_session-return}
+
+
+`(table)` Array with specifications of all plugins registered in
+  current session.
+
+---
+
+### now() {#minideps.now}
+
+<p align="center">`MiniDeps.now`(<span class="help-syntax-special">{f}</span>)</p>
+Execute function now
+
+Safely execute function immediately. Errors are shown with [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\))
+later, after all queued functions (including with [`MiniDeps.later()`](mini-deps.qmd#minideps.later))
+are executed, thus not blocking execution of next code in file.
+
+Assumed to be used as a first step during two-stage config execution to
+load plugins immediately during startup. See [`MiniDeps-overview`](mini-deps.qmd#minideps-overview).
+
+#### Parameters {#minideps.now-parameters}
+
+
+
+<span class="help-syntax-special">{f}</span> `(function)` Callable to execute.
+
+---
+
+### later() {#minideps.later}
+
+<p align="center">`MiniDeps.later`(<span class="help-syntax-special">{f}</span>)</p>
+Execute function later
+
+Queue function to be safely executed later without blocking execution of
+next code in file. All queued functions are guaranteed to be executed in
+order they were added.
+Errors are shown with [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) after all queued functions are executed.
+
+Assumed to be used as a second step during two-stage config execution to
+load plugins "lazily" after startup. See [`MiniDeps-overview`](mini-deps.qmd#minideps-overview).
+
+#### Parameters {#minideps.later-parameters}
+
+
+
+<span class="help-syntax-special">{f}</span> `(function)` Callable to execute.
+

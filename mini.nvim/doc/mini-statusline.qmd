@@ -1,0 +1,500 @@
+---
+title: "mini.statusline documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.statusline" href="mini-statusline.qmd#mini.statusline"><b>mini.statusline</b></a> Statusline
+
+MIT License Copyright (c) 2021 Evgeni Chasnovski
+
+---
+
+### Module {#ministatusline}
+
+Features:
+
+- Define own custom statusline structure for active and inactive windows.
+  This is done with a function which should return string appropriate for
+  [`'statusline'`](https://neovim.io/doc/user/helptag.html?tag='statusline'). Its code should be similar to default one with structure:
+
+    - Compute string data for every section you want to be displayed.
+
+    - Combine them in groups with [`MiniStatusline.combine_groups()`](mini-statusline.qmd#ministatusline.combine_groups).
+
+
+- Built-in active mode indicator with colors.
+
+
+- Sections can hide information when window is too narrow (specific window
+  width is configurable per section).
+
+#### Dependencies {#ministatusline-dependencies}
+
+
+Suggested dependencies (provide extra functionality, will work without them):
+
+
+- Nerd font (to support extra icons).
+
+
+- Enabled [`mini.icons`](mini-icons.qmd#mini.icons) module for [`MiniStatusline.section_fileinfo()`](mini-statusline.qmd#ministatusline.section_fileinfo).
+  Falls back to using 'nvim-tree/nvim-web-devicons' plugin or shows nothing.
+
+
+- Enabled [`mini.git`](mini-git.qmd#mini.git) module for [`MiniStatusline.section_git()`](mini-statusline.qmd#ministatusline.section_git).
+  Falls back to using 'lewis6991/gitsigns.nvim' plugin or shows nothing.
+
+
+- Enabled [`mini.diff`](mini-diff.qmd#mini.diff) module for [`MiniStatusline.section_diff()`](mini-statusline.qmd#ministatusline.section_diff).
+  Falls back to using 'lewis6991/gitsigns.nvim' plugin or shows nothing.
+
+#### Setup {#ministatusline-setup}
+
+
+This module needs a setup with `require('mini.statusline').setup({})`
+(replace `{}` with your `config` table). It will create global Lua table
+`MiniStatusline` which you can use for scripting or manually (with
+`:lua MiniStatusline.*`).
+
+See [`MiniStatusline.config`](mini-statusline.qmd#ministatusline.config) for `config` structure and default values. For
+some content examples, see [`MiniStatusline-example-content`](mini-statusline.qmd#ministatusline-example-content).
+
+You can override runtime config settings locally to buffer inside
+`vim.b.ministatusline_config` which should have same structure as
+`MiniStatusline.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+
+#### Highlight groups {#ministatusline-highlightgroups}
+
+
+Highlight depending on mode (second [`MiniStatusline.section_mode()`](mini-statusline.qmd#ministatusline.section_mode) output):
+
+- `MiniStatuslineModeNormal` - Normal mode.
+
+- `MiniStatuslineModeInsert` - Insert mode.
+
+- `MiniStatuslineModeVisual` - Visual mode.
+
+- `MiniStatuslineModeReplace` - Replace mode.
+
+- `MiniStatuslineModeCommand` - Command mode.
+
+- `MiniStatuslineModeOther` - other modes (like Terminal, etc.).
+
+Highlight used in default statusline:
+
+- `MiniStatuslineDevinfo` - for "dev info" group
+  ([`MiniStatusline.section_git()`](mini-statusline.qmd#ministatusline.section_git) and [`MiniStatusline.section_diagnostics()`](mini-statusline.qmd#ministatusline.section_diagnostics)).
+
+- `MiniStatuslineFilename` - for [`MiniStatusline.section_filename()`](mini-statusline.qmd#ministatusline.section_filename) section.
+
+- `MiniStatuslineFileinfo` - for [`MiniStatusline.section_fileinfo()`](mini-statusline.qmd#ministatusline.section_fileinfo) section.
+
+Other groups:
+
+- `MiniStatuslineInactive` - highliting in not focused window.
+
+To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+
+#### Disabling {#ministatusline-disabling}
+
+
+To disable (show empty statusline), set `vim.g.ministatusline_disable`
+(globally) or `vim.b.ministatusline_disable` (for a buffer) to `true`.
+Considering high number of different scenarios and customization
+intentions, writing exact rules for disabling module's functionality is
+left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+
+---
+
+### Example content {#ministatusline-example-content}
+
+Example content
+
+#### Default content {#ministatusline-example-content-defaultcontent}
+
+
+This function is used as default value for active content:
+
+  ```lua
+  function()
+    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+    local git           = MiniStatusline.section_git({ trunc_width = 40 })
+    local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
+    local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+    local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
+    local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+    local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+    local location      = MiniStatusline.section_location({ trunc_width = 75 })
+    local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
+
+    return MiniStatusline.combine_groups({
+      { hl = mode_hl,                  strings = { mode } },
+      { hl = 'MiniStatuslineDevinfo',  strings = { git, diff, diagnostics, lsp } },
+      '%<', -- Mark general truncate point
+      { hl = 'MiniStatuslineFilename', strings = { filename } },
+      '%=', -- End left alignment
+      { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+      { hl = mode_hl,                  strings = { search, location } },
+    })
+  end
+  ```
+
+#### Show boolean options {#ministatusline-example-content-showbooleanoptions}
+
+
+To compute section string for boolean option use variation of this code
+snippet inside content function (you can modify option itself, truncation
+width, short and long displayed names):
+
+  ```lua
+  local spell = vim.wo.spell and (MiniStatusline.is_truncated(120) and 'S' or 'SPELL') or ''
+  ```
+
+Here `x and y or z` is a common Lua way of doing ternary operator: if `x`
+is `true`-ish then return `y`, if not - return `z`.
+
+---
+
+### setup() {#ministatusline.setup}
+
+<p align="center">`MiniStatusline.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#ministatusline.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniStatusline.config`](mini-statusline.qmd#ministatusline.config).
+
+#### Usage {#ministatusline.setup-usage}
+
+
+
+  ```lua
+  require('mini.statusline').setup() -- use default config
+  -- OR
+  require('mini.statusline').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#ministatusline.config}
+
+<p align="center">`MiniStatusline.config`</p>
+#### Defaults {#ministatusline.config-defaults}
+
+
+
+  ```lua
+  MiniStatusline.config = {
+    -- Content of statusline as functions which return statusline string. See
+    -- `:h statusline` and code of default contents (used instead of `nil`).
+    content = {
+      -- Content for active window
+      active = nil,
+      -- Content for inactive window(s)
+      inactive = nil,
+    },
+
+    -- Whether to use icons by default
+    use_icons = true,
+  }
+  ```
+
+---
+
+### active() {#ministatusline.active}
+
+<p align="center">`MiniStatusline.active`()</p>
+Compute content for active window
+
+---
+
+### inactive() {#ministatusline.inactive}
+
+<p align="center">`MiniStatusline.inactive`()</p>
+Compute content for inactive window
+
+---
+
+### combine_groups() {#ministatusline.combine_groups}
+
+<p align="center">`MiniStatusline.combine_groups`(<span class="help-syntax-special">{groups}</span>)</p>
+Combine groups of sections
+
+Each group can be either a string or a table with fields `hl` (group's
+highlight group) and `strings` (strings representing sections).
+
+General idea of this function is as follows;
+
+- String group is used as is (useful for special strings like `%<` or `%=`).
+
+- Each table group has own highlighting in `hl` field (if missing, the
+  previous one is used) and string parts in `strings` field. Non-empty
+  strings from `strings` are separated by one space. Non-empty groups are
+  separated by two spaces (one for each highlighting).
+
+#### Parameters {#ministatusline.combine_groups-parameters}
+
+
+
+<span class="help-syntax-special">{groups}</span> `(table)` Array of groups.
+
+#### Return {#ministatusline.combine_groups-return}
+
+
+`(string)` String suitable for 'statusline'.
+
+---
+
+### is_truncated() {#ministatusline.is_truncated}
+
+<p align="center">`MiniStatusline.is_truncated`(<span class="help-syntax-special">{trunc_width}</span>)</p>
+Decide whether to truncate
+
+This basically computes window width and compares it to `trunc_width`: if
+window is smaller then truncate; otherwise don't. Don't truncate by
+default.
+
+Use this to manually decide if section needs truncation or not.
+
+#### Parameters {#ministatusline.is_truncated-parameters}
+
+
+
+<span class="help-syntax-special">{trunc_width}</span> `(number|nil)` Truncation width. If `nil`, output is `false`.
+
+#### Return {#ministatusline.is_truncated-return}
+
+
+`(boolean)` Whether to truncate.
+
+---
+
+### section_mode() {#ministatusline.section_mode}
+
+<p align="center">`MiniStatusline.section_mode`(<span class="help-syntax-special">{args}</span>)</p>
+Section for Vim [`mode()`](https://neovim.io/doc/user/helptag.html?tag=mode\(\))
+
+Short output is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_mode-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments.
+
+#### Return {#ministatusline.section_mode-return}
+
+
+`(...)` Section string and mode's highlight group.
+
+---
+
+### section_git() {#ministatusline.section_git}
+
+<p align="center">`MiniStatusline.section_git`(<span class="help-syntax-special">{args}</span>)</p>
+Section for Git information
+
+Shows Git summary from [`mini.git`](mini-git.qmd#mini.git) (should be set up; recommended). To tweak
+formatting of what data is shown, modify buffer-local summary string directly
+as described in [`MiniGit-examples`](mini-git.qmd#minigit-examples).
+
+If 'mini.git' is not set up, section falls back on 'lewis6991/gitsigns' data
+or showing empty string.
+
+Empty string is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_git-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments. Use `args.icon` to supply your own icon.
+
+#### Return {#ministatusline.section_git-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_diff() {#ministatusline.section_diff}
+
+<p align="center">`MiniStatusline.section_diff`(<span class="help-syntax-special">{args}</span>)</p>
+Section for diff information
+
+Shows diff summary from [`mini.diff`](mini-diff.qmd#mini.diff) (should be set up; recommended). To tweak
+formatting of what data is shown, modify buffer-local summary string directly
+as described in [`MiniDiff-diff-summary`](mini-diff.qmd#minidiff-diff-summary).
+
+If 'mini.diff' is not set up, section falls back on 'lewis6991/gitsigns' data
+or showing empty string.
+
+Empty string is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_diff-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments. Use `args.icon` to supply your own icon.
+
+#### Return {#ministatusline.section_diff-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_diagnostics() {#ministatusline.section_diagnostics}
+
+<p align="center">`MiniStatusline.section_diagnostics`(<span class="help-syntax-special">{args}</span>)</p>
+Section for Neovim's builtin diagnostics
+
+Shows nothing if diagnostics is disabled, no diagnostic is set, or for short
+output. Otherwise uses [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) to compute and show number of
+errors ('E'), warnings ('W'), information ('I'), and hints ('H').
+
+Short output is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_diagnostics-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments. Use `args.icon` to supply your own icon.
+  Use `args.signs` to use custom signs per severity level name. For example:
+
+  ```lua
+  { ERROR = '!', WARN = '?', INFO = '@', HINT = '*' }
+  ```
+
+#### Return {#ministatusline.section_diagnostics-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_lsp() {#ministatusline.section_lsp}
+
+<p align="center">`MiniStatusline.section_lsp`(<span class="help-syntax-special">{args}</span>)</p>
+Section for attached LSP servers
+
+Shows number of LSP servers (each as separate "+" character) attached to
+current buffer or nothing if none is attached.
+Nothing is shown if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_lsp-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments. Use `args.icon` to supply your own icon.
+
+#### Return {#ministatusline.section_lsp-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_filename() {#ministatusline.section_filename}
+
+<p align="center">`MiniStatusline.section_filename`(<span class="help-syntax-special">{args}</span>)</p>
+Section for file name
+
+Show full file name or relative in short output.
+
+Short output is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_filename-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments.
+
+#### Return {#ministatusline.section_filename-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_fileinfo() {#ministatusline.section_fileinfo}
+
+<p align="center">`MiniStatusline.section_fileinfo`(<span class="help-syntax-special">{args}</span>)</p>
+Section for file information
+
+Shows 'filetype', 'fileencoding' / 'encoding', 'fileformat', and buffer size.
+Short output has only non-empty 'filetype' and is returned if window width is
+lower than `args.trunc_width` or buffer is not normal (as per 'buftype').
+
+Buffer size is computed based on current text, not file's saved version.
+
+If `config.use_icons` is true and icon provider is present (see
+"Dependencies" section in [`mini.statusline`](mini-statusline.qmd#mini.statusline)), shows icon near the filetype.
+
+#### Parameters {#ministatusline.section_fileinfo-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments.
+
+#### Return {#ministatusline.section_fileinfo-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_location() {#ministatusline.section_location}
+
+<p align="center">`MiniStatusline.section_location`(<span class="help-syntax-special">{args}</span>)</p>
+Section for location inside buffer
+
+Show location inside buffer in the form:
+
+- Normal: `'<cursor line>|<total lines>│<cursor column>|<total columns>'`
+
+- Short: `'<cursor line>│<cursor column>'`
+
+Short output is returned if window width is lower than `args.trunc_width`.
+
+#### Parameters {#ministatusline.section_location-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments.
+
+#### Return {#ministatusline.section_location-return}
+
+
+`(string)` Section string.
+
+---
+
+### section_searchcount() {#ministatusline.section_searchcount}
+
+<p align="center">`MiniStatusline.section_searchcount`(<span class="help-syntax-special">{args}</span>)</p>
+Section for current search count
+
+Show the current status of [`searchcount()`](https://neovim.io/doc/user/helptag.html?tag=searchcount\(\)). Empty output is returned if
+window width is lower than `args.trunc_width`, search highlighting is not
+on (see [`v:hlsearch`](https://neovim.io/doc/user/helptag.html?tag=v:hlsearch)), or if number of search result is 0.
+
+`args.options` is forwarded to [`searchcount()`](https://neovim.io/doc/user/helptag.html?tag=searchcount\(\)). By default it recomputes
+data on every call which can be computationally expensive (although still
+usually on 0.1 ms order of magnitude). To prevent this, supply
+`args.options = { recompute = false }`.
+
+#### Parameters {#ministatusline.section_searchcount-parameters}
+
+
+
+<span class="help-syntax-special">{args}</span> `(table)` Section arguments.
+
+#### Return {#ministatusline.section_searchcount-return}
+
+
+`(string)` Section string.
+

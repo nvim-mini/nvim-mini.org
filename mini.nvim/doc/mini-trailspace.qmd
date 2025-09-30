@@ -1,0 +1,127 @@
+---
+title: "mini.trailspace documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.trailspace" href="mini-trailspace.qmd#mini.trailspace"><b>mini.trailspace</b></a> Trailspace (highlight and remove)
+
+MIT License Copyright (c) 2021 Evgeni Chasnovski
+
+---
+
+### Module {#minitrailspace}
+
+Features:
+
+- Highlighting is done only in modifiable buffer by default, only in Normal
+  mode, and stops in Insert mode and when leaving window.
+
+
+- Trim all trailing whitespace with [`MiniTrailspace.trim()`](mini-trailspace.qmd#minitrailspace.trim).
+
+
+- Trim all trailing empty lines with [`MiniTrailspace.trim_last_lines()`](mini-trailspace.qmd#minitrailspace.trim_last_lines).
+
+#### Setup {#minitrailspace-setup}
+
+
+This module needs a setup with `require('mini.trailspace').setup({})`
+(replace `{}` with your `config` table). It will create global Lua table
+`MiniTrailspace` which you can use for scripting or manually (with
+`:lua MiniTrailspace.*`).
+
+See [`MiniTrailspace.config`](mini-trailspace.qmd#minitrailspace.config) for `config` structure and default values.
+
+You can override runtime config settings locally to buffer inside
+`vim.b.minitrailspace_config` which should have same structure as
+`MiniTrailspace.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+
+#### Highlight groups {#minitrailspace-highlightgroups}
+
+
+
+- `MiniTrailspace` - highlight group for trailing space.
+
+To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+
+#### Disabling {#minitrailspace-disabling}
+
+
+To disable, set `vim.g.minitrailspace_disable` (globally) or
+`vim.b.minitrailspace_disable` (for a buffer) to `true`. Considering high
+number of different scenarios and customization intentions, writing exact
+rules for disabling module's functionality is left to user. See
+[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes. Note: after disabling
+there might be highlighting left; it will be removed after next
+highlighting update (see [`events`](https://neovim.io/doc/user/helptag.html?tag=events) and `MiniTrailspace` [`:augroup`](https://neovim.io/doc/user/helptag.html?tag=:augroup)).
+
+---
+
+### setup() {#minitrailspace.setup}
+
+<p align="center">`MiniTrailspace.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#minitrailspace.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniTrailspace.config`](mini-trailspace.qmd#minitrailspace.config).
+
+#### Usage {#minitrailspace.setup-usage}
+
+
+
+  ```lua
+  require('mini.trailspace').setup() -- use default config
+  -- OR
+  require('mini.trailspace').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minitrailspace.config}
+
+<p align="center">`MiniTrailspace.config`</p>
+#### Defaults {#minitrailspace.config-defaults}
+
+
+
+  ```lua
+  MiniTrailspace.config = {
+    -- Highlight only in normal buffers (ones with empty 'buftype'). This is
+    -- useful to not show trailing whitespace where it usually doesn't matter.
+    only_in_normal_buffers = true,
+  }
+  ```
+
+---
+
+### highlight() {#minitrailspace.highlight}
+
+<p align="center">`MiniTrailspace.highlight`()</p>
+Highlight trailing whitespace in current window
+
+---
+
+### unhighlight() {#minitrailspace.unhighlight}
+
+<p align="center">`MiniTrailspace.unhighlight`()</p>
+Unhighlight trailing whitespace in current window
+
+---
+
+### trim() {#minitrailspace.trim}
+
+<p align="center">`MiniTrailspace.trim`()</p>
+Trim trailing whitespace
+
+---
+
+### trim_last_lines() {#minitrailspace.trim_last_lines}
+
+<p align="center">`MiniTrailspace.trim_last_lines`()</p>
+Trim last blank lines
+

@@ -1,0 +1,469 @@
+---
+title: "mini.pairs documentation"
+toc-depth: 5
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.pairs" href="mini-pairs.qmd#mini.pairs"><b>mini.pairs</b></a> Autopairs
+
+MIT License Copyright (c) 2021 Evgeni Chasnovski
+
+---
+
+### Module {#minipairs}
+
+Features:
+
+- Functionality to work with two "paired" characters conditional on cursor's
+  neighborhood (character to its left and character to its right).
+
+
+- Usage should be through making appropriate mappings using [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map)
+  or in [`MiniPairs.setup()`](mini-pairs.qmd#minipairs.setup) (for global mapping), [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf) (for
+  buffer mapping).
+
+
+- Pairs get automatically registered for special <span class="help-syntax-keys">\<BS\></span> (all configured modes)
+  and <span class="help-syntax-keys">\<CR\></span> (only Insert mode) mappings. Pressing the key inside pair will
+  delete whole pair and insert extra blank line inside pair respectively.
+  Note: these mappings are autocreated if they do not override existing ones.
+
+What it doesn't do:
+
+- Provide smart behavior, like based on bracket balance. The default behavior
+  is to almost always perform an action (insert pair, jump over). Manually
+  press [`i_CTRL-V`](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V) before a character to explicitly insert it (and only it).
+
+
+- It doesn't support multiple characters as "open" and "close" symbols. Use
+  snippets for that.
+
+
+- It doesn't support dependency on filetype. Use [`i_CTRL-V`](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V) to insert
+  single symbol or `autocmd` command or 'after/ftplugin' approach to:
+
+    - `:lua MiniPairs.map_buf(0, 'i', <*>, <pair_info>)` - make new mapping
+      for '<span class="help-syntax-keys">\<*\></span>' in current buffer.
+
+    - `:lua MiniPairs.unmap_buf(0, 'i', <*>, <pair>)` - unmap key `<*>` while
+      unregistering `<pair>` pair in current buffer. Note: this reverts
+      mapping done by [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf). If mapping was done with
+      [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map), unmap for buffer in usual Neovim manner:
+      `inoremap <buffer> <*> <*>` (this maps `<*>` key to do the same it
+      does by default).
+
+    - Disable module for buffer (see 'Disabling' section).
+
+#### Setup {#minipairs-setup}
+
+
+This module needs a setup with `require('mini.pairs').setup({})`
+(replace `{}` with your `config` table). It will create global Lua table
+`MiniPairs` which you can use for scripting or manually (with
+`:lua MiniPairs.*`).
+
+See [`MiniPairs.config`](mini-pairs.qmd#minipairs.config) for `config` structure and default values.
+
+This module doesn't have runtime options, so using `vim.b.minipairs_config`
+will have no effect here.
+
+#### Example mappings {#minipairs-examplemappings}
+
+
+
+  ```lua
+  -- Register quotes inside `config` of `MiniPairs.setup()`
+  mappings = {
+    ['"'] = { register = { cr = true } },
+    ["'"] = { register = { cr = true } },
+  }
+
+  -- Insert `<>` pair if `<` is typed at line start, don't register for <CR>
+  local lt_opts = {
+    action = 'open',
+    pair = '<>',
+    neigh_pattern = '\r.',
+    register = { cr = false },
+  }
+  MiniPairs.map('i', '<', lt_opts)
+
+  local gt_opts = { action = 'close', pair = '<>', register = { cr = false } }
+  MiniPairs.map('i', '>', gt_opts)
+
+  -- Create symmetrical `$$` pair only in Tex files
+  local map_tex = function()
+    MiniPairs.map_buf(0, 'i', '$', { action = 'closeopen', pair = '$$' })
+  end
+  vim.api.nvim_create_autocmd(
+    'FileType',
+    { pattern = 'tex', callback = map_tex }
+  )
+  ```
+
+#### Notes {#minipairs-notes}
+
+
+
+- Make sure to make proper mapping of <span class="help-syntax-keys">\<CR\></span> in order to support completion
+  plugin of your choice:
+
+    - For [`mini.completion`](mini-completion.qmd#mini.completion) see 'Helpful key mappings' section.
+
+    - For current implementation of "hrsh7th/nvim-cmp" there is no need to
+      make custom mapping. You can use default setup, which will confirm
+      completion selection if popup is visible and expand pair otherwise.
+
+- Having mapping in terminal mode can conflict with:
+
+    - Autopairing capabilities of interpretators (`ipython`, `radian`).
+
+    - Vim mode of terminal itself.
+
+#### Disabling {#minipairs-disabling}
+
+
+To disable, set `vim.g.minipairs_disable` (globally) or `vim.b.minipairs_disable`
+(for a buffer) to `true`. Considering high number of different scenarios
+and customization intentions, writing exact rules for disabling module's
+functionality is left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
+recipes.
+
+---
+
+### setup() {#minipairs.setup}
+
+<p align="center">`MiniPairs.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#minipairs.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniPairs.config`](mini-pairs.qmd#minipairs.config).
+
+#### Usage {#minipairs.setup-usage}
+
+
+
+  ```lua
+  require('mini.pairs').setup() -- use default config
+  -- OR
+  require('mini.pairs').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#minipairs.config}
+
+<p align="center">`MiniPairs.config`</p>
+#### Defaults {#minipairs.config-defaults}
+
+
+
+  ```lua
+  MiniPairs.config = {
+    -- In which modes mappings from this `config` should be created
+    modes = { insert = true, command = false, terminal = false },
+
+    -- Global mappings. Each right hand side should be a pair information, a
+    -- table with at least these fields (see more in |MiniPairs.map()|):
+    -- - <action> - one of "open", "close", "closeopen".
+    -- - <pair> - two character string for pair to be used.
+    -- By default pair is not inserted after `\`, quotes are not recognized by
+    -- <CR>, `'` does not insert pair after a letter.
+    -- Only parts of tables can be tweaked (others will use these defaults).
+    -- Supply `false` instead of table to not map particular key.
+    mappings = {
+      ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
+      ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
+      ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+
+      [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
+      [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
+      ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+
+      ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].',   register = { cr = false } },
+      ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+      ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].',   register = { cr = false } },
+    },
+  }
+  ```
+
+---
+
+### map() {#minipairs.map}
+
+<p align="center">`MiniPairs.map`(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair_info}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Make global mapping
+
+This is a wrapper for [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)) but instead of right hand side of
+mapping (as string) it expects table with pair information.
+
+Using this function instead of [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)) allows automatic
+registration of pairs which will be recognized by <span class="help-syntax-keys">\<BS\></span> and <span class="help-syntax-keys">\<CR\></span>.
+It also infers mapping description from `pair_info`.
+
+#### Parameters {#minipairs.map-parameters}
+
+
+
+<span class="help-syntax-special">{mode}</span> `(string)` `mode` for [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)).
+
+<span class="help-syntax-special">{lhs}</span> `(string)` `lhs` for [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)).
+
+<span class="help-syntax-special">{pair_info}</span> `(table)` Table with pair information. Fields:
+
+  - <span class="help-syntax-keys">\<action\></span> - one of "open" for [`MiniPairs.open()`](mini-pairs.qmd#minipairs.open),
+    "close" for [`MiniPairs.close()`](mini-pairs.qmd#minipairs.close), or "closeopen" for [`MiniPairs.closeopen()`](mini-pairs.qmd#minipairs.closeopen).
+
+  - <span class="help-syntax-keys">\<pair\></span> - two character string to be used as argument for action function.
+    Can contain multibyte characters.
+
+  - <span class="help-syntax-keys">\<neigh_pattern\></span> - optional 'two character' neighborhood pattern to be
+    used as argument for action function. Note: neighborhood might contain
+    multiple characters.
+    Default: `'..'` (no restriction from neighborhood).
+
+  - <span class="help-syntax-keys">\<register\></span> - optional table with information about whether this pair will
+    be recognized by <span class="help-syntax-keys">\<BS\></span> (in [`MiniPairs.bs()`](mini-pairs.qmd#minipairs.bs)) and/or <span class="help-syntax-keys">\<CR\></span> (in [`MiniPairs.cr()`](mini-pairs.qmd#minipairs.cr)).
+    Should have boolean fields <span class="help-syntax-keys">\<bs\></span> and <span class="help-syntax-keys">\<cr\></span> (both `true` by default).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Optional table `opts` for [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)). Elements
+  `expr` and `noremap` won't be recognized (`true` by default).
+
+---
+
+### map_buf() {#minipairs.map_buf}
+
+<p align="center">`MiniPairs.map_buf`(<span class="help-syntax-special">{buffer}</span>, <span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair_info}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Make buffer mapping
+
+This is a wrapper for [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)) but instead of string right
+hand side of mapping it expects table with pair information similar to one
+in [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map).
+
+Using this function instead of [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)) allows automatic
+registration of pairs which will be recognized by <span class="help-syntax-keys">\<BS\></span> and <span class="help-syntax-keys">\<CR\></span>.
+It also infers mapping description from `pair_info`.
+
+#### Parameters {#minipairs.map_buf-parameters}
+
+
+
+<span class="help-syntax-special">{buffer}</span> `(number)` `buffer` for [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)).
+
+<span class="help-syntax-special">{mode}</span> `(string)` `mode` for [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)).
+
+<span class="help-syntax-special">{lhs}</span> `(string)` `lhs` for [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)).
+
+<span class="help-syntax-special">{pair_info}</span> `(table)` Table with pair information.
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Optional table `opts` for [`nvim_buf_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap\(\)).
+  Elements `expr` and `noremap` won't be recognized (`true` by default).
+
+---
+
+### unmap() {#minipairs.unmap}
+
+<p align="center">`MiniPairs.unmap`(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair}</span>)</p>
+Remove global mapping
+
+A wrapper for [`nvim_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap\(\)) which registers supplied `pair`.
+
+#### Parameters {#minipairs.unmap-parameters}
+
+
+
+<span class="help-syntax-special">{mode}</span> `(string)` `mode` for [`nvim_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap\(\)).
+
+<span class="help-syntax-special">{lhs}</span> `(string)` `lhs` for [`nvim_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap\(\)).
+
+<span class="help-syntax-special">{pair}</span> `(string)` Pair which should be unregistered from both <span class="help-syntax-keys">\<BS\></span> and <span class="help-syntax-keys">\<CR\></span>.
+  Should be explicitly supplied to avoid confusion.
+  Supply `''` to not unregister pair.
+
+---
+
+### unmap_buf() {#minipairs.unmap_buf}
+
+<p align="center">`MiniPairs.unmap_buf`(<span class="help-syntax-special">{buffer}</span>, <span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair}</span>)</p>
+Remove buffer mapping
+
+Wrapper for [`nvim_buf_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap\(\)) which also unregisters supplied `pair`.
+
+Note: this only reverts mapping done by [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf). If mapping was
+done with [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map), revert to default behavior for buffer:
+
+  ```lua
+  -- Map `X` key to do the same it does by default
+  vim.keymap.set('i', 'X', 'X', { buffer = true })
+  ```
+
+#### Parameters {#minipairs.unmap_buf-parameters}
+
+
+
+<span class="help-syntax-special">{buffer}</span> `(number)` `buffer` for [`nvim_buf_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap\(\)).
+
+<span class="help-syntax-special">{mode}</span> `(string)` `mode` for [`nvim_buf_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap\(\)).
+
+<span class="help-syntax-special">{lhs}</span> `(string)` `lhs` for [`nvim_buf_del_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap\(\)).
+
+<span class="help-syntax-special">{pair}</span> `(string)` Pair which should be unregistered from both <span class="help-syntax-keys">\<BS\></span> and <span class="help-syntax-keys">\<CR\></span>.
+  Should be explicitly supplied to avoid confusion.
+  Supply `''` to not unregister pair.
+
+---
+
+### open() {#minipairs.open}
+
+<p align="center">`MiniPairs.open`(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)</p>
+Process "open" symbols
+
+Used as [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>) mapping for "open" symbols in asymmetric pair ('(', '[',
+etc.). If neighborhood doesn't match supplied pattern, function results
+into "open" symbol. Otherwise, it pastes whole pair and moves inside pair
+with [`<Left>`](https://neovim.io/doc/user/helptag.html?tag=<Left>).
+
+Used inside [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map) and [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf) for an actual mapping.
+
+#### Parameters {#minipairs.open-parameters}
+
+
+
+<span class="help-syntax-special">{pair}</span> `(string)` String with two characters representing pair.
+
+<span class="help-syntax-special">{neigh_pattern}</span> `(string|nil)` Pattern for two neighborhood characters.
+  Character "\r" indicates line start, "\n" - line end.
+
+#### Return {#minipairs.open-return}
+
+
+`(string)` Keys performing "open" action.
+
+---
+
+### close() {#minipairs.close}
+
+<p align="center">`MiniPairs.close`(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)</p>
+Process "close" symbols
+
+Used as [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>) mapping for "close" symbols in asymmetric pair (')',
+']', etc.). If neighborhood doesn't match supplied pattern, function
+results into "close" symbol. Otherwise it jumps over symbol to the right of
+cursor (with [`<Right>`](https://neovim.io/doc/user/helptag.html?tag=<Right>)) if it is equal to "close" one and inserts it
+otherwise.
+
+Used inside [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map) and [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf) for an actual mapping.
+
+#### Parameters {#minipairs.close-parameters}
+
+
+
+<span class="help-syntax-special">{pair}</span> `(string)` String with two characters representing pair.
+
+<span class="help-syntax-special">{neigh_pattern}</span> `(string|nil)` Pattern for two neighborhood characters.
+  Character "\r" indicates line start, "\n" - line end.
+
+#### Return {#minipairs.close-return}
+
+
+`(string)` Keys performing "close" action.
+
+---
+
+### closeopen() {#minipairs.closeopen}
+
+<p align="center">`MiniPairs.closeopen`(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)</p>
+Process "closeopen" symbols
+
+Used as [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>) mapping for 'symmetrical' symbols (like " and ')
+It tries to perform 'closeopen action': move over right character
+(with [`<Right>`](https://neovim.io/doc/user/helptag.html?tag=<Right>)) if it is equal to second character from pair or
+conditionally paste pair otherwise (with [`MiniPairs.open()`](mini-pairs.qmd#minipairs.open)).
+
+Used inside [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map) and [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf) for an actual mapping.
+
+#### Parameters {#minipairs.closeopen-parameters}
+
+
+
+<span class="help-syntax-special">{pair}</span> `(string)` String with two characters representing pair.
+
+<span class="help-syntax-special">{neigh_pattern}</span> `(string|nil)` Pattern for two neighborhood characters.
+  Character "\r" indicates line start, "\n" - line end.
+
+#### Return {#minipairs.closeopen-return}
+
+
+`(string)` Keys performing "closeopen" action.
+
+---
+
+### bs() {#minipairs.bs}
+
+<p align="center">`MiniPairs.bs`(<span class="help-syntax-special">{key}</span>)</p>
+Process [`<BS>`](https://neovim.io/doc/user/helptag.html?tag=<BS>)
+
+Used as [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>) mapping for <span class="help-syntax-keys">\<BS\></span> in Insert mode. It removes whole pair
+(via executing <span class="help-syntax-keys">\<Del\></span> after input key) if neighborhood is equal to a whole
+pair recognized for current buffer. Pair is recognized for current buffer
+if it is registered for global or current buffer mapping. Pair is
+registered as a result of calling [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map) or [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf).
+
+Mapped by default inside [`MiniPairs.setup()`](mini-pairs.qmd#minipairs.setup).
+
+This can be used to modify other Insert mode keys to respect neighborhood
+pair. Examples:
+
+  ```lua
+  local map_bs = function(lhs, rhs)
+    vim.keymap.set('i', lhs, rhs, { expr = true, replace_keycodes = false })
+  end
+
+  map_bs('<C-h>', 'v:lua.MiniPairs.bs()')
+  map_bs('<C-w>', 'v:lua.MiniPairs.bs("\23")')
+  map_bs('<C-u>', 'v:lua.MiniPairs.bs("\21")')
+  ```
+
+#### Parameters {#minipairs.bs-parameters}
+
+
+
+<span class="help-syntax-special">{key}</span> `(string|nil)` Key to use. Default: `'<BS>'`.
+
+#### Return {#minipairs.bs-return}
+
+
+`(string)` Keys performing "backspace" action.
+
+---
+
+### cr() {#minipairs.cr}
+
+<p align="center">`MiniPairs.cr`(<span class="help-syntax-special">{key}</span>)</p>
+Process [`i_<CR>`](https://neovim.io/doc/user/helptag.html?tag=i_<CR>)
+
+Used as [`:map-<expr>`](https://neovim.io/doc/user/helptag.html?tag=:map-<expr>) mapping for <span class="help-syntax-keys">\<CR\></span> in insert mode. It puts "close"
+symbol on next line (via `<CR><C-o>O`) if neighborhood is equal to a whole
+pair recognized for current buffer. Pair is recognized for current buffer
+if it is registered for global or current buffer mapping. Pair is
+registered as a result of calling [`MiniPairs.map()`](mini-pairs.qmd#minipairs.map) or [`MiniPairs.map_buf()`](mini-pairs.qmd#minipairs.map_buf).
+
+Note: some relevant mode changing events are temporarily ignored
+(with [`'eventignore'`](https://neovim.io/doc/user/helptag.html?tag='eventignore')) to counter effect of using [`i_CTRL-O`](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O).
+
+Mapped by default inside [`MiniPairs.setup()`](mini-pairs.qmd#minipairs.setup).
+
+#### Parameters {#minipairs.cr-parameters}
+
+
+
+<span class="help-syntax-special">{key}</span> `(string|nil)` Key to use. Default: `'<CR>'`.
+
+#### Return {#minipairs.cr-return}
+
+
+`(string)` Keys performing "new line" action.
+
