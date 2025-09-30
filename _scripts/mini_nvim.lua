@@ -190,6 +190,33 @@ local add_help_syntax = function(lines, tags)
   reflow(lines)
 end
 
+local adjust_toc = function(lines)
+  -- Transform Table Of Contents (entries like "aaa .... bbb ... ccc") into
+  -- a markdown table with each part as a separate column.
+  for i, l in iter_noncode(lines) do
+    local is_toc_line = l:find('%s+%.%.%.+%s+') ~= nil
+    if is_toc_line then
+      -- Allow more than one column
+      local line, n_repl = vim.trim(l):gsub('%s+%.%.%.+%s+', ' | ')
+      lines[i] = '| ' .. line .. ' |'
+      local n_col = n_repl + 1
+
+      -- Prepend first TOC item with a (possibly crudely detected) header
+      local header_parts = vim.split(vim.trim(lines[i - 1]), '   +')
+      local is_blank_prev_line = header_parts[1] == '' and header_parts[2] == nil
+      if is_blank_prev_line or #header_parts == n_col then
+        header_parts = is_blank_prev_line and vim.fn['repeat']({ '' }, n_col) or header_parts
+        local header = '| ' .. table.concat(header_parts, ' | ') .. ' |'
+        -- Assume right most column is a link, so right align it.
+        local separator = string.rep('|---', n_col) .. ':|'
+        lines[i - 1] = '\n' .. header .. '\n' .. separator
+      end
+    end
+  end
+
+  reflow(lines)
+end
+
 local adjust_alignment = function(lines)
   for i, l in iter_noncode(lines) do
     -- Transform center aligned signature or section "name"
@@ -256,12 +283,14 @@ local create_help = function()
   for file, _ in vim.fs.dir(help_path) do
     local basename = file:match('^(.+)%.txt$')
     if basename ~= nil then
-      local lines = vim.fn.readfile(vim.fs.joinpath(help_path, file))
+      local in_path = vim.fs.joinpath(help_path, file)
+      local lines = vim.fn.readfile(in_path)
 
       make_codeblocks(lines)
       adjust_rulers(lines)
       add_empty_lines(lines)
       add_help_syntax(lines, help_tags)
+      adjust_toc(lines)
       adjust_alignment(lines)
       add_hierarchical_heading_anchors(lines)
       add_source_note(lines)
@@ -269,6 +298,9 @@ local create_help = function()
 
       local out_path = string.format('%s/%s.qmd', help_path, basename)
       vim.fn.writefile(lines, out_path)
+
+      -- Remove '*.txt' file, as it is not needed for the site
+      vim.fn.delete(in_path, '')
     end
   end
 end
