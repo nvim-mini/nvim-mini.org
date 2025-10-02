@@ -108,35 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style> .quarto-title > h1.title { display: none } </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="mini.snippets documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -356,7 +327,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -726,7 +697,7 @@ window.Quarto = {
 <ul>
 <li><p>Special set of variables is wider and is taken from VSCode specification: https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables Exceptions are <code>BLOCK_COMMENT_START</code> and <code>BLOCK_COMMENT_END</code> as Neovim doesn’t provide this information.</p></li>
 <li><p>Variable <code>TM_SELECTED_TEXT</code> is resolved as contents of <a href="https://neovim.io/doc/user/helptag.html?tag=quote_quote">quote_quote</a> register. It assumes that text is put there prior to expanding. For example, visually select, press <a href="https://neovim.io/doc/user/helptag.html?tag=c">c</a>, type prefix, and expand. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a> for how to adjust this.</p></li>
-<li><p>Environment variables are recognized and supported: <code>V1=$VIMRUNTIME</code> will use an actual value of [<span class="math inline">\(VIMRUNTIME](https://neovim.io/doc/user/helptag.html?tag=\)</span>VIMRUNTIME).</p></li>
+<li><p>Environment variables are recognized and supported: <code>V1=$VIMRUNTIME</code> will use an actual value of <a href="https://neovim.io/doc/user/helptag.html?tag=$VIMRUNTIME">$VIMRUNTIME</a>.</p></li>
 <li><p>Variable transformations are not supported during snippet session. It would require interacting with ECMAScript-like regular expressions for which there is no easy way in Neovim. It may change in the future. Transformations are recognized during parsing, though, with some exceptions:</p>
 <ul>
 <li>The <code>}</code> inside <code>if</code> of <code>${1:?if:else}</code> needs escaping (for technical reasons).</li>
@@ -802,7 +773,7 @@ window.Quarto = {
 <section id="minisnippets-overview-management-generaladvice" class="level5">
 <h5 class="anchored" data-anchor-id="minisnippets-overview-management-generaladvice">General advice</h5>
 <ul>
-<li><p>Put files in “snippets” subdirectory of any path in ‘runtimepath’ (like “$XDG_CONFIG_HOME/nvim/snippets/global.json”). This is compatible with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> and example from <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
+<li><p>Put files in “snippets” subdirectory of any path in ‘runtimepath’ (like ‘<code>$XDG_CONFIG_HOME</code>/nvim/snippets/global.json’). This is compatible with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> and example from <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
 <li><p>Prefer <code>*.json</code> files with dict-like content if you want more cross platfrom setup. Otherwise use <code>*.lua</code> files with array-like content.</p></li>
 <li><p>To implement “dynamic snippet” that changes data (usually <span class="help-syntax-keys">&lt;body&gt;</span>) depending on the context, use <code>*.lua</code> file with function returning snippet data. It should be an element in the output table (dict or array like).</p></li>
 </ul>
@@ -848,7 +819,7 @@ window.Quarto = {
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This setup allows having single file with custom “global” snippets (will be present in every buffer) and snippets which will be loaded based on the local language (see <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_lang">MiniSnippets.gen_loader.from_lang()</a>).</p>
-<p>Create language snippets manually (by creating and populating ‘$XDG_CONFIG_HOME/nvim/snippets/lua.json’ file) or by installing dedicated snippet collection plugin (like ‘rafamadriz/friendly-snippets’).</p>
+<p>Create language snippets manually (by creating and populating ‘<code>$XDG_CONFIG_HOME</code>/nvim/snippets/lua.json’ file) or by installing dedicated snippet collection plugin (like ‘rafamadriz/friendly-snippets’).</p>
 <p>Note: all built-in loaders and <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.read_file">MiniSnippets.read_file()</a> cache their output by default. It means that after a file is first read, changing it won’t have effect during current Neovim session. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader">MiniSnippets.gen_loader</a> about how to reset cache if necessary.</p>
 </section>
 <section id="minisnippets-examples-selectfromallavailablesnippetsincurrentcontext" class="level4">

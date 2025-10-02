@@ -108,35 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style> .quarto-title > h1.title { display: none } </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="mini.hipatterns documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -356,7 +327,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -601,7 +572,7 @@ window.Quarto = {
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Enable only in certain filetypes. There are at least these ways to do it:</p>
 <ul>
-<li><p>(Suggested) With <code>vim.b.minihipatterns_config</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-plugin">filetype-plugin</a>. Basically, create “after/ftplugin/<span class="help-syntax-keys">&lt;filetype&gt;</span>.lua” file in your config directory (see [<span class="math inline">\(XDG_CONFIG_HOME](https://neovim.io/doc/user/helptag.html?tag=\)</span>XDG_CONFIG_HOME)) and define <code>vim.b.minihipatterns_config</code> there with filetype specific highlighters.</p>
+<li><p>(Suggested) With <code>vim.b.minihipatterns_config</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-plugin">filetype-plugin</a>. Basically, create “after/ftplugin/<span class="help-syntax-keys">&lt;filetype&gt;</span>.lua” file in your config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME">$XDG_CONFIG_HOME</a>) and define <code>vim.b.minihipatterns_config</code> there with filetype specific highlighters.</p>
 <p>This assumes <code>require('mini.hipatterns').setup()</code> call.</p>
 <p>For example, to highlight keywords in EmmyLua comments in Lua files, create “after/ftplugin/lua.lua” with the following content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minihipatterns_config</span> <span class="op">=</span> <span class="op">{</span></span>
