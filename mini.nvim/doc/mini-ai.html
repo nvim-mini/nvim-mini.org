@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="mini.ai documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -311,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +373,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#miniai" id="toc-miniai" class="nav-link active" data-scroll-target="#miniai">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#miniai-setup" id="toc-miniai-setup" class="nav-link" data-scroll-target="#miniai-setup">Setup</a></li>
-  <li><a href="#miniai-comparisons" id="toc-miniai-comparisons" class="nav-link" data-scroll-target="#miniai-comparisons">Comparisons</a></li>
-  <li><a href="#miniai-disabling" id="toc-miniai-disabling" class="nav-link" data-scroll-target="#miniai-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#miniai-builtin-textobjects" id="toc-miniai-builtin-textobjects" class="nav-link" data-scroll-target="#miniai-builtin-textobjects">Builtin textobjects</a></li>
   <li><a href="#miniai-glossary" id="toc-miniai-glossary" class="nav-link" data-scroll-target="#miniai-glossary">Glossary</a>
@@ -440,20 +470,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.ai" href="../../mini.nvim/doc/mini-ai.html#mini.ai"><b>mini.ai</b></a> Extend and create a/i textobjects</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="miniai" class="level3">
-<h3 class="anchored" data-anchor-id="miniai">Module</h3>
-<p>Enhance some builtin <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects"><code>text-objects</code></a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=a("><code>a(</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a)"><code>a)</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a'"><code>a'</code></a>, and more), create new ones (like <code>a*</code>, <code>a&lt;Space&gt;</code>, <code>af</code>, <code>a?</code>, and more), and allow user to create their own.</p>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
+<p>Enhance some builtin <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects">text-objects</a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=a(">a(</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a)">a)</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a'">a’</a>, and more), create new ones (like <code>a*</code>, <code>a&lt;Space&gt;</code>, <code>af</code>, <code>a?</code>, and more), and allow user to create their own.</p>
 <p>Features:</p>
 <ul>
 <li><p>Customizable creation of <code>a</code>/<code>i</code> textobjects using Lua patterns and functions. Supports:</p>
 <ul>
 <li><p>Dot-repeat.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=v:count"><code>v:count</code></a>.</p></li>
-<li><p>Different search methods (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a>).</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=v:count">v:count</a>.</p></li>
+<li><p>Different search methods (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a>).</p></li>
 <li><p>Consecutive application (update selection without leaving Visual mode).</p></li>
 <li><p>Aliases for multiple textobjects.</p></li>
 </ul></li>
-<li><p>Comprehensive builtin textobjects (see more in <a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects"><code>MiniAi-builtin-textobjects</code></a>):</p>
+<li><p>Comprehensive builtin textobjects (see more in <a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects">MiniAi-builtin-textobjects</a>):</p>
 <ul>
 <li><p>Balanced brackets (with and without whitespace) plus alias.</p></li>
 <li><p>Balanced quotes plus alias.</p></li>
@@ -461,14 +491,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Argument.</p></li>
 <li><p>Tag.</p></li>
 <li><p>Derived from user prompt.</p></li>
-<li><p>Default for anything but Latin letters (to fall back to <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects"><code>text-objects</code></a>).</p></li>
+<li><p>Default for anything but Latin letters (to fall back to <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects">text-objects</a>).</p></li>
 </ul>
-<p>For more textobjects see <a href="../../mini.nvim/doc/mini-extra.html#miniextra.gen_ai_spec"><code>MiniExtra.gen_ai_spec</code></a>.</p></li>
+<p>For more textobjects see <a href="../../mini.nvim/doc/mini-extra.html#miniextra.gen_ai_spec">MiniExtra.gen_ai_spec</a>.</p></li>
 <li><p>Motions for jumping to left/right edge of textobject.</p></li>
-<li><p>Set of specification generators to tweak some builtin textobjects (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec"><code>MiniAi.gen_spec</code></a>).</p></li>
-<li><p>Treesitter textobjects (through <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter"><code>MiniAi.gen_spec.treesitter()</code></a> helper).</p></li>
+<li><p>Set of specification generators to tweak some builtin textobjects (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec">MiniAi.gen_spec</a>).</p></li>
+<li><p>Treesitter textobjects (through <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter">MiniAi.gen_spec.treesitter()</a> helper).</p></li>
 </ul>
-<p>This module works by defining mappings for both <code>a</code> and <code>i</code> in Visual and Operator-pending mode. After typing, they wait for single character user input treated as textobject identifier and apply resolved textobject specification (fall back to other mappings if can’t find proper textobject id). For more information see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a> and <a href="../../mini.nvim/doc/mini-ai.html#miniai-algorithm"><code>MiniAi-algorithm</code></a>.</p>
+<p>This module works by defining mappings for both <code>a</code> and <code>i</code> in Visual and Operator-pending mode. After typing, they wait for single character user input treated as textobject identifier and apply resolved textobject specification (fall back to other mappings if can’t find proper textobject id). For more information see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a> and <a href="../../mini.nvim/doc/mini-ai.html#miniai-algorithm">MiniAi-algorithm</a>.</p>
 <p>Known issues which won’t be resolved:</p>
 <ul>
 <li><p>Search for builtin textobjects is done mostly using Lua patterns (regex-like approach). Certain amount of false positives is to be expected.</p></li>
@@ -479,21 +509,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Have special operators to specially handle whitespace (like <code>I</code> and <code>A</code> in ‘targets.vim’). Whitespace handling is assumed to be done inside textobject specification (like <code>i(</code> and <code>i)</code> handle whitespace differently).</li>
 </ul>
-<section id="miniai-setup" class="level4">
-<h4 class="anchored" data-anchor-id="miniai-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.ai').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniAi</code> which you can use for scripting or manually (with <code>:lua MiniAi.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like <code>config.custom_textobjects</code>) locally to buffer inside <code>vim.b.miniai_config</code> which should have same structure as <code>MiniAi.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like <code>config.custom_textobjects</code>) locally to buffer inside <code>vim.b.miniai_config</code> which should have same structure as <code>MiniAi.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="miniai-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="miniai-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/wellle/targets.vim">wellle/targets.vim</a>:</p>
 <ul>
-<li><p>Has limited support for creating own textobjects: it is constrained to pre-defined detection rules. ‘mini.ai’ allows creating own rules via Lua patterns and functions (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a>).</p></li>
-<li><p>Doesn’t provide any programmatical API for getting information about textobjects. ‘mini.ai’ does it via <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a>.</p></li>
-<li><p>Has no implementation of “moving to edge of textobject”. ‘mini.ai’ does it via <a href="../../mini.nvim/doc/mini-ai.html#miniai.move_cursor"><code>MiniAi.move_cursor()</code></a> and <code>g[</code> and <code>g]</code> default mappings.</p></li>
+<li><p>Has limited support for creating own textobjects: it is constrained to pre-defined detection rules. ‘mini.ai’ allows creating own rules via Lua patterns and functions (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a>).</p></li>
+<li><p>Doesn’t provide any programmatical API for getting information about textobjects. ‘mini.ai’ does it via <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a>.</p></li>
+<li><p>Has no implementation of “moving to edge of textobject”. ‘mini.ai’ does it via <a href="../../mini.nvim/doc/mini-ai.html#miniai.move_cursor">MiniAi.move_cursor()</a> and <code>g[</code> and <code>g]</code> default mappings.</p></li>
 <li><p>Both implement the notion of manual “next”/“last” search directions.</p></li>
 <li><p>Implements <code>A</code>, <code>I</code> operators. ‘mini.ai’ does not by design: it is assumed to be a property of textobject, not operator.</p></li>
 <li><p>Doesn’t implement “function call” and “user prompt” textobjects. ‘mini.ai’ does (with <code>f</code> and <code>?</code> identifiers).</p></li>
@@ -501,18 +531,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter/nvim-treesitter-textobjects</a>:</p>
 <ul>
-<li><p>Along with textobject functionality provides a curated and maintained set of popular textobject queries for many languages (which can power <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter"><code>MiniAi.gen_spec.treesitter()</code></a> functionality).</p></li>
-<li><p>Both support working with <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives"><code>treesitter-directives</code></a> allowing more fine-tuned textobjects.</p></li>
+<li><p>Along with textobject functionality provides a curated and maintained set of popular textobject queries for many languages (which can power <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter">MiniAi.gen_spec.treesitter()</a> functionality).</p></li>
+<li><p>Both support working with <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives">treesitter-directives</a> allowing more fine-tuned textobjects.</p></li>
 <li><p>Implements only textobjects based on treesitter.</p></li>
-<li><p>Doesn’t support <a href="https://neovim.io/doc/user/helptag.html?tag=v:count"><code>v:count</code></a>.</p></li>
+<li><p>Doesn’t support <a href="https://neovim.io/doc/user/helptag.html?tag=v:count">v:count</a>.</p></li>
 <li><p>Doesn’t support multiple search method (basically, only ‘cover’).</p></li>
 <li><p>Doesn’t support consecutive application of target textobject.</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="miniai-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="miniai-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.miniai_disable</code> (globally) or <code>vim.b.miniai_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.miniai_disable</code> (globally) or <code>vim.b.miniai_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -524,9 +554,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>Name</code> is a description of textobject.</p></li>
 <li><p><code>Example line</code> contains a string for which examples are constructed. The <code>*</code> denotes the cursor position.</p></li>
 <li><p><code>a</code>/<code>i</code> describe inclusive region representing <code>a</code> and <code>i</code> textobjects. Use numbers in separators for easier navigation.</p></li>
-<li><p><code>2a</code>/<code>2i</code> describe either <code>2a</code>/<code>2i</code> (support for <a href="https://neovim.io/doc/user/helptag.html?tag=v:count"><code>v:count</code></a>) textobjects or <code>a</code>/<code>i</code> textobject followed by another <code>a</code>/<code>i</code> textobject (consecutive application leads to incremental selection).</p></li>
+<li><p><code>2a</code>/<code>2i</code> describe either <code>2a</code>/<code>2i</code> (support for <a href="https://neovim.io/doc/user/helptag.html?tag=v:count">v:count</a>) textobjects or <code>a</code>/<code>i</code> textobject followed by another <code>a</code>/<code>i</code> textobject (consecutive application leads to incremental selection).</p></li>
 </ul>
-<p>Example: typing <code>va)</code> with cursor on <code>*</code> leads to selection from column 2 to column 12. Another typing <code>a)</code> changes selection to [1; 13]. Also, besides visual selection, any <a href="https://neovim.io/doc/user/helptag.html?tag=operator"><code>operator</code></a> can be used or <code>g[</code>/<code>g]</code> motions to move to left/right edge of <code>a</code> textobject.</p>
+<p>Example: typing <code>va)</code> with cursor on <code>*</code> leads to selection from column 2 to column 12. Another typing <code>a)</code> changes selection to [1; 13]. Also, besides visual selection, any <a href="https://neovim.io/doc/user/helptag.html?tag=operator">operator</a> can be used or <code>g[</code>/<code>g]</code> motions to move to left/right edge of <code>a</code> textobject.</p>
 <pre><code>┌───┬───────────────┬──────────────────┬────────┬────────┬────────┬────────┐
 │Key│     Name      │   Example line   │   a    │   i    │   2a   │   2i   │
 ├───┴───────────────┴──────────────────┴────────┴────────┴────────┴────────┤
@@ -565,7 +595,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>All examples assume default <code>config.search_method</code>.</p></li>
 <li><p>Open brackets differ from close brackets by how they treat inner edge whitespace for <code>i</code> textobject: open ignores it, close - includes.</p></li>
-<li><p>Default textobject is activated for identifiers which are not Latin letters. They are designed to be treated as separators, so include only right edge in <code>a</code> textobject. To include both edges, use custom textobjects (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a> and <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a>). Note:</p>
+<li><p>Default textobject is activated for identifiers which are not Latin letters. They are designed to be treated as separators, so include only right edge in <code>a</code> textobject. To include both edges, use custom textobjects (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a> and <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a>). Note:</p>
 <ul>
 <li>When cursor is exactly on the identifier character while there are two matching candidates on both left and right, the resulting region with smaller width is preferred.</li>
 </ul></li>
@@ -574,13 +604,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="miniai-glossary" class="level3">
 <h3 class="anchored" data-anchor-id="miniai-glossary">Glossary</h3>
-<p>Note: this is similar to <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary"><code>MiniSurround-glossary</code></a>.</p>
+<p>Note: this is similar to <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary">MiniSurround-glossary</a>.</p>
 <section id="miniai-glossary-region" class="level4">
 <h4 class="anchored" data-anchor-id="miniai-glossary-region">REGION</h4>
 <p>Table representing region in a buffer. Fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;from&gt;</span> and <span class="help-syntax-keys">&lt;to&gt;</span> for inclusive start and end positions (<span class="help-syntax-keys">&lt;to&gt;</span> might be <code>nil</code> to describe empty region). Each position is also a table with line <span class="help-syntax-keys">&lt;line&gt;</span> and column <span class="help-syntax-keys">&lt;col&gt;</span> (both start at 1).</p></li>
-<li><p><span class="help-syntax-keys">&lt;vis_mode&gt;</span> for which Visual mode will be used to select textobject. See <code>opts</code> argument of <a href="../../mini.nvim/doc/mini-ai.html#miniai.select_textobject"><code>MiniAi.select_textobject()</code></a>. One of <code>'v'</code>, <code>'V'</code>, <code>'\22'</code> (escaped <code>'&lt;C-v&gt;'</code>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;vis_mode&gt;</span> for which Visual mode will be used to select textobject. See <code>opts</code> argument of <a href="../../mini.nvim/doc/mini-ai.html#miniai.select_textobject">MiniAi.select_textobject()</a>. One of <code>'v'</code>, <code>'V'</code>, <code>'\22'</code> (escaped <code>'&lt;C-v&gt;'</code>).</p></li>
 </ul>
 <p>Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">},</span> <span class="va">to</span> <span class="op">=</span> <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span> <span class="op">}</span></span>
@@ -646,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="miniai-textobject-specification" class="level3">
 <h3 class="anchored" data-anchor-id="miniai-textobject-specification">Textobject specification</h3>
-<p>Textobject specification has a structure of composed pattern (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary"><code>MiniAi-glossary</code></a>) with two differences:</p>
+<p>Textobject specification has a structure of composed pattern (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary">MiniAi-glossary</a>) with two differences:</p>
 <ul>
 <li><p>Last pattern(s) should have even number of empty capture groups denoting how the last string should be processed to extract <code>a</code> or <code>i</code> textobject:</p>
 <ul>
@@ -654,9 +684,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Two captures represent <code>i</code> textobject inside of them. <code>a</code> - whole string. Example: <code>x()x()x</code> defines <code>a</code> textobject to be <code>xxx</code>, <code>i</code> - middle <code>x</code>.</p></li>
 <li><p>Four captures define <code>a</code> textobject inside captures 1 and 4, <code>i</code> - inside captures 2 and 3. Example: <code>x()()x()x()</code> defines <code>a</code> textobject to be last <code>xx</code>, <code>i</code> - middle <code>x</code>.</p></li>
 </ul></li>
-<li><p>Allows callable objects (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.is_callable()"><code>vim.is_callable()</code></a>) in certain places (enables more complex textobjects in exchange of increase in configuration complexity and computations):</p>
+<li><p>Allows callable objects (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.is_callable()">vim.is_callable()</a>) in certain places (enables more complex textobjects in exchange of increase in configuration complexity and computations):</p>
 <ul>
-<li><p>If specification itself is a callable, it will be called with the same arguments as <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a> and should return one of:</p>
+<li><p>If specification itself is a callable, it will be called with the same arguments as <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a> and should return one of:</p>
 <ul>
 <li><p>Composed pattern. Useful for implementing user input. Example of simplified variant of textobject for function call with name taken from user prompt:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">()</span></span>
@@ -672,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="va">from</span><span class="op">,</span> <span class="va">to</span> <span class="op">=</span> <span class="va">to</span><span class="op">,</span> <span class="va">vis_mode</span> <span class="op">=</span> <span class="st">'V'</span> <span class="op">}</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Array of output region(s). Useful for incorporating other instruments, like treesitter (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter"><code>MiniAi.gen_spec.treesitter()</code></a>). The best region will be picked in the same manner as with composed pattern (respecting options <code>n_lines</code>, <code>search_method</code>, etc.). Example of selecting “best” line with display width more than 80:</p>
+<li><p>Array of output region(s). Useful for incorporating other instruments, like treesitter (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter">MiniAi.gen_spec.treesitter()</a>). The best region will be picked in the same manner as with composed pattern (respecting options <code>n_lines</code>, <code>search_method</code>, etc.). Example of selecting “best” line with display width more than 80:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="cn">_</span><span class="op">,</span> <span class="cn">_</span><span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">res</span> <span class="op">=</span> <span class="op">{}</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_line_count<span class="op">(</span><span class="dv">0</span><span class="op">)</span> <span class="cf">do</span></span>
@@ -725,16 +755,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lua block string:</span></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'%[%[().-()%]%]'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec"><code>MiniAi.gen_spec</code></a> for function wrappers to create commonly used textobject specifications.</p>
+<p>See <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec">MiniAi.gen_spec</a> for function wrappers to create commonly used textobject specifications.</p>
 <hr>
 </section>
 <section id="miniai-algorithm" class="level3">
 <h3 class="anchored" data-anchor-id="miniai-algorithm">Algorithm</h3>
 <p>Search for the textobjects relies on these principles:</p>
 <ul>
-<li><p>It uses same input data as described in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a>, i.e.&nbsp;whether it is <code>a</code> or <code>i</code> textobject, its identifier, reference region, etc.</p></li>
-<li><p>Textobject specification is constructed based on textobject identifier (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a>).</p></li>
-<li><p>General search is done by converting some 2d buffer region (neighborhood of reference region) into 1d string (each line is appended with <code>\n</code>). Then search for a best span matching textobject specification is done inside string (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary"><code>MiniAi-glossary</code></a>). After that, span is converted back into 2d region. Note: first search is done inside reference region lines, and only after that - inside its neighborhood within <code>config.n_lines</code> (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a>).</p></li>
+<li><p>It uses same input data as described in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a>, i.e.&nbsp;whether it is <code>a</code> or <code>i</code> textobject, its identifier, reference region, etc.</p></li>
+<li><p>Textobject specification is constructed based on textobject identifier (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a>).</p></li>
+<li><p>General search is done by converting some 2d buffer region (neighborhood of reference region) into 1d string (each line is appended with <code>\n</code>). Then search for a best span matching textobject specification is done inside string (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary">MiniAi-glossary</a>). After that, span is converted back into 2d region. Note: first search is done inside reference region lines, and only after that - inside its neighborhood within <code>config.n_lines</code> (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a>).</p></li>
 <li><p>The best matching span is chosen by iterating over all spans matching textobject specification and comparing them with “current best”. Comparison also depends on reference region (tighter covering is better, otherwise closer is better) and search method (if span is even considered).</p></li>
 <li><p>Extract span based on extraction pattern (last item in nested pattern).</p></li>
 <li><p>If task is to perform a consecutive search (<code>opts.n_times</code> is greater than 1), steps are repeated with current best match becoming reference region. One such additional step is also done if final region is equal to reference region (this enables consecutive application).</p></li>
@@ -746,7 +776,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>For the sake of increasing functionality, during iteration over all matching spans, some Lua patterns in composed pattern are handled specially.</p>
 <ul>
 <li><p><code>%bxx</code> (<code>xx</code> is two identical characters). It denotes balanced pair of identical characters and results into “paired” matches. For example, <code>%b""</code> for <code>"aa" "bb"</code> would match <code>"aa"</code> and <code>"bb"</code>, but not middle <code>" "</code>.</p></li>
-<li><p><code>x.-y</code> (<code>x</code> and <code>y</code> are different strings). It results only in matches with smallest width. For example, <code>e.-o</code> for <code>e e o o</code> will result only in middle <code>e o</code>. Note: it has some implications for when parts have quantifiers (like <code>+</code>, etc.), which usually can be resolved with frontier pattern <code>%f[]</code> (see examples in <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a>).</p></li>
+<li><p><code>x.-y</code> (<code>x</code> and <code>y</code> are different strings). It results only in matches with smallest width. For example, <code>e.-o</code> for <code>e e o o</code> will result only in middle <code>e o</code>. Note: it has some implications for when parts have quantifiers (like <code>+</code>, etc.), which usually can be resolved with frontier pattern <code>%f[]</code> (see examples in <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a>).</p></li>
 </ul></li>
 </ul>
 <hr>
@@ -759,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="miniai.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a>.</p>
 </section>
 <section id="miniai.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.setup-usage">Usage</h4>
@@ -816,11 +846,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="miniai.config-customtextobjects" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.config-customtextobjects">Custom textobjects</h4>
-<p>User can define own textobjects by supplying <code>config.custom_textobjects</code>. It should be a table with keys being single character textobject identifier (supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()"><code>getcharstr()</code></a>) and values - textobject specification (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a>).</p>
+<p>User can define own textobjects by supplying <code>config.custom_textobjects</code>. It should be a table with keys being single character textobject identifier (supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()">getcharstr()</a>) and values - textobject specification (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a>).</p>
 <p>General recommendations:</p>
 <ul>
-<li><p>This can be used to override builtin ones (<a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects"><code>MiniAi-builtin-textobjects</code></a>). Supply non-valid input (not in specification format) to disable module’s builtin textobject in favor of external or Neovim’s builtin mapping.</p></li>
-<li><p>Keys should use character representation which can be <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()"><code>getcharstr()</code></a> output. For example, <code>'\r'</code> and not <code>'&lt;CR&gt;'</code>.</p></li>
+<li><p>This can be used to override builtin ones (<a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects">MiniAi-builtin-textobjects</a>). Supply non-valid input (not in specification format) to disable module’s builtin textobject in favor of external or Neovim’s builtin mapping.</p></li>
+<li><p>Keys should use character representation which can be <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()">getcharstr()</a> output. For example, <code>'\r'</code> and not <code>'&lt;CR&gt;'</code>.</p></li>
 </ul>
 <p>Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
@@ -855,7 +885,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'_'</span><span class="op">]</span> <span class="op">=</span> spec_pair<span class="op">(</span><span class="st">'_'</span><span class="op">,</span> <span class="st">'_'</span><span class="op">,</span> <span class="op">{</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'greedy'</span> <span class="op">}),</span></span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>There are more example specifications in <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a>.</p>
+<p>There are more example specifications in <a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a>.</p>
 </section>
 <section id="miniai.config-searchmethod" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.config-searchmethod">Search method</h4>
@@ -891,7 +921,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="miniai.config-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.config-mappings">Mappings</h4>
 <p>Mappings <code>around_next</code> / <code>inside_next</code> and <code>around_last</code> / <code>inside_last</code> are essentially <code>around</code> / <code>inside</code> but using search method <code>'next'</code> and <code>'prev'</code>.</p>
-<p>NOTE: with default config, built-in LSP mappings <a href="https://neovim.io/doc/user/helptag.html?tag=v_an"><code>v_an</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_in"><code>v_in</code></a> on Neovim&gt;=0.12 are overridden. Either use different <code>around_next</code> / <code>inside_next</code> keys or map manually using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.selection_range()"><code>vim.lsp.buf.selection_range()</code></a>. For example:</p>
+<p>NOTE: with default config, built-in LSP mappings <a href="https://neovim.io/doc/user/helptag.html?tag=v_an">v_an</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_in">v_in</a> on Neovim&gt;=0.12 are overridden. Either use different <code>around_next</code> / <code>inside_next</code> keys or map manually using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.selection_range()">vim.lsp.buf.selection_range()</a>. For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_lsp_selection</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lhs</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">s</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>startswith<span class="op">(</span><span class="va">desc</span><span class="op">,</span> <span class="st">'Increase'</span><span class="op">)</span> <span class="kw">and</span> <span class="dv">1</span> <span class="kw">or</span> <span class="op">-</span><span class="dv">1</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span><span class="va">lsp</span><span class="op">.</span><span class="va">buf</span><span class="op">.</span>selection_range<span class="op">(</span><span class="va">s</span> <span class="op">*</span> <span class="va">vim</span><span class="op">.</span><span class="va">v</span><span class="op">.</span><span class="va">count1</span><span class="op">)</span> <span class="kw">end</span></span>
@@ -914,9 +944,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{id}</span> <code>(string)</code> Single character string representing textobject id. It is used to get specification which is later used to compute textobject region. Note: if specification is a function, it is called with all present arguments (<code>opts</code> is populated with default arguments).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_lines&gt;</span> - Number of lines within which textobject is searched. Default: <code>config.n_lines</code> (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config"><code>MiniAi.config</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_lines&gt;</span> - Number of lines within which textobject is searched. Default: <code>config.n_lines</code> (see <a href="../../mini.nvim/doc/mini-ai.html#miniai.config">MiniAi.config</a>).</p></li>
 <li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> - Number of times to perform a consecutive search. Each one is done with reference region being previous found textobject region. Default: 1.</p></li>
-<li><p><span class="help-syntax-keys">&lt;reference_region&gt;</span> - region to try to cover (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary"><code>MiniAi-glossary</code></a>). It is guaranteed that output region will not be inside or equal to this one. Default: empty region at cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;reference_region&gt;</span> - region to try to cover (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary">MiniAi-glossary</a>). It is guaranteed that output region will not be inside or equal to this one. Default: empty region at cursor position.</p></li>
 <li><p><span class="help-syntax-keys">&lt;search_method&gt;</span> - Search method. Default: <code>config.search_method</code>.</p></li>
 </ul>
 </section>
@@ -937,7 +967,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{side}</span> <code>(string)</code> One of <code>'left'</code> or <code>'right'</code>.</p>
 <p><span class="help-syntax-special">{ai_type}</span> <code>(string)</code> One of <code>'a'</code> or <code>'i'</code>.</p>
 <p><span class="help-syntax-special">{id}</span> <code>(string)</code> Single character string representing textobject id.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a>. <code>opts.n_times</code> means number of actual jumps (important when cursor already on the potential jump spot).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a>. <code>opts.n_times</code> means number of actual jumps (important when cursor already on the potential jump spot).</p>
 <hr>
 </section>
 </section>
@@ -1042,11 +1072,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Treesitter specification</p>
 <p>This is a specification in function form. When called with a pair of treesitter captures, it returns a specification function outputting an array of regions that match corresponding (<code>a</code> or <code>i</code>) capture.</p>
-<p>In order for this to work, apart from working treesitter parser for desired language, user should have a reachable language-specific ‘textobjects’ query (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()"><code>vim.treesitter.query.get()</code></a>). The most straightforward way for this is to have ‘textobjects.scm’ query file with treesitter captures stored in some recognized path. This is primarily designed to be compatible with plugin ‘nvim-treesitter/nvim-treesitter-textobjects’, but can be used without it.</p>
+<p>In order for this to work, apart from working treesitter parser for desired language, user should have a reachable language-specific ‘textobjects’ query (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()">vim.treesitter.query.get()</a>). The most straightforward way for this is to have ‘textobjects.scm’ query file with treesitter captures stored in some recognized path. This is primarily designed to be compatible with plugin ‘nvim-treesitter/nvim-treesitter-textobjects’, but can be used without it.</p>
 <p>Two most common approaches for having a query file:</p>
 <ul>
 <li><p>Install ‘nvim-treesitter/nvim-treesitter-textobjects’. It has curated and well maintained builtin query files for many languages with a standardized capture names, like <code>function.outer</code>, <code>function.inner</code>, etc.</p></li>
-<li><p>Manually create file ‘after/queries/<language name="">/textobjects.scm’ in your <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME"><code>$XDG_CONFIG_HOME</code></a> directory. It should contain queries with captures (later used to define textobjects). See <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query"><code>lua-treesitter-query</code></a>. To verify that query file is reachable, run (example for “lua” language, output should have at least an intended file):</language></p>
+<li><p>Manually create file ‘after/queries/<language name="">/textobjects.scm’ in your [<span class="math inline">\(XDG_CONFIG_HOME](https://neovim.io/doc/user/helptag.html?tag=\)</span>XDG_CONFIG_HOME) directory. It should contain queries with captures (later used to define textobjects). See <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query">lua-treesitter-query</a>. To verify that query file is reachable, run (example for “lua” language, output should have at least an intended file):</language></p>
 <pre class="vim"><code>:lua print(vim.inspect(vim.treesitter.query.get_files('lua','textobjects')))</code></pre></li>
 </ul>
 <p>Example configuration for function definition textobject with ‘nvim-treesitter/nvim-treesitter-textobjects’ captures:</p>
@@ -1062,8 +1092,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notes:</p>
 <ul>
-<li><p>Be sure that query files don’t contain unknown <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives"><code>treesitter-directives</code></a> (like <code>#make-range!</code>, for example). Otherwise textobject for such capture might not be found as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core"><code>lua-treesitter-core</code></a> won’t treat them as captures. Verify with <code>:=vim.treesitter.query.get('lang', 'textobjects')</code> and see if the target capture is recognized as one.</p></li>
-<li><p>It uses buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag=filetype"><code>filetype</code></a> to determine query language.</p></li>
+<li><p>Be sure that query files don’t contain unknown <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives">treesitter-directives</a> (like <code>#make-range!</code>, for example). Otherwise textobject for such capture might not be found as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> won’t treat them as captures. Verify with <code>:=vim.treesitter.query.get('lang', 'textobjects')</code> and see if the target capture is recognized as one.</p></li>
+<li><p>It uses buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag=filetype">filetype</a> to determine query language.</p></li>
 <li><p>On large files it is slower than pattern-based textobjects. Still very fast though (one search should be magnitude of milliseconds or tens of milliseconds on really large file).</p></li>
 </ul>
 <section id="miniai.gen_spec.treesitter-parameters" class="level4">
@@ -1071,19 +1101,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{ai_captures}</span> <code>(table)</code> Captures for <code>a</code> and <code>i</code> textobjects: table with <span class="help-syntax-keys">&lt;a&gt;</span> and <span class="help-syntax-keys">&lt;i&gt;</span> fields with captures for <code>a</code> and <code>i</code> textobjects respectively. Each value can be either a string capture (should start with <code>'@'</code>) or an array of such captures (best among all matches will be chosen).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;use_nvim_treesitter&gt;</span> - whether to try to use ‘nvim-treesitter’ plugin (if present) to do the query. It used to implement more advanced behavior and more coherent experience if ‘nvim-treesitter-textobjects’ queries are used. However, as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core"><code>lua-treesitter-core</code></a> methods are more capable now, the option will soon be removed. Only present for backward compatibility. Default: <code>false</code>.</li>
+<li><span class="help-syntax-keys">&lt;use_nvim_treesitter&gt;</span> - whether to try to use ‘nvim-treesitter’ plugin (if present) to do the query. It used to implement more advanced behavior and more coherent experience if ‘nvim-treesitter-textobjects’ queries are used. However, as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> methods are more capable now, the option will soon be removed. Only present for backward compatibility. Default: <code>false</code>.</li>
 </ul>
 </section>
 <section id="miniai.gen_spec.treesitter-return" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.gen_spec.treesitter-return">Return</h4>
-<p><code>(function)</code> Function with <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a> signature which returns array of current buffer regions representing matches for corresponding (<code>a</code> or <code>i</code>) treesitter capture.</p>
+<p><code>(function)</code> Function with <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a> signature which returns array of current buffer regions representing matches for corresponding (<code>a</code> or <code>i</code>) treesitter capture.</p>
 </section>
 <section id="miniai.gen_spec.treesitter-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.gen_spec.treesitter-seealso">See also</h4>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification"><code>MiniAi-textobject-specification</code></a> for how this type of textobject specification is processed.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()"><code>vim.treesitter.query.get()</code></a> for how query is fetched.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures()"><code>Query:iter_captures()</code></a> for how all query captures are iterated in case of no ‘nvim-treesitter’.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-ai.html#miniai-textobject-specification">MiniAi-textobject-specification</a> for how this type of textobject specification is processed.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()">vim.treesitter.query.get()</a> for how query is fetched.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures()">Query:iter_captures()</a> for how all query captures are iterated in case of no ‘nvim-treesitter’.</p></li>
 </ul>
 <hr>
 </section>
@@ -1098,7 +1128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Ask user for left and right textobject edges as raw strings (no pattern).</p></li>
 <li><p>Construct specification for a textobject that matches from left edge string to right edge string: <code>a</code> includes both strings, <code>i</code> only insides.</p></li>
 </ul>
-<p>Used for <a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects"><code>MiniAi-builtin-textobjects</code></a> with identifier <code>?</code>.</p>
+<p>Used for <a href="../../mini.nvim/doc/mini-ai.html#miniai-builtin-textobjects">MiniAi-builtin-textobjects</a> with identifier <code>?</code>.</p>
 <section id="miniai.gen_spec.user_prompt-return" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.gen_spec.user_prompt-return">Return</h4>
 <p><code>(function)</code> Textobject specification as function.</p>
@@ -1116,7 +1146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="miniai.select_textobject-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{ai_type}</span> <code>(string)</code> One of <code>'a'</code> or <code>'i'</code>.</p>
 <p><span class="help-syntax-special">{id}</span> <code>(string)</code> Single character string representing textobject id.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject"><code>MiniAi.find_textobject()</code></a>. Extra fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a>. Extra fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;vis_mode&gt;</span> - One of <code>'v'</code>, <code>'V'</code>, or <code>'\22'</code> (escaped version of <code>'&lt;C-v&gt;'</code>). Default: Latest visual mode.</p></li>
 <li><p><span class="help-syntax-keys">&lt;operator_pending&gt;</span> - Whether selection is for Operator-pending mode. Used in that mode’s mappings, shouldn’t be used directly. Default: <code>false</code>.</p></li>

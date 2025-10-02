@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.splitjoin documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minisplitjoin" id="toc-minisplitjoin" class="nav-link active" data-scroll-target="#minisplitjoin">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minisplitjoin-setup" id="toc-minisplitjoin-setup" class="nav-link" data-scroll-target="#minisplitjoin-setup">Setup</a></li>
-  <li><a href="#minisplitjoin-comparisons" id="toc-minisplitjoin-comparisons" class="nav-link" data-scroll-target="#minisplitjoin-comparisons">Comparisons</a></li>
-  <li><a href="#minisplitjoin-disabling" id="toc-minisplitjoin-disabling" class="nav-link" data-scroll-target="#minisplitjoin-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minisplitjoin-glossary" id="toc-minisplitjoin-glossary" class="nav-link" data-scroll-target="#minisplitjoin-glossary">Glossary</a>
   <ul>
@@ -454,42 +455,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.splitjoin" href="../../mini.nvim/doc/mini-splitjoin.html#mini.splitjoin"><b>mini.splitjoin</b></a> Split and join arguments</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minisplitjoin" class="level3">
-<h3 class="anchored" data-anchor-id="minisplitjoin">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Mappings and Lua functions that modify arguments (regions inside brackets between allowed separators) under cursor.</p>
 <p>Supported actions:</p>
 <ul>
-<li><p>Toggle - split if arguments are on single line, join otherwise. Main supported function of the module. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle"><code>MiniSplitjoin.toggle()</code></a>.</p></li>
-<li><p>Split - make every argument separator be on end of separate line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a>.</p></li>
-<li><p>Join - make all arguments be on single line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p></li>
+<li><p>Toggle - split if arguments are on single line, join otherwise. Main supported function of the module. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle">MiniSplitjoin.toggle()</a>.</p></li>
+<li><p>Split - make every argument separator be on end of separate line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split">MiniSplitjoin.split()</a>.</p></li>
+<li><p>Join - make all arguments be on single line. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join">MiniSplitjoin.join()</a>.</p></li>
 </ul></li>
 <li><p>Mappings are dot-repeatable in Normal mode and work in Visual mode.</p></li>
-<li><p>Customizable argument detection (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>):</p>
+<li><p>Customizable argument detection (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a>):</p>
 <ul>
 <li><p>Which brackets can contain arguments.</p></li>
 <li><p>Which strings can separate arguments.</p></li>
 <li><p>Which regions are excluded when looking for separators (like inside nested brackets or quotes).</p></li>
 </ul></li>
-<li><p>Customizable pre and post hooks for both split and join. See <code>split</code> and <code>join</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>. There are several built-in ones in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook"><code>MiniSplitjoin.gen_hook</code></a>.</p></li>
-<li><p>Works inside comments by using modified notion of indent. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>.</p></li>
-<li><p>Provides low-level Lua functions for split and join at positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a>.</p></li>
+<li><p>Customizable pre and post hooks for both split and join. See <code>split</code> and <code>join</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a>. There are several built-in ones in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook">MiniSplitjoin.gen_hook</a>.</p></li>
+<li><p>Works inside comments by using modified notion of indent. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part">MiniSplitjoin.get_indent_part()</a>.</p></li>
+<li><p>Provides low-level Lua functions for split and join at positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at">MiniSplitjoin.split_at()</a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at">MiniSplitjoin.join_at()</a>.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
 <li><p>Search for arguments is done using Lua patterns (regex-like approach). Certain amount of false positives is to be expected.</p></li>
-<li><p>This module is mostly designed around <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle"><code>MiniSplitjoin.toggle()</code></a>. If target split positions are on different lines, join first and then split.</p></li>
-<li><p>Actions can be done on Visual mode selection, which mostly present as a safety route in case of incorrect detection of initial region. It uses <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_visual_region"><code>MiniSplitjoin.get_visual_region()</code></a> which treats selection as full brackets (include brackets in selection).</p></li>
+<li><p>This module is mostly designed around <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.toggle">MiniSplitjoin.toggle()</a>. If target split positions are on different lines, join first and then split.</p></li>
+<li><p>Actions can be done on Visual mode selection, which mostly present as a safety route in case of incorrect detection of initial region. It uses <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_visual_region">MiniSplitjoin.get_visual_region()</a> which treats selection as full brackets (include brackets in selection).</p></li>
 </ul>
-<section id="minisplitjoin-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minisplitjoin-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.splitjoin').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniSplitjoin</code> which you can use for scripting or manually (with <code>:lua MiniSplitjoin.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like action hooks) locally to buffer inside <code>vim.b.minisplitjoin_config</code> which should have same structure as <code>MiniSplitjoin.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like action hooks) locally to buffer inside <code>vim.b.minisplitjoin_config</code> which should have same structure as <code>MiniSplitjoin.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minisplitjoin-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minisplitjoin-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/FooSoft/vim-argwrap">FooSoft/vim-argwrap</a>:</p>
 <ul>
@@ -508,9 +509,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minisplitjoin-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minisplitjoin-disabling">Disabling</h4>
-<p>To disable, set <code>g:minisplitjoin_disable</code> (globally) or <code>b:minisplitjoin_disable</code> (for a buffer) to <code>v:true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>g:minisplitjoin_disable</code> (globally) or <code>b:minisplitjoin_disable</code> (for a buffer) to <code>v:true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -535,7 +536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minisplitjoin.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a>.</p>
 </section>
 <section id="minisplitjoin.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.setup-usage">Usage</h4>
@@ -630,14 +631,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minisplitjoin.config-hooks" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.config-hooks">Hooks</h4>
 <p><code>split.hooks_pre</code>, <code>split.hooks_post</code>, <code>join.hooks_pre</code>, and <code>join.hooks_post</code> are arrays of hook functions. If empty (default) no hook is applied.</p>
-<p>Hooks should take and return array of positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a>.</p>
+<p>Hooks should take and return array of positions. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a>.</p>
 <p>They can be used to tweak actions:</p>
 <ul>
 <li><p>Pre-hooks are called before action. Each is applied on the output of previous one. Input of first hook are detected split/join positions. Output of last one is actually used to perform split/join.</p></li>
 <li><p>Post-hooks are called after action. Each is applied on the output of previous one. Input of first hook are split/join positions from actual action plus its region’s right end as last position (for easier hook code). Output of last one is used as action return value.</p></li>
 </ul>
-<p>For more specific details see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p>
-<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook"><code>MiniSplitjoin.gen_hook</code></a> for generating common hooks with examples.</p>
+<p>For more specific details see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split">MiniSplitjoin.split()</a> and <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join">MiniSplitjoin.join()</a>.</p>
+<p>See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook">MiniSplitjoin.gen_hook</a> for generating common hooks with examples.</p>
 <hr>
 </section>
 </section>
@@ -649,16 +650,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Toggle arguments</p>
 <p>Overview:</p>
 <ul>
-<li><p>Detect region at input position: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding position. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
-<li><p>If region spans single line, use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split"><code>MiniSplitjoin.split()</code></a> with found region. Otherwise use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join"><code>MiniSplitjoin.join()</code></a>.</p></li>
+<li><p>Detect region at input position: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding position. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details.</p></li>
+<li><p>If region spans single line, use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split">MiniSplitjoin.split()</a> with found region. Otherwise use <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join">MiniSplitjoin.join()</a>.</p></li>
 </ul>
 <section id="minisplitjoin.toggle-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.toggle-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a> inheriting its default values.</p>
 <p>Following extra optional fields are allowed:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
-<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.toggle-return" class="level4">
@@ -675,11 +676,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Split arguments</p>
 <p>Overview:</p>
 <ul>
-<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
-<li><p>Find separator positions using <code>separator</code> and <code>exclude_regions</code> from <code>opts</code>. Both brackets are treated as separators. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details. Note: stop if no separator positions are found.</p></li>
+<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details.</p></li>
+<li><p>Find separator positions using <code>separator</code> and <code>exclude_regions</code> from <code>opts</code>. Both brackets are treated as separators. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details. Note: stop if no separator positions are found.</p></li>
 <li><p>Modify separator positions to represent split positions. Last split position (which is inferred from right bracket) is moved one column to left so that right bracket would move on new line.</p></li>
 <li><p>Apply all hooks from <code>opts.split.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step. Output of last one is used as split positions in next step.</p></li>
-<li><p>Split and update split positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a>.</p></li>
+<li><p>Split and update split positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at">MiniSplitjoin.split_at()</a>.</p></li>
 <li><p>Apply all hooks from <code>opts.split.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step plus region’s right end (for easier hook code). Output of last one is used as function return value.</p></li>
 </ul>
 <p>Note:</p>
@@ -688,16 +689,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minisplitjoin.split-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.split-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a> inheriting its default values.</p>
 <p>Following extra optional fields are allowed:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
-<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.split-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.split-return">Return</h4>
-<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> if no split positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at"><code>MiniSplitjoin.split_at()</code></a> application.</p>
+<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> if no split positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at">MiniSplitjoin.split_at()</a> application.</p>
 <hr>
 </section>
 </section>
@@ -709,24 +710,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Join arguments</p>
 <p>Overview:</p>
 <ul>
-<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a> for more details.</p></li>
+<li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details.</p></li>
 <li><p>Compute join positions to be line ends of all but last region lines. Note: stop if no join positions are found.</p></li>
 <li><p>Apply all hooks from <code>opts.join.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step. Output of last one is used as join positions in next step.</p></li>
-<li><p>Join and update join positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a>.</p></li>
+<li><p>Join and update join positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at">MiniSplitjoin.join_at()</a>.</p></li>
 <li><p>Apply all hooks from <code>opts.join.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step plus region’s right end for easier hook code. Output of last one is used as function return value.</p></li>
 </ul>
 <section id="minisplitjoin.join-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.join-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a> inheriting its default values.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Has structure from <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a> inheriting its default values.</p>
 <p>Following extra optional fields are allowed:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: cursor position.</p></li>
-<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
+<li><p><span class="help-syntax-keys">&lt;position&gt;</span> <code>(table)</code> - position at which to find smallest bracket region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: cursor position.</p></li>
+<li><p><span class="help-syntax-keys">&lt;region&gt;</span> <code>(table)</code> - region at which to perform action. Assumes inclusive both start at left bracket and end at right bracket. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for the structure. Default: <code>nil</code> to automatically detect region.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.join-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.join-return">Return</h4>
-<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> of no join positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at"><code>MiniSplitjoin.join_at()</code></a> application.</p>
+<p><code>(any)</code> Output of last <code>opts.split.hooks_post</code> or <code>nil</code> of no join positions found. Default: return value of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at">MiniSplitjoin.join_at()</a> application.</p>
 <hr>
 </section>
 </section>
@@ -738,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate common hooks</p>
 <p>This is a table with function elements. Call to actually get hook.</p>
 <p>All generated post-hooks return updated versions of their input reflecting changes done inside hook.</p>
-<p>Example for <code>lua</code> filetype (place it in ‘lua.lua’ filetype plugin, <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin"><code>ftplugin</code></a>):</p>
+<p>Example for <code>lua</code> filetype (place it in ‘lua.lua’ filetype plugin, <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin">ftplugin</a>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">gen_hook</span> <span class="op">=</span> <span class="va">MiniSplitjoin</span><span class="op">.</span><span class="va">gen_hook</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">curly</span> <span class="op">=</span> <span class="op">{</span> <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b{}'</span> <span class="op">}</span> <span class="op">}</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -764,13 +765,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSplitjoin.gen_hook.pad_brackets</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Generate hook to pad brackets</p>
-<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a>.</p>
 <section id="minisplitjoin.gen_hook.pad_brackets-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.pad_brackets-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;pad&gt;</span> <code>(string)</code> - pad to add after first and before last join positions. Default: <code>' '</code> (single space).</p></li>
-<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.gen_hook.pad_brackets-return" class="level4">
@@ -785,13 +786,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSplitjoin.gen_hook.add_trailing_separator</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Generate hook to add trailing separator</p>
-<p>This is a split post-hook. Use in <code>split.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<p>This is a split post-hook. Use in <code>split.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a>.</p>
 <section id="minisplitjoin.gen_hook.add_trailing_separator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.add_trailing_separator-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;sep&gt;</span> <code>(string)</code> - separator to add before last split position. Default: <code>','</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.gen_hook.add_trailing_separator-return" class="level4">
@@ -806,13 +807,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSplitjoin.gen_hook.del_trailing_separator</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Generate hook to delete trailing separator</p>
-<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config"><code>MiniSplitjoin.config</code></a>.</p>
+<p>This is a join post-hook. Use in <code>join.hooks_post</code> of <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config">MiniSplitjoin.config</a>.</p>
 <section id="minisplitjoin.gen_hook.del_trailing_separator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.gen_hook.del_trailing_separator-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;sep&gt;</span> <code>(string)</code> - separator to remove before last join position. Default: <code>','</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect"><code>MiniSplitjoin.config.detect</code></a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;brackets&gt;</span> <code>(table)</code> - array of bracket patterns indicating on which brackets action should be made. Has same structure as <code>brackets</code> in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a>. Default: <code>MiniSplitjoin.config.detect.brackets</code>.</p></li>
 </ul>
 </section>
 <section id="minisplitjoin.gen_hook.del_trailing_separator-return" class="level4">
@@ -829,8 +830,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Split at positions</p>
 <p>Overview:</p>
 <ul>
-<li><p>For each position move all characters after it to next line and make it have same indent as current one (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>). Also remove trailing whitespace at position line.</p></li>
-<li><p>Increase indent of inner lines by a single pad: tab in case of <a href="https://neovim.io/doc/user/helptag.html?tag='noexpandtab'"><code>'noexpandtab'</code></a> or <a href="https://neovim.io/doc/user/helptag.html?tag=shiftwidth()"><code>shiftwidth()</code></a> number of spaces otherwise.</p></li>
+<li><p>For each position move all characters after it to next line and make it have same indent as current one (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part">MiniSplitjoin.get_indent_part()</a>). Also remove trailing whitespace at position line.</p></li>
+<li><p>Increase indent of inner lines by a single pad: tab in case of <a href="https://neovim.io/doc/user/helptag.html?tag='noexpandtab'">‘noexpandtab’</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=shiftwidth()">shiftwidth()</a> number of spaces otherwise.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
@@ -839,7 +840,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minisplitjoin.split_at-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.split_at-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform split. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for their structure. Note: they don’t have to be ordered, but first and last ones will be used to infer lines for which indent will be increased.</p>
+<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform split. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for their structure. Note: they don’t have to be ordered, but first and last ones will be used to infer lines for which indent will be increased.</p>
 </section>
 <section id="minisplitjoin.split_at-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.split_at-return">Return</h4>
@@ -855,7 +856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Join at positions</p>
 <p>Overview:</p>
 <ul>
-<li>For each position join its line with the next line. Joining is done by replacing trailing whitespace of the line and indent of its next line (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part"><code>MiniSplitjoin.get_indent_part()</code></a>) with a pad string (single space except empty string for first and last positions). To adjust this, use hooks (for example, see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook.pad_brackets"><code>MiniSplitjoin.gen_hook.pad_brackets()</code></a>).</li>
+<li>For each position join its line with the next line. Joining is done by replacing trailing whitespace of the line and indent of its next line (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.get_indent_part">MiniSplitjoin.get_indent_part()</a>) with a pad string (single space except empty string for first and last positions). To adjust this, use hooks (for example, see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.gen_hook.pad_brackets">MiniSplitjoin.gen_hook.pad_brackets()</a>).</li>
 </ul>
 <p>Notes:</p>
 <ul>
@@ -864,7 +865,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minisplitjoin.join_at-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.join_at-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform join. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for their structure. Note: they don’t have to be ordered, but first and last ones will have different pad string.</p>
+<p><span class="help-syntax-special">{positions}</span> <code>(table)</code> Array of positions at which to perform join. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for their structure. Note: they don’t have to be ordered, but first and last ones will have different pad string.</p>
 </section>
 <section id="minisplitjoin.join_at-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.join_at-return">Return</h4>
@@ -878,7 +879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSplitjoin.get_visual_region</code>()
 </p>
 <p>Get previous visual region</p>
-<p>Get previous visual selection using <a href="https://neovim.io/doc/user/helptag.html?tag='%3C"><code>'&lt;</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%3E"><code>'&gt;</code></a> marks in the format of region (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a>). Used in Visual mode mappings.</p>
+<p>Get previous visual selection using <a href="https://neovim.io/doc/user/helptag.html?tag='%3C">’&lt;</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%3E">’&gt;</a> marks in the format of region (see <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a>). Used in Visual mode mappings.</p>
 <p>Note:</p>
 <ul>
 <li><p>Both marks are included in region.</p></li>
@@ -886,7 +887,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minisplitjoin.get_visual_region-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.get_visual_region-return">Return</h4>
-<p><code>(table)</code> A region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary"><code>MiniSplitjoin-glossary</code></a> for exact structure.</p>
+<p><code>(table)</code> A region. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin-glossary">MiniSplitjoin-glossary</a> for exact structure.</p>
 <hr>
 </section>
 </section>
@@ -913,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSplitjoin.operator</code>(<span class="help-syntax-special">{task}</span>)
 </p>
 <p>Operator for Normal mode mappings</p>
-<p>Main function to be used in expression mappings. No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.setup"><code>MiniSplitjoin.setup()</code></a>.</p>
+<p>Main function to be used in expression mappings. No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.setup">MiniSplitjoin.setup()</a>.</p>
 <section id="minisplitjoin.operator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.operator-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{task}</span> <code>(string)</code> Name of task.</p>

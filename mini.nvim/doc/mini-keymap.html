@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.keymap documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minikeymap" id="toc-minikeymap" class="nav-link active" data-scroll-target="#minikeymap">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minikeymap-setup" id="toc-minikeymap-setup" class="nav-link" data-scroll-target="#minikeymap-setup">Setup</a></li>
-  <li><a href="#minikeymap-comparisons" id="toc-minikeymap-comparisons" class="nav-link" data-scroll-target="#minikeymap-comparisons">Comparisons</a></li>
-  <li><a href="#minikeymap-disabling" id="toc-minikeymap-disabling" class="nav-link" data-scroll-target="#minikeymap-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minikeymap-examples" id="toc-minikeymap-examples" class="nav-link" data-scroll-target="#minikeymap-examples">Examples</a>
   <ul>
@@ -417,27 +418,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.keymap" href="../../mini.nvim/doc/mini-keymap.html#mini.keymap"><b>mini.keymap</b></a> Special key mappings</p>
 <p>MIT License Copyright (c) 2025 Evgeni Chasnovski</p>
 <hr>
-<section id="minikeymap" class="level3">
-<h3 class="anchored" data-anchor-id="minikeymap">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Map keys to perform configurable multi-step actions: if condition for step one is true - execute step one action, else check step two, and so on until falling back to executing original keys. This is usually referred to as “smart” keys (like “smart tab”). See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep"><code>MiniKeymap.map_multistep()</code></a>.</p>
+<li><p>Map keys to perform configurable multi-step actions: if condition for step one is true - execute step one action, else check step two, and so on until falling back to executing original keys. This is usually referred to as “smart” keys (like “smart tab”). See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a>.</p>
 <p>There are many built-in steps targeted for Insert mode mappings of special keys like <span class="help-syntax-keys">&lt;Tab&gt;</span>, <span class="help-syntax-keys">&lt;S-Tab&gt;</span>, <span class="help-syntax-keys">&lt;CR&gt;</span>, and <span class="help-syntax-keys">&lt;BS&gt;</span>:</p>
 <ul>
-<li><p>Navigate and accept <a href="https://neovim.io/doc/user/helptag.html?tag=popupmenu-completion"><code>popupmenu-completion</code></a>. Useful for <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a>.</p></li>
-<li><p>Navigate and expand <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets"><code>mini.snippets</code></a>.</p></li>
-<li><p>Execute <span class="help-syntax-keys">&lt;CR&gt;</span> and <span class="help-syntax-keys">&lt;BS&gt;</span> respecting <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a>.</p></li>
+<li><p>Navigate and accept <a href="https://neovim.io/doc/user/helptag.html?tag=popupmenu-completion">popupmenu-completion</a>. Useful for <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a>.</p></li>
+<li><p>Navigate and expand <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a>.</p></li>
+<li><p>Execute <span class="help-syntax-keys">&lt;CR&gt;</span> and <span class="help-syntax-keys">&lt;BS&gt;</span> respecting <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs">mini.pairs</a>.</p></li>
 <li><p>Jump before/after current tree-sitter node.</p></li>
 <li><p>Jump before opening and after closing characters (brackets and quotes).</p></li>
 <li><p>Increase/decrease indent when cursor is inside of it.</p></li>
 <li><p>Delete all whitespace to the left (“hungry backspace”).</p></li>
-<li><p>Navigate <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet"><code>vim.snippet</code></a>.</p></li>
+<li><p>Navigate <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet">vim.snippet</a>.</p></li>
 <li><p>Navigate and accept in <a href="https://github.com/hrsh7th/nvim-cmp">hrsh7th/nvim-cmp</a> completion.</p></li>
 <li><p>Navigate and accept in <a href="https://github.com/Saghen/blink.cmp">Saghen/blink.cmp</a> completion.</p></li>
 <li><p>Navigate and expand <a href="https://github.com/L3MON4D3/LuaSnip">L3MON4D3/LuaSnip</a> snippets.</p></li>
 <li><p>Execute <span class="help-syntax-keys">&lt;CR&gt;</span> and <span class="help-syntax-keys">&lt;BS&gt;</span> respecting <a href="https://github.com/windwp/nvim-autopairs">windwp/nvim-autopairs</a>.</p></li>
 </ul></li>
-<li><p>Map keys as “combo”: each key acts immediately plus execute extra action if all are typed within configurable delay between each other. See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo"><code>MiniKeymap.map_combo()</code></a>. Some of the common use cases include:</p>
+<li><p>Map keys as “combo”: each key acts immediately plus execute extra action if all are typed within configurable delay between each other. See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo">MiniKeymap.map_combo()</a>. Some of the common use cases include:</p>
 <ul>
 <li><p>Map insertable keys (like “jk”, “kj”) in Insert and Command-line mode to exit into Normal mode.</p></li>
 <li><p>Fight against bad habits of pressing the same navigation key by showing a notification if there are too many of them pressed in a row.</p></li>
@@ -445,33 +446,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples"><code>MiniKeymap-examples</code></a></li>
+<li><a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples">MiniKeymap-examples</a></li>
 </ul>
-<section id="minikeymap-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minikeymap-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module doesn’t need setup, but it can be done to improve usability. Setup with <code>require('mini.keymap').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniKeymap</code> which you can use for scripting or manually (with <code>:lua MiniKeymap.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.config"><code>MiniKeymap.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.config">MiniKeymap.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minikeymap_config</code> will have no effect here.</p>
 </section>
-<section id="minikeymap-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minikeymap-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/max397574/better-escape.nvim">max397574/better-escape.nvim</a>:</p>
 <ul>
-<li><p>Mostly similar to <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo"><code>MiniKeymap.map_combo()</code></a> with a different approach to creating mappings.</p></li>
+<li><p>Mostly similar to <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo">MiniKeymap.map_combo()</a> with a different approach to creating mappings.</p></li>
 <li><p>Mostly targeted for Insert mode mappings as pressed keys get removed automatically after typed. This module allows more general cases while requiring explicit removal of keys (usually via explicit <code>&lt;BS&gt;&lt;BS&gt;</code>).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/abecodes/tabout.nvim">abecodes/tabout.nvim</a>:</p>
 <ul>
-<li><p>Similar general idea as in <code>'jump_{after,before}_tsnode'</code> steps of <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep"><code>MiniKeymap.map_multistep()</code></a>.</p></li>
+<li><p>Similar general idea as in <code>'jump_{after,before}_tsnode'</code> steps of <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a>.</p></li>
 <li><p>Works only with enabled tree-sitter parser. This module provides fallback via ‘jump_after_close’ and ‘jump_before_open’ that work without tree-sitter parser.</p></li>
 <li><p>‘tabout.nvim’ has finer control of how the tree-sitter node movement is done, while this module has “jump outside of current node” behavior.</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="minikeymap-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minikeymap-disabling">Disabling</h4>
-<p>To disable acting in mappings, set <code>vim.g.minikeymap_disable</code> (globally) or <code>vim.b.minikeymap_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable acting in mappings, set <code>vim.g.minikeymap_disable</code> (globally) or <code>vim.b.minikeymap_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -479,14 +480,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minikeymap-examples">Examples</h3>
 <section id="minikeymap-examples-multi-step" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap-examples-multi-step">Multi-step</h4>
-<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep"><code>MiniKeymap.map_multistep()</code></a> for a general description of how multi-step mappings work and what built-in steps are available.</p>
-<p>Setup that works well with <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> and <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a>:</p>
+<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a> for a general description of how multi-step mappings work and what built-in steps are available.</p>
+<p>Setup that works well with <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> and <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs">mini.pairs</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_multistep</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span><span class="va">map_multistep</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;Tab&gt;'</span><span class="op">,</span>   <span class="op">{</span> <span class="st">'pmenu_next'</span> <span class="op">})</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_prev'</span> <span class="op">})</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;CR&gt;'</span><span class="op">,</span>    <span class="op">{</span> <span class="st">'pmenu_accept'</span><span class="op">,</span> <span class="st">'minipairs_cr'</span> <span class="op">})</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span>    <span class="op">{</span> <span class="st">'minipairs_bs'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Use <span class="help-syntax-keys">&lt;Tab&gt;</span> / <span class="help-syntax-keys">&lt;S-Tab&gt;</span> to also navigate and expand <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets"><code>mini.snippets</code></a>:</p>
+<p>Use <span class="help-syntax-keys">&lt;Tab&gt;</span> / <span class="help-syntax-keys">&lt;S-Tab&gt;</span> to also navigate and expand <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_multistep</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span><span class="va">map_multistep</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">tab_steps</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'minisnippets_next'</span><span class="op">,</span><span class="st">'minisnippets_expand'</span><span class="op">,</span><span class="st">'pmenu_next'</span> <span class="op">}</span></span>
@@ -509,18 +510,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'jump_before_tsnode'</span><span class="op">,</span> <span class="st">'jump_before_open'</span><span class="op">,</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="va">shifttab_steps</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Navigation in active <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet"><code>vim.snippet</code></a> session also requires mapping in <a href="https://neovim.io/doc/user/helptag.html?tag=Select-mode"><code>Select-mode</code></a>:</p>
+<p>Navigation in active <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet">vim.snippet</a> session also requires mapping in <a href="https://neovim.io/doc/user/helptag.html?tag=Select-mode">Select-mode</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_multistep</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span><span class="va">map_multistep</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">({</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'s'</span> <span class="op">},</span> <span class="st">'&lt;Tab&gt;'</span><span class="op">,</span>   <span class="op">{</span> <span class="st">'vimsnippet_next'</span><span class="op">,</span> <span class="st">'pmenu_next'</span> <span class="op">})</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>map_multistep<span class="op">({</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'s'</span> <span class="op">},</span> <span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'vimsnippet_prev'</span><span class="op">,</span> <span class="st">'pmenu_prev'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minikeymap-examples-combos" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap-examples-combos">Combos</h4>
-<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo"><code>MiniKeymap.map_combo()</code></a> for a general description of what is a combo and more caveats about its usage.</p>
+<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_combo">MiniKeymap.map_combo()</a> for a general description of what is a combo and more caveats about its usage.</p>
 <p>All combos require their left hand side keys to be typed relatively quickly. To adjust the delay between keys, add <code>{ delay = 500 }</code> (use custom value) as fourth argument.</p>
 <section id="minikeymap-examples-combos-betterescapetonormalmode" class="level5">
 <h5 class="anchored" data-anchor-id="minikeymap-examples-combos-betterescapetonormalmode">“Better escape” to Normal mode</h5>
-<p>Leave into <a href="https://neovim.io/doc/user/helptag.html?tag=Normal-mode"><code>Normal-mode</code></a> without having to reach for <span class="help-syntax-keys">&lt;Esc&gt;</span> key:</p>
+<p>Leave into <a href="https://neovim.io/doc/user/helptag.html?tag=Normal-mode">Normal-mode</a> without having to reach for <span class="help-syntax-keys">&lt;Esc&gt;</span> key:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Support most common modes. This can also contain 't', but would</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- only mean to press `&lt;Esc&gt;` inside terminal.</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'c'</span><span class="op">,</span> <span class="st">'x'</span><span class="op">,</span> <span class="st">'s'</span> <span class="op">}</span></span>
@@ -548,13 +549,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minikeymap-examples-combos-fixpreviousspellingmistake" class="level5">
 <h5 class="anchored" data-anchor-id="minikeymap-examples-combos-fixpreviousspellingmistake">Fix previous spelling mistake</h5>
-<p>Fix previous spelling mistake (see <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bs"><code>[s</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=z="><code>z=</code></a>) without manually leaving Insert mode:</p>
+<p>Fix previous spelling mistake (see [<a href="https://neovim.io/doc/user/helptag.html?tag=%5Bs">s</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=z=">z=</a>) without manually leaving Insert mode:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">action</span> <span class="op">=</span> <span class="st">'&lt;BS&gt;&lt;BS&gt;&lt;Esc&gt;[s1z=gi&lt;Right&gt;'</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span>map_combo<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'kk'</span><span class="op">,</span> <span class="va">action</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minikeymap-examples-combos-hidesearchhighlighting" class="level5">
 <h5 class="anchored" data-anchor-id="minikeymap-examples-combos-hidesearchhighlighting">Hide search highlighting</h5>
-<p>Use double <span class="help-syntax-keys">&lt;Esc&gt;</span><span class="help-syntax-keys">&lt;Esc&gt;</span> to execute <a href="https://neovim.io/doc/user/helptag.html?tag=:nohlsearch"><code>:nohlsearch</code></a>. Although this can also be done with <code>nmap &lt;Esc&gt; &lt;Cmd&gt;nohl&lt;CR&gt;</code>, the combo approach also exists and can be used to free <span class="help-syntax-keys">&lt;Esc&gt;</span> mapping in Normal mode for something else.</p>
+<p>Use double <span class="help-syntax-keys">&lt;Esc&gt;</span><span class="help-syntax-keys">&lt;Esc&gt;</span> to execute <a href="https://neovim.io/doc/user/helptag.html?tag=:nohlsearch">:nohlsearch</a>. Although this can also be done with <code>nmap &lt;Esc&gt; &lt;Cmd&gt;nohl&lt;CR&gt;</code>, the combo approach also exists and can be used to free <span class="help-syntax-keys">&lt;Esc&gt;</span> mapping in Normal mode for something else.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">action</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'nohlsearch'</span><span class="op">)</span> <span class="kw">end</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span>map_combo<span class="op">({</span> <span class="st">'n'</span><span class="op">,</span><span class="st">'i'</span><span class="op">,</span><span class="st">'x'</span><span class="op">,</span><span class="st">'c'</span> <span class="op">},</span> <span class="st">'&lt;Esc&gt;&lt;Esc&gt;'</span><span class="op">,</span> <span class="va">action</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -578,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minikeymap.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.config"><code>MiniKeymap.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.config">MiniKeymap.config</a>.</p>
 </section>
 <section id="minikeymap.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.setup-usage">Usage</h4>
@@ -604,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniKeymap.map_multistep</code>(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{steps}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Map multi-step action</p>
-<p>Mapping of a multi-step action is an expression mapping (<a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a>). Executing a multi-step action is essentially:</p>
+<p>Mapping of a multi-step action is an expression mapping (<a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression">:map-expression</a>). Executing a multi-step action is essentially:</p>
 <ul>
 <li><p>Check condition for step one. If <code>true</code> - execute step one action and stop.</p></li>
 <li><p>Check condition for step two, and so on.</p></li>
@@ -655,28 +656,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └─────────────────────┴────────────────┴──────────────────────────┴─────────┘</code></pre>
 <p>Notes:</p>
 <ul>
-<li><p>Executing action has limitations of <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a> (like not allowed text or buffer changes, etc.). To execute complex lua code, use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a> inside action, return the code as string in <a href="https://neovim.io/doc/user/helptag.html?tag=:map-cmd"><code>:map-cmd</code></a> format, or return a function to be later executed. See usage examples.</p></li>
+<li><p>Executing action has limitations of <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression">:map-expression</a> (like not allowed text or buffer changes, etc.). To execute complex lua code, use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a> inside action, return the code as string in <a href="https://neovim.io/doc/user/helptag.html?tag=:map-cmd">:map-cmd</a> format, or return a function to be later executed. See usage examples.</p></li>
 <li><p>Some mapped keys (like <span class="help-syntax-keys">&lt;Tab&gt;</span>, <span class="help-syntax-keys">&lt;CR&gt;</span>) might require disabling smart presets in plugins (like ‘nvim-cmp’, ‘blink-cmp’, ‘nvim-autopairs’).</p></li>
 </ul>
 <section id="minikeymap.map_multistep-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.map_multistep-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string|table)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()"><code>vim.keymap.set()</code></a>.</p>
-<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()"><code>vim.keymap.set()</code></a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string|table)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()">vim.keymap.set()</a>.</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()">vim.keymap.set()</a>.</p>
 <p><span class="help-syntax-special">{steps}</span> <code>(table)</code> Array of steps. Each step can be a string with the name of built-in step or a table with two callable methods (will be called without arguments):</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;condition&gt;</span> - return <code>true</code> if the action should be executed.</p></li>
 <li><p><span class="help-syntax-keys">&lt;action&gt;</span> - action to be executed if <span class="help-syntax-keys">&lt;condition&gt;</span> returns <code>true</code>. For more flexibility, it can also return a value which can be:</p>
 <ul>
-<li><p>String - will be returned as expression output. Can be something like <code>"&lt;Tab&gt;"</code> (treat as <span class="help-syntax-keys">&lt;Tab&gt;</span> key) or <code>"&lt;Cmd&gt;lua vim.notify('Hello')&lt;CR&gt;"</code>. Should not escape keycodes (i.e.&nbsp;return “<span class="help-syntax-keys">&lt;Tab&gt;</span>” and not “). To undo already done escape, use <a href="https://neovim.io/doc/user/helptag.html?tag=keytrans()"><code>keytrans()</code></a>.</p></li>
+<li><p>String - will be returned as expression output. Can be something like <code>"&lt;Tab&gt;"</code> (treat as <span class="help-syntax-keys">&lt;Tab&gt;</span> key) or <code>"&lt;Cmd&gt;lua vim.notify('Hello')&lt;CR&gt;"</code>. Should not escape keycodes (i.e.&nbsp;return “<span class="help-syntax-keys">&lt;Tab&gt;</span>” and not “). To undo already done escape, use <a href="https://neovim.io/doc/user/helptag.html?tag=keytrans()">keytrans()</a>.</p></li>
 <li><p>Function - will be executed as if <code>"&lt;Cmd&gt;lua f()&lt;CR&gt;"</code>, but does not need to create a global function for that.</p></li>
 <li><p><code>false</code> - do not stop going through steps.</p></li>
 </ul></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()"><code>vim.keymap.set()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set()">vim.keymap.set()</a>.</p>
 </section>
 <section id="minikeymap.map_multistep-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.map_multistep-usage">Usage</h4>
-<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples"><code>MiniKeymap-examples</code></a> for practical examples.</p>
+<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples">MiniKeymap-examples</a> for practical examples.</p>
 <p>Some illustrative examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cn">_G</span><span class="op">.</span><span class="va">log</span> <span class="op">=</span> <span class="op">{}</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">steps</span> <span class="op">=</span> <span class="op">{}</span></span>
@@ -730,17 +731,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniKeymap.gen_step.search_pattern</code>(<span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{flags}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Search pattern step</p>
-<p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a> to jump to pattern match. Possibly adjust final position to be just to the right of the match (useful in Insert mode).</p>
+<p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a> to jump to pattern match. Possibly adjust final position to be just to the right of the match (useful in Insert mode).</p>
 <section id="minikeymap.gen_step.search_pattern-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.gen_step.search_pattern-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{pattern}</span> <code>(string)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a>.</p>
-<p><span class="help-syntax-special">{flags}</span> <code>(string|nil)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a>.</p>
+<p><span class="help-syntax-special">{pattern}</span> <code>(string)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a>.</p>
+<p><span class="help-syntax-special">{flags}</span> <code>(string|nil)</code> Same as for <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;side&gt;</span> <code>(string)</code> - one of <code>"before"</code> (default) or <code>"after"</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;stopline&gt;</span> <code>(number|function)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a> (as number or as function’s output after calling it before every search).</p></li>
-<li><p><span class="help-syntax-keys">&lt;timeout&gt;</span> <code>(number)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;skip&gt;</span> <code>(string|function)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()"><code>search()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;stopline&gt;</span> <code>(number|function)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a> (as number or as function’s output after calling it before every search).</p></li>
+<li><p><span class="help-syntax-keys">&lt;timeout&gt;</span> <code>(number)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;skip&gt;</span> <code>(string|function)</code> - forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=search()">search()</a>.</p></li>
 </ul>
 </section>
 <section id="minikeymap.gen_step.search_pattern-return" class="level4">
@@ -749,7 +750,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minikeymap.gen_step.search_pattern-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.gen_step.search_pattern-usage">Usage</h4>
-<p>Built-in <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep"><code>MiniKeymap.map_multistep()</code></a> steps “jump_after_close” and “jump_before_open” use this, but only in Insert mode.</p>
+<p>Built-in <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a> steps “jump_after_close” and “jump_before_open” use this, but only in Insert mode.</p>
 <p>Steps that jump before/after all consecutive brackets in several modes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">keymap</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">tab_step_insert</span> <span class="op">=</span> <span class="va">keymap</span><span class="op">.</span><span class="va">gen_step</span><span class="op">.</span>search_pattern<span class="op">(</span></span>
@@ -779,17 +780,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>IMPORTANT! Combo is not a regular mapping but a separate key tracking with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.on_key()"><code>vim.on_key()</code></a>. This is important as combos will not be visible and can not be managed as regular mappings. Instead each combo is associated with a dedicated <a href="https://neovim.io/doc/user/helptag.html?tag=namespace"><code>namespace</code></a> (named for human readability). However, it is not really expected to manage them on the fly after they are created.</p></li>
-<li><p>String action is executed with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_input()"><code>nvim_input()</code></a>, i.e.&nbsp;emulated keys will respect custom mappings.</p></li>
+<li><p>IMPORTANT! Combo is not a regular mapping but a separate key tracking with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.on_key()">vim.on_key()</a>. This is important as combos will not be visible and can not be managed as regular mappings. Instead each combo is associated with a dedicated <a href="https://neovim.io/doc/user/helptag.html?tag=namespace">namespace</a> (named for human readability). However, it is not really expected to manage them on the fly after they are created.</p></li>
+<li><p>String action is executed with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_input()">nvim_input()</a>, i.e.&nbsp;emulated keys will respect custom mappings.</p></li>
 <li><p>Different combos are tracked and act independent of each other. For example, if there are combos for <code>jjk</code> and <code>jk</code> keys, fast typing <code>jjk</code> will execute both.</p></li>
-<li><p>Neovim&gt;=0.11 is recommended due to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.on_key()"><code>vim.on_key()</code></a> improvement to allow watching for keys as they are typed and not as if coming from mappings. For example, this matters when creating a <code>jk</code> combo for Visual mode while also having <code>xnoremap j gj</code> style of remaps. On Neovim&lt;0.11 the fix is to use <code>gjgk</code> as combo’s left hand side.</p></li>
+<li><p>Neovim&gt;=0.11 is recommended due to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.on_key()">vim.on_key()</a> improvement to allow watching for keys as they are typed and not as if coming from mappings. For example, this matters when creating a <code>jk</code> combo for Visual mode while also having <code>xnoremap j gj</code> style of remaps. On Neovim&lt;0.11 the fix is to use <code>gjgk</code> as combo’s left hand side.</p></li>
 <li><p>Each combo adds very small but non-zero overhead on each keystroke. Usually about 1-3 microseconds (i.e.&nbsp;0.001-0.003 ms), which should be fast enough for most setups. For a “normal, real world” coding session with a total of ~20000 keystrokes it results in extra ~40ms of overhead for a single created combo. Create many combos with caution.</p></li>
 </ul>
 <section id="minikeymap.map_combo-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.map_combo-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{mode}</span> <code>(string|table)</code> String or array of string mode id (like “n”, “i”, etc.). Array of several modes is more performant than several single mode combos.</p>
 <p><span class="help-syntax-special">{lhs}</span> <code>(string|table)</code> String with tracked key sequence or an array of tracked keys (one element - one key).</p>
-<p><span class="help-syntax-special">{action}</span> <code>(string|function)</code> Action to perform after key sequence is detected. If string, treated as keys and emulated with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_input()"><code>nvim_input()</code></a>. If function, executed in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a>. Can return string keys which will be emulated.</p>
+<p><span class="help-syntax-special">{action}</span> <code>(string|function)</code> Action to perform after key sequence is detected. If string, treated as keys and emulated with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_input()">nvim_input()</a>. If function, executed in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>. Can return string keys which will be emulated.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;delay&gt;</span> <code>(number)</code> - delay in milliseconds within which keys should be pressed to detect a key sequence. Default: 200.</li>
@@ -797,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minikeymap.map_combo-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minikeymap.map_combo-usage">Usage</h4>
-<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples"><code>MiniKeymap-examples</code></a> for practical examples.</p>
+<p>See <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap-examples">MiniKeymap-examples</a> for practical examples.</p>
 <p>Some illustrative examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_combo</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span><span class="va">map_combo</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>

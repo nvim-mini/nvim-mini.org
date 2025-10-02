@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.icons documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#miniicons" id="toc-miniicons" class="nav-link active" data-scroll-target="#miniicons">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#miniicons-dependencies" id="toc-miniicons-dependencies" class="nav-link" data-scroll-target="#miniicons-dependencies">Dependencies</a></li>
-  <li><a href="#miniicons-setup" id="toc-miniicons-setup" class="nav-link" data-scroll-target="#miniicons-setup">Setup</a></li>
-  <li><a href="#miniicons-comparisons" id="toc-miniicons-comparisons" class="nav-link" data-scroll-target="#miniicons-comparisons">Comparisons</a></li>
-  <li><a href="#miniicons-highlightgroups" id="toc-miniicons-highlightgroups" class="nav-link" data-scroll-target="#miniicons-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
   </ul></li>
   <li><a href="#miniicons.setup" id="toc-miniicons.setup" class="nav-link" data-scroll-target="#miniicons.setup">setup()</a>
   <ul>
@@ -407,30 +408,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.icons" href="../../mini.nvim/doc/mini-icons.html#mini.icons"><b>mini.icons</b></a> Icon provider</p>
 <p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
 <hr>
-<section id="miniicons" class="level3">
-<h3 class="anchored" data-anchor-id="miniicons">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Provide icons with their highlighting via a single <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for various categories: filetype, file/directory path, extension, operating system, LSP kind values. Icons and category defaults can be overridden.</p></li>
+<li><p>Provide icons with their highlighting via a single <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> for various categories: filetype, file/directory path, extension, operating system, LSP kind values. Icons and category defaults can be overridden.</p></li>
 <li><p>Configurable styles: “glyph” (icon glyphs) or “ascii” (non-glyph fallback).</p></li>
 <li><p>Fixed set of highlight groups (linked to built-in groups by default) for better blend with color scheme.</p></li>
 <li><p>Caching for maximum performance.</p></li>
-<li><p>Integration with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add()"><code>vim.filetype.add()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a>.</p></li>
-<li><p>Mocking methods of ‘nvim-tree/nvim-web-devicons’ for better integrations with plugins outside ‘mini.nvim’. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons"><code>MiniIcons.mock_nvim_web_devicons()</code></a>.</p></li>
-<li><p>Tweaking built-in maps for “LSP kind” to include icons. In particular, this makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> use icons in LSP step. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind"><code>MiniIcons.tweak_lsp_kind()</code></a>.</p></li>
+<li><p>Integration with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add()">vim.filetype.add()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a>.</p></li>
+<li><p>Mocking methods of ‘nvim-tree/nvim-web-devicons’ for better integrations with plugins outside ‘mini.nvim’. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a>.</p></li>
+<li><p>Tweaking built-in maps for “LSP kind” to include icons. In particular, this makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> use icons in LSP step. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind">MiniIcons.tweak_lsp_kind()</a>.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
-<li>It is not a goal to become a collection of icons for as much use cases as possible. There are specific criteria for icon data to be included as built-in in each category (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>). The main supported category is “filetype”.</li>
+<li>It is not a goal to become a collection of icons for as much use cases as possible. There are specific criteria for icon data to be included as built-in in each category (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>). The main supported category is “filetype”.</li>
 </ul>
 <p>Recommendations for plugin authors using ‘mini.icons’ as a dependency:</p>
 <ul>
 <li><p>Check if <code>_G.MiniIcons</code> table is present (which means that user explicitly enabled ‘mini.icons’) and provide icons only if it is.</p></li>
-<li><p>Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> function to get icon string and more data about it.</p></li>
-<li><p>For file icons prefer using full path instead of relative or only basename. It makes a difference if path matches pattern that uses parent directories. The <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a> has an example of that.</p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> function to get icon string and more data about it.</p></li>
+<li><p>For file icons prefer using full path instead of relative or only basename. It makes a difference if path matches pattern that uses parent directories. The <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a> has an example of that.</p></li>
 </ul>
-<section id="miniicons-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="miniicons-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies:</p>
 <ul>
 <li><p>Terminal emulator that supports showing special utf8 glyphs, possibly with “overflow” view (displaying is done not in one but two visual cells). Most modern feature-rich terminal emulators support this out of the box: WezTerm, Kitty, Alacritty, iTerm2, Ghostty. Not having “overflow” feature only results into smaller icons. Not having support for special utf8 glyphs will result into seemingly random symbols (or question mark squares) instead of icon glyphs.</p></li>
@@ -438,13 +439,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>If using terminal emulator and/or font with icon support is impossible, use <code>config.style = 'ascii'</code>. It will use a (less visually appealing) set of non-glyph icons.</p>
 </section>
-<section id="miniicons-setup" class="level4">
-<h4 class="anchored" data-anchor-id="miniicons-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.icons').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniIcons</code> which you can use for scripting or manually (with <code>:lua MiniIcons.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a> for <code>config</code> structure and default values.</p>
 </section>
-<section id="miniicons-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="miniicons-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for users):</p>
 <ul>
@@ -452,21 +453,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>This module prefers richer set of <code>nf-md-*</code> (from “Material design” set) Nerd Fonts icons while ‘nvim-web-devicons’ mostly prefers <code>nf-dev-*</code> (from “devicons” set).</p></li>
 <li><p>Supported categories are slightly different (with much overlap).</p></li>
 <li><p>Both support customization of any icon. Only this module supports customization of default ones per supported category.</p></li>
-<li><p>Using this module can occasionally result in small delays when used synchronously for many times to get icons for not typical files (like in <a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a>). This is due to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> fallback and is present only during first call, as value is cached for later uses.</p></li>
+<li><p>Using this module can occasionally result in small delays when used synchronously for many times to get icons for not typical files (like in <a href="../../mini.nvim/doc/mini-files.html#mini.files">mini.files</a>). This is due to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> fallback and is present only during first call, as value is cached for later uses.</p></li>
 <li><p>This module supports different icon styles (like “ascii” for when using glyphs is not possible), while ‘nvim-web-devicons’ does not.</p></li>
-<li><p>This module provides <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons"><code>MiniIcons.mock_nvim_web_devicons()</code></a> function which when called imitates installed ‘nvim-web-devicons’ plugin to support other plugins which do not provide ‘mini.icons’ yet.</p></li>
+<li><p>This module provides <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a> function which when called imitates installed ‘nvim-web-devicons’ plugin to support other plugins which do not provide ‘mini.icons’ yet.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for plugin developers):</p>
 <ul>
 <li><p>Both have main “get icon” type of function:</p>
 <ul>
 <li><p>Both return tuple of icon and highlight group strings.</p></li>
-<li><p>This module always returns icon data possibly falling back to user’s configured default, while ‘nvim-web-devicons’ is able to return <code>nil</code>. This module’s approach is more aligned with the most common use case of always showing an icon instead or near some data. There is a third returned value indicating if output is a result of a fallback (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>).</p></li>
-<li><p>This module uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> as a fallback for “file” and “extension” categories, while ‘nvim-web-devicons’ completely relies on the manually maintained tables of supported filenames and extensions. Using fallback results in a wider support and deeper integration with Neovim’s filetype detection at the cost of occasional slower first call. The difference is reduced as much as is reasonable by preferring faster file extension resolution over filetype matching.</p></li>
+<li><p>This module always returns icon data possibly falling back to user’s configured default, while ‘nvim-web-devicons’ is able to return <code>nil</code>. This module’s approach is more aligned with the most common use case of always showing an icon instead or near some data. There is a third returned value indicating if output is a result of a fallback (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>).</p></li>
+<li><p>This module uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> as a fallback for “file” and “extension” categories, while ‘nvim-web-devicons’ completely relies on the manually maintained tables of supported filenames and extensions. Using fallback results in a wider support and deeper integration with Neovim’s filetype detection at the cost of occasional slower first call. The difference is reduced as much as is reasonable by preferring faster file extension resolution over filetype matching.</p></li>
 <li><p>This module caches all its return values resulting in really fast next same argument calls, while ‘nvim-web-devicons’ doesn’t do that.</p></li>
 <li><p>This module works with full file/directory paths as input.</p></li>
 </ul></li>
-<li><p>Different sets of supported categories (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>):</p>
+<li><p>Different sets of supported categories (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a>):</p>
 <ul>
 <li><p>Both support “file”, “extension”, “filetype”, “operating system”. Albeit in different volumes: ‘nvim-web-devicons’ covers more cases for “operating system”, while this module has better eventual coverage for other cases.</p></li>
 <li><p>This module supports “directory” and “lsp” categories.</p></li>
@@ -480,8 +481,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="miniicons-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="miniicons-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <p>Only the following set of highlight groups is used as icon highlight. It is recommended that they all only define colored foreground:</p>
 <ul>
 <li><p><code>MiniIconsAzure</code> - azure.</p></li>
@@ -494,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniIconsRed</code> - red.</p></li>
 <li><p><code>MiniIconsYellow</code> - yellow.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 <hr>
 </section>
 </section>
@@ -506,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="miniicons.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a>.</p>
 </section>
 <section id="miniicons.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.setup-usage">Usage</h4>
@@ -583,15 +584,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notes:</p>
 <ul>
-<li><p>These customizations only take effect inside <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup"><code>MiniIcons.setup()</code></a> call. | Changing interactively via <code>:lua MiniIcons.config.xxx = { | }</code> does not work | for performance reasons.</p></li>
-<li><p>Use lower case names for categories which are matched ignoring case. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for more details.</p></li>
+<li><p>These customizations only take effect inside <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup">MiniIcons.setup()</a> call. | Changing interactively via <code>:lua MiniIcons.config.xxx = { | }</code> does not work | for performance reasons.</p></li>
+<li><p>Use lower case names for categories which are matched ignoring case. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> for more details.</p></li>
 </ul>
 </section>
 <section id="miniicons.config-usingextensionduringfileresolution" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.config-usingextensionduringfileresolution">Using extension during file resolution</h4>
-<p><code>config.use_file_extension</code> is a function which can be used to control which extensions will be considered as a source of icon data during “file” category resolution (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for more details). Default: function which always returns <code>true</code> (i.e.&nbsp;consider all extensions).</p>
+<p><code>config.use_file_extension</code> is a function which can be used to control which extensions will be considered as a source of icon data during “file” category resolution (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> for more details). Default: function which always returns <code>true</code> (i.e.&nbsp;consider all extensions).</p>
 <p>Will be called once for the biggest suffix after dot found in the file name. The arguments will be <code>ext</code> (found extension; lowercase) and <code>file</code> (input for which icon is computed; as is). Should explicitly return <code>true</code> if <code>ext</code> is to be considered (i.e.&nbsp;call <code>MiniIcons.get('extension', ext)</code> and use its output if it is not default). Otherwise extension won’t be even considered.</p>
-<p>The primary use case for this setting is to ensure that some extensions are ignored in order for resolution to reach <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> stage. This is needed if there is a set up filetype detection for files with recognizable extension and conflicting icons (which you want to use). Note: if problematic filetype detection involves only known in advance file names, prefer using <code>config.file</code> customization.</p>
+<p>The primary use case for this setting is to ensure that some extensions are ignored in order for resolution to reach <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> stage. This is needed if there is a set up filetype detection for files with recognizable extension and conflicting icons (which you want to use). Note: if problematic filetype detection involves only known in advance file names, prefer using <code>config.file</code> customization.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Built-in filetype detection recognizes files like "queries/.*%.scm"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- as "query" filetype. However, without special setup, 'mini.icons' will</span></span>
@@ -619,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Always returns some data, even if icon name is not explicitly supported within target category. Category “default” is used as a fallback. Use third output value to check if this particular case is a result of a fallback.</p></li>
 <li><p>Glyphs are explicitly preferred (when reasonable) from a richer set of <code>nf-md-*</code> class (“Material design” set) of Nerd Fonts icons.</p></li>
-<li><p>Output is cached after the first call to increase performance of next calls with same arguments. To reset cache, call <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup"><code>MiniIcons.setup()</code></a>.</p></li>
-<li><p>To increase first call performance for “extension” and “file” categories, add frequently used values in <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config"><code>MiniIcons.config</code></a>. They will be preferred over executing <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a>.</p></li>
+<li><p>Output is cached after the first call to increase performance of next calls with same arguments. To reset cache, call <a href="../../mini.nvim/doc/mini-icons.html#miniicons.setup">MiniIcons.setup()</a>.</p></li>
+<li><p>To increase first call performance for “extension” and “file” categories, add frequently used values in <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a>. They will be preferred over executing <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a>.</p></li>
 <li><p>Matching icon name for “file” and “directory” categories is done exactly and respecting case. Others are done ignoring case.</p></li>
 </ul>
 <section id="miniicons.get-parameters" class="level4">
@@ -655,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Icon data is attempted to be resolved in the following order:</p>
 <ul>
 <li><p>List of user configured and built-in extensions (for better results). Run <code>:=MiniIcons.list('extension')</code> to see them. Used also if present as suffix after the dot (widest one preferred).</p></li>
-<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with placeholder file name. Uses icon data from “filetype” category.</p></li>
+<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> with placeholder file name. Uses icon data from “filetype” category.</p></li>
 </ul>
 <p>Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these will result in the same output</span></span>
@@ -676,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Considered only if <code>config.use_file_extension</code> returned <code>true</code>.</p></li>
 <li><p>Only recognizable extensions (i.e.&nbsp;not default fallback) are used.</p></li>
 </ul></li>
-<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with full input (not basename) as <code>filename</code>. Uses icon data from “filetype” category.</p></li>
+<li><p>Filetype as a result of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> with full input (not basename) as <code>filename</code>. Uses icon data from “filetype” category.</p></li>
 </ul>
 <p>Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these will result in the same output</span></span>
@@ -717,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'os'</span><span class="op">,</span> <span class="st">'arch'</span><span class="op">)</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'os'</span><span class="op">,</span> <span class="st">'macos'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<p><span class="help-syntax-special">{name}</span> <code>(string)</code> Icon name within category. Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.list"><code>MiniIcons.list()</code></a> to get icon names which are explicitly supported for specific category.</p>
+<p><span class="help-syntax-special">{name}</span> <code>(string)</code> Icon name within category. Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.list">MiniIcons.list()</a> to get icon names which are explicitly supported for specific category.</p>
 </section>
 <section id="miniicons.get-return" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.get-return">Return</h4>
@@ -738,11 +739,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>List explicitly supported icon names</p>
 <section id="miniicons.list-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.list-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{category}</span> <code>(string)</code> Category name supported by <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a>.</p>
+<p><span class="help-syntax-special">{category}</span> <code>(string)</code> Category name supported by <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>.</p>
 </section>
 <section id="miniicons.list-return" class="level4">
 <h4 class="anchored" data-anchor-id="miniicons.list-return">Return</h4>
-<p><code>(table)</code> Array of icon names which are explicitly supported for category. Note, that <code>'file'</code> and <code>'extension'</code> categories support much more icon names via their fallback to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()"><code>vim.filetype.match()</code></a> with <code>'filetype'</code> category.</p>
+<p><code>(table)</code> Array of icon names which are explicitly supported for category. Note, that <code>'file'</code> and <code>'extension'</code> categories support much more icon names via their fallback to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> with <code>'filetype'</code> category.</p>
 <hr>
 </section>
 </section>
@@ -752,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniIcons.mock_nvim_web_devicons</code>()
 </p>
 <p>Mock ‘nvim-web-devicons’ module</p>
-<p>Call this function to mock exported functions of ‘nvim-tree/nvim-web-devicons’ plugin. It will mock all its functions which return icon data by using <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> equivalent.</p>
+<p>Call this function to mock exported functions of ‘nvim-tree/nvim-web-devicons’ plugin. It will mock all its functions which return icon data by using <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> equivalent.</p>
 <p>This function is useful if any plugins relevant to you depend solely on ‘nvim-web-devicons’ and have not yet added an integration with ‘mini.icons’.</p>
 <p>Full example of usage:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span></span>
@@ -766,7 +767,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniIcons.tweak_lsp_kind</code>(<span class="help-syntax-special">{mode}</span>)
 </p>
 <p>Tweak built-in LSP kind names</p>
-<p>Update in place appropriate maps in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol"><code>vim.lsp.protocol</code></a> (<code>CompletionItemKind</code> and <code>SymbolKind</code>) by using icon strings from “lsp” category. Only “numeric id to kind name” part is updated (to preserve data from original map).</p>
+<p>Update in place appropriate maps in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol">vim.lsp.protocol</a> (<code>CompletionItemKind</code> and <code>SymbolKind</code>) by using icon strings from “lsp” category. Only “numeric id to kind name” part is updated (to preserve data from original map).</p>
 <p>Updating is done in one of these modes:</p>
 <ul>
 <li><p>Append: add icon after text.</p></li>
@@ -775,8 +776,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> show icons, as it uses built-in protocol map.</p></li>
-<li><p>Results in loading whole <code>vim.lsp</code> module, so might add significant amount of time on startup. Call it lazily. For example, with <a href="../../mini.nvim/doc/mini-deps.html#minideps.later"><code>MiniDeps.later()</code></a>:</p>
+<li><p>Makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> show icons, as it uses built-in protocol map.</p></li>
+<li><p>Results in loading whole <code>vim.lsp</code> module, so might add significant amount of time on startup. Call it lazily. For example, with <a href="../../mini.nvim/doc/mini-deps.html#minideps.later">MiniDeps.later()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniDeps</span><span class="op">.</span>later<span class="op">(</span><span class="va">MiniIcons</span><span class="op">.</span><span class="va">tweak_lsp_kind</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>

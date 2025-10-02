@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="mini.visits documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -311,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +373,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minivisits" id="toc-minivisits" class="nav-link active" data-scroll-target="#minivisits">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minivisits-setup" id="toc-minivisits-setup" class="nav-link" data-scroll-target="#minivisits-setup">Setup</a></li>
-  <li><a href="#minivisits-comparisons" id="toc-minivisits-comparisons" class="nav-link" data-scroll-target="#minivisits-comparisons">Comparisons</a></li>
-  <li><a href="#minivisits-disabling" id="toc-minivisits-disabling" class="nav-link" data-scroll-target="#minivisits-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minivisits-overview" id="toc-minivisits-overview" class="nav-link" data-scroll-target="#minivisits-overview">Overview</a>
   <ul>
@@ -505,18 +535,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.visits" href="../../mini.nvim/doc/mini-visits.html#mini.visits"><b>mini.visits</b></a> Track and reuse file system visits</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minivisits" class="level3">
-<h3 class="anchored" data-anchor-id="minivisits">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Persistently track file system visits (both files and directories) per project directory. Store visit index is human readable and editable.</p></li>
-<li><p>Visit index is normalized on every write to contain relevant information. Exact details can be customized. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p></li>
-<li><p>Built-in ability to persistently add labels to path for later use. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label"><code>MiniVisits.add_label()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label"><code>MiniVisits.remove_label()</code></a>.</p></li>
+<li><p>Visit index is normalized on every write to contain relevant information. Exact details can be customized. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index">MiniVisits.normalize_index()</a>.</p></li>
+<li><p>Built-in ability to persistently add labels to path for later use. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label">MiniVisits.add_label()</a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label">MiniVisits.remove_label()</a>.</p></li>
 <li><p>Exported functions to reuse visit data:</p>
 <ul>
-<li><p>List visited paths/labels with custom filter and sort (uses “robust frecency” by default). Can be used as source for pickers. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter"><code>MiniVisits.gen_filter</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort"><code>MiniVisits.gen_sort</code></a>.</p></li>
-<li><p>Select visited paths/labels using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label"><code>MiniVisits.select_label()</code></a>.</p></li>
-<li><p>Iterate through visit paths in target direction (“forward”, “backward”, “first”, “last”). See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths"><code>MiniVisits.iterate_paths()</code></a>.</p></li>
+<li><p>List visited paths/labels with custom filter and sort (uses “robust frecency” by default). Can be used as source for pickers. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels">MiniVisits.list_labels()</a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter">MiniVisits.gen_filter</a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort">MiniVisits.gen_sort</a>.</p></li>
+<li><p>Select visited paths/labels using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a>. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path">MiniVisits.select_path()</a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label">MiniVisits.select_label()</a>.</p></li>
+<li><p>Iterate through visit paths in target direction (“forward”, “backward”, “first”, “last”). See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths">MiniVisits.iterate_paths()</a>.</p></li>
 </ul></li>
 <li><p>Exported functions to manually update visit index allowing persistent track of any user information. See <code>*_index()</code> functions.</p></li>
 </ul>
@@ -524,29 +554,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>All data is stored <em>only</em> in in-session Lua variable (for quick operation) and at <code>config.store.path</code> on disk (for persistent usage).</p></li>
 <li><p>Most of functions affect an in-session data which gets written to disk only before Neovim is closing or when users asks to.</p></li>
-<li><p>It doesn’t account for paths being renamed or moved (because there is no general way to detect that). Usually a manual intervention to the visit index is required after the change but <em>before</em> the next writing to disk (usually before closing current session) because it will treat previous path as deleted and remove it from index. There is a <a href="../../mini.nvim/doc/mini-visits.html#minivisits.rename_in_index"><code>MiniVisits.rename_in_index()</code></a> helper for that. If rename/move is done with <a href="../../mini.nvim/doc/mini-files.html#mini.files"><code>mini.files</code></a>, index is autoupdated.</p></li>
+<li><p>It doesn’t account for paths being renamed or moved (because there is no general way to detect that). Usually a manual intervention to the visit index is required after the change but <em>before</em> the next writing to disk (usually before closing current session) because it will treat previous path as deleted and remove it from index. There is a <a href="../../mini.nvim/doc/mini-visits.html#minivisits.rename_in_index">MiniVisits.rename_in_index()</a> helper for that. If rename/move is done with <a href="../../mini.nvim/doc/mini-files.html#mini.files">mini.files</a>, index is autoupdated.</p></li>
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview">MiniVisits-overview</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification">MiniVisits-index-specification</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples">MiniVisits-examples</a></p></li>
 </ul>
-<section id="minivisits-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minivisits-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.visits').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniVisits</code> which you can use for scripting or manually (with <code>:lua MiniVisits.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minivisits_config</code> which should have same structure as <code>MiniVisits.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config">MiniVisits.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minivisits_config</code> which should have same structure as <code>MiniVisits.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minivisits-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minivisits-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/nvim-telescope/telescope-frecency.nvim">nvim-telescope/telescope-frecency.nvim</a>:</p>
 <ul>
 <li><p>It stores array of actual visit timestamps, while this module tracks only total number and latest timestamp of visits. This is by design as a different trade-off between how much data is being used/stored and complexity of underlying “frecency” sorting.</p></li>
 <li><p>By default tracks a buffer only once per session, while this module tracks on every meaningful buffer enter. This leads to a more relevant in-session sorting.</p></li>
 <li><p>Implements an original frecency algorithm of Firefox’s address bar, while this module uses own “robust frecency” approach.</p></li>
-<li><p>Mostly designed to work with ‘nvim-telescope/telescope.nvim’, while this module provides general function to list paths and select with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a>.</p></li>
+<li><p>Mostly designed to work with ‘nvim-telescope/telescope.nvim’, while this module provides general function to list paths and select with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a>.</p></li>
 <li><p>Does not allow use of custom data (like labels), while this module does.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/ThePrimeagen/harpoon">ThePrimeagen/harpoon</a>:</p>
@@ -560,9 +590,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minivisits-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minivisits-disabling">Disabling</h4>
-<p>To disable automated tracking, set <code>vim.g.minivisits_disable</code> (globally) or <code>vim.b.minivisits_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable automated tracking, set <code>vim.g.minivisits_disable</code> (globally) or <code>vim.b.minivisits_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -572,32 +602,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minivisits-overview-trackingvisits">Tracking visits</h4>
 <p>File system visits (both directory and files) tracking is done in two steps:</p>
 <ul>
-<li><p>On every dedicated event (<code>config.track.event</code>, <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter"><code>BufEnter</code></a> by default) timer is (re)started to actually register visit after certain amount of time (<code>config.track.delay</code> milliseconds, 1000 by default). It is not registered immediately to allow navigation to target buffer in several steps (for example, with series of <a href="https://neovim.io/doc/user/helptag.html?tag=:bnext"><code>:bnext</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious"><code>:bprevious</code></a>).</p></li>
-<li><p>When delay time passes without any dedicated events being triggered (meaning user is “settled” on certain buffer), <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit"><code>MiniVisits.register_visit()</code></a> is called if all of the following conditions are met:</p>
+<li><p>On every dedicated event (<code>config.track.event</code>, <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter">BufEnter</a> by default) timer is (re)started to actually register visit after certain amount of time (<code>config.track.delay</code> milliseconds, 1000 by default). It is not registered immediately to allow navigation to target buffer in several steps (for example, with series of <a href="https://neovim.io/doc/user/helptag.html?tag=:bnext">:bnext</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious">:bprevious</a>).</p></li>
+<li><p>When delay time passes without any dedicated events being triggered (meaning user is “settled” on certain buffer), <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit">MiniVisits.register_visit()</a> is called if all of the following conditions are met:</p>
 <ul>
-<li><p>Module is not disabled (see “Disabling” section in <a href="../../mini.nvim/doc/mini-visits.html#mini.visits"><code>mini.visits</code></a>).</p></li>
+<li><p>Module is not disabled (see “Disabling” section in <a href="../../mini.nvim/doc/mini-visits.html#mini.visits">mini.visits</a>).</p></li>
 <li><p>Buffer is normal with non-empty name (used as visit path).</p></li>
 <li><p>Visit path does not equal to the latest tracked one. This is to allow temporary enter of non-normal buffers (like help, terminal, etc.) without artificial increase of visit count.</p></li>
 </ul></li>
 </ul>
-<p>Visit is autoregistered for <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> and leads to increase of count and latest time of visit. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a> for more details.</p>
+<p>Visit is autoregistered for <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> and leads to increase of count and latest time of visit. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification">MiniVisits-index-specification</a> for more details.</p>
 <p>Notes:</p>
 <ul>
 <li><p>All data is stored <em>only</em> in in-session Lua variable (for quick operation) and at <code>config.store.path</code> on disk (for persistent usage). It is automatically written to disk before every Neovim exit (if <code>config.store.autowrite</code> is set).</p></li>
-<li><p>Tracking can be disabled by supplying empty string as <code>track.event</code>. Then it is up to the user to properly call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit"><code>MiniVisits.register_visit()</code></a>.</p></li>
+<li><p>Tracking can be disabled by supplying empty string as <code>track.event</code>. Then it is up to the user to properly call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.register_visit">MiniVisits.register_visit()</a>.</p></li>
 </ul>
 </section>
 <section id="minivisits-overview-reusingvisits" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits-overview-reusingvisits">Reusing visits</h4>
 <p>Visit data can be reused in at least these ways:</p>
 <ul>
-<li><p>Get a list of visited paths (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>) and use it to visualize/pick/navigate visit history.</p></li>
-<li><p>Select one of the visited paths to open it (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a>).</p></li>
-<li><p>Move along visit history (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths"><code>MiniVisits.iterate_paths()</code></a>).</p></li>
-<li><p>Utilize labels. Any visit can be added one or more labels (like “core”, “tmp”, etc.). They are bound to the visit (path registered for certain directory) and are stored persistently. Labels can be used to manually create groups of files and/or directories that have particular interest to the user. There is no one right way to use them, though. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a> for some inspiration.</p></li>
+<li><p>Get a list of visited paths (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>) and use it to visualize/pick/navigate visit history.</p></li>
+<li><p>Select one of the visited paths to open it (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path">MiniVisits.select_path()</a>).</p></li>
+<li><p>Move along visit history (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.iterate_paths">MiniVisits.iterate_paths()</a>).</p></li>
+<li><p>Utilize labels. Any visit can be added one or more labels (like “core”, “tmp”, etc.). They are bound to the visit (path registered for certain directory) and are stored persistently. Labels can be used to manually create groups of files and/or directories that have particular interest to the user. There is no one right way to use them, though. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples">MiniVisits-examples</a> for some inspiration.</p></li>
 <li><p>Utilizing custom data. Visit index can be manipulated manually using <code>_index()</code> set of functions. All “storable” (i.e.&nbsp;not functions or metatables) user data inside index is then stored on disk, so it can be used to create any kind of workflow user wants.</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples"><code>MiniVisits-examples</code></a> for some actual configuration and workflow examples.</p>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits-examples">MiniVisits-examples</a> for some actual configuration and workflow examples.</p>
 <hr>
 </section>
 </section>
@@ -610,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Second level keys are actual visit paths. Their values are tables with visit data which should follow these requirements:</p>
 <ul>
 <li><p>Field <span class="help-syntax-keys">&lt;count&gt;</span> should be present and be a number. It represents the number of times this path was visited under particular cwd.</p></li>
-<li><p>Field <span class="help-syntax-keys">&lt;latest&gt;</span> should be present and be a number. It represents the time of latest path visit under particular cwd. By default computed with <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()"><code>os.time()</code></a> (up to a second).</p></li>
+<li><p>Field <span class="help-syntax-keys">&lt;latest&gt;</span> should be present and be a number. It represents the time of latest path visit under particular cwd. By default computed with <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()">os.time()</a> (up to a second).</p></li>
 <li><p>Field <span class="help-syntax-keys">&lt;labels&gt;</span> might not be present. If present, it should be a table with string labels as keys and <code>true</code> as values. It represents labels of the path under particular cwd.</p></li>
 </ul>
 <p>Notes:</p>
@@ -637,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minivisits-index-specification-storage" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits-index-specification-storage">Storage</h4>
-<p>When stored on disk, visit index is a file containing Lua code returning visit index table. It can be edited by hand as long as it contains a valid Lua code (to be executed with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()"><code>dofile()</code></a>).</p>
+<p>When stored on disk, visit index is a file containing Lua code returning visit index table. It can be edited by hand as long as it contains a valid Lua code (to be executed with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()">dofile()</a>).</p>
 <p>Notes:</p>
 <ul>
 <li>Storage is implemented in such a way that it doesn’t really support more than one parallel Neovim processes. Meaning that if there are two or more simultaneous Neovim processes with same visit index storage path, the last one writing to it will preserve its visit history while others - won’t.</li>
@@ -645,9 +675,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minivisits-index-specification-normalization" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits-index-specification-normalization">Normalization</h4>
-<p>To ensure that visit index contains mostly relevant data, it gets normalized: automatically inside <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index"><code>MiniVisits.write_index()</code></a> or via <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p>
+<p>To ensure that visit index contains mostly relevant data, it gets normalized: automatically inside <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index">MiniVisits.write_index()</a> or via <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index">MiniVisits.normalize_index()</a>.</p>
 <p>What normalization actually does can be configured in <code>config.store.normalize</code>.</p>
-<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a> for default normalization approach.</p>
+<p>See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default">MiniVisits.gen_normalize.default()</a> for default normalization approach.</p>
 <hr>
 </section>
 </section>
@@ -656,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This module provides a flexible framework for working with file system visits. Exact choice of how to organize workflow is left to the user. Here are some examples for inspiration which can be combined together.</p>
 <section id="minivisits-examples-usedifferentsorting" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits-examples-usedifferentsorting">Use different sorting</h4>
-<p>Default sorting in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> allows flexible adjustment of which feature to prefer more: recency or frequency. Here is an example of how to make set of keymaps for three types of sorting combined with two types of scopes (all visits and only for current cwd):</p>
+<p>Default sorting in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default">MiniVisits.gen_sort.default()</a> allows flexible adjustment of which feature to prefer more: recency or frequency. Here is an example of how to make set of keymaps for three types of sorting combined with two types of scopes (all visits and only for current cwd):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">make_select_path</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">select_global</span><span class="op">,</span> <span class="va">recency_weight</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">visits</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">sort</span> <span class="op">=</span> <span class="va">visits</span><span class="op">.</span><span class="va">gen_sort</span><span class="op">.</span>default<span class="op">({</span> <span class="va">recency_weight</span> <span class="op">=</span> <span class="va">recency_weight</span> <span class="op">})</span></span>
@@ -678,15 +708,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vY'</span><span class="op">,</span> <span class="st">'Select frecent (cwd)'</span><span class="op">,</span>  <span class="kw">false</span><span class="op">,</span> <span class="dv">0.5</span><span class="op">)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vf'</span><span class="op">,</span> <span class="st">'Select frequent (all)'</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span>  <span class="dv">0</span><span class="op">)</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>map<span class="op">(</span><span class="st">'&lt;Leader&gt;vF'</span><span class="op">,</span> <span class="st">'Select frequent (cwd)'</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="dv">0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths"><code>MiniExtra.pickers.visit_paths()</code></a>.</p>
+<p>Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths">MiniExtra.pickers.visit_paths()</a>.</p>
 </section>
 <section id="minivisits-examples-usemanuallabels" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits-examples-usemanuallabels">Use manual labels</h4>
 <p>Labels is a powerful tool to create groups of associated paths. Usual workflow consists of:</p>
 <ul>
-<li><p>Add label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label"><code>MiniVisits.add_label()</code></a> (prompts for actual label).</p></li>
-<li><p>Remove label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label"><code>MiniVisits.remove_label()</code></a> (prompts for actual label).</p></li>
-<li><p>When need to use labeled groups, call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label"><code>MiniVisits.select_label()</code></a> which will then call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> to select path among those having selected label. Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a>.</p></li>
+<li><p>Add label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.add_label">MiniVisits.add_label()</a> (prompts for actual label).</p></li>
+<li><p>Remove label with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.remove_label">MiniVisits.remove_label()</a> (prompts for actual label).</p></li>
+<li><p>When need to use labeled groups, call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_label">MiniVisits.select_label()</a> which will then call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path">MiniVisits.select_path()</a> to select path among those having selected label. Note: If using <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a>, consider <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels">MiniExtra.pickers.visit_labels()</a>.</p></li>
 </ul>
 <p>To make this workflow smoother, here is an example of keymaps:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_vis</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">keys</span><span class="op">,</span> <span class="va">call</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
@@ -754,7 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minivisits.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config">MiniVisits.config</a>.</p>
 </section>
 <section id="minivisits.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.setup-usage">Usage</h4>
@@ -811,7 +841,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minivisits.config-list">List</h4>
 <p><a name="minivisits.config.list" href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><b>MiniVisits.config.list</b></a></p>
 <p><code>config.list</code> defines how visit index is converted to a path list by default.</p>
-<p><code>list.filter</code> is a callable which should take a path data and return <code>true</code> if this path should be present in the list. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a>.</p>
+<p><code>list.filter</code> is a callable which should take a path data and return <code>true</code> if this path should be present in the list. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default">MiniVisits.gen_filter.default()</a>.</p>
 <p>Path data is a table with at least these fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - absolute path of visit.</p></li>
@@ -821,10 +851,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Both <code>count</code> and <code>latest</code> (in theory) can be any number. But built-in tracking results into positive integer <code>count</code> and <code>latest</code> coming from <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()"><code>os.time()</code></a>.</p></li>
+<li><p>Both <code>count</code> and <code>latest</code> (in theory) can be any number. But built-in tracking results into positive integer <code>count</code> and <code>latest</code> coming from <a href="https://neovim.io/doc/user/helptag.html?tag=os.time()">os.time()</a>.</p></li>
 <li><p>There can be other entries if they are set by user as index entry.</p></li>
 </ul>
-<p><code>list.sort</code> is a callable which should take an array of path data and return a sorted array of path data (or at least tables each containing <span class="help-syntax-keys">&lt;path&gt;</span> field). Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a>. Single path data entry is a table with a same structure as for <code>list.filter</code>.</p>
+<p><code>list.sort</code> is a callable which should take an array of path data and return a sorted array of path data (or at least tables each containing <span class="help-syntax-keys">&lt;path&gt;</span> field). Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default">MiniVisits.gen_sort.default()</a>. Single path data entry is a table with a same structure as for <code>list.filter</code>.</p>
 <p>Note, that <code>list.sort</code> can be used both to filter, sort, or even return paths unrelated to the input.</p>
 </section>
 <section id="minivisits.config-silent" class="level4">
@@ -834,14 +864,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minivisits.config-store" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.config-store">Store</h4>
 <p><code>config.store</code> defines how visit index is stored on disk to enable persistent data across several sessions.</p>
-<p><code>store.autowrite</code> is a boolean controlling whether to write visit data to disk on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre"><code>VimLeavePre</code></a> event. Default: <code>true</code>.</p>
-<p><code>store.normalize</code> is a callable which should take visit index (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a>) as input and return “normalized” visit index as output. This is used to ensure that visit index is up to date and contains only relevant data. For example, it controls how old and irrelevant visits are “forgotten”, and more. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a>.</p>
-<p><code>store.path</code> is a path to which visit index is written. See “Storage” section of <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a> for more details. Note: set to empty string to disable any writing with not explicitly set path (including the one on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre"><code>VimLeavePre</code></a>). Default: “mini-visits-index” file inside <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_DATA_HOME"><code>$XDG_DATA_HOME</code></a>.</p>
+<p><code>store.autowrite</code> is a boolean controlling whether to write visit data to disk on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre">VimLeavePre</a> event. Default: <code>true</code>.</p>
+<p><code>store.normalize</code> is a callable which should take visit index (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification">MiniVisits-index-specification</a>) as input and return “normalized” visit index as output. This is used to ensure that visit index is up to date and contains only relevant data. For example, it controls how old and irrelevant visits are “forgotten”, and more. Default: output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default">MiniVisits.gen_normalize.default()</a>.</p>
+<p><code>store.path</code> is a path to which visit index is written. See “Storage” section of <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification">MiniVisits-index-specification</a> for more details. Note: set to empty string to disable any writing with not explicitly set path (including the one on <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre">VimLeavePre</a>). Default: “mini-visits-index” file inside [<span class="math inline">\(XDG_DATA_HOME](https://neovim.io/doc/user/helptag.html?tag=\)</span>XDG_DATA_HOME).</p>
 </section>
 <section id="minivisits.config-track" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.config-track">Track</h4>
-<p><code>config.track</code> defines how visits are tracked (index entry is autoupdated). See “Tracking visits” section in <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a> for more details.</p>
-<p><code>track.event</code> is a proper Neovim <a href="https://neovim.io/doc/user/helptag.html?tag=%7Bevent%7D"><code>{event}</code></a> on which track get triggered. Note: set to empty string to disable automated tracking. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter"><code>BufEnter</code></a>.</p>
+<p><code>config.track</code> defines how visits are tracked (index entry is autoupdated). See “Tracking visits” section in <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview">MiniVisits-overview</a> for more details.</p>
+<p><code>track.event</code> is a proper Neovim <a href="https://neovim.io/doc/user/helptag.html?tag=%7Bevent%7D"><span class="help-syntax-special">{event}</span></a> on which track get triggered. Note: set to empty string to disable automated tracking. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=BufEnter">BufEnter</a>.</p>
 <p><code>track.delay</code> is a delay in milliseconds after event is triggered and visit is autoregistered. Default: 1000 (to allow navigation between buffers without tracking intermediate ones).</p>
 <hr>
 </section>
@@ -861,7 +891,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minivisits.register_visit-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.register_visit-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <hr>
 </section>
 </section>
@@ -875,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minivisits.add_path-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.add_path-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <hr>
 </section>
 </section>
@@ -894,7 +924,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minivisits.add_label-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{label}</span> <code>(string|nil)</code> Label string. Default: <code>nil</code> to ask from user.</p>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <hr>
 </section>
 </section>
@@ -907,12 +937,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Deletes a (one or more) entry for path-cwd pair from an index. If entry is already absent, does nothing.</p>
 <p>Notes:</p>
 <ul>
-<li>Affects only in-session Lua variable. Call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index"><code>MiniVisits.write_index()</code></a> to make it persistent.</li>
+<li>Affects only in-session Lua variable. Call <a href="../../mini.nvim/doc/mini-visits.html#minivisits.write_index">MiniVisits.write_index()</a> to make it persistent.</li>
 </ul>
 <section id="minivisits.remove_path-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.remove_path-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <hr>
 </section>
 </section>
@@ -931,7 +961,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minivisits.remove_label-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{label}</span> <code>(string|nil)</code> Label string. Default: <code>nil</code> to ask from user.</p>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <hr>
 </section>
 </section>
@@ -958,11 +988,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="va">MiniVisits</span><span class="op">.</span>list_paths<span class="op">(</span><span class="kw">nil</span><span class="op">,</span> <span class="op">{</span> <span class="va">filter</span> <span class="op">=</span> <span class="va">is_not_hidden</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minivisits.list_paths-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.list_paths-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a> as its default.</p></li>
-<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default">MiniVisits.gen_filter.default()</a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default">MiniVisits.gen_sort.default()</a> as its default.</p></li>
 </ul>
 </section>
 <section id="minivisits.list_paths-return" class="level4">
@@ -993,11 +1023,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minivisits.list_labels-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.list_labels-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Visit path. Can be empty string to mean “all visited paths for <code>cwd</code>”. Default: path of current buffer if normal, error otherwise.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Visit cwd (project directory). Can be empty string to mean “all visited cwd”. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default"><code>MiniVisits.gen_filter.default()</code></a> as its default.</p></li>
-<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default"><code>MiniVisits.gen_sort.default()</code></a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - predicate to filter paths. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a>. Default: value of <code>config.list.filter</code> with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_filter.default">MiniVisits.gen_filter.default()</a> as its default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - path data sorter. For more information about how it is used, see <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a>. Default: value of <code>config.list.sort</code> or <a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_sort.default">MiniVisits.gen_sort.default()</a> as its default.</p></li>
 </ul>
 </section>
 <section id="minivisits.list_labels-return" class="level4">
@@ -1012,8 +1042,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniVisits.select_path</code>(<span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Select visit path</p>
-<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a> and calls <a href="https://neovim.io/doc/user/helptag.html?tag=:edit"><code>:edit</code></a> on the chosen item.</p>
-<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a> and <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths"><code>MiniExtra.pickers.visit_paths()</code></a>.</p>
+<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a> and calls <a href="https://neovim.io/doc/user/helptag.html?tag=:edit">:edit</a> on the chosen item.</p>
+<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels">MiniExtra.pickers.visit_labels()</a> and <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_paths">MiniExtra.pickers.visit_paths()</a>.</p>
 <p>Examples:</p>
 <ul>
 <li><p>Select from all visited paths: <code>MiniVisits.select_path('')</code></p></li>
@@ -1023,8 +1053,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minivisits.select_path-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.select_path-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1034,8 +1064,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniVisits.select_label</code>(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Select visit label</p>
-<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a> and calls <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> to get target paths with selected label.</p>
-<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels"><code>MiniExtra.pickers.visit_labels()</code></a>.</p>
+<p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> with an output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels">MiniVisits.list_labels()</a> and calls <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path">MiniVisits.select_path()</a> to get target paths with selected label.</p>
+<p>Note: if you have <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a>, consider using <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.visit_labels">MiniExtra.pickers.visit_labels()</a>.</p>
 <p>Examples:</p>
 <ul>
 <li><p>Select from labels of current path: <code>MiniVisits.select_label()</code></p></li>
@@ -1046,9 +1076,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minivisits.select_label-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.select_label-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a>.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to both <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels"><code>MiniVisits.list_labels()</code></a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path"><code>MiniVisits.select_path()</code></a> (after choosing a label).</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels">MiniVisits.list_labels()</a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels">MiniVisits.list_labels()</a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Forwarded to both <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_labels">MiniVisits.list_labels()</a> and <a href="../../mini.nvim/doc/mini-visits.html#minivisits.select_path">MiniVisits.select_path()</a> (after choosing a label).</p>
 <hr>
 </section>
 </section>
@@ -1060,7 +1090,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Iterate visit paths</p>
 <p>Steps:</p>
 <ul>
-<li><p>Compute a sorted array of target paths using <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
+<li><p>Compute a sorted array of target paths using <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p></li>
 <li><p>Identify the current index inside the array based on path of current buffer.</p></li>
 <li><p>Iterate through the array certain amount of times in a dedicated direction:</p>
 <ul>
@@ -1074,7 +1104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Mostly designed to be used as a mapping. See <code>MiniVisits-examples</code>.</p></li>
 <li><p>If path from current buffer is not in the output of <code>MiniVisits.list_paths()</code>, starting index is inferred such that first iteration lands on first item (if iterating forward) or last item (if iterating backward).</p></li>
-<li><p>Navigation with this function is not tracked (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview"><code>MiniVisits-overview</code></a>). This is done to allow consecutive application without affecting underlying list of paths.</p></li>
+<li><p>Navigation with this function is not tracked (see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-overview">MiniVisits-overview</a>). This is done to allow consecutive application without affecting underlying list of paths.</p></li>
 </ul>
 <p>Examples assuming underlying array of files <code>{ "file1", "file2", "file3" }</code>:</p>
 <ul>
@@ -1086,12 +1116,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minivisits.iterate_paths-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.iterate_paths-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
-<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p>
+<p><span class="help-syntax-special">{cwd}</span> <code>(string|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths"><code>MiniVisits.list_paths()</code></a>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - number of steps to go in certain direction. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;sort&gt;</span> <code>(function)</code> - forwarded to <a href="../../mini.nvim/doc/mini-visits.html#minivisits.list_paths">MiniVisits.list_paths()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - number of steps to go in certain direction. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - whether to wrap around list edges. Default: <code>false</code>.</p></li>
 </ul>
 <hr>
@@ -1127,7 +1157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniVisits.reset_index</code>()
 </p>
 <p>Reset active visit index</p>
-<p>Set currently active visit index to the output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index"><code>MiniVisits.read_index()</code></a>. Does nothing if reading the index failed.</p>
+<p>Set currently active visit index to the output of <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index">MiniVisits.read_index()</a>. Does nothing if reading the index failed.</p>
 <hr>
 </section>
 <section id="minivisits.normalize_index" class="level3">
@@ -1136,7 +1166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniVisits.normalize_index</code>(<span class="help-syntax-special">{index}</span>)
 </p>
 <p>Normalize visit index</p>
-<p>Applies <code>config.store.normalize</code> (<a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default"><code>MiniVisits.gen_normalize.default()</code></a> by default) to the input index object and returns the output (if it fits in the definition of index object; see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification"><code>MiniVisits-index-specification</code></a>).</p>
+<p>Applies <code>config.store.normalize</code> (<a href="../../mini.nvim/doc/mini-visits.html#minivisits.gen_normalize.default">MiniVisits.gen_normalize.default()</a> by default) to the input index object and returns the output (if it fits in the definition of index object; see <a href="../../mini.nvim/doc/mini-visits.html#minivisits-index-specification">MiniVisits-index-specification</a>).</p>
 <section id="minivisits.normalize_index-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.normalize_index-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{index}</span> <code>(table|nil)</code> Index object. Default: copy of the current index.</p>
@@ -1158,7 +1188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{store_path}</span> <code>(string|nil)</code> Path on the disk containing visit index data. Default: <code>config.store.path</code>. Notes:</p>
 <ul>
 <li><p>Can return <code>nil</code> if path is empty string or file is not readable.</p></li>
-<li><p>File is sourced with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()"><code>dofile()</code></a> as a regular Lua file.</p></li>
+<li><p>File is sourced with <a href="https://neovim.io/doc/user/helptag.html?tag=dofile()">dofile()</a> as a regular Lua file.</p></li>
 </ul>
 </section>
 <section id="minivisits.read_index-return" class="level4">
@@ -1175,9 +1205,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Write visit index to disk</p>
 <p>Steps:</p>
 <ul>
-<li><p>Normalize index with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index"><code>MiniVisits.normalize_index()</code></a>.</p></li>
+<li><p>Normalize index with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.normalize_index">MiniVisits.normalize_index()</a>.</p></li>
 <li><p>Ensure path is valid (all parent directories are created, etc.).</p></li>
-<li><p>Write index object to the path so that it is readable with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index"><code>MiniVisits.read_index()</code></a>.</p></li>
+<li><p>Write index object to the path so that it is readable with <a href="../../mini.nvim/doc/mini-visits.html#minivisits.read_index">MiniVisits.read_index()</a>.</p></li>
 </ul>
 <section id="minivisits.write_index-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.write_index-parameters">Parameters</h4>
@@ -1195,7 +1225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A helper to react for a path rename/move in order to preserve its visit data. It works both for file and directory paths.</p>
 <p>Notes:</p>
 <ul>
-<li><p>It does not update current index, but returns a modified index object. Use <a href="../../mini.nvim/doc/mini-visits.html#minivisits.set_index"><code>MiniVisits.set_index()</code></a> to make it current.</p></li>
+<li><p>It does not update current index, but returns a modified index object. Use <a href="../../mini.nvim/doc/mini-visits.html#minivisits.set_index">MiniVisits.set_index()</a> to make it current.</p></li>
 <li><p>Use only full paths.</p></li>
 <li><p>Do not append <code>/</code> to directory paths. Use same format as for files.</p></li>
 </ul>
@@ -1232,7 +1262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Always returns <code>true</code> resulting in no actual filter.</p>
 <section id="minivisits.gen_filter.default-return" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.gen_filter.default-return">Return</h4>
-<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a> for more details.</p>
 <hr>
 </section>
 </section>
@@ -1244,7 +1274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Filter visits from current session</p>
 <section id="minivisits.gen_filter.this_session-return" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.gen_filter.this_session-return">Return</h4>
-<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<p><code>(function)</code> Visit filter function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a> for more details.</p>
 <hr>
 </section>
 </section>
@@ -1285,7 +1315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minivisits.gen_sort.default-return" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.gen_sort.default-return">Return</h4>
-<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a> for more details.</p>
 <hr>
 </section>
 </section>
@@ -1298,7 +1328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sort as in https://github.com/rupa/z.</p>
 <section id="minivisits.gen_sort.z-return" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.gen_sort.z-return">Return</h4>
-<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list"><code>MiniVisits.config.list</code></a> for more details.</p>
+<p><code>(function)</code> Visit sort function. See <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config.list">MiniVisits.config.list</a> for more details.</p>
 <hr>
 </section>
 </section>
@@ -1341,7 +1371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minivisits.gen_normalize.default-return" class="level4">
 <h4 class="anchored" data-anchor-id="minivisits.gen_normalize.default-return">Return</h4>
-<p><code>(function)</code> Visit index normalize function. See “Store” in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config"><code>MiniVisits.config</code></a>.</p>
+<p><code>(function)</code> Visit index normalize function. See “Store” in <a href="../../mini.nvim/doc/mini-visits.html#minivisits.config">MiniVisits.config</a>.</p>
 
 
 </section>

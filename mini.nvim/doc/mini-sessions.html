@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.sessions documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minisessions" id="toc-minisessions" class="nav-link active" data-scroll-target="#minisessions">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minisessions-setup" id="toc-minisessions-setup" class="nav-link" data-scroll-target="#minisessions-setup">Setup</a></li>
-  <li><a href="#minisessions-disabling" id="toc-minisessions-disabling" class="nav-link" data-scroll-target="#minisessions-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minisessions.setup" id="toc-minisessions.setup" class="nav-link" data-scroll-target="#minisessions.setup">setup()</a>
   <ul>
@@ -408,19 +409,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.sessions" href="../../mini.nvim/doc/mini-sessions.html#mini.sessions"><b>mini.sessions</b></a> Session management</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minisessions" class="level3">
-<h3 class="anchored" data-anchor-id="minisessions">Module</h3>
-<p>Read, write, and delete sessions. Uses <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession"><code>:mksession</code></a> (meaning ‘sessionoptions’ is fully respected). This is intended as a drop-in Lua replacement for <a href="https://github.com/mhinz/vim-startify">mhinz/vim-startify</a> session management (works out of the box with sessions created by it). Implements both global (from configured directory) and local (from current directory) sessions.</p>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
+<p>Read, write, and delete sessions. Uses <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession">:mksession</a> (meaning ‘sessionoptions’ is fully respected). This is intended as a drop-in Lua replacement for <a href="https://github.com/mhinz/vim-startify">mhinz/vim-startify</a> session management (works out of the box with sessions created by it). Implements both global (from configured directory) and local (from current directory) sessions.</p>
 <p>Key design ideas:</p>
 <ul>
-<li><p>Sessions are represented by readable files (results of applying <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession"><code>:mksession</code></a>). There are two kinds of sessions:</p>
+<li><p>Sessions are represented by readable files (results of applying <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession">:mksession</a>). There are two kinds of sessions:</p>
 <ul>
 <li><p>Global: any file inside a configurable directory.</p></li>
-<li><p>Local: configurable file inside current working directory (<a href="https://neovim.io/doc/user/helptag.html?tag=getcwd()"><code>getcwd()</code></a>).</p></li>
+<li><p>Local: configurable file inside current working directory (<a href="https://neovim.io/doc/user/helptag.html?tag=getcwd()">getcwd()</a>).</p></li>
 </ul></li>
 <li><p>All session files are detected during <code>MiniSessions.setup()</code> and during relevant actions (<code>read</code>, <code>delete</code>, <code>select</code>) with file names as session names (including possible extension).</p></li>
-<li><p>No automated new session creation. Use <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.write"><code>MiniSessions.write()</code></a> manually.</p></li>
-<li><p>Store information about detected sessions in separate table (<a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected"><code>MiniSessions.detected</code></a>) and operate only on it. Meaning if this information changes, there will be no effect until next detection. To avoid confusion, don’t directly use <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession"><code>:mksession</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:source"><code>:source</code></a> for writing / reading session files.</p></li>
+<li><p>No automated new session creation. Use <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.write">MiniSessions.write()</a> manually.</p></li>
+<li><p>Store information about detected sessions in separate table (<a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected">MiniSessions.detected</a>) and operate only on it. Meaning if this information changes, there will be no effect until next detection. To avoid confusion, don’t directly use <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession">:mksession</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:source">:source</a> for writing / reading session files.</p></li>
 </ul>
 <p>Features:</p>
 <ul>
@@ -428,15 +429,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Autowrite currently read session before leaving it (quit Neovim or read another session).</p></li>
 <li><p>Configurable severity level of all actions.</p></li>
 </ul>
-<section id="minisessions-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minisessions-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.sessions').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniSessions</code> which you can use for scripting or manually (with <code>:lua MiniSessions.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config"><code>MiniSessions.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config">MiniSessions.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t benefit from buffer local configuration, so using <code>vim.b.minisessions_config</code> will have no effect here.</p>
 </section>
-<section id="minisessions-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minisessions-disabling">Disabling</h4>
-<p>To disable core functionality, set <code>vim.g.minisessions_disable</code> (globally) or <code>vim.b.minisessions_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable core functionality, set <code>vim.g.minisessions_disable</code> (globally) or <code>vim.b.minisessions_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -448,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minisessions.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config"><code>MiniSessions.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config">MiniSessions.config</a>.</p>
 </section>
 <section id="minisessions.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.setup-usage">Usage</h4>
@@ -503,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Table of detected sessions. Keys represent session name. Values are tables with session information that currently has these fields (but subject to change):</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;modify_time&gt;</span> <code>(number)</code> modification time (see <a href="https://neovim.io/doc/user/helptag.html?tag=getftime()"><code>getftime()</code></a>) of session file.</p></li>
+<li><p><span class="help-syntax-keys">&lt;modify_time&gt;</span> <code>(number)</code> modification time (see <a href="https://neovim.io/doc/user/helptag.html?tag=getftime()">getftime()</a>) of session file.</p></li>
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> name of session (should be equal to table key).</p></li>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> full path to session file.</p></li>
 <li><p><span class="help-syntax-keys">&lt;type&gt;</span> <code>(string)</code> type of session (‘global’ or ‘local’).</p></li>
@@ -518,13 +519,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Read detected session</p>
 <p>What it does:</p>
 <ul>
-<li><p>If there is an active session and <code>autowrite</code> is <code>true</code> in <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config"><code>MiniSessions.config</code></a>, write it with <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.write"><code>MiniSessions.write()</code></a>.</p></li>
-<li><p>Delete all current buffers with <a href="https://neovim.io/doc/user/helptag.html?tag=:bwipeout"><code>:bwipeout</code></a>. This is needed to correctly restore buffers from target session. If <code>force</code> is not <code>true</code>, checks beforehand for unsaved listed buffers and stops if there is any.</p></li>
+<li><p>If there is an active session and <code>autowrite</code> is <code>true</code> in <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.config">MiniSessions.config</a>, write it with <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.write">MiniSessions.write()</a>.</p></li>
+<li><p>Delete all current buffers with <a href="https://neovim.io/doc/user/helptag.html?tag=:bwipeout">:bwipeout</a>. This is needed to correctly restore buffers from target session. If <code>force</code> is not <code>true</code>, checks beforehand for unsaved listed buffers and stops if there is any.</p></li>
 <li><p>Source session with supplied name.</p></li>
 </ul>
 <section id="minisessions.read-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.read-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of detected session file to read. Default: <code>nil</code> for default session: local (if detected) or latest session (see <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.get_latest"><code>MiniSessions.get_latest()</code></a>).</p>
+<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of detected session file to read. Default: <code>nil</code> for default session: local (if detected) or latest session (see <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.get_latest">MiniSessions.get_latest()</a>).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table with options. Current allowed keys:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;force&gt;</span> (whether to delete unsaved buffers; default: <code>MiniSessions.config.force.read</code>).</p></li>
@@ -543,17 +544,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What it does:</p>
 <ul>
 <li><p>Check if file for supplied session name already exists. If it does and <code>force</code> is not <code>true</code>, then stop.</p></li>
-<li><p>Write session with <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession"><code>:mksession</code></a> to a file named <code>session_name</code>. Its directory is determined based on type of session:</p>
+<li><p>Write session with <a href="https://neovim.io/doc/user/helptag.html?tag=:mksession">:mksession</a> to a file named <code>session_name</code>. Its directory is determined based on type of session:</p>
 <ul>
-<li><p>It is at location <a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session"><code>v:this_session</code></a> if <code>session_name</code> is <code>nil</code> and there is currently read session.</p></li>
-<li><p>It is current working directory (<a href="https://neovim.io/doc/user/helptag.html?tag=getcwd()"><code>getcwd()</code></a>) if <code>session_name</code> is equal to <code>MiniSessions.config.file</code> (represents local session).</p></li>
+<li><p>It is at location <a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session">v:this_session</a> if <code>session_name</code> is <code>nil</code> and there is currently read session.</p></li>
+<li><p>It is current working directory (<a href="https://neovim.io/doc/user/helptag.html?tag=getcwd()">getcwd()</a>) if <code>session_name</code> is equal to <code>MiniSessions.config.file</code> (represents local session).</p></li>
 <li><p>It is <code>MiniSessions.config.directory</code> otherwise (represents global session).</p></li>
 </ul></li>
-<li><p>Update <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected"><code>MiniSessions.detected</code></a>.</p></li>
+<li><p>Update <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected">MiniSessions.detected</a>.</p></li>
 </ul>
 <section id="minisessions.write-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.write-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of session file to write. Default: <code>nil</code> for currently read session (<a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session"><code>v:this_session</code></a>).</p>
+<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of session file to write. Default: <code>nil</code> for currently read session (<a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session">v:this_session</a>).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table with options. Current allowed keys:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;force&gt;</span> (whether to ignore existence of session file; default: <code>MiniSessions.config.force.write</code>).</p></li>
@@ -573,11 +574,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Check if session name is a current one. If yes and <code>force</code> is not <code>true</code>, then stop.</p></li>
 <li><p>Delete session.</p></li>
-<li><p>Update <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected"><code>MiniSessions.detected</code></a>.</p></li>
+<li><p>Update <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected">MiniSessions.detected</a>.</p></li>
 </ul>
 <section id="minisessions.delete-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.delete-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of detected session file to delete. Default: <code>nil</code> for name of currently read session (taken from <a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session"><code>v:this_session</code></a>).</p>
+<p><span class="help-syntax-special">{session_name}</span> <code>(string|nil)</code> Name of detected session file to delete. Default: <code>nil</code> for name of currently read session (taken from <a href="https://neovim.io/doc/user/helptag.html?tag=v:this_session">v:this_session</a>).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table with options. Current allowed keys:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;force&gt;</span> (whether to allow deletion of current session; default: <code>MiniSessions.config.force.delete</code>).</p></li>
@@ -593,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSessions.select</code>(<span class="help-syntax-special">{action}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Select session interactively and perform action</p>
-<p>Note: this uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> function. For more user-friendly experience, override it (for example, see <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select"><code>MiniPick.ui_select()</code></a>).</p>
+<p>Note: this uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> function. For more user-friendly experience, override it (for example, see <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select">MiniPick.ui_select()</a>).</p>
 <section id="minisessions.select-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.select-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{action}</span> <code>(string|nil)</code> Action to perform. Should be one of “read” (default), “write”, or “delete”.</p>
@@ -607,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSessions.get_latest</code>()
 </p>
 <p>Get name of latest detected session</p>
-<p>Latest session is the session with the latest modification time determined by <a href="https://neovim.io/doc/user/helptag.html?tag=getftime()"><code>getftime()</code></a>.</p>
+<p>Latest session is the session with the latest modification time determined by <a href="https://neovim.io/doc/user/helptag.html?tag=getftime()">getftime()</a>.</p>
 <section id="minisessions.get_latest-return" class="level4">
 <h4 class="anchored" data-anchor-id="minisessions.get_latest-return">Return</h4>
 <p><code>(string|nil)</code> Name of latest session or <code>nil</code> if there is no sessions.</p>

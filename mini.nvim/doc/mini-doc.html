@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.doc documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minidoc" id="toc-minidoc" class="nav-link active" data-scroll-target="#minidoc">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minidoc-setup" id="toc-minidoc-setup" class="nav-link" data-scroll-target="#minidoc-setup">Setup</a></li>
-  <li><a href="#minidoc-tips" id="toc-minidoc-tips" class="nav-link" data-scroll-target="#minidoc-tips">Tips</a></li>
-  <li><a href="#minidoc-comparisons" id="toc-minidoc-comparisons" class="nav-link" data-scroll-target="#minidoc-comparisons">Comparisons</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-tips" id="toc-module-tips" class="nav-link" data-scroll-target="#module-tips">Tips</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   </ul></li>
   <li><a href="#minidoc-data-structures" id="toc-minidoc-data-structures" class="nav-link" data-scroll-target="#minidoc-data-structures">Data structures</a></li>
   <li><a href="#minidoc.setup" id="toc-minidoc.setup" class="nav-link" data-scroll-target="#minidoc.setup">setup()</a>
@@ -405,41 +406,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.doc" href="../../mini.nvim/doc/mini-doc.html#mini.doc"><b>mini.doc</b></a> Generate Neovim help files</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="minidoc" class="level3">
-<h3 class="anchored" data-anchor-id="minidoc">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Key design ideas:</p>
 <ul>
-<li><p>Keep documentation next to code by writing EmmyLua-like annotation comments. They will be parsed as is, so formatting should follow built-in guide in <a href="https://neovim.io/doc/user/helptag.html?tag=help-writing"><code>help-writing</code></a>. However, custom hooks are allowed at many generation stages for more granular management of output help file.</p></li>
-<li><p>Generation is done by processing a set of ordered files line by line. Each line can either be considered as a part of documentation block (if it matches certain configurable pattern) or not (considered to be an “afterline” of documentation block). See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate"><code>MiniDoc.generate()</code></a> for more details.</p></li>
-<li><p>Processing is done by using nested data structures (section, block, file, doc) describing certain parts of help file. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc-data-structures"><code>MiniDoc-data-structures</code></a> for more details.</p></li>
-<li><p>Project specific script can be written as plain Lua file with configuratble path. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate"><code>MiniDoc.generate()</code></a> for more details.</p></li>
+<li><p>Keep documentation next to code by writing EmmyLua-like annotation comments. They will be parsed as is, so formatting should follow built-in guide in <a href="https://neovim.io/doc/user/helptag.html?tag=help-writing">help-writing</a>. However, custom hooks are allowed at many generation stages for more granular management of output help file.</p></li>
+<li><p>Generation is done by processing a set of ordered files line by line. Each line can either be considered as a part of documentation block (if it matches certain configurable pattern) or not (considered to be an “afterline” of documentation block). See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate">MiniDoc.generate()</a> for more details.</p></li>
+<li><p>Processing is done by using nested data structures (section, block, file, doc) describing certain parts of help file. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc-data-structures">MiniDoc-data-structures</a> for more details.</p></li>
+<li><p>Project specific script can be written as plain Lua file with configuratble path. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate">MiniDoc.generate()</a> for more details.</p></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
 <li><p>It doesn’t support markdown or other markup language inside annotations.</p></li>
 <li><p>It doesn’t use treesitter in favor of Lua string manipulation for basic tasks (parsing annotations, formatting, auto-generating tags, etc.). This is done to manage complexity and be dependency free.</p></li>
 </ul>
-<section id="minidoc-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minidoc-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.doc').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniDoc</code> which you can use for scripting or manually (with <code>:lua MiniDoc.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config"><code>MiniDoc.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minidoc_config</code> which should have same structure as <code>MiniDoc.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config">MiniDoc.config</a> for available config settings.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minidoc_config</code> which should have same structure as <code>MiniDoc.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="minidoc-tips" class="level4">
-<h4 class="anchored" data-anchor-id="minidoc-tips">Tips</h4>
+<section id="module-tips" class="level4">
+<h4 class="anchored" data-anchor-id="module-tips">Tips</h4>
 <ul>
 <li><p>Some settings tips that might make writing annotation comments easier:</p>
 <ul>
 <li><p>Set up appropriate ‘comments’ for <code>lua</code> file type to respect EmmyLua-like’s <code>---</code> comment leader. Value <code>:---,:--</code> seems to work.</p></li>
-<li><p>Set up appropriate ‘formatoptions’ (see also <a href="https://neovim.io/doc/user/helptag.html?tag=fo-table"><code>fo-table</code></a>). Consider adding <code>j</code>, <code>n</code>, <code>q</code>, and <code>r</code> flags.</p></li>
+<li><p>Set up appropriate ‘formatoptions’ (see also <a href="https://neovim.io/doc/user/helptag.html?tag=fo-table">fo-table</a>). Consider adding <code>j</code>, <code>n</code>, <code>q</code>, and <code>r</code> flags.</p></li>
 <li><p>Set up appropriate ‘formatlistpat’ to help auto-formatting lists (if <code>n</code> flag is added to ‘formatoptions’). One suggestion (not entirely ideal) is a value <code>^\s*[0-9\-\+\*]\+[\.\)]*\s\+</code>. This reads as ‘at least one special character (digit, <code>-</code>, <code>+</code>, <code>*</code>) possibly followed by some punctuation (<code>.</code> or <code>)</code>) followed by at least one space is a start of list item’.</p></li>
 </ul></li>
 <li><p>Probably one of the most reliable resources for what is considered to be best practice when using this module is this whole plugin. Look at source code for the reference.</p></li>
 </ul>
 </section>
-<section id="minidoc-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minidoc-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/tjdevries/tree-sitter-lua">tjdevries/tree-sitter-lua</a>:</p>
 <ul>
@@ -498,9 +499,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><code>Doc</code>:</p>
 <ul>
-<li><p><code>input</code> - array of input file paths (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate"><code>MiniDoc.generate()</code></a>).</p></li>
-<li><p><code>output</code> - output path (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate"><code>MiniDoc.generate()</code></a>).</p></li>
-<li><p><code>config</code> - configuration used (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate"><code>MiniDoc.generate()</code></a>).</p></li>
+<li><p><code>input</code> - array of input file paths (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate">MiniDoc.generate()</a>).</p></li>
+<li><p><code>output</code> - output path (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate">MiniDoc.generate()</a>).</p></li>
+<li><p><code>config</code> - configuration used (as in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.generate">MiniDoc.generate()</a>).</p></li>
 </ul></li>
 </ul>
 <hr>
@@ -513,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minidoc.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidoc.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config"><code>MiniDoc.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config">MiniDoc.config</a>.</p>
 </section>
 <section id="minidoc.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minidoc.setup-usage">Usage</h4>
@@ -605,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Any non-whitespace after <code>---</code> will be treated as new section id.</p></li>
 <li><p>Single whitespace at the start of main text will be ignored.</p></li>
 </ul></li>
-<li><p>Hooks are expected to be functions. Their default values might do many things which might change over time, so for more information please look at source code. Some more information can be found in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.default_hooks"><code>MiniDoc.default_hooks</code></a>.</p></li>
+<li><p>Hooks are expected to be functions. Their default values might do many things which might change over time, so for more information please look at source code. Some more information can be found in <a href="../../mini.nvim/doc/mini-doc.html#minidoc.default_hooks">MiniDoc.default_hooks</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -691,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minidoc.generate-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{input}</span> <code>(table|nil)</code> Array of file paths which will be processed in supplied order. Default: all ‘.lua’ files from current directory following by all such files in these subdirectories: ‘lua/’, ‘after/’, ‘colors/’. Note: any ‘init.lua’ file is placed before other files from the same directory.</p>
 <p><span class="help-syntax-special">{output}</span> <code>(string|nil)</code> Path for output help file. Default: <code>doc/&lt;current_directory&gt;.txt</code> (designed to be used for generating help file for plugin).</p>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Configuration overriding parts of <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config"><code>MiniDoc.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Configuration overriding parts of <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config">MiniDoc.config</a>.</p>
 </section>
 <section id="minidoc.generate-return" class="level4">
 <h4 class="anchored" data-anchor-id="minidoc.generate-return">Return</h4>

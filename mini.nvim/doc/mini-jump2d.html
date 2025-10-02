@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.jump2d documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,13 +344,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minijump2d" id="toc-minijump2d" class="nav-link active" data-scroll-target="#minijump2d">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minijump2d-setup" id="toc-minijump2d-setup" class="nav-link" data-scroll-target="#minijump2d-setup">Setup</a></li>
-  <li><a href="#minijump2d-exampleusage" id="toc-minijump2d-exampleusage" class="nav-link" data-scroll-target="#minijump2d-exampleusage">Example usage</a></li>
-  <li><a href="#minijump2d-comparisons" id="toc-minijump2d-comparisons" class="nav-link" data-scroll-target="#minijump2d-comparisons">Comparisons</a></li>
-  <li><a href="#minijump2d-highlightgroups" id="toc-minijump2d-highlightgroups" class="nav-link" data-scroll-target="#minijump2d-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minijump2d-disabling" id="toc-minijump2d-disabling" class="nav-link" data-scroll-target="#minijump2d-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-exampleusage" id="toc-module-exampleusage" class="nav-link" data-scroll-target="#module-exampleusage">Example usage</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minijump2d.setup" id="toc-minijump2d.setup" class="nav-link" data-scroll-target="#minijump2d.setup">setup()</a>
   <ul>
@@ -433,13 +434,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.jump2d" href="../../mini.nvim/doc/mini-jump2d.html#mini.jump2d"><b>mini.jump2d</b></a> Jump within visible lines</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="minijump2d" class="level3">
-<h3 class="anchored" data-anchor-id="minijump2d">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Jump within visible lines via iterative label filtering.</p>
 <p>Features:</p>
 <ul>
 <li><p>Make jump by iterative filtering of possible, equally considered jump spots until there is only one. Filtering is done by typing a label character that is visualized at jump spot.</p></li>
-<li><p>Customizable (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>):</p>
+<li><p>Customizable (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a>):</p>
 <ul>
 <li><p>Way of computing possible jump spots with opinionated default.</p></li>
 <li><p>Characters used to label jump spots during iterative filtering.</p></li>
@@ -449,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Allowed lines: whether to process blank or folded lines, lines before/at/after cursor line, etc. Example: user can configure to look for spots only inside current window at or after cursor line. Example: user can configure to look for word starts only inside current window at or after cursor line with ‘j’ and ‘k’ labels performing some action after jump.</p></li>
 </ul></li>
 <li><p>Works in Visual and Operator-pending (with dot-repeat) modes.</p></li>
-<li><p>Preconfigured ways of computing jump spots (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>):</p>
+<li><p>Preconfigured ways of computing jump spots (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>):</p>
 <ul>
 <li><p>Starts of lines.</p></li>
 <li><p>Starts of words.</p></li>
@@ -461,47 +462,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>General overview of how jump is intended to be performed:</p>
 <ul>
 <li><p>Lock eyes on desired location (“spot”) recognizable by future jump. Should be within visible lines at place where cursor can be placed.</p></li>
-<li><p>Initiate jump. Either by custom keybinding or with a call to <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> (allows customization options). This will highlight all possible jump spots with their labels (letters from “a” to “z” by default). For more details, read <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>.</p></li>
+<li><p>Initiate jump. Either by custom keybinding or with a call to <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start">MiniJump2d.start()</a> (allows customization options). This will highlight all possible jump spots with their labels (letters from “a” to “z” by default). For more details, read <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start">MiniJump2d.start()</a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a>.</p></li>
 <li><p>Type character that appeared over desired location. If its label was unique, jump is performed. If it wasn’t unique, possible jump spots are filtered to those having the same label character.</p></li>
 <li><p>Repeat previous step until there is only one possible jump spot or type <span class="help-syntax-keys">&lt;CR&gt;</span> to jump to first available jump spot. Typing anything else stops jumping without moving cursor.</p></li>
 </ul>
-<section id="minijump2d-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minijump2d-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.jump2d').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniJump2d</code> which you can use for scripting or manually (with <code>:lua MiniJump2d.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minijump2d_config</code> which should have same structure as <code>MiniJump2d.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a> for available config settings.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minijump2d_config</code> which should have same structure as <code>MiniJump2d.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="minijump2d-exampleusage" class="level4">
-<h4 class="anchored" data-anchor-id="minijump2d-exampleusage">Example usage</h4>
+<section id="module-exampleusage" class="level4">
+<h4 class="anchored" data-anchor-id="module-exampleusage">Example usage</h4>
 <ul>
 <li><p>Modify default jumping to use only current window at or after cursor line:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_lines</span> <span class="op">=</span> <span class="op">{</span> <span class="va">cursor_before</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">allowed_windows</span> <span class="op">=</span> <span class="op">{</span> <span class="va">not_current</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Jump to line start using combination of options supplied in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start"><code>MiniJump2d.builtin_opts.line_start</code></a>:</p>
+<li><p>Jump to line start using combination of options supplied in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start">MiniJump2d.builtin_opts.line_start</a>:</p>
 <pre class="vim"><code>:lua MiniJump2d.start(MiniJump2d.builtin_opts.line_start)</code></pre></li>
 <li><p>Jump to a single character typed after executing this command:</p>
 <pre class="vim"><code>:lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)</code></pre></li>
-<li><p>See more examples in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>.</p></li>
+<li><p>See more examples in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start">MiniJump2d.start()</a> and <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>.</p></li>
 </ul>
 </section>
-<section id="minijump2d-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minijump2d-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/phaazon/hop.nvim">phaazon/hop.nvim</a>:</p>
 <ul>
 <li><p>Both are fast, customizable, and extensible (user can write their own ways to define jump spots).</p></li>
 <li><p>‘hop.nvim’ visualizes all steps at once. While this module can show configurable number of steps ahead.</p></li>
-<li><p>Both have several builtin ways to specify type of jump (word start, line start, one character or query based on user input). ‘hop.nvim’ does that by exporting many targeted Neovim commands, while this module has preconfigured basic options leaving others to customization with Lua code (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts"><code>MiniJump2d.builtin_opts</code></a>).</p></li>
+<li><p>Both have several builtin ways to specify type of jump (word start, line start, one character or query based on user input). ‘hop.nvim’ does that by exporting many targeted Neovim commands, while this module has preconfigured basic options leaving others to customization with Lua code (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>).</p></li>
 <li><p>‘hop.nvim’ computes labels (called “hints”) differently. Contrary to this module deliberately not having preference of one jump spot over another, ‘hop.nvim’ uses specialized algorithm that produces sequence of keys in a slightly biased manner: some sequences are intentionally shorter than the others (leading to fewer average keystrokes). They are put near cursor (by default) and highlighted differently. Final order of sequences is based on distance to the cursor.</p></li>
-<li><p>‘mini.jump2d’ has opinionated default algorithm of computing jump spots. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter"><code>MiniJump2d.default_spotter()</code></a>.</p></li>
+<li><p>‘mini.jump2d’ has opinionated default algorithm of computing jump spots. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter">MiniJump2d.default_spotter()</a>.</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="minijump2d-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minijump2d-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniJump2dSpot</code> - highlighting of jump spot’s next step. By default it uses label with highest contrast while not being too visually demanding: white on black for dark ‘background’, black on white for light. If it doesn’t suit your liking, try couple of these alternatives (or choose your own, of course):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Reverse underlying colors (mostly *very* visible in any colorscheme)</span></span>
@@ -516,11 +517,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniJump2dSpotAhead</code> - highlighting of jump spot’s future steps. By default similar to <code>MiniJump2dSpot</code> but with less contrast and visibility.</p></li>
 <li><p><code>MiniJump2dDim</code> - highlighting of lines with at least one jump spot. Make it non-bright in order for jump spot labels to be more visible. By default linked to <code>Comment</code> highlight group.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minijump2d-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minijump2d-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minijump2d_disable</code> (globally) or <code>vim.b.minijump2d_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minijump2d_disable</code> (globally) or <code>vim.b.minijump2d_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -532,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minijump2d.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a>.</p>
 </section>
 <section id="minijump2d.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.setup-usage">Usage</h4>
@@ -611,18 +612,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Its output is a list of byte-indexed positions that should be considered as possible jump spots for this particular line in this particular window. Note: for a more aligned visualization this list should be (but not strictly necessary) sorted increasingly.</p>
-<p>Note: spotter function is always called with <code>win_id</code> window being “temporary current” (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_win_call()"><code>nvim_win_call()</code></a>). This allows using builtin Vimscript functions that operate only inside current window.</p>
+<p>Note: spotter function is always called with <code>win_id</code> window being “temporary current” (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_win_call()">nvim_win_call()</a>). This allows using builtin Vimscript functions that operate only inside current window.</p>
 </section>
 <section id="minijump2d.config-view" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.config-view">View</h4>
-<p>Option <code>view.n_steps_ahead</code> controls how many steps ahead to show along with the currently required label. Those future steps are shown with different (less visible) highlight group (“MiniJump2dSpotAhead”). Usually it is a good idea to use this with a spotter which doesn’t result into many jump spots (like, for example, <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.word_start"><code>MiniJump2d.builtin_opts.word_start</code></a>). Default is 0 to not show anything ahead as it reduces visual noise.</p>
+<p>Option <code>view.n_steps_ahead</code> controls how many steps ahead to show along with the currently required label. Those future steps are shown with different (less visible) highlight group (“MiniJump2dSpotAhead”). Usually it is a good idea to use this with a spotter which doesn’t result into many jump spots (like, for example, <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.word_start">MiniJump2d.builtin_opts.word_start</a>). Default is 0 to not show anything ahead as it reduces visual noise.</p>
 <p>Option <code>view.dim</code> controls whether to dim lines with at least one jump spot. Dimming is done by applying “MiniJump2dDim” highlight group to the whole line.</p>
 </section>
 <section id="minijump2d.config-allowedlines" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.config-allowedlines">Allowed lines</h4>
 <p>Option <code>allowed_lines</code> controls which lines will be used for computing possible jump spots:</p>
 <ul>
-<li><p>If <code>blank</code> or <code>fold</code> is <code>true</code>, it is possible to jump to first column of blank line (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=prevnonblank()"><code>prevnonblank()</code></a>) or first folded one (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=foldclosed()"><code>foldclosed()</code></a>) respectively. Otherwise they are skipped. These lines are not processed by spotter function even if the option is <code>true</code>.</p></li>
+<li><p>If <code>blank</code> or <code>fold</code> is <code>true</code>, it is possible to jump to first column of blank line (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=prevnonblank()">prevnonblank()</a>) or first folded one (determined by <a href="https://neovim.io/doc/user/helptag.html?tag=foldclosed()">foldclosed()</a>) respectively. Otherwise they are skipped. These lines are not processed by spotter function even if the option is <code>true</code>.</p></li>
 <li><p>If <code>cursor_before</code>, (<code>cursor_at</code>, <code>cursor_after</code>) is <code>true</code>, lines before (at, after) cursor line of all processed windows are forwarded to spotter function. Otherwise, they don’t. This allows control of jump “direction”.</p></li>
 </ul>
 </section>
@@ -669,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minijump2d.start-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.start-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Configuration of jumping, overriding global and buffer local values. Has the same structure as <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> without <span class="help-syntax-keys">&lt;mappings&gt;</span> field. Extra allowed fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Configuration of jumping, overriding global and buffer local values. Has the same structure as <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a> without <span class="help-syntax-keys">&lt;mappings&gt;</span> field. Extra allowed fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> - highlight group for first step. Default: <code>"MiniJump2dSpot"</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;hl_group_ahead&gt;</span> - highlight group for second and later steps. Default: <code>"MiniJump2dSpotAhead"</code>.</p></li>
@@ -699,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minijump2d.start-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.start-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a></p>
 <hr>
 </section>
 </section>
@@ -760,7 +761,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate spotter for Vimscript pattern</p>
 <section id="minijump2d.gen_spotter.vimpattern-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Vimscript <a href="https://neovim.io/doc/user/helptag.html?tag=pattern"><code>pattern</code></a>. Default: <code>\k\+</code> to match group of “keyword characters” (see ‘iskeyword’).</p>
+<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Vimscript <a href="https://neovim.io/doc/user/helptag.html?tag=pattern">pattern</a>. Default: <code>\k\+</code> to match group of “keyword characters” (see ‘iskeyword’).</p>
 </section>
 <section id="minijump2d.gen_spotter.vimpattern-return" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-return">Return</h4>
@@ -784,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate union of spotters</p>
 <section id="minijump2d.gen_spotter.union-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.union-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{…}</span> <code>(any)</code> Each argument should be a valid spotter. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config"><code>MiniJump2d.config</code></a> for more details.</p>
+<p><span class="help-syntax-special">{…}</span> <code>(any)</code> Each argument should be a valid spotter. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.config">MiniJump2d.config</a> for more details.</p>
 </section>
 <section id="minijump2d.gen_spotter.union-return" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.union-return">Return</h4>
@@ -824,8 +825,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniJump2d.builtin_opts</code>
 </p>
-<p>Table with builtin <code>opts</code> values for <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start"><code>MiniJump2d.start()</code></a></p>
-<p>Each element of table is itself a table defining one or several options for <code>MiniJump2d.start()</code>. Read help description to see which options it defines (like in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start"><code>MiniJump2d.builtin_opts.line_start</code></a>).</p>
+<p>Table with builtin <code>opts</code> values for <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.start">MiniJump2d.start()</a></p>
+<p>Each element of table is itself a table defining one or several options for <code>MiniJump2d.start()</code>. Read help description to see which options it defines (like in <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts.line_start">MiniJump2d.builtin_opts.line_start</a>).</p>
 <section id="minijump2d.builtin_opts-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.builtin_opts-usage">Usage</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Using `MiniJump2d.builtin_opts.line_start` as example:</span></span>
@@ -853,7 +854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniJump2d.builtin_opts.default</code>
 </p>
-<p>Jump with <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter"><code>MiniJump2d.default_spotter()</code></a></p>
+<p>Jump with <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter">MiniJump2d.default_spotter()</a></p>
 <p>Defines <code>spotter</code>.</p>
 <hr>
 </section>

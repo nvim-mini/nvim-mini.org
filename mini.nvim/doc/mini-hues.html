@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.hues documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minihues" id="toc-minihues" class="nav-link active" data-scroll-target="#minihues">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minihues-setup" id="toc-minihues-setup" class="nav-link" data-scroll-target="#minihues-setup">Setup</a></li>
-  <li><a href="#minihues-notes" id="toc-minihues-notes" class="nav-link" data-scroll-target="#minihues-notes">Notes</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-notes" id="toc-module-notes" class="nav-link" data-scroll-target="#module-notes">Notes</a></li>
   </ul></li>
   <li><a href="#minihues-color-schemes" id="toc-minihues-color-schemes" class="nav-link" data-scroll-target="#minihues-color-schemes">Color schemes</a></li>
   <li><a href="#minihues.setup" id="toc-minihues.setup" class="nav-link" data-scroll-target="#minihues.setup">setup()</a>
@@ -414,11 +415,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.hues" href="../../mini.nvim/doc/mini-hues.html#mini.hues"><b>mini.hues</b></a> Generate configurable color scheme</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minihues" class="level3">
-<h3 class="anchored" data-anchor-id="minihues">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Required to set two base colors: background and foreground. Their shades and other non-base colors are computed to be as much perceptually different as reasonably possible. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config"><code>MiniHues.config</code></a> for setup inspiration.</p></li>
+<li><p>Required to set two base colors: background and foreground. Their shades and other non-base colors are computed to be as much perceptually different as reasonably possible. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a> for setup inspiration.</p></li>
 <li><p>Configurable:</p>
 <ul>
 <li><p>Number of hues used for non-base colors (from 0 to 8).</p></li>
@@ -426,16 +427,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Accent color used for some selected UI elements.</p></li>
 <li><p>Plugin integration (can be selectively enabled for faster startup).</p></li>
 </ul></li>
-<li><p>Random generator for base colors. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors"><code>MiniHues.gen_random_base_colors()</code></a>. Powers <a href="../../mini.nvim/doc/mini-hues.html#randomhue"><code>randomhue</code></a> color scheme.</p></li>
-<li><p>Lua function to compute palette used in color scheme. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette"><code>MiniHues.make_palette()</code></a>.</p></li>
-<li><p>Bundled color schemes. See <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes"><code>MiniHues-color-schemes</code></a>.</p></li>
+<li><p>Random generator for base colors. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors">MiniHues.gen_random_base_colors()</a>. Powers <a href="../../mini.nvim/doc/mini-hues.html#randomhue">randomhue</a> color scheme.</p></li>
+<li><p>Lua function to compute palette used in color scheme. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette">MiniHues.make_palette()</a>.</p></li>
+<li><p>Bundled color schemes. See <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes">MiniHues-color-schemes</a>.</p></li>
 </ul>
 <p>Supported highlight groups:</p>
 <ul>
 <li><p>All built-in UI and syntax groups.</p></li>
 <li><p>Built-in Neovim LSP and diagnostic.</p></li>
-<li><p>Tree-sitter (<a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-highlight-groups"><code>treesitter-highlight-groups</code></a>).</p></li>
-<li><p>LSP semantic tokens (<a href="https://neovim.io/doc/user/helptag.html?tag=lsp-semantic-highlight"><code>lsp-semantic-highlight</code></a>).</p></li>
+<li><p>Tree-sitter (<a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-highlight-groups">treesitter-highlight-groups</a>).</p></li>
+<li><p>LSP semantic tokens (<a href="https://neovim.io/doc/user/helptag.html?tag=lsp-semantic-highlight">lsp-semantic-highlight</a>).</p></li>
 <li><p>Plugins (either with explicit definition or by verification that default highlighting works appropriately):</p>
 <ul>
 <li><p><a href="https://github.com/nvim-mini/mini.nvim">nvim-mini/mini.nvim</a></p></li>
@@ -476,10 +477,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://github.com/williamboman/mason.nvim">williamboman/mason.nvim</a></p></li>
 </ul></li>
 </ul>
-<section id="minihues-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minihues-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.hues').setup({})</code> and mandatory <code>background</code> and <code>foreground</code> fields (add more fields to fit your taste). It will create global Lua table <code>MiniHues</code> which you can use for scripting or manually (with <code>:lua MiniHues.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config"><code>MiniHues.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minihues_config</code> will have no effect here.</p>
 <p>Example:</p>
 <pre><code>require('mini.hues').setup({
@@ -491,16 +492,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   },
 })</code></pre>
 </section>
-<section id="minihues-notes" class="level4">
-<h4 class="anchored" data-anchor-id="minihues-notes">Notes</h4>
+<section id="module-notes" class="level4">
+<h4 class="anchored" data-anchor-id="module-notes">Notes</h4>
 <ul>
-<li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes"><code>MiniHues-color-schemes</code></a>).</p></li>
-<li><p>Using <code>setup()</code> doesn’t actually create a colorscheme. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups"><code>highlight-groups</code></a>. To create your own scheme:</p>
+<li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes">MiniHues-color-schemes</a>).</p></li>
+<li><p>Using <code>setup()</code> doesn’t actually create a colorscheme. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups">highlight-groups</a>. To create your own scheme:</p>
 <ul>
 <li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from ‘runtimepath’ (“colors” inside your Neovim config directory is usually enough).</p></li>
-<li><p>Inside “myscheme.lua” call <code>require('mini.hues').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a> to “myscheme”.</p></li>
+<li><p>Inside “myscheme.lua” call <code>require('mini.hues').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to “myscheme”.</p></li>
 </ul></li>
-<li><p>This module doesn’t define <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors"><code>cterm-colors</code></a> for implementation simplicity. Use <a href="../../mini.nvim/doc/mini-colors.html#mini.colors"><code>mini.colors</code></a> module, <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes"><code>MiniColors-colorscheme:add_cterm_attributes()</code></a> in particular.</p></li>
+<li><p>This module doesn’t define <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a> for implementation simplicity. Use <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a> module, <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes">MiniColors-colorscheme:add_cterm_attributes()</a> in particular.</p></li>
 </ul>
 <hr>
 </section>
@@ -514,8 +515,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a name="minisummer" href="../../mini.nvim/doc/mini-hues.html#minisummer"><b>minisummer</b></a> : “hot summer” palette with brown/yellow background.</p></li>
 <li><p><a name="miniautumn" href="../../mini.nvim/doc/mini-hues.html#miniautumn"><b>miniautumn</b></a> : “cooling autumn” palette with purple background.</p></li>
 <li><p><a name="randomhue" href="../../mini.nvim/doc/mini-hues.html#randomhue"><b>randomhue</b></a> : uses randomly generated same hue background and foreground. Every <code>:colorscheme randomhue</code> call results in a different (randomly yet carefully selected) colors.</p>
-<p>It is essentially a combination of calls to <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup"><code>MiniHues.setup()</code></a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors"><code>MiniHues.gen_random_base_colors()</code></a> with a slight adjustments for ‘background’ value.</p>
-<p>Activate it as regular <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme"><code>:colorscheme</code></a>. Get currently active config with <code>:lua print(vim.inspect(MiniHues.config))</code>.</p></li>
+<p>It is essentially a combination of calls to <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup">MiniHues.setup()</a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors">MiniHues.gen_random_base_colors()</a> with a slight adjustments for ‘background’ value.</p>
+<p>Activate it as regular <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a>. Get currently active config with <code>:lua print(vim.inspect(MiniHues.config))</code>.</p></li>
 </ul>
 <hr>
 </section>
@@ -525,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniHues.setup</code>(<span class="help-syntax-special">{config}</span>)
 </p>
 <p>Module setup</p>
-<p>Main side effect is to create palette and apply it. Essentially, a combination of <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette"><code>MiniHues.make_palette()</code></a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.apply_palette"><code>MiniHues.apply_palette()</code></a>.</p>
+<p>Main side effect is to create palette and apply it. Essentially, a combination of <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette">MiniHues.make_palette()</a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.apply_palette">MiniHues.apply_palette()</a>.</p>
 <section id="minihues.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.setup-usage">Usage</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hues'</span><span class="op">).</span>setup<span class="op">({</span></span>
@@ -563,13 +564,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Also can be set per plugin (see |MiniHues.config|).</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">plugins</span> <span class="op">=</span> <span class="op">{</span> <span class="va">default</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">},</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette"><code>MiniHues.make_palette()</code></a> for more information about how certain settings affect output color scheme.</p>
+<p>See <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette">MiniHues.make_palette()</a> for more information about how certain settings affect output color scheme.</p>
 </section>
 <section id="minihues.config-pluginintegrations" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.config-pluginintegrations">Plugin integrations</h4>
 <p><code>config.plugins</code> defines for which supported plugins highlight groups will be created. Limiting number of integrations slightly decreases startup time. It is a table with boolean (<code>true</code>/<code>false</code>) values which are applied as follows:</p>
 <ul>
-<li><p>If plugin name (as listed in <a href="../../mini.nvim/doc/mini-hues.html#mini.hues"><code>mini.hues</code></a>) has entry, it is used.</p></li>
+<li><p>If plugin name (as listed in <a href="../../mini.nvim/doc/mini-hues.html#mini.hues">mini.hues</a>) has entry, it is used.</p></li>
 <li><p>Otherwise <code>config.plugins.default</code> is used.</p></li>
 </ul>
 <p>Example which will load only “mini.nvim” integration:</p>
@@ -633,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Chroma (<code>c</code>) - positive number describing how colorful is a color (bigger values - more colorful; 0 is gray).</p></li>
 <li><p>Hue (<code>h</code>) - periodic number in [0, 360) describing a value of “true color” on color circle/wheel.</p></li>
 </ul>
-<p>For more details about <code>Oklch</code> see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a> or https://bottosson.github.io/posts/oklab/.</p>
+<p>For more details about <code>Oklch</code> see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces">MiniColors-color-spaces</a> or https://bottosson.github.io/posts/oklab/.</p>
 <section id="minihues.make_palette-makepalette-algorithmoverview" class="level5">
 <h5 class="anchored" data-anchor-id="minihues.make_palette-makepalette-algorithmoverview">Algorithm overview</h5>
 <ul>
@@ -656,14 +657,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Some output colors can have not exact values of generated Oklch channels. This is due to actually computed colors being impossible to represent via ‘#rrggbb’ hex string. In this case a process called gamut clipping is done to reduce lightness and chroma in optimal way while maintaining same hue. For more information see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>.</p></li>
+<li><p>Some output colors can have not exact values of generated Oklch channels. This is due to actually computed colors being impossible to represent via ‘#rrggbb’ hex string. In this case a process called gamut clipping is done to reduce lightness and chroma in optimal way while maintaining same hue. For more information see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>.</p></li>
 <li><p>Not all colors are actually used in highlight groups and are present for the sake of completeness.</p></li>
 </ul>
 </section>
 </section>
 <section id="minihues.make_palette-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.make_palette-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table)</code> Configuration for palette. Same structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.config"><code>MiniHues.config</code></a>. Needs to have <span class="help-syntax-keys">&lt;background&gt;</span> and <span class="help-syntax-keys">&lt;foreground&gt;</span> fields.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table)</code> Configuration for palette. Same structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a>. Needs to have <span class="help-syntax-keys">&lt;background&gt;</span> and <span class="help-syntax-keys">&lt;foreground&gt;</span> fields.</p>
 </section>
 <section id="minihues.make_palette-return" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.make_palette-return">Return</h4>
@@ -678,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minihues.make_palette-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.make_palette-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-hues.html#minihues.get_palette"><code>MiniHues.get_palette()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-hues.html#minihues.get_palette">MiniHues.get_palette()</a></p>
 <hr>
 </section>
 </section>
@@ -688,11 +689,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniHues.apply_palette</code>(<span class="help-syntax-special">{palette}</span>, <span class="help-syntax-special">{plugins}</span>)
 </p>
 <p>Apply palette</p>
-<p>Create color scheme highlight groups and terminal colors based on supplied palette. This is useful if you want to tweak palette colors. For regular usage prefer <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup"><code>MiniHues.setup()</code></a>.</p>
+<p>Create color scheme highlight groups and terminal colors based on supplied palette. This is useful if you want to tweak palette colors. For regular usage prefer <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup">MiniHues.setup()</a>.</p>
 <section id="minihues.apply_palette-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.apply_palette-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{palette}</span> <code>(table)</code> Table with structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette"><code>MiniHues.make_palette()</code></a> output.</p>
-<p><span class="help-syntax-special">{plugins}</span> <code>(table|nil)</code> Table with boolean values indicating whether to create highlight groups for specific plugins. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config"><code>MiniHues.config</code></a> for more details. Default: the value from <a href="../../mini.nvim/doc/mini-hues.html#minihues.config"><code>MiniHues.config</code></a>.</p>
+<p><span class="help-syntax-special">{palette}</span> <code>(table)</code> Table with structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette">MiniHues.make_palette()</a> output.</p>
+<p><span class="help-syntax-special">{plugins}</span> <code>(table|nil)</code> Table with boolean values indicating whether to create highlight groups for specific plugins. See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a> for more details. Default: the value from <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a>.</p>
 </section>
 <section id="minihues.apply_palette-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.apply_palette-usage">Usage</h4>
@@ -706,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minihues.apply_palette-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.apply_palette-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-hues.html#minihues.get_palette"><code>MiniHues.get_palette()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-hues.html#minihues.get_palette">MiniHues.get_palette()</a></p>
 <hr>
 </section>
 </section>
@@ -718,7 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Get latest applied palette</p>
 <section id="minihues.get_palette-return" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.get_palette-return">Return</h4>
-<p><code>(table)</code> Table with structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette"><code>MiniHues.make_palette()</code></a> output that was the latest applied (via <a href="../../mini.nvim/doc/mini-hues.html#minihues.apply_palette"><code>MiniHues.apply_palette()</code></a>) palette.</p>
+<p><code>(table)</code> Table with structure as <a href="../../mini.nvim/doc/mini-hues.html#minihues.make_palette">MiniHues.make_palette()</a> output that was the latest applied (via <a href="../../mini.nvim/doc/mini-hues.html#minihues.apply_palette">MiniHues.apply_palette()</a>) palette.</p>
 <hr>
 </section>
 </section>
@@ -729,7 +730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Generate random base colors</p>
 <p>Compute background and foreground colors based on randomly generated hue and heuristically picked lightness-chroma values.</p>
-<p>You can recreate a similar functionality but tweaked to your taste using <a href="../../mini.nvim/doc/mini-colors.html#mini.colors"><code>mini.colors</code></a>: &gt; local convert = require(‘mini.colors’).convert local hue = math.random(0, 359) return { background = convert({ l = 15, c = 3, h = hue }, ‘hex’), foreground = convert({ l = 80, c = 1, h = hue }, ‘hex’), }</p>
+<p>You can recreate a similar functionality but tweaked to your taste using <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a>: &gt; local convert = require(‘mini.colors’).convert local hue = math.random(0, 359) return { background = convert({ l = 15, c = 3, h = hue }, ‘hex’), foreground = convert({ l = 80, c = 1, h = hue }, ‘hex’), }</p>
 <p>Notes:</p>
 <ul>
 <li><p>Respects ‘background’ (uses different lightness and chroma values for “dark” and “light” backgrounds).</p></li>

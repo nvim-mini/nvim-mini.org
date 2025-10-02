@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.bufremove documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minibufremove" id="toc-minibufremove" class="nav-link active" data-scroll-target="#minibufremove">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minibufremove-setup" id="toc-minibufremove-setup" class="nav-link" data-scroll-target="#minibufremove-setup">Setup</a></li>
-  <li><a href="#minibufremove-notes" id="toc-minibufremove-notes" class="nav-link" data-scroll-target="#minibufremove-notes">Notes</a></li>
-  <li><a href="#minibufremove-disabling" id="toc-minibufremove-disabling" class="nav-link" data-scroll-target="#minibufremove-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-notes" id="toc-module-notes" class="nav-link" data-scroll-target="#module-notes">Notes</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minibufremove.setup" id="toc-minibufremove.setup" class="nav-link" data-scroll-target="#minibufremove.setup">setup()</a>
   <ul>
@@ -408,33 +409,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.bufremove" href="../../mini.nvim/doc/mini-bufremove.html#mini.bufremove"><b>mini.bufremove</b></a> Remove buffers</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minibufremove" class="level3">
-<h3 class="anchored" data-anchor-id="minibufremove">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li>Unshow, delete, and wipeout buffer while saving window layout (opposite to builtin Neovim’s commands).</li>
 </ul>
-<section id="minibufremove-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minibufremove-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module doesn’t need setup, but it can be done to improve usability. Setup with <code>require('mini.bufremove').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBufremove</code> which you can use for scripting or manually (with <code>:lua MiniBufremove.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-bufremove.html#minibufremove.config"><code>MiniBufremove.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-bufremove.html#minibufremove.config">MiniBufremove.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minibufremove_config</code> will have no effect here.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="minibufremove-notes" class="level4">
-<h4 class="anchored" data-anchor-id="minibufremove-notes">Notes</h4>
+<section id="module-notes" class="level4">
+<h4 class="anchored" data-anchor-id="module-notes">Notes</h4>
 <ol type="1">
 <li><p>Which buffer to show in window(s) after its current buffer is removed is decided by the algorithm:</p>
 <ul>
-<li><p>If alternate buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-%5E"><code>CTRL-^</code></a>) is listed (see <a href="https://neovim.io/doc/user/helptag.html?tag=buflisted()"><code>buflisted()</code></a>), use it.</p></li>
-<li><p>If previous listed buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious"><code>:bprevious</code></a>) is different, use it.</p></li>
+<li><p>If alternate buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-%5E">CTRL-^</a>) is listed (see <a href="https://neovim.io/doc/user/helptag.html?tag=buflisted()">buflisted()</a>), use it.</p></li>
+<li><p>If previous listed buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious">:bprevious</a>) is different, use it.</p></li>
 <li><p>Otherwise create a new one with <code>nvim_create_buf(true, false)</code> and use it.</p></li>
 </ul></li>
 </ol>
 </section>
-<section id="minibufremove-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minibufremove-disabling">Disabling</h4>
-<p>To disable core functionality, set <code>vim.g.minibufremove_disable</code> (globally) or <code>vim.b.minibufremove_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable core functionality, set <code>vim.g.minibufremove_disable</code> (globally) or <code>vim.b.minibufremove_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -446,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minibufremove.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-bufremove.html#minibufremove.config"><code>MiniBufremove.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-bufremove.html#minibufremove.config">MiniBufremove.config</a>.</p>
 </section>
 <section id="minibufremove.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.setup-usage">Usage</h4>
@@ -475,10 +476,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniBufremove.delete</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{force}</span>)
 </p>
-<p>Delete buffer <code>buf_id</code> with <a href="https://neovim.io/doc/user/helptag.html?tag=:bdelete"><code>:bdelete</code></a> after unshowing it</p>
+<p>Delete buffer <code>buf_id</code> with <a href="https://neovim.io/doc/user/helptag.html?tag=:bdelete">:bdelete</a> after unshowing it</p>
 <section id="minibufremove.delete-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.delete-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>) to use. Default: 0 for current.</p>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>) to use. Default: 0 for current.</p>
 <p><span class="help-syntax-special">{force}</span> <code>(boolean|nil)</code> Whether to ignore unsaved changes (using <code>!</code> version of command). If <code>false</code>, calling with unsaved changes will prompt confirm dialog. Default: <code>false</code>.</p>
 </section>
 <section id="minibufremove.delete-return" class="level4">
@@ -492,10 +493,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniBufremove.wipeout</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{force}</span>)
 </p>
-<p>Wipeout buffer <code>buf_id</code> with <a href="https://neovim.io/doc/user/helptag.html?tag=:bwipeout"><code>:bwipeout</code></a> after unshowing it</p>
+<p>Wipeout buffer <code>buf_id</code> with <a href="https://neovim.io/doc/user/helptag.html?tag=:bwipeout">:bwipeout</a> after unshowing it</p>
 <section id="minibufremove.wipeout-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.wipeout-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>) to use. Default: 0 for current.</p>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>) to use. Default: 0 for current.</p>
 <p><span class="help-syntax-special">{force}</span> <code>(boolean|nil)</code> Whether to ignore unsaved changes (using <code>!</code> version of command). If <code>false</code>, calling with unsaved changes will prompt confirm dialog. Default: <code>false</code>.</p>
 </section>
 <section id="minibufremove.wipeout-return" class="level4">
@@ -512,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Stop showing buffer <code>buf_id</code> in all windows</p>
 <section id="minibufremove.unshow-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.unshow-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>) to use. Default: 0 for current.</p>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>) to use. Default: 0 for current.</p>
 </section>
 <section id="minibufremove.unshow-return" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.unshow-return">Return</h4>
@@ -528,11 +529,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Stop showing current buffer of window <code>win_id</code></p>
 <p>Notes:</p>
 <ul>
-<li>If <code>win_id</code> represents <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-window"><code>cmdline-window</code></a>, this function will close it.</li>
+<li>If <code>win_id</code> represents <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-window">cmdline-window</a>, this function will close it.</li>
 </ul>
 <section id="minibufremove.unshow_in_window-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.unshow_in_window-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{win_id}</span> <code>(number|nil)</code> Window identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=win_getid()"><code>win_getid()</code></a>) to use. Default: 0 for current.</p>
+<p><span class="help-syntax-special">{win_id}</span> <code>(number|nil)</code> Window identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=win_getid()">win_getid()</a>) to use. Default: 0 for current.</p>
 </section>
 <section id="minibufremove.unshow_in_window-return" class="level4">
 <h4 class="anchored" data-anchor-id="minibufremove.unshow_in_window-return">Return</h4>

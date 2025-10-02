@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.pairs documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minipairs" id="toc-minipairs" class="nav-link active" data-scroll-target="#minipairs">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minipairs-setup" id="toc-minipairs-setup" class="nav-link" data-scroll-target="#minipairs-setup">Setup</a></li>
-  <li><a href="#minipairs-examplemappings" id="toc-minipairs-examplemappings" class="nav-link" data-scroll-target="#minipairs-examplemappings">Example mappings</a></li>
-  <li><a href="#minipairs-notes" id="toc-minipairs-notes" class="nav-link" data-scroll-target="#minipairs-notes">Notes</a></li>
-  <li><a href="#minipairs-disabling" id="toc-minipairs-disabling" class="nav-link" data-scroll-target="#minipairs-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-examplemappings" id="toc-module-examplemappings" class="nav-link" data-scroll-target="#module-examplemappings">Example mappings</a></li>
+  <li><a href="#module-notes" id="toc-module-notes" class="nav-link" data-scroll-target="#module-notes">Notes</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minipairs.setup" id="toc-minipairs.setup" class="nav-link" data-scroll-target="#minipairs.setup">setup()</a>
   <ul>
@@ -430,33 +431,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.pairs" href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><b>mini.pairs</b></a> Autopairs</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minipairs" class="level3">
-<h3 class="anchored" data-anchor-id="minipairs">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Functionality to work with two “paired” characters conditional on cursor’s neighborhood (character to its left and character to its right).</p></li>
-<li><p>Usage should be through making appropriate mappings using <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> or in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup"><code>MiniPairs.setup()</code></a> (for global mapping), <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a> (for buffer mapping).</p></li>
+<li><p>Usage should be through making appropriate mappings using <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> or in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup">MiniPairs.setup()</a> (for global mapping), <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> (for buffer mapping).</p></li>
 <li><p>Pairs get automatically registered for special <span class="help-syntax-keys">&lt;BS&gt;</span> (all configured modes) and <span class="help-syntax-keys">&lt;CR&gt;</span> (only Insert mode) mappings. Pressing the key inside pair will delete whole pair and insert extra blank line inside pair respectively. Note: these mappings are autocreated if they do not override existing ones.</p></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
-<li><p>Provide smart behavior, like based on bracket balance. The default behavior is to almost always perform an action (insert pair, jump over). Manually press <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V"><code>i_CTRL-V</code></a> before a character to explicitly insert it (and only it).</p></li>
+<li><p>Provide smart behavior, like based on bracket balance. The default behavior is to almost always perform an action (insert pair, jump over). Manually press <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V">i_CTRL-V</a> before a character to explicitly insert it (and only it).</p></li>
 <li><p>It doesn’t support multiple characters as “open” and “close” symbols. Use snippets for that.</p></li>
-<li><p>It doesn’t support dependency on filetype. Use <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V"><code>i_CTRL-V</code></a> to insert single symbol or <code>autocmd</code> command or ‘after/ftplugin’ approach to:</p>
+<li><p>It doesn’t support dependency on filetype. Use <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V">i_CTRL-V</a> to insert single symbol or <code>autocmd</code> command or ‘after/ftplugin’ approach to:</p>
 <ul>
 <li><p><code>:lua MiniPairs.map_buf(0, 'i', &lt;*&gt;, &lt;pair_info&gt;)</code> - make new mapping for ’<span class="help-syntax-keys">&lt;*&gt;</span>’ in current buffer.</p></li>
-<li><p><code>:lua MiniPairs.unmap_buf(0, 'i', &lt;*&gt;, &lt;pair&gt;)</code> - unmap key <code>&lt;*&gt;</code> while unregistering <code>&lt;pair&gt;</code> pair in current buffer. Note: this reverts mapping done by <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a>. If mapping was done with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a>, unmap for buffer in usual Neovim manner: <code>inoremap &lt;buffer&gt; &lt;*&gt; &lt;*&gt;</code> (this maps <code>&lt;*&gt;</code> key to do the same it does by default).</p></li>
+<li><p><code>:lua MiniPairs.unmap_buf(0, 'i', &lt;*&gt;, &lt;pair&gt;)</code> - unmap key <code>&lt;*&gt;</code> while unregistering <code>&lt;pair&gt;</code> pair in current buffer. Note: this reverts mapping done by <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a>. If mapping was done with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a>, unmap for buffer in usual Neovim manner: <code>inoremap &lt;buffer&gt; &lt;*&gt; &lt;*&gt;</code> (this maps <code>&lt;*&gt;</code> key to do the same it does by default).</p></li>
 <li><p>Disable module for buffer (see ‘Disabling’ section).</p></li>
 </ul></li>
 </ul>
-<section id="minipairs-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minipairs-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.pairs').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniPairs</code> which you can use for scripting or manually (with <code>:lua MiniPairs.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.config"><code>MiniPairs.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.config">MiniPairs.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minipairs_config</code> will have no effect here.</p>
 </section>
-<section id="minipairs-examplemappings" class="level4">
-<h4 class="anchored" data-anchor-id="minipairs-examplemappings">Example mappings</h4>
+<section id="module-examplemappings" class="level4">
+<h4 class="anchored" data-anchor-id="module-examplemappings">Example mappings</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Register quotes inside `config` of `MiniPairs.setup()`</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">'"'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="va">register</span> <span class="op">=</span> <span class="op">{</span> <span class="va">cr</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span> <span class="op">},</span></span>
@@ -484,12 +485,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'tex'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">map_tex</span> <span class="op">}</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="minipairs-notes" class="level4">
-<h4 class="anchored" data-anchor-id="minipairs-notes">Notes</h4>
+<section id="module-notes" class="level4">
+<h4 class="anchored" data-anchor-id="module-notes">Notes</h4>
 <ul>
 <li><p>Make sure to make proper mapping of <span class="help-syntax-keys">&lt;CR&gt;</span> in order to support completion plugin of your choice:</p>
 <ul>
-<li><p>For <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> see ‘Helpful key mappings’ section.</p></li>
+<li><p>For <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> see ‘Helpful key mappings’ section.</p></li>
 <li><p>For current implementation of “hrsh7th/nvim-cmp” there is no need to make custom mapping. You can use default setup, which will confirm completion selection if popup is visible and expand pair otherwise.</p></li>
 </ul></li>
 <li><p>Having mapping in terminal mode can conflict with:</p>
@@ -499,9 +500,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minipairs-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minipairs-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minipairs_disable</code> (globally) or <code>vim.b.minipairs_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minipairs_disable</code> (globally) or <code>vim.b.minipairs_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -513,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minipairs.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.config"><code>MiniPairs.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.config">MiniPairs.config</a>.</p>
 </section>
 <section id="minipairs.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.setup-usage">Usage</h4>
@@ -565,20 +566,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.map</code>(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair_info}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Make global mapping</p>
-<p>This is a wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()"><code>nvim_set_keymap()</code></a> but instead of right hand side of mapping (as string) it expects table with pair information.</p>
-<p>Using this function instead of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()"><code>nvim_set_keymap()</code></a> allows automatic registration of pairs which will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. It also infers mapping description from <code>pair_info</code>.</p>
+<p>This is a wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()">nvim_set_keymap()</a> but instead of right hand side of mapping (as string) it expects table with pair information.</p>
+<p>Using this function instead of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()">nvim_set_keymap()</a> allows automatic registration of pairs which will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. It also infers mapping description from <code>pair_info</code>.</p>
 <section id="minipairs.map-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.map-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()"><code>nvim_set_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()"><code>nvim_set_keymap()</code></a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()">nvim_set_keymap()</a>.</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()">nvim_set_keymap()</a>.</p>
 <p><span class="help-syntax-special">{pair_info}</span> <code>(table)</code> Table with pair information. Fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;action&gt;</span> - one of “open” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open"><code>MiniPairs.open()</code></a>, “close” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.close"><code>MiniPairs.close()</code></a>, or “closeopen” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.closeopen"><code>MiniPairs.closeopen()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;action&gt;</span> - one of “open” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open">MiniPairs.open()</a>, “close” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.close">MiniPairs.close()</a>, or “closeopen” for <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.closeopen">MiniPairs.closeopen()</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;pair&gt;</span> - two character string to be used as argument for action function. Can contain multibyte characters.</p></li>
 <li><p><span class="help-syntax-keys">&lt;neigh_pattern&gt;</span> - optional ‘two character’ neighborhood pattern to be used as argument for action function. Note: neighborhood might contain multiple characters. Default: <code>'..'</code> (no restriction from neighborhood).</p></li>
-<li><p><span class="help-syntax-keys">&lt;register&gt;</span> - optional table with information about whether this pair will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> (in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.bs"><code>MiniPairs.bs()</code></a>) and/or <span class="help-syntax-keys">&lt;CR&gt;</span> (in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.cr"><code>MiniPairs.cr()</code></a>). Should have boolean fields <span class="help-syntax-keys">&lt;bs&gt;</span> and <span class="help-syntax-keys">&lt;cr&gt;</span> (both <code>true</code> by default).</p></li>
+<li><p><span class="help-syntax-keys">&lt;register&gt;</span> - optional table with information about whether this pair will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> (in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.bs">MiniPairs.bs()</a>) and/or <span class="help-syntax-keys">&lt;CR&gt;</span> (in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.cr">MiniPairs.cr()</a>). Should have boolean fields <span class="help-syntax-keys">&lt;bs&gt;</span> and <span class="help-syntax-keys">&lt;cr&gt;</span> (both <code>true</code> by default).</p></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Optional table <code>opts</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()"><code>nvim_set_keymap()</code></a>. Elements <code>expr</code> and <code>noremap</code> won’t be recognized (<code>true</code> by default).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Optional table <code>opts</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap()">nvim_set_keymap()</a>. Elements <code>expr</code> and <code>noremap</code> won’t be recognized (<code>true</code> by default).</p>
 <hr>
 </section>
 </section>
@@ -588,15 +589,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.map_buf</code>(<span class="help-syntax-special">{buffer}</span>, <span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair_info}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Make buffer mapping</p>
-<p>This is a wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a> but instead of string right hand side of mapping it expects table with pair information similar to one in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a>.</p>
-<p>Using this function instead of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a> allows automatic registration of pairs which will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. It also infers mapping description from <code>pair_info</code>.</p>
+<p>This is a wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a> but instead of string right hand side of mapping it expects table with pair information similar to one in <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a>.</p>
+<p>Using this function instead of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a> allows automatic registration of pairs which will be recognized by <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. It also infers mapping description from <code>pair_info</code>.</p>
 <section id="minipairs.map_buf-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.map_buf-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buffer}</span> <code>(number)</code> <code>buffer</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a>.</p>
+<p><span class="help-syntax-special">{buffer}</span> <code>(number)</code> <code>buffer</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a>.</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a>.</p>
 <p><span class="help-syntax-special">{pair_info}</span> <code>(table)</code> Table with pair information.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Optional table <code>opts</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()"><code>nvim_buf_set_keymap()</code></a>. Elements <code>expr</code> and <code>noremap</code> won’t be recognized (<code>true</code> by default).</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Optional table <code>opts</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_keymap()">nvim_buf_set_keymap()</a>. Elements <code>expr</code> and <code>noremap</code> won’t be recognized (<code>true</code> by default).</p>
 <hr>
 </section>
 </section>
@@ -606,11 +607,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.unmap</code>(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair}</span>)
 </p>
 <p>Remove global mapping</p>
-<p>A wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()"><code>nvim_del_keymap()</code></a> which registers supplied <code>pair</code>.</p>
+<p>A wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()">nvim_del_keymap()</a> which registers supplied <code>pair</code>.</p>
 <section id="minipairs.unmap-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.unmap-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()"><code>nvim_del_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()"><code>nvim_del_keymap()</code></a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()">nvim_del_keymap()</a>.</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_del_keymap()">nvim_del_keymap()</a>.</p>
 <p><span class="help-syntax-special">{pair}</span> <code>(string)</code> Pair which should be unregistered from both <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. Should be explicitly supplied to avoid confusion. Supply <code>''</code> to not unregister pair.</p>
 <hr>
 </section>
@@ -621,15 +622,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.unmap_buf</code>(<span class="help-syntax-special">{buffer}</span>, <span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{pair}</span>)
 </p>
 <p>Remove buffer mapping</p>
-<p>Wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()"><code>nvim_buf_del_keymap()</code></a> which also unregisters supplied <code>pair</code>.</p>
-<p>Note: this only reverts mapping done by <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a>. If mapping was done with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a>, revert to default behavior for buffer:</p>
+<p>Wrapper for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()">nvim_buf_del_keymap()</a> which also unregisters supplied <code>pair</code>.</p>
+<p>Note: this only reverts mapping done by <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a>. If mapping was done with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a>, revert to default behavior for buffer:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Map `X` key to do the same it does by default</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'X'</span><span class="op">,</span> <span class="st">'X'</span><span class="op">,</span> <span class="op">{</span> <span class="va">buffer</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minipairs.unmap_buf-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.unmap_buf-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buffer}</span> <code>(number)</code> <code>buffer</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()"><code>nvim_buf_del_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()"><code>nvim_buf_del_keymap()</code></a>.</p>
-<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()"><code>nvim_buf_del_keymap()</code></a>.</p>
+<p><span class="help-syntax-special">{buffer}</span> <code>(number)</code> <code>buffer</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()">nvim_buf_del_keymap()</a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> <code>mode</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()">nvim_buf_del_keymap()</a>.</p>
+<p><span class="help-syntax-special">{lhs}</span> <code>(string)</code> <code>lhs</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_del_keymap()">nvim_buf_del_keymap()</a>.</p>
 <p><span class="help-syntax-special">{pair}</span> <code>(string)</code> Pair which should be unregistered from both <span class="help-syntax-keys">&lt;BS&gt;</span> and <span class="help-syntax-keys">&lt;CR&gt;</span>. Should be explicitly supplied to avoid confusion. Supply <code>''</code> to not unregister pair.</p>
 <hr>
 </section>
@@ -640,8 +641,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.open</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “open” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a> mapping for “open” symbols in asymmetric pair (‘(’, ‘[’, etc.). If neighborhood doesn’t match supplied pattern, function results into “open” symbol. Otherwise, it pastes whole pair and moves inside pair with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeft%3E"><code>&lt;Left&gt;</code></a>.</p>
-<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a> for an actual mapping.</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “open” symbols in asymmetric pair (‘(’, ‘[’, etc.). If neighborhood doesn’t match supplied pattern, function results into “open” symbol. Otherwise, it pastes whole pair and moves inside pair with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeft%3E"><span class="help-syntax-keys">&lt;Left&gt;</span></a>.</p>
+<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.open-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.open-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{pair}</span> <code>(string)</code> String with two characters representing pair.</p>
@@ -659,8 +660,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.close</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “close” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a> mapping for “close” symbols in asymmetric pair (‘)’, ‘]’, etc.). If neighborhood doesn’t match supplied pattern, function results into “close” symbol. Otherwise it jumps over symbol to the right of cursor (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><code>&lt;Right&gt;</code></a>) if it is equal to “close” one and inserts it otherwise.</p>
-<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a> for an actual mapping.</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “close” symbols in asymmetric pair (‘)’, ‘]’, etc.). If neighborhood doesn’t match supplied pattern, function results into “close” symbol. Otherwise it jumps over symbol to the right of cursor (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to “close” one and inserts it otherwise.</p>
+<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.close-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.close-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{pair}</span> <code>(string)</code> String with two characters representing pair.</p>
@@ -678,8 +679,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.closeopen</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “closeopen” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a> mapping for ‘symmetrical’ symbols (like ” and ‘) It tries to perform ’closeopen action’: move over right character (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><code>&lt;Right&gt;</code></a>) if it is equal to second character from pair or conditionally paste pair otherwise (with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open"><code>MiniPairs.open()</code></a>).</p>
-<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a> for an actual mapping.</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for ‘symmetrical’ symbols (like ” and ‘) It tries to perform ’closeopen action’: move over right character (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to second character from pair or conditionally paste pair otherwise (with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open">MiniPairs.open()</a>).</p>
+<p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.closeopen-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.closeopen-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{pair}</span> <code>(string)</code> String with two characters representing pair.</p>
@@ -696,9 +697,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniPairs.bs</code>(<span class="help-syntax-special">{key}</span>)
 </p>
-<p>Process <a href="https://neovim.io/doc/user/helptag.html?tag=%3CBS%3E"><code>&lt;BS&gt;</code></a></p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a> mapping for <span class="help-syntax-keys">&lt;BS&gt;</span> in Insert mode. It removes whole pair (via executing <span class="help-syntax-keys">&lt;Del&gt;</span> after input key) if neighborhood is equal to a whole pair recognized for current buffer. Pair is recognized for current buffer if it is registered for global or current buffer mapping. Pair is registered as a result of calling <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> or <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a>.</p>
-<p>Mapped by default inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup"><code>MiniPairs.setup()</code></a>.</p>
+<p>Process <a href="https://neovim.io/doc/user/helptag.html?tag=%3CBS%3E"><span class="help-syntax-keys">&lt;BS&gt;</span></a></p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for <span class="help-syntax-keys">&lt;BS&gt;</span> in Insert mode. It removes whole pair (via executing <span class="help-syntax-keys">&lt;Del&gt;</span> after input key) if neighborhood is equal to a whole pair recognized for current buffer. Pair is recognized for current buffer if it is registered for global or current buffer mapping. Pair is registered as a result of calling <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> or <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a>.</p>
+<p>Mapped by default inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup">MiniPairs.setup()</a>.</p>
 <p>This can be used to modify other Insert mode keys to respect neighborhood pair. Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_bs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lhs</span><span class="op">,</span> <span class="va">rhs</span><span class="op">)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">expr</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">replace_keycodes</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">})</span></span>
@@ -722,10 +723,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniPairs.cr</code>(<span class="help-syntax-special">{key}</span>)
 </p>
-<p>Process <a href="https://neovim.io/doc/user/helptag.html?tag=i_%3CCR%3E"><code>i_&lt;CR&gt;</code></a></p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a> mapping for <span class="help-syntax-keys">&lt;CR&gt;</span> in insert mode. It puts “close” symbol on next line (via <code>&lt;CR&gt;&lt;C-o&gt;O</code>) if neighborhood is equal to a whole pair recognized for current buffer. Pair is recognized for current buffer if it is registered for global or current buffer mapping. Pair is registered as a result of calling <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map"><code>MiniPairs.map()</code></a> or <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf"><code>MiniPairs.map_buf()</code></a>.</p>
-<p>Note: some relevant mode changing events are temporarily ignored (with <a href="https://neovim.io/doc/user/helptag.html?tag='eventignore'"><code>'eventignore'</code></a>) to counter effect of using <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O"><code>i_CTRL-O</code></a>.</p>
-<p>Mapped by default inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup"><code>MiniPairs.setup()</code></a>.</p>
+<p>Process <a href="https://neovim.io/doc/user/helptag.html?tag=i_%3CCR%3E">i_<span class="help-syntax-keys">&lt;CR&gt;</span></a></p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for <span class="help-syntax-keys">&lt;CR&gt;</span> in insert mode. It puts “close” symbol on next line (via <code>&lt;CR&gt;&lt;C-o&gt;O</code>) if neighborhood is equal to a whole pair recognized for current buffer. Pair is recognized for current buffer if it is registered for global or current buffer mapping. Pair is registered as a result of calling <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> or <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a>.</p>
+<p>Note: some relevant mode changing events are temporarily ignored (with <a href="https://neovim.io/doc/user/helptag.html?tag='eventignore'">‘eventignore’</a>) to counter effect of using <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O">i_CTRL-O</a>.</p>
+<p>Mapped by default inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.setup">MiniPairs.setup()</a>.</p>
 <section id="minipairs.cr-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.cr-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{key}</span> <code>(string|nil)</code> Key to use. Default: <code>'&lt;CR&gt;'</code>.</p>

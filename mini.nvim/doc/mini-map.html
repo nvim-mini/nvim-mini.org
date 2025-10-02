@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.map documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,13 +344,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minimap" id="toc-minimap" class="nav-link active" data-scroll-target="#minimap">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minimap-setup" id="toc-minimap-setup" class="nav-link" data-scroll-target="#minimap-setup">Setup</a></li>
-  <li><a href="#minimap-dependencies" id="toc-minimap-dependencies" class="nav-link" data-scroll-target="#minimap-dependencies">Dependencies</a></li>
-  <li><a href="#minimap-comparisons" id="toc-minimap-comparisons" class="nav-link" data-scroll-target="#minimap-comparisons">Comparisons</a></li>
-  <li><a href="#minimap-highlightgroups" id="toc-minimap-highlightgroups" class="nav-link" data-scroll-target="#minimap-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minimap-disabling" id="toc-minimap-disabling" class="nav-link" data-scroll-target="#minimap-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#mini.map-usage" id="toc-mini.map-usage" class="nav-link" data-scroll-target="#mini.map-usage">Usage</a>
   <ul>
@@ -458,23 +459,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.map" href="../../mini.nvim/doc/mini-map.html#mini.map"><b>mini.map</b></a> Window with buffer text overview</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="minimap" class="level3">
-<h3 class="anchored" data-anchor-id="minimap">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Show and manage special floating window displaying automatically updated overview of current buffer text. Window takes up whole height of Neovim instance and is fixed to a left/right side. Map content is computed by taking all current lines, converting it to binary whitespace/non-whitespace mask, rescaling to appropriate dimensions, and converting back to strings consisting from special encoding symbols. All this is done very fast and asynchronously. See <a href="../../mini.nvim/doc/mini-map.html#minimap.open"><code>MiniMap.open()</code></a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.close"><code>MiniMap.close()</code></a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle"><code>MiniMap.toggle()</code></a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_side"><code>MiniMap.toggle_side()</code></a>. For a general overview and tips, see <a href="../../mini.nvim/doc/mini-map.html#mini.map-usage"><code>mini.map-usage</code></a>.</p></li>
-<li><p>Show scrollbar next to map content. It represents current line and view (top and bottom visible lines). Can be the only thing shown, making map window a “pure scrollbar”. See “Pure scrollbar config” section in <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>.</p></li>
-<li><p>Highlight map lines representing certain data in current buffer. This is done via extensible set of callables, called integrations (see “Integrations” section in <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>). There are pre-built generators for common integrations:</p>
+<li><p>Show and manage special floating window displaying automatically updated overview of current buffer text. Window takes up whole height of Neovim instance and is fixed to a left/right side. Map content is computed by taking all current lines, converting it to binary whitespace/non-whitespace mask, rescaling to appropriate dimensions, and converting back to strings consisting from special encoding symbols. All this is done very fast and asynchronously. See <a href="../../mini.nvim/doc/mini-map.html#minimap.open">MiniMap.open()</a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.close">MiniMap.close()</a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle">MiniMap.toggle()</a>, <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_side">MiniMap.toggle_side()</a>. For a general overview and tips, see <a href="../../mini.nvim/doc/mini-map.html#mini.map-usage">mini.map-usage</a>.</p></li>
+<li><p>Show scrollbar next to map content. It represents current line and view (top and bottom visible lines). Can be the only thing shown, making map window a “pure scrollbar”. See “Pure scrollbar config” section in <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p></li>
+<li><p>Highlight map lines representing certain data in current buffer. This is done via extensible set of callables, called integrations (see “Integrations” section in <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>). There are pre-built generators for common integrations:</p>
 <ul>
-<li><p>Builtin search (as result of <a href="https://neovim.io/doc/user/helptag.html?tag=/"><code>/</code></a> and similar).</p></li>
-<li><p>Builtin diagnostic (taken from <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()"><code>vim.diagnostic.get()</code></a>).</p></li>
-<li><p>General diff hunks provided by <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a>.</p></li>
-<li><p>Hunks computed provided by ‘lewis6991/gitsigns.nvim’. For more details see <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration"><code>MiniMap.gen_integration</code></a>.</p></li>
+<li><p>Builtin search (as result of <a href="https://neovim.io/doc/user/helptag.html?tag=/">/</a> and similar).</p></li>
+<li><p>Builtin diagnostic (taken from <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()">vim.diagnostic.get()</a>).</p></li>
+<li><p>General diff hunks provided by <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a>.</p></li>
+<li><p>Hunks computed provided by ‘lewis6991/gitsigns.nvim’. For more details see <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration">MiniMap.gen_integration</a>.</p></li>
 </ul></li>
-<li><p>Focus on map window to quickly browse current (source) buffer. Moving inside map window updates cursor position in source window enabling fast and targeted buffer exploration. To focus back, hit <code>&lt;CR&gt;</code> to accept current explored position or <code>&lt;Esc&gt;</code> to go back to original position. See <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus"><code>MiniMap.toggle_focus()</code></a>.</p></li>
-<li><p>Customizable via <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a> and/or <code>opts</code> argument of <a href="../../mini.nvim/doc/mini-map.html#minimap.open"><code>MiniMap.open()</code></a> or <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a>:</p>
+<li><p>Focus on map window to quickly browse current (source) buffer. Moving inside map window updates cursor position in source window enabling fast and targeted buffer exploration. To focus back, hit <code>&lt;CR&gt;</code> to accept current explored position or <code>&lt;Esc&gt;</code> to go back to original position. See <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a>.</p></li>
+<li><p>Customizable via <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a> and/or <code>opts</code> argument of <a href="../../mini.nvim/doc/mini-map.html#minimap.open">MiniMap.open()</a> or <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a>:</p>
 <ul>
-<li><p>Encoding symbols used to display binary information of different resolution (default is 3x2). There are pre-built generators for different basic character families and resolutions. See <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols"><code>MiniMap.gen_encode_symbols</code></a>.</p></li>
+<li><p>Encoding symbols used to display binary information of different resolution (default is 3x2). There are pre-built generators for different basic character families and resolutions. See <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols">MiniMap.gen_encode_symbols</a>.</p></li>
 <li><p>Scrollbar symbols, separate for line and view. Can have any width (even zero, which virtually disables scrollbar).</p></li>
 <li><p>Integrations producing map line highlights.</p></li>
 <li><p>Window options: side (left/right), width, ‘winblend’, and more.</p></li>
@@ -483,8 +484,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What it doesn’t do:</p>
 <ul>
 <li><p>Automatically refresh when typing in Insert mode. Although it can be done in non-blocking way, it still might introduce considerable computation overhead (especially in very large files).</p></li>
-<li><p>Has more flexible window configuration. In case a full height floating window obstructs vision of underlying buffers, use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle"><code>MiniMap.toggle()</code></a> or <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_side"><code>MiniMap.toggle_side()</code></a>. Works best with global statusline.</p></li>
-<li><p>Provide autoopen functionality. Due to vast differences in user preference of when map window should be shown, set up of automatic opening is left to user. A common approach would be to call <code>MiniMap.open()</code> on <a href="https://neovim.io/doc/user/helptag.html?tag=VimEnter"><code>VimEnter</code></a> event. If you use <a href="../../mini.nvim/doc/mini-starter.html#mini.starter"><code>mini.starter</code></a>, you can modify <code>&lt;CR&gt;</code> buffer mapping:</p>
+<li><p>Has more flexible window configuration. In case a full height floating window obstructs vision of underlying buffers, use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle">MiniMap.toggle()</a> or <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_side">MiniMap.toggle_side()</a>. Works best with global statusline.</p></li>
+<li><p>Provide autoopen functionality. Due to vast differences in user preference of when map window should be shown, set up of automatic opening is left to user. A common approach would be to call <code>MiniMap.open()</code> on <a href="https://neovim.io/doc/user/helptag.html?tag=VimEnter">VimEnter</a> event. If you use <a href="../../mini.nvim/doc/mini-starter.html#mini.starter">mini.starter</a>, you can modify <code>&lt;CR&gt;</code> buffer mapping:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_map_keymap</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniStarter</span><span class="op">.</span>eval_current_item<span class="op">()</span></span>
@@ -495,22 +496,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'MiniStarterOpened'</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">set_map_keymap</span> <span class="op">}</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="va">opts</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<section id="minimap-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minimap-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.map').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniMap</code> which you can use for scripting or manually (with <code>:lua MiniMap.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like <code>config.modifiers</code>) locally to buffer inside <code>vim.b.minimap_config</code> which should have same structure as <code>MiniMap.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like <code>config.modifiers</code>) locally to buffer inside <code>vim.b.minimap_config</code> which should have same structure as <code>MiniMap.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minimap-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="minimap-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality for integrations):</p>
 <ul>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> module for general diff highlighting via <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration.diff"><code>MiniMap.gen_integration.diff()</code></a>. If missing, no highlighting is added.</p></li>
-<li><p>Plugin <a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a> for Git status highlighting via <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration.gitsigns"><code>MiniMap.gen_integration.gitsigns()</code></a>. If missing, no highlighting is added.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> module for general diff highlighting via <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration.diff">MiniMap.gen_integration.diff()</a>. If missing, no highlighting is added.</p></li>
+<li><p>Plugin <a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a> for Git status highlighting via <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration.gitsigns">MiniMap.gen_integration.gitsigns()</a>. If missing, no highlighting is added.</p></li>
 </ul>
 </section>
-<section id="minimap-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minimap-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/wfxr/minimap.vim">wfxr/minimap.vim</a>:</p>
 <ul>
@@ -526,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>‘mini.map’ has two-part scrollbar showing current line and view (with variable height), while ‘nvim-scrollview’ shows only current view (with fixed height).</p></li>
 <li><p>‘nvim-scrollview’ respects folds, i.e.&nbsp;shows view of visible lines, while ‘mini.map’ by design always shows view based on actual lines.</p></li>
-<li><p>‘nvim-scrollview’ creates scrollbar which can be dragged with mouse, while ‘mini.nvim’ does not, by design (use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus"><code>MiniMap.toggle_focus()</code></a>).</p></li>
+<li><p>‘nvim-scrollview’ creates scrollbar which can be dragged with mouse, while ‘mini.nvim’ does not, by design (use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a>).</p></li>
 <li><p>‘mini.map’ can show buffer outline, while ‘nvim-scrollview’ can not.</p></li>
 <li><p>‘mini.map’ can show highlight integrations, while ‘nvim-scrollview’ can not.</p></li>
 </ul></li>
@@ -542,19 +543,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minimap-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minimap-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniMapNormal</code> - basic highlight of whole window.</p></li>
 <li><p><code>MiniMapSymbolCount</code> - counts of per-line integration items.</p></li>
 <li><p><code>MiniMapSymbolLine</code> - scrollbar part representing current line.</p></li>
 <li><p><code>MiniMapSymbolView</code> - scrollbar part representing current view.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minimap-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minimap-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minimap_disable</code> (globally) or <code>vim.b.minimap_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minimap_disable</code> (globally) or <code>vim.b.minimap_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -562,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="mini.map-usage">Usage</h3>
 <section id="mini.map-usage-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="mini.map-usage-mappings">Mappings</h4>
-<p>This module doesn’t make mappings, only provides functions for users to map manually. Here is how one <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> set of mappings can be constructed:</p>
+<p>This module doesn’t make mappings, only provides functions for users to map manually. Here is how one <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><span class="help-syntax-keys">&lt;Leader&gt;</span></a> set of mappings can be constructed:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;mc'</span><span class="op">,</span> <span class="va">MiniMap</span><span class="op">.</span><span class="va">close</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;mf'</span><span class="op">,</span> <span class="va">MiniMap</span><span class="op">.</span><span class="va">toggle_focus</span><span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'&lt;Leader&gt;mo'</span><span class="op">,</span> <span class="va">MiniMap</span><span class="op">.</span><span class="va">open</span><span class="op">)</span></span>
@@ -572,13 +573,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mini.map-usage-howautomaticrefreshworks" class="level4">
 <h4 class="anchored" data-anchor-id="mini.map-usage-howautomaticrefreshworks">How automatic refresh works</h4>
-<p>Automatic refresh is done by calling <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a> when appropriate <a href="https://neovim.io/doc/user/helptag.html?tag=events"><code>events</code></a> occur. It is done with specially chosen <code>parts</code> argument value (to avoid unnecessary computations). For example, when only cursor has moved (<a href="https://neovim.io/doc/user/helptag.html?tag=CursorMoved"><code>CursorMoved</code></a>), only scrollbar is updated; so no recomputation of integrations or line encoding is done.</p>
-<p>To avoid visual clutter, automatic refresh is done only in normal buffers and help pages (i.e.&nbsp;with <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'"><code>'buftype'</code></a> being empty or “help”)</p>
+<p>Automatic refresh is done by calling <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a> when appropriate <a href="https://neovim.io/doc/user/helptag.html?tag=events">events</a> occur. It is done with specially chosen <code>parts</code> argument value (to avoid unnecessary computations). For example, when only cursor has moved (<a href="https://neovim.io/doc/user/helptag.html?tag=CursorMoved">CursorMoved</a>), only scrollbar is updated; so no recomputation of integrations or line encoding is done.</p>
+<p>To avoid visual clutter, automatic refresh is done only in normal buffers and help pages (i.e.&nbsp;with <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'">‘buftype’</a> being empty or “help”)</p>
 <p>When you think content is not up to date, try one of these:</p>
 <ul>
-<li><p>Call <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a> manually. Make mapping to make it easier.</p></li>
-<li><p>Save current buffer, for example with <a href="https://neovim.io/doc/user/helptag.html?tag=:write"><code>:write</code></a>.</p></li>
-<li><p>Exit and enter Normal mode (if your Neovim version supports <a href="https://neovim.io/doc/user/helptag.html?tag=ModeChanged"><code>ModeChanged</code></a>).</p></li>
+<li><p>Call <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a> manually. Make mapping to make it easier.</p></li>
+<li><p>Save current buffer, for example with <a href="https://neovim.io/doc/user/helptag.html?tag=:write">:write</a>.</p></li>
+<li><p>Exit and enter Normal mode (if your Neovim version supports <a href="https://neovim.io/doc/user/helptag.html?tag=ModeChanged">ModeChanged</a>).</p></li>
 </ul>
 <hr>
 </section>
@@ -591,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minimap.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p>
 </section>
 <section id="minimap.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.setup-usage">Usage</h4>
@@ -651,19 +652,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Options in <code>config.symbols</code> define characters used to display various information in map window.</p>
 <section id="minimap.config-symbols-encodesymbols" class="level5">
 <h5 class="anchored" data-anchor-id="minimap.config-symbols-encodesymbols">Encode symbols</h5>
-<p>The <code>config.symbols.encode</code> option defines which characters are used to encode source buffer lines. For details of encode algorithm, see <a href="../../mini.nvim/doc/mini-map.html#minimap.encode_strings"><code>MiniMap.encode_strings()</code></a>.</p>
+<p>The <code>config.symbols.encode</code> option defines which characters are used to encode source buffer lines. For details of encode algorithm, see <a href="../../mini.nvim/doc/mini-map.html#minimap.encode_strings">MiniMap.encode_strings()</a>.</p>
 <p>This option should be a table with the following structure:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;resolution&gt;</span> field - table containing <span class="help-syntax-keys">&lt;row&gt;</span> and <span class="help-syntax-keys">&lt;col&gt;</span> elements with row and column resolution of each symbol. This defines encoding structure and number of needed encode symbols.</p></li>
 <li><p>Numerical fields 1, 2, …, 2^(row_resolution * col_resolution). Each symbol represents a <code>(row_resolution, col_resolution)</code> boolean mask (<code>true</code> for non-whitespace, <code>false</code> for whitespace), created as (reversed) binary digit: <code>true</code> as 1; <code>false</code> as 0. Traversing left-right, top-bottom (top-left is lowest bit, bottom-right - highest). So first symbol encodes a complete whitespace, last - complete non-whitespace.</p></li>
 </ul>
-<p>If <code>nil</code> (default), output of <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block"><code>MiniMap.gen_encode_symbols.block()</code></a> with <code>'3x2'</code> identifier is used.</p>
+<p>If <code>nil</code> (default), output of <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block">MiniMap.gen_encode_symbols.block()</a> with <code>'3x2'</code> identifier is used.</p>
 <p>Example: { ‘1’, ‘2’, ‘3’, ‘4’, resolution = { row = 1, col = 2 } }. This will encode two characters in each input row. So a string <code>'  a  aaa'</code> will be encoded as <code>'1234'</code>.</p>
 <p>There are pre-built generators of encode symbols:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block"><code>MiniMap.gen_encode_symbols.block()</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.dot"><code>MiniMap.gen_encode_symbols.dot()</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.shade"><code>MiniMap.gen_encode_symbols.shade()</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block">MiniMap.gen_encode_symbols.block()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.dot">MiniMap.gen_encode_symbols.dot()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.shade">MiniMap.gen_encode_symbols.shade()</a></p></li>
 </ul>
 </section>
 <section id="minimap.config-symbols-scrollbarsymbols" class="level5">
@@ -689,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">9</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'Search'</span><span class="op">}</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Conversion to map highlights is done on a “first seen” basis: actual highlight group applied to a map line is taken from the first integration output convertible to that map line. Other outputs with same map line (after conversion) contribute to integration count shown between scrollbar and encoded lines (if <code>config.window.show_integration_count</code> is <code>true</code>).</p>
-<p>Previous example output with default <code>'3x2'</code> resolution will add <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Search"><code>hl-Search</code></a> highlight on map lines 1 and 3, and show integration count 2 on first line.</p>
+<p>Previous example output with default <code>'3x2'</code> resolution will add <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Search">hl-Search</a> highlight on map lines 1 and 3, and show integration count 2 on first line.</p>
 <p>Every element of integrations array is called one by one from start to end with their outputs appended to end of single array. This means that more important integrations should be placed in the beginning of an array, as this will make them have higher priority in case other integrations will highlight same map line.</p>
 <p>Example of using <code>config.integrations</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.map'</span><span class="op">)</span></span>
@@ -704,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minimap.config-windowconfig" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.config-windowconfig">Window config</h4>
 <p>Option <code>config.window</code> defines some properties of map window.</p>
-<p><code>window.focusable</code> - whether to allow focusing on map window with other methods beside <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus"><code>MiniMap.toggle_focus()</code></a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=:wincmd"><code>:wincmd</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W"><code>CTRL-W</code></a>, or mouse). Default: <code>false</code>.</p>
+<p><code>window.focusable</code> - whether to allow focusing on map window with other methods beside <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=:wincmd">:wincmd</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W">CTRL-W</a>, or mouse). Default: <code>false</code>.</p>
 <p><code>window.side</code> - which side to stick map window: <code>'left'</code> or <code>'right'</code> (default).</p>
 <p><code>window.show_integration_count</code> - whether to show integration count between scrollbar and encoded lines. Integration count is a number of integration outputs which were converted to same map line. When <code>true</code>, adds single cell column with numbers from 2 to 9 and character ‘+’ indicating count greater than 9. Count 1 is not shown, because it is redundant to highlighted map line. Default: <code>true</code>.</p>
 <p><code>window.width</code> - width of floating window, including scrollbar and integration count column. Default: 10.</p>
@@ -715,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minimap.config-purescrollbarconfig">Pure scrollbar config</h4>
 <p>“Pure scrollbar” is a configuration when window width is not enough to show encoded content. It has following differences from default “map” approach:</p>
 <ul>
-<li><p>It doesn’t perform line encoding with <a href="../../mini.nvim/doc/mini-map.html#minimap.encode_strings"><code>MiniMap.encode_strings()</code></a> but instead uses encoding with fixed number of lines (equal to window height).</p></li>
+<li><p>It doesn’t perform line encoding with <a href="../../mini.nvim/doc/mini-map.html#minimap.encode_strings">MiniMap.encode_strings()</a> but instead uses encoding with fixed number of lines (equal to window height).</p></li>
 <li><p>Integration highlights are not computed.</p></li>
 </ul>
 <p>Config:</p>
@@ -746,7 +747,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;buf_data&gt;</span> - table with buffer identifiers. Field <span class="help-syntax-keys">&lt;map&gt;</span> contains identifier of a buffer used to display map. Field <span class="help-syntax-keys">&lt;source&gt;</span> - buffer identifier which content map is displaying (i.e.&nbsp;source buffer).</p></li>
 <li><p><span class="help-syntax-keys">&lt;win_data&gt;</span> - table of window identifiers used to display map in certain tabpage. Keys: tabpage identifier. Values: window identifier.</p></li>
-<li><p><span class="help-syntax-keys">&lt;opts&gt;</span> - current options used to control map display. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>. Takes precedence over global and buffer-local configs. Is reset when last map window is closed with <a href="../../mini.nvim/doc/mini-map.html#minimap.close"><code>MiniMap.close()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;opts&gt;</span> - current options used to control map display. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>. Takes precedence over global and buffer-local configs. Is reset when last map window is closed with <a href="../../mini.nvim/doc/mini-map.html#minimap.close">MiniMap.close()</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -757,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Encode strings</p>
 <p>This takes arbitrary array of strings and computes its non-whitespace outline. Output is an array of strings with configurable array length, string width, and symbols representing encoding.</p>
-<p>Each encode symbol is assumed to have resolution within which it can convey binary information. For example, resolution <code>3x2</code> (row resolution 3, column - 2) means that each symbol can encode 3 rows and 2 columns of binary data. Here it is used to encode non-whitespace mask. See more in “Encode symbols” section of <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>.</p>
+<p>Each encode symbol is assumed to have resolution within which it can convey binary information. For example, resolution <code>3x2</code> (row resolution 3, column - 2) means that each symbol can encode 3 rows and 2 columns of binary data. Here it is used to encode non-whitespace mask. See more in “Encode symbols” section of <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p>
 <p>Encoding has the following steps:</p>
 <ul>
 <li><p>Convert strings to boolean mask: 2d boolean array with each row representing a string. Element in every row subarray is <code>true</code> if respective (possibly multibyte) character in a string is not a whitespace, <code>false</code> otherwise. Note: tabs are expanded into ‘tabstop’ spaces.</p></li>
@@ -804,7 +805,7 @@ ttff</code></pre></li>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;n_rows&gt;</span> - number of rows in output encoding. If too big, will be truncated to be maximum needed to encode all input strings (taking into account symbols row resolution). Default: <code>math.huge</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;n_cols&gt;</span> - width of every encoding string. If too big, will be truncated to be maximum needed to encode all input strings (taking into account symbols column resolution). Default: <code>math.huge</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;symbols&gt;</span> - array of symbols with extra <code>resolution</code> field. See “Encode symbols” section of <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a> for more details. Default: output of <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block"><code>MiniMap.gen_encode_symbols.block()</code></a> with <code>'3x2'</code> identifier.</p></li>
+<li><p><span class="help-syntax-keys">&lt;symbols&gt;</span> - array of symbols with extra <code>resolution</code> field. See “Encode symbols” section of <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a> for more details. Default: output of <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block">MiniMap.gen_encode_symbols.block()</a> with <code>'3x2'</code> identifier.</p></li>
 </ul>
 </section>
 <section id="minimap.encode_strings-return" class="level4">
@@ -822,15 +823,15 @@ ttff</code></pre></li>
 <p>This creates and shows map window in current tabpage. It basically has two steps:</p>
 <ul>
 <li><p>If not already done, create map buffer (used to set lines and other visual indicators) and map window.</p></li>
-<li><p>Call <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a>.</p></li>
+<li><p>Call <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a>.</p></li>
 </ul>
 <section id="minimap.open-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.open-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options used to define map configuration. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>. Will have effect until at least one tabpage has opened map window. Default values are taken in the following order:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options used to define map configuration. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>. Will have effect until at least one tabpage has opened map window. Default values are taken in the following order:</p>
 <ul>
-<li><p>From <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current"><code>MiniMap.current</code></a>.</p></li>
+<li><p>From <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current">MiniMap.current</a>.</p></li>
 <li><p>From <code>vim.b.minimap_config</code>.</p></li>
-<li><p>From <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>.</p></li>
+<li><p>From <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -848,11 +849,11 @@ ttff</code></pre></li>
 </ul>
 <section id="minimap.refresh-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.refresh-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options used to define map configuration. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>. Will have effect until at least one tabpage has opened map window. Default values are taken in the following order:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options used to define map configuration. Same structure as <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>. Will have effect until at least one tabpage has opened map window. Default values are taken in the following order:</p>
 <ul>
-<li><p>From <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current"><code>MiniMap.current</code></a>.</p></li>
+<li><p>From <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current">MiniMap.current</a>.</p></li>
 <li><p>From <code>vim.b.minimap_config</code>.</p></li>
-<li><p>From <a href="../../mini.nvim/doc/mini-map.html#minimap.config"><code>MiniMap.config</code></a>.</p></li>
+<li><p>From <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p></li>
 </ul>
 <p><span class="help-syntax-special">{parts}</span> <code>(table|nil)</code> Which parts to update. Recognised keys with boolean values (all <code>true</code> by default):</p>
 <ul>
@@ -869,7 +870,7 @@ ttff</code></pre></li>
 <code>MiniMap.close</code>()
 </p>
 <p>Close map window</p>
-<p>Also resets <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current"><code>MiniMap.current</code></a> after closing last map window (among possibly several tabpages).</p>
+<p>Also resets <code>opts</code> field of <a href="../../mini.nvim/doc/mini-map.html#minimap.current">MiniMap.current</a> after closing last map window (among possibly several tabpages).</p>
 <hr>
 </section>
 <section id="minimap.toggle" class="level3">
@@ -881,7 +882,7 @@ ttff</code></pre></li>
 <p>Open if not shown in current tabpage, close otherwise.</p>
 <section id="minimap.toggle-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.toggle-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Input for <a href="../../mini.nvim/doc/mini-map.html#minimap.open"><code>MiniMap.open()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Input for <a href="../../mini.nvim/doc/mini-map.html#minimap.open">MiniMap.open()</a>.</p>
 <hr>
 </section>
 </section>
@@ -910,7 +911,7 @@ ttff</code></pre></li>
 <code>MiniMap.toggle_side</code>()
 </p>
 <p>Toggle side of map window</p>
-<p>A small convenience wrapper for calling <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh"><code>MiniMap.refresh()</code></a> to change the side of map window.</p>
+<p>A small convenience wrapper for calling <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a> to change the side of map window.</p>
 <hr>
 </section>
 <section id="minimap.gen_encode_symbols" class="level3">
@@ -978,12 +979,12 @@ ttff</code></pre></li>
 <code>MiniMap.gen_integration.builtin_search</code>(<span class="help-syntax-special">{hl_groups}</span>)
 </p>
 <p>Builtin search</p>
-<p>Highlight lines with matches of current builtin search (like with <a href="https://neovim.io/doc/user/helptag.html?tag=/"><code>/</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=?"><code>?</code></a>, etc.). Integration count reflects number of actual matches.</p>
-<p>It prompts integration highlighting update on every change of <a href="https://neovim.io/doc/user/helptag.html?tag='hlsearch'"><code>'hlsearch'</code></a> (see <a href="https://neovim.io/doc/user/helptag.html?tag=OptionSet"><code>OptionSet</code></a>). Note that it is not happening for some keys:</p>
+<p>Highlight lines with matches of current builtin search (like with <a href="https://neovim.io/doc/user/helptag.html?tag=/">/</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=?">?</a>, etc.). Integration count reflects number of actual matches.</p>
+<p>It prompts integration highlighting update on every change of <a href="https://neovim.io/doc/user/helptag.html?tag='hlsearch'">‘hlsearch’</a> (see <a href="https://neovim.io/doc/user/helptag.html?tag=OptionSet">OptionSet</a>). Note that it is not happening for some keys:</p>
 <ul>
-<li><p>Toggle search highlight with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default"><code>CTRL-L-default</code></a> or <code>\h</code> from <a href="../../mini.nvim/doc/mini-basics.html#mini.basics"><code>mini.basics</code></a>. Use custom mapping which changes mode. Like this:</p>
+<li><p>Toggle search highlight with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a> or <code>\h</code> from <a href="../../mini.nvim/doc/mini-basics.html#mini.basics">mini.basics</a>. Use custom mapping which changes mode. Like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="vs">[[\h]]</span><span class="op">,</span> <span class="st">':let v:hlsearch = 1 - v:hlsearch&lt;CR&gt;'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>After starting search with <a href="https://neovim.io/doc/user/helptag.html?tag=n"><code>n</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=N"><code>N</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=star"><code>star</code></a>, or <a href="https://neovim.io/doc/user/helptag.html?tag=#"><code>#</code></a>. To enable highlight update on this keys, make custom mappings. Like this:</p>
+<li><p>After starting search with <a href="https://neovim.io/doc/user/helptag.html?tag=n">n</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=N">N</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=star">star</a>, or <a href="https://neovim.io/doc/user/helptag.html?tag=#">#</a>. To enable highlight update on this keys, make custom mappings. Like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">key</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">({</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'N'</span><span class="op">,</span> <span class="st">'*'</span><span class="op">,</span> <span class="st">'#'</span> <span class="op">})</span> <span class="cf">do</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="va">key</span> <span class="op">..</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;Cmd&gt;lua MiniMap.refresh({}, {lines = false, scrollbar = false})&lt;CR&gt;'</span></span>
@@ -994,7 +995,7 @@ ttff</code></pre></li>
 <h4 class="anchored" data-anchor-id="minimap.gen_integration.builtin_search-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{hl_groups}</span> <code>(table|nil)</code> Table defining highlight groups. Can have the following fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;search&gt;</span> - highlight group for search matches. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Search"><code>hl-Search</code></a>.</li>
+<li><span class="help-syntax-keys">&lt;search&gt;</span> - highlight group for search matches. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Search">hl-Search</a>.</li>
 </ul>
 <hr>
 </section>
@@ -1005,13 +1006,13 @@ ttff</code></pre></li>
 <code>MiniMap.gen_integration.diagnostic</code>(<span class="help-syntax-special">{hl_groups}</span>)
 </p>
 <p>Builtin diagnostic</p>
-<p>Highlight lines with matches of current diagnostic items. Items are computed with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()"><code>vim.diagnostic.get()</code></a> for current (source) buffer.</p>
-<p>It prompts integration highlighting update on every <a href="https://neovim.io/doc/user/helptag.html?tag=DiagnosticChanged"><code>DiagnosticChanged</code></a> event. Diagnostic items with higher severity (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.severity"><code>vim.diagnostic.severity</code></a>) have higher highlight priority (errors will be shown over all others, etc.).</p>
+<p>Highlight lines with matches of current diagnostic items. Items are computed with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()">vim.diagnostic.get()</a> for current (source) buffer.</p>
+<p>It prompts integration highlighting update on every <a href="https://neovim.io/doc/user/helptag.html?tag=DiagnosticChanged">DiagnosticChanged</a> event. Diagnostic items with higher severity (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.severity">vim.diagnostic.severity</a>) have higher highlight priority (errors will be shown over all others, etc.).</p>
 <section id="minimap.gen_integration.diagnostic-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_integration.diagnostic-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{hl_groups}</span> <code>(table|nil)</code> Table defining highlight groups. Supplied fields also define which diagnostic severity to highlight. Can have the following fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;error&gt;</span> - highlight group for error items. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=hl-DiagnosticFloatingError"><code>hl-DiagnosticFloatingError</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;error&gt;</span> - highlight group for error items. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=hl-DiagnosticFloatingError">hl-DiagnosticFloatingError</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;warn&gt;</span> - highlight group for warning items. Default: <code>nil</code> (not shown).</p></li>
 <li><p><span class="help-syntax-keys">&lt;info&gt;</span> - highlight group for info items. Default: <code>nil</code> (not shown).</p></li>
 <li><p><span class="help-syntax-keys">&lt;hint&gt;</span> - highlight group for hint items. Default: <code>nil</code> (not shown).</p></li>
@@ -1036,7 +1037,7 @@ ttff</code></pre></li>
 <p align="center">
 <code>MiniMap.gen_integration.diff</code>(<span class="help-syntax-special">{hl_groups}</span>)
 </p>
-<p>General diff hunks from <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a></p>
+<p>General diff hunks from <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a></p>
 <p>Highlight lines which are part of current diff. Requires ‘mini.diff’ as dependency.</p>
 <section id="minimap.gen_integration.diff-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_integration.diff-parameters">Parameters</h4>

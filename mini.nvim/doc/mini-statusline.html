@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.statusline documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ministatusline" id="toc-ministatusline" class="nav-link active" data-scroll-target="#ministatusline">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#ministatusline-dependencies" id="toc-ministatusline-dependencies" class="nav-link" data-scroll-target="#ministatusline-dependencies">Dependencies</a></li>
-  <li><a href="#ministatusline-setup" id="toc-ministatusline-setup" class="nav-link" data-scroll-target="#ministatusline-setup">Setup</a></li>
-  <li><a href="#ministatusline-highlightgroups" id="toc-ministatusline-highlightgroups" class="nav-link" data-scroll-target="#ministatusline-highlightgroups">Highlight groups</a></li>
-  <li><a href="#ministatusline-disabling" id="toc-ministatusline-disabling" class="nav-link" data-scroll-target="#ministatusline-disabling">Disabling</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#ministatusline-example-content" id="toc-ministatusline-example-content" class="nav-link" data-scroll-target="#ministatusline-example-content">Example content</a>
   <ul>
@@ -451,37 +452,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.statusline" href="../../mini.nvim/doc/mini-statusline.html#mini.statusline"><b>mini.statusline</b></a> Statusline</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="ministatusline" class="level3">
-<h3 class="anchored" data-anchor-id="ministatusline">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Define own custom statusline structure for active and inactive windows. This is done with a function which should return string appropriate for <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'"><code>'statusline'</code></a>. Its code should be similar to default one with structure:</p>
+<li><p>Define own custom statusline structure for active and inactive windows. This is done with a function which should return string appropriate for <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a>. Its code should be similar to default one with structure:</p>
 <ul>
 <li><p>Compute string data for every section you want to be displayed.</p></li>
-<li><p>Combine them in groups with <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.combine_groups"><code>MiniStatusline.combine_groups()</code></a>.</p></li>
+<li><p>Combine them in groups with <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.combine_groups">MiniStatusline.combine_groups()</a>.</p></li>
 </ul></li>
 <li><p>Built-in active mode indicator with colors.</p></li>
 <li><p>Sections can hide information when window is too narrow (specific window width is configurable per section).</p></li>
 </ul>
-<section id="ministatusline-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="ministatusline-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
 <li><p>Nerd font (to support extra icons).</p></li>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_fileinfo"><code>MiniStatusline.section_fileinfo()</code></a>. Falls back to using ‘nvim-tree/nvim-web-devicons’ plugin or shows nothing.</p></li>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-git.html#mini.git"><code>mini.git</code></a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_git"><code>MiniStatusline.section_git()</code></a>. Falls back to using ‘lewis6991/gitsigns.nvim’ plugin or shows nothing.</p></li>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_diff"><code>MiniStatusline.section_diff()</code></a>. Falls back to using ‘lewis6991/gitsigns.nvim’ plugin or shows nothing.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_fileinfo">MiniStatusline.section_fileinfo()</a>. Falls back to using ‘nvim-tree/nvim-web-devicons’ plugin or shows nothing.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-git.html#mini.git">mini.git</a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_git">MiniStatusline.section_git()</a>. Falls back to using ‘lewis6991/gitsigns.nvim’ plugin or shows nothing.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> module for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_diff">MiniStatusline.section_diff()</a>. Falls back to using ‘lewis6991/gitsigns.nvim’ plugin or shows nothing.</p></li>
 </ul>
 </section>
-<section id="ministatusline-setup" class="level4">
-<h4 class="anchored" data-anchor-id="ministatusline-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.statusline').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniStatusline</code> which you can use for scripting or manually (with <code>:lua MiniStatusline.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.config"><code>MiniStatusline.config</code></a> for <code>config</code> structure and default values. For some content examples, see <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline-example-content"><code>MiniStatusline-example-content</code></a>.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.ministatusline_config</code> which should have same structure as <code>MiniStatusline.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.config">MiniStatusline.config</a> for <code>config</code> structure and default values. For some content examples, see <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline-example-content">MiniStatusline-example-content</a>.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.ministatusline_config</code> which should have same structure as <code>MiniStatusline.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="ministatusline-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="ministatusline-highlightgroups">Highlight groups</h4>
-<p>Highlight depending on mode (second <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_mode"><code>MiniStatusline.section_mode()</code></a> output):</p>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
+<p>Highlight depending on mode (second <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_mode">MiniStatusline.section_mode()</a> output):</p>
 <ul>
 <li><p><code>MiniStatuslineModeNormal</code> - Normal mode.</p></li>
 <li><p><code>MiniStatuslineModeInsert</code> - Insert mode.</p></li>
@@ -492,19 +493,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Highlight used in default statusline:</p>
 <ul>
-<li><p><code>MiniStatuslineDevinfo</code> - for “dev info” group (<a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_git"><code>MiniStatusline.section_git()</code></a> and <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_diagnostics"><code>MiniStatusline.section_diagnostics()</code></a>).</p></li>
-<li><p><code>MiniStatuslineFilename</code> - for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_filename"><code>MiniStatusline.section_filename()</code></a> section.</p></li>
-<li><p><code>MiniStatuslineFileinfo</code> - for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_fileinfo"><code>MiniStatusline.section_fileinfo()</code></a> section.</p></li>
+<li><p><code>MiniStatuslineDevinfo</code> - for “dev info” group (<a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_git">MiniStatusline.section_git()</a> and <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_diagnostics">MiniStatusline.section_diagnostics()</a>).</p></li>
+<li><p><code>MiniStatuslineFilename</code> - for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_filename">MiniStatusline.section_filename()</a> section.</p></li>
+<li><p><code>MiniStatuslineFileinfo</code> - for <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.section_fileinfo">MiniStatusline.section_fileinfo()</a> section.</p></li>
 </ul>
 <p>Other groups:</p>
 <ul>
 <li><code>MiniStatuslineInactive</code> - highliting in not focused window.</li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="ministatusline-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="ministatusline-disabling">Disabling</h4>
-<p>To disable (show empty statusline), set <code>vim.g.ministatusline_disable</code> (globally) or <code>vim.b.ministatusline_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable (show empty statusline), set <code>vim.g.ministatusline_disable</code> (globally) or <code>vim.b.ministatusline_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -552,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="ministatusline.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.config"><code>MiniStatusline.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-statusline.html#ministatusline.config">MiniStatusline.config</a>.</p>
 </section>
 <section id="ministatusline.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.setup-usage">Usage</h4>
@@ -646,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniStatusline.section_mode</code>(<span class="help-syntax-special">{args}</span>)
 </p>
-<p>Section for Vim <a href="https://neovim.io/doc/user/helptag.html?tag=mode()"><code>mode()</code></a></p>
+<p>Section for Vim <a href="https://neovim.io/doc/user/helptag.html?tag=mode()">mode()</a></p>
 <p>Short output is returned if window width is lower than <code>args.trunc_width</code>.</p>
 <section id="ministatusline.section_mode-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.section_mode-parameters">Parameters</h4>
@@ -664,7 +665,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStatusline.section_git</code>(<span class="help-syntax-special">{args}</span>)
 </p>
 <p>Section for Git information</p>
-<p>Shows Git summary from <a href="../../mini.nvim/doc/mini-git.html#mini.git"><code>mini.git</code></a> (should be set up; recommended). To tweak formatting of what data is shown, modify buffer-local summary string directly as described in <a href="../../mini.nvim/doc/mini-git.html#minigit-examples"><code>MiniGit-examples</code></a>.</p>
+<p>Shows Git summary from <a href="../../mini.nvim/doc/mini-git.html#mini.git">mini.git</a> (should be set up; recommended). To tweak formatting of what data is shown, modify buffer-local summary string directly as described in <a href="../../mini.nvim/doc/mini-git.html#minigit-examples">MiniGit-examples</a>.</p>
 <p>If ‘mini.git’ is not set up, section falls back on ‘lewis6991/gitsigns’ data or showing empty string.</p>
 <p>Empty string is returned if window width is lower than <code>args.trunc_width</code>.</p>
 <section id="ministatusline.section_git-parameters" class="level4">
@@ -683,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStatusline.section_diff</code>(<span class="help-syntax-special">{args}</span>)
 </p>
 <p>Section for diff information</p>
-<p>Shows diff summary from <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> (should be set up; recommended). To tweak formatting of what data is shown, modify buffer-local summary string directly as described in <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a>.</p>
+<p>Shows diff summary from <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> (should be set up; recommended). To tweak formatting of what data is shown, modify buffer-local summary string directly as described in <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary">MiniDiff-diff-summary</a>.</p>
 <p>If ‘mini.diff’ is not set up, section falls back on ‘lewis6991/gitsigns’ data or showing empty string.</p>
 <p>Empty string is returned if window width is lower than <code>args.trunc_width</code>.</p>
 <section id="ministatusline.section_diff-parameters" class="level4">
@@ -702,7 +703,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStatusline.section_diagnostics</code>(<span class="help-syntax-special">{args}</span>)
 </p>
 <p>Section for Neovim’s builtin diagnostics</p>
-<p>Shows nothing if diagnostics is disabled, no diagnostic is set, or for short output. Otherwise uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()"><code>vim.diagnostic.get()</code></a> to compute and show number of errors (‘E’), warnings (‘W’), information (‘I’), and hints (‘H’).</p>
+<p>Shows nothing if diagnostics is disabled, no diagnostic is set, or for short output. Otherwise uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()">vim.diagnostic.get()</a> to compute and show number of errors (‘E’), warnings (‘W’), information (‘I’), and hints (‘H’).</p>
 <p>Short output is returned if window width is lower than <code>args.trunc_width</code>.</p>
 <section id="ministatusline.section_diagnostics-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.section_diagnostics-parameters">Parameters</h4>
@@ -758,7 +759,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Section for file information</p>
 <p>Shows ‘filetype’, ‘fileencoding’ / ‘encoding’, ‘fileformat’, and buffer size. Short output has only non-empty ‘filetype’ and is returned if window width is lower than <code>args.trunc_width</code> or buffer is not normal (as per ‘buftype’).</p>
 <p>Buffer size is computed based on current text, not file’s saved version.</p>
-<p>If <code>config.use_icons</code> is true and icon provider is present (see “Dependencies” section in <a href="../../mini.nvim/doc/mini-statusline.html#mini.statusline"><code>mini.statusline</code></a>), shows icon near the filetype.</p>
+<p>If <code>config.use_icons</code> is true and icon provider is present (see “Dependencies” section in <a href="../../mini.nvim/doc/mini-statusline.html#mini.statusline">mini.statusline</a>), shows icon near the filetype.</p>
 <section id="ministatusline.section_fileinfo-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.section_fileinfo-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{args}</span> <code>(table)</code> Section arguments.</p>
@@ -797,8 +798,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStatusline.section_searchcount</code>(<span class="help-syntax-special">{args}</span>)
 </p>
 <p>Section for current search count</p>
-<p>Show the current status of <a href="https://neovim.io/doc/user/helptag.html?tag=searchcount()"><code>searchcount()</code></a>. Empty output is returned if window width is lower than <code>args.trunc_width</code>, search highlighting is not on (see <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch"><code>v:hlsearch</code></a>), or if number of search result is 0.</p>
-<p><code>args.options</code> is forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=searchcount()"><code>searchcount()</code></a>. By default it recomputes data on every call which can be computationally expensive (although still usually on 0.1 ms order of magnitude). To prevent this, supply <code>args.options = { recompute = false }</code>.</p>
+<p>Show the current status of <a href="https://neovim.io/doc/user/helptag.html?tag=searchcount()">searchcount()</a>. Empty output is returned if window width is lower than <code>args.trunc_width</code>, search highlighting is not on (see <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch">v:hlsearch</a>), or if number of search result is 0.</p>
+<p><code>args.options</code> is forwarded to <a href="https://neovim.io/doc/user/helptag.html?tag=searchcount()">searchcount()</a>. By default it recomputes data on every call which can be computationally expensive (although still usually on 0.1 ms order of magnitude). To prevent this, supply <code>args.options = { recompute = false }</code>.</p>
 <section id="ministatusline.section_searchcount-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministatusline.section_searchcount-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{args}</span> <code>(table)</code> Section arguments.</p>

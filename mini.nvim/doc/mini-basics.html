@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.basics documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minibasics" id="toc-minibasics" class="nav-link active" data-scroll-target="#minibasics">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minibasics-setup" id="toc-minibasics-setup" class="nav-link" data-scroll-target="#minibasics-setup">Setup</a></li>
-  <li><a href="#minibasics-comparisons" id="toc-minibasics-comparisons" class="nav-link" data-scroll-target="#minibasics-comparisons">Comparisons</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   </ul></li>
   <li><a href="#minibasics.setup" id="toc-minibasics.setup" class="nav-link" data-scroll-target="#minibasics.setup">setup()</a>
   <ul>
@@ -409,14 +410,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.basics" href="../../mini.nvim/doc/mini-basics.html#mini.basics"><b>mini.basics</b></a> Common configuration presets</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minibasics" class="level3">
-<h3 class="anchored" data-anchor-id="minibasics">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Install, create ‘init.lua’, add <code>require('mini.basics').setup()</code>, and you are good to go.</p>
 <p>Features:</p>
 <ul>
-<li><p>Presets for common options. It will only change option if it wasn’t manually set before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options"><code>MiniBasics.config.options</code></a>.</p></li>
-<li><p>Presets for common mappings. It will only add a mapping if it wasn’t manually created before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings"><code>MiniBasics.config.mappings</code></a>.</p></li>
-<li><p>Presets for common autocommands. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.autocommands"><code>MiniBasics.config.autocommands</code></a>.</p></li>
+<li><p>Presets for common options. It will only change option if it wasn’t manually set before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options">MiniBasics.config.options</a>.</p></li>
+<li><p>Presets for common mappings. It will only add a mapping if it wasn’t manually created before. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings">MiniBasics.config.mappings</a>.</p></li>
+<li><p>Presets for common autocommands. See more in <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.autocommands">MiniBasics.config.autocommands</a>.</p></li>
 <li><p>Reverse compatibility is a high priority. Any decision to change already present behavior will be made with great care.</p></li>
 </ul>
 <p>Notes:</p>
@@ -425,22 +426,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, more seasoned users almost surely will find something useful.</p>
 <p>Still, it is recommended to read about used options/mappings/autocommands and decide if they are needed. The main way to do that is by reading Neovim’s help pages (linked in help file) and this module’s source code (thoroughly documented for easier comprehension).</p></li>
 </ul>
-<section id="minibasics-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minibasics-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.basics').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBasics</code> which you can use for scripting or manually (with <code>:lua MiniBasics.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config"><code>MiniBasics.config</code></a> for available config settings.</p>
+<p>See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config">MiniBasics.config</a> for available config settings.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="minibasics-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minibasics-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/tpope/vim-sensible">tpope/vim-sensible</a>:</p>
 <ul>
-<li>Most of ‘tpope/vim-sensible’ is already incorporated as default options in Neovim (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim-defaults"><code>nvim-defaults</code></a>). This module has a much broader effect.</li>
+<li>Most of ‘tpope/vim-sensible’ is already incorporated as default options in Neovim (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim-defaults">nvim-defaults</a>). This module has a much broader effect.</li>
 </ul></li>
 <li><p><a href="https://github.com/tpope/vim-unimpaired">tpope/vim-unimpaired</a>:</p>
 <ul>
-<li>The ‘tpope/vim-unimpaired’ has mapping for toggling options with <code>yo</code> prefix. This module implements similar functionality with <code>\</code> prefix (see <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings"><code>MiniBasics.config.mappings</code></a>).</li>
+<li>The ‘tpope/vim-unimpaired’ has mapping for toggling options with <code>yo</code> prefix. This module implements similar functionality with <code>\</code> prefix (see <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.mappings">MiniBasics.config.mappings</a>).</li>
 </ul></li>
 </ul>
 <hr>
@@ -454,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minibasics.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibasics.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config"><code>MiniBasics.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config">MiniBasics.config</a>.</p>
 </section>
 <section id="minibasics.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minibasics.setup-usage">Usage</h4>
@@ -527,44 +528,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minibasics.config-options-options.basic" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-options-options.basic">options.basic</h5>
 <p>The <code>config.options.basic</code> sets certain options to values which are quite commonly used (judging by study of available Neovim pre-configurations, public dotfiles, and surveys). Any option is changed only if it was not set manually beforehand. For exact changes, please see source code (‘lua/mini/basics.lua’).</p>
-<p>Here is the list of affected options (put cursor on it and press <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-%5D"><code>CTRL-]</code></a>):</p>
+<p>Here is the list of affected options (put cursor on it and press [CTRL-]](https://neovim.io/doc/user/helptag.html?tag=CTRL-])):</p>
 <ul>
 <li><p>General:</p>
 <ul>
-<li><p>Sets <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> key to <a href="https://neovim.io/doc/user/helptag.html?tag=%3CSpace%3E"><code>&lt;Space&gt;</code></a>. Be sure to make all Leader mappings after this (otherwise they are made with default <span class="help-syntax-keys">&lt;Leader&gt;</span>).</p></li>
-<li><p>Runs <code>:filetype plugin indent on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:filetype-overview"><code>:filetype-overview</code></a>)</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='backup'"><code>'backup'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='mouse'"><code>'mouse'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='undofile'"><code>'undofile'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='writebackup'"><code>'writebackup'</code></a></p></li>
+<li><p>Sets <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><span class="help-syntax-keys">&lt;Leader&gt;</span></a> key to <a href="https://neovim.io/doc/user/helptag.html?tag=%3CSpace%3E"><span class="help-syntax-keys">&lt;Space&gt;</span></a>. Be sure to make all Leader mappings after this (otherwise they are made with default <span class="help-syntax-keys">&lt;Leader&gt;</span>).</p></li>
+<li><p>Runs <code>:filetype plugin indent on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:filetype-overview">:filetype-overview</a>)</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='backup'">‘backup’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='mouse'">‘mouse’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='undofile'">‘undofile’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='writebackup'">‘writebackup’</a></p></li>
 </ul></li>
 <li><p>Appearance</p>
 <ul>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='breakindent'"><code>'breakindent'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'"><code>'cursorline'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'"><code>'fillchars'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='linebreak'"><code>'linebreak'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ruler'"><code>'ruler'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='showmode'"><code>'showmode'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'"><code>'signcolumn'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='shortmess'"><code>'shortmess'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitbelow'"><code>'splitbelow'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitkeep'"><code>'splitkeep'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitright'"><code>'splitright'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'"><code>'termguicolors'</code></a> (on Neovim&lt;0.10; later versions have it smartly enabled)</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='breakindent'">‘breakindent’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'">‘cursorline’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'">‘fillchars’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='linebreak'">‘linebreak’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ruler'">‘ruler’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='showmode'">‘showmode’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'">‘signcolumn’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='shortmess'">‘shortmess’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitbelow'">‘splitbelow’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitkeep'">‘splitkeep’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='splitright'">‘splitright’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a> (on Neovim&lt;0.10; later versions have it smartly enabled)</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='wrap'">‘wrap’</a></p></li>
 </ul></li>
 <li><p>Editing</p>
 <ul>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'"><code>'completeopt'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='formatoptions'"><code>'formatoptions'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'"><code>'ignorecase'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='incsearch'"><code>'incsearch'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='infercase'"><code>'infercase'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'"><code>'smartcase'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartindent'"><code>'smartindent'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='virtualedit'"><code>'virtualedit'</code></a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'">‘completeopt’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='formatoptions'">‘formatoptions’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='incsearch'">‘incsearch’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='infercase'">‘infercase’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='smartindent'">‘smartindent’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='virtualedit'">‘virtualedit’</a></p></li>
 </ul></li>
 </ul>
 </section>
@@ -573,17 +574,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>config.options.extra_ui</code> sets certain options for visual appearance which might not be aligned with common preferences, but still worth trying. Any option is changed only if it was not set manually beforehand. For exact changes, please see source code (‘lua/mini/basics.lua’).</p>
 <p>List of affected options:</p>
 <ul>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='list'"><code>'list'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='listchars'"><code>'listchars'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumblend'"><code>'pumblend'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumheight'"><code>'pumheight'</code></a></p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='winblend'"><code>'winblend'</code></a></p></li>
-<li><p>Runs <code>:syntax on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:syntax-on"><code>:syntax-on</code></a>)</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='list'">‘list’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='listchars'">‘listchars’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumblend'">‘pumblend’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='pumheight'">‘pumheight’</a></p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a></p></li>
+<li><p>Runs <code>:syntax on</code> (see <a href="https://neovim.io/doc/user/helptag.html?tag=:syntax-on">:syntax-on</a>)</p></li>
 </ul>
 </section>
 <section id="minibasics.config-options-options.win_borders" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-options-options.win_borders">options.win_borders</h5>
-<p>The <code>config.options.win_borders</code> updates <a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'"><code>'fillchars'</code></a> to have a consistent set of characters for window border (<code>vert</code>, <code>horiz</code>, etc.).</p>
+<p>The <code>config.options.win_borders</code> updates <a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'">‘fillchars’</a> to have a consistent set of characters for window border (<code>vert</code>, <code>horiz</code>, etc.).</p>
 <p>Available values:</p>
 <ul>
 <li><p><code>'bold'</code> - bold lines.</p></li>
@@ -606,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">move_with_alt</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you don’t want only some mappings to be made at all, use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.del()"><code>vim.keymap.del()</code></a> after calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup"><code>MiniBasics.setup()</code></a>.</p>
+<p>If you don’t want only some mappings to be made at all, use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keymap.del()">vim.keymap.del()</a> after calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup">MiniBasics.setup()</a>.</p>
 <section id="minibasics.config-mappings-mappings.basic" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.basic">mappings.basic</h5>
 <p>The <code>config.mappings.basic</code> creates mappings for certain commonly mapped actions (judging by study of available Neovim pre-configurations and public dotfiles).</p>
@@ -628,52 +629,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 |       |     Insert      |                                               |</code></pre>
 <p>Notes:</p>
 <ul>
-<li><p>See <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for its meaning.</p></li>
-<li><p>On Neovim&gt;=0.10 mappings for <code>#</code> and <code>*</code> are not created as their enhanced variants are made built-in. See <a href="https://neovim.io/doc/user/helptag.html?tag=v_star-default"><code>v_star-default</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_#-default"><code>v_#-default</code></a>.</p></li>
-<li><p>On Neovim&gt;=0.11 there are <a href="https://neovim.io/doc/user/helptag.html?tag=%5B%3CSpace%3E"><code>[&lt;Space&gt;</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%5D%3Cspan%20class=%22help-syntax-keys%22%3E%3CSpace%3E%3C/span%3E"><code>]&lt;Space&gt;</code></a> for adding empty lines. The <code>gO</code> and <code>go</code> mappings are still created as they are more aligned with similarly purposed <a href="https://neovim.io/doc/user/helptag.html?tag=O"><code>O</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=o"><code>o</code></a> keys (although sometimes conflict with <a href="https://neovim.io/doc/user/helptag.html?tag=gO"><code>gO</code></a>).</p></li>
+<li><p>See <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for its meaning.</p></li>
+<li><p>On Neovim&gt;=0.10 mappings for <code>#</code> and <code>*</code> are not created as their enhanced variants are made built-in. See <a href="https://neovim.io/doc/user/helptag.html?tag=v_star-default">v_star-default</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_#-default">v_#-default</a>.</p></li>
+<li><p>On Neovim&gt;=0.11 there are [<a href="https://neovim.io/doc/user/helptag.html?tag=%5B%3CSpace%3E"><span class="help-syntax-keys">&lt;Space&gt;</span></a> / []<span class="help-syntax-keys">&lt;Space&gt;</span>](https://neovim.io/doc/user/helptag.html?tag=]<span class="help-syntax-keys">&lt;Space&gt;</span>) for adding empty lines. The <code>gO</code> and <code>go</code> mappings are still created as they are more aligned with similarly purposed <a href="https://neovim.io/doc/user/helptag.html?tag=O">O</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=o">o</a> keys (although sometimes conflict with <a href="https://neovim.io/doc/user/helptag.html?tag=gO">gO</a>).</p></li>
 </ul>
 </section>
 <section id="minibasics.config-mappings-mappings.option_toggle_prefix" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.option_toggle_prefix">mappings.option_toggle_prefix</h5>
-<p>The <code>config.mappings.option_toggle_prefix</code> defines a prefix used for creating mappings that toggle common options. The result mappings will be <code>&lt;prefix&gt; + &lt;suffix&gt;</code>. For example, with default value, <code>\w</code> will toggle <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a>.</p>
+<p>The <code>config.mappings.option_toggle_prefix</code> defines a prefix used for creating mappings that toggle common options. The result mappings will be <code>&lt;prefix&gt; + &lt;suffix&gt;</code>. For example, with default value, <code>\w</code> will toggle <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'">‘wrap’</a>.</p>
 <p>Other viable choices for prefix are</p>
 <ul>
 <li><p><code>,</code> (as a mnemonic for several values to toggle).</p></li>
 <li><p><code>|</code> (as a same mnemonic).</p></li>
 <li><p><code>yo</code> (used in ‘tpope/vim-unimpaired’)</p></li>
-<li><p>Something with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a> key, like <code>&lt;Leader&gt;t</code> (<code>t</code> for “toggle”). Note: if your prefix contains <code>&lt;Leader&gt;</code> key, make sure to set it before calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup"><code>MiniBasics.setup()</code></a> (as is done with default <code>basic</code> field of <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options"><code>MiniBasics.config.options</code></a>).</p></li>
+<li><p>Something with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><span class="help-syntax-keys">&lt;Leader&gt;</span></a> key, like <code>&lt;Leader&gt;t</code> (<code>t</code> for “toggle”). Note: if your prefix contains <code>&lt;Leader&gt;</code> key, make sure to set it before calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup">MiniBasics.setup()</a> (as is done with default <code>basic</code> field of <a href="../../mini.nvim/doc/mini-basics.html#minibasics.config.options">MiniBasics.config.options</a>).</p></li>
 </ul>
-<p>After toggling, there will be a feedback about the current option value if prior to <code>require('mini.basics').setup()</code> module wasn’t silenced (see “Silencing” section in <a href="../../mini.nvim/doc/mini-basics.html#mini.basics"><code>mini.basics</code></a>).</p>
+<p>After toggling, there will be a feedback about the current option value if prior to <code>require('mini.basics').setup()</code> module wasn’t silenced (see “Silencing” section in <a href="../../mini.nvim/doc/mini-basics.html#mini.basics">mini.basics</a>).</p>
 <p>It will only add a mapping if it wasn’t manually created before.</p>
 <p>Here is a list of suffixes for created toggling mappings (all in Normal mode):</p>
 <ul>
-<li><p><code>b</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='background'"><code>'background'</code></a>.</p></li>
-<li><p><code>c</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'"><code>'cursorline'</code></a>.</p></li>
-<li><p><code>C</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorcolumn'"><code>'cursorcolumn'</code></a>.</p></li>
-<li><p><code>d</code> - diagnostic (via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic"><code>vim.diagnostic</code></a> functions).</p></li>
-<li><p><code>h</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='hlsearch'"><code>'hlsearch'</code></a> (or <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch"><code>v:hlsearch</code></a> to be precise).</p></li>
-<li><p><code>i</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'"><code>'ignorecase'</code></a>.</p></li>
-<li><p><code>l</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='list'"><code>'list'</code></a>.</p></li>
-<li><p><code>n</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a>.</p></li>
-<li><p><code>r</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'"><code>'relativenumber'</code></a>.</p></li>
-<li><p><code>s</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='spell'"><code>'spell'</code></a>.</p></li>
-<li><p><code>w</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'"><code>'wrap'</code></a>.</p></li>
+<li><p><code>b</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='background'">‘background’</a>.</p></li>
+<li><p><code>c</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorline'">‘cursorline’</a>.</p></li>
+<li><p><code>C</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='cursorcolumn'">‘cursorcolumn’</a>.</p></li>
+<li><p><code>d</code> - diagnostic (via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic">vim.diagnostic</a> functions).</p></li>
+<li><p><code>h</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='hlsearch'">‘hlsearch’</a> (or <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch">v:hlsearch</a> to be precise).</p></li>
+<li><p><code>i</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a>.</p></li>
+<li><p><code>l</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='list'">‘list’</a>.</p></li>
+<li><p><code>n</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a>.</p></li>
+<li><p><code>r</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'">‘relativenumber’</a>.</p></li>
+<li><p><code>s</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='spell'">‘spell’</a>.</p></li>
+<li><p><code>w</code> - <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'">‘wrap’</a>.</p></li>
 </ul>
 </section>
 <section id="minibasics.config-mappings-mappings.windows" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.windows">mappings.windows</h5>
 <p>The <code>config.mappings.windows</code> creates mappings for easiere window manipulation.</p>
 <p>It will only add a mapping if it wasn’t manually created before.</p>
-<p>Here is a list with created Normal mode mappings (all respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>):</p>
+<p>Here is a list with created Normal mode mappings (all respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>):</p>
 <ul>
 <li><p>Window navigation:</p>
 <ul>
-<li><p><code>&lt;C-h&gt;</code> - focus on left window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_H"><code>CTRL-W_H</code></a>).</p></li>
-<li><p><code>&lt;C-j&gt;</code> - focus on below window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_J"><code>CTRL-W_J</code></a>).</p></li>
-<li><p><code>&lt;C-k&gt;</code> - focus on above window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K"><code>CTRL-W_K</code></a>).</p></li>
-<li><p><code>&lt;C-l&gt;</code> - focus on right window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_L"><code>CTRL-W_L</code></a>).</p></li>
+<li><p><code>&lt;C-h&gt;</code> - focus on left window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_H">CTRL-W_H</a>).</p></li>
+<li><p><code>&lt;C-j&gt;</code> - focus on below window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_J">CTRL-W_J</a>).</p></li>
+<li><p><code>&lt;C-k&gt;</code> - focus on above window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K">CTRL-W_K</a>).</p></li>
+<li><p><code>&lt;C-l&gt;</code> - focus on right window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_L">CTRL-W_L</a>).</p></li>
 </ul></li>
-<li><p>Window resize (all use arrow keys; variants of <a href="https://neovim.io/doc/user/helptag.html?tag=:resize"><code>:resize</code></a>; respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>):</p>
+<li><p>Window resize (all use arrow keys; variants of <a href="https://neovim.io/doc/user/helptag.html?tag=:resize">:resize</a>; respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>):</p>
 <ul>
 <li><p><code>&lt;C-left&gt;</code> - decrease window width.</p></li>
 <li><p><code>&lt;C-down&gt;</code> - decrease window height.</p></li>
@@ -684,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minibasics.config-mappings-mappings.move_with_alt" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.move_with_alt">mappings.move_with_alt</h5>
-<p>The <code>config.mappings.move_with_alt</code> creates mappings for a more consistent cursor move in Insert, Command, and Terminal modes. For example, it proves useful in combination of autopair plugin (like <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs"><code>mini.pairs</code></a>) to move right outside of inserted pairs (no matter what the pair is).</p>
+<p>The <code>config.mappings.move_with_alt</code> creates mappings for a more consistent cursor move in Insert, Command, and Terminal modes. For example, it proves useful in combination of autopair plugin (like <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs">mini.pairs</a>) to move right outside of inserted pairs (no matter what the pair is).</p>
 <p>It will only add a mapping if it wasn’t manually created before.</p>
 <p>Here is a list of created mappings (<code>&lt;M-x&gt;</code> means <code>Alt</code>/<code>Meta</code> plus <code>x</code>):</p>
 <ul>
@@ -709,13 +710,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h5 class="anchored" data-anchor-id="minibasics.config-autocommands-autocommands.basic">autocommands.basic</h5>
 <p>The <code>config.autocommands.basic</code> creates some common autocommands:</p>
 <ul>
-<li><p>Starts insert mode when opening terminal (see <a href="https://neovim.io/doc/user/helptag.html?tag=:startinsert"><code>:startinsert</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=TermOpen"><code>TermOpen</code></a>).</p></li>
-<li><p>Highlights yanked text for a brief period of time (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()"><code>vim.hl.on_yank()</code></a>; on Neovim&lt;0.11 - <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()"><code>vim.hl.on_yank()</code></a>) and <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost"><code>TextYankPost</code></a>).</p></li>
+<li><p>Starts insert mode when opening terminal (see <a href="https://neovim.io/doc/user/helptag.html?tag=:startinsert">:startinsert</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=TermOpen">TermOpen</a>).</p></li>
+<li><p>Highlights yanked text for a brief period of time (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()">vim.hl.on_yank()</a>; on Neovim&lt;0.11 - <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.on_yank()">vim.hl.on_yank()</a>) and <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost">TextYankPost</a>).</p></li>
 </ul>
 </section>
 <section id="minibasics.config-autocommands-autocommands.relnum_in_visual_mode" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-autocommands-autocommands.relnum_in_visual_mode">autocommands.relnum_in_visual_mode</h5>
-<p>The <code>config.autocommands.relnum_in_visual_mode</code> creates autocommands that enable <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'"><code>'relativenumber'</code></a> in linewise and blockwise Visual modes and disable otherwise. See <a href="https://neovim.io/doc/user/helptag.html?tag=ModeChanged"><code>ModeChanged</code></a>.</p>
+<p>The <code>config.autocommands.relnum_in_visual_mode</code> creates autocommands that enable <a href="https://neovim.io/doc/user/helptag.html?tag='relativenumber'">‘relativenumber’</a> in linewise and blockwise Visual modes and disable otherwise. See <a href="https://neovim.io/doc/user/helptag.html?tag=ModeChanged">ModeChanged</a>.</p>
 <hr>
 </section>
 </section>
@@ -726,10 +727,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBasics.toggle_diagnostic</code>()
 </p>
 <p>Toggle diagnostic for current buffer</p>
-<p>This uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic"><code>vim.diagnostic</code></a> functions per buffer.</p>
+<p>This uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic">vim.diagnostic</a> functions per buffer.</p>
 <section id="minibasics.toggle_diagnostic-return" class="level4">
 <h4 class="anchored" data-anchor-id="minibasics.toggle_diagnostic-return">Return</h4>
-<p><code>(string)</code> String indicator for new state. Similar to what <a href="https://neovim.io/doc/user/helptag.html?tag=:set"><code>:set</code></a> <code>{option}?</code> shows.</p>
+<p><code>(string)</code> String indicator for new state. Similar to what <a href="https://neovim.io/doc/user/helptag.html?tag=:set">:set</a> <code>{option}?</code> shows.</p>
 
 
 </section>

@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.colors documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minicolors" id="toc-minicolors" class="nav-link active" data-scroll-target="#minicolors">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minicolors-tweakquickstart" id="toc-minicolors-tweakquickstart" class="nav-link" data-scroll-target="#minicolors-tweakquickstart">Tweak quick start</a></li>
-  <li><a href="#minicolors-setup" id="toc-minicolors-setup" class="nav-link" data-scroll-target="#minicolors-setup">Setup</a></li>
-  <li><a href="#minicolors-comparisons" id="toc-minicolors-comparisons" class="nav-link" data-scroll-target="#minicolors-comparisons">Comparisons</a></li>
+  <li><a href="#module-tweakquickstart" id="toc-module-tweakquickstart" class="nav-link" data-scroll-target="#module-tweakquickstart">Tweak quick start</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   </ul></li>
   <li><a href="#minicolors-recipes" id="toc-minicolors-recipes" class="nav-link" data-scroll-target="#minicolors-recipes">Recipes</a></li>
   <li><a href="#minicolors-color-spaces" id="toc-minicolors-color-spaces" class="nav-link" data-scroll-target="#minicolors-color-spaces">Color spaces</a>
@@ -453,23 +454,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.colors" href="../../mini.nvim/doc/mini-colors.html#mini.colors"><b>mini.colors</b></a> Tweak and save any color scheme</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minicolors" class="level3">
-<h3 class="anchored" data-anchor-id="minicolors">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Create colorscheme object: either manually (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme"><code>MiniColors.as_colorscheme()</code></a>) or by querying present color schemes (including currently active one; see <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme"><code>MiniColors.get_colorscheme()</code></a>).</p></li>
+<li><p>Create colorscheme object: either manually (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme">MiniColors.as_colorscheme()</a>) or by querying present color schemes (including currently active one; see <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme">MiniColors.get_colorscheme()</a>).</p></li>
 <li><p>Infer data about color scheme and/or modify based on it:</p>
 <ul>
 <li><p>Add transparency by removing background color (requires transparency in terminal emulator).</p></li>
-<li><p>Infer cterm attributes (<a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors"><code>cterm-colors</code></a>) based on gui colors making it compatible with ‘notermguicolors’.</p></li>
-<li><p>Resolve highlight group links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link"><code>:highlight-link</code></a>).</p></li>
+<li><p>Infer cterm attributes (<a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a>) based on gui colors making it compatible with ‘notermguicolors’.</p></li>
+<li><p>Resolve highlight group links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link">:highlight-link</a>).</p></li>
 <li><p>Compress by removing redundant highlight groups.</p></li>
-<li><p>Extract palette of used colors and/or infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>) based on it.</p></li>
+<li><p>Extract palette of used colors and/or infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config">terminal-config</a>) based on it.</p></li>
 </ul></li>
-<li><p>Modify colors to better fit your taste and/or goals (see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a>):</p>
+<li><p>Modify colors to better fit your taste and/or goals (see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods">MiniColors-colorscheme-methods</a>):</p>
 <ul>
 <li><p>Apply any function to color hex string.</p></li>
-<li><p>Update channels (like lightness, saturation, hue, temperature, red, green, blue, etc.; see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>). Use either own function or one of the implemented methods:</p>
+<li><p>Update channels (like lightness, saturation, hue, temperature, red, green, blue, etc.; see more in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>). Use either own function or one of the implemented methods:</p>
 <ul>
 <li><p>Add value to channel or multiply it by coefficient. Like “add 10 to saturation of every color” or “multiply saturation by 2” to make colors more saturated (less gray).</p></li>
 <li><p>Invert. Like “invert lightness” to convert between dark/light theme.</p></li>
@@ -479,9 +480,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Simulate color vision deficiency.</p></li>
 </ul></li>
 <li><p>Once color scheme is ready, either apply it to see effects right away or write it into a Lua file as a fully functioning separate color scheme.</p></li>
-<li><p>Experiment interactively with a feedback (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive"><code>MiniColors.interactive()</code></a>).</p></li>
-<li><p>Animate transition between color schemes either with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate"><code>MiniColors.animate()</code></a> or with <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a> user command.</p></li>
-<li><p>Convert within supported color spaces (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a>):</p>
+<li><p>Experiment interactively with a feedback (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive">MiniColors.interactive()</a>).</p></li>
+<li><p>Animate transition between color schemes either with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate">MiniColors.animate()</a> or with <a href="../../mini.nvim/doc/mini-colors.html#colorscheme">:Colorscheme</a> user command.</p></li>
+<li><p>Convert within supported color spaces (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert">MiniColors.convert()</a>):</p>
 <ul>
 <li><p>Hex string.</p></li>
 <li><p>8-bit number (terminal colors).</p></li>
@@ -491,26 +492,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>There is a collection of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes"><code>MiniColors-recipes</code></a> with code snippets for some common tasks.</p></li>
+<li><p>There is a collection of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes">MiniColors-recipes</a> with code snippets for some common tasks.</p></li>
 <li><p>There is no goal to support as many color spaces as possible, only the already present ones.</p></li>
 </ul>
-<section id="minicolors-tweakquickstart" class="level4">
-<h4 class="anchored" data-anchor-id="minicolors-tweakquickstart">Tweak quick start</h4>
+<section id="module-tweakquickstart" class="level4">
+<h4 class="anchored" data-anchor-id="module-tweakquickstart">Tweak quick start</h4>
 <ul>
 <li><p>Execute <code>:lua require('mini.colors').interactive()</code>.</p></li>
-<li><p>Experiment by writing calls to exposed color scheme methods and applying them with <code>&lt;M-a&gt;</code>. For more information, see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes"><code>MiniColors-recipes</code></a>.</p></li>
+<li><p>Experiment by writing calls to exposed color scheme methods and applying them with <code>&lt;M-a&gt;</code>. For more information, see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods">MiniColors-colorscheme-methods</a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-recipes">MiniColors-recipes</a>.</p></li>
 <li><p>If you are happy with result, write color scheme with <code>&lt;M-w&gt;</code>. If not, reset to initial color scheme with <code>&lt;M-r&gt;</code>.</p></li>
 <li><p>If only some highlight groups can be made better, adjust them manually inside written color scheme file.</p></li>
 </ul>
 </section>
-<section id="minicolors-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minicolors-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module doesn’t need setup, but it can be done to improve usability. Setup with <code>require('mini.colors').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniColors</code> which you can use for scripting or manually (with <code>:lua MiniColors.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config"><code>MiniColors.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config">MiniColors.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minicolors_config</code> will have no effect here.</p>
 </section>
-<section id="minicolors-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minicolors-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/rktjmp/lush.nvim">rktjmp/lush.nvim</a>:</p>
 <ul>
@@ -533,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minicolors-recipes" class="level3">
 <h3 class="anchored" data-anchor-id="minicolors-recipes">Recipes</h3>
-<p>All following code snippets assume to be executed inside interactive buffer (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive"><code>MiniColors.interactive()</code></a>). They are directly copy-pasteable.</p>
+<p>All following code snippets assume to be executed inside interactive buffer (<a href="../../mini.nvim/doc/mini-colors.html#minicolors.interactive">MiniColors.interactive()</a>). They are directly copy-pasteable.</p>
 <p>To apply single method to current color scheme, use</p>
 <pre class="vim"><code>:lua MiniColors.get_colorscheme():&lt;method goes here&gt;:apply().</code></pre>
 <p>Recipes:</p>
@@ -584,13 +585,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>If all hope is lost, hue random generation might help if you are lucky:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chan_modify<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="fu">math.random</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">359</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul></li>
-<li><p>For color scheme creators use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemesimulate_cvd"><code>MiniColors-colorscheme:simulate_cvd()</code></a> to simulate various color vision deficiency types to see how color scheme would look in the eyes of color blind person.</p></li>
+<li><p>For color scheme creators use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemesimulate_cvd">MiniColors-colorscheme:simulate_cvd()</a> to simulate various color vision deficiency types to see how color scheme would look in the eyes of color blind person.</p></li>
 </ul>
 <hr>
 </section>
 <section id="minicolors-color-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="minicolors-color-spaces">Color spaces</h3>
-<p>Color space is a way to quantitatively describe a color. In this module color spaces are used both as source for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a> and inputs for <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a></p>
+<p>Color space is a way to quantitatively describe a color. In this module color spaces are used both as source for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a> and inputs for <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert">MiniColors.convert()</a></p>
 <p>List of supported color spaces (along with their id in parenthesis):</p>
 <ul>
 <li><p>8-bit (<code>8-bit</code>) - integer between 16 and 255. Usually values 0-15 are also supported, but they depend on terminal emulator theme which is not reliable. See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit .</p></li>
@@ -605,12 +606,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>https://bottosson.github.io/posts/oklab/ - initial derivation and introduction of Oklab and Oklch.</p></li>
 <li><p>https://bottosson.github.io/misc/colorpicker - interactive color picker. Great way for a hands-on introduction to concepts of lightness, chroma, saturation, and hue.</p></li>
 </ul>
-<p>Note that Oklab/Oklch/Okhsl use channel normalization for <code>l</code>, <code>a</code>, <code>b</code>, <code>c</code>, <code>s</code> that is more oriented towards integer numbers (according to the above sources). Some implementations (like in CSS) are more oriented towards [0; 1] range or percentages. Adjust accordingly by dividing/multiplying output by 100. Also use <code>adjust_lightness = false</code> in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert"><code>MiniColors.convert()</code></a>.</p>
+<p>Note that Oklab/Oklch/Okhsl use channel normalization for <code>l</code>, <code>a</code>, <code>b</code>, <code>c</code>, <code>s</code> that is more oriented towards integer numbers (according to the above sources). Some implementations (like in CSS) are more oriented towards [0; 1] range or percentages. Adjust accordingly by dividing/multiplying output by 100. Also use <code>adjust_lightness = false</code> in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.convert">MiniColors.convert()</a>.</p>
 <section id="minicolors-color-spaces-gamutclip" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors-color-spaces-gamutclip">Gamut clip</h4>
 <p><a name="minicolors-gamut-clip" href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><b>MiniColors-gamut-clip</b></a></p>
-<p>In Neovim highlight group colors are usually specified by their red, green, and blue values from 0 to 255 in the form of HEX string (see <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors"><code>gui-colors</code></a>). Although plenty, these are not all possible colors.</p>
-<p>When performing color manipulation using <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods"><code>MiniColors-colorscheme-methods</code></a>, it is possible to end up with “impossible” color (which can’t be directly converted to HEX string). For example, inverting lightness of color “#fce094” will lead to a color <code>{ l = 10, c = 10, h = 90 }</code> in Oklch space, i.e. “dark yellow” which is impossible to show in HEX.</p>
+<p>In Neovim highlight group colors are usually specified by their red, green, and blue values from 0 to 255 in the form of HEX string (see <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors">gui-colors</a>). Although plenty, these are not all possible colors.</p>
+<p>When performing color manipulation using <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme-methods">MiniColors-colorscheme-methods</a>, it is possible to end up with “impossible” color (which can’t be directly converted to HEX string). For example, inverting lightness of color “#fce094” will lead to a color <code>{ l = 10, c = 10, h = 90 }</code> in Oklch space, i.e. “dark yellow” which is impossible to show in HEX.</p>
 <p>Gamut clipping is an action of converting color outside of visible gamut (colors representable with HEX string) to be inside it while preserving certain perceptual characteristics as much as possible.</p>
 <p>Gamut clipping in this module is done inside Oklch color space. The goal is to preserve hue as much as possible while manipulating lightness and/or chroma.</p>
 <p>List of supported gamut clip methods (along with their id in parenthesis):</p>
@@ -634,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minicolors-channels" class="level3">
 <h3 class="anchored" data-anchor-id="minicolors-channels">Channels</h3>
-<p>A color channel is a number describing one particular aspect of a color. It is usually direct or modified coordinate of a color space. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a> for information on color spaces.</p>
+<p>A color channel is a number describing one particular aspect of a color. It is usually direct or modified coordinate of a color space. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces">MiniColors-color-spaces</a> for information on color spaces.</p>
 <p>List of supported channels (along with their id in parenthesis):</p>
 <ul>
 <li><p>Lightness (<code>lightness</code>) - corrected <code>l</code> component of Oklch. Describes how light is a color. Ranges from 0 (black dark) to 100 (white light).</p></li>
@@ -666,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme" class="level3">
 <h3 class="anchored" data-anchor-id="minicolors-colorscheme">Colorscheme</h3>
 <p>Colorscheme object is a central structure of this module. It contains all data relevant to colors in fields and provides methods to modify it.</p>
-<p>Create colorscheme object manually with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme"><code>MiniColors.as_colorscheme()</code></a>:</p>
+<p>Create colorscheme object manually with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.as_colorscheme">MiniColors.as_colorscheme()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span>as_colorscheme<span class="op">({</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">'my_cs'</span><span class="op">,</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">groups</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -675,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">terminal</span> <span class="op">=</span> <span class="op">{</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="st">'#222222'</span><span class="op">,</span> <span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="st">'#dd2222'</span> <span class="op">},</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Get any registered color scheme (including currently active) as colorscheme object with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme"><code>MiniColors.get_colorscheme()</code></a>:</p>
+<p>Get any registered color scheme (including currently active) as colorscheme object with <a href="../../mini.nvim/doc/mini-colors.html#minicolors.get_colorscheme">MiniColors.get_colorscheme()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get current color scheme</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniColors</span><span class="op">.</span>get_colorscheme<span class="op">()</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -688,9 +689,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minicolors-colorscheme-fields" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors-colorscheme-fields">Fields</h4>
-<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of the color scheme (as in <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a>).</p>
-<p><span class="help-syntax-special">{groups}</span> <code>(table|nil)</code> Table with highlight groups data. Keys are group names appropriate for <code>name</code> argument of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>, values - tables appropriate for its <code>val</code> argument. Note: gui colors are accepted only in short form (<code>fg</code>, <code>bg</code>, <code>sp</code>).</p>
-<p><span class="help-syntax-special">{terminal}</span> <code>(table|nil)</code> Table with terminal colors data (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>). Keys are numbers from 0 to 15, values - strings representing color (hex string or plain color name; see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_get_color_by_name()"><code>nvim_get_color_by_name()</code></a>).</p>
+<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of the color scheme (as in <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a>).</p>
+<p><span class="help-syntax-special">{groups}</span> <code>(table|nil)</code> Table with highlight groups data. Keys are group names appropriate for <code>name</code> argument of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>, values - tables appropriate for its <code>val</code> argument. Note: gui colors are accepted only in short form (<code>fg</code>, <code>bg</code>, <code>sp</code>).</p>
+<p><span class="help-syntax-special">{terminal}</span> <code>(table|nil)</code> Table with terminal colors data (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config">terminal-config</a>). Keys are numbers from 0 to 15, values - strings representing color (hex string or plain color name; see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_get_color_by_name()">nvim_get_color_by_name()</a>).</p>
 </section>
 <section id="minicolors-colorscheme-methods" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors-colorscheme-methods">Methods</h4>
@@ -708,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme-methods-add_cterm_attributes" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_cterm_attributes">add_cterm_attributes()</h5>
 <p><a name="minicolors-colorschemeadd_cterm_attributes" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes"><b>MiniColors-colorscheme:add_cterm_attributes()</b></a></p>
-<p>Infer <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors"><code>cterm-colors</code></a> based on present <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors"><code>gui-colors</code></a>. It updates <code>ctermbg</code>/<code>ctermfg</code> based on <code>fg</code>/<code>bg</code> by approximating in perceptually uniform distance in Oklab space (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a>).</p>
+<p>Infer <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a> based on present <a href="https://neovim.io/doc/user/helptag.html?tag=gui-colors">gui-colors</a>. It updates <code>ctermbg</code>/<code>ctermfg</code> based on <code>fg</code>/<code>bg</code> by approximating in perceptually uniform distance in Oklab space (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces">MiniColors-color-spaces</a>).</p>
 <section id="minicolors-colorscheme-methods-add_cterm_attributes-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_cterm_attributes-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
@@ -720,13 +721,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme-methods-add_terminal_colors" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_terminal_colors">add_terminal_colors()</h5>
 <p><a name="minicolors-colorschemeadd_terminal_colors" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_terminal_colors"><b>MiniColors-colorscheme:add_terminal_colors()</b></a></p>
-<p>Infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>) based on colorscheme palette (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><code>MiniColors-colorscheme:get_palette()</code></a>). It updates <code>terminal</code> field based on color scheme’s palette by picking the most appropriate entry to represent terminal color. Colors from 0 to 7 are attempted to be black, red, green, yellow, blue, magenta, cyan, white. Colors from 8 to 15 are the same as from 0 to 7.</p>
+<p>Infer terminal colors (<a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config">terminal-config</a>) based on colorscheme palette (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette">MiniColors-colorscheme:get_palette()</a>). It updates <code>terminal</code> field based on color scheme’s palette by picking the most appropriate entry to represent terminal color. Colors from 0 to 7 are attempted to be black, red, green, yellow, blue, magenta, cyan, white. Colors from 8 to 15 are the same as from 0 to 7.</p>
 <section id="minicolors-colorscheme-methods-add_terminal_colors-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_terminal_colors-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;force&gt;</span> <code>(boolean)</code> - Whether to replace already present terminal colors with inferred ones. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;palette_args&gt;</span> <code>(table)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><code>MiniColors-colorscheme:get_palette()</code></a> arguments.</p></li>
+<li><p><span class="help-syntax-keys">&lt;palette_args&gt;</span> <code>(table)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette">MiniColors-colorscheme:get_palette()</a> arguments.</p></li>
 </ul>
 </section>
 </section>
@@ -752,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="minicolors-colorschemeapply" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeapply"><b>MiniColors-colorscheme:apply()</b></a></p>
 <p>Apply colorscheme:</p>
 <ul>
-<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a> to a <code>name</code> field.</p></li>
+<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to a <code>name</code> field.</p></li>
 <li><p>Apply highlight groups in a <code>groups</code> field.</p></li>
 <li><p>Set terminal colors from a <code>terminal</code> field.</p></li>
 </ul>
@@ -760,48 +761,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-apply-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;clear&gt;</span> <code>(boolean)</code> - whether to execute <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> first. Default: <code>true</code>.</li>
+<li><span class="help-syntax-keys">&lt;clear&gt;</span> <code>(boolean)</code> - whether to execute <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear">:hi-clear</a> first. Default: <code>true</code>.</li>
 </ul>
 </section>
 </section>
 <section id="minicolors-colorscheme-methods-chan_add" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_add">chan_add()</h5>
 <p><a name="minicolors-colorschemechan_add" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_add"><b>MiniColors-colorscheme:chan_add()</b></a></p>
-<p>Add value to a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<p>Add value to a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>).</p>
 <section id="minicolors-colorscheme-methods-chan_add-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_add-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{value}</span> <code>(number)</code> Number to add (can be negative).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
 <section id="minicolors-colorscheme-methods-chan_invert" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_invert">chan_invert()</h5>
 <p><a name="minicolors-colorschemechan_invert" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_invert"><b>MiniColors-colorscheme:chan_invert()</b></a></p>
-<p>Invert value in a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<p>Invert value in a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>).</p>
 <p>Notes:</p>
 <ul>
-<li>Most Oklab/Oklch inversions are not exactly invertible: applying it twice might lead to slightly different colors depending on gamut clip method (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>) like smaller chroma with default <code>'chroma'</code> method.</li>
+<li>Most Oklab/Oklch inversions are not exactly invertible: applying it twice might lead to slightly different colors depending on gamut clip method (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>) like smaller chroma with default <code>'chroma'</code> method.</li>
 </ul>
 <section id="minicolors-colorscheme-methods-chan_invert-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_invert-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
@@ -811,35 +812,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Modify channel with a callable.</p>
 <section id="minicolors-colorscheme-methods-chan_modify-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_modify-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{f}</span> <code>(function)</code> - callable which defines modification. Should take current value of a channel and return a new one.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
 <section id="minicolors-colorscheme-methods-chan_multiply" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_multiply">chan_multiply()</h5>
 <p><a name="minicolors-colorschemechan_multiply" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemechan_multiply"><b>MiniColors-colorscheme:chan_multiply()</b></a></p>
-<p>Multiply value of a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>).</p>
+<p>Multiply value of a channel (see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>).</p>
 <section id="minicolors-colorscheme-methods-chan_multiply-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_multiply-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{coef}</span> <code>(number)</code> Number to multiply with (can be negative).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
@@ -863,7 +864,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>chan_repel<span class="op">(</span><span class="st">'hue'</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="op">-</span><span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minicolors-colorscheme-methods-chan_repel-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_repel-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{sources}</span> <code>(table|number)</code> Single or multiple source from which to repel.</p>
 <p><span class="help-syntax-special">{coef}</span> <code>(number)</code> Repel degree (can be negative to attract).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
@@ -871,9 +872,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
@@ -883,16 +884,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set channel to certain value(s). This can be used to ensure that channel has value(s) only within supplied set. If more than one is supplied, closest element to current value is used.</p>
 <section id="minicolors-colorscheme-methods-chan_set-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-chan_set-parameters">Parameters</h6>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{values}</span> <code>(table|number)</code> Single or multiple values to set.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function|string)</code> - filter colors to update. Possible values:</p>
 <ul>
 <li><p>String representing target attributes. One of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, <code>'term'</code> (only terminal colors).</p></li>
-<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a>. Default: <code>nil</code> to update all colors.</p></li>
+<li><p>Callable with signature as in <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a>. Default: <code>nil</code> to update all colors.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - gamut clipping method. One of <code>'chroma'</code>, <code>'lightness'</code>, <code>'cusp'</code>. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 </section>
@@ -905,7 +906,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Data about the color: a table with fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;attr&gt;</span> - one of <code>'fg'</code>, <code>'bg'</code>, <code>'sp'</code>, and <code>'term'</code> for terminal color.</p></li>
-<li><p><span class="help-syntax-keys">&lt;name&gt;</span> - name of color source. Either a name of highlight group or string of the form <code>terminal_color_x</code> for terminal color (as in <a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config"><code>terminal-config</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> - name of color source. Either a name of highlight group or string of the form <code>terminal_color_x</code> for terminal color (as in <a href="https://neovim.io/doc/user/helptag.html?tag=terminal-config">terminal-config</a>).</p></li>
 </ul></li>
 </ul>
 <p>Example:</p>
@@ -926,14 +927,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="minicolors-colorschemecompress" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><b>MiniColors-colorscheme:compress()</b></a></p>
 <p>Remove redundant highlight groups. These are one of the two kinds:</p>
 <ul>
-<li><p>Having values identical to ones after <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> (meaning they usually don’t add new information).</p></li>
+<li><p>Having values identical to ones after <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear">:hi-clear</a> (meaning they usually don’t add new information).</p></li>
 <li><p>Coming from a curated list of plugins with highlight groups usually not worth keeping around. Current list of such plugins:</p>
 <ul>
 <li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a></p></li>
 <li><p><a href="https://github.com/norcalli/nvim-colorizer.lua">norcalli/nvim-colorizer.lua</a></p></li>
 </ul></li>
 </ul>
-<p>This method is useful to reduce size of color scheme before writing into the file with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a>.</p>
+<p>This method is useful to reduce size of color scheme before writing into the file with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite">MiniColors-colorscheme:write()</a>.</p>
 <section id="minicolors-colorscheme-methods-compress-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-compress-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
@@ -946,7 +947,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-get_palette">get_palette()</h5>
 <p><a name="minicolors-colorschemeget_palette" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeget_palette"><b>MiniColors-colorscheme:get_palette()</b></a></p>
 <p>Get commonly used colors. This basically counts number of all color occurrences and filter out rare ones.</p>
-<p>It is usually a good idea to apply both <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><code>MiniColors-colorscheme:compress()</code></a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links"><code>MiniColors-colorscheme:resolve_links()</code></a> before applying this.</p>
+<p>It is usually a good idea to apply both <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress">MiniColors-colorscheme:compress()</a> and <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links">MiniColors-colorscheme:resolve_links()</a> before applying this.</p>
 <section id="minicolors-colorscheme-methods-get_palette-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-get_palette-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
@@ -958,7 +959,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme-methods-resolve_links" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-resolve_links">resolve_links()</h5>
 <p><a name="minicolors-colorschemeresolve_links" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links"><b>MiniColors-colorscheme:resolve_links()</b></a></p>
-<p>Resolve links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link"><code>:highlight-link</code></a>). This makes all highlight groups with <code>link</code> attribute have data from a linked one.</p>
+<p>Resolve links (<a href="https://neovim.io/doc/user/helptag.html?tag=:highlight-link">:highlight-link</a>). This makes all highlight groups with <code>link</code> attribute have data from a linked one.</p>
 <p>Notes:</p>
 <ul>
 <li><p>Resolves nested links.</p></li>
@@ -968,7 +969,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme-methods-simulate_cvd" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-simulate_cvd">simulate_cvd()</h5>
 <p><a name="minicolors-colorschemesimulate_cvd" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemesimulate_cvd"><b>MiniColors-colorscheme:simulate_cvd()</b></a></p>
-<p>Simulate color vision deficiency (CVD, color blindness). This is basically a wrapper using <a href="../../mini.nvim/doc/mini-colors.html#minicolors.simulate_cvd"><code>MiniColors.simulate_cvd()</code></a> as a part of call to <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify"><code>MiniColors-colorscheme:color_modify()</code></a> method.</p>
+<p>Simulate color vision deficiency (CVD, color blindness). This is basically a wrapper using <a href="../../mini.nvim/doc/mini-colors.html#minicolors.simulate_cvd">MiniColors.simulate_cvd()</a> as a part of call to <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecolor_modify">MiniColors-colorscheme:color_modify()</a> method.</p>
 <section id="minicolors-colorscheme-methods-simulate_cvd-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-simulate_cvd-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{cvd_type}</span> <code>(string)</code> One of <code>'protan'</code>, <code>'deutan'</code>, <code>'tritan'</code>, <code>'mono'</code>.</p>
@@ -979,18 +980,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-write">write()</h5>
 <p><a name="minicolors-colorschemewrite" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><b>MiniColors-colorscheme:write()</b></a></p>
 <p>Write color scheme to a file. It will be a Lua script readily usable as a regular color scheme. Useful to both save results of color scheme tweaking and making local snapshot of some other color scheme.</p>
-<p>Sourcing this file on startup usually leads to a better performance that sourcing initial color scheme, as it is essentially a conditioned <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear"><code>:hi-clear</code></a> call followed by a series of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a> calls.</p>
-<p>Default writing location is a “colors” directory of your Neovim config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=base-directories"><code>base-directories</code></a>). After writing, it should be available for sourcing with <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme"><code>:colorscheme</code></a> or <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a>.</p>
+<p>Sourcing this file on startup usually leads to a better performance that sourcing initial color scheme, as it is essentially a conditioned <a href="https://neovim.io/doc/user/helptag.html?tag=:hi-clear">:hi-clear</a> call followed by a series of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a> calls.</p>
+<p>Default writing location is a “colors” directory of your Neovim config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=base-directories">base-directories</a>). After writing, it should be available for sourcing with <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a> or <a href="../../mini.nvim/doc/mini-colors.html#colorscheme">:Colorscheme</a>.</p>
 <p>Name of the file by default is taken from <code>name</code> field (<code>'mini_colors'</code> is used if it is <code>nil</code>). If color scheme with this name already exists, it appends prefix based on current time to make it unique.</p>
 <p>Notes:</p>
 <ul>
-<li>If colors were updated, it is usually a good idea to infer cterm attributes with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes"><code>MiniColors-colorscheme:add_cterm_attributes()</code></a> prior to writing.</li>
+<li>If colors were updated, it is usually a good idea to infer cterm attributes with <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes">MiniColors-colorscheme:add_cterm_attributes()</a> prior to writing.</li>
 </ul>
 <section id="minicolors-colorscheme-methods-write-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-write-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;compress&gt;</span> <code>(boolean)</code> - whether to call <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress"><code>MiniColors-colorscheme:compress()</code></a> prior to writing. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;compress&gt;</span> <code>(boolean)</code> - whether to call <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemecompress">MiniColors-colorscheme:compress()</a> prior to writing. Default: <code>true</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string|nil)</code> - basename of written file. Default: <code>nil</code> to infer from <code>name</code> field.</p></li>
 <li><p><span class="help-syntax-keys">&lt;directory&gt;</span> <code>(string)</code> - directory to where file should be saved. Default: “colors” subdirectory of Neovim home config (<code>stdpath("config")</code>).</p></li>
 </ul>
@@ -1008,11 +1009,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors.setup-colorscheme" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.setup-colorscheme">:Colorscheme</h4>
 <p><a name="colorscheme" href="../../mini.nvim/doc/mini-colors.html#colorscheme"><b>:Colorscheme</b></a></p>
-<p>Calling this function creates a <code>:Colorscheme</code> user command. It takes one or more registered color scheme names and performs animated transition between them (starting from currently active color scheme). It uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate"><code>MiniColors.animate()</code></a> with default options.</p>
+<p>Calling this function creates a <code>:Colorscheme</code> user command. It takes one or more registered color scheme names and performs animated transition between them (starting from currently active color scheme). It uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors.animate">MiniColors.animate()</a> with default options.</p>
 </section>
 <section id="minicolors.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config"><code>MiniColors.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-colors.html#minicolors.config">MiniColors.config</a>.</p>
 </section>
 <section id="minicolors.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.setup-usage">Usage</h4>
@@ -1041,7 +1042,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Create colorscheme object</p>
 <section id="minicolors.as_colorscheme-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.as_colorscheme-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{x}</span> <code>(table)</code> Table to be transformed into <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> object.</p>
+<p><span class="help-syntax-special">{x}</span> <code>(table)</code> Table to be transformed into <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme">MiniColors-colorscheme</a> object.</p>
 </section>
 <section id="minicolors.as_colorscheme-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.as_colorscheme-return">Return</h4>
@@ -1057,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Get colorscheme object from registered color scheme</p>
 <section id="minicolors.get_colorscheme-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.get_colorscheme-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of color scheme to use. If <code>nil</code> (default) creates colorscheme object based on currently active data (<a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a>, highlight groups, terminal colors). If string, converts color scheme with that name to a colorscheme object.</p>
+<p><span class="help-syntax-special">{name}</span> <code>(string|nil)</code> Name of color scheme to use. If <code>nil</code> (default) creates colorscheme object based on currently active data (<a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a>, highlight groups, terminal colors). If string, converts color scheme with that name to a colorscheme object.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;new_name&gt;</span> <code>(string|nil)</code> - new name of colorscheme object.</li>
@@ -1065,7 +1066,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minicolors.get_colorscheme-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.get_colorscheme-return">Return</h4>
-<p><code>(table)</code> Colorscheme object (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a>).</p>
+<p><code>(table)</code> Colorscheme object (<a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme">MiniColors-colorscheme</a>).</p>
 <hr>
 </section>
 </section>
@@ -1084,7 +1085,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Apply (source) current buffer content.</p></li>
 <li><p>Reset color scheme (make initial colorscheme the current one).</p></li>
-<li><p>Write to a file the result of applying current buffer content. This sources current content and calls <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a>.</p></li>
+<li><p>Write to a file the result of applying current buffer content. This sources current content and calls <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite">MiniColors-colorscheme:write()</a>.</p></li>
 <li><p>Quit interactive buffer.</p></li>
 </ul></li>
 <li><p>User is expected to iteratively tweak color scheme by writing general Lua code in interactive buffer and applying it using convenience mapping.</p></li>
@@ -1105,13 +1106,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minicolors.interactive-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;colorscheme&gt;</span> <code>(table|nil)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> object to be used as initial colorscheme for executed code. By default uses current color scheme.</p></li>
+<li><p><span class="help-syntax-keys">&lt;colorscheme&gt;</span> <code>(table|nil)</code> - <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme">MiniColors-colorscheme</a> object to be used as initial colorscheme for executed code. By default uses current color scheme.</p></li>
 <li><p><span class="help-syntax-keys">&lt;mappings&gt;</span> <code>table</code> - buffer mappings for actions. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;Apply&gt;</span> <code>(string)</code> - apply buffer code. Default: <code>'&lt;M-a&gt;'</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;Reset&gt;</span> <code>(string)</code> - apply initial color scheme as is. Default: <code>'&lt;M-r&gt;'</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;Quit&gt;</span> <code>(string)</code> - close interactive buffer. Default: <code>'&lt;M-q&gt;'</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;Write&gt;</span> <code>(string)</code> - write result of buffer code into a file. Prompts for file name with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()"><code>vim.ui.input()</code></a> and then uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite"><code>MiniColors-colorscheme:write()</code></a> with other options being default. Default: <code>'&lt;M-w&gt;'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Write&gt;</span> <code>(string)</code> - write result of buffer code into a file. Prompts for file name with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> and then uses <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemewrite">MiniColors-colorscheme:write()</a> with other options being default. Default: <code>'&lt;M-w&gt;'</code>.</p></li>
 </ul></li>
 </ul>
 <hr>
@@ -1124,10 +1125,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Animate color scheme change</p>
 <p>Start from currently active color scheme and loop through <code>cs_array</code>.</p>
-<p>Powers <a href="../../mini.nvim/doc/mini-colors.html#colorscheme"><code>:Colorscheme</code></a> user command created in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.setup"><code>MiniColors.setup()</code></a>.</p>
+<p>Powers <a href="../../mini.nvim/doc/mini-colors.html#colorscheme">:Colorscheme</a> user command created in <a href="../../mini.nvim/doc/mini-colors.html#minicolors.setup">MiniColors.setup()</a>.</p>
 <section id="minicolors.animate-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.animate-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{cs_array}</span> <code>(table)</code> Array of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme"><code>MiniColors-colorscheme</code></a> objects.</p>
+<p><span class="help-syntax-special">{cs_array}</span> <code>(table)</code> Array of <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorscheme">MiniColors-colorscheme</a> objects.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;transition_steps&gt;</span> <code>(number)</code> - number of intermediate steps to show during transition between two color schemes. Bigger values result in smoother visual feedback but require more computational power. Default: 25.</p></li>
@@ -1143,7 +1144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniColors.convert</code>(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{to_space}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Convert between color spaces</p>
-<p>For a list of supported colors spaces see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces"><code>MiniColors-color-spaces</code></a>.</p>
+<p>For a list of supported colors spaces see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-color-spaces">MiniColors-color-spaces</a>.</p>
 <section id="minicolors.convert-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.convert-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{x}</span> <code>(table|string|number|nil)</code> Color to convert from. Its color space is inferred automatically.</p>
@@ -1151,7 +1152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;adjust_lightness&gt;</span> <code>(boolean)</code> - whether to adjust lightness value to have a more uniform progression from 0 to 100. Set <code>false</code> for results more compatible with some other Oklab/Oklch implementations (like in CSS). Source: “Intermission - a new lightness estimate for Oklab” section of https://bottosson.github.io/posts/colorpicker Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</p></li>
 </ul>
 </section>
 <section id="minicolors.convert-return" class="level4">
@@ -1169,11 +1170,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors.modify_channel-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicolors.modify_channel-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{x}</span> <code>(table|string|number|nil)</code> Color which channel will be modified. Color space is inferred automatically.</p>
-<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels"><code>MiniColors-channels</code></a>.</p>
+<p><span class="help-syntax-special">{channel}</span> <code>(string)</code> One of supported <a href="../../mini.nvim/doc/mini-colors.html#minicolors-channels">MiniColors-channels</a>.</p>
 <p><span class="help-syntax-special">{f}</span> <code>(function)</code> Callable which defines modification. Should take current value of a channel and return a new one.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip"><code>MiniColors-gamut-clip</code></a>. Default: <code>'chroma'</code>.</li>
+<li><span class="help-syntax-keys">&lt;gamut_clip&gt;</span> <code>(string)</code> - method for <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>. Default: <code>'chroma'</code>.</li>
 </ul>
 </section>
 <section id="minicolors.modify_channel-return" class="level4">

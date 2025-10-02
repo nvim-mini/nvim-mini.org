@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.move documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minimove" id="toc-minimove" class="nav-link active" data-scroll-target="#minimove">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minimove-setup" id="toc-minimove-setup" class="nav-link" data-scroll-target="#minimove-setup">Setup</a></li>
-  <li><a href="#minimove-comparisons" id="toc-minimove-comparisons" class="nav-link" data-scroll-target="#minimove-comparisons">Comparisons</a></li>
-  <li><a href="#minimove-disabling" id="toc-minimove-disabling" class="nav-link" data-scroll-target="#minimove-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minimove.setup" id="toc-minimove.setup" class="nav-link" data-scroll-target="#minimove.setup">setup()</a>
   <ul>
@@ -397,38 +398,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.move" href="../../mini.nvim/doc/mini-move.html#mini.move"><b>mini.move</b></a> Move any selection in any direction</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minimove" class="level3">
-<h3 class="anchored" data-anchor-id="minimove">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Works in two modes:</p>
 <ul>
-<li><p>Visual mode. Select text (charwise with <a href="https://neovim.io/doc/user/helptag.html?tag=v"><code>v</code></a>, linewise with <a href="https://neovim.io/doc/user/helptag.html?tag=V"><code>V</code></a>, and blockwise with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-V"><code>CTRL-V</code></a>) and press customizable mapping to move in all four directions (left, right, down, up). It keeps Visual mode.</p></li>
+<li><p>Visual mode. Select text (charwise with <a href="https://neovim.io/doc/user/helptag.html?tag=v">v</a>, linewise with <a href="https://neovim.io/doc/user/helptag.html?tag=V">V</a>, and blockwise with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-V">CTRL-V</a>) and press customizable mapping to move in all four directions (left, right, down, up). It keeps Visual mode.</p></li>
 <li><p>Normal mode. Press customizable mapping to move current line in all four directions (left, right, down, up).</p></li>
 <li><p>Special handling of linewise movement:</p>
 <ul>
-<li><p>Vertical movement gets reindented with <a href="https://neovim.io/doc/user/helptag.html?tag=="><code>=</code></a>.</p></li>
-<li><p>Horizontal movement is improved indent/dedent with <a href="https://neovim.io/doc/user/helptag.html?tag=%3E"><code>&gt;</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%3C"><code>&lt;</code></a>.</p></li>
+<li><p>Vertical movement gets reindented with <a href="https://neovim.io/doc/user/helptag.html?tag==">=</a>.</p></li>
+<li><p>Horizontal movement is improved indent/dedent with <a href="https://neovim.io/doc/user/helptag.html?tag=%3E">&gt;</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%3C">&lt;</a>.</p></li>
 <li><p>Cursor moves along with selection.</p></li>
 </ul></li>
 </ul></li>
-<li><p>Provides both mappings and Lua functions for motions. See <a href="../../mini.nvim/doc/mini-move.html#minimove.move_selection"><code>MiniMove.move_selection()</code></a> and <a href="../../mini.nvim/doc/mini-move.html#minimove.move_line"><code>MiniMove.move_line()</code></a>.</p></li>
-<li><p>Respects <a href="https://neovim.io/doc/user/helptag.html?tag=v:count"><code>v:count</code></a>. Movement mappings can be preceded by a number which multiplies command effect.</p></li>
-<li><p>All consecutive moves (regardless of direction) can be undone by a single <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a>.</p></li>
+<li><p>Provides both mappings and Lua functions for motions. See <a href="../../mini.nvim/doc/mini-move.html#minimove.move_selection">MiniMove.move_selection()</a> and <a href="../../mini.nvim/doc/mini-move.html#minimove.move_line">MiniMove.move_line()</a>.</p></li>
+<li><p>Respects <a href="https://neovim.io/doc/user/helptag.html?tag=v:count">v:count</a>. Movement mappings can be preceded by a number which multiplies command effect.</p></li>
+<li><p>All consecutive moves (regardless of direction) can be undone by a single <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a>.</p></li>
 <li><p>Respects preferred column for vertical movement. It will vertically move selection as how cursor is moving (not strictly vertically if target column is not present in target line).</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
 <li>Doesn’t allow moving selection outside of current lines (by design).</li>
 </ul>
-<section id="minimove-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minimove-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.move').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniMove</code> which you can use for scripting or manually (with <code>:lua MiniMove.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-move.html#minimove.config"><code>MiniMove.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (but not <code>config.mappings</code>) locally to buffer inside <code>vim.b.minimove_config</code> which should have same structure as <code>MiniMove.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-move.html#minimove.config">MiniMove.config</a> for available config settings.</p>
+<p>You can override runtime config settings (but not <code>config.mappings</code>) locally to buffer inside <code>vim.b.minimove_config</code> which should have same structure as <code>MiniMove.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minimove-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minimove-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/matze/vim-move">matze/vim-move</a>:</p>
 <ul>
@@ -443,9 +444,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minimove-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minimove-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minimove_disable</code> (globally) or <code>vim.b.minimove_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minimove_disable</code> (globally) or <code>vim.b.minimove_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -457,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minimove.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimove.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-move.html#minimove.config"><code>MiniMove.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-move.html#minimove.config">MiniMove.config</a>.</p>
 </section>
 <section id="minimove.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimove.setup-usage">Usage</h4>
@@ -536,15 +537,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Main function powering visual selection move in Visual mode.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Vertical movement in linewise mode is followed up by reindent with <a href="https://neovim.io/doc/user/helptag.html?tag=v_="><code>v_=</code></a>.</p></li>
-<li><p>Horizontal movement in linewise mode is same as <a href="https://neovim.io/doc/user/helptag.html?tag=v_%3C"><code>v_&lt;</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_%3E"><code>v_&gt;</code></a>.</p></li>
+<li><p>Vertical movement in linewise mode is followed up by reindent with <a href="https://neovim.io/doc/user/helptag.html?tag=v_=">v_=</a>.</p></li>
+<li><p>Horizontal movement in linewise mode is same as <a href="https://neovim.io/doc/user/helptag.html?tag=v_%3C">v_&lt;</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_%3E">v_&gt;</a>.</p></li>
 </ul>
 <section id="minimove.move_selection-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimove.move_selection-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “left”, “down”, “up”, “right”.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Same structure as <code>options</code> in <a href="../../mini.nvim/doc/mini-move.html#minimove.config"><code>MiniMove.config</code></a> (with its values as defaults) plus these allowed extra fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Same structure as <code>options</code> in <a href="../../mini.nvim/doc/mini-move.html#minimove.config">MiniMove.config</a> (with its values as defaults) plus these allowed extra fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;n_times&gt;</span> (number) - number of times to try to make a move. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</li>
+<li><span class="help-syntax-keys">&lt;n_times&gt;</span> (number) - number of times to try to make a move. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</li>
 </ul>
 <hr>
 </section>
@@ -558,15 +559,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Main function powering current line move in Normal mode.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Vertical movement is followed up by reindent with <a href="https://neovim.io/doc/user/helptag.html?tag=v_="><code>v_=</code></a>.</p></li>
-<li><p>Horizontal movement is almost the same as <a href="https://neovim.io/doc/user/helptag.html?tag=%3C%3C"><code>&lt;&lt;</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=%3E%3E"><code>&gt;&gt;</code></a> with a different handling of <a href="https://neovim.io/doc/user/helptag.html?tag=v:count"><code>v:count</code></a> (multiplies shift effect instead of modifying that number of lines).</p></li>
+<li><p>Vertical movement is followed up by reindent with <a href="https://neovim.io/doc/user/helptag.html?tag=v_=">v_=</a>.</p></li>
+<li><p>Horizontal movement is almost the same as <a href="https://neovim.io/doc/user/helptag.html?tag=%3C%3C">&lt;&lt;</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=%3E%3E">&gt;&gt;</a> with a different handling of <a href="https://neovim.io/doc/user/helptag.html?tag=v:count">v:count</a> (multiplies shift effect instead of modifying that number of lines).</p></li>
 </ul>
 <section id="minimove.move_line-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimove.move_line-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “left”, “down”, “up”, “right”.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Same structure as <code>options</code> in <a href="../../mini.nvim/doc/mini-move.html#minimove.config"><code>MiniMove.config</code></a> (with its values as defaults) plus these allowed extra fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Same structure as <code>options</code> in <a href="../../mini.nvim/doc/mini-move.html#minimove.config">MiniMove.config</a> (with its values as defaults) plus these allowed extra fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;n_times&gt;</span> (number) - number of times to try to make a move. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</li>
+<li><span class="help-syntax-keys">&lt;n_times&gt;</span> (number) - number of times to try to make a move. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</li>
 </ul>
 
 

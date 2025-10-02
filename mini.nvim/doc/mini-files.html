@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="mini.files documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -311,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minifiles" id="toc-minifiles" class="nav-link active" data-scroll-target="#minifiles">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minifiles-dependencies" id="toc-minifiles-dependencies" class="nav-link" data-scroll-target="#minifiles-dependencies">Dependencies</a></li>
-  <li><a href="#minifiles-setup" id="toc-minifiles-setup" class="nav-link" data-scroll-target="#minifiles-setup">Setup</a></li>
-  <li><a href="#minifiles-comparisons" id="toc-minifiles-comparisons" class="nav-link" data-scroll-target="#minifiles-comparisons">Comparisons</a></li>
-  <li><a href="#minifiles-highlightgroups" id="toc-minifiles-highlightgroups" class="nav-link" data-scroll-target="#minifiles-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minifiles-disabling" id="toc-minifiles-disabling" class="nav-link" data-scroll-target="#minifiles-disabling">Disabling</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minifiles-navigation" id="toc-minifiles-navigation" class="nav-link" data-scroll-target="#minifiles-navigation">Navigation</a></li>
   <li><a href="#minifiles-manipulation" id="toc-minifiles-manipulation" class="nav-link" data-scroll-target="#minifiles-manipulation">Manipulation</a>
@@ -487,13 +517,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.files" href="../../mini.nvim/doc/mini-files.html#mini.files"><b>mini.files</b></a> Navigate and manipulate file system</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minifiles" class="level3">
-<h3 class="anchored" data-anchor-id="minifiles">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Navigate file system using column view (Miller columns) to display nested directories. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation"><code>MiniFiles-navigation</code></a> for overview.</p></li>
+<li><p>Navigate file system using column view (Miller columns) to display nested directories. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation">MiniFiles-navigation</a> for overview.</p></li>
 <li><p>Opt-in preview of file or directory under cursor.</p></li>
-<li><p>Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>MiniFiles-manipulation</code></a> for overview.</p></li>
+<li><p>Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a> for overview.</p></li>
 <li><p>Use as default file explorer instead of <code>netrw</code>.</p></li>
 <li><p>Configurable:</p>
 <ul>
@@ -507,8 +537,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Try to be replacement of system file explorer. It is mostly designed to be used within Neovim to quickly explore file system structure, open files, and perform some quick file system edits.</p></li>
 <li><p>Work on remote locations. Only local file system is supported.</p></li>
-<li><p>Provide built-in interactive toggle of content <code>filter</code> and <code>sort</code>. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a> for some common examples.</p></li>
-<li><p>Provide out of the box extra information like git or diagnostic status. This can be achieved by setting <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a> on appropriate event(s) (see <a href="../../mini.nvim/doc/mini-files.html#minifiles-events"><code>MiniFiles-events</code></a>)</p></li>
+<li><p>Provide built-in interactive toggle of content <code>filter</code> and <code>sort</code>. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples">MiniFiles-examples</a> for some common examples.</p></li>
+<li><p>Provide out of the box extra information like git or diagnostic status. This can be achieved by setting <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a> on appropriate event(s) (see <a href="../../mini.nvim/doc/mini-files.html#minifiles-events">MiniFiles-events</a>)</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
@@ -519,21 +549,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>In case of no manipulation result, check write permissions.</p></li>
 </ul></li>
 </ul>
-<section id="minifiles-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="minifiles-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
-<li>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module to show icons near file/directory names. Falls back to <a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> plugin or uses default icons.</li>
+<li>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to show icons near file/directory names. Falls back to <a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> plugin or uses default icons.</li>
 </ul>
 </section>
-<section id="minifiles-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minifiles-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.files').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniFiles</code> which you can use for scripting or manually (with <code>:lua MiniFiles.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like mappings or window options) locally to buffer inside <code>vim.b.minifiles_config</code> which should have same structure as <code>MiniFiles.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like mappings or window options) locally to buffer inside <code>vim.b.minifiles_config</code> which should have same structure as <code>MiniFiles.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minifiles-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minifiles-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/nvim-tree/nvim-tree.lua">nvim-tree/nvim-tree.lua</a>:</p>
 <ul>
@@ -553,8 +583,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minifiles-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minifiles-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniFilesBorder</code> - border of regular windows.</p></li>
 <li><p><code>MiniFilesBorderModified</code> - border of windows showing modified buffer.</p></li>
@@ -565,17 +595,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniFilesTitle</code> - title of regular windows.</p></li>
 <li><p><code>MiniFilesTitleFocused</code> - title of focused window.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minifiles-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minifiles-disabling">Disabling</h4>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
 <p>This plugin provides only manually started functionality, so no disabling is available.</p>
 <hr>
 </section>
 </section>
 <section id="minifiles-navigation" class="level3">
 <h3 class="anchored" data-anchor-id="minifiles-navigation">Navigation</h3>
-<p>Every navigation starts by calling <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>, either directly or via mapping (see its help for examples of some common scenarios). It will show an explorer consisting of side-by-side floating windows with the following principles:</p>
+<p>Every navigation starts by calling <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a>, either directly or via mapping (see its help for examples of some common scenarios). It will show an explorer consisting of side-by-side floating windows with the following principles:</p>
 <ul>
 <li><p>Explorer shows one branch of nested directories at a time.</p></li>
 <li><p>Explorer consists from several windows:</p>
@@ -584,8 +614,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Windows are organized left to right: for any particular window the left neighbor is its parent directory and right neighbor - its child.</p></li>
 </ul></li>
 <li><p>Explorer windows are the viewport to some part of current branch, meaning that their opening/closing does not affect the branch. This matters, for example, if there are more elements in the branch than can be shown windows.</p></li>
-<li><p>Every buffer line represents separate file system entry following certain format (not visible for users by default; set <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'"><code>'conceallevel'</code></a> to 0 to see it)</p></li>
-<li><p>Once directory is shown, its buffer is not updated automatically following external file system changes. Manually use <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize"><code>MiniFiles.synchronize()</code></a> for that.</p></li>
+<li><p>Every buffer line represents separate file system entry following certain format (not visible for users by default; set <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'">‘conceallevel’</a> to 0 to see it)</p></li>
+<li><p>Once directory is shown, its buffer is not updated automatically following external file system changes. Manually use <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize">MiniFiles.synchronize()</a> for that.</p></li>
 </ul>
 <p>After opening explorer, in-buffer navigation is done the same way as any regular buffer, except without some keys reserved for built-in actions.</p>
 <p>Most common ways to navigate are:</p>
@@ -637,34 +667,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>“Go out plus” is regular “Go out” but trims right part of branch.</p></li>
 <li><p>“Set mark” and “Go to mark” both wait for user to press a single character of a bookmark id. Example: <code>ma</code> sets directory path of focused window as bookmark “a”; <code>'a</code> jumps (sets as whole branch) to bookmark “a”. Special bookmark “’” always points to path before the latest bookmark jump.</p></li>
 <li><p>“Reset” focuses only on “anchor” directory (the one used to open current explorer) and resets all stored directory cursor positions.</p></li>
-<li><p>“Reveal cwd” extends branch to include <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>. If it is not an ancestor of the current branch, nothing is done.</p></li>
+<li><p>“Reveal cwd” extends branch to include <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>. If it is not an ancestor of the current branch, nothing is done.</p></li>
 <li><p>“Show help” results into new window with helpful information about current explorer (like buffer mappings and bookmarks). Press <code>q</code> to close it.</p></li>
-<li><p>“Synchronize” parses user edits in directory buffers, applies them (after confirmation), and updates all directory buffers with the most relevant file system information. Can also be used without user edits to show up to date file system entries. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>MiniFiles-manipulation</code></a> for more info about file system manipulation.</p></li>
+<li><p>“Synchronize” parses user edits in directory buffers, applies them (after confirmation), and updates all directory buffers with the most relevant file system information. Can also be used without user edits to show up to date file system entries. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a> for more info about file system manipulation.</p></li>
 <li><p>“Trim left” and “Trim right” trim parts of the whole branch, not only its currently visible parts.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
 <li><p>Each action has exported function with more details about it.</p></li>
-<li><p>Keys can be configured with <code>mappings</code> table of <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p></li>
+<li><p>Keys can be configured with <code>mappings</code> table of <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a>.</p></li>
 </ul>
 <hr>
 </section>
 <section id="minifiles-manipulation" class="level3">
 <h3 class="anchored" data-anchor-id="minifiles-manipulation">Manipulation</h3>
-<p>File system manipulation is done by editing text inside directory buffers, which are shown inside dedicated window(s). See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation"><code>MiniFiles-navigation</code></a> for more information about navigating to a particular directory.</p>
+<p>File system manipulation is done by editing text inside directory buffers, which are shown inside dedicated window(s). See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation">MiniFiles-navigation</a> for more information about navigating to a particular directory.</p>
 <p>General workflow:</p>
 <ul>
 <li><p>Navigate to the directory in which manipulation should be done.</p></li>
 <li><p>Edit buffer in the way representing file system action.</p></li>
 <li><p>Repeat previous steps until all necessary file system actions are recorded. Note: even if directory buffer is hidden, its modifications are preserved, so you can navigate in and out of directory with modified buffer.</p></li>
-<li><p>Execute <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize"><code>MiniFiles.synchronize()</code></a> (default key is <code>=</code>). This will prompt confirmation dialog listing all file system actions (per directory) it is about to perform. READ IT CAREFULLY.</p></li>
+<li><p>Execute <a href="../../mini.nvim/doc/mini-files.html#minifiles.synchronize">MiniFiles.synchronize()</a> (default key is <code>=</code>). This will prompt confirmation dialog listing all file system actions (per directory) it is about to perform. READ IT CAREFULLY.</p></li>
 <li><p>Confirm by pressing <code>y</code> / <code>&lt;CR&gt;</code> (apply edits and update buffers) or don’t confirm by pressing <code>n</code> / <code>&lt;Esc&gt;</code> (update buffers without applying edits).</p></li>
 </ul>
 <p>Note: prefer small and not related steps with more frequent synchronization over single complex manipulation. There are (known) cases which won’t work.</p>
 <section id="minifiles-manipulation-howdoesitwork" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-manipulation-howdoesitwork">How does it work</h4>
 <p>All manipulation functionality is powered by creating and keeping track of path indexes: text of the form <code>/xxx</code> (<code>xxx</code> is the number path index) placed at the start of every line representing file system entry.</p>
-<p>By default they are hidden as concealed text (along with prefix separators) for more convenience but you can see them by setting <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'"><code>'conceallevel'</code></a> to 0. DO NOT modify text to the left of entry name.</p>
+<p>By default they are hidden as concealed text (along with prefix separators) for more convenience but you can see them by setting <a href="https://neovim.io/doc/user/helptag.html?tag='conceallevel'">‘conceallevel’</a> to 0. DO NOT modify text to the left of entry name.</p>
 <p>During synchronization, actual text for entry name is compared to path index at that line (if present) to deduce which file system action to perform. Note that order of text manipulation steps does not affect performed actions.</p>
 </section>
 <section id="minifiles-manipulation-supportedfilesystemactions" class="level4">
@@ -681,7 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-delete">Delete</h5>
 <ul>
 <li><p>Delete file or directory by deleting whole line describing it.</p></li>
-<li><p>If <code>options.permanent_delete</code> is <code>true</code>, delete is permanent. Otherwise file system entry is moved to a module-specific trash directory (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> for more details).</p></li>
+<li><p>If <code>options.permanent_delete</code> is <code>true</code>, delete is permanent. Otherwise file system entry is moved to a module-specific trash directory (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a> for more details).</p></li>
 </ul>
 </section>
 <section id="minifiles-manipulation-supportedfilesystemactions-rename" class="level5">
@@ -690,9 +720,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Rename file or directory by editing its name (not icon or path index to the left of it).</p></li>
 <li><p>With default mappings for <code>h</code> / <code>l</code> it might be not convenient to rename only part of an entry. You can adopt any of the following approaches:</p>
 <ul>
-<li><p>Use different motions, like <a href="https://neovim.io/doc/user/helptag.html?tag=$"><code>$</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=e"><code>e</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=f"><code>f</code></a>, etc.</p></li>
+<li><p>Use different motions, like [<span class="math inline">\(](https://neovim.io/doc/user/helptag.html?tag=\)</span>), <a href="https://neovim.io/doc/user/helptag.html?tag=e">e</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=f">f</a>, etc.</p></li>
 <li><p>Go into Insert mode and navigate inside it.</p></li>
-<li><p>Change mappings to be more suited for manipulation and not navigation. See “Mappings” section in <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p></li>
+<li><p>Change mappings to be more suited for manipulation and not navigation. See “Mappings” section in <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a>.</p></li>
 </ul></li>
 <li><p>It is not needed to end directory name with <code>/</code>.</p></li>
 <li><p>Cyclic renames (“a” to “b” and “b” to “a”) are not supported.</p></li>
@@ -720,18 +750,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-events" class="level3">
 <h3 class="anchored" data-anchor-id="minifiles-events">Events</h3>
-<p>To allow user customization and integration of external tools, certain <a href="https://neovim.io/doc/user/helptag.html?tag=User"><code>User</code></a> autocommand events are triggered under common circumstances.</p>
+<p>To allow user customization and integration of external tools, certain <a href="https://neovim.io/doc/user/helptag.html?tag=User">User</a> autocommand events are triggered under common circumstances.</p>
 <section id="minifiles-events-uievents" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-events-uievents">UI events</h4>
 <ul>
 <li><p><code>MiniFilesExplorerOpen</code> - just after explorer finishes opening.</p></li>
 <li><p><code>MiniFilesExplorerClose</code> - just before explorer starts closing.</p></li>
 <li><p><code>MiniFilesBufferCreate</code> - when buffer is created to show a particular directory/file. Triggered once per path during explorer session. Can be used to create buffer-local mappings.</p></li>
-<li><p><code>MiniFilesBufferUpdate</code> - when path buffer is updated with new content. Can be used for integrations to set useful <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a>.</p></li>
+<li><p><code>MiniFilesBufferUpdate</code> - when path buffer is updated with new content. Can be used for integrations to set useful <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a>.</p></li>
 <li><p><code>MiniFilesWindowOpen</code> - when new window is opened. Can be used to set window-local settings (like border, ‘winblend’, etc.)</p></li>
 <li><p><code>MiniFilesWindowUpdate</code> - when a window is updated. Triggers VERY frequently. At least after every cursor movement and “go in” / “go out” action.</p></li>
 </ul>
-<p>Callback for each buffer/window UI event will receive <span class="help-syntax-keys">&lt;data&gt;</span> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()"><code>nvim_create_autocmd()</code></a>) with the following information:</p>
+<p>Callback for each buffer/window UI event will receive <span class="help-syntax-keys">&lt;data&gt;</span> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()">nvim_create_autocmd()</a>) with the following information:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;buf_id&gt;</span> - index of target buffer.</p></li>
 <li><p><span class="help-syntax-keys">&lt;win_id&gt;</span> - index of target window. Can be <code>nil</code>, like in <code>MiniFilesBufferCreate</code> and buffer’s first <code>MiniFilesBufferUpdate</code> as they are triggered before window is created.</p></li>
@@ -746,7 +776,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniFilesActionCopy</code> - after entry is successfully copied.</p></li>
 <li><p><code>MiniFilesActionMove</code> - after entry is successfully moved.</p></li>
 </ul>
-<p>Callback for each file action event will receive <code>data</code> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()"><code>nvim_create_autocmd()</code></a>) with the following information:</p>
+<p>Callback for each file action event will receive <code>data</code> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()">nvim_create_autocmd()</a>) with the following information:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;action&gt;</span> - string with action name.</p></li>
 <li><p><span class="help-syntax-keys">&lt;from&gt;</span> - full path of entry before action (<code>nil</code> for “create” action).</p></li>
@@ -759,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minifiles-examples">Examples</h3>
 <section id="minifiles-examples-toggleexplorer" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-toggleexplorer">Toggle explorer</h4>
-<p>Use a combination of <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.close"><code>MiniFiles.close()</code></a>:</p>
+<p>Use a combination of <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.close">MiniFiles.close()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">minifiles_toggle</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(...)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="kw">not</span> <span class="va">MiniFiles</span><span class="op">.</span>close<span class="op">()</span> <span class="cf">then</span> <span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(...)</span> <span class="cf">end</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -799,7 +829,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-examples-customizeicons" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-customizeicons">Customize icons</h4>
-<p>Use different directory icon (if you don’t use <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a>):</p>
+<p>Use different directory icon (if you don’t use <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">my_prefix</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">fs_entry</span><span class="op">.</span><span class="va">fs_type</span> <span class="op">==</span> <span class="st">'directory'</span> <span class="cf">then</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">NOTE</span><span class="co">: it is usually a good idea to use icon followed by space</span></span>
@@ -814,7 +844,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-examples-createmappingtoshowhidedot-files" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-createmappingtoshowhidedot-files">Create mapping to show/hide dot-files</h4>
-<p>Create an autocommand for <code>MiniFilesBufferCreate</code> event which calls <a href="../../mini.nvim/doc/mini-files.html#minifiles.refresh"><code>MiniFiles.refresh()</code></a> with explicit <code>content.filter</code> functions:</p>
+<p>Create an autocommand for <code>MiniFilesBufferCreate</code> event which calls <a href="../../mini.nvim/doc/mini-files.html#minifiles.refresh">MiniFiles.refresh()</a> with explicit <code>content.filter</code> functions:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">show_dotfiles</span> <span class="op">=</span> <span class="kw">true</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">filter_show</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">fs_entry</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">true</span> <span class="kw">end</span></span>
@@ -840,7 +870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-examples-createmappingstomodifytargetwindowviasplit" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-createmappingstomodifytargetwindowviasplit">Create mappings to modify target window via split</h4>
-<p>Combine <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state"><code>MiniFiles.get_explorer_state()</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window"><code>MiniFiles.set_target_window()</code></a>:</p>
+<p>Combine <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state">MiniFiles.get_explorer_state()</a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window">MiniFiles.set_target_window()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">map_split</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">lhs</span><span class="op">,</span> <span class="va">direction</span><span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make new window and set it as target</span></span>
@@ -875,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-examples-createmappingswhichusedatafromentryundercursor" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-createmappingswhichusedatafromentryundercursor">Create mappings which use data from entry under cursor</h4>
-<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_fs_entry"><code>MiniFiles.get_fs_entry()</code></a>:</p>
+<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.get_fs_entry">MiniFiles.get_fs_entry()</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Set focused directory as current working directory</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_cwd</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">path</span> <span class="op">=</span> <span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_fs_entry<span class="op">()</span> <span class="kw">or</span> <span class="op">{}).</span><span class="va">path</span></span>
@@ -905,7 +935,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles-examples-setcustombookmarks" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles-examples-setcustombookmarks">Set custom bookmarks</h4>
-<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a> inside <code>MiniFilesExplorerOpen</code> event:</p>
+<p>Use <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark">MiniFiles.set_bookmark()</a> inside <code>MiniFilesExplorerOpen</code> event:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">set_mark</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span><span class="op">,</span> <span class="va">path</span><span class="op">,</span> <span class="va">desc</span><span class="op">)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="va">id</span><span class="op">,</span> <span class="va">path</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="va">desc</span> <span class="op">})</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -928,7 +958,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minifiles.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a>.</p>
 </section>
 <section id="minifiles.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.setup-usage">Usage</h4>
@@ -999,15 +1029,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles.config-content" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-content">Content</h4>
-<p><code>content.filter</code> is a predicate which takes file system entry data as input and returns <code>true</code>-ish value if it should be shown. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_filter"><code>MiniFiles.default_filter()</code></a> by default.</p>
+<p><code>content.filter</code> is a predicate which takes file system entry data as input and returns <code>true</code>-ish value if it should be shown. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_filter">MiniFiles.default_filter()</a> by default.</p>
 <p>A file system entry data is a table with the following fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
 </ul>
-<p><code>content.prefix</code> describes what text (prefix) to show to the left of file system entry name (if any) and how to highlight it. It also takes file system entry data as input and returns tuple of text and highlight group name to be used to highlight prefix. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a> for common examples of how to use it. Note: due to how lines are parsed to detect user edits for file system manipulation, output of <code>content.prefix</code> should not contain <code>/</code> character. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_prefix"><code>MiniFiles.default_prefix()</code></a> by default.</p>
-<p><code>content.sort</code> describes in which order directory entries should be shown in directory buffer. Takes as input and returns as output an array of file system entry data. Note: technically, it can be used to filter and modify its elements as well. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_sort"><code>MiniFiles.default_sort()</code></a> by default.</p>
+<p><code>content.prefix</code> describes what text (prefix) to show to the left of file system entry name (if any) and how to highlight it. It also takes file system entry data as input and returns tuple of text and highlight group name to be used to highlight prefix. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples">MiniFiles-examples</a> for common examples of how to use it. Note: due to how lines are parsed to detect user edits for file system manipulation, output of <code>content.prefix</code> should not contain <code>/</code> character. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_prefix">MiniFiles.default_prefix()</a> by default.</p>
+<p><code>content.sort</code> describes in which order directory entries should be shown in directory buffer. Takes as input and returns as output an array of file system entry data. Note: technically, it can be used to filter and modify its elements as well. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_sort">MiniFiles.default_sort()</a> by default.</p>
 </section>
 <section id="minifiles.config-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-mappings">Mappings</h4>
@@ -1029,7 +1059,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-options">Options</h4>
-<p><code>options.use_as_default_explorer</code> is a boolean indicating whether this module will be used as a default file explorer to edit directory (instead of <code>netrw</code>). Note: to work with directory in <a href="https://neovim.io/doc/user/helptag.html?tag=arglist"><code>arglist</code></a>, do not lazy load this module.</p>
+<p><code>options.use_as_default_explorer</code> is a boolean indicating whether this module will be used as a default file explorer to edit directory (instead of <code>netrw</code>). Note: to work with directory in <a href="https://neovim.io/doc/user/helptag.html?tag=arglist">arglist</a>, do not lazy load this module.</p>
 <p><code>options.permanent_delete</code> is a boolean indicating whether to perform permanent delete or move into special trash directory. This is a module-specific variant of “remove to trash”. Target directory is ‘mini.files/trash’ inside standard path of Neovim data directory (execute <code>:echo stdpath('data')</code> to see its path in your case).</p>
 </section>
 <section id="minifiles.config-windows" class="level4">
@@ -1068,9 +1098,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="va">MiniFiles</span><span class="op">.</span>open<span class="op">(</span><span class="va">MiniFiles</span><span class="op">.</span>get_latest_path<span class="op">())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minifiles.open-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.open-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid file system path used as anchor. If it is a path to directory, used directly. If it is a path to file, its parent directory is used as anchor while explorer will focus on the supplied file. Default: path of <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid file system path used as anchor. If it is a path to directory, used directly. If it is a path to file, its parent directory is used as anchor while explorer will focus on the supplied file. Default: path of <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <p><span class="help-syntax-special">{use_latest}</span> <code>(boolean|nil)</code> Whether to load explorer state from history (based on the supplied anchor path). Default: <code>true</code>.</p>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options overriding <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> and <code>vim.b.minifiles_config</code> for this particular explorer session.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options overriding <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a> and <code>vim.b.minifiles_config</code> for this particular explorer session.</p>
 <hr>
 </section>
 </section>
@@ -1114,7 +1144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Reset explorer</p>
 <ul>
-<li><p>Show single window focused on anchor directory (which was used as first argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>).</p></li>
+<li><p>Show single window focused on anchor directory (which was used as first argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a>).</p></li>
 <li><p>Reset all tracked directory cursors to point at first entry.</p></li>
 </ul>
 <hr>
@@ -1140,7 +1170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Depends on entry under cursor:</p>
 <ul>
 <li><p>If directory, focus on it in the window to the right.</p></li>
-<li><p>If file, open it in the window which was current during <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>. Explorer is not closed after that.</p></li>
+<li><p>If file, open it in the window which was current during <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a>. Explorer is not closed after that.</p></li>
 </ul>
 <section id="minifiles.go_in-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.go_in-parameters">Parameters</h4>
@@ -1239,8 +1269,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minifiles.get_explorer_state-return">Return</h4>
 <p><code>(table|nil)</code> Table with explorer state data or <code>nil</code> if no active explorer. State data is a table with the following fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;anchor&gt;</span> <code>(string)</code> - anchor directory path (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a>).</p></li>
-<li><p><span class="help-syntax-keys">&lt;bookmarks&gt;</span> <code>(table)</code> - map from bookmark id (single character) to its data: table with <span class="help-syntax-keys">&lt;path&gt;</span> and <span class="help-syntax-keys">&lt;desc&gt;</span> fields (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;anchor&gt;</span> <code>(string)</code> - anchor directory path (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;bookmarks&gt;</span> <code>(table)</code> - map from bookmark id (single character) to its data: table with <span class="help-syntax-keys">&lt;path&gt;</span> and <span class="help-syntax-keys">&lt;desc&gt;</span> fields (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark">MiniFiles.set_bookmark()</a>).</p></li>
 <li><p><span class="help-syntax-keys">&lt;branch&gt;</span> <code>(table)</code> - array of nested paths for currently opened branch.</p></li>
 <li><p><span class="help-syntax-keys">&lt;depth_focus&gt;</span> <code>(number)</code> - an index in <span class="help-syntax-keys">&lt;branch&gt;</span> for currently focused path.</p></li>
 <li><p><span class="help-syntax-keys">&lt;target_window&gt;</span> <code>(number)</code> - identifier of target window.</p></li>
@@ -1250,9 +1280,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minifiles.get_explorer_state-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.get_explorer_state-seealso">See also</h4>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark"><code>MiniFiles.set_bookmark()</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_branch"><code>MiniFiles.set_branch()</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window"><code>MiniFiles.set_target_window()</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_bookmark">MiniFiles.set_bookmark()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_branch">MiniFiles.set_branch()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-files.html#minifiles.set_target_window">MiniFiles.set_target_window()</a></p></li>
 </ul>
 <hr>
 </section>
@@ -1278,7 +1308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set which paths to display. Preview (if enabled) is applied afterwards.</p>
 <section id="minifiles.set_branch-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.set_branch-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{branch}</span> <code>(table)</code> Array of strings representing actually present on disk paths. Each consecutive pair should represent direct parent-child paths. Should contain at least one directory path. May end with file path (will be previwed). Relative paths are resolved using <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><span class="help-syntax-special">{branch}</span> <code>(table)</code> Array of strings representing actually present on disk paths. Each consecutive pair should represent direct parent-child paths. Should contain at least one directory path. May end with file path (will be previwed). Relative paths are resolved using <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;depth_focus&gt;</span> <code>(number)</code> - an index in <code>branch</code> for path to focus. Will be normalized to fit inside <code>branch</code>. Default: index of deepest directory.</li>
@@ -1286,7 +1316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles.set_branch-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.set_branch-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state"><code>MiniFiles.get_explorer_state()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-files.html#minifiles.get_explorer_state">MiniFiles.get_explorer_state()</a></p>
 <hr>
 </section>
 </section>
@@ -1313,7 +1343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniFiles.get_latest_path</code>()
 </p>
 <p>Get latest used anchor path</p>
-<p>Note: if latest used <code>path</code> argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open"><code>MiniFiles.open()</code></a> was for file, this will return its parent (as it was used as anchor path).</p>
+<p>Note: if latest used <code>path</code> argument for <a href="../../mini.nvim/doc/mini-files.html#minifiles.open">MiniFiles.open()</a> was for file, this will return its parent (as it was used as anchor path).</p>
 <hr>
 </section>
 <section id="minifiles.default_filter" class="level3">
@@ -1345,7 +1375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Default prefix of file system entries</p>
 <ul>
-<li><p>If set up <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a>, use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get"><code>MiniIcons.get()</code></a> for “directory”/“file” category.</p></li>
+<li><p>If set up <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a>, use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> for “directory”/“file” category.</p></li>
 <li><p>Otherwise:</p>
 <ul>
 <li><p>For directory return fixed icon and “MiniFilesDirectory” group name.</p></li>
@@ -1363,7 +1393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minifiles.default_prefix-return" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.default_prefix-return">Return</h4>
-<p><code>(...)</code> Icon and highlight group name. For more details, see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config"><code>MiniFiles.config</code></a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples"><code>MiniFiles-examples</code></a>.</p>
+<p><code>(...)</code> Icon and highlight group name. For more details, see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a> and <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples">MiniFiles-examples</a>.</p>
 <hr>
 </section>
 </section>

@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.git documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minigit" id="toc-minigit" class="nav-link active" data-scroll-target="#minigit">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minigit-setup" id="toc-minigit-setup" class="nav-link" data-scroll-target="#minigit-setup">Setup</a></li>
-  <li><a href="#minigit-comparisons" id="toc-minigit-comparisons" class="nav-link" data-scroll-target="#minigit-comparisons">Comparisons</a></li>
-  <li><a href="#minigit-disabling" id="toc-minigit-disabling" class="nav-link" data-scroll-target="#minigit-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minigit-examples" id="toc-minigit-examples" class="nav-link" data-scroll-target="#minigit-examples">Examples</a>
   <ul>
@@ -434,43 +435,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.git" href="../../mini.nvim/doc/mini-git.html#mini.git"><b>mini.git</b></a> Git integration</p>
 <p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
 <hr>
-<section id="minigit" class="level3">
-<h3 class="anchored" data-anchor-id="minigit">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Automated tracking of Git related data: root path, status, HEAD, etc. Exposes buffer-local variables for convenient use in statusline. See <a href="../../mini.nvim/doc/mini-git.html#minigit.enable"><code>MiniGit.enable()</code></a> and <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data"><code>MiniGit.get_buf_data()</code></a> for more information.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command for executing any <code>git</code> call inside file’s repository root with deeper current instance integration (show output as notification/buffer, use to edit commit messages, etc.).</p></li>
+<li><p>Automated tracking of Git related data: root path, status, HEAD, etc. Exposes buffer-local variables for convenient use in statusline. See <a href="../../mini.nvim/doc/mini-git.html#minigit.enable">MiniGit.enable()</a> and <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data">MiniGit.get_buf_data()</a> for more information.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command for executing any <code>git</code> call inside file’s repository root with deeper current instance integration (show output as notification/buffer, use to edit commit messages, etc.).</p></li>
 <li><p>Helper functions to inspect Git history:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history"><code>MiniGit.show_range_history()</code></a> shows how certain line range evolved.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source"><code>MiniGit.show_diff_source()</code></a> shows file state as it was at diff entry.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_at_cursor"><code>MiniGit.show_at_cursor()</code></a> shows Git related data depending on context.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history">MiniGit.show_range_history()</a> shows how certain line range evolved.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source">MiniGit.show_diff_source()</a> shows file state as it was at diff entry.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.show_at_cursor">MiniGit.show_at_cursor()</a> shows Git related data depending on context.</p></li>
 </ul></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
-<li>Replace fully featured Git client. Rule of thumb: if feature does not rely on a state of current Neovim (opened buffers, etc.), it is out of scope. For more functionality, use either <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> or fully featured Git client.</li>
+<li>Replace fully featured Git client. Rule of thumb: if feature does not rely on a state of current Neovim (opened buffers, etc.), it is out of scope. For more functionality, use either <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> or fully featured Git client.</li>
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit-examples"><code>MiniGit-examples</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.enable"><code>MiniGit.enable()</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data"><code>MiniGit.get_buf_data()</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#git">:Git</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit-examples">MiniGit-examples</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.enable">MiniGit.enable()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data">MiniGit.get_buf_data()</a></p></li>
 </ul>
-<section id="minigit-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minigit-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.git').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniGit</code> which you can use for scripting or manually (with <code>:lua MiniGit.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-git.html#minigit.config"><code>MiniGit.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-git.html#minigit.config">MiniGit.config</a> for <code>config</code> structure and default values.</p>
 </section>
-<section id="minigit-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minigit-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/tpope/vim-fugitive">tpope/vim-fugitive</a>:</p>
 <ul>
 <li><p>Mostly a dedicated Git client, while this module is not (by design).</p></li>
 <li><p>Provides buffer-local Git data only through fixed statusline component, while this module has richer data in the form of a Lua table.</p></li>
-<li><p>Both provide <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command with ‘vim-fugitive’ treating some cases extra specially (like <code>:Git blame</code>, etc.), while this module mostly treats all cases the same. See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples"><code>MiniGit-examples</code></a> for how they can be manually customized. Also this module provides slightly different (usually richer) completion suggestions.</p></li>
+<li><p>Both provide <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command with ‘vim-fugitive’ treating some cases extra specially (like <code>:Git blame</code>, etc.), while this module mostly treats all cases the same. See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples">MiniGit-examples</a> for how they can be manually customized. Also this module provides slightly different (usually richer) completion suggestions.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/NeogitOrg/neogit">NeogitOrg/neogit</a>:</p>
 <ul>
@@ -478,13 +479,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a>:</p>
 <ul>
-<li>Provides buffer-local Git data with emphasis on granular diff status, while this module is more oriented towards repository and file level data (root, HEAD, file status, etc.). Use <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a> for diff tracking.</li>
+<li>Provides buffer-local Git data with emphasis on granular diff status, while this module is more oriented towards repository and file level data (root, HEAD, file status, etc.). Use <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> for diff tracking.</li>
 </ul></li>
 </ul>
 </section>
-<section id="minigit-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minigit-disabling">Disabling</h4>
-<p>To prevent buffer(s) from being tracked, set <code>vim.g.minigit_disable</code> (globally) or <code>vim.b.minigit_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To prevent buffer(s) from being tracked, set <code>vim.g.minigit_disable</code> (globally) or <code>vim.b.minigit_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -505,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minigit-examples-tweakingcommandoutput" class="level4">
 <h4 class="anchored" data-anchor-id="minigit-examples-tweakingcommandoutput">Tweaking command output</h4>
-<p>Buffer output of <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command can be tweaked inside autocommand for <code>MiniGitCommandSplit</code> <code>User</code> event (see <a href="../../mini.nvim/doc/mini-git.html#minigit-command-events"><code>MiniGit-command-events</code></a>). For example, to make <code>:vertical Git blame -- %</code> align blame output with the current window state, use the following code:</p>
+<p>Buffer output of <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command can be tweaked inside autocommand for <code>MiniGitCommandSplit</code> <code>User</code> event (see <a href="../../mini.nvim/doc/mini-git.html#minigit-command-events">MiniGit-command-events</a>). For example, to make <code>:vertical Git blame -- %</code> align blame output with the current window state, use the following code:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">align_blame</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">au_data</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">au_data</span><span class="op">.</span><span class="va">data</span><span class="op">.</span><span class="va">git_subcommand</span> <span class="op">~=</span> <span class="st">'blame'</span> <span class="cf">then</span> <span class="cf">return</span> <span class="cf">end</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -524,9 +525,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minigit-examples-historynavigation" class="level4">
 <h4 class="anchored" data-anchor-id="minigit-examples-historynavigation">History navigation</h4>
-<p>Function <a href="../../mini.nvim/doc/mini-git.html#minigit.show_at_cursor"><code>MiniGit.show_at_cursor()</code></a> is specifically exported to make Git history navigation easier. Here are some different ways it can be used:</p>
+<p>Function <a href="../../mini.nvim/doc/mini-git.html#minigit.show_at_cursor">MiniGit.show_at_cursor()</a> is specifically exported to make Git history navigation easier. Here are some different ways it can be used:</p>
 <ul>
-<li><p>Call inside buffer for already committed file to show the evolution of the current line (or visually selected range) through history. It is essentially a <code>:Git log HEAD</code> with proper <code>-L</code> flag. This also works inside output of <a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source"><code>MiniGit.show_diff_source()</code></a>.</p></li>
+<li><p>Call inside buffer for already committed file to show the evolution of the current line (or visually selected range) through history. It is essentially a <code>:Git log HEAD</code> with proper <code>-L</code> flag. This also works inside output of <a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source">MiniGit.show_diff_source()</a>.</p></li>
 <li><p>Call with cursor on commit hash to inspect that commit in full. This is usually helpful in the output of <code>:Git log</code>.</p></li>
 <li><p>Call with cursor inside diff entry to inspect its file in the state how it was at certain commit. By default it shows state after commit, unless cursor is on the “deleted” line (i.e.&nbsp;line starting with “-”) in which case state before commit is shown.</p></li>
 </ul>
@@ -540,20 +541,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="git">:Git</h3>
 <p>The <code>:Git</code> user command runs <code>git</code> CLI call with extra integration for currently opened Neovim process:</p>
 <ul>
-<li><p>Command is executed inside repository root of the currently active file (or <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> if file is not tracked by this module).</p></li>
-<li><p>Command output is shown either in dedicated buffer in window split or as notification via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a>. Which method is used depends on whether particular Git subcommand is supposed to show data for user to inspect (like <code>log</code>, <code>status</code>, etc.) or not (like <code>commit</code>, <code>push</code>, etc.). This is determined automatically based on the data Git itself provides. Split window is made current after command execution.</p>
-<p>Use split-related <a href="https://neovim.io/doc/user/helptag.html?tag=:command-modifiers"><code>:command-modifiers</code></a> (<a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:horizontal"><code>:horizontal</code></a>, or <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a>) to force output in a particular type of split. Default split direction is controlled by <code>command.split</code> in <a href="../../mini.nvim/doc/mini-git.html#minigit.config"><code>MiniGit.config</code></a>.</p>
-<p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:silent"><code>:silent</code></a> command modifier to not show any output.</p>
+<li><p>Command is executed inside repository root of the currently active file (or <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> if file is not tracked by this module).</p></li>
+<li><p>Command output is shown either in dedicated buffer in window split or as notification via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a>. Which method is used depends on whether particular Git subcommand is supposed to show data for user to inspect (like <code>log</code>, <code>status</code>, etc.) or not (like <code>commit</code>, <code>push</code>, etc.). This is determined automatically based on the data Git itself provides. Split window is made current after command execution.</p>
+<p>Use split-related <a href="https://neovim.io/doc/user/helptag.html?tag=:command-modifiers">:command-modifiers</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:horizontal">:horizontal</a>, or <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a>) to force output in a particular type of split. Default split direction is controlled by <code>command.split</code> in <a href="../../mini.nvim/doc/mini-git.html#minigit.config">MiniGit.config</a>.</p>
+<p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:silent">:silent</a> command modifier to not show any output.</p>
 <p>Errors and warnings are always shown as notifications.</p>
-<p>See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples"><code>MiniGit-examples</code></a> for the example of tweaking command output.</p></li>
-<li><p>Editor for tasks that require interactive user input (like <code>:Git commit</code> or <code>:Git rebase --interactive</code>) is opened inside current session in a separate split. Make modifications as in regular buffer, <a href="https://neovim.io/doc/user/helptag.html?tag=:write"><code>:write</code></a> changes followed by <a href="https://neovim.io/doc/user/helptag.html?tag=:close"><code>:close</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:quit"><code>:quit</code></a> for Git CLI command to resume.</p></li>
+<p>See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples">MiniGit-examples</a> for the example of tweaking command output.</p></li>
+<li><p>Editor for tasks that require interactive user input (like <code>:Git commit</code> or <code>:Git rebase --interactive</code>) is opened inside current session in a separate split. Make modifications as in regular buffer, <a href="https://neovim.io/doc/user/helptag.html?tag=:write">:write</a> changes followed by <a href="https://neovim.io/doc/user/helptag.html?tag=:close">:close</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=:quit">:quit</a> for Git CLI command to resume.</p></li>
 </ul>
 <p>Examples of usage:</p>
 <ul>
 <li><p><code>:Git log --oneline</code> - show compact log of current repository.</p></li>
 <li><p><code>:vert Git blame -- %</code> - show latest commits per line in vertical split.</p></li>
 <li><p><code>:Git help rebase</code> - show help page for <code>rebase</code> subcommand.</p></li>
-<li><p><code>:Git -C &lt;cwd&gt; status</code> - execute <code>git status</code> inside <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p></li>
+<li><p><code>:Git -C &lt;cwd&gt; status</code> - execute <code>git status</code> inside <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p></li>
 </ul>
 <p>There is also a context aware completion which can be invoked with <code>&lt;Tab&gt;</code>:</p>
 <ul>
@@ -563,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Paths are always treated as relative to command’s execution directory (file’s repository root or <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> if absent).</p></li>
+<li><p>Paths are always treated as relative to command’s execution directory (file’s repository root or <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> if absent).</p></li>
 <li><p>Don’t use quotes for entries containing space, escape it with <code>\</code> directly. Like <code>:Git commit -m Hello\ world</code> and not <code>:Git commit -m 'Hello world'</code> (which treats <code>'Hello</code> and <code>world'</code> as separate arguments).</p></li>
 </ul>
 <section id="git-events" class="level4">
@@ -573,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>MiniGitCommandDone</code> - after command is done executing. For Lua callbacks it provides a special <code>data</code> table with the following fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;cmd_input&gt;</span> <code>(table)</code> - structured data about executed command. Has same structure as Lua function input in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_user_command()"><code>nvim_create_user_command()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;cmd_input&gt;</span> <code>(table)</code> - structured data about executed command. Has same structure as Lua function input in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_user_command()">nvim_create_user_command()</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;cwd&gt;</span> <code>(string)</code> - directory path inside which Git command was executed.</p></li>
 <li><p><span class="help-syntax-keys">&lt;exit_code&gt;</span> <code>(number)</code> - exit code of CLI process.</p></li>
 <li><p><span class="help-syntax-keys">&lt;git_command&gt;</span> <code>(table)</code> - array with arguments of full executed command.</p></li>
@@ -596,14 +597,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniGit.setup</code>(<span class="help-syntax-special">{config}</span>)
 </p>
 <p>Module setup</p>
-<p>Besides general side effects (see <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim"><code>mini.nvim</code></a>), it also:</p>
+<p>Besides general side effects (see <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim">mini.nvim</a>), it also:</p>
 <ul>
 <li><p>Sets up auto enabling in every normal buffer for an actual file on disk.</p></li>
-<li><p>Creates <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command.</p></li>
+<li><p>Creates <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command.</p></li>
 </ul>
 <section id="minigit.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-git.html#minigit.config"><code>MiniGit.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-git.html#minigit.config">MiniGit.config</a>.</p>
 </section>
 <section id="minigit.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.setup-usage">Usage</h4>
@@ -645,8 +646,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minigit.config-command" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.config-command">Command</h4>
-<p><code>config.command</code> contains options for customizing <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command.</p>
-<p><code>command.split</code> defines default split direction for <a href="../../mini.nvim/doc/mini-git.html#git"><code>:Git</code></a> command output. Can be one of “horizontal”, “vertical”, “tab”, or “auto”. Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a> otherwise. Default: “auto”.</p>
+<p><code>config.command</code> contains options for customizing <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command.</p>
+<p><code>command.split</code> defines default split direction for <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command output. Can be one of “horizontal”, “vertical”, “tab”, or “auto”. Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a> otherwise. Default: “auto”.</p>
 <hr>
 </section>
 </section>
@@ -657,17 +658,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Show Git related data at cursor</p>
 <ul>
-<li><p>If inside <a href="../../mini.nvim/doc/mini-deps.html#mini.deps"><code>mini.deps</code></a> confirmation buffer, show in split relevant commit data.</p></li>
-<li><p>If there is a commit-like <a href="https://neovim.io/doc/user/helptag.html?tag=%3Ccword%3E"><code>&lt;cword&gt;</code></a>, show it in split.</p></li>
-<li><p>If possible, show diff source via <a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source"><code>MiniGit.show_diff_source()</code></a>.</p></li>
-<li><p>If possible, show range history via <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history"><code>MiniGit.show_range_history()</code></a>.</p></li>
+<li><p>If inside <a href="../../mini.nvim/doc/mini-deps.html#mini.deps">mini.deps</a> confirmation buffer, show in split relevant commit data.</p></li>
+<li><p>If there is a commit-like <a href="https://neovim.io/doc/user/helptag.html?tag=%3Ccword%3E"><span class="help-syntax-keys">&lt;cword&gt;</span></a>, show it in split.</p></li>
+<li><p>If possible, show diff source via <a href="../../mini.nvim/doc/mini-git.html#minigit.show_diff_source">MiniGit.show_diff_source()</a>.</p></li>
+<li><p>If possible, show range history via <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history">MiniGit.show_range_history()</a>.</p></li>
 <li><p>Otherwise throw an error.</p></li>
 </ul>
 <section id="minigit.show_at_cursor-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.show_at_cursor-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a> otherwise.</p></li>
+<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a> otherwise.</p></li>
 <li><p>Fields appropriate for forwarding to other functions.</p></li>
 </ul>
 <hr>
@@ -679,10 +680,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniGit.show_diff_source</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Show diff source</p>
-<p>When buffer contains text formatted as unified patch (like after <code>:Git log --patch</code>, <code>:Git diff</code>, or <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history"><code>MiniGit.show_range_history()</code></a>), show state of the file at the particular state. Target commit/state, path, and line number are deduced from cursor position.</p>
+<p>When buffer contains text formatted as unified patch (like after <code>:Git log --patch</code>, <code>:Git diff</code>, or <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history">MiniGit.show_range_history()</a>), show state of the file at the particular state. Target commit/state, path, and line number are deduced from cursor position.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Needs <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> to be the Git root for relative paths to work.</p></li>
+<li><p>Needs <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> to be the Git root for relative paths to work.</p></li>
 <li><p>Needs cursor to be inside hunk lines or on “—” / “+++” lines with paths.</p></li>
 <li><p>Only basic forms of <code>:Git diff</code> output is supported: <code>:Git diff</code>, <code>:Git diff --cached</code>, and <code>:Git diff &lt;commit&gt;</code>.</p></li>
 </ul>
@@ -690,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minigit.show_diff_source-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a> otherwise.</p></li>
+<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a> otherwise.</p></li>
 <li><p><span class="help-syntax-keys">&lt;target&gt;</span> <code>(string)</code> - which file state to show. One of “before”, “after”, “both” (both states in vertical split), “auto” (default). Value “auto” shows “before” state if cursor line starts with “-”, otherwise - “after”.</p></li>
 </ul>
 <hr>
@@ -705,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Compute and show in split data about how particular line range in current buffer evolved through Git history. Essentially a <code>git log</code> with <code>-L</code> flag.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Works well with <a href="../../mini.nvim/doc/mini-git.html#minigit.diff_foldexpr"><code>MiniGit.diff_foldexpr()</code></a>.</p></li>
+<li><p>Works well with <a href="../../mini.nvim/doc/mini-git.html#minigit.diff_foldexpr">MiniGit.diff_foldexpr()</a>.</p></li>
 <li><p>Does not work if there are uncommited changes, as there is no easy way to compute effective range line numbers.</p></li>
 </ul>
 <section id="minigit.show_range_history-parameters" class="level4">
@@ -715,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;line_start&gt;</span> <code>(number)</code> - range start line.</p></li>
 <li><p><span class="help-syntax-keys">&lt;line_end&gt;</span> <code>(number)</code> - range end line. If both <span class="help-syntax-keys">&lt;line_start&gt;</span> and <span class="help-syntax-keys">&lt;line_end&gt;</span> are not supplied, they default to current line in Normal mode and visual selection in Visual mode.</p></li>
 <li><p><span class="help-syntax-keys">&lt;log_args&gt;</span> <code>(table)</code> - array of options to append to <code>git log</code> call.</p></li>
-<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a> otherwise.</p></li>
+<li><p><span class="help-syntax-keys">&lt;split&gt;</span> <code>(string)</code> - split direction. One of “horizontal”, “vertical”, “tab”, or “auto” (default). Value “auto” uses <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a> if only ‘mini.git’ buffers are shown in the tabpage and <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a> otherwise.</p></li>
 </ul>
 <hr>
 </section>
@@ -726,23 +727,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniGit.diff_foldexpr</code>(<span class="help-syntax-special">{lnum}</span>)
 </p>
 <p>Fold expression for Git logs</p>
-<p>Folds contents of hunks, file patches, and log entries in unified diff. Useful for filetypes “diff” (like after <code>:Git diff</code>) and “git” (like after <code>:Git log --patch</code> or <code>:Git show</code> for commit). Works well with <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history"><code>MiniGit.show_range_history()</code></a>.</p>
-<p>General idea of folding levels (use <a href="https://neovim.io/doc/user/helptag.html?tag=zr"><code>zr</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=zm"><code>zm</code></a> to adjust interactively):</p>
+<p>Folds contents of hunks, file patches, and log entries in unified diff. Useful for filetypes “diff” (like after <code>:Git diff</code>) and “git” (like after <code>:Git log --patch</code> or <code>:Git show</code> for commit). Works well with <a href="../../mini.nvim/doc/mini-git.html#minigit.show_range_history">MiniGit.show_range_history()</a>.</p>
+<p>General idea of folding levels (use <a href="https://neovim.io/doc/user/helptag.html?tag=zr">zr</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=zm">zm</a> to adjust interactively):</p>
 <ul>
 <li><p>At level 0 there is one line per whole patch or log entry.</p></li>
 <li><p>At level 1 there is one line per patched file.</p></li>
 <li><p>At level 2 there is one line per hunk.</p></li>
 <li><p>At level 3 there is no folds.</p></li>
 </ul>
-<p>For automated setup, set the following for “git” and “diff” filetypes (either inside <a href="https://neovim.io/doc/user/helptag.html?tag=FileType"><code>FileType</code></a> autocommand or <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin"><code>ftplugin</code></a>):</p>
+<p>For automated setup, set the following for “git” and “diff” filetypes (either inside <a href="https://neovim.io/doc/user/helptag.html?tag=FileType">FileType</a> autocommand or <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin">ftplugin</a>):</p>
 <pre class="vim"><code>setlocal foldmethod=expr foldexpr=v:lua.MiniGit.diff_foldexpr()</code></pre>
 <section id="minigit.diff_foldexpr-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.diff_foldexpr-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{lnum}</span> <code>(number|nil)</code> Line number for which fold level is computed. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:lnum"><code>v:lnum</code></a>.</p>
+<p><span class="help-syntax-special">{lnum}</span> <code>(number|nil)</code> Line number for which fold level is computed. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:lnum">v:lnum</a>.</p>
 </section>
 <section id="minigit.diff_foldexpr-return" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.diff_foldexpr-return">Return</h4>
-<p><code>(number|string)</code> Line fold level. See <a href="https://neovim.io/doc/user/helptag.html?tag=fold-expr"><code>fold-expr</code></a>.</p>
+<p><code>(number|string)</code> Line fold level. See <a href="https://neovim.io/doc/user/helptag.html?tag=fold-expr">fold-expr</a>.</p>
 <hr>
 </section>
 </section>
@@ -754,11 +755,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Enable Git tracking in a file buffer</p>
 <p>Tracking is done by reacting to changes in file content or file’s repository in the form of keeping buffer data up to date. The data can be used via:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data"><code>MiniGit.get_buf_data()</code></a>. See its help for a list of actually tracked data.</p></li>
-<li><p><code>vim.b.minigit_summary</code> (table) and <code>vim.b.minigit_summary_string</code> (string) buffer-local variables which are more suitable for statusline. <code>vim.b.minigit_summary_string</code> contains information about HEAD, file status, and in progress action (see <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data"><code>MiniGit.get_buf_data()</code></a> for more details). See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples"><code>MiniGit-examples</code></a> for how it can be tweaked and used in statusline.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data">MiniGit.get_buf_data()</a>. See its help for a list of actually tracked data.</p></li>
+<li><p><code>vim.b.minigit_summary</code> (table) and <code>vim.b.minigit_summary_string</code> (string) buffer-local variables which are more suitable for statusline. <code>vim.b.minigit_summary_string</code> contains information about HEAD, file status, and in progress action (see <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data">MiniGit.get_buf_data()</a> for more details). See <a href="../../mini.nvim/doc/mini-git.html#minigit-examples">MiniGit-examples</a> for how it can be tweaked and used in statusline.</p></li>
 </ul>
 <p>Note: this function is called automatically for all new normal buffers. Use it explicitly if buffer was disabled.</p>
-<p><code>User</code> event <code>MiniGitUpdated</code> is triggered whenever tracking data is updated. Note that not all data listed in <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data"><code>MiniGit.get_buf_data()</code></a> can be present (yet) at the point of event being triggered.</p>
+<p><code>User</code> event <code>MiniGitUpdated</code> is triggered whenever tracking data is updated. Note that not all data listed in <a href="../../mini.nvim/doc/mini-git.html#minigit.get_buf_data">MiniGit.get_buf_data()</a> can be present (yet) at the point of event being triggered.</p>
 <section id="minigit.enable-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.enable-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>

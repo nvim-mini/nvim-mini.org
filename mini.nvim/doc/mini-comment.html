@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.comment documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minicomment" id="toc-minicomment" class="nav-link active" data-scroll-target="#minicomment">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minicomment-setup" id="toc-minicomment-setup" class="nav-link" data-scroll-target="#minicomment-setup">Setup</a></li>
-  <li><a href="#minicomment-disabling" id="toc-minicomment-disabling" class="nav-link" data-scroll-target="#minicomment-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minicomment.setup" id="toc-minicomment.setup" class="nav-link" data-scroll-target="#minicomment.setup">setup()</a>
   <ul>
@@ -408,12 +409,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.comment" href="../../mini.nvim/doc/mini-comment.html#mini.comment"><b>mini.comment</b></a> Comment lines</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minicomment" class="level3">
-<h3 class="anchored" data-anchor-id="minicomment">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Commenting in Normal mode respects <a href="https://neovim.io/doc/user/helptag.html?tag=count"><code>count</code></a> and is dot-repeatable.</p></li>
-<li><p>Comment structure by default is inferred from ‘commentstring’: either from current buffer or from locally active tree-sitter language. It can be customized via <code>options.custom_commentstring</code> (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config"><code>MiniComment.config</code></a> for details).</p></li>
+<li><p>Commenting in Normal mode respects <a href="https://neovim.io/doc/user/helptag.html?tag=count">count</a> and is dot-repeatable.</p></li>
+<li><p>Comment structure by default is inferred from ‘commentstring’: either from current buffer or from locally active tree-sitter language. It can be customized via <code>options.custom_commentstring</code> (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a> for details).</p></li>
 <li><p>Allows custom hooks before and after successful commenting.</p></li>
 <li><p>Configurable options for some nuanced behavior.</p></li>
 </ul>
@@ -427,15 +428,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>To use tree-sitter aware commenting, global value of ‘commentstring’ should be <code>''</code> (empty string). This is the default value, so make sure to not set it manually to a different value.</li>
 </ul>
-<section id="minicomment-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minicomment-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.comment').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniComment</code> which you can use for scripting or manually (with <code>:lua MiniComment.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config"><code>MiniComment.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minicomment_config</code> which should have same structure as <code>MiniComment.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minicomment_config</code> which should have same structure as <code>MiniComment.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minicomment-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minicomment-disabling">Disabling</h4>
-<p>To disable core functionality, set <code>vim.g.minicomment_disable</code> (globally) or <code>vim.b.minicomment_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable core functionality, set <code>vim.g.minicomment_disable</code> (globally) or <code>vim.b.minicomment_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -447,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minicomment.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config"><code>MiniComment.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a>.</p>
 </section>
 <section id="minicomment.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.setup-usage">Usage</h4>
@@ -512,10 +513,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h5 class="anchored" data-anchor-id="minicomment.config-options-customcommentstring">Custom commentstring</h5>
 <p><code>options.custom_commentstring</code> can be a function customizing ‘commentstring’ option used to infer comment structure. It is called once before every commenting action with the following arguments:</p>
 <ul>
-<li><code>ref_position</code> - position at which to compute ‘commentstring’ (might be relevant for a text with locally different commenting rules). Its structure is the same as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines"><code>MiniComment.toggle_lines()</code></a>.</li>
+<li><code>ref_position</code> - position at which to compute ‘commentstring’ (might be relevant for a text with locally different commenting rules). Its structure is the same as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</li>
 </ul>
 <p>Its output should be a valid ‘commentstring’ (string containing <code>%s</code>).</p>
-<p>If not set or the output is <code>nil</code>, <a href="../../mini.nvim/doc/mini-comment.html#minicomment.get_commentstring"><code>MiniComment.get_commentstring()</code></a> is used.</p>
+<p>If not set or the output is <code>nil</code>, <a href="../../mini.nvim/doc/mini-comment.html#minicomment.get_commentstring">MiniComment.get_commentstring()</a> is used.</p>
 <p>For example, this option can be used to always use buffer ‘commentstring’ even in case of present active tree-sitter parser:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.comment'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -547,11 +548,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniComment.operator</code>(<span class="help-syntax-special">{mode}</span>)
 </p>
 <p>Main function to be mapped</p>
-<p>It is meant to be used in expression mappings (see <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E"><code>:map-&lt;expr&gt;</code></a>) to enable dot-repeatability and commenting on range. There is no need to do this manually, everything is done inside <a href="../../mini.nvim/doc/mini-comment.html#minicomment.setup"><code>MiniComment.setup()</code></a>.</p>
+<p>It is meant to be used in expression mappings (see <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a>) to enable dot-repeatability and commenting on range. There is no need to do this manually, everything is done inside <a href="../../mini.nvim/doc/mini-comment.html#minicomment.setup">MiniComment.setup()</a>.</p>
 <p>It has a somewhat unintuitive logic (because of how expression mapping with dot-repeatability works): it should be called without arguments inside expression mapping and with argument when action should be performed.</p>
 <section id="minicomment.operator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.operator-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> Optional string with ‘operatorfunc’ mode (see <a href="https://neovim.io/doc/user/helptag.html?tag=g@"><code>g@</code></a>).</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> Optional string with ‘operatorfunc’ mode (see <a href="https://neovim.io/doc/user/helptag.html?tag=g@">g@</a>).</p>
 </section>
 <section id="minicomment.operator-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.operator-return">Return</h4>
@@ -565,12 +566,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniComment.toggle_lines</code>(<span class="help-syntax-special">{line_start}</span>, <span class="help-syntax-special">{line_end}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Toggle comments between two line numbers</p>
-<p>It uncomments if lines are comment (every line is a comment or blank) and comments otherwise. It respects indentation and doesn’t insert trailing whitespace. Toggle commenting not in visual mode is also dot-repeatable and respects <a href="https://neovim.io/doc/user/helptag.html?tag=count"><code>count</code></a>.</p>
+<p>It uncomments if lines are comment (every line is a comment or blank) and comments otherwise. It respects indentation and doesn’t insert trailing whitespace. Toggle commenting not in visual mode is also dot-repeatable and respects <a href="https://neovim.io/doc/user/helptag.html?tag=count">count</a>.</p>
 <section id="minicomment.toggle_lines-notes" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.toggle_lines-notes">Notes</h4>
 <ul>
 <li><p>Comment structure is inferred from buffer’s ‘commentstring’ option or local language of tree-sitter parser (if active).</p></li>
-<li><p>Call to this function will remove all <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a> from target range.</p></li>
+<li><p>Call to this function will remove all <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a> from target range.</p></li>
 </ul>
 </section>
 <section id="minicomment.toggle_lines-parameters" class="level4">
@@ -590,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniComment.textobject</code>()
 </p>
 <p>Select comment textobject</p>
-<p>This selects all commented lines adjacent to cursor line. If <code>ignore_blank_line</code> option is enabled (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config"><code>MiniComment.config</code></a>), blank lines between commented lines are treated as part of textobject. Designed to be used with operator mode mappings (see <a href="https://neovim.io/doc/user/helptag.html?tag=mapmode-o"><code>mapmode-o</code></a>).</p>
+<p>This selects all commented lines adjacent to cursor line. If <code>ignore_blank_line</code> option is enabled (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a>), blank lines between commented lines are treated as part of textobject. Designed to be used with operator mode mappings (see <a href="https://neovim.io/doc/user/helptag.html?tag=mapmode-o">mapmode-o</a>).</p>
 <hr>
 </section>
 <section id="minicomment.get_commentstring" class="level3">
@@ -607,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minicomment.get_commentstring-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.get_commentstring-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{ref_position}</span> <code>(table)</code> Reference position inside current buffer at which to compute ‘commentstring’. Same structure as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines"><code>MiniComment.toggle_lines()</code></a>.</p>
+<p><span class="help-syntax-special">{ref_position}</span> <code>(table)</code> Reference position inside current buffer at which to compute ‘commentstring’. Same structure as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</p>
 </section>
 <section id="minicomment.get_commentstring-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.get_commentstring-return">Return</h4>

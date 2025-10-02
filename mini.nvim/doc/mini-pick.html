@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.pick documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minipick" id="toc-minipick" class="nav-link active" data-scroll-target="#minipick">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minipick-dependencies" id="toc-minipick-dependencies" class="nav-link" data-scroll-target="#minipick-dependencies">Dependencies</a></li>
-  <li><a href="#minipick-setup" id="toc-minipick-setup" class="nav-link" data-scroll-target="#minipick-setup">Setup</a></li>
-  <li><a href="#minipick-comparisons" id="toc-minipick-comparisons" class="nav-link" data-scroll-target="#minipick-comparisons">Comparisons</a></li>
-  <li><a href="#minipick-highlightgroups" id="toc-minipick-highlightgroups" class="nav-link" data-scroll-target="#minipick-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
   </ul></li>
   <li><a href="#minipick-events" id="toc-minipick-events" class="nav-link" data-scroll-target="#minipick-events">Events</a></li>
   <li><a href="#minipick-overview" id="toc-minipick-overview" class="nav-link" data-scroll-target="#minipick-overview">Overview</a>
@@ -572,14 +573,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.pick" href="../../mini.nvim/doc/mini-pick.html#mini.pick"><b>mini.pick</b></a> Pick anything</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minipick" class="level3">
-<h3 class="anchored" data-anchor-id="minipick">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Single window general purpose interface for picking element from any array.</p></li>
 <li><p>On demand toggleable preview and info views.</p></li>
-<li><p>Interactive query matching (filter+sort) with fast non-blocking default which does fuzzy matching and allows other modes (<a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match"><code>MiniPick.default_match()</code></a>).</p></li>
-<li><p>Built-in pickers (see <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a>):</p>
+<li><p>Interactive query matching (filter+sort) with fast non-blocking default which does fuzzy matching and allows other modes (<a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match">MiniPick.default_match()</a>).</p></li>
+<li><p>Built-in pickers (see <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a>):</p>
 <ul>
 <li><p>Files.</p></li>
 <li><p>Pattern match (for fixed pattern or with live feedback; both allow file filtering via glob patterns).</p></li>
@@ -588,9 +589,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>CLI output.</p></li>
 <li><p>Resume latest picker.</p></li>
 </ul></li>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#pick"><code>:Pick</code></a> command to work with extensible <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry"><code>MiniPick.registry</code></a>.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select"><code>MiniPick.ui_select()</code></a> or save-restore <code>vim.ui.select</code> manually after calling <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup"><code>MiniPick.setup()</code></a>.</p></li>
-<li><p>Rich and customizable built-in <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions"><code>MiniPick-actions</code></a> when picker is active:</p>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#pick">:Pick</a> command to work with extensible <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry">MiniPick.registry</a>.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select">MiniPick.ui_select()</a> or save-restore <code>vim.ui.select</code> manually after calling <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup">MiniPick.setup()</a>.</p></li>
+<li><p>Rich and customizable built-in <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions">MiniPick-actions</a> when picker is active:</p>
 <ul>
 <li><p>Manually change currently focused item.</p></li>
 <li><p>Scroll vertically and horizontally.</p></li>
@@ -599,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Refine current matches (make them part of a new picker).</p></li>
 <li><p>And many more.</p></li>
 </ul></li>
-<li><p>Minimal yet flexible <a href="../../mini.nvim/doc/mini-pick.html#minipick-source"><code>MiniPick-source</code></a> specification with:</p>
+<li><p>Minimal yet flexible <a href="../../mini.nvim/doc/mini-pick.html#minipick-source">MiniPick-source</a> specification with:</p>
 <ul>
 <li><p>Items (array, callable, or manually set later).</p></li>
 <li><p>Source name.</p></li>
@@ -616,22 +617,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>Works on all supported versions but Neovim&gt;=0.10 will give more visual feedback in floating window footer.</p></li>
-<li><p>For more pickers see <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers"><code>MiniExtra.pickers</code></a>.</p></li>
+<li><p>For more pickers see <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers">MiniExtra.pickers</a>.</p></li>
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-overview"><code>MiniPick-overview</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-source"><code>MiniPick-source</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-actions"><code>MiniPick-actions</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-examples"><code>MiniPick-examples</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-overview">MiniPick-overview</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-source">MiniPick-source</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-actions">MiniPick-actions</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-examples">MiniPick-examples</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a></p></li>
 </ul>
-<section id="minipick-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="minipick-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module to show icons near the items for actual paths. Falls back to ‘nvim-tree/nvim-web-devicons’ plugin or no icons will be used.</p></li>
-<li><p><a name="minipick-cli-tools" href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><b>MiniPick-cli-tools</b></a> CLI tool(s) to power <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.files"><code>MiniPick.builtin.files()</code></a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep"><code>MiniPick.builtin.grep()</code></a>, and <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live"><code>MiniPick.builtin.grep_live()</code></a> built-in pickers:</p>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to show icons near the items for actual paths. Falls back to ‘nvim-tree/nvim-web-devicons’ plugin or no icons will be used.</p></li>
+<li><p><a name="minipick-cli-tools" href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><b>MiniPick-cli-tools</b></a> CLI tool(s) to power <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.files">MiniPick.builtin.files()</a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep">MiniPick.builtin.grep()</a>, and <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live">MiniPick.builtin.grep_live()</a> built-in pickers:</p>
 <ul>
 <li><p><code>rg</code> (github.com/BurntSushi/ripgrep; enough for all three; recommended).</p></li>
 <li><p><code>fd</code> (github.com/sharkdp/fd; for <code>files</code> only).</p></li>
@@ -645,21 +646,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minipick-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minipick-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.pick').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniPick</code> which you can use for scripting or manually (with <code>:lua MiniPick.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-pick.html#minipick.config"><code>MiniPick.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minipick_config</code> which should have same structure as <code>MiniPick.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-pick.html#minipick.config">MiniPick.config</a> for available config settings.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minipick_config</code> which should have same structure as <code>MiniPick.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minipick-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minipick-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/nvim-telescope/telescope.nvim">nvim-telescope/telescope.nvim</a>:</p>
 <ul>
 <li><p>The main inspiration for this module, so there is significant overlap.</p></li>
 <li><p>Has three (or two) window UI (prompt, matches, preview), while this module combines everything in one window. It allows more straightforward customization for unusual scenarios.</p></li>
 <li><p>Default match algorithm is somewhat slow, while this module should match relatively lag-free for at least 100K+ items.</p></li>
-<li><p>Has many built-in pickers, while this module has handful at its core relying on other ‘mini.nvim’ modules to provide more (see <a href="../../mini.nvim/doc/mini-extra.html#mini.extra"><code>mini.extra</code></a>).</p></li>
+<li><p>Has many built-in pickers, while this module has handful at its core relying on other ‘mini.nvim’ modules to provide more (see <a href="../../mini.nvim/doc/mini-extra.html#mini.extra">mini.extra</a>).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/ibhagwan/fzf-lua">ibhagwan/fzf-lua</a>:</p>
 <ul>
@@ -668,8 +669,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minipick-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minipick-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniPickBorder</code> - window border.</p></li>
 <li><p><code>MiniPickBorderBusy</code> - window border while picker is busy processing.</p></li>
@@ -688,13 +689,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniPickPromptCaret</code> - caret in prompt.</p></li>
 <li><p><code>MiniPickPromptPrefix</code> - prefix of the prompt.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 <hr>
 </section>
 </section>
 <section id="minipick-events" class="level3">
 <h3 class="anchored" data-anchor-id="minipick-events">Events</h3>
-<p>To allow user customization and integration of external tools, certain <a href="https://neovim.io/doc/user/helptag.html?tag=User"><code>User</code></a> autocommand events are triggered under common circumstances:</p>
+<p>To allow user customization and integration of external tools, certain <a href="https://neovim.io/doc/user/helptag.html?tag=User">User</a> autocommand events are triggered under common circumstances:</p>
 <ul>
 <li><p><code>MiniPickMatch</code> - just after updating query matches or setting items.</p></li>
 <li><p><code>MiniPickStart</code> - just after picker has started.</p></li>
@@ -708,9 +709,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick-overview-howtostartapicker" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-overview-howtostartapicker">How to start a picker</h4>
 <ul>
-<li><p>Use <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a> with <code>opts.source</code> defining <a href="../../mini.nvim/doc/mini-pick.html#minipick-source"><code>MiniPick-source</code></a>. Example: <code>MiniPick.start({ source = { items = vim.fn.readdir('.') } })</code></p></li>
-<li><p>Use any of <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a> pickers directly. Example: <code>MiniPick.builtin.files({ tool = 'git' })</code></p></li>
-<li><p>Use <a href="../../mini.nvim/doc/mini-pick.html#pick"><code>:Pick</code></a> command which uses customizable pickers from <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry"><code>MiniPick.registry</code></a>. Example: <code>:Pick files tool='git'</code></p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a> with <code>opts.source</code> defining <a href="../../mini.nvim/doc/mini-pick.html#minipick-source">MiniPick-source</a>. Example: <code>MiniPick.start({ source = { items = vim.fn.readdir('.') } })</code></p></li>
+<li><p>Use any of <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a> pickers directly. Example: <code>MiniPick.builtin.files({ tool = 'git' })</code></p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-pick.html#pick">:Pick</a> command which uses customizable pickers from <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry">MiniPick.registry</a>. Example: <code>:Pick files tool='git'</code></p></li>
 </ul>
 </section>
 <section id="minipick-overview-userinterface" class="level4">
@@ -733,7 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick-overview-lifecycle" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-overview-lifecycle">Life cycle</h4>
 <ul>
-<li><p>Type characters to filter and sort matches. It uses <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match"><code>MiniPick.default_match()</code></a> with <code>query</code> being an array of pressed characters. Overview of how it matches:</p>
+<li><p>Type characters to filter and sort matches. It uses <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match">MiniPick.default_match()</a> with <code>query</code> being an array of pressed characters. Overview of how it matches:</p>
 <ul>
 <li><p>If query starts with <code>'</code>, the match is exact.</p></li>
 <li><p>If query starts with <code>^</code>, the match is exact at start.</p></li>
@@ -742,7 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Otherwise match is fuzzy.</p></li>
 <li><p>Sorting is done to first minimize match width and then match start. Nothing more: no favoring certain places in string, etc.</p></li>
 </ul></li>
-<li><p>Type special keys to perform <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions"><code>MiniPick-actions</code></a>. Here are some basic ones:</p>
+<li><p>Type special keys to perform <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions">MiniPick-actions</a>. Here are some basic ones:</p>
 <ul>
 <li><p><code>&lt;C-n&gt;</code> / <code>&lt;Down&gt;</code> moves down; <code>&lt;C-p&gt;</code> / <code>&lt;Up&gt;</code> moves up.</p></li>
 <li><p><code>&lt;Left&gt;</code> / <code>&lt;Right&gt;</code> moves prompt caret left / right.</p></li>
@@ -768,11 +769,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minipick-source">Source</h3>
 <p>Source is defined as a <code>source</code> field inside one of (in increasing priority):</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick.config"><code>MiniPick.config</code></a> - has global effect.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick.config">MiniPick.config</a> - has global effect.</p></li>
 <li><p><code>vim.b.minipick_config</code> - has buffer-local effect.</p></li>
 <li><p><code>opts.source</code> in picker call - has effect for that particular call.</p></li>
 </ul>
-<p>Example of source to choose from <a href="https://neovim.io/doc/user/helptag.html?tag=arglist"><code>arglist</code></a>:</p>
+<p>Example of source to choose from <a href="https://neovim.io/doc/user/helptag.html?tag=arglist">arglist</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">items</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span><span class="va">argv</span><span class="op">,</span> <span class="va">name</span> <span class="op">=</span> <span class="st">'Arglist'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note: this is mostly useful for writing pickers. Can safely skip if you want to just use provided pickers.</p>
 <section id="minipick-source-items" class="level4">
@@ -781,21 +782,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>source.items</code> defines items to choose from. It should be one of the following:</p>
 <ul>
 <li><p>Array of objects which can have different types. Any type is allowed.</p></li>
-<li><p><code>nil</code>. Picker waits for explicit <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items"><code>MiniPick.set_picker_items()</code></a> call.</p></li>
-<li><p>Callable returning any of the previous types. Will be called once on start with source’s <code>cwd</code> set as <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p></li>
+<li><p><code>nil</code>. Picker waits for explicit <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items">MiniPick.set_picker_items()</a> call.</p></li>
+<li><p>Callable returning any of the previous types. Will be called once on start with source’s <code>cwd</code> set as <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p></li>
 </ul>
 <p><a name="minipick-source.items-stritems" href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems"><b>MiniPick-source.items-stritems</b></a> Matching is done for items array based on the string representation of its elements (here called “stritems”). For single item it is computed as follows:</p>
 <ul>
 <li><p>Callable is called once with output used in next steps.</p></li>
 <li><p>String item is used as is.</p></li>
 <li><p>String <span class="help-syntax-keys">&lt;text&gt;</span> field of table item is used (if present).</p></li>
-<li><p>Use output of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()"><code>vim.inspect()</code></a>.</p></li>
+<li><p>Use output of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()">vim.inspect()</a>.</p></li>
 </ul>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">items</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'aaa.txt'</span><span class="op">,</span> <span class="op">{</span> <span class="va">text</span> <span class="op">=</span> <span class="st">'bbb'</span> <span class="op">},</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="st">'ccc'</span> <span class="kw">end</span> <span class="op">}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- corresponding stritems are { 'aaa.txt', 'bbb', 'ccc' }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Default value is <code>nil</code>, assuming it always be supplied by the caller.</p>
-<p><a name="minipick-source.items-common" href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><b>MiniPick-source.items-common</b></a> There are some recommendations for common item types in order for them to work out of the box with <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_show"><code>MiniPick.default_show()</code></a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_preview"><code>MiniPick.default_preview()</code></a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose"><code>MiniPick.default_choose()</code></a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose_marked"><code>MiniPick.default_choose_marked()</code></a>:</p>
+<p><a name="minipick-source.items-common" href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><b>MiniPick-source.items-common</b></a> There are some recommendations for common item types in order for them to work out of the box with <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_show">MiniPick.default_show()</a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_preview">MiniPick.default_preview()</a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose">MiniPick.default_choose()</a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose_marked">MiniPick.default_choose_marked()</a>:</p>
 <ul>
 <li><p>Path (file or directory). Use string or <code>path</code> field of a table. Path can be either absolute, relative to the <code>source.cwd</code>, or have a general URI format (only if supplied as table field). Examples: <code>'aaa.txt'</code>, <code>{ path = 'aaa.txt' }</code></p></li>
 <li><p>Buffer. Use buffer id as number, string, or <code>bufnr</code> / <code>buf_id</code> / <code>buf</code> field of a table (any name is allowed). Examples: <code>1</code>, <code>'1'</code>, <code>{ bufnr = 1 }</code>, <code>{ buf_id = 1 }</code>, <code>{ buf = 1 }</code></p></li>
@@ -804,7 +805,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Position in file or buffer. Use table representation with <code>lnum</code> and <code>col</code> fields with line and column numbers (starting from 1) or string in “<span class="help-syntax-keys">&lt;path&gt;</span>\0<span class="help-syntax-keys">&lt;line&gt;</span>\0<span class="help-syntax-keys">&lt;col&gt;</span>” format (<code>\0</code> is an actual null character, don’t escape the slash; may need to be <code>\000</code>). Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">path</span> <span class="op">=</span> <span class="st">'aaa.txt'</span><span class="op">,</span> <span class="va">lnum</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">3</span> <span class="op">},</span> <span class="st">'aaa.txt</span><span class="sc">\0</span><span class="st">'</span> <span class="op">..</span> <span class="st">'2</span><span class="sc">\000</span><span class="st">3'</span><span class="op">,</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">bufnr</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">lnum</span> <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">4</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Region in file or buffer. Use table representation with <code>lnum</code>, <code>col</code>, <code>end_lnum</code>, <code>end_col</code> fields for start and end line/column. All numbers start from 1, end line is inclusive, end column is exclusive. This naming is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=getqflist()"><code>getqflist()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=diagnostic-structure"><code>diagnostic-structure</code></a>. Examples:</p>
+<li><p>Region in file or buffer. Use table representation with <code>lnum</code>, <code>col</code>, <code>end_lnum</code>, <code>end_col</code> fields for start and end line/column. All numbers start from 1, end line is inclusive, end column is exclusive. This naming is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=getqflist()">getqflist()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=diagnostic-structure">diagnostic-structure</a>. Examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">path</span> <span class="op">=</span> <span class="st">'aaa.txt'</span><span class="op">,</span> <span class="va">lnum</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="va">end_lnum</span> <span class="op">=</span> <span class="dv">4</span><span class="op">,</span> <span class="va">end_col</span> <span class="op">=</span> <span class="dv">5</span> <span class="op">},</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">bufnr</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">lnum</span> <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">4</span><span class="op">,</span> <span class="va">end_lnum</span> <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> <span class="va">end_col</span> <span class="op">=</span> <span class="dv">6</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
@@ -819,26 +820,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick-source-currentworkingdirectory" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-currentworkingdirectory">Current working directory</h4>
 <p><a name="minipick-source.cwd" href="../../mini.nvim/doc/mini-pick.html#minipick-source.cwd"><b>MiniPick-source.cwd</b></a></p>
-<p><code>source.cwd</code> is a string defining the current working directory in which picker operates. It should point to a valid actually present directory path. This is a part of source to allow persistent way to use relative paths, i.e.&nbsp;not depend on current directory being constant after picker start. It also makes the <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.resume"><code>MiniPick.builtin.resume()</code></a> picker more robust.</p>
-<p>It will be set as local <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a> (<a href="https://neovim.io/doc/user/helptag.html?tag=:lcd"><code>:lcd</code></a>) of picker’s main window to allow simpler code for “in window” functions (choose/preview/custom/etc.).</p>
-<p>Default value is <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory"><code>current-directory</code></a>.</p>
+<p><code>source.cwd</code> is a string defining the current working directory in which picker operates. It should point to a valid actually present directory path. This is a part of source to allow persistent way to use relative paths, i.e.&nbsp;not depend on current directory being constant after picker start. It also makes the <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.resume">MiniPick.builtin.resume()</a> picker more robust.</p>
+<p>It will be set as local <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=:lcd">:lcd</a>) of picker’s main window to allow simpler code for “in window” functions (choose/preview/custom/etc.).</p>
+<p>Default value is <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 </section>
 <section id="minipick-source-match" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-match">Match</h4>
 <p><a name="minipick-source.match" href="../../mini.nvim/doc/mini-pick.html#minipick-source.match"><b>MiniPick-source.match</b></a></p>
-<p><code>source.match</code> is a callable defining how stritems (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems"><code>MiniPick-source.items-stritems</code></a>) are matched (filtered and sorted) based on the query.</p>
+<p><code>source.match</code> is a callable defining how stritems (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems">MiniPick-source.items-stritems</a>) are matched (filtered and sorted) based on the query.</p>
 <p>It will be called with the following arguments:</p>
 <ul>
 <li><p><code>stritems</code> - all available stritems for current picker.</p></li>
 <li><p><code>inds</code> - array of <code>stritems</code> indexes usually pointing at current matches. It does point to current matches in the case of interactively appending character at the end of the query. It assumes that matches for such bigger query is a subset of previous matches (implementation can ignore it). This can be utilized to increase performance by checking fewer stritems.</p></li>
-<li><p><code>query</code> - array of strings. Usually (like is common case of user interactively typing query) each string represents one character. However, any strings are allowed, as query can be set with <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_query"><code>MiniPick.set_picker_query()</code></a>.</p></li>
+<li><p><code>query</code> - array of strings. Usually (like is common case of user interactively typing query) each string represents one character. However, any strings are allowed, as query can be set with <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_query">MiniPick.set_picker_query()</a>.</p></li>
 </ul>
-<p>It should either return array of match indexes for stritems elements matching the query (synchronous) or explicitly use <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds"><code>MiniPick.set_picker_match_inds()</code></a> to set them (may be asynchronous).</p>
+<p>It should either return array of match indexes for stritems elements matching the query (synchronous) or explicitly use <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds">MiniPick.set_picker_match_inds()</a> to set them (may be asynchronous).</p>
 <p>Notes:</p>
 <ul>
 <li><p>The result can be any array of <code>stritems</code> indexes, i.e.&nbsp;not necessarily a subset of input <code>inds</code>.</p></li>
 <li><p>Both <code>stritems</code> and <code>query</code> depend on values of ‘ignorecase’ and ‘smartcase’. If query shows “ignore case” properties (only ‘ignorecase’ is set or both ‘ignorecase’ / ‘smartcase’ are set and query has only lowercase characters), then <code>stritems</code> and <code>query</code> will have only lowercase characters. This allows automatic support for case insensitive matching while being faster and having simpler match function implementation.</p></li>
-<li><p>Writing custom <code>source.match</code> usually means also changing <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.show"><code>MiniPick-source.show</code></a> because it is used to highlight stritems parts actually matching the query.</p></li>
+<li><p>Writing custom <code>source.match</code> usually means also changing <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.show">MiniPick-source.show</a> because it is used to highlight stritems parts actually matching the query.</p></li>
 </ul>
 <p>Example of simple “exact” <code>match()</code> preserving initial order:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">match_exact</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">stritems</span><span class="op">,</span> <span class="va">inds</span><span class="op">,</span> <span class="va">query</span><span class="op">)</span></span>
@@ -847,7 +848,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span>tbl_filter<span class="op">(</span><span class="va">f</span><span class="op">,</span> <span class="va">inds</span><span class="op">)</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- For non-blocking version see `:h MiniPick.poke_is_picker_active()`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match"><code>MiniPick.default_match()</code></a>.</p>
+<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match">MiniPick.default_match()</a>.</p>
 </section>
 <section id="minipick-source-show" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-show">Show</h4>
@@ -865,7 +866,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">lines</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>tbl_map<span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="st">'Item: '</span> <span class="op">..</span> <span class="va">x</span> <span class="kw">end</span><span class="op">,</span> <span class="va">items_arr</span><span class="op">)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_show"><code>MiniPick.default_show()</code></a>.</p>
+<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_show">MiniPick.default_show()</a>.</p>
 </section>
 <section id="minipick-source-preview" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-preview">Preview</h4>
@@ -882,7 +883,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">lines</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>split<span class="op">(</span><span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">item</span><span class="op">),</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span><span class="op">)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="fu">lines</span><span class="op">)</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_preview"><code>MiniPick.default_preview()</code></a>.</p>
+<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_preview">MiniPick.default_preview()</a>.</p>
 </section>
 <section id="minipick-source-chooseanitem" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-chooseanitem">Choose an item</h4>
@@ -895,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It should perform any intended “choose” action for an item and return a value indicating whether picker should continue (i.e.&nbsp;not stop): <code>nil</code> and <code>false</code> will stop picker, other values will continue.</p>
 <p>Notes:</p>
 <ul>
-<li>It is called when picker window is still current. Use <code>windows.target</code> value from <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state"><code>MiniPick.get_picker_state()</code></a> output to do something with target window.</li>
+<li>It is called when picker window is still current. Use <code>windows.target</code> value from <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state">MiniPick.get_picker_state()</a> output to do something with target window.</li>
 </ul>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">choose_file_continue</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">item</span><span class="op">)</span></span>
@@ -906,12 +907,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">true</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose"><code>MiniPick.default_choose()</code></a>.</p>
+<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose">MiniPick.default_choose()</a>.</p>
 </section>
 <section id="minipick-source-choosemarkeditems" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-source-choosemarkeditems">Choose marked items</h4>
 <p><a name="minipick-source.choose_marked" href="../../mini.nvim/doc/mini-pick.html#minipick-source.choose_marked"><b>MiniPick-source.choose_marked</b></a></p>
-<p><code>source.choose_marked</code> is a callable defining what to do when marked items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-mark"><code>MiniPick-actions-mark</code></a>) are chosen. Serves as a companion to <code>source.choose</code> which can choose several items.</p>
+<p><code>source.choose_marked</code> is a callable defining what to do when marked items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-mark">MiniPick-actions-mark</a>) are chosen. Serves as a companion to <code>source.choose</code> which can choose several items.</p>
 <p>It will be called with the following arguments:</p>
 <ul>
 <li><code>items_marked</code> - array of marked items. Can be empty.</li>
@@ -919,11 +920,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It should perform any intended “choose” action for several items and return a value indicating whether picker should continue (i.e.&nbsp;not stop): <code>nil</code> and <code>false</code> will stop picker, other values will continue.</p>
 <p>Notes:</p>
 <ul>
-<li>It is called when picker window is still current. Use <code>windows.target</code> value from <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state"><code>MiniPick.get_picker_state()</code></a> output to do something with target window.</li>
+<li>It is called when picker window is still current. Use <code>windows.target</code> value from <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state">MiniPick.get_picker_state()</a> output to do something with target window.</li>
 </ul>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">choose_marked_print</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">items</span><span class="op">)</span> <span class="fu">print</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">items</span><span class="op">))</span> <span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose_marked"><code>MiniPick.default_choose_marked()</code></a>.</p>
+<p>Default value is <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_choose_marked">MiniPick.default_choose_marked()</a>.</p>
 <hr>
 </section>
 </section>
@@ -964,8 +965,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>mappings.delete_char</code> - delete one character to the left.</p></li>
 <li><p><code>mappings.delete_char_right</code> - delete one character to the right.</p></li>
-<li><p><code>mappings.delete_left</code> - delete everything to the left (like <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-U"><code>i_CTRL-U</code></a>).</p></li>
-<li><p><code>mappings.delete_word</code> - delete word to the left (like <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-W"><code>i_CTRL-W</code></a>).</p></li>
+<li><p><code>mappings.delete_left</code> - delete everything to the left (like <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-U">i_CTRL-U</a>).</p></li>
+<li><p><code>mappings.delete_word</code> - delete word to the left (like <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-W">i_CTRL-W</a>).</p></li>
 </ul>
 </section>
 <section id="minipick-actions-built-in-mark" class="level5">
@@ -1005,14 +1006,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick-actions-built-in-paste" class="level5">
 <h5 class="anchored" data-anchor-id="minipick-actions-built-in-paste">Paste</h5>
 <p><a name="minipick-actions-paste" href="../../mini.nvim/doc/mini-pick.html#minipick-actions-paste"><b>MiniPick-actions-paste</b></a></p>
-<p>Paste is an action to paste content of <a href="https://neovim.io/doc/user/helptag.html?tag=registers"><code>registers</code></a> at caret.</p>
+<p>Paste is an action to paste content of <a href="https://neovim.io/doc/user/helptag.html?tag=registers">registers</a> at caret.</p>
 <ul>
 <li><code>mappings.paste</code> - paste from register defined by the next key press.</li>
 </ul>
 <p>Notes:</p>
 <ul>
 <li><p>Does not support expression register <code>=</code>.</p></li>
-<li><p>Supports special cases of register: <span class="help-syntax-keys">&lt;C-f&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-F"><code>c_CTRL-R_CTRL-F</code></a>), <span class="help-syntax-keys">&lt;C-w&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-W"><code>c_CTRL-R_CTRL-W</code></a>), <span class="help-syntax-keys">&lt;C-a&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-A"><code>c_CTRL-R_CTRL-A</code></a>), <span class="help-syntax-keys">&lt;C-l&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-L"><code>c_CTRL-R_CTRL-L</code></a>).</p></li>
+<li><p>Supports special cases of register: <span class="help-syntax-keys">&lt;C-f&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-F">c_CTRL-R_CTRL-F</a>), <span class="help-syntax-keys">&lt;C-w&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-W">c_CTRL-R_CTRL-W</a>), <span class="help-syntax-keys">&lt;C-a&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-A">c_CTRL-R_CTRL-A</a>), <span class="help-syntax-keys">&lt;C-l&gt;</span> (as <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R_CTRL-L">c_CTRL-R_CTRL-L</a>).</p></li>
 </ul>
 </section>
 <section id="minipick-actions-built-in-refine" class="level5">
@@ -1029,7 +1030,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This action is useful in at least two cases:</p>
 <ul>
 <li><p>Perform consecutive “narrowing” queries. Example: to get items that contain both “hello” and “world” exact matches (in no particular order) with default matching, type “’hello” (notice “’” at the start) followed by <code>&lt;C-Space&gt;</code> and another “’world”.</p></li>
-<li><p>Reset <code>match</code> to default. Particularly useful in <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live"><code>MiniPick.builtin.grep_live()</code></a>.</p></li>
+<li><p>Reset <code>match</code> to default. Particularly useful in <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live">MiniPick.builtin.grep_live()</a>.</p></li>
 </ul>
 </section>
 <section id="minipick-actions-built-in-scroll" class="level5">
@@ -1037,10 +1038,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="minipick-actions-scroll" href="../../mini.nvim/doc/mini-pick.html#minipick-actions-scroll"><b>MiniPick-actions-scroll</b></a></p>
 <p>Scroll is an action to either move current item focus further than to the neighbor item or adjust window view to see more information.</p>
 <ul>
-<li><p><code>mappings.scroll_down</code> - when matches are shown, go down by the amount of visible matches. In preview and info view - scroll down as with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-F"><code>CTRL-F</code></a>.</p></li>
-<li><p><code>mappings.scroll_left</code> - scroll left as with <a href="https://neovim.io/doc/user/helptag.html?tag=zH"><code>zH</code></a>.</p></li>
-<li><p><code>mappings.scroll_right</code> - scroll right as with <a href="https://neovim.io/doc/user/helptag.html?tag=zL"><code>zL</code></a>.</p></li>
-<li><p><code>mappings.scroll_up</code> - when matches are shown, go up by the amount of visible matches. In preview and info view - scroll up as with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-B"><code>CTRL-B</code></a>.</p></li>
+<li><p><code>mappings.scroll_down</code> - when matches are shown, go down by the amount of visible matches. In preview and info view - scroll down as with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-F">CTRL-F</a>.</p></li>
+<li><p><code>mappings.scroll_left</code> - scroll left as with <a href="https://neovim.io/doc/user/helptag.html?tag=zH">zH</a>.</p></li>
+<li><p><code>mappings.scroll_right</code> - scroll right as with <a href="https://neovim.io/doc/user/helptag.html?tag=zL">zL</a>.</p></li>
+<li><p><code>mappings.scroll_up</code> - when matches are shown, go up by the amount of visible matches. In preview and info view - scroll up as with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-B">CTRL-B</a>.</p></li>
 </ul>
 </section>
 <section id="minipick-actions-built-in-stop" class="level5">
@@ -1083,7 +1084,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minipick-examples">Examples</h3>
 <section id="minipick-examples-disableicons" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-examples-disableicons">Disable icons</h4>
-<p>Disable icons in <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a> pickers related to paths:</p>
+<p>Disable icons in <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a> pickers related to paths:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">pick</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.pick'</span><span class="op">)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">pick</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="op">{</span> <span class="va">show</span> <span class="op">=</span> <span class="va">pick</span><span class="op">.</span><span class="va">default_show</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -1136,15 +1137,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick.setup-pick" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.setup-pick">:Pick</h4>
 <p><a name="pick" href="../../mini.nvim/doc/mini-pick.html#pick"><b>:Pick</b></a></p>
-<p>Calling this function creates a <code>:Pick</code> user command. It takes picker name from <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry"><code>MiniPick.registry</code></a> as mandatory first argument and executes it with following (expanded, <a href="https://neovim.io/doc/user/helptag.html?tag=expandcmd()"><code>expandcmd()</code></a>) <a href="https://neovim.io/doc/user/helptag.html?tag=%3Cf-args%3E"><code>&lt;f-args&gt;</code></a> combined in a single table. To add custom pickers, update <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry"><code>MiniPick.registry</code></a>.</p>
+<p>Calling this function creates a <code>:Pick</code> user command. It takes picker name from <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry">MiniPick.registry</a> as mandatory first argument and executes it with following (expanded, <a href="https://neovim.io/doc/user/helptag.html?tag=expandcmd()">expandcmd()</a>) <a href="https://neovim.io/doc/user/helptag.html?tag=%3Cf-args%3E"><span class="help-syntax-keys">&lt;f-args&gt;</span></a> combined in a single table. To add custom pickers, update <a href="../../mini.nvim/doc/mini-pick.html#minipick.registry">MiniPick.registry</a>.</p>
 <p>Example:</p>
 <pre class="vim"><code>:Pick files tool='git'
 :Pick grep pattern='&lt;cword&gt;'</code></pre>
-<p>It also sets custom <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> implementation to use the module. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select"><code>MiniPick.ui_select()</code></a>.</p>
+<p>It also sets custom <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> implementation to use the module. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.ui_select">MiniPick.ui_select()</a>.</p>
 </section>
 <section id="minipick.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.config"><code>MiniPick.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.config">MiniPick.config</a>.</p>
 </section>
 <section id="minipick.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.setup-usage">Usage</h4>
@@ -1249,12 +1250,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick.config-delays" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-delays">Delays</h4>
 <p><code>config.delay</code> defines plugin delays (in ms). All should be strictly positive.</p>
-<p><code>delay.async</code> is a delay between forcing asynchronous behavior. This usually means making screen redraws and utilizing <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active"><code>MiniPick.poke_is_picker_active()</code></a> (for example, to stop current matching if query has updated). Smaller values give smoother user experience at the cost of more computations.</p>
+<p><code>delay.async</code> is a delay between forcing asynchronous behavior. This usually means making screen redraws and utilizing <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a> (for example, to stop current matching if query has updated). Smaller values give smoother user experience at the cost of more computations.</p>
 <p><code>delay.busy</code> is a delay between when some computation starts and showing visual feedback about it by making window border to have <code>MiniPickBorderBusy</code> highlight group. Smaller values will give feedback faster at the cost of feeling like flicker.</p>
 </section>
 <section id="minipick.config-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-mappings">Mappings</h4>
-<p><code>config.mappings</code> defines keys for special actions to be triggered after certain keys. See <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions"><code>MiniPick-actions</code></a> for more information.</p>
+<p><code>config.mappings</code> defines keys for special actions to be triggered after certain keys. See <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions">MiniPick-actions</a> for more information.</p>
 </section>
 <section id="minipick.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-options">Options</h4>
@@ -1264,12 +1265,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.config-source" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-source">Source</h4>
-<p><code>config.source</code> defines fallbacks for source specification. For example, this can be used to change default <code>match</code> to use different implementation or <code>show</code> to not show icons for some <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a> pickers (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-examples"><code>MiniPick-examples</code></a>). See <a href="../../mini.nvim/doc/mini-pick.html#minipick-source"><code>MiniPick-source</code></a> for more information.</p>
+<p><code>config.source</code> defines fallbacks for source specification. For example, this can be used to change default <code>match</code> to use different implementation or <code>show</code> to not show icons for some <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a> pickers (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-examples">MiniPick-examples</a>). See <a href="../../mini.nvim/doc/mini-pick.html#minipick-source">MiniPick-source</a> for more information.</p>
 </section>
 <section id="minipick.config-window" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-window">Window</h4>
 <p><code>config.window</code> contains window specific configurations.</p>
-<p><code>window.config</code> defines a (parts of) default floating window config for the main picker window. This can be either a table overriding some parts or a callable returning such table. See <a href="../../mini.nvim/doc/mini-pick.html#minipick-examples"><code>MiniPick-examples</code></a> for some examples.</p>
+<p><code>window.config</code> defines a (parts of) default floating window config for the main picker window. This can be either a table overriding some parts or a callable returning such table. See <a href="../../mini.nvim/doc/mini-pick.html#minipick-examples">MiniPick-examples</a> for some examples.</p>
 <p><code>window.prompt_caret</code> defines how caret is displayed in window’s prompt. Default: ‘▏’.</p>
 <p><code>window.prompt_prefix</code> defines what prefix is used in window’s prompt. Default: ‘&gt;’.</p>
 <hr>
@@ -1283,12 +1284,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Start picker</p>
 <p>Notes:</p>
 <ul>
-<li><p>If there is currently an active picker, it is properly stopped and new one is started “soon” in the main event-loop (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a>).</p></li>
-<li><p>Current window at the moment of this function call is treated as “target”. It will be set back as current after <a href="../../mini.nvim/doc/mini-pick.html#minipick.stop"><code>MiniPick.stop()</code></a>. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state"><code>MiniPick.get_picker_state()</code></a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_target_window"><code>MiniPick.set_picker_target_window()</code></a>.</p></li>
+<li><p>If there is currently an active picker, it is properly stopped and new one is started “soon” in the main event-loop (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>).</p></li>
+<li><p>Current window at the moment of this function call is treated as “target”. It will be set back as current after <a href="../../mini.nvim/doc/mini-pick.html#minipick.stop">MiniPick.stop()</a>. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state">MiniPick.get_picker_state()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_target_window">MiniPick.set_picker_target_window()</a>.</p></li>
 </ul>
 <section id="minipick.start-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.start-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Should have same structure as <a href="../../mini.nvim/doc/mini-pick.html#minipick.config"><code>MiniPick.config</code></a>. Default values are inferred from there. Usually should have proper <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items"><code>MiniPick-source.items</code></a> defined.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Should have same structure as <a href="../../mini.nvim/doc/mini-pick.html#minipick.config">MiniPick.config</a>. Default values are inferred from there. Usually should have proper <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items">MiniPick-source.items</a> defined.</p>
 </section>
 <section id="minipick.start-return" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.start-return">Return</h4>
@@ -1319,11 +1320,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Default match</p>
 <p>Filter target stritems to contain query and sort from best to worst matches.</p>
-<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.match"><code>MiniPick-source.match</code></a>.</p>
+<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.match">MiniPick-source.match</a>.</p>
 <p>By default (if no special modes apply) it does the following fuzzy matching:</p>
 <ul>
 <li><p>Stritem contains query if it contains all its elements verbatim in the same order (possibly with gaps, i.e.&nbsp;not strictly one after another). Note: empty query and empty string element is contained in any string.</p></li>
-<li><p>Sorting is done with the following ordering (same as in <a href="../../mini.nvim/doc/mini-fuzzy.html#mini.fuzzy"><code>mini.fuzzy</code></a>):</p>
+<li><p>Sorting is done with the following ordering (same as in <a href="../../mini.nvim/doc/mini-fuzzy.html#mini.fuzzy">mini.fuzzy</a>):</p>
 <ul>
 <li><p>The smaller the match width (end column minus start column) the better.</p></li>
 <li><p>Among same match width, the smaller start column the better.</p></li>
@@ -1391,7 +1392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>(table|nil)</code> Depending on whether computation is synchronous (either <code>opts.sync</code> is <code>true</code> or there is an active picker):</p>
 <ul>
 <li><p>If yes, array of <code>stritems</code> indexes matching the <code>query</code> (from best to worst).</p></li>
-<li><p>If no, <code>nil</code> is returned with <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds"><code>MiniPick.set_picker_match_inds()</code></a> used later.</p></li>
+<li><p>If no, <code>nil</code> is returned with <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds">MiniPick.set_picker_match_inds()</a> used later.</p></li>
 </ul>
 <hr>
 </section>
@@ -1402,9 +1403,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.default_show</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{items}</span>, <span class="help-syntax-special">{query}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Default show</p>
-<p>Show items in a buffer and highlight parts that actually match query (assuming match is done with <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match"><code>MiniPick.default_match()</code></a>). Lines are computed based on the <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems"><code>MiniPick-source.items-stritems</code></a>.</p>
-<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.show"><code>MiniPick-source.show</code></a>.</p>
-<p>Uses the following highlight groups (see <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a> for their description):</p>
+<p>Show items in a buffer and highlight parts that actually match query (assuming match is done with <a href="../../mini.nvim/doc/mini-pick.html#minipick.default_match">MiniPick.default_match()</a>). Lines are computed based on the <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems">MiniPick-source.items-stritems</a>.</p>
+<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.show">MiniPick-source.show</a>.</p>
+<p>Uses the following highlight groups (see <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a> for their description):</p>
 <ul>
 <li><p><code>MiniPickIconDirectory</code></p></li>
 <li><p><code>MiniPickIconFile</code></p></li>
@@ -1419,7 +1420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{query}</span> <code>(table)</code> Array of strings representing query.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;show_icons&gt;</span> <code>(boolean)</code> - whether to show icons for entries recognized as valid actually present paths on disk (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><code>MiniPick-source.items-common</code></a>), empty space otherwise. Tries to use <code>text</code> field as fallback for path. Default: <code>false</code>. Note: <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a> pickers showing file/directory paths use <code>true</code> by default.</p></li>
+<li><p><span class="help-syntax-keys">&lt;show_icons&gt;</span> <code>(boolean)</code> - whether to show icons for entries recognized as valid actually present paths on disk (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common">MiniPick-source.items-common</a>), empty space otherwise. Tries to use <code>text</code> field as fallback for path. Default: <code>false</code>. Note: <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a> pickers showing file/directory paths use <code>true</code> by default.</p></li>
 <li><p><span class="help-syntax-keys">&lt;icons&gt;</span> <code>(table)</code> - table with fallback icons used if icon provider does not itself supply default icons for category. Can have fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;directory&gt;</span> <code>(string)</code> - icon for directory. Default: “”.</p></li>
@@ -1436,15 +1437,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.default_preview</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{item}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Default preview</p>
-<p>Preview item. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><code>MiniPick-source.items-common</code></a>:</p>
+<p>Preview item. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common">MiniPick-source.items-common</a>:</p>
 <ul>
 <li><p>File and buffer are shown at the start.</p></li>
 <li><p>Directory has its content listed.</p></li>
 <li><p>Line/position/region in file or buffer is shown at start.</p></li>
-<li><p>Others are shown directly with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()"><code>vim.inspect()</code></a>.</p></li>
+<li><p>Others are shown directly with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()">vim.inspect()</a>.</p></li>
 </ul>
-<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.preview"><code>MiniPick-source.preview</code></a>.</p>
-<p>Uses the following highlight groups (see <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a> for their description):</p>
+<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.preview">MiniPick-source.preview</a>.</p>
+<p>Uses the following highlight groups (see <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a> for their description):</p>
 <ul>
 <li><p><code>MiniPickPreviewLine</code></p></li>
 <li><p><code>MiniPickPreviewRegion</code></p></li>
@@ -1467,14 +1468,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.default_choose</code>(<span class="help-syntax-special">{item}</span>)
 </p>
 <p>Default choose</p>
-<p>Choose item. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><code>MiniPick-source.items-common</code></a>:</p>
+<p>Choose item. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common">MiniPick-source.items-common</a>:</p>
 <ul>
-<li><p>File uses <a href="https://neovim.io/doc/user/helptag.html?tag=bufadd()"><code>bufadd()</code></a> and sets cursor at the start of line/position/region.</p></li>
+<li><p>File uses <a href="https://neovim.io/doc/user/helptag.html?tag=bufadd()">bufadd()</a> and sets cursor at the start of line/position/region.</p></li>
 <li><p>Buffer is set as current in target window and sets cursor similarly.</p></li>
-<li><p>Directory is called with <a href="https://neovim.io/doc/user/helptag.html?tag=:edit"><code>:edit</code></a> in the target window.</p></li>
-<li><p>Others have the output of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()"><code>vim.inspect()</code></a> printed in Command line.</p></li>
+<li><p>Directory is called with <a href="https://neovim.io/doc/user/helptag.html?tag=:edit">:edit</a> in the target window.</p></li>
+<li><p>Others have the output of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.inspect()">vim.inspect()</a> printed in Command line.</p></li>
 </ul>
-<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.choose"><code>MiniPick-source.choose</code></a>.</p>
+<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.choose">MiniPick-source.choose</a>.</p>
 <section id="minipick.default_choose-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.default_choose-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{item}</span> <code>(any)</code> Item to choose.</p>
@@ -1487,12 +1488,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.default_choose_marked</code>(<span class="help-syntax-special">{items}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Default choose marked items</p>
-<p>Choose marked items. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common"><code>MiniPick-source.items-common</code></a>:</p>
+<p>Choose marked items. Logic follows the rules in <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-common">MiniPick-source.items-common</a>:</p>
 <ul>
 <li><p>If among items there is at least one file or buffer, quickfix list is opened with all file or buffer lines/positions/regions.</p></li>
 <li><p>Otherwise, picker’s <code>source.choose</code> is called on the first item.</p></li>
 </ul>
-<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.choose_marked"><code>MiniPick-source.choose_marked</code></a>.</p>
+<p>Implements default value for <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.choose_marked">MiniPick-source.choose_marked</a>.</p>
 <section id="minipick.default_choose_marked-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.default_choose_marked-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{items}</span> <code>(table)</code> Array of items to choose.</p>
@@ -1509,11 +1510,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.ui_select</code>(<span class="help-syntax-special">{items}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{on_choice}</span>, <span class="help-syntax-special">{start_opts}</span>)
 </p>
 <p>Select rewrite</p>
-<p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()"><code>vim.ui.select()</code></a> to use ‘mini.pick’ for any “select” type of tasks. Set automatically in <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup"><code>MiniPick.setup()</code></a>.</p>
+<p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> to use ‘mini.pick’ for any “select” type of tasks. Set automatically in <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup">MiniPick.setup()</a>.</p>
 <p>Implements required by <code>vim.ui.select()</code> signature, with some differencies:</p>
 <ul>
 <li><p>Allows <code>opts.preview_item</code> that returns an array of lines for item preview.</p></li>
-<li><p>Allows fourth <code>start_opts</code> argument to customize <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a> call.</p></li>
+<li><p>Allows fourth <code>start_opts</code> argument to customize <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a> call.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
@@ -1547,15 +1548,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.builtin.files</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Pick from files</p>
-<p>Lists all files recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><code>MiniPick-cli-tools</code></a>): <code>rg</code>, <code>fd</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()"><code>vim.fs.dir()</code></a>.</p>
-<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli"><code>MiniPick.builtin.cli()</code></a> with specific command.</p>
+<p>Lists all files recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>fd</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()">vim.fs.dir()</a>.</p>
+<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command.</p>
 <section id="minipick.builtin.files-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.files-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;tool&gt;</span> <code>(string)</code> - which tool to use. One of “rg”, “fd”, “git”, “fallback”. Default: whichever tool is present, trying in that same order.</li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1565,17 +1566,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.builtin.grep</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Pick from pattern matches</p>
-<p>Lists all pattern matches recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><code>MiniPick-cli-tools</code></a>): <code>rg</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()"><code>vim.fs.dir()</code></a> and Lua pattern matches (NOT recommended in large directories).</p>
-<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli"><code>MiniPick.builtin.cli()</code></a> with specific command.</p>
+<p>Lists all pattern matches recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()">vim.fs.dir()</a> and Lua pattern matches (NOT recommended in large directories).</p>
+<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command.</p>
 <section id="minipick.builtin.grep-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;tool&gt;</span> <code>(string)</code> - which tool to use. One of “rg”, “git”, “fallback”. Default: whichever tool is present, trying in that same order.</p></li>
-<li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string)</code> - string pattern to search. If not given, asks user interactively with <a href="https://neovim.io/doc/user/helptag.html?tag=input()"><code>input()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string)</code> - string pattern to search. If not given, asks user interactively with <a href="https://neovim.io/doc/user/helptag.html?tag=input()">input()</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;globs&gt;</span> <code>(table)</code> - array of string glob patterns to restrict search to matching files. Supported only by “rg” and “git” tools, respects their specific glob syntax and effects. Default: <code>{}</code> (no restriction). Example: <code>{ '*.lua', 'lua/**' }</code> for Lua files and files in “lua” directory.</p></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1585,7 +1586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.builtin.grep_live</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Pick from pattern matches with live feedback</p>
-<p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine"><code>MiniPick-actions-refine</code></a> to revert to regular matching. Use <code>&lt;C-o&gt;</code> to restrict search to files matching glob patterns. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><code>MiniPick-cli-tools</code></a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
+<p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a> to revert to regular matching. Use <code>&lt;C-o&gt;</code> to restrict search to files matching glob patterns. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
 <p>To customize search, use tool’s global configuration approach.</p>
 <section id="minipick.builtin.grep_live-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep_live-parameters">Parameters</h4>
@@ -1594,7 +1595,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;tool&gt;</span> <code>(string)</code> - which tool to use. One of “rg”, “git”. Default: whichever tool is present, trying in that same order.</p></li>
 <li><p><span class="help-syntax-keys">&lt;globs&gt;</span> <code>(table)</code> - array of string glob patterns to restrict search to matching files. Supported only by “rg” and “git” tools, respects their specific glob syntax and effects. Default: <code>{}</code> (no restriction). Example: <code>{ '*.lua', 'lua/**' }</code> for Lua files and files in “lua” directory. Use <code>&lt;C-o&gt;</code> custom mapping to add glob to the array.</p></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1606,7 +1607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Pick from help tags</p>
 <p>Notes:</p>
 <ul>
-<li>On choose directly executes <a href="https://neovim.io/doc/user/helptag.html?tag=:help"><code>:help</code></a> command with appropriate modifier (none, <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical"><code>:vertical</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:tab"><code>:tab</code></a>). This is done through custom mappings named <code>show_help_in_{split,vsplit,tab}</code>. Not <code>choose_in_{split,vsplit,tab}</code> because there is no split guarantee (like if there is already help window opened).</li>
+<li>On choose directly executes <a href="https://neovim.io/doc/user/helptag.html?tag=:help">:help</a> command with appropriate modifier (none, <a href="https://neovim.io/doc/user/helptag.html?tag=:vertical">:vertical</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:tab">:tab</a>). This is done through custom mappings named <code>show_help_in_{split,vsplit,tab}</code>. Not <code>choose_in_{split,vsplit,tab}</code> because there is no split guarantee (like if there is already help window opened).</li>
 </ul>
 <section id="minipick.builtin.help-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.help-parameters">Parameters</h4>
@@ -1614,7 +1615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><span class="help-syntax-keys">&lt;default_split&gt;</span> <code>(string)</code> - direction of a split for <code>choose</code> action. One of “horizontal”, “vertical”, “tab”. Default: “horizontal”.</li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1638,9 +1639,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;include_current&gt;</span> <code>(boolean)</code> - whether to include current buffer in the output. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;include_unlisted&gt;</span> <code>(boolean)</code> - whether to include <a href="https://neovim.io/doc/user/helptag.html?tag=unlisted-buffer"><code>unlisted-buffer</code></a>s in the output. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;include_unlisted&gt;</span> <code>(boolean)</code> - whether to include <a href="https://neovim.io/doc/user/helptag.html?tag=unlisted-buffer">unlisted-buffer</a>s in the output. Default: <code>false</code>.</p></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1650,7 +1651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.builtin.cli</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Pick from CLI output</p>
-<p>Executes command line tool and constructs items based on its output. Uses <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli"><code>MiniPick.set_picker_items_from_cli()</code></a>.</p>
+<p>Executes command line tool and constructs items based on its output. Uses <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli">MiniPick.set_picker_items_from_cli()</a>.</p>
 <p>Example: <code>MiniPick.builtin.cli({ command = { 'echo', 'a\nb\nc' } })</code></p>
 <section id="minipick.builtin.cli-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.cli-parameters">Parameters</h4>
@@ -1658,9 +1659,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;command&gt;</span> <code>(table)</code> - forwarded to <code>set_picker_items_from_cli()</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;postprocess&gt;</span> <code>(function)</code> - forwarded to <code>set_picker_items_from_cli()</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;spawn_opts&gt;</span> <code>(table)</code> - forwarded to <code>set_picker_items_from_cli()</code>. Note: if <code>cwd</code> field is absent, it is inferred from <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.cwd"><code>MiniPick-source.cwd</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;spawn_opts&gt;</span> <code>(table)</code> - forwarded to <code>set_picker_items_from_cli()</code>. Note: if <code>cwd</code> field is absent, it is inferred from <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.cwd">MiniPick-source.cwd</a>.</p></li>
 </ul>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
 </section>
 </section>
@@ -1678,8 +1679,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.registry</code>
 </p>
 <p>Picker registry</p>
-<p>Place for users and extensions to manage pickers with their commonly used local options. By default contains all <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin"><code>MiniPick.builtin</code></a> pickers. All entries should accept only a single <code>local_opts</code> table argument.</p>
-<p>Serves as a source for <a href="../../mini.nvim/doc/mini-pick.html#pick"><code>:Pick</code></a> command.</p>
+<p>Place for users and extensions to manage pickers with their commonly used local options. By default contains all <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a> pickers. All entries should accept only a single <code>local_opts</code> table argument.</p>
+<p>Serves as a source for <a href="../../mini.nvim/doc/mini-pick.html#pick">:Pick</a> command.</p>
 <p>Customization examples:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Adding custom picker to pick `register` entries</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniPick</span><span class="op">.</span><span class="va">registry</span><span class="op">.</span><span class="va">registry</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
@@ -1711,7 +1712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.get_picker_items-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_items-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items"><code>MiniPick.set_picker_items()</code></a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli"><code>MiniPick.set_picker_items_from_cli()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items">MiniPick.set_picker_items()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli">MiniPick.set_picker_items_from_cli()</a></p>
 <hr>
 </section>
 </section>
@@ -1723,11 +1724,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Get stritems of active picker</p>
 <section id="minipick.get_picker_stritems-return" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_stritems-return">Return</h4>
-<p><code>(table|nil)</code> Picker stritems (<a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems"><code>MiniPick-source.items-stritems</code></a>) or <code>nil</code> if no active picker.</p>
+<p><code>(table|nil)</code> Picker stritems (<a href="../../mini.nvim/doc/mini-pick.html#minipick-source.items-stritems">MiniPick-source.items-stritems</a>) or <code>nil</code> if no active picker.</p>
 </section>
 <section id="minipick.get_picker_stritems-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_stritems-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items"><code>MiniPick.set_picker_items()</code></a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli"><code>MiniPick.set_picker_items_from_cli()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items">MiniPick.set_picker_items()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items_from_cli">MiniPick.set_picker_items_from_cli()</a></p>
 <hr>
 </section>
 </section>
@@ -1753,7 +1754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.get_picker_matches-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_matches-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds"><code>MiniPick.set_picker_match_inds()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_match_inds">MiniPick.set_picker_match_inds()</a></p>
 <hr>
 </section>
 </section>
@@ -1769,7 +1770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.get_picker_opts-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_opts-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_opts"><code>MiniPick.set_picker_opts()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_opts">MiniPick.set_picker_opts()</a></p>
 <hr>
 </section>
 </section>
@@ -1791,7 +1792,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.get_picker_state-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_state-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_target_window"><code>MiniPick.set_picker_target_window()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_target_window">MiniPick.set_picker_target_window()</a></p>
 <hr>
 </section>
 </section>
@@ -1807,7 +1808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.get_picker_query-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_query-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_query"><code>MiniPick.set_picker_query()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_query">MiniPick.set_picker_query()</a></p>
 <hr>
 </section>
 </section>
@@ -1824,12 +1825,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;do_match&gt;</span> <code>(boolean)</code> - whether to perform match after setting items. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;querytick&gt;</span> <code>(number|nil)</code> - value of querytick (<a href="../../mini.nvim/doc/mini-pick.html#minipick.get_querytick"><code>MiniPick.get_querytick()</code></a>) to periodically check against when setting items. If checked querytick differs from supplied, no items are set.</p></li>
+<li><p><span class="help-syntax-keys">&lt;querytick&gt;</span> <code>(number|nil)</code> - value of querytick (<a href="../../mini.nvim/doc/mini-pick.html#minipick.get_querytick">MiniPick.get_querytick()</a>) to periodically check against when setting items. If checked querytick differs from supplied, no items are set.</p></li>
 </ul>
 </section>
 <section id="minipick.set_picker_items-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_items-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_items"><code>MiniPick.get_picker_items()</code></a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_stritems"><code>MiniPick.get_picker_stritems()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_items">MiniPick.get_picker_items()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_stritems">MiniPick.get_picker_stritems()</a></p>
 <hr>
 </section>
 </section>
@@ -1851,13 +1852,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;postprocess&gt;</span> <code>(function)</code> - callable performing postprocessing of output. Will be called with array of lines as input, should return array of items. Default: removes trailing empty lines and uses rest as string items.</p></li>
-<li><p><span class="help-syntax-keys">&lt;spawn_opts&gt;</span> <code>(table)</code> - <code>options</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=uv.spawn()"><code>uv.spawn()</code></a>, except <code>args</code> and <code>stdio</code>. Note: relative <code>cwd</code> path is resolved against active picker’s <code>cwd</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;set_items_opts&gt;</span> <code>(table)</code> - table forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items"><code>MiniPick.set_picker_items()</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;spawn_opts&gt;</span> <code>(table)</code> - <code>options</code> for <a href="https://neovim.io/doc/user/helptag.html?tag=uv.spawn()">uv.spawn()</a>, except <code>args</code> and <code>stdio</code>. Note: relative <code>cwd</code> path is resolved against active picker’s <code>cwd</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;set_items_opts&gt;</span> <code>(table)</code> - table forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.set_picker_items">MiniPick.set_picker_items()</a>.</p></li>
 </ul>
 </section>
 <section id="minipick.set_picker_items_from_cli-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_items_from_cli-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_items"><code>MiniPick.get_picker_items()</code></a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_stritems"><code>MiniPick.get_picker_stritems()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_items">MiniPick.get_picker_items()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_stritems">MiniPick.get_picker_stritems()</a></p>
 <hr>
 </section>
 </section>
@@ -1869,8 +1870,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set match indexes for active picker</p>
 <p>There are two intended use cases:</p>
 <ul>
-<li><p>Inside custom asynchronous <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.match"><code>MiniPick-source.match</code></a> function to set which of picker’s stritems match the query. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active"><code>MiniPick.poke_is_picker_active()</code></a>.</p></li>
-<li><p>To programmatically set current match and marked items. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_matches"><code>MiniPick.get_picker_matches()</code></a>.</p></li>
+<li><p>Inside custom asynchronous <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.match">MiniPick-source.match</a> function to set which of picker’s stritems match the query. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a>.</p></li>
+<li><p>To programmatically set current match and marked items. See <a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_matches">MiniPick.get_picker_matches()</a>.</p></li>
 </ul>
 <section id="minipick.set_picker_match_inds-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_match_inds-parameters">Parameters</h4>
@@ -1884,7 +1885,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.set_picker_match_inds-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_match_inds-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_matches"><code>MiniPick.get_picker_matches()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_matches">MiniPick.get_picker_matches()</a></p>
 <hr>
 </section>
 </section>
@@ -1896,11 +1897,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set config for active picker</p>
 <section id="minipick.set_picker_opts-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_opts-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table)</code> Table overriding initial <code>opts</code> input of <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table)</code> Table overriding initial <code>opts</code> input of <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 </section>
 <section id="minipick.set_picker_opts-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_opts-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_opts"><code>MiniPick.get_picker_opts()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_opts">MiniPick.get_picker_opts()</a></p>
 <hr>
 </section>
 </section>
@@ -1916,7 +1917,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.set_picker_target_window-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_target_window-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state"><code>MiniPick.get_picker_state()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_state">MiniPick.get_picker_state()</a></p>
 <hr>
 </section>
 </section>
@@ -1932,7 +1933,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.set_picker_query-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.set_picker_query-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_query"><code>MiniPick.get_picker_query()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.get_picker_query">MiniPick.get_picker_query()</a></p>
 <hr>
 </section>
 </section>
@@ -1942,8 +1943,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.get_querytick</code>()
 </p>
 <p>Get query tick</p>
-<p>Query tick is a unique query identifier. Intended to be used to detect user activity during and between <a href="../../mini.nvim/doc/mini-pick.html#minipick.start"><code>MiniPick.start()</code></a> calls for efficient non-blocking functionality. Updates after any query change, picker start and stop.</p>
-<p>See <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active"><code>MiniPick.poke_is_picker_active()</code></a> for usage example.</p>
+<p>Query tick is a unique query identifier. Intended to be used to detect user activity during and between <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a> calls for efficient non-blocking functionality. Updates after any query change, picker start and stop.</p>
+<p>See <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a> for usage example.</p>
 <section id="minipick.get_querytick-return" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_querytick-return">Return</h4>
 <p><code>(number)</code> Query tick.</p>
@@ -1962,7 +1963,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.is_picker_active-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.is_picker_active-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active"><code>MiniPick.poke_is_picker_active()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a></p>
 <hr>
 </section>
 </section>
@@ -1972,10 +1973,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.poke_is_picker_active</code>()
 </p>
 <p>Poke if picker is active</p>
-<p>Intended to be used for non-blocking implementation of source methods. Returns an output of <a href="../../mini.nvim/doc/mini-pick.html#minipick.is_picker_active"><code>MiniPick.is_picker_active()</code></a>, but depending on whether there is a coroutine running:</p>
+<p>Intended to be used for non-blocking implementation of source methods. Returns an output of <a href="../../mini.nvim/doc/mini-pick.html#minipick.is_picker_active">MiniPick.is_picker_active()</a>, but depending on whether there is a coroutine running:</p>
 <ul>
 <li><p>If no, return it immediately.</p></li>
-<li><p>If yes, return it after <code>coroutine.yield()</code> with <code>coroutine.resume()</code> called “soon” by the main event-loop (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a>).</p></li>
+<li><p>If yes, return it after <code>coroutine.yield()</code> with <code>coroutine.resume()</code> called “soon” by the main event-loop (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>).</p></li>
 </ul>
 <p>Example of non-blocking exact <code>match</code> (as demo; can be optimized further):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">match_nonblock</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">match_inds</span><span class="op">,</span> <span class="va">stritems</span><span class="op">,</span> <span class="va">query</span><span class="op">)</span></span>
@@ -2001,7 +2002,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minipick.poke_is_picker_active-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.poke_is_picker_active-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.is_picker_active"><code>MiniPick.is_picker_active()</code></a></p>
+<p><a href="../../mini.nvim/doc/mini-pick.html#minipick.is_picker_active">MiniPick.is_picker_active()</a></p>
 
 
 </section>

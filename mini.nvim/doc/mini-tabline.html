@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.tabline documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,13 +344,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minitabline" id="toc-minitabline" class="nav-link active" data-scroll-target="#minitabline">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minitabline-dependencies" id="toc-minitabline-dependencies" class="nav-link" data-scroll-target="#minitabline-dependencies">Dependencies</a></li>
-  <li><a href="#minitabline-setup" id="toc-minitabline-setup" class="nav-link" data-scroll-target="#minitabline-setup">Setup</a></li>
-  <li><a href="#minitabline-suggestedoptionvalues" id="toc-minitabline-suggestedoptionvalues" class="nav-link" data-scroll-target="#minitabline-suggestedoptionvalues">Suggested option values</a></li>
-  <li><a href="#minitabline-highlightgroups" id="toc-minitabline-highlightgroups" class="nav-link" data-scroll-target="#minitabline-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minitabline-disabling" id="toc-minitabline-disabling" class="nav-link" data-scroll-target="#minitabline-disabling">Disabling</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-suggestedoptionvalues" id="toc-module-suggestedoptionvalues" class="nav-link" data-scroll-target="#module-suggestedoptionvalues">Suggested option values</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minitabline.setup" id="toc-minitabline.setup" class="nav-link" data-scroll-target="#minitabline.setup">setup()</a>
   <ul>
@@ -397,12 +398,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.tabline" href="../../mini.nvim/doc/mini-tabline.html#mini.tabline"><b>mini.tabline</b></a> Tabline</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minitabline" class="level3">
-<h3 class="anchored" data-anchor-id="minitabline">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Key idea: show all listed buffers in readable way with minimal total width.</p>
 <p>Features:</p>
 <ul>
-<li><p>Buffers are listed in the order of their identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>).</p></li>
+<li><p>Buffers are listed in the order of their identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>).</p></li>
 <li><p>Different highlight groups for “states” of buffer affecting ‘buffer tabs’.</p></li>
 <li><p>Buffer names are made unique by extending paths to files or appending unique identifier to buffers without name.</p></li>
 <li><p>Current buffer is displayed “optimally centered” (in center of screen while maximizing the total number of buffers shown) when there are many buffers open.</p></li>
@@ -414,28 +415,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Custom buffer order is not supported.</li>
 </ul>
-<section id="minitabline-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="minitabline-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
-<li>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons"><code>mini.icons</code></a> module to show icons near file names. Falls back to <a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> or shows nothing.</li>
+<li>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to show icons near file names. Falls back to <a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> or shows nothing.</li>
 </ul>
 </section>
-<section id="minitabline-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minitabline-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.tabline').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniTabline</code> which you can use for scripting or manually (with <code>:lua MiniTabline.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config"><code>MiniTabline.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minitabline_config</code> which should have same structure as <code>MiniTabline.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config">MiniTabline.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minitabline_config</code> which should have same structure as <code>MiniTabline.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minitabline-suggestedoptionvalues" class="level4">
-<h4 class="anchored" data-anchor-id="minitabline-suggestedoptionvalues">Suggested option values</h4>
-<p>Some options are set automatically by <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.setup"><code>MiniTabline.setup()</code></a>:</p>
+<section id="module-suggestedoptionvalues" class="level4">
+<h4 class="anchored" data-anchor-id="module-suggestedoptionvalues">Suggested option values</h4>
+<p>Some options are set automatically by <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.setup">MiniTabline.setup()</a>:</p>
 <ul>
 <li>‘showtabline’ is set to 2 to always show tabline.</li>
 </ul>
 </section>
-<section id="minitabline-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minitabline-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniTablineCurrent</code> - buffer is current (has cursor in it).</p></li>
 <li><p><code>MiniTablineVisible</code> - buffer is visible (displayed in some window).</p></li>
@@ -447,11 +448,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniTablineTabpagesection</code> - section with tabpage information.</p></li>
 <li><p><code>MiniTablineTrunc</code> - truncation symbols indicating more left/right tabs.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minitabline-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minitabline-disabling">Disabling</h4>
-<p>To disable (show empty tabline), set <code>vim.g.minitabline_disable</code> (globally) or <code>vim.b.minitabline_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable (show empty tabline), set <code>vim.g.minitabline_disable</code> (globally) or <code>vim.b.minitabline_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -463,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minitabline.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitabline.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config"><code>MiniTabline.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config">MiniTabline.config</a>.</p>
 </section>
 <section id="minitabline.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitabline.setup-usage">Usage</h4>
@@ -495,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitabline.config-format" class="level4">
 <h4 class="anchored" data-anchor-id="minitabline.config-format">Format</h4>
-<p><code>config.format</code> is a callable that takes buffer identifier and pre-computed label as arguments and returns a string with formatted label. Output will be treated strictly as text (i.e.&nbsp;no ‘statusline’ like constructs is allowed). This function will be called for all displayable in tabline buffers. Default: <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.default_format"><code>MiniTabline.default_format()</code></a>.</p>
+<p><code>config.format</code> is a callable that takes buffer identifier and pre-computed label as arguments and returns a string with formatted label. Output will be treated strictly as text (i.e.&nbsp;no ‘statusline’ like constructs is allowed). This function will be called for all displayable in tabline buffers. Default: <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.default_format">MiniTabline.default_format()</a>.</p>
 <p>Example of adding “+” suffix for modified buffers:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">label</span><span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">suffix</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">[</span><span class="va">buf_id</span><span class="op">].</span><span class="va">modified</span> <span class="kw">and</span> <span class="st">'+ '</span> <span class="kw">or</span> <span class="st">''</span></span>
@@ -509,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniTabline.make_tabline_string</code>()
 </p>
-<p>Make string for <a href="https://neovim.io/doc/user/helptag.html?tag='tabline'"><code>'tabline'</code></a></p>
+<p>Make string for <a href="https://neovim.io/doc/user/helptag.html?tag='tabline'">‘tabline’</a></p>
 <hr>
 </section>
 <section id="minitabline.default_format" class="level3">
@@ -518,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniTabline.default_format</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{label}</span>)
 </p>
 <p>Default tab format</p>
-<p>Used by default as <code>config.format</code>. Prepends label with padded icon based on buffer’s name (if <code>show_icon</code> in <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config"><code>MiniTabline.config</code></a> is <code>true</code>) and surrounds label with single space. Note: it is meant to be used only as part of <code>format</code> in <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config"><code>MiniTabline.config</code></a>.</p>
+<p>Used by default as <code>config.format</code>. Prepends label with padded icon based on buffer’s name (if <code>show_icon</code> in <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config">MiniTabline.config</a> is <code>true</code>) and surrounds label with single space. Note: it is meant to be used only as part of <code>format</code> in <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.config">MiniTabline.config</a>.</p>
 <section id="minitabline.default_format-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitabline.default_format-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Buffer identifier.</p>

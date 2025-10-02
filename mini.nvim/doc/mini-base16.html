@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.base16 documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minibase16" id="toc-minibase16" class="nav-link active" data-scroll-target="#minibase16">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minibase16-setup" id="toc-minibase16-setup" class="nav-link" data-scroll-target="#minibase16-setup">Setup</a></li>
-  <li><a href="#minibase16-notes" id="toc-minibase16-notes" class="nav-link" data-scroll-target="#minibase16-notes">Notes</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-notes" id="toc-module-notes" class="nav-link" data-scroll-target="#module-notes">Notes</a></li>
   </ul></li>
   <li><a href="#minibase16-color-schemes" id="toc-minibase16-color-schemes" class="nav-link" data-scroll-target="#minibase16-color-schemes">Color schemes</a>
   <ul>
@@ -408,11 +409,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.base16" href="../../mini.nvim/doc/mini-base16.html#mini.base16"><b>mini.base16</b></a> Base16 colorscheme creation</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="minibase16" class="level3">
-<h3 class="anchored" data-anchor-id="minibase16">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Fast implementation of <a href="https://github.com/chriskempson/base16">chriskempson/base16</a> color scheme (with Copyright (C) 2012 Chris Kempson) adapted for modern Neovim Lua plugins. Extra features:</p>
 <ul>
-<li><p>Configurable automatic support of cterm colors (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm"><code>highlight-cterm</code></a>).</p></li>
+<li><p>Configurable automatic support of cterm colors (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm">highlight-cterm</a>).</p></li>
 <li><p>Opinionated palette generator based only on background and foreground colors.</p></li>
 </ul>
 <p>Supported highlight groups:</p>
@@ -459,10 +460,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://github.com/williamboman/mason.nvim">williamboman/mason.nvim</a></p></li>
 </ul></li>
 </ul>
-<section id="minibase16-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minibase16-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.base16').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBase16</code> which you can use for scripting or manually (with <code>:lua MiniBase16.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-base16.html#minibase16.config"><code>MiniBase16.config</code></a> for <code>config</code> structure and default values.</p>
+<p>See <a href="../../mini.nvim/doc/mini-base16.html#minibase16.config">MiniBase16.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minibase16_config</code> will have no effect here.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.base16'</span><span class="op">).</span>setup<span class="op">({</span></span>
@@ -491,14 +492,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="minibase16-notes" class="level4">
-<h4 class="anchored" data-anchor-id="minibase16-notes">Notes</h4>
+<section id="module-notes" class="level4">
+<h4 class="anchored" data-anchor-id="module-notes">Notes</h4>
 <ol type="1">
-<li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-base16.html#minibase16-color-schemes"><code>MiniBase16-color-schemes</code></a>).</p></li>
-<li><p>Using <code>setup()</code> doesn’t actually create a <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme"><code>:colorscheme</code></a>. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups"><code>highlight-groups</code></a>. To create your own theme:</p>
+<li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-base16.html#minibase16-color-schemes">MiniBase16-color-schemes</a>).</p></li>
+<li><p>Using <code>setup()</code> doesn’t actually create a <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a>. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups">highlight-groups</a>. To create your own theme:</p>
 <ul>
 <li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from ‘runtimepath’ (“colors” inside your Neovim config directory is usually enough).</p></li>
-<li><p>Inside “myscheme.lua” call <code>require('mini.base16').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name"><code>g:colors_name</code></a> to “myscheme”.</p></li>
+<li><p>Inside “myscheme.lua” call <code>require('mini.base16').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to “myscheme”.</p></li>
 </ul></li>
 </ol>
 <hr>
@@ -508,9 +509,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minibase16-color-schemes">Color schemes</h3>
 <section id="minibase16-color-schemes-base16colorschemes" class="level4">
 <h4 class="anchored" data-anchor-id="minibase16-color-schemes-base16colorschemes">Base16 colorschemes</h4>
-<p>This module comes with several pre-built color schemes. Each of them is a <a href="../../mini.nvim/doc/mini-base16.html#mini.base16"><code>mini.base16</code></a> theme created with faster version of the following Lua code:</p>
+<p>This module comes with several pre-built color schemes. Each of them is a <a href="../../mini.nvim/doc/mini-base16.html#mini.base16">mini.base16</a> theme created with faster version of the following Lua code:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.base16'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">palette</span> <span class="op">=</span> <span class="va">palette</span><span class="op">,</span> <span class="va">use_cterm</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Activate them as regular <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme"><code>:colorscheme</code></a> (for example, <code>:colorscheme minischeme</code>).</p>
+<p>Activate them as regular <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a> (for example, <code>:colorscheme minischeme</code>).</p>
 <section id="minibase16-color-schemes-base16colorschemes-minischeme" class="level5">
 <h5 class="anchored" data-anchor-id="minibase16-color-schemes-base16colorschemes-minischeme">minischeme</h5>
 <p><a name="minischeme" href="../../mini.nvim/doc/mini-base16.html#minischeme"><b>minischeme</b></a></p>
@@ -541,14 +542,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Module setup</p>
 <p>Setup is done by applying base16 palette to enable colorscheme. Highlight groups make an extended set from original <a href="https://github.com/chriskempson/base16-vim/">base16-vim</a> plugin. It is a good idea to have <code>config.palette</code> respect the original <a href="https://github.com/chriskempson/base16/blob/master/styling.md">styling principles</a>.</p>
-<p>By default only ‘gui highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-gui"><code>highlight-gui</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'"><code>'termguicolors'</code></a>) is supported. To support ‘cterm highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm"><code>highlight-cterm</code></a>) supply <code>config.use_cterm</code> argument in one of the formats:</p>
+<p>By default only ‘gui highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-gui">highlight-gui</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a>) is supported. To support ‘cterm highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm">highlight-cterm</a>) supply <code>config.use_cterm</code> argument in one of the formats:</p>
 <ul>
 <li><p><code>true</code> to auto-generate from <code>palette</code> (as closest colors).</p></li>
 <li><p>Table with similar structure to <code>palette</code> but having terminal colors (integers from 0 to 255) instead of hex strings.</p></li>
 </ul>
 <section id="minibase16.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibase16.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table)</code> Module config table. See <a href="../../mini.nvim/doc/mini-base16.html#minibase16.config"><code>MiniBase16.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table)</code> Module config table. See <a href="../../mini.nvim/doc/mini-base16.html#minibase16.config">MiniBase16.config</a>.</p>
 </section>
 <section id="minibase16.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minibase16.setup-usage">Usage</h4>
@@ -584,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minibase16.config-pluginintegrations">Plugin integrations</h4>
 <p><code>config.plugins</code> defines for which supported plugins highlight groups will be created. Limiting number of integrations slightly decreases startup time. It is a table with boolean (<code>true</code>/<code>false</code>) values which are applied as follows:</p>
 <ul>
-<li><p>If plugin name (as listed in <a href="../../mini.nvim/doc/mini-base16.html#mini.base16"><code>mini.base16</code></a>) has entry, it is used.</p></li>
+<li><p>If plugin name (as listed in <a href="../../mini.nvim/doc/mini-base16.html#mini.base16">mini.base16</a>) has entry, it is used.</p></li>
 <li><p>Otherwise <code>config.plugins.default</code> is used.</p></li>
 </ul>
 <p>Example which will load only “mini.nvim” integration:</p>
@@ -650,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minibase16.rgb_palette_to_cterm_palette-return" class="level4">
 <h4 class="anchored" data-anchor-id="minibase16.rgb_palette_to_cterm_palette-return">Return</h4>
-<p><code>(table)</code> Table with base16 palette using <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm"><code>highlight-cterm</code></a>.</p>
+<p><code>(table)</code> Table with base16 palette using <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm">highlight-cterm</a>.</p>
 
 
 </section>

@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.operators documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minioperators" id="toc-minioperators" class="nav-link active" data-scroll-target="#minioperators">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minioperators-setup" id="toc-minioperators-setup" class="nav-link" data-scroll-target="#minioperators-setup">Setup</a></li>
-  <li><a href="#minioperators-comparisons" id="toc-minioperators-comparisons" class="nav-link" data-scroll-target="#minioperators-comparisons">Comparisons</a></li>
-  <li><a href="#minioperators-highlightgroups" id="toc-minioperators-highlightgroups" class="nav-link" data-scroll-target="#minioperators-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minioperators-disabling" id="toc-minioperators-disabling" class="nav-link" data-scroll-target="#minioperators-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minioperators-overview" id="toc-minioperators-overview" class="nav-link" data-scroll-target="#minioperators-overview">Overview</a>
   <ul>
@@ -431,8 +432,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.operators" href="../../mini.nvim/doc/mini-operators.html#mini.operators"><b>mini.operators</b></a> Text edit operators</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minioperators" class="level3">
-<h3 class="anchored" data-anchor-id="minioperators">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Operators:</p>
@@ -443,23 +444,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Replace text with register.</p></li>
 <li><p>Sort text.</p></li>
 </ul></li>
-<li><p>Automated configurable mappings to operate on textobject, line, selection. Can be disabled in favor of more control with <a href="../../mini.nvim/doc/mini-operators.html#minioperators.make_mappings"><code>MiniOperators.make_mappings()</code></a>.</p></li>
-<li><p>All operators support <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> and dot-repeat.</p></li>
+<li><p>Automated configurable mappings to operate on textobject, line, selection. Can be disabled in favor of more control with <a href="../../mini.nvim/doc/mini-operators.html#minioperators.make_mappings">MiniOperators.make_mappings()</a>.</p></li>
+<li><p>All operators support <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> and dot-repeat.</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-overview"><code>MiniOperators-overview</code></a> and <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config"><code>MiniOperators.config</code></a> for more details.</p>
-<section id="minioperators-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minioperators-setup">Setup</h4>
+<p>See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-overview">MiniOperators-overview</a> and <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config">MiniOperators.config</a> for more details.</p>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.operators').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniOperators</code> which you can use for scripting or manually (with <code>:lua MiniOperators.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config"><code>MiniOperators.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (but not <code>config.mappings</code>) locally to buffer inside <code>vim.b.minioperators_config</code> which should have same structure as <code>MiniOperators.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config">MiniOperators.config</a> for available config settings.</p>
+<p>You can override runtime config settings (but not <code>config.mappings</code>) locally to buffer inside <code>vim.b.minioperators_config</code> which should have same structure as <code>MiniOperators.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minioperators-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minioperators-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/gbprod/substitute.nvim">gbprod/substitute.nvim</a>:</p>
 <ul>
 <li><p>Has “replace” and “exchange” variants, but not others from this module.</p></li>
-<li><p>Has “replace/substitute” over range functionality, while this module does not by design (it is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:s"><code>:s</code></a> functionality while not offering significantly lower mental complexity).</p></li>
+<li><p>Has “replace/substitute” over range functionality, while this module does not by design (it is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:s">:s</a> functionality while not offering significantly lower mental complexity).</p></li>
 <li><p>“Replace” highlights pasted text, while in this module it doesn’t.</p></li>
 <li><p>“Exchange” doesn’t work across buffers, while in this module it does.</p></li>
 </ul></li>
@@ -475,50 +476,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/christoomey/vim-sort-motion">christoomey/vim-sort-motion</a>:</p>
 <ul>
-<li><p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=:sort"><code>:sort</code></a> for linewise sorting, while this module uses consistent sorting algorithm (by default, see <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func"><code>MiniOperators.default_sort_func()</code></a>).</p></li>
-<li><p>Sorting algorithm can’t be customized, while this module allows this (see <code>sort.func</code> in <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config"><code>MiniOperators.config</code></a>).</p></li>
-<li><p>For charwise region uses only commas as separators, while this module can also separate by semicolon or whitespace (by default, see <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func"><code>MiniOperators.default_sort_func()</code></a>).</p></li>
+<li><p>Uses <a href="https://neovim.io/doc/user/helptag.html?tag=:sort">:sort</a> for linewise sorting, while this module uses consistent sorting algorithm (by default, see <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func">MiniOperators.default_sort_func()</a>).</p></li>
+<li><p>Sorting algorithm can’t be customized, while this module allows this (see <code>sort.func</code> in <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config">MiniOperators.config</a>).</p></li>
+<li><p>For charwise region uses only commas as separators, while this module can also separate by semicolon or whitespace (by default, see <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func">MiniOperators.default_sort_func()</a>).</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="minioperators-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minioperators-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><code>MiniOperatorsExchangeFrom</code> - first region to exchange.</li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minioperators-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minioperators-disabling">Disabling</h4>
-<p>To disable main functionality, set <code>vim.g.minioperators_disable</code> (globally) or <code>vim.b.minioperators_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable main functionality, set <code>vim.g.minioperators_disable</code> (globally) or <code>vim.b.minioperators_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
 <section id="minioperators-overview" class="level3">
 <h3 class="anchored" data-anchor-id="minioperators-overview">Overview</h3>
-<p>Operator defines an action that will be performed on a textobject, motion, or visual selection (similar to <a href="https://neovim.io/doc/user/helptag.html?tag=d"><code>d</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=c"><code>c</code></a>, etc.). When makes sense, it can also respect supplied register (like “replace” operator).</p>
-<p>This module implements each operator in a separate dedicated function (like <a href="../../mini.nvim/doc/mini-operators.html#minioperators.replace"><code>MiniOperators.replace()</code></a> for “replace” operator). Each such function takes <code>mode</code> as argument and acts depending on it:</p>
+<p>Operator defines an action that will be performed on a textobject, motion, or visual selection (similar to <a href="https://neovim.io/doc/user/helptag.html?tag=d">d</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=c">c</a>, etc.). When makes sense, it can also respect supplied register (like “replace” operator).</p>
+<p>This module implements each operator in a separate dedicated function (like <a href="../../mini.nvim/doc/mini-operators.html#minioperators.replace">MiniOperators.replace()</a> for “replace” operator). Each such function takes <code>mode</code> as argument and acts depending on it:</p>
 <ul>
-<li><p>If <code>mode</code> is <code>nil</code> (or not explicitly supplied), it sets <a href="https://neovim.io/doc/user/helptag.html?tag='operatorfunc'"><code>'operatorfunc'</code></a> to this dedicated function and returns <code>g@</code> assuming being called from expression mapping. See <a href="https://neovim.io/doc/user/helptag.html?tag=:map-operator"><code>:map-operator</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a> for more details.</p></li>
-<li><p>If <code>mode</code> is “char”, “line”, or “block”, it acts as <code>operatorfunc</code> and performs action for region between <a href="https://neovim.io/doc/user/helptag.html?tag=%60%5B">`<code>[</code></a> and |`]| marks.</p></li>
-<li><p>If <code>mode</code> is “visual”, it performs action for region between <a href="https://neovim.io/doc/user/helptag.html?tag=%60%3C">`<code>&lt;</code></a> and |`&gt;| marks.</p></li>
+<li><p>If <code>mode</code> is <code>nil</code> (or not explicitly supplied), it sets <a href="https://neovim.io/doc/user/helptag.html?tag='operatorfunc'">‘operatorfunc’</a> to this dedicated function and returns <code>g@</code> assuming being called from expression mapping. See <a href="https://neovim.io/doc/user/helptag.html?tag=:map-operator">:map-operator</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression">:map-expression</a> for more details.</p></li>
+<li><p>If <code>mode</code> is “char”, “line”, or “block”, it acts as <code>operatorfunc</code> and performs action for region between [<code>[](https://neovim.io/doc/user/helptag.html?tag=</code>[) and |`]| marks.</p></li>
+<li><p>If <code>mode</code> is “visual”, it performs action for region between [<code>&lt;](https://neovim.io/doc/user/helptag.html?tag=</code>&lt;) and |`&gt;| marks.</p></li>
 </ul>
 <p>For more details about specific operator, see help for its function:</p>
 <ul>
-<li><p>Evaluate: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.evaluate"><code>MiniOperators.evaluate()</code></a></p></li>
-<li><p>Exchange: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.exchange"><code>MiniOperators.exchange()</code></a></p></li>
-<li><p>Multiply: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.multiply"><code>MiniOperators.multiply()</code></a></p></li>
-<li><p>Replace: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.replace"><code>MiniOperators.replace()</code></a></p></li>
-<li><p>Sort: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.sort"><code>MiniOperators.sort()</code></a></p></li>
+<li><p>Evaluate: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.evaluate">MiniOperators.evaluate()</a></p></li>
+<li><p>Exchange: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.exchange">MiniOperators.exchange()</a></p></li>
+<li><p>Multiply: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.multiply">MiniOperators.multiply()</a></p></li>
+<li><p>Replace: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.replace">MiniOperators.replace()</a></p></li>
+<li><p>Sort: <a href="../../mini.nvim/doc/mini-operators.html#minioperators.sort">MiniOperators.sort()</a></p></li>
 </ul>
 <section id="minioperators-overview-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators-overview-mappings">Mappings</h4>
 <p><a name="minioperators-mappings" href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><b>MiniOperators-mappings</b></a></p>
-<p>All operators are automatically mapped during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a> execution. Mappings keys are deduced from <code>prefix</code> field of corresponding <code>config</code> entry. All built-in conflicting mappings are removed (like <a href="https://neovim.io/doc/user/helptag.html?tag=gra"><code>gra</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=grn"><code>grn</code></a> in Neovim&gt;=0.11). Both <a href="https://neovim.io/doc/user/helptag.html?tag=gx"><code>gx</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_gx"><code>v_gx</code></a> are remapped to <code>gX</code> (if that is not already taken).</p>
+<p>All operators are automatically mapped during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a> execution. Mappings keys are deduced from <code>prefix</code> field of corresponding <code>config</code> entry. All built-in conflicting mappings are removed (like <a href="https://neovim.io/doc/user/helptag.html?tag=gra">gra</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=grn">grn</a> in Neovim&gt;=0.11). Both <a href="https://neovim.io/doc/user/helptag.html?tag=gx">gx</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_gx">v_gx</a> are remapped to <code>gX</code> (if that is not already taken).</p>
 <p>For each operator the following mappings are created:</p>
 <ul>
 <li><p>In Normal mode to operate on textobject. Uses <code>prefix</code> directly.</p></li>
-<li><p>In Normal mode to operate on line. Appends to <code>prefix</code> the last character. This aligns with <a href="https://neovim.io/doc/user/helptag.html?tag=operator-doubled"><code>operator-doubled</code></a> and established patterns for operators with more than two characters, like <a href="https://neovim.io/doc/user/helptag.html?tag=guu"><code>guu</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=gUU"><code>gUU</code></a>, etc.</p></li>
+<li><p>In Normal mode to operate on line. Appends to <code>prefix</code> the last character. This aligns with <a href="https://neovim.io/doc/user/helptag.html?tag=operator-doubled">operator-doubled</a> and established patterns for operators with more than two characters, like <a href="https://neovim.io/doc/user/helptag.html?tag=guu">guu</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=gUU">gUU</a>, etc.</p></li>
 <li><p>In Visual mode to operate on visual selection. Uses <code>prefix</code> directly.</p></li>
 </ul>
 <p>Example of default mappings for “replace”:</p>
@@ -529,10 +530,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>There are two suggested ways to customize mappings:</p>
 <ul>
-<li><p>Change <code>prefix</code> in <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a> call. For example, doing</p>
+<li><p>Change <code>prefix</code> in <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a> call. For example, doing</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.operators'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">replace</span> <span class="op">=</span> <span class="op">{</span> <span class="va">prefix</span> <span class="op">=</span> <span class="st">'cr'</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will make mappings for <code>cr</code> / <code>crr</code> / <code>cr</code> instead of <code>gr</code> / <code>grr</code> / <code>gr</code>.</p></li>
-<li><p>Disable automated mapping creation by supplying empty string as prefix and use <a href="../../mini.nvim/doc/mini-operators.html#minioperators.make_mappings"><code>MiniOperators.make_mappings()</code></a> directly. For example:</p>
+<li><p>Disable automated mapping creation by supplying empty string as prefix and use <a href="../../mini.nvim/doc/mini-operators.html#minioperators.make_mappings">MiniOperators.make_mappings()</a> directly. For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Disable automated creation of "replace"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">operators</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.operators'</span><span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">operators</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">replace</span> <span class="op">=</span> <span class="op">{</span> <span class="va">prefix</span> <span class="op">=</span> <span class="st">''</span> <span class="op">}</span> <span class="op">})</span></span>
@@ -554,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minioperators.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config"><code>MiniOperators.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config">MiniOperators.config</a>.</p>
 </section>
 <section id="minioperators.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.setup-usage">Usage</h4>
@@ -621,32 +622,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minioperators.config-evaluate" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.config-evaluate">Evaluate</h4>
-<p><code>evaluate.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><code>MiniOperators-mappings</code></a>.</p>
-<p><code>evaluate.func</code> is a function used to actually evaluate text region. If <code>nil</code> (default), <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_evaluate_func"><code>MiniOperators.default_evaluate_func()</code></a> is used.</p>
+<p><code>evaluate.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings">MiniOperators-mappings</a>.</p>
+<p><code>evaluate.func</code> is a function used to actually evaluate text region. If <code>nil</code> (default), <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_evaluate_func">MiniOperators.default_evaluate_func()</a> is used.</p>
 <p>This function will take content table representing selected text as input and should return array of lines as output (each item per line). Content table has fields <code>lines</code>, array of region lines, and <code>submode</code>, one of <code>v</code>, <code>V</code>, <code>\22</code> (escaped <code>&lt;C-v&gt;</code>) for charwise, linewise, and blockwise.</p>
-<p>To customize evaluation per language, set <code>evaluate.func</code> in buffer-local config (<code>vim.b.minioperators_config</code>; see <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a>).</p>
+<p>To customize evaluation per language, set <code>evaluate.func</code> in buffer-local config (<code>vim.b.minioperators_config</code>; see <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a>).</p>
 </section>
 <section id="minioperators.config-exchange" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.config-exchange">Exchange</h4>
-<p><code>exchange.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><code>MiniOperators-mappings</code></a>.</p>
-<p>Note: default value “gx” overrides <a href="https://neovim.io/doc/user/helptag.html?tag=gx"><code>gx</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=v_gx"><code>v_gx</code></a>. Instead they are remapped to <code>gX</code> (if that is not already taken). To keep using <code>gx</code> with built-in feature (open URL at cursor) choose different <code>config.prefix</code>.</p>
+<p><code>exchange.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings">MiniOperators-mappings</a>.</p>
+<p>Note: default value “gx” overrides <a href="https://neovim.io/doc/user/helptag.html?tag=gx">gx</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=v_gx">v_gx</a>. Instead they are remapped to <code>gX</code> (if that is not already taken). To keep using <code>gx</code> with built-in feature (open URL at cursor) choose different <code>config.prefix</code>.</p>
 <p><code>exchange.reindent_linewise</code> is a boolean indicating whether newly put linewise text should preserve indent of replaced text. In other words, if <code>false</code>, regions are exchanged preserving their indents; if <code>true</code> - without them.</p>
 </section>
 <section id="minioperators.config-multiply" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.config-multiply">Multiply</h4>
-<p><code>multiply.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><code>MiniOperators-mappings</code></a>.</p>
+<p><code>multiply.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings">MiniOperators-mappings</a>.</p>
 <p><code>multiply.func</code> is a function used to optionally update multiplied text. If <code>nil</code> (default), text used as is.</p>
 <p>Takes content table as input (see “Evaluate” section) and should return array of lines as output.</p>
 </section>
 <section id="minioperators.config-replace" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.config-replace">Replace</h4>
-<p><code>replace.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><code>MiniOperators-mappings</code></a>.</p>
+<p><code>replace.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings">MiniOperators-mappings</a>.</p>
 <p><code>replace.reindent_linewise</code> is a boolean indicating whether newly put linewise text should preserve indent of replaced text.</p>
 </section>
 <section id="minioperators.config-sort" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.config-sort">Sort</h4>
-<p><code>sort.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup"><code>MiniOperators.setup()</code></a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings"><code>MiniOperators-mappings</code></a>.</p>
-<p><code>sort.func</code> is a function used to actually sort text region. If <code>nil</code> (default), <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func"><code>MiniOperators.default_sort_func()</code></a> is used.</p>
+<p><code>sort.prefix</code> is a string used to automatically infer operator mappings keys during <a href="../../mini.nvim/doc/mini-operators.html#minioperators.setup">MiniOperators.setup()</a>. See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-mappings">MiniOperators-mappings</a>.</p>
+<p><code>sort.func</code> is a function used to actually sort text region. If <code>nil</code> (default), <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func">MiniOperators.default_sort_func()</a> is used.</p>
 <p>Takes content table as input (see “Evaluate” section) and should return array of lines as output.</p>
 <p>Example of <code>sort.func</code> which asks user for custom delimiter for charwise region:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">sort_func</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">content</span><span class="op">)</span></span>
@@ -670,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniOperators.evaluate</code>(<span class="help-syntax-special">{mode}</span>)
 </p>
 <p>Evaluate text and replace with output</p>
-<p>It replaces the region with the output of <code>config.evaluate.func</code>. By default it is <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_evaluate_func"><code>MiniOperators.default_evaluate_func()</code></a> which evaluates text as Lua code depending on the region submode.</p>
+<p>It replaces the region with the output of <code>config.evaluate.func</code>. By default it is <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_evaluate_func">MiniOperators.default_evaluate_func()</a> which evaluates text as Lua code depending on the region submode.</p>
 <section id="minioperators.evaluate-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.evaluate-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> One of <code>nil</code>, <code>'char'</code>, <code>'line'</code>, <code>'block'</code>, <code>'visual'</code>.</p>
@@ -709,8 +710,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Copies a region (without affecting registers) and puts it directly after.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Supports two types of <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>: <code>[count1]gm[count2][textobject]</code> with default <code>config.multiply.prefix</code> makes <code>[count1]</code> copies of region defined by <code>[count2][textobject]</code>. Example: <code>2gm3aw</code> - 2 copies of <code>3aw</code>.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “line” mapping (<code>gmm</code> by default) is treated as <code>[count1]</code> from previous note.</p></li>
+<li><p>Supports two types of <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>: <code>[count1]gm[count2][textobject]</code> with default <code>config.multiply.prefix</code> makes <code>[count1]</code> copies of region defined by <code>[count2][textobject]</code>. Example: <code>2gm3aw</code> - 2 copies of <code>3aw</code>.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for “line” mapping (<code>gmm</code> by default) is treated as <code>[count1]</code> from previous note.</p></li>
 <li><p>Advantages of using this instead of “yank” + “paste”:</p>
 <ul>
 <li><p>Doesn’t modify any register, while separate steps need some register to hold multiplied text.</p></li>
@@ -731,9 +732,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Replace text with register</p>
 <p>Notes:</p>
 <ul>
-<li><p>Supports two types of <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>: <code>[count1]gr[count2][textobject]</code> with default <code>config.replace.prefix</code> puts <code>[count1]</code> contents of register over region defined by <code>[count2][textobject]</code>. Example: <code>2gr3aw</code> - 2 register contents over <code>3aw</code>.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “line” mapping (<code>grr</code> by default) is treated as <code>[count1]</code> from previous note.</p></li>
-<li><p>Advantages of using this instead of “visually select” + “paste with <a href="https://neovim.io/doc/user/helptag.html?tag=v_P"><code>v_P</code></a>”:</p>
+<li><p>Supports two types of <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>: <code>[count1]gr[count2][textobject]</code> with default <code>config.replace.prefix</code> puts <code>[count1]</code> contents of register over region defined by <code>[count2][textobject]</code>. Example: <code>2gr3aw</code> - 2 register contents over <code>3aw</code>.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for “line” mapping (<code>grr</code> by default) is treated as <code>[count1]</code> from previous note.</p></li>
+<li><p>Advantages of using this instead of “visually select” + “paste with <a href="https://neovim.io/doc/user/helptag.html?tag=v_P">v_P</a>”:</p>
 <ul>
 <li><p>As operator it is dot-repeatable which has cumulative gain in case of multiple replacing is needed.</p></li>
 <li><p>Can automatically reindent.</p></li>
@@ -751,10 +752,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniOperators.sort</code>(<span class="help-syntax-special">{mode}</span>)
 </p>
 <p>Sort text</p>
-<p>It replaces the region with the output of <code>config.sort.func</code>. By default it is <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func"><code>MiniOperators.default_sort_func()</code></a> which sorts the text depending on submode.</p>
+<p>It replaces the region with the output of <code>config.sort.func</code>. By default it is <a href="../../mini.nvim/doc/mini-operators.html#minioperators.default_sort_func">MiniOperators.default_sort_func()</a> which sorts the text depending on submode.</p>
 <p>Notes:</p>
 <ul>
-<li>“line” mapping is charwise (as there is not much sense in sorting linewise a single line). This also results into no <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> support.</li>
+<li>“line” mapping is charwise (as there is not much sense in sorting linewise a single line). This also results into no <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> support.</li>
 </ul>
 <section id="minioperators.sort-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.sort-parameters">Parameters</h4>
@@ -774,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{lhs_tbl}</span> <code>(table)</code> Table with mappings keys. Should have these fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;textobject&gt;</span> <code>(string)</code> - Normal mode mapping to operate on textobject.</p></li>
-<li><p><span class="help-syntax-keys">&lt;line&gt;</span> <code>(string)</code> - Normal mode mapping to operate on line. Usually an alias for textobject mapping followed by <a href="https://neovim.io/doc/user/helptag.html?tag=_"><code>_</code></a>. For “sort” it operates charwise on whole line without left and right whitespace (as there is not much sense in sorting linewise a single line).</p></li>
+<li><p><span class="help-syntax-keys">&lt;line&gt;</span> <code>(string)</code> - Normal mode mapping to operate on line. Usually an alias for textobject mapping followed by <a href="https://neovim.io/doc/user/helptag.html?tag=_">_</a>. For “sort” it operates charwise on whole line without left and right whitespace (as there is not much sense in sorting linewise a single line).</p></li>
 <li><p><span class="help-syntax-keys">&lt;selection&gt;</span> <code>(string)</code> - Visual mode mapping to operate on selection.</p></li>
 </ul>
 <p>Supply empty string to not create particular mapping. Note: creating <code>line</code> mapping needs <code>textobject</code> mapping to be set.</p>
@@ -823,7 +824,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Sort is done with <a href="https://neovim.io/doc/user/helptag.html?tag=table.sort()"><code>table.sort()</code></a> on an array of lines, which doesn’t treat whitespace or digits specially. Use <a href="https://neovim.io/doc/user/helptag.html?tag=:sort"><code>:sort</code></a> for more complicated tasks.</p></li>
+<li><p>Sort is done with <a href="https://neovim.io/doc/user/helptag.html?tag=table.sort()">table.sort()</a> on an array of lines, which doesn’t treat whitespace or digits specially. Use <a href="https://neovim.io/doc/user/helptag.html?tag=:sort">:sort</a> for more complicated tasks.</p></li>
 <li><p>Pattern is allowed to be an empty string in which case split results into all characters as parts.</p></li>
 <li><p>Pad pattern in <code>split_patterns</code> with <code>%s*</code> to include whitespace into separator. Example: line “b _ a” with “<em>” pattern will be sorted as ” a_b ” (because it is split as ”b ”, ”</em>”, ” a” ) while with “%s_%s” pattern it results into “a _ b” (split as “b”, ” _ “,”a”).</p></li>
 </ul>
@@ -836,7 +837,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;compare_fun&gt;</span> <code>(function)</code> - compare function compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=table.sort()"><code>table.sort()</code></a>. Default: direct compare with <code>&lt;</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;compare_fun&gt;</span> <code>(function)</code> - compare function compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=table.sort()">table.sort()</a>. Default: direct compare with <code>&lt;</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;split_patterns&gt;</span> <code>(table)</code> - array of split Lua patterns to be used for charwise submode. Order is important. Default: <code>{ '%s*,%s*', '%s*;%s*', '%s+', '' }</code>.</p></li>
 </ul>
 

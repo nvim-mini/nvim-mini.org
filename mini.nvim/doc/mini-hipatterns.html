@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="mini.hipatterns documentation – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
@@ -311,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +373,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minihipatterns" id="toc-minihipatterns" class="nav-link active" data-scroll-target="#minihipatterns">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minihipatterns-setup" id="toc-minihipatterns-setup" class="nav-link" data-scroll-target="#minihipatterns-setup">Setup</a></li>
-  <li><a href="#minihipatterns-comparisons" id="toc-minihipatterns-comparisons" class="nav-link" data-scroll-target="#minihipatterns-comparisons">Comparisons</a></li>
-  <li><a href="#minihipatterns-highlightgroups" id="toc-minihipatterns-highlightgroups" class="nav-link" data-scroll-target="#minihipatterns-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minihipatterns-disabling" id="toc-minihipatterns-disabling" class="nav-link" data-scroll-target="#minihipatterns-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minihipatterns-examples" id="toc-minihipatterns-examples" class="nav-link" data-scroll-target="#minihipatterns-examples">Examples</a>
   <ul>
@@ -432,39 +462,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.hipatterns" href="../../mini.nvim/doc/mini-hipatterns.html#mini.hipatterns"><b>mini.hipatterns</b></a> Highlight patterns in text</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minihipatterns" class="level3">
-<h3 class="anchored" data-anchor-id="minihipatterns">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Highlight text with configurable patterns and highlight groups (can be string or callable).</p></li>
 <li><p>Highlighting is updated asynchronously with configurable debounce delay.</p></li>
-<li><p>Function to get matches in a buffer (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.get_matches"><code>MiniHipatterns.get_matches()</code></a>).</p></li>
+<li><p>Function to get matches in a buffer (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.get_matches">MiniHipatterns.get_matches()</a>).</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns-examples"><code>MiniHipatterns-examples</code></a> for common configuration examples.</p>
+<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns-examples">MiniHipatterns-examples</a> for common configuration examples.</p>
 <p>Notes:</p>
 <ul>
 <li><p>It does not define any highlighters by default. Add to <code>config.highlighters</code> to have a visible effect.</p></li>
-<li><p>Sometimes (especially during frequent buffer updates on same line numbers) highlighting can be outdated or not applied when it should be. This is due to asynchronous nature of updates reacting to text changes (via <code>on_lines</code> of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_attach()"><code>nvim_buf_attach()</code></a>). To make them up to date, use one of the following:</p>
+<li><p>Sometimes (especially during frequent buffer updates on same line numbers) highlighting can be outdated or not applied when it should be. This is due to asynchronous nature of updates reacting to text changes (via <code>on_lines</code> of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_attach()">nvim_buf_attach()</a>). To make them up to date, use one of the following:</p>
 <ul>
-<li><p>Scroll window (for example, with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-E"><code>CTRL-E</code></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y"><code>CTRL-Y</code></a>). This will ensure up to date highlighting inside window view.</p></li>
+<li><p>Scroll window (for example, with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-E">CTRL-E</a> / <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y">CTRL-Y</a>). This will ensure up to date highlighting inside window view.</p></li>
 <li><p>Hide and show buffer.</p></li>
-<li><p>Execute <code>:edit</code> (if you enabled highlighting with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>).</p></li>
-<li><p>Manually call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.update"><code>MiniHipatterns.update()</code></a>.</p></li>
+<li><p>Execute <code>:edit</code> (if you enabled highlighting with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a>).</p></li>
+<li><p>Manually call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.update">MiniHipatterns.update()</a>.</p></li>
 </ul></li>
-<li><p>If you experience flicker when typing near highlighted pattern in Insert mode, it might be due to <code>delay</code> configuration of <a href="../../mini.nvim/doc/mini-completion.html#mini.completion"><code>mini.completion</code></a> or using built-in completion. For better experience with ‘mini.completion’, make sure that its <code>delay.completion</code> is less than this module’s <code>delay.text_change</code> (which it is by default). The reason for this is (currently unresolvable) limitations of Neovim’s built-in completion implementation.</p></li>
+<li><p>If you experience flicker when typing near highlighted pattern in Insert mode, it might be due to <code>delay</code> configuration of <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> or using built-in completion. For better experience with ‘mini.completion’, make sure that its <code>delay.completion</code> is less than this module’s <code>delay.text_change</code> (which it is by default). The reason for this is (currently unresolvable) limitations of Neovim’s built-in completion implementation.</p></li>
 </ul>
-<section id="minihipatterns-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minihipatterns-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>Setting up highlights can be done in two ways:</p>
 <ul>
 <li><p>Manually for every buffer with <code>require('mini.hipatterns').enable()</code>. This will enable highlighting only in one particular buffer until it is unloaded (which also includes calling <code>:edit</code> on current file).</p></li>
-<li><p>Globally with <code>require('mini.hipatterns').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). This will auto-enable highlighting in “normal” buffers (see ‘buftype’). Use <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a> to manually enable in other buffers. It will also create global Lua table <code>MiniHipatterns</code> which you can use for scripting or manually (with <code>:lua MiniHipatterns.*</code>).</p></li>
+<li><p>Globally with <code>require('mini.hipatterns').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). This will auto-enable highlighting in “normal” buffers (see ‘buftype’). Use <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable">MiniHipatterns.enable()</a> to manually enable in other buffers. It will also create global Lua table <code>MiniHipatterns</code> which you can use for scripting or manually (with <code>:lua MiniHipatterns.*</code>).</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings (like highlighters and delays) locally to buffer inside <code>vim.b.minihipatterns_config</code> which should have same structure as <code>MiniHipatterns.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config">MiniHipatterns.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings (like highlighters and delays) locally to buffer inside <code>vim.b.minihipatterns_config</code> which should have same structure as <code>MiniHipatterns.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minihipatterns-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minihipatterns-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/folke/todo-comments">folke/todo-comments</a>:</p>
 <ul>
@@ -478,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://github.com/NvChad/nvim-colorizer.lua">NvChad/nvim-colorizer.lua</a>:</p>
 <ul>
 <li><p>Oriented for color highlighting, while this module can work with any Lua patterns and computable highlight groups.</p></li>
-<li><p>Has more built-in color spaces to highlight, while this module out of the box provides only hex color highlighting (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color"><code>MiniHipatterns.gen_highlighter.hex_color()</code></a>). Other types are also possible to implement.</p></li>
+<li><p>Has more built-in color spaces to highlight, while this module out of the box provides only hex color highlighting (see <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color">MiniHipatterns.gen_highlighter.hex_color()</a>). Other types are also possible to implement.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/uga-rosa/ccc.nvim">uga-rosa/ccc.nvim</a>:</p>
 <ul>
@@ -486,25 +516,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minihipatterns-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minihipatterns-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniHipatternsFixme</code> - suggested group to use for <code>FIXME</code>-like patterns.</p></li>
 <li><p><code>MiniHipatternsHack</code> - suggested group to use for <code>HACK</code>-like patterns.</p></li>
 <li><p><code>MiniHipatternsTodo</code> - suggested group to use for <code>TODO</code>-like patterns.</p></li>
 <li><p><code>MiniHipatternsNote</code> - suggested group to use for <code>NOTE</code>-like patterns.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minihipatterns-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minihipatterns-disabling">Disabling</h4>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
 <p>This module can be disabled in three ways:</p>
 <ul>
 <li><p>Globally: set <code>vim.g.minihipatterns_disable</code> to <code>true</code>.</p></li>
 <li><p>Locally for buffer permanently: set <code>vim.b.minihipatterns_disable</code> to <code>true</code>.</p></li>
-<li><p>Locally for buffer temporarily (until next auto-enabling event if set up with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>): call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a>.</p></li>
+<li><p>Locally for buffer temporarily (until next auto-enabling event if set up with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a>): call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable">MiniHipatterns.disable()</a>.</p></li>
 </ul>
-<p>Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<p>Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -530,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">hex_color</span> <span class="op">=</span> <span class="va">hipatterns</span><span class="op">.</span><span class="va">gen_highlighter</span><span class="op">.</span>hex_color<span class="op">(),</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can customize which part of hex color is highlighted by using <code>style</code> field of input options. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color"><code>MiniHipatterns.gen_highlighter.hex_color()</code></a>.</p></li>
+<p>You can customize which part of hex color is highlighted by using <code>style</code> field of input options. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.gen_highlighter.hex_color">MiniHipatterns.gen_highlighter.hex_color()</a>.</p></li>
 <li><p>Colored words:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">words</span> <span class="op">=</span> <span class="op">{</span> <span class="va">red</span> <span class="op">=</span> <span class="st">'#ff0000'</span><span class="op">,</span> <span class="va">green</span> <span class="op">=</span> <span class="st">'#00ff00'</span><span class="op">,</span> <span class="va">blue</span> <span class="op">=</span> <span class="st">'#0000ff'</span> <span class="op">}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">word_color_group</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="fu">match</span><span class="op">)</span></span>
@@ -545,7 +575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">word_color</span> <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'%S+'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="va">word_color_group</span> <span class="op">},</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Trailing whitespace (if don’t want to use more specific <a href="../../mini.nvim/doc/mini-trailspace.html#mini.trailspace"><code>mini.trailspace</code></a>):</p>
+<li><p>Trailing whitespace (if don’t want to use more specific <a href="../../mini.nvim/doc/mini-trailspace.html#mini.trailspace">mini.trailspace</a>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'%f[%s]%s*$'</span><span class="op">,</span> <span class="va">group</span> <span class="op">=</span> <span class="st">'Error'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Censor certain sensitive information:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">censor_extmark_opts</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="fu">match</span><span class="op">,</span> <span class="cn">_</span><span class="op">)</span></span>
@@ -567,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Enable only in certain filetypes. There are at least these ways to do it:</p>
 <ul>
-<li><p>(Suggested) With <code>vim.b.minihipatterns_config</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-plugin"><code>filetype-plugin</code></a>. Basically, create “after/ftplugin/<span class="help-syntax-keys">&lt;filetype&gt;</span>.lua” file in your config directory (see <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME"><code>$XDG_CONFIG_HOME</code></a>) and define <code>vim.b.minihipatterns_config</code> there with filetype specific highlighters.</p>
+<li><p>(Suggested) With <code>vim.b.minihipatterns_config</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-plugin">filetype-plugin</a>. Basically, create “after/ftplugin/<span class="help-syntax-keys">&lt;filetype&gt;</span>.lua” file in your config directory (see [<span class="math inline">\(XDG_CONFIG_HOME](https://neovim.io/doc/user/helptag.html?tag=\)</span>XDG_CONFIG_HOME)) and define <code>vim.b.minihipatterns_config</code> there with filetype specific highlighters.</p>
 <p>This assumes <code>require('mini.hipatterns').setup()</code> call.</p>
 <p>For example, to highlight keywords in EmmyLua comments in Lua files, create “after/ftplugin/lua.lua” with the following content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">minihipatterns_config</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -588,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul></li>
-<li><p>Disable only in certain filetypes. Enable with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> and set <code>vim.b.minihipatterns_disable</code> buffer-local variable to <code>true</code> for buffer you want disabled. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for more examples.</p></li>
+<li><p>Disable only in certain filetypes. Enable with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a> and set <code>vim.b.minihipatterns_disable</code> buffer-local variable to <code>true</code> for buffer you want disabled. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for more examples.</p></li>
 </ul>
 <hr>
 </section>
@@ -601,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minihipatterns.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config">MiniHipatterns.config</a>.</p>
 </section>
 <section id="minihipatterns.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.setup-usage">Usage</h4>
@@ -634,7 +664,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minihipatterns.config-highlighters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.config-highlighters">Highlighters</h4>
-<p><code>highlighters</code> table defines which patterns will be highlighted by placing <a href="https://neovim.io/doc/user/helptag.html?tag=extmark"><code>extmark</code></a> at the match start. It might or might not have explicitly named fields, but having them is recommended and is required for proper use of <code>vim.b.minihipatterns_config</code> as buffer-local config. By default it is empty expecting user definition.</p>
+<p><code>highlighters</code> table defines which patterns will be highlighted by placing <a href="https://neovim.io/doc/user/helptag.html?tag=extmark">extmark</a> at the match start. It might or might not have explicitly named fields, but having them is recommended and is required for proper use of <code>vim.b.minihipatterns_config</code> as buffer-local config. By default it is empty expecting user definition.</p>
 <p>Each entry defines single highlighter as a table with the following fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string|function|table)</code> - Lua pattern to highlight. Can be either string, callable returning the string, or an array of those. If string:</p>
@@ -666,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>It can return <code>nil</code> meaning this particular match will not be highlighted.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;extmark_opts&gt;</span> <code>(table|function|nil)</code> - optional extra options for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_extmark()"><code>nvim_buf_set_extmark()</code></a>. If callable, will be called in the same way as callable <span class="help-syntax-keys">&lt;group&gt;</span> (<code>data</code> will also contain <code>hl_group</code> key with <span class="help-syntax-keys">&lt;group&gt;</span> value) and should return a table with all options for extmark (including <code>end_row</code>, <code>end_col</code>, <code>hl_group</code>, and <code>priority</code>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;extmark_opts&gt;</span> <code>(table|function|nil)</code> - optional extra options for <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_extmark()">nvim_buf_set_extmark()</a>. If callable, will be called in the same way as callable <span class="help-syntax-keys">&lt;group&gt;</span> (<code>data</code> will also contain <code>hl_group</code> key with <span class="help-syntax-keys">&lt;group&gt;</span> value) and should return a table with all options for extmark (including <code>end_row</code>, <code>end_col</code>, <code>hl_group</code>, and <code>priority</code>).</p></li>
 </ul>
 <p>See “Common use cases” section for the examples.</p>
 </section>
@@ -674,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minihipatterns.config-delay">Delay</h4>
 <p><code>delay</code> is a table defining delays in milliseconds used for asynchronous highlighting process.</p>
 <p><code>delay.text_change</code> is used to delay highlighting updates by accumulating them (in debounce fashion). Smaller values will lead to faster response but more frequent updates. Bigger - slower response but less frequent updates.</p>
-<p><code>delay.scroll</code> is used to delay updating highlights in current window view during scrolling (see <a href="https://neovim.io/doc/user/helptag.html?tag=WinScrolled"><code>WinScrolled</code></a> event). These updates are present to ensure up to date highlighting after scroll.</p>
+<p><code>delay.scroll</code> is used to delay updating highlights in current window view during scrolling (see <a href="https://neovim.io/doc/user/helptag.html?tag=WinScrolled">WinScrolled</a> event). These updates are present to ensure up to date highlighting after scroll.</p>
 <hr>
 </section>
 </section>
@@ -687,17 +717,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>With default config it will highlight nothing, as there are no default highlighters.</p></li>
-<li><p>Buffer highlighting is enabled until buffer is unloaded from memory or <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a> on this buffer is called.</p></li>
-<li><p><code>:edit</code> disables this, as it is mostly equivalent to closing and opening buffer. In order for highlighting to persist after <code>:edit</code>, call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a>.</p></li>
+<li><p>Buffer highlighting is enabled until buffer is unloaded from memory or <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable">MiniHipatterns.disable()</a> on this buffer is called.</p></li>
+<li><p><code>:edit</code> disables this, as it is mostly equivalent to closing and opening buffer. In order for highlighting to persist after <code>:edit</code>, call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a>.</p></li>
 </ul>
 <section id="minihipatterns.enable-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.enable-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Optional buffer-local config. Should have the same structure as <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>. Values will be taken in this order:</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Optional buffer-local config. Should have the same structure as <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config">MiniHipatterns.config</a>. Values will be taken in this order:</p>
 <ul>
 <li><p>From this <code>config</code> argument (if supplied).</p></li>
 <li><p>From buffer-local config in <code>vim.b.minihipatterns_config</code> (if present).</p></li>
-<li><p>From global config (if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> was called).</p></li>
+<li><p>From global config (if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a> was called).</p></li>
 <li><p>From default values.</p></li>
 </ul>
 <hr>
@@ -709,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniHipatterns.disable</code>(<span class="help-syntax-special">{buf_id}</span>)
 </p>
 <p>Disable highlighting in buffer</p>
-<p>Note that if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> was called, the effect is present until the next auto-enabling event. To permanently disable highlighting in buffer, set <code>vim.b.minihipatterns_disable</code> to <code>true</code></p>
+<p>Note that if <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a> was called, the effect is present until the next auto-enabling event. To permanently disable highlighting in buffer, set <code>vim.b.minihipatterns_disable</code> to <code>true</code></p>
 <section id="minihipatterns.disable-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.disable-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
@@ -722,11 +752,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniHipatterns.toggle</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{config}</span>)
 </p>
 <p>Toggle highlighting in buffer</p>
-<p>Call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable"><code>MiniHipatterns.disable()</code></a> if enabled; <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a> otherwise.</p>
+<p>Call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.disable">MiniHipatterns.disable()</a> if enabled; <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable">MiniHipatterns.enable()</a> otherwise.</p>
 <section id="minihipatterns.toggle-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.toggle-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier in which to enable highlighting. Default: 0 for current buffer.</p>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable"><code>MiniHipatterns.enable()</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Forwarded to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable">MiniHipatterns.enable()</a>.</p>
 <hr>
 </section>
 </section>
@@ -766,7 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minihipatterns.get_matches-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.get_matches-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier for which to return matches. Default: <code>nil</code> for current buffer.</p>
-<p><span class="help-syntax-special">{highlighters}</span> <code>(table|nil)</code> Array of highlighter identifiers (as in <code>highlighters</code> field of <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config"><code>MiniHipatterns.config</code></a>) for which to return matches. Default: all available highlighters (ordered by string representation).</p>
+<p><span class="help-syntax-special">{highlighters}</span> <code>(table|nil)</code> Array of highlighter identifiers (as in <code>highlighters</code> field of <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config">MiniHipatterns.config</a>) for which to return matches. Default: all available highlighters (ordered by string representation).</p>
 </section>
 <section id="minihipatterns.get_matches-return" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.get_matches-return">Return</h4>
@@ -800,7 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Highlight hex color string</p>
 <p>This will match color hex string in format <code>#rrggbb</code> and highlight it according to <code>opts.style</code> displaying matched color.</p>
-<p>Highlight group is computed using <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.compute_hex_color_group"><code>MiniHipatterns.compute_hex_color_group()</code></a>, so all its usage notes apply here.</p>
+<p>Highlight group is computed using <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.compute_hex_color_group">MiniHipatterns.compute_hex_color_group()</a>, so all its usage notes apply here.</p>
 <section id="minihipatterns.gen_highlighter.hex_color-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.gen_highlighter.hex_color-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
@@ -840,8 +870,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Compute and create group to highlight hex color string</p>
 <p>Notes:</p>
 <ul>
-<li><p>This works properly only with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'"><code>'termguicolors'</code></a>.</p></li>
-<li><p>To increase performance, it caches highlight groups per <code>hex_color</code> and <code>style</code> combination. Needs a call to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup"><code>MiniHipatterns.setup()</code></a> to have these groups be persistent across color scheme changes.</p></li>
+<li><p>This works properly only with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a>.</p></li>
+<li><p>To increase performance, it caches highlight groups per <code>hex_color</code> and <code>style</code> combination. Needs a call to <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a> to have these groups be persistent across color scheme changes.</p></li>
 </ul>
 <section id="minihipatterns.compute_hex_color_group-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.compute_hex_color_group-parameters">Parameters</h4>

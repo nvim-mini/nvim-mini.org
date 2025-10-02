@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.diff documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minidiff" id="toc-minidiff" class="nav-link active" data-scroll-target="#minidiff">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minidiff-setup" id="toc-minidiff-setup" class="nav-link" data-scroll-target="#minidiff-setup">Setup</a></li>
-  <li><a href="#minidiff-comparisons" id="toc-minidiff-comparisons" class="nav-link" data-scroll-target="#minidiff-comparisons">Comparisons</a></li>
-  <li><a href="#minidiff-highlightgroups" id="toc-minidiff-highlightgroups" class="nav-link" data-scroll-target="#minidiff-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minidiff-disabling" id="toc-minidiff-disabling" class="nav-link" data-scroll-target="#minidiff-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minidiff-overview" id="toc-minidiff-overview" class="nav-link" data-scroll-target="#minidiff-overview">Overview</a>
   <ul>
@@ -463,39 +464,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.diff" href="../../mini.nvim/doc/mini-diff.html#mini.diff"><b>mini.diff</b></a> Work with diff hunks</p>
 <p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
 <hr>
-<section id="minidiff" class="level3">
-<h3 class="anchored" data-anchor-id="minidiff">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Visualize difference between buffer text and its configurable reference interactively (updates as you type). This is done per line showing whether it is inside added, changed, or deleted part of difference (called hunk). Visualization can be with customizable colored signs or line numbers.</p></li>
-<li><p>Special toggleable overlay view with more hunk details inside text area. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay"><code>MiniDiff.toggle_overlay()</code></a>.</p></li>
-<li><p>Completely configurable per buffer source(s) of reference text used to keep it up to date and define interactions with it. Can be array of sources which are attempted to attach in order. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>. By default uses Git source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</p></li>
+<li><p>Special toggleable overlay view with more hunk details inside text area. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay">MiniDiff.toggle_overlay()</a>.</p></li>
+<li><p>Completely configurable per buffer source(s) of reference text used to keep it up to date and define interactions with it. Can be array of sources which are attempted to attach in order. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a>. By default uses Git source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git">MiniDiff.gen_source.git()</a>.</p></li>
 <li><p>Configurable mappings to manage diff hunks:</p>
 <ul>
 <li><p>Apply and reset hunks inside region (selected visually or with a dot-repeatable operator).</p></li>
 <li><p>“Hunk range under cursor” textobject to be used as operator target.</p></li>
-<li><p>Navigate to first/previous/next/last hunk. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk"><code>MiniDiff.goto_hunk()</code></a>.</p></li>
+<li><p>Navigate to first/previous/next/last hunk. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk">MiniDiff.goto_hunk()</a>.</p></li>
 </ul></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
-<li>Provide functionality to work directly with Git outside of visualizing and staging (applying) hunks with (default) Git source. In particular, unstaging hunks is not supported. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</li>
+<li>Provide functionality to work directly with Git outside of visualizing and staging (applying) hunks with (default) Git source. In particular, unstaging hunks is not supported. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git">MiniDiff.gen_source.git()</a>.</li>
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-overview"><code>MiniDiff-overview</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-overview">MiniDiff-overview</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification">MiniDiff-hunk-specification</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary">MiniDiff-diff-summary</a></p></li>
 </ul>
-<section id="minidiff-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minidiff-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.diff').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniDiff</code> which you can use for scripting or manually (with <code>:lua MiniDiff.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minidiff_config</code> which should have same structure as <code>MiniDiff.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config">MiniDiff.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minidiff_config</code> which should have same structure as <code>MiniDiff.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minidiff-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minidiff-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a>:</p>
 <ul>
@@ -505,8 +506,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minidiff-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minidiff-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniDiffSignAdd</code> - “add” hunk lines visualization.</p></li>
 <li><p><code>MiniDiffSignChange</code> - “change” hunk lines visualization.</p></li>
@@ -518,11 +519,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniDiffOverContextBuf</code> - context of a change shown in buffer overlay.</p></li>
 <li><p><code>MiniDiffOverDelete</code> - deleted reference text shown in overlay.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minidiff-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minidiff-disabling">Disabling</h4>
-<p>To temporarily disable features without relying on <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a>, set <code>vim.g.minidiff_disable</code> (globally) or <code>vim.b.minidiff_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To temporarily disable features without relying on <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable">MiniDiff.disable()</a>, set <code>vim.g.minidiff_disable</code> (globally) or <code>vim.b.minidiff_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -531,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minidiff-overview-diffsandhunks" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff-overview-diffsandhunks">Diffs and hunks</h4>
 <p>The “diff” (short for “difference”) is a result of computing how two text strings differ from one another. This is done on per line basis, i.e.&nbsp;the goal is to compute sequences of lines common to both files, interspersed with groups of differing lines (called “hunks”).</p>
-<p>Although computing diff is a general concept (used on its own, in Git, etc.), this module computes difference between current text in a buffer and some reference text which is kept up to date specifically for that buffer. For example, default reference text is computed as file content in Git index. This can be customized in <code>config.source</code> (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>).</p>
+<p>Although computing diff is a general concept (used on its own, in Git, etc.), this module computes difference between current text in a buffer and some reference text which is kept up to date specifically for that buffer. For example, default reference text is computed as file content in Git index. This can be customized in <code>config.source</code> (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a>).</p>
 </section>
 <section id="minidiff-overview-hunkspecification" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff-overview-hunkspecification">Hunk specification</h4>
@@ -558,21 +559,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>On every text change, diff computation is scheduled in debounced fashion after customizable delay (200 ms by default).</p></li>
 <li><p>After the diff is computed, do the following:</p>
 <ul>
-<li><p>Update visualization based on configurable style: either by placing colored text in sign column or coloring line numbers. Colors for both styles are defined per hunk type in corresponding <code>MiniDiffSign*</code> highlight group (see <a href="../../mini.nvim/doc/mini-diff.html#mini.diff"><code>mini.diff</code></a>) and sign text for “sign” style can be configured in <code>view.signs</code> of <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a>.</p></li>
+<li><p>Update visualization based on configurable style: either by placing colored text in sign column or coloring line numbers. Colors for both styles are defined per hunk type in corresponding <code>MiniDiffSign*</code> highlight group (see <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a>) and sign text for “sign” style can be configured in <code>view.signs</code> of <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config">MiniDiff.config</a>.</p></li>
 <li><p>Update overlay view (if it is enabled).</p></li>
 <li><p>Update <code>vim.b.minidiff_summary</code> and <code>vim.b.minidiff_summary_string</code> buffer-local variables. These can be used, for example, in statusline.</p></li>
-<li><p><a name="minidiff-update-event" href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event"><b>MiniDiff-update-event</b></a> Trigger <code>MiniDiffUpdated</code> <code>User</code> event. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a> for example of how to use it.</p></li>
+<li><p><a name="minidiff-update-event" href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event"><b>MiniDiff-update-event</b></a> Trigger <code>MiniDiffUpdated</code> <code>User</code> event. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary">MiniDiff-diff-summary</a> for example of how to use it.</p></li>
 </ul></li>
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:edit"><code>:edit</code></a> to reset (disable and re-enable) current buffer.</p></li>
+<li><p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:edit">:edit</a> to reset (disable and re-enable) current buffer.</p></li>
 <li><p>To work with BOM bytes, set ‘bomb’ and have <code>ucs-bom</code> in ‘fileencodings’.</p></li>
 </ul>
 </section>
 <section id="minidiff-overview-overlay" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff-overview-overlay">Overlay</h4>
-<p>Along with basic visualization, there is a special view called “overlay”. Although it is meant for temporary overview of diff details and can be manually toggled via <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay"><code>MiniDiff.toggle_overlay()</code></a>, text can be changed with overlay reacting accordingly.</p>
+<p>Along with basic visualization, there is a special view called “overlay”. Although it is meant for temporary overview of diff details and can be manually toggled via <a href="../../mini.nvim/doc/mini-diff.html#minidiff.toggle_overlay">MiniDiff.toggle_overlay()</a>, text can be changed with overlay reacting accordingly.</p>
 <p>It shows more diff details inside text area:</p>
 <ul>
 <li><p>Added buffer lines are highlighted with <code>MiniDiffOverAdd</code> highlight group.</p></li>
@@ -583,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>Word diff has non-zero context width. This means if changed characters are close enough, whole range between them is also colored. This usually reduces visual noise.</p></li>
-<li><p>Virtual lines above line 1 (like deleted or changed lines) need manual scroll to become visible (with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y"><code>CTRL-Y</code></a>).</p></li>
+<li><p>Virtual lines above line 1 (like deleted or changed lines) need manual scroll to become visible (with <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-Y">CTRL-Y</a>).</p></li>
 </ul>
 </section>
 <section id="minidiff-overview-mappings" class="level4">
@@ -596,13 +597,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Examples:</p>
 <ul>
-<li><p><code>vip</code> followed by <code>gh</code> / <code>gH</code> applies/resets hunks inside current paragraph. Same can be achieved in operator form <code>ghip</code> / <code>gHip</code>, which has the advantage of being dot-repeatable (see <a href="https://neovim.io/doc/user/helptag.html?tag=single-repeat"><code>single-repeat</code></a>).</p></li>
+<li><p><code>vip</code> followed by <code>gh</code> / <code>gH</code> applies/resets hunks inside current paragraph. Same can be achieved in operator form <code>ghip</code> / <code>gHip</code>, which has the advantage of being dot-repeatable (see <a href="https://neovim.io/doc/user/helptag.html?tag=single-repeat">single-repeat</a>).</p></li>
 <li><p><code>gh_</code> / <code>gH_</code> applies/resets current line (even if it is not a full hunk).</p></li>
 <li><p><code>ghgh</code> / <code>gHgh</code> applies/resets hunk range under cursor.</p></li>
 <li><p><code>dgh</code> deletes hunk range under cursor.</p></li>
 <li><p><code>[H</code> / <code>[h</code> / <code>]h</code> / <code>]H</code> navigate cursor to the first / previous / next / last hunk range of the current buffer.</p></li>
 </ul>
-<p>Mappings for some functionality are assumed to be done manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator"><code>MiniDiff.operator()</code></a>.</p>
+<p>Mappings for some functionality are assumed to be done manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator">MiniDiff.operator()</a>.</p>
 </section>
 <section id="minidiff-overview-buffer-localvariables" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff-overview-buffer-localvariables">Buffer-local variables</h4>
@@ -617,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>change</code> - number of changed lines.</p></li>
 <li><p><code>delete</code> - number of deleted lines.</p></li>
 </ul></li>
-<li><p><code>vim.b.minidiff_summary_string</code> is a string representation of summary with a fixed format. It is expected to be used as is. To achieve different formatting, use <code>vim.b.minidiff_summary</code> to construct one. The best way to do this is by overriding <code>vim.b.minidiff_summary_string</code> in the callback for <a href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event"><code>MiniDiff-update-event</code></a> event:</p>
+<li><p><code>vim.b.minidiff_summary_string</code> is a string representation of summary with a fixed format. It is expected to be used as is. To achieve different formatting, use <code>vim.b.minidiff_summary</code> to construct one. The best way to do this is by overriding <code>vim.b.minidiff_summary_string</code> in the callback for <a href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event">MiniDiff-update-event</a> event:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">format_summary</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">summary</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">data</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minidiff_summary</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">t</span> <span class="op">=</span> <span class="op">{}</span></span>
@@ -640,7 +641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minidiff.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config"><code>MiniDiff.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.config">MiniDiff.config</a>.</p>
 </section>
 <section id="minidiff.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.setup-usage">Usage</h4>
@@ -725,29 +726,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">signs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add</span> <span class="op">=</span> <span class="st">'+'</span><span class="op">,</span> <span class="va">change</span> <span class="op">=</span> <span class="st">'~'</span><span class="op">,</span> <span class="va">delete</span> <span class="op">=</span> <span class="st">'-'</span> <span class="op">},</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>view.style</code> is a string defining visualization style. Can be one of “sign” (as a colored sign in a <a href="https://neovim.io/doc/user/helptag.html?tag=sign-column"><code>sign-column</code></a>) or “number” (colored line number). Default: “number” if <a href="https://neovim.io/doc/user/helptag.html?tag='number'"><code>'number'</code></a> option is enabled, “sign” otherwise. Note: with “sign” style it is better to have <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'"><code>'signcolumn'</code></a> always shown.</p>
+<p><code>view.style</code> is a string defining visualization style. Can be one of “sign” (as a colored sign in a <a href="https://neovim.io/doc/user/helptag.html?tag=sign-column">sign-column</a>) or “number” (colored line number). Default: “number” if <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a> option is enabled, “sign” otherwise. Note: with “sign” style it is better to have <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'">‘signcolumn’</a> always shown.</p>
 <p><code>view.signs</code> is a table with one or two character strings used as signs for corresponding (“add”, “change”, “delete”) hunks. Default: all hunks use “▒” character resulting in a contiguous colored lines.</p>
-<p><code>view.priority</code> is a number with priority used for visualization and overlay <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a>. Default: 199 which is one less than <code>user</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities"><code>vim.hl.priorities</code></a> (on Neovim&lt;0.11 see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities"><code>vim.hl.priorities</code></a>) to have higher priority than automated extmarks but not as in user enabled ones.</p>
+<p><code>view.priority</code> is a number with priority used for visualization and overlay <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a>. Default: 199 which is one less than <code>user</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities">vim.hl.priorities</a> (on Neovim&lt;0.11 see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities">vim.hl.priorities</a>) to have higher priority than automated extmarks but not as in user enabled ones.</p>
 </section>
 <section id="minidiff.config-source" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.config-source">Source</h4>
 <p><a name="minidiff-source-specification" href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><b>MiniDiff-source-specification</b></a></p>
-<p><code>config.source</code> is a table with single source or array of them. Single source defines how reference text is managed in a particular buffer. Sources in array are attempted to attach in order; call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a> if none attaches.</p>
+<p><code>config.source</code> is a table with single source or array of them. Single source defines how reference text is managed in a particular buffer. Sources in array are attempted to attach in order; call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable">MiniDiff.disable()</a> if none attaches.</p>
 <p>A single source table can have the following fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;attach&gt;</span> <code>(function)</code> - callable which defines how and when reference text is updated inside a particular buffer. It is used inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable"><code>MiniDiff.enable()</code></a> with a buffer identifier as a single argument.</p>
-<p>Should execute logic which results into calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> when reference text for buffer needs to be updated. Like inside callback for an <a href="https://neovim.io/doc/user/helptag.html?tag=autocommand"><code>autocommand</code></a> or file watcher (see <a href="https://neovim.io/doc/user/helptag.html?tag=watch-file"><code>watch-file</code></a>).</p>
+<li><p><span class="help-syntax-keys">&lt;attach&gt;</span> <code>(function)</code> - callable which defines how and when reference text is updated inside a particular buffer. It is used inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable">MiniDiff.enable()</a> with a buffer identifier as a single argument.</p>
+<p>Should execute logic which results into calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text">MiniDiff.set_ref_text()</a> when reference text for buffer needs to be updated. Like inside callback for an <a href="https://neovim.io/doc/user/helptag.html?tag=autocommand">autocommand</a> or file watcher (see <a href="https://neovim.io/doc/user/helptag.html?tag=watch-file">watch-file</a>).</p>
 <p>For example, default Git source watches when “.git/index” file is changed and computes reference text as the one from Git index for current file.</p>
-<p>Can return <code>false</code> to indicate that attach has failed. If attach fail can not be inferred immediately (for example, due to asynchronous execution), should explicitly call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.fail_attach"><code>MiniDiff.fail_attach()</code></a> with appropriate arguments. This is important to properly process array of sources.</p>
+<p>Can return <code>false</code> to indicate that attach has failed. If attach fail can not be inferred immediately (for example, due to asynchronous execution), should explicitly call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.fail_attach">MiniDiff.fail_attach()</a> with appropriate arguments. This is important to properly process array of sources.</p>
 <p>No default value, should be always supplied.</p></li>
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string|nil)</code> - source name. String <code>"unknown"</code> is used if not supplied.</p></li>
-<li><p><span class="help-syntax-keys">&lt;detach&gt;</span> <code>(function|nil)</code> - callable with cleanup action to be done when buffer is disabled. It is called inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a> with a buffer identifier as a single argument.</p>
+<li><p><span class="help-syntax-keys">&lt;detach&gt;</span> <code>(function|nil)</code> - callable with cleanup action to be done when buffer is disabled. It is called inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable">MiniDiff.disable()</a> with a buffer identifier as a single argument.</p>
 <p>If not supplied, nothing is done during detaching.</p></li>
-<li><p><span class="help-syntax-keys">&lt;apply_hunks&gt;</span> <code>(function|nil)</code> - callable which defines how hunks are applied. It is called with buffer identifier as first argument and array of hunks (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a>) as second. It should eventually update reference text: either by explicitly calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> or performing action triggering its call.</p>
+<li><p><span class="help-syntax-keys">&lt;apply_hunks&gt;</span> <code>(function|nil)</code> - callable which defines how hunks are applied. It is called with buffer identifier as first argument and array of hunks (see <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification">MiniDiff-hunk-specification</a>) as second. It should eventually update reference text: either by explicitly calling <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text">MiniDiff.set_ref_text()</a> or performing action triggering its call.</p>
 <p>For example, default Git source computes patch based on the hunks and applies it inside file’s git repo.</p>
 <p>If not supplied, applying hunks throws an error.</p></li>
 </ul>
-<p>Default: a single <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git"><code>MiniDiff.gen_source.git()</code></a>.</p>
+<p>Default: a single <a href="../../mini.nvim/doc/mini-diff.html#minidiff.gen_source.git">MiniDiff.gen_source.git()</a>.</p>
 </section>
 <section id="minidiff.config-delay" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.config-delay">Delay</h4>
@@ -756,19 +757,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minidiff.config-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.config-mappings">Mappings</h4>
-<p><code>config.mappings</code> contains keys which are mapped during <a href="../../mini.nvim/doc/mini-diff.html#minidiff.setup"><code>MiniDiff.setup()</code></a>.</p>
+<p><code>config.mappings</code> contains keys which are mapped during <a href="../../mini.nvim/doc/mini-diff.html#minidiff.setup">MiniDiff.setup()</a>.</p>
 <p><code>mappings.apply</code> keys can be used to apply hunks inside visual/operator region. What exactly “apply hunks” means depends on the source and its <code>apply_hunks()</code>. For example, in default Git source it means stage hunks.</p>
 <p><code>mappings.reset</code> keys can be used to reset hunks inside visual/operator region. Reset means replacing buffer text in region with corresponding reference text.</p>
-<p><code>mappings.textobject</code> keys define “hunk range under cursor” textobject which can be used in Operator-pending mode as target for operator (like <a href="https://neovim.io/doc/user/helptag.html?tag=d"><code>d</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=y"><code>y</code></a>, apply/reset hunks, etc.). It is also set up in Visual mode if keys do not conflict with <code>mappings.apply</code> and <code>mappings.reset</code>. “Hunk range” is used in a sense that contiguous (back-to-back) hunks are considered as parts of a same hunk range.</p>
+<p><code>mappings.textobject</code> keys define “hunk range under cursor” textobject which can be used in Operator-pending mode as target for operator (like <a href="https://neovim.io/doc/user/helptag.html?tag=d">d</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=y">y</a>, apply/reset hunks, etc.). It is also set up in Visual mode if keys do not conflict with <code>mappings.apply</code> and <code>mappings.reset</code>. “Hunk range” is used in a sense that contiguous (back-to-back) hunks are considered as parts of a same hunk range.</p>
 <p><code>mappings.goto_first</code> / <code>mappings.goto_prev</code> / <code>mappings.goto_next</code> / <code>mappings.goto_last</code> keys can be used to navigate to first / previous / next / last hunk range in the current buffer.</p>
 </section>
 <section id="minidiff.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.config-options">Options</h4>
 <p><code>config.options</code> contains various customization options.</p>
-<p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()"><code>vim.diff()</code></a> for possible values.</p>
+<p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> for possible values.</p>
 <p><code>options.indent_heuristic</code> is a boolean defining whether to use indent heuristic for a (possibly) more naturally aligned hunks. Default: <code>true</code>.</p>
-<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()"><code>vim.diff()</code></a> and ‘diffopt’ for more details.</p>
-<p><code>options.wrap_goto</code> is a boolean indicating whether to wrap around edges during hunk navigation (with <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk"><code>MiniDiff.goto_hunk()</code></a> or <code>goto_*</code> mappings). Like if cursor is after the last hunk, going “next” will put cursor on the first hunk. Default: <code>false</code>.</p>
+<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> and ‘diffopt’ for more details.</p>
+<p><code>options.wrap_goto</code> is a boolean indicating whether to wrap around edges during hunk navigation (with <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk">MiniDiff.goto_hunk()</a> or <code>goto_*</code> mappings). Like if cursor is after the last hunk, going “next” will put cursor on the first hunk. Default: <code>false</code>.</p>
 <hr>
 </section>
 </section>
@@ -842,7 +843,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minidiff.export-return">Return</h4>
 <p><code>(table)</code> Result of export. Depends on the <code>format</code>:</p>
 <ul>
-<li>If “qf”, an array compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=setqflist()"><code>setqflist()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=setloclist()"><code>setloclist()</code></a>.</li>
+<li>If “qf”, an array compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=setqflist()">setqflist()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=setloclist()">setloclist()</a>.</li>
 </ul>
 <hr>
 </section>
@@ -862,10 +863,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>(table|nil)</code> Table with buffer diff data or <code>nil</code> if buffer is not enabled. Table has the following fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;config&gt;</span> <code>(table)</code> - config used for this particular buffer.</p></li>
-<li><p><span class="help-syntax-keys">&lt;hunks&gt;</span> <code>(table)</code> - array of hunks. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification"><code>MiniDiff-hunk-specification</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hunks&gt;</span> <code>(table)</code> - array of hunks. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-hunk-specification">MiniDiff-hunk-specification</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;overlay&gt;</span> <code>(boolean)</code> - whether an overlay view is shown.</p></li>
 <li><p><span class="help-syntax-keys">&lt;ref_text&gt;</span> <code>(string|nil)</code> - current value of reference text. Lines are separated with newline character (<code>'\n'</code>). Can be <code>nil</code> indicating that reference text was not yet set (for example, if source did not yet react).</p></li>
-<li><p><span class="help-syntax-keys">&lt;summary&gt;</span> <code>(table)</code> - overall diff summary. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary"><code>MiniDiff-diff-summary</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;summary&gt;</span> <code>(table)</code> - overall diff summary. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-diff-summary">MiniDiff-diff-summary</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -876,7 +877,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDiff.set_ref_text</code>(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{text}</span>)
 </p>
 <p>Set reference text for the buffer</p>
-<p>Note: this will call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable"><code>MiniDiff.enable()</code></a> for target buffer if it is not already enabled.</p>
+<p>Note: this will call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.enable">MiniDiff.enable()</a> for target buffer if it is not already enabled.</p>
 <section id="minidiff.set_ref_text-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.set_ref_text-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
@@ -919,7 +920,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minidiff.gen_source.git-return" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.gen_source.git-return">Return</h4>
-<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a>.</p>
 <hr>
 </section>
 </section>
@@ -929,10 +930,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDiff.gen_source.none</code>()
 </p>
 <p>“Do nothing” source</p>
-<p>Allows buffers to be enabled while not setting any reference text. Use this if the goal is to rely on manual <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text"><code>MiniDiff.set_ref_text()</code></a> calls.</p>
+<p>Allows buffers to be enabled while not setting any reference text. Use this if the goal is to rely on manual <a href="../../mini.nvim/doc/mini-diff.html#minidiff.set_ref_text">MiniDiff.set_ref_text()</a> calls.</p>
 <section id="minidiff.gen_source.none-return" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.gen_source.none-return">Return</h4>
-<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a>.</p>
 <hr>
 </section>
 </section>
@@ -945,7 +946,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Uses text at latest save as the reference. This results into diff showing difference after the latest save.</p>
 <section id="minidiff.gen_source.save-return" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.gen_source.save-return">Return</h4>
-<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification"><code>MiniDiff-source-specification</code></a>.</p>
+<p><code>(table)</code> Source. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff-source-specification">MiniDiff-source-specification</a>.</p>
 <hr>
 </section>
 </section>
@@ -956,13 +957,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Perform action on hunks in region</p>
 <p>Compute hunks inside a target region (even for hunks only partially inside it) and perform apply/reset/yank operation on them.</p>
-<p>The “yank” action yanks all reference lines of target hunks into a specified register (should be one of <a href="https://neovim.io/doc/user/helptag.html?tag=registers"><code>registers</code></a>).</p>
+<p>The “yank” action yanks all reference lines of target hunks into a specified register (should be one of <a href="https://neovim.io/doc/user/helptag.html?tag=registers">registers</a>).</p>
 <p>Notes:</p>
 <ul>
 <li><p>Whether hunk is inside a region is computed based on position of its buffer lines.</p></li>
 <li><p>If “change” or “delete” is only partially inside a target region, all reference lines are used in computed “intersection” hunk.</p></li>
 </ul>
-<p>Used directly in <code>config.mappings.apply</code> and <code>config.mappings.reset</code>. Usually there is no need to use this function manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator"><code>MiniDiff.operator()</code></a> for how to set up a mapping for “yank”.</p>
+<p>Used directly in <code>config.mappings.apply</code> and <code>config.mappings.reset</code>. Usually there is no need to use this function manually. See <a href="../../mini.nvim/doc/mini-diff.html#minidiff.operator">MiniDiff.operator()</a> for how to set up a mapping for “yank”.</p>
 <section id="minidiff.do_hunks-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.do_hunks-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
@@ -971,7 +972,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;line_start&gt;</span> <code>(number)</code> - start line of the region. Default: 1.</p></li>
 <li><p><span class="help-syntax-keys">&lt;line_end&gt;</span> <code>(number)</code> - start line of the region. Default: last buffer line.</p></li>
-<li><p><span class="help-syntax-keys">&lt;register&gt;</span> <code>(string)</code> - register to yank reference lines into. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:register"><code>v:register</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;register&gt;</span> <code>(string)</code> - register to yank reference lines into. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:register">v:register</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -987,7 +988,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “prev”, “next”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;line_start&gt;</span> <code>(number)</code> - Line number to start from for directions “prev” and “next”. Default: cursor line.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>options.wrap</code> value of the config.</p></li>
 </ul>
@@ -1006,7 +1007,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'ghy'</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">expr</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minidiff.operator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.operator-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> One of “apply”, “reset”, “yank”, or the ones used in <a href="https://neovim.io/doc/user/helptag.html?tag=g@"><code>g@</code></a>.</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string)</code> One of “apply”, “reset”, “yank”, or the ones used in <a href="https://neovim.io/doc/user/helptag.html?tag=g@">g@</a>.</p>
 <hr>
 </section>
 </section>
@@ -1025,7 +1026,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDiff.fail_attach</code>(<span class="help-syntax-special">{buf_id}</span>)
 </p>
 <p>Indicate source attach fail</p>
-<p>Try to attach next source; if there is none - call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable"><code>MiniDiff.disable()</code></a>.</p>
+<p>Try to attach next source; if there is none - call <a href="../../mini.nvim/doc/mini-diff.html#minidiff.disable">MiniDiff.disable()</a>.</p>
 <section id="minidiff.fail_attach-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.fail_attach-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(integer)</code> Buffer identifier for which attach has failed.</p>

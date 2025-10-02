@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.starter documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ministarter" id="toc-ministarter" class="nav-link active" data-scroll-target="#ministarter">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#ministarter-setup" id="toc-ministarter-setup" class="nav-link" data-scroll-target="#ministarter-setup">Setup</a></li>
-  <li><a href="#ministarter-highlightgroups" id="toc-ministarter-highlightgroups" class="nav-link" data-scroll-target="#ministarter-highlightgroups">Highlight groups</a></li>
-  <li><a href="#ministarter-disabling" id="toc-ministarter-disabling" class="nav-link" data-scroll-target="#ministarter-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#ministarter-example-config" id="toc-ministarter-example-config" class="nav-link" data-scroll-target="#ministarter-example-config">Example config</a>
   <ul>
@@ -486,19 +487,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.starter" href="../../mini.nvim/doc/mini-starter.html#mini.starter"><b>mini.starter</b></a> Start screen</p>
 <p>MIT License Copyright (c) 2021 Evgeni Chasnovski</p>
 <hr>
-<section id="ministarter" class="level3">
-<h3 class="anchored" data-anchor-id="ministarter">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Displayed items are fully customizable both in terms of what they do and how they look (with reasonable defaults). Item selection can be done using prefix query with instant visual feedback.</p>
 <p>Key design ideas:</p>
 <ul>
 <li><p>All available actions are defined inside items. Each item should have the following info:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;action&gt;</span> - function or string for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.cmd()"><code>vim.cmd()</code></a> which is executed when item is chosen. Empty string result in placeholder “inactive” item.</p></li>
+<li><p><span class="help-syntax-keys">&lt;action&gt;</span> - function or string for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.cmd()">vim.cmd()</a> which is executed when item is chosen. Empty string result in placeholder “inactive” item.</p></li>
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> - string which will be displayed and used for choosing.</p></li>
-<li><p><span class="help-syntax-keys">&lt;section&gt;</span> - string representing to which section item belongs. There are pre-configured whole sections in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.sections"><code>MiniStarter.sections</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;section&gt;</span> - string representing to which section item belongs. There are pre-configured whole sections in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.sections">MiniStarter.sections</a>.</p></li>
 </ul></li>
-<li><p>Configure what items are displayed by supplying an array which can be normalized to an array of items. Read about how supplied items are normalized in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh"><code>MiniStarter.refresh()</code></a>.</p></li>
-<li><p>Modify the final look by supplying content hooks: functions which take buffer content (see <a href="../../mini.nvim/doc/mini-starter.html#ministarter.get_content"><code>MiniStarter.get_content()</code></a>) and identifier as input while returning buffer content as output. There are pre-configured content hook generators in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook"><code>MiniStarter.gen_hook</code></a>.</p></li>
+<li><p>Configure what items are displayed by supplying an array which can be normalized to an array of items. Read about how supplied items are normalized in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh">MiniStarter.refresh()</a>.</p></li>
+<li><p>Modify the final look by supplying content hooks: functions which take buffer content (see <a href="../../mini.nvim/doc/mini-starter.html#ministarter.get_content">MiniStarter.get_content()</a>) and identifier as input while returning buffer content as output. There are pre-configured content hook generators in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook">MiniStarter.gen_hook</a>.</p></li>
 <li><p>Choosing an item can be done in two ways:</p>
 <ul>
 <li><p>Type prefix query to filter item by matching its name (ignoring case). Displayed information is updated after every typed character. For every item its unique prefix is highlighted.</p></li>
@@ -510,31 +511,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>It doesn’t support fuzzy query for items. And probably will never do.</li>
 </ul>
-<section id="ministarter-setup" class="level4">
-<h4 class="anchored" data-anchor-id="ministarter-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.starter').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniStarter</code> which you can use for scripting or manually (with <code>:lua MiniStarter.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.config"><code>MiniStarter.config</code></a> for <code>config</code> structure and default values. For some configuration examples (including one similar to ‘vim-startify’ and ‘dashboard-nvim’), see <a href="../../mini.nvim/doc/mini-starter.html#ministarter-example-config"><code>MiniStarter-example-config</code></a>.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.ministarter_config</code> which should have same structure as <code>MiniStarter.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details. Note: <code>vim.b.ministarter_config</code> is copied to Starter buffer from current buffer allowing full customization.</p>
+<p>See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.config">MiniStarter.config</a> for <code>config</code> structure and default values. For some configuration examples (including one similar to ‘vim-startify’ and ‘dashboard-nvim’), see <a href="../../mini.nvim/doc/mini-starter.html#ministarter-example-config">MiniStarter-example-config</a>.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.ministarter_config</code> which should have same structure as <code>MiniStarter.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details. Note: <code>vim.b.ministarter_config</code> is copied to Starter buffer from current buffer allowing full customization.</p>
 <p>To stop module from showing non-error feedback, set <code>config.silent = true</code>.</p>
 </section>
-<section id="ministarter-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="ministarter-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniStarterCurrent</code> - current item.</p></li>
 <li><p><code>MiniStarterFooter</code> - footer units.</p></li>
 <li><p><code>MiniStarterHeader</code> - header units.</p></li>
 <li><p><code>MiniStarterInactive</code> - inactive item.</p></li>
 <li><p><code>MiniStarterItem</code> - item name.</p></li>
-<li><p><code>MiniStarterItemBullet</code> - units from <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.adding_bullet"><code>MiniStarter.gen_hook.adding_bullet()</code></a>.</p></li>
+<li><p><code>MiniStarterItemBullet</code> - units from <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.adding_bullet">MiniStarter.gen_hook.adding_bullet()</a>.</p></li>
 <li><p><code>MiniStarterItemPrefix</code> - unique query for item.</p></li>
 <li><p><code>MiniStarterSection</code> - section units.</p></li>
 <li><p><code>MiniStarterQuery</code> - current query in active items.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="ministarter-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="ministarter-disabling">Disabling</h4>
-<p>To disable core functionality, set <code>vim.g.ministarter_disable</code> (globally) or <code>vim.b.ministarter_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable core functionality, set <code>vim.g.ministarter_disable</code> (globally) or <code>vim.b.ministarter_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -630,10 +631,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ministarter-lifecycle" class="level3">
 <h3 class="anchored" data-anchor-id="ministarter-lifecycle">Lifecycle</h3>
 <ul>
-<li><p>Open with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.open"><code>MiniStarter.open()</code></a>. It includes creating buffer with appropriate options, mappings, behavior; call to <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh"><code>MiniStarter.refresh()</code></a>; issue <code>MiniStarterOpened</code> <a href="https://neovim.io/doc/user/helptag.html?tag=User"><code>User</code></a> event.</p></li>
+<li><p>Open with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.open">MiniStarter.open()</a>. It includes creating buffer with appropriate options, mappings, behavior; call to <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh">MiniStarter.refresh()</a>; issue <code>MiniStarterOpened</code> <a href="https://neovim.io/doc/user/helptag.html?tag=User">User</a> event.</p></li>
 <li><p>Wait for user to choose an item. This is done using following logic:</p>
 <ul>
-<li><p>Typing any character from <code>MiniStarter.config.query_updaters</code> leads to updating query. Read more in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.add_to_query"><code>MiniStarter.add_to_query()</code></a>.</p></li>
+<li><p>Typing any character from <code>MiniStarter.config.query_updaters</code> leads to updating query. Read more in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.add_to_query">MiniStarter.add_to_query()</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;BS&gt;</span> deletes latest character from query.</p></li>
 <li><p><span class="help-syntax-keys">&lt;Down&gt;</span>/<span class="help-syntax-keys">&lt;Up&gt;</span>, <span class="help-syntax-keys">&lt;C-n&gt;</span>/<span class="help-syntax-keys">&lt;C-p&gt;</span>, <span class="help-syntax-keys">&lt;M-j&gt;</span>/<span class="help-syntax-keys">&lt;M-k&gt;</span> move current item.</p></li>
 <li><p><span class="help-syntax-keys">&lt;CR&gt;</span> executes action of current item.</p></li>
@@ -651,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="ministarter.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.config"><code>MiniStarter.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.config">MiniStarter.config</a>.</p>
 </section>
 <section id="ministarter.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.setup-usage">Usage</h4>
@@ -717,18 +718,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Open Starter buffer</p>
 <ul>
 <li><p>Create buffer if necessary and move into it.</p></li>
-<li><p>Set buffer options. Note that settings are done with <a href="https://neovim.io/doc/user/helptag.html?tag=:noautocmd"><code>:noautocmd</code></a> to achieve a massive speedup.</p></li>
-<li><p>Set buffer mappings. Besides basic mappings (described inside “Lifecycle of Starter buffer” of <a href="../../mini.nvim/doc/mini-starter.html#mini.starter"><code>mini.starter</code></a>), map every character from <code>MiniStarter.config.query_updaters</code> to add itself to query with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.add_to_query"><code>MiniStarter.add_to_query()</code></a>.</p></li>
-<li><p>Populate buffer with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh"><code>MiniStarter.refresh()</code></a>.</p></li>
+<li><p>Set buffer options. Note that settings are done with <a href="https://neovim.io/doc/user/helptag.html?tag=:noautocmd">:noautocmd</a> to achieve a massive speedup.</p></li>
+<li><p>Set buffer mappings. Besides basic mappings (described inside “Lifecycle of Starter buffer” of <a href="../../mini.nvim/doc/mini-starter.html#mini.starter">mini.starter</a>), map every character from <code>MiniStarter.config.query_updaters</code> to add itself to query with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.add_to_query">MiniStarter.add_to_query()</a>.</p></li>
+<li><p>Populate buffer with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.refresh">MiniStarter.refresh()</a>.</p></li>
 <li><p>Issue custom <code>MiniStarterOpened</code> event to allow acting upon opening Starter buffer. Use it with <code>autocmd User MiniStarterOpened &lt;your command&gt;</code>.</p></li>
 </ul>
-<p>Note: to fully use it in autocommand, use <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd-nested"><code>autocmd-nested</code></a>. Example:</p>
+<p>Note: to fully use it in autocommand, use <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd-nested">autocmd-nested</a>. Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">starter_open</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniStarter</span><span class="op">.</span>open<span class="op">()</span> <span class="kw">end</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">au_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">nested</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">starter_open</span> <span class="op">}</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'TabNewEntered'</span><span class="op">,</span> <span class="va">au_opts</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="ministarter.open-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.open-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Identifier of existing valid buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>) to open inside. Default: create a new one.</p>
+<p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Identifier of existing valid buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>) to open inside. Default: create a new one.</p>
 <hr>
 </section>
 </section>
@@ -745,20 +746,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Sort: order first by section and then by item id (both in order of appearance).</p></li>
 </ul></li>
 <li><p>Normalize <code>MiniStarter.config.header</code> and <code>MiniStarter.config.footer</code> to be multiple lines by splitting at <code>\n</code>. If function - evaluate it first.</p></li>
-<li><p>Make initial buffer content (see <a href="../../mini.nvim/doc/mini-starter.html#ministarter.get_content"><code>MiniStarter.get_content()</code></a> for a description of what a buffer content is). It consist from content lines with single content unit:</p>
+<li><p>Make initial buffer content (see <a href="../../mini.nvim/doc/mini-starter.html#ministarter.get_content">MiniStarter.get_content()</a> for a description of what a buffer content is). It consist from content lines with single content unit:</p>
 <ul>
 <li><p>First lines contain strings of normalized header.</p></li>
 <li><p>Body is for normalized items. Section names have own lines preceded by empty line.</p></li>
 <li><p>Last lines contain separate strings of normalized footer.</p></li>
 </ul></li>
 <li><p>Sequentially apply hooks from <code>MiniStarter.config.content_hooks</code> to content. All hooks are applied with <code>(content, buf_id)</code> signature. Output of one hook serves as first argument to the next.</p></li>
-<li><p>Gather final items from content with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_items"><code>MiniStarter.content_to_items()</code></a>.</p></li>
-<li><p>Convert content to buffer lines with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines"><code>MiniStarter.content_to_lines()</code></a> and add them to buffer.</p></li>
+<li><p>Gather final items from content with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_items">MiniStarter.content_to_items()</a>.</p></li>
+<li><p>Convert content to buffer lines with <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines">MiniStarter.content_to_lines()</a> and add them to buffer.</p></li>
 <li><p>Add highlighting of content units.</p></li>
 <li><p>Position cursor.</p></li>
 <li><p>Make current query. This results into some items being marked as “inactive” and updating highlighting of current query on “active” items.</p></li>
 </ul>
-<p>Note: this function is executed on every <a href="https://neovim.io/doc/user/helptag.html?tag=VimResized"><code>VimResized</code></a> to allow more responsive behavior.</p>
+<p>Note: this function is executed on every <a href="https://neovim.io/doc/user/helptag.html?tag=VimResized">VimResized</a> to allow more responsive behavior.</p>
 <section id="ministarter.refresh-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.refresh-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier of a valid Starter buffer. Default: current buffer.</p>
@@ -802,11 +803,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniStarter.sections.sessions</code>(<span class="help-syntax-special">{n}</span>, <span class="help-syntax-special">{recent}</span>)
 </p>
-<p>Section with <a href="../../mini.nvim/doc/mini-sessions.html#mini.sessions"><code>mini.sessions</code></a> sessions</p>
-<p>Sessions are taken from <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected"><code>MiniSessions.detected</code></a>. Notes:</p>
+<p>Section with <a href="../../mini.nvim/doc/mini-sessions.html#mini.sessions">mini.sessions</a> sessions</p>
+<p>Sessions are taken from <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.detected">MiniSessions.detected</a>. Notes:</p>
 <ul>
 <li><p>If it shows “‘mini.sessions’ is not set up”, it means that you didn’t call <code>require('mini.sessions').setup()</code>.</p></li>
-<li><p>If it shows “There are no detected sessions in ‘mini.sessions’”, it means that there are no sessions at the current sessions directory. Either create session or supply different directory where session files are stored (see <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.setup"><code>MiniSessions.setup()</code></a>).</p></li>
+<li><p>If it shows “There are no detected sessions in ‘mini.sessions’”, it means that there are no sessions at the current sessions directory. Either create session or supply different directory where session files are stored (see <a href="../../mini.nvim/doc/mini-sessions.html#minisessions.setup">MiniSessions.setup()</a>).</p></li>
 <li><p>Local session (if detected) is always displayed first.</p></li>
 </ul>
 <section id="ministarter.sections.sessions-parameters" class="level4">
@@ -826,7 +827,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStarter.sections.recent_files</code>(<span class="help-syntax-special">{n}</span>, <span class="help-syntax-special">{current_dir}</span>, <span class="help-syntax-special">{show_path}</span>)
 </p>
 <p>Section with most recently used files</p>
-<p>Files are taken from <a href="https://neovim.io/doc/user/helptag.html?tag=v:oldfiles"><code>v:oldfiles</code></a>.</p>
+<p>Files are taken from <a href="https://neovim.io/doc/user/helptag.html?tag=v:oldfiles">v:oldfiles</a>.</p>
 <section id="ministarter.sections.recent_files-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.sections.recent_files-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{n}</span> <code>(number|nil)</code> Number of returned items. Default: 5.</p>
@@ -844,12 +845,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniStarter.sections.pick</code>()
 </p>
-<p>Section with <a href="../../mini.nvim/doc/mini-pick.html#mini.pick"><code>mini.pick</code></a> pickers</p>
+<p>Section with <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a> pickers</p>
 <p>Notes:</p>
 <ul>
 <li><p>All actions require ‘mini.pick’ module of ‘mini.nvim’.</p></li>
-<li><p>“Command history”, “Explorer”, and “Visited paths” items require <a href="../../mini.nvim/doc/mini-extra.html#mini.extra"><code>mini.extra</code></a> module of ‘mini.nvim’.</p></li>
-<li><p>“Visited paths” items requires <a href="../../mini.nvim/doc/mini-visits.html#mini.visits"><code>mini.visits</code></a> module of ‘mini.nvim’.</p></li>
+<li><p>“Command history”, “Explorer”, and “Visited paths” items require <a href="../../mini.nvim/doc/mini-extra.html#mini.extra">mini.extra</a> module of ‘mini.nvim’.</p></li>
+<li><p>“Visited paths” items requires <a href="../../mini.nvim/doc/mini-visits.html#mini.visits">mini.visits</a> module of ‘mini.nvim’.</p></li>
 </ul>
 <section id="ministarter.sections.pick-return" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.sections.pick-return">Return</h4>
@@ -880,7 +881,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniStarter.gen_hook</code>
 </p>
 <p>Table with pre-configured content hook generators</p>
-<p>Each element is a function which returns content hook. So to use them inside <a href="../../mini.nvim/doc/mini-starter.html#ministarter.setup"><code>MiniStarter.setup()</code></a>, call them.</p>
+<p>Each element is a function which returns content hook. So to use them inside <a href="../../mini.nvim/doc/mini-starter.html#ministarter.setup">MiniStarter.setup()</a>, call them.</p>
 <hr>
 </section>
 <section id="ministarter.gen_hook.padding" class="level3">
@@ -944,7 +945,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Hook generator for aligning content</p>
 <p>Output is a content hook which independently aligns content horizontally and vertically. Window width and height are taken from first window in current tabpage displaying the Starter buffer.</p>
-<p>Basically, this computes left and top pads for <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.padding"><code>MiniStarter.gen_hook.padding()</code></a> such that output lines would appear aligned in certain way.</p>
+<p>Basically, this computes left and top pads for <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.padding">MiniStarter.gen_hook.padding()</a> such that output lines would appear aligned in certain way.</p>
 <section id="ministarter.gen_hook.aligning-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.gen_hook.aligning-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{horizontal}</span> <code>(string|nil)</code> One of “left”, “center”, “right”. Default: “left”.</p>
@@ -972,7 +973,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>“hl” - which highlighting should be applied to content string. May be <code>nil</code> for no highlighting.</p></li>
 </ul></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines"><code>MiniStarter.content_to_lines()</code></a> for converting content to buffer lines and <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_items"><code>MiniStarter.content_to_items()</code></a> - to list of parsed items.</p>
+<p>See <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines">MiniStarter.content_to_lines()</a> for converting content to buffer lines and <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_items">MiniStarter.content_to_items()</a> - to list of parsed items.</p>
 <p>Notes:</p>
 <ul>
 <li>Content units with type “item” also have <code>item</code> element with all information about an item it represents. Those elements are used directly to create an array of items used for query.</li>
@@ -1031,8 +1032,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Convert content to items</p>
 <p>Parse content (in depth-first fashion) and retrieve each item from <code>item</code> element of content units with type “item”. This also:</p>
 <ul>
-<li><p>Computes some helper information about how item will be actually displayed (after <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines"><code>MiniStarter.content_to_lines()</code></a>) and minimum number of prefix characters needed for a particular item to be queried single.</p></li>
-<li><p>Modifies item’s <code>name</code> element taking it from corresponding <code>string</code> element of content unit. This allows modifying item’s <code>name</code> at the stage of content hooks (like, for example, in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.indexing"><code>MiniStarter.gen_hook.indexing()</code></a>).</p></li>
+<li><p>Computes some helper information about how item will be actually displayed (after <a href="../../mini.nvim/doc/mini-starter.html#ministarter.content_to_lines">MiniStarter.content_to_lines()</a>) and minimum number of prefix characters needed for a particular item to be queried single.</p></li>
+<li><p>Modifies item’s <code>name</code> element taking it from corresponding <code>string</code> element of content unit. This allows modifying item’s <code>name</code> at the stage of content hooks (like, for example, in <a href="../../mini.nvim/doc/mini-starter.html#ministarter.gen_hook.indexing">MiniStarter.gen_hook.indexing()</a>).</p></li>
 </ul>
 <section id="ministarter.content_to_items-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="ministarter.content_to_items-parameters">Parameters</h4>

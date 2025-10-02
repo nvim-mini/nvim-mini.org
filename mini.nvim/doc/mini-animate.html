@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.animate documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minianimate" id="toc-minianimate" class="nav-link active" data-scroll-target="#minianimate">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minianimate-setup" id="toc-minianimate-setup" class="nav-link" data-scroll-target="#minianimate-setup">Setup</a></li>
-  <li><a href="#minianimate-comparisons" id="toc-minianimate-comparisons" class="nav-link" data-scroll-target="#minianimate-comparisons">Comparisons</a></li>
-  <li><a href="#minianimate-highlightgroups" id="toc-minianimate-highlightgroups" class="nav-link" data-scroll-target="#minianimate-highlightgroups">Highlight groups</a></li>
-  <li><a href="#minianimate-disabling" id="toc-minianimate-disabling" class="nav-link" data-scroll-target="#minianimate-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minianimate.setup" id="toc-minianimate.setup" class="nav-link" data-scroll-target="#minianimate.setup">setup()</a>
   <ul>
@@ -492,33 +493,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.animate" href="../../mini.nvim/doc/mini-animate.html#mini.animate"><b>mini.animate</b></a> Animate common Neovim actions</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="minianimate" class="level3">
-<h3 class="anchored" data-anchor-id="minianimate">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Works out of the box with a single <code>require('mini.animate').setup()</code>. No extra mappings or commands needed.</p></li>
-<li><p>Animate cursor movement inside same buffer by showing customizable path. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a> for more details.</p></li>
-<li><p>Animate scrolling with a series of subscrolls (“smooth scrolling”). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll"><code>MiniAnimate.config.scroll</code></a> for more details.</p></li>
-<li><p>Animate window resize by gradually changing sizes of all windows. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize"><code>MiniAnimate.config.resize</code></a> for more details.</p></li>
-<li><p>Animate window open/close with visually updating floating window. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> and <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a> for more details.</p></li>
-<li><p>Timings for all actions can be customized independently. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a> for more details.</p></li>
+<li><p>Animate cursor movement inside same buffer by showing customizable path. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a> for more details.</p></li>
+<li><p>Animate scrolling with a series of subscrolls (“smooth scrolling”). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll">MiniAnimate.config.scroll</a> for more details.</p></li>
+<li><p>Animate window resize by gradually changing sizes of all windows. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize">MiniAnimate.config.resize</a> for more details.</p></li>
+<li><p>Animate window open/close with visually updating floating window. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> and <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a> for more details.</p></li>
+<li><p>Timings for all actions can be customized independently. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a> for more details.</p></li>
 <li><p>Action animations can be enabled/disabled independently.</p></li>
 <li><p>All animations are asynchronous/non-blocking and trigger a targeted event which can be used to perform actions after animation is done.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-animate.html#minianimate.animate"><code>MiniAnimate.animate()</code></a> function which can be used to perform own animations.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-animate.html#minianimate.animate">MiniAnimate.animate()</a> function which can be used to perform own animations.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
 <li><p>Cursor movement is animated inside same window and buffer, not as cursor moves across the screen.</p></li>
-<li><p>Scroll and resize animations are done with “side effects”: they actually change the state of what is animated (window view and sizes respectively). This has a downside of possibly needing extra work to account for asynchronous nature of animation (like adjusting certain mappings, etc.). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll"><code>MiniAnimate.config.scroll</code></a> and <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize"><code>MiniAnimate.config.resize</code></a> for more details.</p></li>
+<li><p>Scroll and resize animations are done with “side effects”: they actually change the state of what is animated (window view and sizes respectively). This has a downside of possibly needing extra work to account for asynchronous nature of animation (like adjusting certain mappings, etc.). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll">MiniAnimate.config.scroll</a> and <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize">MiniAnimate.config.resize</a> for more details.</p></li>
 </ul>
-<section id="minianimate-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minianimate-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.animate').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniAnimate</code> which you can use for scripting or manually (with <code>:lua MiniAnimate.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config"><code>MiniAnimate.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like <code>config.modifiers</code>) locally to buffer inside <code>vim.b.minianimate_config</code> which should have same structure as <code>MiniAnimate.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config">MiniAnimate.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like <code>config.modifiers</code>) locally to buffer inside <code>vim.b.minianimate_config</code> which should have same structure as <code>MiniAnimate.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minianimate-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minianimate-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://neovide.dev/">Neovide</a>:</p>
 <ul>
@@ -541,17 +542,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minianimate-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minianimate-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniAnimateCursor</code> - highlight of cursor during its animated movement.</p></li>
 <li><p><code>MiniAnimateNormalFloat</code> - highlight of floating window for <code>open</code> and <code>close</code> animations.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="minianimate-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minianimate-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minianimate_disable</code> (globally) or <code>vim.b.minianimate_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minianimate_disable</code> (globally) or <code>vim.b.minianimate_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -563,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minianimate.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config"><code>MiniAnimate.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config">MiniAnimate.config</a>.</p>
 </section>
 <section id="minianimate.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.setup-usage">Usage</h4>
@@ -651,22 +652,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minianimate.config-general" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.config-general">General</h4>
 <ul>
-<li><p><a name="minianimate-timing" href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><b>MiniAnimate-timing</b></a> Every animation is a non-blockingly scheduled series of specific actions. They are executed in a sequence of timed steps controlled by <code>timing</code> option. It is a callable which, given next and total step numbers, returns wait time (in ms). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_timing"><code>MiniAnimate.gen_timing</code></a> for builtin timing functions. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.animate"><code>MiniAnimate.animate()</code></a> for more details about animation process.</p></li>
+<li><p><a name="minianimate-timing" href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><b>MiniAnimate-timing</b></a> Every animation is a non-blockingly scheduled series of specific actions. They are executed in a sequence of timed steps controlled by <code>timing</code> option. It is a callable which, given next and total step numbers, returns wait time (in ms). See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_timing">MiniAnimate.gen_timing</a> for builtin timing functions. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.animate">MiniAnimate.animate()</a> for more details about animation process.</p></li>
 <li><p>Every animation can be enabled/disabled independently by setting <code>enable</code> option to <code>true</code>/<code>false</code>.</p></li>
-<li><p><a name="minianimate-done-event" href="../../mini.nvim/doc/mini-animate.html#minianimate-done-event"><b>MiniAnimate-done-event</b></a> Every animation triggers custom <a href="https://neovim.io/doc/user/helptag.html?tag=User"><code>User</code></a> event when it is finished. It is named <code>MiniAnimateDoneXxx</code> with <code>Xxx</code> replaced by capitalized supported animation action name (like <code>MiniAnimateDoneCursor</code>). Use it to schedule some action after certain animation is completed. Alternatively, you can use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after"><code>MiniAnimate.execute_after()</code></a> (usually preferred in mappings).</p></li>
+<li><p><a name="minianimate-done-event" href="../../mini.nvim/doc/mini-animate.html#minianimate-done-event"><b>MiniAnimate-done-event</b></a> Every animation triggers custom <a href="https://neovim.io/doc/user/helptag.html?tag=User">User</a> event when it is finished. It is named <code>MiniAnimateDoneXxx</code> with <code>Xxx</code> replaced by capitalized supported animation action name (like <code>MiniAnimateDoneCursor</code>). Use it to schedule some action after certain animation is completed. Alternatively, you can use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after">MiniAnimate.execute_after()</a> (usually preferred in mappings).</p></li>
 <li><p>Each animation has its main step generator which defines how particular animation is done. They all are callables which take some input data and return an array of step data. Length of that array determines number of animation steps. Outputs <code>nil</code> and empty table result in no animation.</p></li>
 </ul>
 </section>
 <section id="minianimate.config-cursor" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.config-cursor">Cursor</h4>
 <p><a name="minianimate.config.cursor" href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><b>MiniAnimate.config.cursor</b></a></p>
-<p>This animation is triggered for each movement of cursor inside same window and buffer. Its visualization step consists from placing single extmark (see <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks"><code>extmarks</code></a>) at certain position. This extmark contains single space and is highlighted with <code>MiniAnimateCursor</code> highlight group.</p>
+<p>This animation is triggered for each movement of cursor inside same window and buffer. Its visualization step consists from placing single extmark (see <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a>) at certain position. This extmark contains single space and is highlighted with <code>MiniAnimateCursor</code> highlight group.</p>
 <p>Exact places of extmark and their number is controlled by <code>path</code> option. It is a callable which takes <code>destination</code> argument (2d integer point in <code>(line, col)</code> coordinates) and returns array of relative to <code>(0, 0)</code> places for extmark to be placed. Example:</p>
 <ul>
 <li><p>Input <code>(2, -3)</code> means cursor jumped 2 lines forward and 3 columns backward.</p></li>
 <li><p>Output <code>{ {0, 0 }, { 0, -1 }, { 0, -2 }, { 0, -3 }, { 1, -3 } }</code> means that path is first visualized along the initial line and then along final column.</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_path"><code>MiniAnimate.gen_path</code></a> for builtin path generators.</p>
+<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_path">MiniAnimate.gen_path</a> for builtin path generators.</p>
 <p>Notes:</p>
 <ul>
 <li><p>Input <code>destination</code> value is computed ignoring folds. This is by design as it helps better visualize distance between two cursor positions.</p></li>
@@ -696,14 +697,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Input <code>5</code> means that total scroll consists from 5 lines (either up or down, which doesn’t matter).</p></li>
 <li><p>Output of <code>{ 1, 1, 1, 1, 1 }</code> means that there are 5 equal subscrolls.</p></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_subscroll"><code>MiniAnimate.gen_subscroll</code></a> for builtin subscroll generators.</p>
+<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_subscroll">MiniAnimate.gen_subscroll</a> for builtin subscroll generators.</p>
 <p>Notes:</p>
 <ul>
 <li><p>Input value of <code>total_scroll</code> is computed taking folds into account.</p></li>
 <li><p>As scroll animation is essentially a precisely scheduled non-blocking subscrolls, this has two important interconnected consequences:</p>
 <ul>
-<li><p>If another scroll is attempted during the animation, it is done based on the currently visible window view. Example: if user presses <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-D"><code>CTRL-D</code></a> and then <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-U"><code>CTRL-U</code></a> when animation is half done, window will not display the previous view half of ‘scroll’ above it. This especially affects mouse wheel scrolling, as each its turn results in a new scroll for number of lines defined by ‘mousescroll’. Tweak it to your liking.</p></li>
-<li><p>It breaks the use of several relative scrolling commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after"><code>MiniAnimate.execute_after()</code></a> to schedule action after reaching target window view. Example: a useful <code>nnoremap n nzvzz</code> mapping (consecutive application of <a href="https://neovim.io/doc/user/helptag.html?tag=n"><code>n</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=zv"><code>zv</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=zz"><code>zz</code></a>) should be expressed in the following way:</p>
+<li><p>If another scroll is attempted during the animation, it is done based on the currently visible window view. Example: if user presses <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-D">CTRL-D</a> and then <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-U">CTRL-U</a> when animation is half done, window will not display the previous view half of ‘scroll’ above it. This especially affects mouse wheel scrolling, as each its turn results in a new scroll for number of lines defined by ‘mousescroll’. Tweak it to your liking.</p></li>
+<li><p>It breaks the use of several relative scrolling commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after">MiniAnimate.execute_after()</a> to schedule action after reaching target window view. Example: a useful <code>nnoremap n nzvzz</code> mapping (consecutive application of <a href="https://neovim.io/doc/user/helptag.html?tag=n">n</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=zv">zv</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=zz">zz</a>) should be expressed in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">'&lt;Cmd&gt;lua vim.cmd("normal! n"); '</span> <span class="op">..</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'MiniAnimate.execute_after("scroll", "normal! zvzz")&lt;CR&gt;'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul></li>
@@ -725,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minianimate.config-resize" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.config-resize">Resize</h4>
 <p><a name="minianimate.config.resize" href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize"><b>MiniAnimate.config.resize</b></a></p>
-<p>This animation is triggered for window resize while having same layout of same windows. For example, it won’t trigger when window is opened/closed or after something like <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K"><code>CTRL-W_K</code></a>. Its visualization step consists from setting certain sizes to all visible windows (last step being for “true” final sizes).</p>
+<p>This animation is triggered for window resize while having same layout of same windows. For example, it won’t trigger when window is opened/closed or after something like <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K">CTRL-W_K</a>. Its visualization step consists from setting certain sizes to all visible windows (last step being for “true” final sizes).</p>
 <p>Exact window step sizes and their number is controlled by <code>subresize</code> option. It is a callable which takes <code>sizes_from</code> and <code>sizes_to</code> arguments (both tables with window id as keys and dimension table as values) and returns array of same shaped data. Example:</p>
 <ul>
 <li><p>Input:</p>
@@ -740,13 +741,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="op">[</span><span class="dv">1000</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="va">width</span> <span class="op">=</span> <span class="dv">9</span><span class="op">,</span> <span class="va">height</span> <span class="op">=</span> <span class="dv">5</span><span class="op">},</span> <span class="op">[</span><span class="dv">1001</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="va">width</span> <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> <span class="va">height</span> <span class="op">=</span> <span class="dv">10</span><span class="op">}</span> <span class="op">},</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_subresize"><code>MiniAnimate.gen_subresize</code></a> for builtin subresize generators.</p>
+<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_subresize">MiniAnimate.gen_subresize</a> for builtin subresize generators.</p>
 <p>Notes:</p>
 <ul>
 <li><p>As resize animation is essentially a precisely scheduled non-blocking subresizes, this has two important interconnected consequences:</p>
 <ul>
 <li><p>If another resize is attempted during the animation, it is done based on the currently visible window sizes. This might affect relative resizing.</p></li>
-<li><p>It breaks the use of several relative resizing commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after"><code>MiniAnimate.execute_after()</code></a> to schedule action after reaching target window sizes.</p></li>
+<li><p>It breaks the use of several relative resizing commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after">MiniAnimate.execute_after()</a> to schedule action after reaching target window sizes.</p></li>
 </ul></li>
 </ul>
 <p>Configuration example:</p>
@@ -770,7 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="minianimate.config.open" href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><b>MiniAnimate.config.open</b></a> <a name="minianimate.config.close" href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><b>MiniAnimate.config.close</b></a></p>
 <p>These animations are similarly triggered for regular (non-floating) window open/close. Their visualization step consists from drawing empty floating window with customizable config and transparency.</p>
 <p>Exact window visualization characteristics are controlled by <code>winconfig</code> and <code>winblend</code> options.</p>
-<p>The <code>winconfig</code> option is a callable which takes window id (<a href="https://neovim.io/doc/user/helptag.html?tag=window-ID"><code>window-ID</code></a>) as input and returns an array of floating window configs (as in <code>config</code> argument of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()"><code>nvim_open_win()</code></a>). Its length determines number of animation steps. Example:</p>
+<p>The <code>winconfig</code> option is a callable which takes window id (<a href="https://neovim.io/doc/user/helptag.html?tag=window-ID">window-ID</a>) as input and returns an array of floating window configs (as in <code>config</code> argument of <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()">nvim_open_win()</a>). Its length determines number of animation steps. Example:</p>
 <ul>
 <li><p>The following output results into two animation steps with second being upper left quarter of a first:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
@@ -792,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Function <code>function(s, n) return 80 + 20 * s / n end</code> results in linear transition from <code>winblend</code> value of 80 to 100.</li>
 </ul>
-<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_winconfig"><code>MiniAnimate.gen_winconfig</code></a> for builtin window config generators. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_winblend"><code>MiniAnimate.gen_winblend</code></a> for builtin window transparency generators.</p>
+<p>See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_winconfig">MiniAnimate.gen_winconfig</a> for builtin window config generators. See <a href="../../mini.nvim/doc/mini-animate.html#minianimate.gen_winblend">MiniAnimate.gen_winblend</a> for builtin window transparency generators.</p>
 <p>Configuration example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">animate</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.animate'</span><span class="op">)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">animate</span><span class="op">.</span>setup<span class="op">({</span></span>
@@ -830,7 +831,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Check animation activity</p>
 <section id="minianimate.is_active-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.is_active-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{animation_type}</span> <code>(string)</code> One of supported animation types (entries of <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config"><code>MiniAnimate.config</code></a>, like <code>'cursor'</code>, etc.).</p>
+<p><span class="help-syntax-special">{animation_type}</span> <code>(string)</code> One of supported animation types (entries of <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config">MiniAnimate.config</a>, like <code>'cursor'</code>, etc.).</p>
 </section>
 <section id="minianimate.is_active-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.is_active-return">Return</h4>
@@ -844,16 +845,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.execute_after</code>(<span class="help-syntax-special">{animation_type}</span>, <span class="help-syntax-special">{action}</span>)
 </p>
 <p>Execute action after some animation is done</p>
-<p>Execute action immediately if animation is not active (checked with <a href="../../mini.nvim/doc/mini-animate.html#minianimate.is_active"><code>MiniAnimate.is_active()</code></a>). Else, schedule its execution until after animation is done (on corresponding “done event”, see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-done-event"><code>MiniAnimate-done-event</code></a>).</p>
+<p>Execute action immediately if animation is not active (checked with <a href="../../mini.nvim/doc/mini-animate.html#minianimate.is_active">MiniAnimate.is_active()</a>). Else, schedule its execution until after animation is done (on corresponding “done event”, see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-done-event">MiniAnimate-done-event</a>).</p>
 <p>Mostly meant to be used inside mappings.</p>
 <p>Example:</p>
-<p>A useful <code>nnoremap n nzvzz</code> mapping (consecutive application of <a href="https://neovim.io/doc/user/helptag.html?tag=n"><code>n</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=zv"><code>zv</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=zz"><code>zz</code></a>) should be expressed in the following way:</p>
+<p>A useful <code>nnoremap n nzvzz</code> mapping (consecutive application of <a href="https://neovim.io/doc/user/helptag.html?tag=n">n</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=zv">zv</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=zz">zz</a>) should be expressed in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="st">'&lt;Cmd&gt;lua vim.cmd("normal! n"); '</span> <span class="op">..</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'MiniAnimate.execute_after("scroll", "normal! zvzz")&lt;CR&gt;'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minianimate.execute_after-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.execute_after-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{animation_type}</span> <code>(string)</code> One of supported animation types (as in <a href="../../mini.nvim/doc/mini-animate.html#minianimate.is_active"><code>MiniAnimate.is_active()</code></a>).</p>
-<p><span class="help-syntax-special">{action}</span> <code>(string|function)</code> Action to be executed. If string, executed as command (via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.cmd()"><code>vim.cmd()</code></a>).</p>
+<p><span class="help-syntax-special">{animation_type}</span> <code>(string)</code> One of supported animation types (as in <a href="../../mini.nvim/doc/mini-animate.html#minianimate.is_active">MiniAnimate.is_active()</a>).</p>
+<p><span class="help-syntax-special">{action}</span> <code>(string|function)</code> Action to be executed. If string, executed as command (via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.cmd()">vim.cmd()</a>).</p>
 <hr>
 </section>
 </section>
@@ -875,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>Animation is also stopped on action error or if maximum number of steps is reached.</p></li>
-<li><p>Asynchronous execution is done with <a href="https://neovim.io/doc/user/helptag.html?tag=uv.new_timer()"><code>uv.new_timer()</code></a>. It only allows integer parts as repeat value. This has several implications:</p>
+<li><p>Asynchronous execution is done with <a href="https://neovim.io/doc/user/helptag.html?tag=uv.new_timer()">uv.new_timer()</a>. It only allows integer parts as repeat value. This has several implications:</p>
 <ul>
 <li><p>Outputs of <code>step_timing()</code> are accumulated in order to preserve total execution time.</p></li>
 <li><p>Any wait time less than 1 ms means that action will be executed immediately.</p></li>
@@ -909,7 +910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minianimate.gen_timing-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-indentscope.html#miniindentscope.gen_animation"><code>MiniIndentscope.gen_animation</code></a> for similar concept in ‘mini.indentscope’.</p>
+<p><a href="../../mini.nvim/doc/mini-indentscope.html#miniindentscope.gen_animation">MiniIndentscope.gen_animation</a> for similar concept in ‘mini.indentscope’.</p>
 <hr>
 </section>
 </section>
@@ -939,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_timing.linear-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing.linear-return">Return</h4>
-<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a>).</p>
+<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a>).</p>
 <hr>
 </section>
 </section>
@@ -960,7 +961,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_timing.quadratic-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing.quadratic-return">Return</h4>
-<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a>).</p>
+<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a>).</p>
 <hr>
 </section>
 </section>
@@ -981,7 +982,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_timing.cubic-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing.cubic-return">Return</h4>
-<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a>).</p>
+<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a>).</p>
 <hr>
 </section>
 </section>
@@ -1002,7 +1003,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_timing.quartic-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing.quartic-return">Return</h4>
-<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a>).</p>
+<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a>).</p>
 <hr>
 </section>
 </section>
@@ -1023,7 +1024,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_timing.exponential-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing.exponential-return">Return</h4>
-<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing"><code>MiniAnimate-timing</code></a>).</p>
+<p><code>(function)</code> Timing function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate-timing">MiniAnimate-timing</a>).</p>
 <hr>
 </section>
 </section>
@@ -1033,7 +1034,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.gen_path</code>
 </p>
 <p>Generate cursor animation path</p>
-<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a>.</p>
+<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a>.</p>
 <p>This is a table with function elements. Call to actually get generator.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">animate</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.animate'</span><span class="op">)</span></span>
@@ -1061,7 +1062,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_path.line-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_path.line-return">Return</h4>
-<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a>).</p>
+<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a>).</p>
 <hr>
 </section>
 </section>
@@ -1082,7 +1083,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_path.angle-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_path.angle-return">Return</h4>
-<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a>).</p>
+<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a>).</p>
 <hr>
 </section>
 </section>
@@ -1102,7 +1103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_path.walls-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_path.walls-return">Return</h4>
-<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a>).</p>
+<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a>).</p>
 <hr>
 </section>
 </section>
@@ -1122,7 +1123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_path.spiral-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_path.spiral-return">Return</h4>
-<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor"><code>MiniAnimate.config.cursor</code></a>).</p>
+<p><code>(function)</code> Path function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.cursor">MiniAnimate.config.cursor</a>).</p>
 <hr>
 </section>
 </section>
@@ -1132,7 +1133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.gen_subscroll</code>
 </p>
 <p>Generate scroll animation subscroll</p>
-<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll"><code>MiniAnimate.config.scroll</code></a>.</p>
+<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll">MiniAnimate.config.scroll</a>.</p>
 <p>This is a table with function elements. Call to actually get generator.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">animate</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.animate'</span><span class="op">)</span></span>
@@ -1160,7 +1161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_subscroll.equal-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_subscroll.equal-return">Return</h4>
-<p><code>(function)</code> Subscroll function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll"><code>MiniAnimate.config.scroll</code></a>).</p>
+<p><code>(function)</code> Subscroll function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.scroll">MiniAnimate.config.scroll</a>).</p>
 <hr>
 </section>
 </section>
@@ -1170,7 +1171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.gen_subresize</code>
 </p>
 <p>Generate resize animation subresize</p>
-<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize"><code>MiniAnimate.config.resize</code></a>.</p>
+<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize">MiniAnimate.config.resize</a>.</p>
 <p>This is a table with function elements. Call to actually get generator.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">is_many_wins</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">sizes_from</span><span class="op">,</span> <span class="va">sizes_to</span><span class="op">)</span></span>
@@ -1200,7 +1201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_subresize.equal-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_subresize.equal-return">Return</h4>
-<p><code>(function)</code> Subresize function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize"><code>MiniAnimate.config.resize</code></a>).</p>
+<p><code>(function)</code> Subresize function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.resize">MiniAnimate.config.resize</a>).</p>
 <hr>
 </section>
 </section>
@@ -1210,7 +1211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.gen_winconfig</code>
 </p>
 <p>Generate open/close animation winconfig</p>
-<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>.</p>
+<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>.</p>
 <p>This is a table with function elements. Call to actually get generator.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">is_not_single_window</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">win_id</span><span class="op">)</span></span>
@@ -1255,7 +1256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_winconfig.static-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_winconfig.static-return">Return</h4>
-<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>).</p>
+<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>).</p>
 <hr>
 </section>
 </section>
@@ -1276,7 +1277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_winconfig.center-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_winconfig.center-return">Return</h4>
-<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>).</p>
+<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>).</p>
 <hr>
 </section>
 </section>
@@ -1297,7 +1298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_winconfig.wipe-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_winconfig.wipe-return">Return</h4>
-<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>).</p>
+<p><code>(function)</code> Winconfig function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>).</p>
 <hr>
 </section>
 </section>
@@ -1307,7 +1308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniAnimate.gen_winblend</code>
 </p>
 <p>Generate open/close animation <code>winblend</code> progression</p>
-<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>.</p>
+<p>For more information see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>.</p>
 <p>This is a table with function elements. Call to actually get transparency function.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">animate</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.animate'</span><span class="op">)</span></span>
@@ -1339,7 +1340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minianimate.gen_winblend.linear-return" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_winblend.linear-return">Return</h4>
-<p><code>(function)</code> Winblend function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open"><code>MiniAnimate.config.open</code></a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close"><code>MiniAnimate.config.close</code></a>).</p>
+<p><code>(function)</code> Winblend function (see <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.open">MiniAnimate.config.open</a> or <a href="../../mini.nvim/doc/mini-animate.html#minianimate.config.close">MiniAnimate.config.close</a>).</p>
 
 
 </section>

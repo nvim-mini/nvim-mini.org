@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.bracketed documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minibracketed" id="toc-minibracketed" class="nav-link active" data-scroll-target="#minibracketed">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minibracketed-setup" id="toc-minibracketed-setup" class="nav-link" data-scroll-target="#minibracketed-setup">Setup</a></li>
-  <li><a href="#minibracketed-comparisons" id="toc-minibracketed-comparisons" class="nav-link" data-scroll-target="#minibracketed-comparisons">Comparisons</a></li>
-  <li><a href="#minibracketed-disabling" id="toc-minibracketed-disabling" class="nav-link" data-scroll-target="#minibracketed-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#minibracketed.setup" id="toc-minibracketed.setup" class="nav-link" data-scroll-target="#minibracketed.setup">setup()</a>
   <ul>
@@ -461,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.bracketed" href="../../mini.nvim/doc/mini-bracketed.html#mini.bracketed"><b>mini.bracketed</b></a> Go forward/backward with square brackets</p>
 <p>MIT License Copyright (c) 2023 Evgeni Chasnovski</p>
 <hr>
-<section id="minibracketed" class="level3">
-<h3 class="anchored" data-anchor-id="minibracketed">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Configurable Lua functions to go forward/backward to a certain target. Each function can be customized with:</p>
@@ -473,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Some other target specific options.</p></li>
 </ul></li>
 <li><p>Mappings using square brackets. They are created using configurable target suffix and can be selectively disabled.</p>
-<p>Each mapping supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a>. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat) modes are supported.</p>
+<p>Each mapping supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat) modes are supported.</p>
 <p>Using <code>lower-suffix</code> and <code>upper-suffix</code> (lower and upper case suffix) for a single target the following mappings are created:</p>
 <ul>
 <li><p><code>[</code> + <code>upper-suffix</code> : go first.</p></li>
@@ -495,104 +496,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Buffer</td>
 <td><code>[B</code> <code>[b</code> <code>]b</code> <code>]B</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer"><code>MiniBracketed.buffer()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer">MiniBracketed.buffer()</a></td>
 </tr>
 <tr class="even">
 <td>Comment block</td>
 <td><code>[C</code> <code>[c</code> <code>]c</code> <code>]C</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.comment"><code>MiniBracketed.comment()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.comment">MiniBracketed.comment()</a></td>
 </tr>
 <tr class="odd">
 <td>Conflict marker</td>
 <td><code>[X</code> <code>[x</code> <code>]x</code> <code>]X</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.conflict"><code>MiniBracketed.conflict()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.conflict">MiniBracketed.conflict()</a></td>
 </tr>
 <tr class="even">
 <td>Diagnostic</td>
 <td><code>[D</code> <code>[d</code> <code>]d</code> <code>]D</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.diagnostic"><code>MiniBracketed.diagnostic()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.diagnostic">MiniBracketed.diagnostic()</a></td>
 </tr>
 <tr class="odd">
 <td>File on disk</td>
 <td><code>[F</code> <code>[f</code> <code>]f</code> <code>]F</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.file"><code>MiniBracketed.file()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.file">MiniBracketed.file()</a></td>
 </tr>
 <tr class="even">
 <td>Indent change</td>
 <td><code>[I</code> <code>[i</code> <code>]i</code> <code>]I</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent"><code>MiniBracketed.indent()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent">MiniBracketed.indent()</a></td>
 </tr>
 <tr class="odd">
 <td>Jump inside current buffer</td>
 <td><code>[J</code> <code>[j</code> <code>]j</code> <code>]J</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.jump"><code>MiniBracketed.jump()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.jump">MiniBracketed.jump()</a></td>
 </tr>
 <tr class="even">
-<td>Location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list"><code>location-list</code></a></td>
+<td>Location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list">location-list</a></td>
 <td><code>[L</code> <code>[l</code> <code>]l</code> <code>]L</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.location"><code>MiniBracketed.location()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.location">MiniBracketed.location()</a></td>
 </tr>
 <tr class="odd">
 <td>Old files</td>
 <td><code>[O</code> <code>[o</code> <code>]o</code> <code>]O</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.oldfile"><code>MiniBracketed.oldfile()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.oldfile">MiniBracketed.oldfile()</a></td>
 </tr>
 <tr class="even">
-<td>Quickfix entry from <a href="https://neovim.io/doc/user/helptag.html?tag=Quickfix"><code>Quickfix</code></a></td>
+<td>Quickfix entry from <a href="https://neovim.io/doc/user/helptag.html?tag=Quickfix">Quickfix</a></td>
 <td><code>[Q</code> <code>[q</code> <code>]q</code> <code>]Q</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.quickfix"><code>MiniBracketed.quickfix()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.quickfix">MiniBracketed.quickfix()</a></td>
 </tr>
 <tr class="odd">
 <td>Tree-sitter node and parents</td>
 <td><code>[T</code> <code>[t</code> <code>]t</code> <code>]T</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.treesitter"><code>MiniBracketed.treesitter()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.treesitter">MiniBracketed.treesitter()</a></td>
 </tr>
 <tr class="even">
 <td>Undo from linear history</td>
 <td><code>[U</code> <code>[u</code> <code>]u</code> <code>]U</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.undo"><code>MiniBracketed.undo()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.undo">MiniBracketed.undo()</a></td>
 </tr>
 <tr class="odd">
 <td>Window in current tab</td>
 <td><code>[W</code> <code>[w</code> <code>]w</code> <code>]W</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.window"><code>MiniBracketed.window()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.window">MiniBracketed.window()</a></td>
 </tr>
 <tr class="even">
 <td>Yank entry over put region</td>
 <td><code>[Y</code> <code>[y</code> <code>]y</code> <code>]Y</code></td>
-<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank"><code>MiniBracketed.yank()</code></a></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank">MiniBracketed.yank()</a></td>
 </tr>
 </tbody>
 </table>
 <p>Notes:</p>
 <ul>
-<li>The <code>undo</code> target remaps <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> keys to register undo state after undo and redo respectively. If this conflicts with your setup, either disable <code>undo</code> target or make your remaps after calling <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a>. To use <code>undo</code> target, remap your undo/redo keys to call <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state"><code>MiniBracketed.register_undo_state()</code></a> after the action.</li>
+<li>The <code>undo</code> target remaps <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> keys to register undo state after undo and redo respectively. If this conflicts with your setup, either disable <code>undo</code> target or make your remaps after calling <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup">MiniBracketed.setup()</a>. To use <code>undo</code> target, remap your undo/redo keys to call <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state">MiniBracketed.register_undo_state()</a> after the action.</li>
 </ul>
-<section id="minibracketed-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minibracketed-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.bracketed').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniBracketed</code> which you can use for scripting or manually (with <code>:lua MiniBracketed.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config"><code>MiniBracketed.config</code></a> for available config settings.</p>
-<p>You can override runtime config settings (like target options) locally to buffer inside <code>vim.b.minibracketed_config</code> which should have same structure as <code>MiniBracketed.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config">MiniBracketed.config</a> for available config settings.</p>
+<p>You can override runtime config settings (like target options) locally to buffer inside <code>vim.b.minibracketed_config</code> which should have same structure as <code>MiniBracketed.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minibracketed-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minibracketed-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/tpope/vim-unimpaired">tpope/vim-unimpaired</a>:</p>
 <ul>
-<li><p>Supports buffer, conflict, file, location, and quickfix targets mostly via built-in commands (like <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious"><code>:bprevious</code></a>, etc.) without configuration.</p></li>
+<li><p>Supports buffer, conflict, file, location, and quickfix targets mostly via built-in commands (like <a href="https://neovim.io/doc/user/helptag.html?tag=:bprevious">:bprevious</a>, etc.) without configuration.</p></li>
 <li><p>Supports files from argument list and tags. This module does not.</p></li>
 <li><p>Doesn’t support most other this module’s targets (comment, indent, …).</p></li>
 </ul></li>
-<li><p><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope"><code>mini.indentscope</code></a>:</p>
+<li><p><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope">mini.indentscope</a>:</p>
 <ul>
-<li><p>Target <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent"><code>MiniBracketed.indent()</code></a> target can go to “first” and “last” indent change. It also can go not only to line with smaller indent, but also bigger or different one.</p></li>
+<li><p>Target <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent">MiniBracketed.indent()</a> target can go to “first” and “last” indent change. It also can go not only to line with smaller indent, but also bigger or different one.</p></li>
 <li><p>Mappings from ‘mini.indentscope’ have more flexibility in computation of indent scope, like how to treat empty lines near border or whether to compute indent at cursor.</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="minibracketed-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="minibracketed-disabling">Disabling</h4>
-<p>To disable, set <code>vim.g.minibracketed_disable</code> (globally) or <code>vim.b.minibracketed_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable, set <code>vim.g.minibracketed_disable</code> (globally) or <code>vim.b.minibracketed_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -604,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <section id="minibracketed.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config"><code>MiniBracketed.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.config">MiniBracketed.config</a>.</p>
 </section>
 <section id="minibracketed.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.setup-usage">Usage</h4>
@@ -676,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minibracketed.config-options-suffix" class="level5">
 <h5 class="anchored" data-anchor-id="minibracketed.config-options-suffix">Suffix</h5>
 <p>The <code>suffix</code> key is used to create target mappings.</p>
-<p>Supply empty string to disable mapping creation for that particular target. To create a completely different mapping (like with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><code>&lt;Leader&gt;</code></a>) use target function manually.</p>
+<p>Supply empty string to disable mapping creation for that particular target. To create a completely different mapping (like with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeader%3E"><span class="help-syntax-keys">&lt;Leader&gt;</span></a>) use target function manually.</p>
 <p>Using <code>lower-suffix</code> and <code>upper-suffix</code> (lower and upper case suffix) for a single target the following mappings are created:</p>
 <ul>
 <li><p><code>[</code> + <code>upper-suffix</code> : go first.</p></li>
@@ -699,14 +700,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.buffer</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Listed buffer</p>
-<p>Go to next/previous listed buffer. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()"><code>bufnr()</code></a>).</p>
+<p>Go to next/previous listed buffer. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>).</p>
 <p>Direction “forward” increases number, “backward” - decreases.</p>
 <section id="minibracketed.buffer-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.buffer-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -725,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;block_side&gt;</span> <code>(string)</code> - which side of comment block to use. One of “near” (default; use nearest side), “start” (use first line), “end” (use last line), “both” (use both first and last lines).</p></li>
@@ -754,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
 </ul>
@@ -767,7 +768,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.diagnostic</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Diagnostic</p>
-<p>Go to next/previous diagnostic. This is mostly similar to built-in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.jump()"><code>vim.diagnostic.jump()</code></a> (on Neovim&lt;0.11 it is <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()"><code>vim.diagnostic.goto_next()</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_prev()"><code>vim.diagnostic.goto_prev()</code></a>) which has an interface and behavior consistent with other methods of the module.</p>
+<p>Go to next/previous diagnostic. This is mostly similar to built-in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.jump()">vim.diagnostic.jump()</a> (on Neovim&lt;0.11 it is <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()">vim.diagnostic.goto_next()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_prev()">vim.diagnostic.goto_prev()</a>) which has an interface and behavior consistent with other methods of the module.</p>
 <p>Direction “forward” increases line number, “backward” - decreases.</p>
 <p>Notes:</p>
 <ul>
@@ -782,10 +783,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;float&gt;</span> <code>(boolean|table)</code> - control floating window after movement. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()"><code>vim.diagnostic.goto_next()</code></a>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;severity&gt;</span> <code>(string|table)</code> - which severity to use. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=diagnostic-severity"><code>diagnostic-severity</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;float&gt;</span> <code>(boolean|table)</code> - control floating window after movement. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.goto_next()">vim.diagnostic.goto_next()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;severity&gt;</span> <code>(string|table)</code> - which severity to use. For available values see <a href="https://neovim.io/doc/user/helptag.html?tag=diagnostic-severity">diagnostic-severity</a>.</p></li>
 </ul>
 <hr>
 </section>
@@ -803,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -815,7 +816,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.indent</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Indent change</p>
-<p>Go to next/previous line with different indent (see <a href="https://neovim.io/doc/user/helptag.html?tag=indent()"><code>indent()</code></a>). Can be used to go to lines with smaller, bigger, or different indent.</p>
+<p>Go to next/previous line with different indent (see <a href="https://neovim.io/doc/user/helptag.html?tag=indent()">indent()</a>). Can be used to go to lines with smaller, bigger, or different indent.</p>
 <p>Notes:</p>
 <ul>
 <li><p>Directions “first” and “last” work differently from most other targets for performance reasons. They are essentially “backward” and “forward” with very big <code>n_times</code> option.</p></li>
@@ -828,7 +829,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;change_type&gt;</span> <code>(string)</code> - which type of indent change to use. One of “less” (default; smaller indent), “more” (bigger indent), “diff” (different indent).</p></li>
 </ul>
@@ -841,7 +842,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.jump</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Jump inside current buffer</p>
-<p>Go to next/previous jump from <a href="https://neovim.io/doc/user/helptag.html?tag=jumplist"><code>jumplist</code></a> which is inside current buffer.</p>
+<p>Go to next/previous jump from <a href="https://neovim.io/doc/user/helptag.html?tag=jumplist">jumplist</a> which is inside current buffer.</p>
 <p>Notes:</p>
 <ul>
 <li>There are no Visual mode mappings due to implementation problems.</li>
@@ -852,7 +853,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -864,14 +865,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.location</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Location from location list</p>
-<p>Go to next/previous location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list"><code>location-list</code></a>. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:lfirst"><code>:lfirst</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lprevious"><code>:lprevious</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lnext"><code>:lnext</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:llast"><code>:llast</code></a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “first”/“last” direction.</p>
+<p>Go to next/previous location from <a href="https://neovim.io/doc/user/helptag.html?tag=location-list">location-list</a>. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:lfirst">:lfirst</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lprevious">:lprevious</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:lnext">:lnext</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:llast">:llast</a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for “first”/“last” direction.</p>
 <p>Direction “forward” increases location number, “backward” - decreases.</p>
 <section id="minibracketed.location-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.location-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -883,19 +884,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.oldfile</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Old files from previous and current sessions</p>
-<p>Go to older/newer readable file either from previous session (see <a href="https://neovim.io/doc/user/helptag.html?tag=v:oldfiles"><code>v:oldfiles</code></a>) or the current one (updated automatically after <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> call).</p>
+<p>Go to older/newer readable file either from previous session (see <a href="https://neovim.io/doc/user/helptag.html?tag=v:oldfiles">v:oldfiles</a>) or the current one (updated automatically after <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup">MiniBracketed.setup()</a> call).</p>
 <p>Direction “forward” goes to more recent files, “backward” - to older.</p>
 <p>Notes:</p>
 <ul>
-<li><p>In current session it tracks only normal buffers (see <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'"><code>'buftype'</code></a>) for some readable file.</p></li>
-<li><p>No new file is tracked when advancing this target. Only after buffer change is done not through this target (like with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer"><code>MiniBracketed.buffer()</code></a>), it updates recency of last advanced and new buffers.</p></li>
+<li><p>In current session it tracks only normal buffers (see <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'">‘buftype’</a>) for some readable file.</p></li>
+<li><p>No new file is tracked when advancing this target. Only after buffer change is done not through this target (like with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.buffer">MiniBracketed.buffer()</a>), it updates recency of last advanced and new buffers.</p></li>
 </ul>
 <section id="minibracketed.oldfile-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.oldfile-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -907,14 +908,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.quickfix</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Quickfix from quickfix list</p>
-<p>Go to next/previous entry from <a href="https://neovim.io/doc/user/helptag.html?tag=quickfix"><code>quickfix</code></a> list. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:cfirst"><code>:cfirst</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cprevious"><code>:cprevious</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cnext"><code>:cnext</code></a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:clast"><code>:clast</code></a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D"><code>[count]</code></a> for “first”/“last” direction.</p>
+<p>Go to next/previous entry from <a href="https://neovim.io/doc/user/helptag.html?tag=quickfix">quickfix</a> list. This is similar to <a href="https://neovim.io/doc/user/helptag.html?tag=:cfirst">:cfirst</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cprevious">:cprevious</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=:cnext">:cnext</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=:clast">:clast</a> but with support of wrapping around edges and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for “first”/“last” direction.</p>
 <p>Direction “forward” increases location number, “backward” - decreases.</p>
 <section id="minibracketed.quickfix-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.quickfix-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -939,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
 </ul>
 <hr>
@@ -953,16 +954,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Undo along a tracked linear history</p>
 <p>In a nutshell:</p>
 <ul>
-<li><p>Keys <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> (although remapped) can be used as usual, but every their execution new state is recorded in this module’s linear undo history.</p></li>
+<li><p>Keys <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> (although remapped) can be used as usual, but every their execution new state is recorded in this module’s linear undo history.</p></li>
 <li><p>Advancing this target goes along linear undo history revealing undo states in order they actually appeared.</p></li>
 <li><p>One big difference with built-in methods is that tracked linear history can repeat undo states (not consecutively, though).</p></li>
 </ul>
-<p>Neovim’s default way of managing undo history is through branches (see <a href="https://neovim.io/doc/user/helptag.html?tag=undo-branches"><code>undo-branches</code></a>). Basically it means that if you undo several changes and then make new ones, it creates new undo branch while usually (see <a href="https://neovim.io/doc/user/helptag.html?tag='undolevels'"><code>'undolevels'</code></a>) saving previous buffer states in another branch. While there are commands to navigate by time of undo state creation (like <a href="https://neovim.io/doc/user/helptag.html?tag=:earlier"><code>:earlier</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:later"><code>:later</code></a>), there is no intuitive way to cycle through them. Existing <a href="https://neovim.io/doc/user/helptag.html?tag=g-"><code>g-</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=g+"><code>g+</code></a> cycle through undo states based on their creation time, which often gets confusing really guickly in extensively edited buffer.</p>
-<p>This <code>undo()</code> target provides a way to cycle through linear undo history in order states actually appeared. It does so by registering any new undo states plus every time <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state"><code>MiniBracketed.register_undo_state()</code></a> is called. To have more “out of the box” experience, <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> are remapped to call it after they perform their undo/redo.</p>
+<p>Neovim’s default way of managing undo history is through branches (see <a href="https://neovim.io/doc/user/helptag.html?tag=undo-branches">undo-branches</a>). Basically it means that if you undo several changes and then make new ones, it creates new undo branch while usually (see <a href="https://neovim.io/doc/user/helptag.html?tag='undolevels'">‘undolevels’</a>) saving previous buffer states in another branch. While there are commands to navigate by time of undo state creation (like <a href="https://neovim.io/doc/user/helptag.html?tag=:earlier">:earlier</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:later">:later</a>), there is no intuitive way to cycle through them. Existing <a href="https://neovim.io/doc/user/helptag.html?tag=g-">g-</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=g+">g+</a> cycle through undo states based on their creation time, which often gets confusing really guickly in extensively edited buffer.</p>
+<p>This <code>undo()</code> target provides a way to cycle through linear undo history in order states actually appeared. It does so by registering any new undo states plus every time <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state">MiniBracketed.register_undo_state()</a> is called. To have more “out of the box” experience, <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> are remapped to call it after they perform their undo/redo.</p>
 <p>Example:</p>
 <p>To show more clearly the difference between advancing this target and using built-in functionality, here is an example:</p>
 <ul>
-<li><p>Create undo history in a new buffer (<a href="https://neovim.io/doc/user/helptag.html?tag=:new"><code>:new</code></a>):</p>
+<li><p>Create undo history in a new buffer (<a href="https://neovim.io/doc/user/helptag.html?tag=:new">:new</a>):</p>
 <ul>
 <li><p>Enter <code>one two three</code> text.</p></li>
 <li><p>Delete first word with <code>daw</code> and undo the change with <code>u</code>.</p></li>
@@ -981,7 +982,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -993,7 +994,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.register_undo_state</code>()
 </p>
 <p>Register state for undo target</p>
-<p>Use this function to add current undo state to this module’s linear undo history. It is used in <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> to remap <a href="https://neovim.io/doc/user/helptag.html?tag=u"><code>u</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R"><code>CTRL-R</code></a> keys to add their new state to linear undo history.</p>
+<p>Use this function to add current undo state to this module’s linear undo history. It is used in <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup">MiniBracketed.setup()</a> to remap <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> keys to add their new state to linear undo history.</p>
 <hr>
 </section>
 <section id="minibracketed.window" class="level3">
@@ -1002,7 +1003,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.window</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Normal window</p>
-<p>Go to next/previous normal window. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=winnr()"><code>winnr()</code></a>).</p>
+<p>Go to next/previous normal window. Order by their number (see <a href="https://neovim.io/doc/user/helptag.html?tag=winnr()">winnr()</a>).</p>
 <p>Direction “forward” increases window number, “backward” - decreases.</p>
 <p>Only normal (non-floating) windows are used.</p>
 <section id="minibracketed.window-parameters" class="level4">
@@ -1010,7 +1011,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
 </ul>
 <hr>
@@ -1022,9 +1023,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.yank</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Replace “latest put region” with yank history entry</p>
-<p>After <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup"><code>MiniBracketed.setup()</code></a> is called, on every yank/delete/change operation (technically, every trigger of <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost"><code>TextYankPost</code></a> event) the object of operation is added to yank history. Advancing this target will replace the region of latest put operation with entry from yank history.</p>
-<p>By default works best if called right after text paste (like with <a href="https://neovim.io/doc/user/helptag.html?tag=p"><code>p</code></a> or <a href="https://neovim.io/doc/user/helptag.html?tag=P"><code>P</code></a>).</p>
-<p>To better detect “latest put region”, use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a> as described later.</p>
+<p>After <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup">MiniBracketed.setup()</a> is called, on every yank/delete/change operation (technically, every trigger of <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost">TextYankPost</a> event) the object of operation is added to yank history. Advancing this target will replace the region of latest put operation with entry from yank history.</p>
+<p>By default works best if called right after text paste (like with <a href="https://neovim.io/doc/user/helptag.html?tag=p">p</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=P">P</a>).</p>
+<p>To better detect “latest put region”, use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region">MiniBracketed.register_put_region()</a> as described later.</p>
 <p>Direction “forward” goes to newer yank history entry, “backward” - to older.</p>
 <p>Example:</p>
 <ul>
@@ -1038,13 +1039,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>“Latest put region” is (in order of decreasing priority):</p>
 <ul>
 <li><p>The one from latest advance of this target.</p></li>
-<li><p>The one registered by user with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a>.</p></li>
-<li><p>The one taken from <a href="https://neovim.io/doc/user/helptag.html?tag='%5B"><code>'[</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%5D"><code>']</code></a> marks.</p></li>
+<li><p>The one registered by user with <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region">MiniBracketed.register_put_region()</a>.</p></li>
+<li><p>The one taken from [‘<a href="https://neovim.io/doc/user/helptag.html?tag='%5B"></a> and [’]](https://neovim.io/doc/user/helptag.html?tag=’]) marks.</p></li>
 </ul>
 <p>For users there are these approaches to manage which region will be used:</p>
 <ul>
 <li><p>Do nothing. In this case region between <code>[</code> / <code>]</code> marks will always be used for first <code>yank</code> advance. Although doable, this has several drawbacks: it will use latest yanked or changed region or the entire buffer if marks are not set. If remember to advance this target only after recent put operation, this should work as expected.</p></li>
-<li><p>Remap common put operations to use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region"><code>MiniBracketed.register_put_region()</code></a>. After that, only regions from mapped put operations will be used for first advance. Example of custom mappings (note use of <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a>):</p>
+<li><p>Remap common put operations to use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region">MiniBracketed.register_put_region()</a>. After that, only regions from mapped put operations will be used for first advance. Example of custom mappings (note use of <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression">:map-expression</a>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">put_keys</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'p'</span><span class="op">,</span> <span class="st">'P'</span> <span class="op">}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">lhs</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">put_keys</span><span class="op">)</span> <span class="cf">do</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="st">'v:lua.MiniBracketed.register_put_region("'</span> <span class="op">..</span> <span class="va">lhs</span> <span class="op">..</span> <span class="st">'")'</span></span>
@@ -1057,9 +1058,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1"><code>v:count1</code></a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;operators&gt;</span> <code>(table)</code> - array of operator names (“c”, “d”, or “y”) for which yank entry should be used to advance. For example, use <code>{ "y" }</code> to advance only by entries actually resulted from yank operation with <a href="https://neovim.io/doc/user/helptag.html?tag=y"><code>y</code></a>. Default: <code>{ 'c', 'd', 'y' }</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;operators&gt;</span> <code>(table)</code> - array of operator names (“c”, “d”, or “y”) for which yank entry should be used to advance. For example, use <code>{ "y" }</code> to advance only by entries actually resulted from yank operation with <a href="https://neovim.io/doc/user/helptag.html?tag=y">y</a>. Default: <code>{ 'c', 'd', 'y' }</code>.</p></li>
 </ul>
 <hr>
 </section>
@@ -1070,8 +1071,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.register_put_region</code>(<span class="help-syntax-special">{put_key}</span>)
 </p>
 <p>Register “latest put region”</p>
-<p>This function should be called after put register becomes relevant (<a href="https://neovim.io/doc/user/helptag.html?tag=v:register"><code>v:register</code></a> is appropriately set) but before put operation takes place (<a href="https://neovim.io/doc/user/helptag.html?tag='%5B"><code>'[</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag='%5D"><code>']</code></a> marks become relevant).</p>
-<p>Designed to be used in a user-facing expression mapping (see <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression"><code>:map-expression</code></a>). For mapping examples see <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank"><code>MiniBracketed.yank()</code></a>.</p>
+<p>This function should be called after put register becomes relevant (<a href="https://neovim.io/doc/user/helptag.html?tag=v:register">v:register</a> is appropriately set) but before put operation takes place ([‘<a href="https://neovim.io/doc/user/helptag.html?tag='%5B"></a> and [’]](https://neovim.io/doc/user/helptag.html?tag=’]) marks become relevant).</p>
+<p>Designed to be used in a user-facing expression mapping (see <a href="https://neovim.io/doc/user/helptag.html?tag=:map-expression">:map-expression</a>). For mapping examples see <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank">MiniBracketed.yank()</a>.</p>
 <section id="minibracketed.register_put_region-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.register_put_region-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{put_key}</span> <code>(string)</code> Put keys to be remapped.</p>

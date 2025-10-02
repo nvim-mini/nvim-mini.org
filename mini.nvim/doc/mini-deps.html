@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.deps documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#minideps" id="toc-minideps" class="nav-link active" data-scroll-target="#minideps">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#minideps-dependencies" id="toc-minideps-dependencies" class="nav-link" data-scroll-target="#minideps-dependencies">Dependencies</a></li>
-  <li><a href="#minideps-setup" id="toc-minideps-setup" class="nav-link" data-scroll-target="#minideps-setup">Setup</a></li>
-  <li><a href="#minideps-comparisons" id="toc-minideps-comparisons" class="nav-link" data-scroll-target="#minideps-comparisons">Comparisons</a></li>
-  <li><a href="#minideps-highlightgroups" id="toc-minideps-highlightgroups" class="nav-link" data-scroll-target="#minideps-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-dependencies" id="toc-module-dependencies" class="nav-link" data-scroll-target="#module-dependencies">Dependencies</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
   </ul></li>
   <li><a href="#minideps-overview" id="toc-minideps-overview" class="nav-link" data-scroll-target="#minideps-overview">Overview</a>
   <ul>
@@ -455,19 +456,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.deps" href="../../mini.nvim/doc/mini-deps.html#mini.deps"><b>mini.deps</b></a> Plugin manager</p>
 <p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
 <hr>
-<section id="minideps" class="level3">
-<h3 class="anchored" data-anchor-id="minideps">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
-<li><p>Manage plugins utilizing Git and built-in <a href="https://neovim.io/doc/user/helptag.html?tag=packages"><code>packages</code></a> with these actions:</p>
+<li><p>Manage plugins utilizing Git and built-in <a href="https://neovim.io/doc/user/helptag.html?tag=packages">packages</a> with these actions:</p>
 <ul>
-<li><p>Add plugin to current session, download if absent. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a>.</p></li>
-<li><p>Update with/without confirm, with/without parallel download of new data. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.update"><code>MiniDeps.update()</code></a>.</p></li>
-<li><p>Delete unused plugins with/without confirm. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean"><code>MiniDeps.clean()</code></a>.</p></li>
+<li><p>Add plugin to current session, download if absent. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a>.</p></li>
+<li><p>Update with/without confirm, with/without parallel download of new data. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.update">MiniDeps.update()</a>.</p></li>
+<li><p>Delete unused plugins with/without confirm. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean">MiniDeps.clean()</a>.</p></li>
 <li><p>Get / set / save / load snapshot. See <code>MiniDeps.snap_*()</code> functions.</p></li>
 </ul>
-<p>All main actions are available both as Lua functions and user commands (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-commands"><code>MiniDeps-commands</code></a>).</p></li>
-<li><p>Minimal yet flexible plugin <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification"><code>MiniDeps-plugin-specification</code></a>:</p>
+<p>All main actions are available both as Lua functions and user commands (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-commands">MiniDeps-commands</a>).</p></li>
+<li><p>Minimal yet flexible plugin <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification">MiniDeps-plugin-specification</a>:</p>
 <ul>
 <li><p>Plugin source.</p></li>
 <li><p>Name of target plugin directory.</p></li>
@@ -476,37 +477,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Dependencies to be set up prior to the target plugin.</p></li>
 <li><p>Hooks to call before/after plugin is created/changed.</p></li>
 </ul></li>
-<li><p>Helpers implementing two-stage startup: <a href="../../mini.nvim/doc/mini-deps.html#minideps.now"><code>MiniDeps.now()</code></a> and <a href="../../mini.nvim/doc/mini-deps.html#minideps.later"><code>MiniDeps.later()</code></a>. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a> for how to implement basic lazy loading with them.</p></li>
+<li><p>Helpers implementing two-stage startup: <a href="../../mini.nvim/doc/mini-deps.html#minideps.now">MiniDeps.now()</a> and <a href="../../mini.nvim/doc/mini-deps.html#minideps.later">MiniDeps.later()</a>. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a> for how to implement basic lazy loading with them.</p></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
-<li><p>Manage plugins which are developed without Git. The suggested approach is to create a separate package (see <a href="https://neovim.io/doc/user/helptag.html?tag=packages"><code>packages</code></a>).</p></li>
+<li><p>Manage plugins which are developed without Git. The suggested approach is to create a separate package (see <a href="https://neovim.io/doc/user/helptag.html?tag=packages">packages</a>).</p></li>
 <li><p>Provide ways to completely remove or update plugin’s functionality in current session. Although this is partially doable, it can not be done in full (yet) because plugins can have untraceable side effects (autocmmands, mappings, etc.). The suggested approach is to restart Nvim.</p></li>
 </ul>
 <p>Sources with more details:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification"><code>MiniDeps-plugin-specification</code></a></p></li>
-<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-commands"><code>MiniDeps-commands</code></a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification">MiniDeps-plugin-specification</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps-commands">MiniDeps-commands</a></p></li>
 </ul>
-<section id="minideps-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="minideps-dependencies">Dependencies</h4>
+<section id="module-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>For most of its functionality this plugin relies on <code>git</code> CLI tool. See https://git-scm.com/ for more information about how to install it. Actual knowledge of Git is not required but helpful.</p>
 </section>
-<section id="minideps-setup" class="level4">
-<h4 class="anchored" data-anchor-id="minideps-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.deps').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniDeps</code> which you can use for scripting or manually (with <code>:lua MiniDeps.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-deps.html#minideps.config"><code>MiniDeps.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.minideps_config</code> which should have same structure as <code>MiniDeps.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-deps.html#minideps.config">MiniDeps.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.minideps_config</code> which should have same structure as <code>MiniDeps.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="minideps-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="minideps-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>:</p>
 <ul>
 <li><p>More feature-rich and complex.</p></li>
-<li><p>Uses table specification with dedicated functions to add plugins, while this module uses direct function call approach (calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> ensures that plugin is usable).</p></li>
-<li><p>Uses version tags by default, while this module is more designed towards tracking branches. Using tags is possible too (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a>).</p></li>
+<li><p>Uses table specification with dedicated functions to add plugins, while this module uses direct function call approach (calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> ensures that plugin is usable).</p></li>
+<li><p>Uses version tags by default, while this module is more designed towards tracking branches. Using tags is possible too (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a>).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/savq/paq-nvim">savq/paq-nvim</a>:</p>
 <ul>
@@ -521,9 +522,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="minideps-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="minideps-highlightgroups">Highlight groups</h4>
-<p>Highlight groups are used inside confirmation buffers after default <a href="../../mini.nvim/doc/mini-deps.html#minideps.update"><code>MiniDeps.update()</code></a> and <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean"><code>MiniDeps.clean()</code></a>.</p>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
+<p>Highlight groups are used inside confirmation buffers after default <a href="../../mini.nvim/doc/mini-deps.html#minideps.update">MiniDeps.update()</a> and <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean">MiniDeps.clean()</a>.</p>
 <ul>
 <li><p><code>MiniDepsChangeAdded</code> - added change (commit) during update.</p></li>
 <li><p><code>MiniDepsChangeRemoved</code> - removed change (commit) during update.</p></li>
@@ -536,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniDepsTitleSame</code> - title when plugin has no changes to update.</p></li>
 <li><p><code>MiniDepsTitleUpdate</code> - title when plugin has changes to update.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 <hr>
 </section>
 </section>
@@ -544,13 +545,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="minideps-overview">Overview</h3>
 <section id="minideps-overview-directorystructure" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-directorystructure">Directory structure</h4>
-<p>This module uses built-in <a href="https://neovim.io/doc/user/helptag.html?tag=packages"><code>packages</code></a> to make plugins usable in current session. It works with “pack/deps” package inside <code>config.path.package</code> directory.</p>
-<p>By default “opt” subdirectory is used to install optional plugins which are loaded on demand with <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a>. Non-optional plugins in “start” subdirectory are supported but only if moved there manually after initial install. Use it if you know what you are doing.</p>
+<p>This module uses built-in <a href="https://neovim.io/doc/user/helptag.html?tag=packages">packages</a> to make plugins usable in current session. It works with “pack/deps” package inside <code>config.path.package</code> directory.</p>
+<p>By default “opt” subdirectory is used to install optional plugins which are loaded on demand with <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a>. Non-optional plugins in “start” subdirectory are supported but only if moved there manually after initial install. Use it if you know what you are doing.</p>
 </section>
 <section id="minideps-overview-addplugin" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-addplugin">Add plugin</h4>
-<p>Use <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> to add plugin to current session. Supply plugin’s URL source as a string or <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification"><code>MiniDeps-plugin-specification</code></a> in general. If plugin is not present in “pack/deps” package, it will be created (a.k.a. installed) before processing anything else.</p>
-<p>The recommended way of adding a plugin is by calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> in the <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua"><code>init.lua</code></a> file (make sure <a href="../../mini.nvim/doc/mini-deps.html#minideps.setup"><code>MiniDeps.setup()</code></a> is called prior):</p>
+<p>Use <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> to add plugin to current session. Supply plugin’s URL source as a string or <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification">MiniDeps-plugin-specification</a> in general. If plugin is not present in “pack/deps” package, it will be created (a.k.a. installed) before processing anything else.</p>
+<p>The recommended way of adding a plugin is by calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> in the <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua">init.lua</a> file (make sure <a href="../../mini.nvim/doc/mini-deps.html#minideps.setup">MiniDeps.setup()</a> is called prior):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">add</span> <span class="op">=</span> <span class="va">MiniDeps</span><span class="op">.</span><span class="va">add</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add to current session (install if absent)</span></span>
@@ -580,10 +581,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-overview-lazyloading" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-lazyloading">Lazy loading</h4>
-<p>Any lazy-loading is assumed to be done manually by calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> at appropriate time. This module provides helpers implementing special safe two-stage loading:</p>
+<p>Any lazy-loading is assumed to be done manually by calling <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> at appropriate time. This module provides helpers implementing special safe two-stage loading:</p>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps.now"><code>MiniDeps.now()</code></a> safely executes code immediately. Use it to load plugins with UI necessary to make initial screen draw.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps.later"><code>MiniDeps.later()</code></a> schedules code to be safely executed later, preserving order. Use it (with caution) for everything else which doesn’t need precisely timed effect, as it will be executed some time soon on one of the next event loops.</p>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps.now">MiniDeps.now()</a> safely executes code immediately. Use it to load plugins with UI necessary to make initial screen draw.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-deps.html#minideps.later">MiniDeps.later()</a> schedules code to be safely executed later, preserving order. Use it (with caution) for everything else which doesn’t need precisely timed effect, as it will be executed some time soon on one of the next event loops.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">now</span><span class="op">,</span> <span class="va">later</span> <span class="op">=</span> <span class="va">MiniDeps</span><span class="op">.</span><span class="va">now</span><span class="op">,</span> <span class="va">MiniDeps</span><span class="op">.</span><span class="va">later</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Safely execute immediately</span></span>
@@ -596,14 +597,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-overview-update" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-update">Update</h4>
-<p>To update plugins from current session with new data from their sources, use <a href="../../mini.nvim/doc/mini-deps.html#depsupdate"><code>:DepsUpdate</code></a>. This will download updates (utilizing multiple cores) and show confirmation buffer. Follow instructions at its top to finish an update.</p>
+<p>To update plugins from current session with new data from their sources, use <a href="../../mini.nvim/doc/mini-deps.html#depsupdate">:DepsUpdate</a>. This will download updates (utilizing multiple cores) and show confirmation buffer. Follow instructions at its top to finish an update.</p>
 <p>NOTE: This updates plugins on disk which most likely won’t affect current session. Restart Nvim to have them properly loaded.</p>
 </section>
 <section id="minideps-overview-modify" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-modify">Modify</h4>
 <p>To change plugin’s specification (like set different <code>checkout</code>, etc.):</p>
 <ul>
-<li><p>Update corresponding <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> call.</p></li>
+<li><p>Update corresponding <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> call.</p></li>
 <li><p>Run <code>:DepsUpdateOffline &lt;plugin_name&gt;</code>.</p></li>
 <li><p>Review changes and confirm.</p></li>
 <li><p>Restart Nvim.</p></li>
@@ -612,14 +613,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-overview-snapshots" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-snapshots">Snapshots</h4>
-<p>Use <a href="../../mini.nvim/doc/mini-deps.html#depssnapsave"><code>:DepsSnapSave</code></a> to save state of all plugins from current session into a snapshot file (see <code>config.path.snapshot</code>).</p>
-<p>Use <a href="../../mini.nvim/doc/mini-deps.html#depssnapload"><code>:DepsSnapLoad</code></a> to load snapshot. This will change (without confirmation) state on disk. Plugins present in both snapshot file and current session will be affected. Restart Nvim to see the effect.</p>
-<p>NOTE: loading snapshot does not change plugin’s specification defined inside <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> call. This means that next update might change plugin’s state. To make it permanent, freeze plugin in target state manually.</p>
+<p>Use <a href="../../mini.nvim/doc/mini-deps.html#depssnapsave">:DepsSnapSave</a> to save state of all plugins from current session into a snapshot file (see <code>config.path.snapshot</code>).</p>
+<p>Use <a href="../../mini.nvim/doc/mini-deps.html#depssnapload">:DepsSnapLoad</a> to load snapshot. This will change (without confirmation) state on disk. Plugins present in both snapshot file and current session will be affected. Restart Nvim to see the effect.</p>
+<p>NOTE: loading snapshot does not change plugin’s specification defined inside <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> call. This means that next update might change plugin’s state. To make it permanent, freeze plugin in target state manually.</p>
 </section>
 <section id="minideps-overview-freeze" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-freeze">Freeze</h4>
 <p>Modify plugin’s specification to have <code>checkout</code> pointing to a static target: tag, state (commit hash), or ‘HEAD’ (to freeze in current state).</p>
-<p>Frozen plugins will not receive updates. You can monitor any new changes from its source by “subscribing” to <code>monitor</code> branch which will be shown inside confirmation buffer after <a href="../../mini.nvim/doc/mini-deps.html#depsupdate"><code>:DepsUpdate</code></a>.</p>
+<p>Frozen plugins will not receive updates. You can monitor any new changes from its source by “subscribing” to <code>monitor</code> branch which will be shown inside confirmation buffer after <a href="../../mini.nvim/doc/mini-deps.html#depsupdate">:DepsUpdate</a>.</p>
 <p>Example: use <code>checkout = 'v0.10.0'</code> to freeze plugin at tag “v0.10.0” while monitoring new versions in the log from <code>monitor</code> (usually default) branch.</p>
 </section>
 <section id="minideps-overview-rollback" class="level4">
@@ -628,17 +629,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Get identifier of latest working state:</p>
 <ul>
-<li><p>Use <a href="../../mini.nvim/doc/mini-deps.html#depsshowlog"><code>:DepsShowLog</code></a> to see update log, look for plugin’s name, and copy identifier listed as “State before:”.</p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-deps.html#depsshowlog">:DepsShowLog</a> to see update log, look for plugin’s name, and copy identifier listed as “State before:”.</p></li>
 <li><p>See previously saved snapshot file for plugin’s name and copy identifier next to it.</p></li>
 </ul></li>
-<li><p>Freeze plugin at that state while monitoring appropriate branch. Revert to previous shape of <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> call to resume updating.</p></li>
+<li><p>Freeze plugin at that state while monitoring appropriate branch. Revert to previous shape of <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> call to resume updating.</p></li>
 </ul>
 </section>
 <section id="minideps-overview-remove" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-overview-remove">Remove</h4>
 <ul>
-<li><p>Make sure that target plugin is not registered in current session. Usually it means removing corresponding <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> call.</p></li>
-<li><p>Run <a href="../../mini.nvim/doc/mini-deps.html#depsclean"><code>:DepsClean</code></a>. This will show confirmation buffer with a list of plugins to be deleted from disk. Follow instructions at its top to finish cleaning.</p></li>
+<li><p>Make sure that target plugin is not registered in current session. Usually it means removing corresponding <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> call.</p></li>
+<li><p>Run <a href="../../mini.nvim/doc/mini-deps.html#depsclean">:DepsClean</a>. This will show confirmation buffer with a list of plugins to be deleted from disk. Follow instructions at its top to finish cleaning.</p></li>
 </ul>
 <p>Alternatively, manually delete plugin’s directory from “pack/deps” package.</p>
 <hr>
@@ -646,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-plugin-specification" class="level3">
 <h3 class="anchored" data-anchor-id="minideps-plugin-specification">Plugin specification</h3>
-<p>Each plugin dependency is managed based on its specification (a.k.a. “spec”). See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a> for some examples.</p>
+<p>Each plugin dependency is managed based on its specification (a.k.a. “spec”). See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a> for some examples.</p>
 <p>Specification can be a single string which is inferred as:</p>
 <ul>
 <li><p>Plugin <span class="help-syntax-keys">&lt;name&gt;</span> if it doesn’t contain “/”.</p></li>
@@ -666,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;hooks&gt;</span> <code>(table|nil)</code> - table with callable hooks to call on certain events. Possible hook names:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;pre_install&gt;</span> - before creating plugin directory.</p></li>
-<li><p><span class="help-syntax-keys">&lt;post_install&gt;</span> - after creating plugin directory (before <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd"><code>:packadd</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;post_install&gt;</span> - after creating plugin directory (before <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd">:packadd</a>).</p></li>
 <li><p><span class="help-syntax-keys">&lt;pre_checkout&gt;</span> - before making change in existing plugin.</p></li>
 <li><p><span class="help-syntax-keys">&lt;post_checkout&gt;</span> - after making change in existing plugin. Each hook is executed with the following table as an argument:</p></li>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> (<code>string</code>) - absolute path to plugin’s directory (might not yet exist on disk).</p></li>
@@ -678,20 +679,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-commands" class="level3">
 <h3 class="anchored" data-anchor-id="minideps-commands">Commands</h3>
-<p>Note: Most commands have a Lua function alternative which they rely on. Like <a href="../../mini.nvim/doc/mini-deps.html#depsadd"><code>:DepsAdd</code></a> uses <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a>, etc.</p>
+<p>Note: Most commands have a Lua function alternative which they rely on. Like <a href="../../mini.nvim/doc/mini-deps.html#depsadd">:DepsAdd</a> uses <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a>, etc.</p>
 <section id="minideps-commands-depsadd" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depsadd">:DepsAdd</h4>
-<p><a name="depsadd" href="../../mini.nvim/doc/mini-deps.html#depsadd"><b>:DepsAdd</b></a> with <code>user/repo</code> argument makes plugin https://github.com/user/repo available in the current session (also creates it, if it is not present). <code>:DepsAdd name</code> adds already installed plugin <code>name</code> to current session. Accepts only single string compatible with <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification"><code>MiniDeps-plugin-specification</code></a>. To add plugin in every session, put <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> in <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua"><code>init.lua</code></a>.</p>
+<p><a name="depsadd" href="../../mini.nvim/doc/mini-deps.html#depsadd"><b>:DepsAdd</b></a> with <code>user/repo</code> argument makes plugin https://github.com/user/repo available in the current session (also creates it, if it is not present). <code>:DepsAdd name</code> adds already installed plugin <code>name</code> to current session. Accepts only single string compatible with <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification">MiniDeps-plugin-specification</a>. To add plugin in every session, put <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> in <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua">init.lua</a>.</p>
 </section>
 <section id="minideps-commands-depsupdate" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depsupdate">:DepsUpdate</h4>
-<p><a name="depsupdate" href="../../mini.nvim/doc/mini-deps.html#depsupdate"><b>:DepsUpdate</b></a> synchronizes plugins with their session specifications and updates them with new changes from sources. It shows confirmation buffer in a separate <a href="https://neovim.io/doc/user/helptag.html?tag=tabpage"><code>tabpage</code></a> with information about an upcoming update to review and (selectively) apply. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.update"><code>MiniDeps.update()</code></a> for more info.</p>
+<p><a name="depsupdate" href="../../mini.nvim/doc/mini-deps.html#depsupdate"><b>:DepsUpdate</b></a> synchronizes plugins with their session specifications and updates them with new changes from sources. It shows confirmation buffer in a separate <a href="https://neovim.io/doc/user/helptag.html?tag=tabpage">tabpage</a> with information about an upcoming update to review and (selectively) apply. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.update">MiniDeps.update()</a> for more info.</p>
 <p><code>:DepsUpdate name</code> updates plugin <code>name</code>. Any number of names is allowed.</p>
-<p><code>:DepsUpdate!</code> and <code>:DepsUpdate! name</code> update without confirmation. You can see what was done in the log file afterwards (<a href="../../mini.nvim/doc/mini-deps.html#depsshowlog"><code>:DepsShowLog</code></a>).</p>
+<p><code>:DepsUpdate!</code> and <code>:DepsUpdate! name</code> update without confirmation. You can see what was done in the log file afterwards (<a href="../../mini.nvim/doc/mini-deps.html#depsshowlog">:DepsShowLog</a>).</p>
 </section>
 <section id="minideps-commands-depsupdateoffline" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depsupdateoffline">:DepsUpdateOffline</h4>
-<p><a name="depsupdateoffline" href="../../mini.nvim/doc/mini-deps.html#depsupdateoffline"><b>:DepsUpdateOffline</b></a> is same as <a href="../../mini.nvim/doc/mini-deps.html#depsupdate"><code>:DepsUpdate</code></a> but doesn’t download new updates from sources. Useful to only synchronize plugin specification in code and on disk without unnecessary downloads.</p>
+<p><a name="depsupdateoffline" href="../../mini.nvim/doc/mini-deps.html#depsupdateoffline"><b>:DepsUpdateOffline</b></a> is same as <a href="../../mini.nvim/doc/mini-deps.html#depsupdate">:DepsUpdate</a> but doesn’t download new updates from sources. Useful to only synchronize plugin specification in code and on disk without unnecessary downloads.</p>
 </section>
 <section id="minideps-commands-depsshowlog" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depsshowlog">:DepsShowLog</h4>
@@ -699,16 +700,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minideps-commands-depsclean" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depsclean">:DepsClean</h4>
-<p><a name="depsclean" href="../../mini.nvim/doc/mini-deps.html#depsclean"><b>:DepsClean</b></a> deletes plugins from disk not added to current session. It shows confirmation buffer in a separate <a href="https://neovim.io/doc/user/helptag.html?tag=tabpage"><code>tabpage</code></a> with information about an upcoming deletes to review and (selectively) apply. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean"><code>MiniDeps.clean()</code></a> for more info.</p>
+<p><a name="depsclean" href="../../mini.nvim/doc/mini-deps.html#depsclean"><b>:DepsClean</b></a> deletes plugins from disk not added to current session. It shows confirmation buffer in a separate <a href="https://neovim.io/doc/user/helptag.html?tag=tabpage">tabpage</a> with information about an upcoming deletes to review and (selectively) apply. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.clean">MiniDeps.clean()</a> for more info.</p>
 <p><code>:DepsClean!</code> deletes plugins without confirmation.</p>
 </section>
 <section id="minideps-commands-depssnapsave" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depssnapsave">:DepsSnapSave</h4>
-<p><a name="depssnapsave" href="../../mini.nvim/doc/mini-deps.html#depssnapsave"><b>:DepsSnapSave</b></a> creates snapshot file in default location (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.config"><code>MiniDeps.config</code></a>). <code>:DepsSnapSave path</code> creates snapshot file at <code>path</code>.</p>
+<p><a name="depssnapsave" href="../../mini.nvim/doc/mini-deps.html#depssnapsave"><b>:DepsSnapSave</b></a> creates snapshot file in default location (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.config">MiniDeps.config</a>). <code>:DepsSnapSave path</code> creates snapshot file at <code>path</code>.</p>
 </section>
 <section id="minideps-commands-depssnapload" class="level4">
 <h4 class="anchored" data-anchor-id="minideps-commands-depssnapload">:DepsSnapLoad</h4>
-<p><a name="depssnapload" href="../../mini.nvim/doc/mini-deps.html#depssnapload"><b>:DepsSnapLoad</b></a> loads snapshot file from default location (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.config"><code>MiniDeps.config</code></a>). <code>:DepsSnapLoad path</code> loads snapshot file at <code>path</code>.</p>
+<p><a name="depssnapload" href="../../mini.nvim/doc/mini-deps.html#depssnapload"><b>:DepsSnapLoad</b></a> loads snapshot file from default location (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.config">MiniDeps.config</a>). <code>:DepsSnapLoad path</code> loads snapshot file at <code>path</code>.</p>
 <hr>
 </section>
 </section>
@@ -718,10 +719,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDeps.setup</code>(<span class="help-syntax-special">{config}</span>)
 </p>
 <p>Module setup</p>
-<p>Calling this function creates user commands described in <a href="../../mini.nvim/doc/mini-deps.html#minideps-commands"><code>MiniDeps-commands</code></a>.</p>
+<p>Calling this function creates user commands described in <a href="../../mini.nvim/doc/mini-deps.html#minideps-commands">MiniDeps-commands</a>.</p>
 <section id="minideps.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.config"><code>MiniDeps.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-deps.html#minideps.config">MiniDeps.config</a>.</p>
 </section>
 <section id="minideps.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.setup-usage">Usage</h4>
@@ -774,9 +775,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minideps.config-paths" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.config-paths">Paths</h4>
 <p><code>config.path</code> defines main paths used in this module.</p>
-<p><code>path.package</code> is a string with path inside which “pack/deps” package is stored (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a>). Default: “site” subdirectory of “data” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()"><code>stdpath()</code></a>).</p>
-<p><code>path.snapshot</code> is a string with default path for snapshot. See <a href="../../mini.nvim/doc/mini-deps.html#depssnapsave"><code>:DepsSnapSave</code></a> and <a href="../../mini.nvim/doc/mini-deps.html#depssnapload"><code>:DepsSnapLoad</code></a>. Default: “mini-deps-snap” file in “config” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()"><code>stdpath()</code></a>).</p>
-<p><code>path.log</code> is a string with path containing log of operations done by module. In particular, it contains all changes done after making an update. Default: “mini-deps.log” file in “log” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()"><code>stdpath()</code></a>).</p>
+<p><code>path.package</code> is a string with path inside which “pack/deps” package is stored (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a>). Default: “site” subdirectory of “data” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()">stdpath()</a>).</p>
+<p><code>path.snapshot</code> is a string with default path for snapshot. See <a href="../../mini.nvim/doc/mini-deps.html#depssnapsave">:DepsSnapSave</a> and <a href="../../mini.nvim/doc/mini-deps.html#depssnapload">:DepsSnapLoad</a>. Default: “mini-deps-snap” file in “config” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()">stdpath()</a>).</p>
+<p><code>path.log</code> is a string with path containing log of operations done by module. In particular, it contains all changes done after making an update. Default: “mini-deps.log” file in “log” standard path (see <a href="https://neovim.io/doc/user/helptag.html?tag=stdpath()">stdpath()</a>).</p>
 </section>
 <section id="minideps.config-silent" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.config-silent">Silent</h4>
@@ -800,21 +801,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Execute <code>opts.hooks.post_install</code>.</p></li>
 </ul></li>
 <li><p>Register spec(s) in current session.</p></li>
-<li><p>Make sure plugin(s) can be used in current session (see <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd"><code>:packadd</code></a>).</p></li>
+<li><p>Make sure plugin(s) can be used in current session (see <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd">:packadd</a>).</p></li>
 <li><p>If not during startup and is needed, source all “after/plugin/” scripts.</p></li>
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Presence of plugin is checked by its name which is the same as the name of its directory inside “pack/deps” package (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a>).</p></li>
-<li><p>To increase performance, this function only ensures presence on disk and nothing else. In particular, it doesn’t ensure <code>opts.checkout</code> state. Use <a href="../../mini.nvim/doc/mini-deps.html#minideps.update"><code>MiniDeps.update()</code></a> or <a href="../../mini.nvim/doc/mini-deps.html#depsupdateoffline"><code>:DepsUpdateOffline</code></a> explicitly.</p></li>
+<li><p>Presence of plugin is checked by its name which is the same as the name of its directory inside “pack/deps” package (see <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a>).</p></li>
+<li><p>To increase performance, this function only ensures presence on disk and nothing else. In particular, it doesn’t ensure <code>opts.checkout</code> state. Use <a href="../../mini.nvim/doc/mini-deps.html#minideps.update">MiniDeps.update()</a> or <a href="../../mini.nvim/doc/mini-deps.html#depsupdateoffline">:DepsUpdateOffline</a> explicitly.</p></li>
 <li><p>Adding plugin several times updates its session specs.</p></li>
 </ul>
 <section id="minideps.add-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.add-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{spec}</span> <code>(table|string)</code> Plugin specification. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification"><code>MiniDeps-plugin-specification</code></a>.</p>
+<p><span class="help-syntax-special">{spec}</span> <code>(table|string)</code> Plugin specification. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-plugin-specification">MiniDeps-plugin-specification</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;bang&gt;</span> <code>(boolean)</code> - whether to use <code>:packadd!</code> instead of plain <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd"><code>:packadd</code></a>.</li>
+<li><span class="help-syntax-keys">&lt;bang&gt;</span> <code>(boolean)</code> - whether to use <code>:packadd!</code> instead of plain <a href="https://neovim.io/doc/user/helptag.html?tag=:packadd">:packadd</a>.</li>
 </ul>
 <hr>
 </section>
@@ -830,11 +831,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Infer data before downloading updates.</p></li>
 <li><p>If not offline, download updates (in parallel).</p></li>
 <li><p>Infer data after downloading updates.</p></li>
-<li><p>If update is forced, apply all changes immediately while updating log file (at <code>config.path.log</code>; use <a href="../../mini.nvim/doc/mini-deps.html#depsshowlog"><code>:DepsShowLog</code></a> to review). Otherwise show confirmation buffer with instructions on how to proceed.</p></li>
+<li><p>If update is forced, apply all changes immediately while updating log file (at <code>config.path.log</code>; use <a href="../../mini.nvim/doc/mini-deps.html#depsshowlog">:DepsShowLog</a> to review). Otherwise show confirmation buffer with instructions on how to proceed.</p></li>
 </ul>
 <section id="minideps.update-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.update-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{names}</span> <code>(table|nil)</code> Array of plugin names to update. Default: all plugins from current session (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.get_session"><code>MiniDeps.get_session()</code></a>).</p>
+<p><span class="help-syntax-special">{names}</span> <code>(table|nil)</code> Array of plugin names to update. Default: all plugins from current session (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.get_session">MiniDeps.get_session()</a>).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;force&gt;</span> <code>(boolean)</code> - whether to force update without confirmation. Default: <code>false</code>.</p></li>
@@ -850,7 +851,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Clean plugins</p>
 <ul>
-<li><p>Compute absent plugins: not registered in current session (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.get_session"><code>MiniDeps.get_session()</code></a>) but present on disk in dedicated “pack/deps” package (inside <code>config.path.package</code>).</p></li>
+<li><p>Compute absent plugins: not registered in current session (see <a href="../../mini.nvim/doc/mini-deps.html#minideps.get_session">MiniDeps.get_session()</a>) but present on disk in dedicated “pack/deps” package (inside <code>config.path.package</code>).</p></li>
 <li><p>If cleaning is forced, delete all absent plugins from disk. Otherwise show confirmation buffer with instructions on how to proceed.</p></li>
 </ul>
 <section id="minideps.clean-parameters" class="level4">
@@ -882,7 +883,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Apply snapshot</p>
 <p>Notes:</p>
 <ul>
-<li>Checking out states from snapshot does not update session plugin spec (<code>checkout</code> field in particular). Among others, it means that next call to <a href="../../mini.nvim/doc/mini-deps.html#minideps.update"><code>MiniDeps.update()</code></a> might override the result of this function. To make changes permanent, set <code>checkout</code> spec field to state from snapshot.</li>
+<li>Checking out states from snapshot does not update session plugin spec (<code>checkout</code> field in particular). Among others, it means that next call to <a href="../../mini.nvim/doc/mini-deps.html#minideps.update">MiniDeps.update()</a> might override the result of this function. To make changes permanent, set <code>checkout</code> spec field to state from snapshot.</li>
 </ul>
 <section id="minideps.snap_set-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.snap_set-parameters">Parameters</h4>
@@ -898,7 +899,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Save snapshot</p>
 <section id="minideps.snap_save-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.snap_save-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid path on disk where to write snapshot computed with <a href="../../mini.nvim/doc/mini-deps.html#minideps.snap_get"><code>MiniDeps.snap_get()</code></a>. Default: <code>config.path.snapshot</code>.</p>
+<p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid path on disk where to write snapshot computed with <a href="../../mini.nvim/doc/mini-deps.html#minideps.snap_get">MiniDeps.snap_get()</a>. Default: <code>config.path.snapshot</code>.</p>
 <hr>
 </section>
 </section>
@@ -908,7 +909,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDeps.snap_load</code>(<span class="help-syntax-special">{path}</span>)
 </p>
 <p>Load snapshot file</p>
-<p>Notes from <a href="../../mini.nvim/doc/mini-deps.html#minideps.snap_set"><code>MiniDeps.snap_set()</code></a> also apply here.</p>
+<p>Notes from <a href="../../mini.nvim/doc/mini-deps.html#minideps.snap_set">MiniDeps.snap_set()</a> also apply here.</p>
 <section id="minideps.snap_load-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.snap_load-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{path}</span> <code>(string|nil)</code> A valid path on disk from where to read snapshot. Default: <code>config.path.snapshot</code>.</p>
@@ -923,7 +924,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Get session</p>
 <p>Plugin is registered in current session if it either:</p>
 <ul>
-<li><p>Was added with <a href="../../mini.nvim/doc/mini-deps.html#minideps.add"><code>MiniDeps.add()</code></a> (preserving order of calls).</p></li>
+<li><p>Was added with <a href="../../mini.nvim/doc/mini-deps.html#minideps.add">MiniDeps.add()</a> (preserving order of calls).</p></li>
 <li><p>Is a “start” plugin and present in ‘runtimpath’.</p></li>
 </ul>
 <section id="minideps.get_session-return" class="level4">
@@ -938,8 +939,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDeps.now</code>(<span class="help-syntax-special">{f}</span>)
 </p>
 <p>Execute function now</p>
-<p>Safely execute function immediately. Errors are shown with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> later, after all queued functions (including with <a href="../../mini.nvim/doc/mini-deps.html#minideps.later"><code>MiniDeps.later()</code></a>) are executed, thus not blocking execution of next code in file.</p>
-<p>Assumed to be used as a first step during two-stage config execution to load plugins immediately during startup. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a>.</p>
+<p>Safely execute function immediately. Errors are shown with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> later, after all queued functions (including with <a href="../../mini.nvim/doc/mini-deps.html#minideps.later">MiniDeps.later()</a>) are executed, thus not blocking execution of next code in file.</p>
+<p>Assumed to be used as a first step during two-stage config execution to load plugins immediately during startup. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a>.</p>
 <section id="minideps.now-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.now-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{f}</span> <code>(function)</code> Callable to execute.</p>
@@ -952,8 +953,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniDeps.later</code>(<span class="help-syntax-special">{f}</span>)
 </p>
 <p>Execute function later</p>
-<p>Queue function to be safely executed later without blocking execution of next code in file. All queued functions are guaranteed to be executed in order they were added. Errors are shown with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> after all queued functions are executed.</p>
-<p>Assumed to be used as a second step during two-stage config execution to load plugins “lazily” after startup. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview"><code>MiniDeps-overview</code></a>.</p>
+<p>Queue function to be safely executed later without blocking execution of next code in file. All queued functions are guaranteed to be executed in order they were added. Errors are shown with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> after all queued functions are executed.</p>
+<p>Assumed to be used as a second step during two-stage config execution to load plugins “lazily” after startup. See <a href="../../mini.nvim/doc/mini-deps.html#minideps-overview">MiniDeps-overview</a>.</p>
 <section id="minideps.later-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minideps.later-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{f}</span> <code>(function)</code> Callable to execute.</p>

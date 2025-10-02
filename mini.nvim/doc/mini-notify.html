@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9ccc97d83a7a5c94b6078a095248c4b0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cd53c6210df1fca6f877e4335850f401.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style> .quarto-title > h1.title { display: none } </style>
 
 
 <meta property="og:title" content="mini.notify documentation – MINI">
@@ -311,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -343,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mininotify" id="toc-mininotify" class="nav-link active" data-scroll-target="#mininotify">Module</a>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
   <ul>
-  <li><a href="#mininotify-setup" id="toc-mininotify-setup" class="nav-link" data-scroll-target="#mininotify-setup">Setup</a></li>
-  <li><a href="#mininotify-comparisons" id="toc-mininotify-comparisons" class="nav-link" data-scroll-target="#mininotify-comparisons">Comparisons</a></li>
-  <li><a href="#mininotify-highlightgroups" id="toc-mininotify-highlightgroups" class="nav-link" data-scroll-target="#mininotify-highlightgroups">Highlight groups</a></li>
-  <li><a href="#mininotify-disabling" id="toc-mininotify-disabling" class="nav-link" data-scroll-target="#mininotify-disabling">Disabling</a></li>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-disabling" id="toc-module-disabling" class="nav-link" data-scroll-target="#module-disabling">Disabling</a></li>
   </ul></li>
   <li><a href="#mininotify-specification" id="toc-mininotify-specification" class="nav-link" data-scroll-target="#mininotify-specification">Specification</a>
   <ul>
@@ -435,24 +436,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.notify" href="../../mini.nvim/doc/mini-notify.html#mini.notify"><b>mini.notify</b></a> Show notifications</p>
 <p>MIT License Copyright (c) 2024 Evgeni Chasnovski</p>
 <hr>
-<section id="mininotify" class="level3">
-<h3 class="anchored" data-anchor-id="mininotify">Module</h3>
+<section id="module" class="level3">
+<h3 class="anchored" data-anchor-id="module">Module</h3>
 <p>Features:</p>
 <ul>
 <li><p>Show one or more highlighted notifications in a single floating window.</p></li>
 <li><p>Manage notifications (add, update, remove, clear).</p></li>
-<li><p>Custom <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify"><code>MiniNotify.make_notify()</code></a> or save-restore <code>vim.notify</code> manually after calling <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a>.</p></li>
+<li><p>Custom <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify">MiniNotify.make_notify()</a> or save-restore <code>vim.notify</code> manually after calling <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a>.</p></li>
 <li><p>Automated show of LSP progress report.</p></li>
-<li><p>Track history which can be accessed with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get_all"><code>MiniNotify.get_all()</code></a> and shown with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.show_history"><code>MiniNotify.show_history()</code></a>.</p></li>
+<li><p>Track history which can be accessed with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get_all">MiniNotify.get_all()</a> and shown with <a href="../../mini.nvim/doc/mini-notify.html#mininotify.show_history">MiniNotify.show_history()</a>.</p></li>
 </ul>
-<section id="mininotify-setup" class="level4">
-<h4 class="anchored" data-anchor-id="mininotify-setup">Setup</h4>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>This module needs a setup with <code>require('mini.notify').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniNotify</code> which you can use for scripting or manually (with <code>:lua MiniNotify.*</code>).</p>
-<p>See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config"><code>MiniNotify.config</code></a> for <code>config</code> structure and default values.</p>
-<p>You can override runtime config settings locally to buffer inside <code>vim.b.mininotify_config</code> which should have same structure as <code>MiniNotify.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config"><code>mini.nvim-buffer-local-config</code></a> for more details.</p>
+<p>See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config">MiniNotify.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.mininotify_config</code> which should have same structure as <code>MiniNotify.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
 </section>
-<section id="mininotify-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="mininotify-comparisons">Comparisons</h4>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
 <ul>
 <li><p><a href="https://github.com/j-hui/fidget.nvim">j-hui/fidget.nvim</a>:</p>
 <ul>
@@ -465,19 +466,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="mininotify-highlightgroups" class="level4">
-<h4 class="anchored" data-anchor-id="mininotify-highlightgroups">Highlight groups</h4>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <ul>
 <li><p><code>MiniNotifyBorder</code> - window border.</p></li>
 <li><p><code>MiniNotifyLspProgress</code> - notifications from built-in LSP progress report.</p></li>
 <li><p><code>MiniNotifyNormal</code> - basic foreground/background highlighting.</p></li>
 <li><p><code>MiniNotifyTitle</code> - window title.</p></li>
 </ul>
-<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()"><code>nvim_set_hl()</code></a>.</p>
+<p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
 </section>
-<section id="mininotify-disabling" class="level4">
-<h4 class="anchored" data-anchor-id="mininotify-disabling">Disabling</h4>
-<p>To disable showing notifications, set <code>vim.g.mininotify_disable</code> (globally) or <code>vim.b.mininotify_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes"><code>mini.nvim-disabling-recipes</code></a> for common recipes.</p>
+<section id="module-disabling" class="level4">
+<h4 class="anchored" data-anchor-id="module-disabling">Disabling</h4>
+<p>To disable showing notifications, set <code>vim.g.mininotify_disable</code> (globally) or <code>vim.b.mininotify_disable</code> (for a buffer) to <code>true</code>. Considering high number of different scenarios and customization intentions, writing exact rules for disabling module’s functionality is left to user. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-disabling-recipes">mini.nvim-disabling-recipes</a> for common recipes.</p>
 <hr>
 </section>
 </section>
@@ -488,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notification is a table with the following keys:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;msg&gt;</span> <code>(string)</code> - single string with notification message. Use <code>\n</code> to delimit several lines.</p></li>
-<li><p><span class="help-syntax-keys">&lt;level&gt;</span> <code>(string)</code> - notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels"><code>vim.log.levels</code></a>. Like “ERROR”, “WARN”, “INFO”, etc.</p></li>
+<li><p><span class="help-syntax-keys">&lt;level&gt;</span> <code>(string)</code> - notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels">vim.log.levels</a>. Like “ERROR”, “WARN”, “INFO”, etc.</p></li>
 <li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> <code>(string)</code> - highlight group with which notification is shown.</p></li>
 <li><p><span class="help-syntax-keys">&lt;data&gt;</span> <code>(table)</code> - extra data to store in notification (like <code>source</code>, etc.).</p></li>
 <li><p><span class="help-syntax-keys">&lt;ts_add&gt;</span> <code>(number)</code> - timestamp of when notification is added.</p></li>
@@ -497,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li>Timestamps are compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=strftime()"><code>strftime()</code></a> and have fractional part.</li>
+<li>Timestamps are compatible with <a href="https://neovim.io/doc/user/helptag.html?tag=strftime()">strftime()</a> and have fractional part.</li>
 </ul>
 <hr>
 </section>
@@ -510,12 +511,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <p>This will also:</p>
 <ul>
-<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> custom implementation (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify"><code>MiniNotify.make_notify()</code></a>).</p></li>
+<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> custom implementation (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify.make_notify">MiniNotify.make_notify()</a>).</p></li>
 <li><p>Clean the history. Use <code>MiniNotify.setup(MiniNotify.config)</code> to force clean history while preserving the config.</p></li>
 </ul>
 <section id="mininotify.setup-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.setup-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config"><code>MiniNotify.config</code></a>.</p>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-notify.html#mininotify.config">MiniNotify.config</a>.</p>
 </section>
 <section id="mininotify.setup-usage" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.setup-usage">Usage</h4>
@@ -572,8 +573,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mininotify.config-content" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.config-content">Content</h4>
 <p><code>config.content</code> defines how notifications are shown.</p>
-<p><code>content.format</code> is a function which takes single notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>) and returns a string to be used directly when showing notification. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_format"><code>MiniNotify.default_format()</code></a>.</p>
-<p><code>content.sort</code> is a function which takes array of notification objects (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>) and returns an array of such objects. It can be used to define custom order and/or filter for notifications which are shown simultaneously. Note: Input contains notifications before applying <code>content.format</code>. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_sort"><code>MiniNotify.default_sort()</code></a>.</p>
+<p><code>content.format</code> is a function which takes single notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>) and returns a string to be used directly when showing notification. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_format">MiniNotify.default_format()</a>.</p>
+<p><code>content.sort</code> is a function which takes array of notification objects (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>) and returns an array of such objects. It can be used to define custom order and/or filter for notifications which are shown simultaneously. Note: Input contains notifications before applying <code>content.format</code>. Default: <code>nil</code> for <a href="../../mini.nvim/doc/mini-notify.html#mininotify.default_sort">MiniNotify.default_sort()</a>.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">content</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -596,9 +597,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mininotify.config-lspprogress" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.config-lspprogress">LSP progress</h4>
-<p><code>config.lsp_progress</code> defines automated notifications for LSP progress. It is implemented as a single updating notification per progress with all information about it. Setting up is done inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a> via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()"><code>vim.schedule()</code></a>’ed setting of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a> for “$/progress” method.</p>
-<p><code>lsp_progress.enable</code> is a boolean indicating whether LSP progress should be shown in notifications. Can be disabled in current session. Default: <code>true</code>. Note: Should be <code>true</code> during <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a> call to be able to enable it in current session.</p>
-<p><code>lsp_progress.level</code> is a level to be used in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>. Default: <code>'INFO'</code>.</p>
+<p><code>config.lsp_progress</code> defines automated notifications for LSP progress. It is implemented as a single updating notification per progress with all information about it. Setting up is done inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a> via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>’ed setting of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler">lsp-handler</a> for “$/progress” method.</p>
+<p><code>lsp_progress.enable</code> is a boolean indicating whether LSP progress should be shown in notifications. Can be disabled in current session. Default: <code>true</code>. Note: Should be <code>true</code> during <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a> call to be able to enable it in current session.</p>
+<p><code>lsp_progress.level</code> is a level to be used in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add">MiniNotify.add()</a>. Default: <code>'INFO'</code>.</p>
 <p><code>lsp_progress.duration_last</code> is a number of milliseconds for the last progress report to be shown on screen before removing it. Default: 1000.</p>
 <p>Notes:</p>
 <ul>
@@ -608,15 +609,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;source&gt;</span> is <code>"lsp_progress"</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;client_name&gt;</span> is set to client’s name (provided by client or inferred).</p></li>
-<li><p><span class="help-syntax-keys">&lt;context&gt;</span> is the latest LSP request context (<code>ctx</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a>).</p></li>
-<li><p><span class="help-syntax-keys">&lt;response&gt;</span> is the latest LSP response (<code>result</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler"><code>lsp-handler</code></a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;context&gt;</span> is the latest LSP request context (<code>ctx</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler">lsp-handler</a>).</p></li>
+<li><p><span class="help-syntax-keys">&lt;response&gt;</span> is the latest LSP response (<code>result</code> arg of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler">lsp-handler</a>).</p></li>
 </ul></li>
 </ul>
 </section>
 <section id="mininotify.config-window" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.config-window">Window</h4>
 <p><code>config.window</code> defines behavior of notification window.</p>
-<p><code>window.config</code> is a table defining floating window characteristics or a callable returning such table (will be called with identifier of window’s buffer already showing notifications). It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()"><code>nvim_open_win()</code></a>. It has the following default values which show notifications in the upper right corner with upper limit on width:</p>
+<p><code>window.config</code> is a table defining floating window characteristics or a callable returning such table (will be called with identifier of window’s buffer already showing notifications). It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()">nvim_open_win()</a>. It has the following default values which show notifications in the upper right corner with upper limit on width:</p>
 <ul>
 <li><p><code>width</code> is chosen to fit buffer content but at most <code>window.max_width_share</code> share of ‘columns’. To have higher maximum width, use function in <code>config.window</code> which computes dimensions inside of it (based on buffer content).</p></li>
 <li><p><code>height</code> is chosen to fit buffer content with enabled ‘wrap’ (assuming default value of <code>width</code>).</p></li>
@@ -642,9 +643,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniNotify.make_notify</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Make vim.notify wrapper</p>
-<p>Calling this function creates an implementation of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()"><code>vim.notify()</code></a> powered by this module. General idea is to show notification as soon as safely possible (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule_wrap()"><code>vim.schedule_wrap()</code></a>) and remove it after a configurable amount of time.</p>
+<p>Calling this function creates an implementation of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> powered by this module. General idea is to show notification as soon as safely possible (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule_wrap()">vim.schedule_wrap()</a>) and remove it after a configurable amount of time.</p>
 <p>All notifications set <code>source = "vim.notify"</code> in their <code>data</code> field.</p>
-<p>This is used with default options inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup"><code>MiniNotify.setup()</code></a>. To adjust, call manually after <code>setup()</code>. For example, to show errors longer:</p>
+<p>This is used with default options inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a>. To adjust, call manually after <code>setup()</code>. For example, to show errors longer:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">()</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">notify</span> <span class="op">=</span> <span class="va">MiniNotify</span><span class="op">.</span>make_notify<span class="op">({</span> <span class="cn">ERROR</span> <span class="op">=</span> <span class="op">{</span> <span class="va">duration</span> <span class="op">=</span> <span class="dv">10000</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To preserve original <code>vim.notify</code>:</p>
@@ -653,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">notify</span> <span class="op">=</span> <span class="va">notify_orig</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="mininotify.make_notify-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.make_notify-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options to configure behavior of notification <code>level</code> (as in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>). Fields are the same as names of <code>vim.log.levels</code> with values being tables with possible fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options to configure behavior of notification <code>level</code> (as in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add">MiniNotify.add()</a>). Fields are the same as names of <code>vim.log.levels</code> with values being tables with possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;duration&gt;</span> <code>(number)</code> - duration (in ms) of how much a notification should be shown. If 0 or negative, notification is not shown at all.</p></li>
 <li><p><span class="help-syntax-keys">&lt;hl_group&gt;</span> <code>(string)</code> - highlight group of notification. Only data different to default can be supplied.</p></li>
@@ -676,14 +677,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniNotify.add</code>(<span class="help-syntax-special">{msg}</span>, <span class="help-syntax-special">{level}</span>, <span class="help-syntax-special">{hl_group}</span>, <span class="help-syntax-special">{data}</span>)
 </p>
 <p>Add notification</p>
-<p>Add notification to history. It is considered “active” and is shown. To hide, call <a href="../../mini.nvim/doc/mini-notify.html#mininotify.remove"><code>MiniNotify.remove()</code></a> with identifier this function returns.</p>
+<p>Add notification to history. It is considered “active” and is shown. To hide, call <a href="../../mini.nvim/doc/mini-notify.html#mininotify.remove">MiniNotify.remove()</a> with identifier this function returns.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">id</span> <span class="op">=</span> <span class="va">MiniNotify</span><span class="op">.</span>add<span class="op">(</span><span class="st">'Hello'</span><span class="op">,</span> <span class="st">'WARN'</span><span class="op">,</span> <span class="st">'Comment'</span><span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span>defer_fn<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="va">MiniNotify</span><span class="op">.</span>remove<span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="kw">end</span><span class="op">,</span> <span class="dv">1000</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="mininotify.add-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.add-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{msg}</span> <code>(string)</code> Notification message.</p>
-<p><span class="help-syntax-special">{level}</span> <code>(string|nil)</code> Notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels"><code>vim.log.levels</code></a>. Default: <code>'INFO'</code>.</p>
+<p><span class="help-syntax-special">{level}</span> <code>(string|nil)</code> Notification level as key of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.log.levels">vim.log.levels</a>. Default: <code>'INFO'</code>.</p>
 <p><span class="help-syntax-special">{hl_group}</span> <code>(string|nil)</code> Notification highlight group. Default: <code>'MiniNotifyNormal'</code>.</p>
 <p><span class="help-syntax-special">{data}</span> <code>(table|nil)</code> Extra data to store in the notification. Default: <code>{}</code>.</p>
 </section>
@@ -702,8 +703,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Modify contents of active notification.</p>
 <section id="mininotify.update-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.update-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{id}</span> <code>(number)</code> Identifier of currently active notification as returned by <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add"><code>MiniNotify.add()</code></a>.</p>
-<p><span class="help-syntax-special">{new}</span> <code>(table)</code> Table with contents to update. Keys should be as non-timestamp fields of <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a> and values - new content values. If present, field <code>data</code> is updated as is. Use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get"><code>MiniNotify.get()</code></a> together with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend()"><code>vim.tbl_deep_extend()</code></a> to change only part of it.</p>
+<p><span class="help-syntax-special">{id}</span> <code>(number)</code> Identifier of currently active notification as returned by <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add">MiniNotify.add()</a>.</p>
+<p><span class="help-syntax-special">{new}</span> <code>(table)</code> Table with contents to update. Keys should be as non-timestamp fields of <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a> and values - new content values. If present, field <code>data</code> is updated as is. Use <a href="../../mini.nvim/doc/mini-notify.html#mininotify.get">MiniNotify.get()</a> together with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend()">vim.tbl_deep_extend()</a> to change only part of it.</p>
 <hr>
 </section>
 </section>
@@ -737,12 +738,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Refresh notification window</p>
 <p>Make notification window show relevant information:</p>
 <ul>
-<li><p>Create an array of active notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p></li>
+<li><p>Create an array of active notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>).</p></li>
 <li><p>Apply <code>config.content.sort</code> to an array. If output has zero notifications, make notification window to not show.</p></li>
 <li><p>Apply <code>config.content.format</code> to each element of notification array and update its message.</p></li>
 <li><p>Construct content from notifications and show them in a window.</p></li>
 </ul>
-<p>Note: effects are delayed if inside fast event (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.in_fast_event()"><code>vim.in_fast_event()</code></a>).</p>
+<p>Note: effects are delayed if inside fast event (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.in_fast_event()">vim.in_fast_event()</a>).</p>
 <hr>
 </section>
 <section id="mininotify.get" class="level3">
@@ -757,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mininotify.get-return" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.get-return">Return</h4>
-<p><code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+<p><code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>).</p>
 <hr>
 </section>
 </section>
@@ -776,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="mininotify.get_all-return" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.get_all-return">Return</h4>
-<p><code>(table)</code> Map with notification object values (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>). Note: messages are taken from last valid update.</p>
+<p><code>(table)</code> Map with notification object values (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>). Note: messages are taken from last valid update.</p>
 <hr>
 </section>
 </section>
@@ -803,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Used by default as <code>config.content.format</code>. Prepends notification message with the human readable update time and a separator.</p>
 <section id="mininotify.default_format-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.default_format-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{notif}</span> <code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+<p><span class="help-syntax-special">{notif}</span> <code>(table)</code> Notification object (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>).</p>
 </section>
 <section id="mininotify.default_format-return" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.default_format-return">Return</h4>
@@ -820,7 +821,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Used by default as <code>config.content.sort</code>. First sorts by notification’s <code>level</code> (“ERROR” &gt; “WARN” &gt; “INFO” &gt; “DEBUG” &gt; “TRACE” &gt; “OFF”; the bigger the more important); if draw - by latest update time (the later the more important).</p>
 <section id="mininotify.default_sort-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.default_sort-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{notif_arr}</span> <code>(table)</code> Array of notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification"><code>MiniNotify-specification</code></a>).</p>
+<p><span class="help-syntax-special">{notif_arr}</span> <code>(table)</code> Array of notifications (see <a href="../../mini.nvim/doc/mini-notify.html#mininotify-specification">MiniNotify-specification</a>).</p>
 </section>
 <section id="mininotify.default_sort-return" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.default_sort-return">Return</h4>
