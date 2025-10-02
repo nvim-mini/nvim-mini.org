@@ -1,6 +1,5 @@
 ---
 title: "mini.clue documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#miniclue}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -58,13 +57,13 @@ Features:
 
 For more details see:
 
-- [`MiniClue-key-query-process`](mini-clue.qmd#miniclue-key-query-process).
+- [MiniClue-key-query-process](mini-clue.qmd#miniclue-key-query-process).
 
-- [`MiniClue-examples`](mini-clue.qmd#miniclue-examples).
+- [MiniClue-examples](mini-clue.qmd#miniclue-examples).
 
-- [`MiniClue.config`](mini-clue.qmd#miniclue.config).
+- [MiniClue.config](mini-clue.qmd#miniclue.config).
 
-- [`MiniClue.gen_clues`](mini-clue.qmd#miniclue.gen_clues).
+- [MiniClue.gen\_clues](mini-clue.qmd#miniclue.gen_clues).
 
 Notes:
 
@@ -89,7 +88,7 @@ Notes:
       not function properly. Most common indicator of this is that some
       mapping starts to work only after clue window is shown.
 
-      Example: `g` is set as Normal mode trigger, but `gcc` from [`mini.comment`](mini-comment.qmd#mini.comment)
+      Example: `g` is set as Normal mode trigger, but `gcc` from [mini.comment](mini-comment.qmd#mini.comment)
       doesn't work right away. This is probably because there are some
       other buffer-local mappings starting with `g` which were created after
       mapping for `g` trigger. Most common places for this are in LSP server's
@@ -102,20 +101,20 @@ Notes:
       This module makes the best effort to work out of the box and cover
       most common cases, but it is not foolproof. The solution here is to
       ensure that triggers are created after making all buffer-local mappings:
-      run either [`MiniClue.setup()`](mini-clue.qmd#miniclue.setup) or [`MiniClue.ensure_buf_triggers()`](mini-clue.qmd#miniclue.ensure_buf_triggers).
+      run either [MiniClue.setup()](mini-clue.qmd#miniclue.setup) or [MiniClue.ensure\_buf\_triggers()](mini-clue.qmd#miniclue.ensure_buf_triggers).
 
 
 - Descriptions from existing mappings take precedence over user-supplied
   clues. This is to ensure that information shown in clue window is as
   relevant as possible. To add/customize description of an already existing
-  mapping, use [`MiniClue.set_mapping_desc()`](mini-clue.qmd#miniclue.set_mapping_desc).
+  mapping, use [MiniClue.set\_mapping\_desc()](mini-clue.qmd#miniclue.set_mapping_desc).
 
 
 - Due to technical difficulties, there is no foolproof support for
-  Operator-pending mode triggers (like `a`/`i` from [`mini.ai`](mini-ai.qmd#mini.ai)):
+  Operator-pending mode triggers (like `a`/`i` from [mini.ai](mini-ai.qmd#mini.ai)):
 
     - Doesn't work as part of a command in "temporary Normal mode" (like
-      after [`i_CTRL-O`](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O)) due to implementation difficulties.
+      after [i\_CTRL-O](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-O)) due to implementation difficulties.
 
     - Can have unexpected behavior with custom operators.
 
@@ -125,10 +124,10 @@ Notes:
     - All triggers are disabled during macro recording due to technical
       reasons.
 
-    - The `@` and `Q` keys are specially mapped inside [`MiniClue.setup()`](mini-clue.qmd#miniclue.setup)
+    - The `@` and `Q` keys are specially mapped inside [MiniClue.setup()](mini-clue.qmd#miniclue.setup)
       (if the key is not already mapped) to temporarily disable triggers.
 
-#### Setup {#miniclue-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.clue').setup({})` (replace
@@ -137,14 +136,14 @@ which you can use for scripting or manually (with `:lua MiniClue.*`).
 
 Config table needs to have triggers configured, none is set up by default.
 
-See [`MiniClue.config`](mini-clue.qmd#miniclue.config) for available config settings.
+See [MiniClue.config](mini-clue.qmd#miniclue.config) for available config settings.
 
 You can override runtime config settings (like clues or window options)
 locally to a buffer inside `vim.b.miniclue_config` which should have same
-structure as `MiniClue.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for
+structure as `MiniClue.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for
 more details.
 
-#### Comparisons {#miniclue-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -169,7 +168,7 @@ more details.
     - Doesn't show information about available next keys (outside of
       submodes), while that is this module's main goal.
 
-#### Highlight groups {#miniclue-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -187,20 +186,20 @@ more details.
 
 - `MiniClueTitle` - window title.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#miniclue-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable creating triggers, set `vim.g.miniclue_disable` (globally) or
 `vim.b.miniclue_disable` (for a buffer) to `true`. Considering high number
 of different scenarios and customization intentions, writing exact rules
 for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Key query process {#miniclue-key-query-process}
+### Key query process {#miniclue-key-query-process .help-syntax-right-anchor}
 
 #### General info {#miniclue-key-query-process-generalinfo}
 
@@ -222,7 +221,7 @@ Main goals of its existence are:
 
 - Allow emulating configurable key presses after certain key combination is
   reached. This granular control allows creating so called "submodes".
-  See more at [`MiniClue-examples-submodes`](mini-clue.qmd#miniclue-examples-submodes).
+  See more at [MiniClue-examples-submodes](mini-clue.qmd#miniclue-examples-submodes).
 
 This process is primarily designed for nested `<Leader>` mappings in Normal
 mode but works in all other main modes: Visual, Insert, Operator-pending
@@ -250,7 +249,7 @@ mode but works in all other main modes: Visual, Insert, Operator-pending
 
 
         - If `<CR>`, stop the process and execute current key query, meaning
-          emulate (with [`nvim_feedkeys()`](https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys\(\))) user pressing those keys.
+          emulate (with [nvim\_feedkeys()](https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys\(\))) user pressing those keys.
 
 
         - If `<BS>`, remove previous user input from the query. If query becomes
@@ -275,7 +274,7 @@ mode but works in all other main modes: Visual, Insert, Operator-pending
           execute it. This, for instance, allows a seamless execution of
           operators in presence of a longer key combinations. Example: with
 <p align="center">`g` as trigger in Normal mode and available mappings `gc` / `gcc`</p>
-          (like from [`mini.comment`](mini-comment.qmd#mini.comment)), this allows typing `gcip` to comment
+          (like from [mini.comment](mini-comment.qmd#mini.comment)), this allows typing `gcip` to comment
           current paragraph, although there are no key combinations
           starting with `gci`.
 
@@ -307,13 +306,13 @@ Clues can have these types:
 
 ---
 
-### Examples {#miniclue-examples}
+### Examples {#miniclue-examples .help-syntax-right-anchor}
 
 #### Full starter example {#miniclue-examples-fullstarterexample}
 
 
 If not sure where to start, try this example with all provided clues from
-this module plus all [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<Leader>) mappings in Normal and Visual modes:
+this module plus all [<span class="help-syntax-keys">\<Leader\></span>](https://neovim.io/doc/user/helptag.html?tag=<Leader>) mappings in Normal and Visual modes:
 
   ```lua
   local miniclue = require('mini.clue')
@@ -370,7 +369,7 @@ this module plus all [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<L
 #### Leader clues {#miniclue-examples-leaderclues}
 
 
-Assume there are these [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<Leader>) mappings set up:
+Assume there are these [<span class="help-syntax-keys">\<Leader\></span>](https://neovim.io/doc/user/helptag.html?tag=<Leader>) mappings set up:
 
   ```lua
   -- Set `<Leader>` before making any mappings and configuring 'mini.clue'
@@ -392,7 +391,7 @@ Assume there are these [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=
   nmap_leader('lR', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
   ```
 
-The following setup will enable [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<Leader>) as trigger in Normal and Visual
+The following setup will enable [<span class="help-syntax-keys">\<Leader\></span>](https://neovim.io/doc/user/helptag.html?tag=<Leader>) as trigger in Normal and Visual
 modes and add descriptions to mapping groups:
 
   ```lua
@@ -416,7 +415,7 @@ modes and add descriptions to mapping groups:
 
 Clues can be shown not only for actually present mappings. This is helpful for
 showing clues for built-in key combinations. Here is an example of clues for
-a subset of built-in completion (see [`MiniClue.gen_clues.builtin_completion()`](mini-clue.qmd#miniclue.gen_clues.builtin_completion)
+a subset of built-in completion (see [MiniClue.gen\_clues.builtin\_completion()](mini-clue.qmd#miniclue.gen_clues.builtin_completion)
 to generate clues for all available completion sources):
 
   ```lua
@@ -441,7 +440,7 @@ to generate clues for all available completion sources):
 
 
 By default triggers are automatically created in listed ('buflisted') and some
-special non-listed buffers. Use [`MiniClue.ensure_buf_triggers()`](mini-clue.qmd#miniclue.ensure_buf_triggers) to manually
+special non-listed buffers. Use [MiniClue.ensure\_buf\_triggers()](mini-clue.qmd#miniclue.ensure_buf_triggers) to manually
 enable in when you need them. For example:
 
   ```vim
@@ -475,7 +474,7 @@ In this module submode can be implemented following these steps:
 
 
 
-- Submode for moving with [`mini.move`](mini-move.qmd#mini.move):
+- Submode for moving with [mini.move](mini-move.qmd#mini.move):
 
     - Press `<Leader>m` to start submode.
 
@@ -518,7 +517,7 @@ In this module submode can be implemented following these steps:
   ```
 
 
-- Submode for iterating buffers and windows with [`mini.bracketed`](mini-bracketed.qmd#mini.bracketed):
+- Submode for iterating buffers and windows with [mini.bracketed](mini-bracketed.qmd#mini.bracketed):
 
     - Press `[` or `]` to start key query process for certain direction.
 
@@ -547,7 +546,7 @@ In this module submode can be implemented following these steps:
   ```
 
 
-- Submode for window commands using [`MiniClue.gen_clues.windows()`](mini-clue.qmd#miniclue.gen_clues.windows):
+- Submode for window commands using [MiniClue.gen\_clues.windows()](mini-clue.qmd#miniclue.gen_clues.windows):
 
     - Press `<C-w>` to start key query process.
 
@@ -598,7 +597,7 @@ In this module submode can be implemented following these steps:
 
 ---
 
-### setup() {#miniclue.setup}
+### setup() {#miniclue.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -607,7 +606,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniClue.config`](mini-clue.qmd#miniclue.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniClue.config](mini-clue.qmd#miniclue.config).
 
 #### Usage {#miniclue.setup-usage}
 
@@ -620,7 +619,7 @@ Module setup
 
 ---
 
-### config {#miniclue.config}
+### config {#miniclue.config .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.config`</p>
 #### Defaults {#miniclue.config-defaults}
@@ -655,11 +654,11 @@ Module setup
 
 
 
-- To use [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<Leader>) as part of the config (either as trigger or inside clues),
-  set it prior to running [`MiniClue.setup()`](mini-clue.qmd#miniclue.setup).
+- To use [<span class="help-syntax-keys">\<Leader\></span>](https://neovim.io/doc/user/helptag.html?tag=<Leader>) as part of the config (either as trigger or inside clues),
+  set it prior to running [MiniClue.setup()](mini-clue.qmd#miniclue.setup).
 
 
-- See [`MiniClue-examples`](mini-clue.qmd#miniclue-examples) for examples.
+- See [MiniClue-examples](mini-clue.qmd#miniclue-examples) for examples.
 
 #### Clues {#miniclue.config-clues}
 
@@ -679,7 +678,7 @@ A clue table is a table with the following fields:
   key combination as in `nvim_set_keymap()` ('n', 'x', 'i', 'o', 'c', etc.).
 
 - <span class="help-syntax-keys">\<keys\></span> `(string)` - key combination for which clue will be shown.
-  "Human-readable" key names as in [`key-notation`](https://neovim.io/doc/user/helptag.html?tag=key-notation) (like "<span class="help-syntax-keys">\<Leader\></span>", "<span class="help-syntax-keys">\<Space\></span>",
+  "Human-readable" key names as in [key-notation](https://neovim.io/doc/user/helptag.html?tag=key-notation) (like "<span class="help-syntax-keys">\<Leader\></span>", "<span class="help-syntax-keys">\<Space\></span>",
   "<span class="help-syntax-keys">\<Tab\></span>", etc.) are allowed.
 
 - <span class="help-syntax-keys">\<desc\></span> `(string|function|nil)` - optional key combination description which is
@@ -687,11 +686,11 @@ A clue table is a table with the following fields:
 
 - <span class="help-syntax-keys">\<postkeys\></span> `(string|nil)` - optional postkeys which will be executed
   automatically after `keys`. Allows creation of submodes
-  (see [`MiniClue-examples-submodes`](mini-clue.qmd#miniclue-examples-submodes)).
+  (see [MiniClue-examples-submodes](mini-clue.qmd#miniclue-examples-submodes)).
 
 Notes:
 
-- Postkeys are literal simulation of keypresses with [`nvim_feedkeys()`](https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys\(\)).
+- Postkeys are literal simulation of keypresses with [nvim\_feedkeys()](https://neovim.io/doc/user/helptag.html?tag=nvim_feedkeys\(\)).
 
 
 - Suggested approach to configuring clues is to create mappings with `desc`
@@ -701,7 +700,7 @@ Notes:
 #### Triggers {#miniclue.config-triggers}
 
 
-`config.triggers` is an array with information when [`MiniClue-key-query-process`](mini-clue.qmd#miniclue-key-query-process)
+`config.triggers` is an array with information when [MiniClue-key-query-process](mini-clue.qmd#miniclue-key-query-process)
 should start. Each element is a trigger table with the fields <span class="help-syntax-keys">\<mode\></span> and
 <span class="help-syntax-keys">\<keys\></span> which are treated the same as in clue table.
 
@@ -716,13 +715,13 @@ appear. Can be 0 to show immediately.
 `config.window.config` is a table defining floating window characteristics
 or a callable returning such table (will be called with identifier of
 window's buffer already showing all clues). It should have the same
-structure as in [`nvim_open_win()`](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)) with the following enhancements:
+structure as in [nvim\_open\_win()](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)) with the following enhancements:
 
 - <span class="help-syntax-keys">\<width\></span> field can be equal to `"auto"` leading to window width being
   computed automatically based on its content. Default is fixed width of 30.
 
 - <span class="help-syntax-keys">\<row\></span> and <span class="help-syntax-keys">\<col\></span> can be equal to `"auto"` in which case they will be
-  computed to "stick" to set anchor ("SE" by default; see [`nvim_open_win()`](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\))).
+  computed to "stick" to set anchor ("SE" by default; see [nvim\_open\_win()](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\))).
   This allows changing corner in which window is shown:
 
   ```lua
@@ -746,14 +745,14 @@ either of them.
 
 ---
 
-### enable_all_triggers() {#miniclue.enable_all_triggers}
+### enable_all_triggers() {#miniclue.enable_all_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.enable_all_triggers`()</p>
 Enable triggers in all listed buffers
 
 ---
 
-### enable_buf_triggers() {#miniclue.enable_buf_triggers}
+### enable_buf_triggers() {#miniclue.enable_buf_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.enable_buf_triggers`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Enable triggers in buffer
@@ -766,14 +765,14 @@ Enable triggers in buffer
 
 ---
 
-### disable_all_triggers() {#miniclue.disable_all_triggers}
+### disable_all_triggers() {#miniclue.disable_all_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.disable_all_triggers`()</p>
 Disable triggers in all buffers
 
 ---
 
-### disable_buf_triggers() {#miniclue.disable_buf_triggers}
+### disable_buf_triggers() {#miniclue.disable_buf_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.disable_buf_triggers`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Disable triggers in buffer
@@ -786,14 +785,14 @@ Disable triggers in buffer
 
 ---
 
-### ensure_all_triggers() {#miniclue.ensure_all_triggers}
+### ensure_all_triggers() {#miniclue.ensure_all_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.ensure_all_triggers`()</p>
 Ensure all triggers are valid
 
 ---
 
-### ensure_buf_triggers() {#miniclue.ensure_buf_triggers}
+### ensure_buf_triggers() {#miniclue.ensure_buf_triggers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.ensure_buf_triggers`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Ensure buffer triggers are valid
@@ -806,7 +805,7 @@ Ensure buffer triggers are valid
 
 ---
 
-### set_mapping_desc() {#miniclue.set_mapping_desc}
+### set_mapping_desc() {#miniclue.set_mapping_desc .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.set_mapping_desc`(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{desc}</span>)</p>
 Update description of an existing mapping
@@ -814,7 +813,7 @@ Update description of an existing mapping
 Notes:
 
 - Uses buffer-local mapping in case there are both global and buffer-local
-  mappings with same mode and LHS. Similar to [`maparg()`](https://neovim.io/doc/user/helptag.html?tag=maparg\(\)).
+  mappings with same mode and LHS. Similar to [maparg()](https://neovim.io/doc/user/helptag.html?tag=maparg\(\)).
 
 #### Parameters {#miniclue.set_mapping_desc-parameters}
 
@@ -828,7 +827,7 @@ Notes:
 
 ---
 
-### gen_clues {#miniclue.gen_clues}
+### gen_clues {#miniclue.gen_clues .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues`</p>
 Generate pre-configured clues
@@ -837,7 +836,7 @@ This is a table with function elements. Call to actually get array of clues.
 
 ---
 
-### gen_clues.builtin_completion() {#miniclue.gen_clues.builtin_completion}
+### gen_clues.builtin_completion() {#miniclue.gen_clues.builtin_completion .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.builtin_completion`()</p>
 Generate clues for built-in completion
@@ -855,7 +854,7 @@ Contains clues for the following triggers:
 
 ---
 
-### gen_clues.g() {#miniclue.gen_clues.g}
+### gen_clues.g() {#miniclue.gen_clues.g .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.g`()</p>
 Generate clues for `g` key
@@ -874,7 +873,7 @@ Contains clues for the following triggers:
 
 ---
 
-### gen_clues.square_brackets() {#miniclue.gen_clues.square_brackets}
+### gen_clues.square_brackets() {#miniclue.gen_clues.square_brackets .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.square_brackets`()</p>
 Generate clues for `[` and `]` keys
@@ -893,7 +892,7 @@ Contains clues for the following triggers:
 
 ---
 
-### gen_clues.marks() {#miniclue.gen_clues.marks}
+### gen_clues.marks() {#miniclue.gen_clues.marks .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.marks`()</p>
 Generate clues for marks
@@ -911,7 +910,7 @@ Contains clues for the following triggers:
   { mode = 'x', keys = 'g`' }
   ```
 
-Note: if you use "g" as trigger (like to enable [`MiniClue.gen_clues.g()`](mini-clue.qmd#miniclue.gen_clues.g)),
+Note: if you use "g" as trigger (like to enable [MiniClue.gen\_clues.g()](mini-clue.qmd#miniclue.gen_clues.g)),
 don't add "g'" and "g`" as triggers: they already will be taken into account.
 
 #### Return {#miniclue.gen_clues.marks-return}
@@ -922,11 +921,11 @@ don't add "g'" and "g`" as triggers: they already will be taken into account.
 #### See also {#miniclue.gen_clues.marks-seealso}
 
 
-[`mark-motions`](https://neovim.io/doc/user/helptag.html?tag=mark-motions)
+[mark-motions](https://neovim.io/doc/user/helptag.html?tag=mark-motions)
 
 ---
 
-### gen_clues.registers() {#miniclue.gen_clues.registers}
+### gen_clues.registers() {#miniclue.gen_clues.registers .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.registers`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate clues for registers
@@ -958,11 +957,11 @@ Contains clues for the following triggers:
 #### See also {#miniclue.gen_clues.registers-seealso}
 
 
-[`registers`](https://neovim.io/doc/user/helptag.html?tag=registers)
+[registers](https://neovim.io/doc/user/helptag.html?tag=registers)
 
 ---
 
-### gen_clues.windows() {#miniclue.gen_clues.windows}
+### gen_clues.windows() {#miniclue.gen_clues.windows .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.windows`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate clues for window commands
@@ -973,7 +972,7 @@ Contains clues for the following triggers:
   { mode = 'n', keys = '<C-w>' }
   ```
 
-Note: only non-duplicated commands are included. For full list see [`CTRL-W`](https://neovim.io/doc/user/helptag.html?tag=CTRL-W).
+Note: only non-duplicated commands are included. For full list see [CTRL-W](https://neovim.io/doc/user/helptag.html?tag=CTRL-W).
 
 #### Parameters {#miniclue.gen_clues.windows-parameters}
 
@@ -997,7 +996,7 @@ Note: only non-duplicated commands are included. For full list see [`CTRL-W`](ht
 
 ---
 
-### gen_clues.z() {#miniclue.gen_clues.z}
+### gen_clues.z() {#miniclue.gen_clues.z .help-syntax-right-anchor}
 
 <p align="center">`MiniClue.gen_clues.z`()</p>
 Generate clues for `z` key

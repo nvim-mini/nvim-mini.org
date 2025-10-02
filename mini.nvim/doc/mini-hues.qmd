@@ -1,6 +1,5 @@
 ---
 title: "mini.hues documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,14 +10,14 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#minihues}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
 - Required to set two base colors: background and foreground.
   Their shades and other non-base colors are computed to be as much
   perceptually different as reasonably possible.
-  See [`MiniHues.config`](mini-hues.qmd#minihues.config) for setup inspiration.
+  See [MiniHues.config](mini-hues.qmd#minihues.config) for setup inspiration.
 
 
 - Configurable:
@@ -32,15 +31,15 @@ Features:
     - Plugin integration (can be selectively enabled for faster startup).
 
 
-- Random generator for base colors. See [`MiniHues.gen_random_base_colors()`](mini-hues.qmd#minihues.gen_random_base_colors).
-  Powers [`randomhue`](mini-hues.qmd#randomhue) color scheme.
+- Random generator for base colors. See [MiniHues.gen\_random\_base\_colors()](mini-hues.qmd#minihues.gen_random_base_colors).
+  Powers [randomhue](mini-hues.qmd#randomhue) color scheme.
 
 
 - Lua function to compute palette used in color scheme.
-  See [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette).
+  See [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette).
 
 
-- Bundled color schemes. See [`MiniHues-color-schemes`](mini-hues.qmd#minihues-color-schemes).
+- Bundled color schemes. See [MiniHues-color-schemes](mini-hues.qmd#minihues-color-schemes).
 
 Supported highlight groups:
 
@@ -50,10 +49,10 @@ Supported highlight groups:
 - Built-in Neovim LSP and diagnostic.
 
 
-- Tree-sitter ([`treesitter-highlight-groups`](https://neovim.io/doc/user/helptag.html?tag=treesitter-highlight-groups)).
+- Tree-sitter ([treesitter-highlight-groups](https://neovim.io/doc/user/helptag.html?tag=treesitter-highlight-groups)).
 
 
-- LSP semantic tokens ([`lsp-semantic-highlight`](https://neovim.io/doc/user/helptag.html?tag=lsp-semantic-highlight)).
+- LSP semantic tokens ([lsp-semantic-highlight](https://neovim.io/doc/user/helptag.html?tag=lsp-semantic-highlight)).
 
 
 - Plugins (either with explicit definition or by verification that default
@@ -131,7 +130,7 @@ Supported highlight groups:
 
     - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 
-#### Setup {#minihues-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.hues').setup({})` and
@@ -139,7 +138,7 @@ mandatory `background` and `foreground` fields (add more fields to fit
 your taste). It will create global Lua table `MiniHues` which you can use
 for scripting or manually (with `:lua MiniHues.*`).
 
-See [`MiniHues.config`](mini-hues.qmd#minihues.config) for `config` structure and default values.
+See [MiniHues.config](mini-hues.qmd#minihues.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.minihues_config`
 will have no effect here.
@@ -158,32 +157,32 @@ Example:
   })
   ```
 
-#### Notes {#minihues-notes}
+#### Notes {#module-notes}
 
 
 
 - This is used to create some of plugin's color schemes
-  (see [`MiniHues-color-schemes`](mini-hues.qmd#minihues-color-schemes)).
+  (see [MiniHues-color-schemes](mini-hues.qmd#minihues-color-schemes)).
 
 
 - Using `setup()` doesn't actually create a colorscheme. It basically
-  creates a coordinated set of [`highlight-groups`](https://neovim.io/doc/user/helptag.html?tag=highlight-groups). To create your own scheme:
+  creates a coordinated set of [highlight-groups](https://neovim.io/doc/user/helptag.html?tag=highlight-groups). To create your own scheme:
 
     - Put "myscheme.lua" file (name after your chosen theme name) inside
       any "colors" directory reachable from 'runtimepath' ("colors" inside
       your Neovim config directory is usually enough).
 
     - Inside "myscheme.lua" call `require('mini.hues').setup()` with your
-      palette and only after that set [`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to "myscheme".
+      palette and only after that set [g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to "myscheme".
 
 
-- This module doesn't define [`cterm-colors`](https://neovim.io/doc/user/helptag.html?tag=cterm-colors) for implementation simplicity.
-  Use [`mini.colors`](mini-colors.qmd#mini.colors) module, [`MiniColors-colorscheme:add_cterm_attributes()`](mini-colors.qmd#minicolors-colorschemeadd_cterm_attributes)
+- This module doesn't define [cterm-colors](https://neovim.io/doc/user/helptag.html?tag=cterm-colors) for implementation simplicity.
+  Use [mini.colors](mini-colors.qmd#mini.colors) module, [MiniColors-colorscheme:add\_cterm\_attributes()](mini-colors.qmd#minicolors-colorschemeadd_cterm_attributes)
   in particular.
 
 ---
 
-### Color schemes {#minihues-color-schemes}
+### Color schemes {#minihues-color-schemes .help-syntax-right-anchor}
 
 Bundled color schemes
 
@@ -201,22 +200,22 @@ Bundled color schemes
   Every `:colorscheme randomhue` call results in a different (randomly yet
   carefully selected) colors.
 
-  It is essentially a combination of calls to [`MiniHues.setup()`](mini-hues.qmd#minihues.setup) and
-  [`MiniHues.gen_random_base_colors()`](mini-hues.qmd#minihues.gen_random_base_colors) with a slight adjustments for
+  It is essentially a combination of calls to [MiniHues.setup()](mini-hues.qmd#minihues.setup) and
+  [MiniHues.gen\_random\_base\_colors()](mini-hues.qmd#minihues.gen_random_base_colors) with a slight adjustments for
   'background' value.
 
-  Activate it as regular [`:colorscheme`](https://neovim.io/doc/user/helptag.html?tag=:colorscheme). Get currently active config with
+  Activate it as regular [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme). Get currently active config with
   `:lua print(vim.inspect(MiniHues.config))`.
 
 ---
 
-### setup() {#minihues.setup}
+### setup() {#minihues.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
 
 Main side effect is to create palette and apply it. Essentially, a combination
-of [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) and [`MiniHues.apply_palette()`](mini-hues.qmd#minihues.apply_palette).
+of [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette) and [MiniHues.apply\_palette()](mini-hues.qmd#minihues.apply_palette).
 
 #### Usage {#minihues.setup-usage}
 
@@ -233,7 +232,7 @@ of [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) and [`MiniHu
 
 ---
 
-### config {#minihues.config}
+### config {#minihues.config .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.config`</p>
 #### Defaults {#minihues.config-defaults}
@@ -262,7 +261,7 @@ of [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) and [`MiniHu
   }
   ```
 
-See [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) for more information about how certain settings
+See [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette) for more information about how certain settings
 affect output color scheme.
 
 #### Plugin integrations {#minihues.config-pluginintegrations}
@@ -272,7 +271,7 @@ affect output color scheme.
 be created. Limiting number of integrations slightly decreases startup time.
 It is a table with boolean (`true`/`false`) values which are applied as follows:
 
-- If plugin name (as listed in [`mini.hues`](mini-hues.qmd#mini.hues)) has entry, it is used.
+- If plugin name (as listed in [mini.hues](mini-hues.qmd#mini.hues)) has entry, it is used.
 
 - Otherwise `config.plugins.default` is used.
 
@@ -331,7 +330,7 @@ only one `setup` call):
 
 ---
 
-### make_palette() {#minihues.make_palette}
+### make_palette() {#minihues.make_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.make_palette`(<span class="help-syntax-special">{config}</span>)</p>
 #### Make palette {#minihues.make_palette-makepalette}
@@ -352,7 +351,7 @@ is defined by three numbers:
 - Hue (`h`) - periodic number in [0, 360) describing a value of "true color"
   on color circle/wheel.
 
-For more details about `Oklch` see [`MiniColors-color-spaces`](mini-colors.qmd#minicolors-color-spaces) or
+For more details about `Oklch` see [MiniColors-color-spaces](mini-colors.qmd#minicolors-color-spaces) or
 https://bottosson.github.io/posts/oklab/.
 
 ##### Algorithm overview {#minihues.make_palette-makepalette-algorithmoverview}
@@ -408,7 +407,7 @@ Notes:
   This is due to actually computed colors being impossible to represent via
   '#rrggbb' hex string. In this case a process called gamut clipping is done
   to reduce lightness and chroma in optimal way while maintaining same hue.
-  For more information see [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip).
+  For more information see [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip).
 
 
 - Not all colors are actually used in highlight groups and are present for the
@@ -418,7 +417,7 @@ Notes:
 
 
 
-<span class="help-syntax-special">{config}</span> `(table)` Configuration for palette. Same structure as [`MiniHues.config`](mini-hues.qmd#minihues.config).
+<span class="help-syntax-special">{config}</span> `(table)` Configuration for palette. Same structure as [MiniHues.config](mini-hues.qmd#minihues.config).
   Needs to have <span class="help-syntax-keys">\<background\></span> and <span class="help-syntax-keys">\<foreground\></span> fields.
 
 #### Return {#minihues.make_palette-return}
@@ -444,28 +443,28 @@ Notes:
 #### See also {#minihues.make_palette-seealso}
 
 
-[`MiniHues.get_palette()`](mini-hues.qmd#minihues.get_palette)
+[MiniHues.get\_palette()](mini-hues.qmd#minihues.get_palette)
 
 ---
 
-### apply_palette() {#minihues.apply_palette}
+### apply_palette() {#minihues.apply_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.apply_palette`(<span class="help-syntax-special">{palette}</span>, <span class="help-syntax-special">{plugins}</span>)</p>
 Apply palette
 
 Create color scheme highlight groups and terminal colors based on supplied
 palette. This is useful if you want to tweak palette colors.
-For regular usage prefer [`MiniHues.setup()`](mini-hues.qmd#minihues.setup).
+For regular usage prefer [MiniHues.setup()](mini-hues.qmd#minihues.setup).
 
 #### Parameters {#minihues.apply_palette-parameters}
 
 
 
-<span class="help-syntax-special">{palette}</span> `(table)` Table with structure as [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) output.
+<span class="help-syntax-special">{palette}</span> `(table)` Table with structure as [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette) output.
 
 <span class="help-syntax-special">{plugins}</span> `(table|nil)` Table with boolean values indicating whether to create
-  highlight groups for specific plugins. See [`MiniHues.config`](mini-hues.qmd#minihues.config) for more details.
-  Default: the value from [`MiniHues.config`](mini-hues.qmd#minihues.config).
+  highlight groups for specific plugins. See [MiniHues.config](mini-hues.qmd#minihues.config) for more details.
+  Default: the value from [MiniHues.config](mini-hues.qmd#minihues.config).
 
 #### Usage {#minihues.apply_palette-usage}
 
@@ -484,11 +483,11 @@ For regular usage prefer [`MiniHues.setup()`](mini-hues.qmd#minihues.setup).
 #### See also {#minihues.apply_palette-seealso}
 
 
-[`MiniHues.get_palette()`](mini-hues.qmd#minihues.get_palette)
+[MiniHues.get\_palette()](mini-hues.qmd#minihues.get_palette)
 
 ---
 
-### get_palette() {#minihues.get_palette}
+### get_palette() {#minihues.get_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.get_palette`()</p>
 Get latest applied palette
@@ -496,12 +495,12 @@ Get latest applied palette
 #### Return {#minihues.get_palette-return}
 
 
-`(table)` Table with structure as [`MiniHues.make_palette()`](mini-hues.qmd#minihues.make_palette) output that was
-  the latest applied (via [`MiniHues.apply_palette()`](mini-hues.qmd#minihues.apply_palette)) palette.
+`(table)` Table with structure as [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette) output that was
+  the latest applied (via [MiniHues.apply\_palette()](mini-hues.qmd#minihues.apply_palette)) palette.
 
 ---
 
-### gen_random_base_colors() {#minihues.gen_random_base_colors}
+### gen_random_base_colors() {#minihues.gen_random_base_colors .help-syntax-right-anchor}
 
 <p align="center">`MiniHues.gen_random_base_colors`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate random base colors
@@ -510,7 +509,7 @@ Compute background and foreground colors based on randomly generated hue
 and heuristically picked lightness-chroma values.
 
 You can recreate a similar functionality but tweaked to your taste
-using [`mini.colors`](mini-colors.qmd#mini.colors): >
+using [mini.colors](mini-colors.qmd#mini.colors): >
   local convert = require('mini.colors').convert
   local hue = math.random(0, 359)
   return {

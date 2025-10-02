@@ -1,6 +1,5 @@
 ---
 title: "mini.base16 documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,13 +10,13 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski
 
 ---
 
-### Module {#minibase16}
+### Module {#module .help-syntax-right-anchor}
 
 Fast implementation of [chriskempson/base16](https://github.com/chriskempson/base16)
 color scheme (with Copyright (C) 2012 Chris Kempson) adapted for modern Neovim
 Lua plugins. Extra features:
 
-- Configurable automatic support of cterm colors (see [`highlight-cterm`](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm)).
+- Configurable automatic support of cterm colors (see [highlight-cterm](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm)).
 
 - Opinionated palette generator based only on background and foreground
   colors.
@@ -104,7 +103,7 @@ Supported highlight groups:
 
     - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 
-#### Setup {#minibase16-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.base16').setup({})` (replace
@@ -112,7 +111,7 @@ This module needs a setup with `require('mini.base16').setup({})` (replace
 `MiniBase16` which you can use for scripting or manually (with
 `:lua MiniBase16.*`).
 
-See [`MiniBase16.config`](mini-base16.qmd#minibase16.config) for `config` structure and default values.
+See [MiniBase16.config](mini-base16.qmd#minibase16.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.minibase16_config`
 will have no effect here.
@@ -147,36 +146,36 @@ Example:
   })
   ```
 
-#### Notes {#minibase16-notes}
+#### Notes {#module-notes}
 
 
 1. This is used to create some of plugin's color schemes
-   (see [`MiniBase16-color-schemes`](mini-base16.qmd#minibase16-color-schemes)).
-2. Using `setup()` doesn't actually create a [`:colorscheme`](https://neovim.io/doc/user/helptag.html?tag=:colorscheme). It basically
-   creates a coordinated set of [`highlight-groups`](https://neovim.io/doc/user/helptag.html?tag=highlight-groups). To create your own theme:
+   (see [MiniBase16-color-schemes](mini-base16.qmd#minibase16-color-schemes)).
+2. Using `setup()` doesn't actually create a [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme). It basically
+   creates a coordinated set of [highlight-groups](https://neovim.io/doc/user/helptag.html?tag=highlight-groups). To create your own theme:
 
     - Put "myscheme.lua" file (name after your chosen theme name) inside
       any "colors" directory reachable from 'runtimepath' ("colors" inside
       your Neovim config directory is usually enough).
 
     - Inside "myscheme.lua" call `require('mini.base16').setup()` with your
-      palette and only after that set [`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to "myscheme".
+      palette and only after that set [g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to "myscheme".
 
 ---
 
-### Color schemes {#minibase16-color-schemes}
+### Color schemes {#minibase16-color-schemes .help-syntax-right-anchor}
 
 #### Base16 colorschemes {#minibase16-color-schemes-base16colorschemes}
 
 
 This module comes with several pre-built color schemes. Each of them is
-a [`mini.base16`](mini-base16.qmd#mini.base16) theme created with faster version of the following Lua code:
+a [mini.base16](mini-base16.qmd#mini.base16) theme created with faster version of the following Lua code:
 
   ```lua
   require('mini.base16').setup({ palette = palette, use_cterm = true })
   ```
 
-Activate them as regular [`:colorscheme`](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) (for example, `:colorscheme minischeme`).
+Activate them as regular [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) (for example, `:colorscheme minischeme`).
 
 ##### minischeme {#minibase16-color-schemes-base16colorschemes-minischeme}
 
@@ -212,7 +211,7 @@ Palettes are:
 
 ---
 
-### setup() {#minibase16.setup}
+### setup() {#minibase16.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniBase16.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -223,9 +222,9 @@ groups make an extended set from original
 good idea to have `config.palette` respect the original [styling
 principles](https://github.com/chriskempson/base16/blob/master/styling.md).
 
-By default only 'gui highlighting' (see [`highlight-gui`](https://neovim.io/doc/user/helptag.html?tag=highlight-gui) and
-[`'termguicolors'`](https://neovim.io/doc/user/helptag.html?tag='termguicolors')) is supported. To support 'cterm highlighting' (see
-[`highlight-cterm`](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm)) supply `config.use_cterm` argument in one of the formats:
+By default only 'gui highlighting' (see [highlight-gui](https://neovim.io/doc/user/helptag.html?tag=highlight-gui) and
+['termguicolors'](https://neovim.io/doc/user/helptag.html?tag='termguicolors')) is supported. To support 'cterm highlighting' (see
+[highlight-cterm](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm)) supply `config.use_cterm` argument in one of the formats:
 
 - `true` to auto-generate from `palette` (as closest colors).
 
@@ -236,7 +235,7 @@ By default only 'gui highlighting' (see [`highlight-gui`](https://neovim.io/doc/
 
 
 
-<span class="help-syntax-special">{config}</span> `(table)` Module config table. See [`MiniBase16.config`](mini-base16.qmd#minibase16.config).
+<span class="help-syntax-special">{config}</span> `(table)` Module config table. See [MiniBase16.config](mini-base16.qmd#minibase16.config).
 
 #### Usage {#minibase16.setup-usage}
 
@@ -249,7 +248,7 @@ By default only 'gui highlighting' (see [`highlight-gui`](https://neovim.io/doc/
 
 ---
 
-### config {#minibase16.config}
+### config {#minibase16.config .help-syntax-right-anchor}
 
 <p align="center">`MiniBase16.config`</p>
 #### Defaults {#minibase16.config-defaults}
@@ -281,7 +280,7 @@ By default only 'gui highlighting' (see [`highlight-gui`](https://neovim.io/doc/
 be created. Limiting number of integrations slightly decreases startup time.
 It is a table with boolean (`true`/`false`) values which are applied as follows:
 
-- If plugin name (as listed in [`mini.base16`](mini-base16.qmd#mini.base16)) has entry, it is used.
+- If plugin name (as listed in [mini.base16](mini-base16.qmd#mini.base16)) has entry, it is used.
 
 - Otherwise `config.plugins.default` is used.
 
@@ -299,7 +298,7 @@ Example which will load only "mini.nvim" integration:
 
 ---
 
-### mini_palette() {#minibase16.mini_palette}
+### mini_palette() {#minibase16.mini_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniBase16.mini_palette`(<span class="help-syntax-special">{background}</span>, <span class="help-syntax-special">{foreground}</span>, <span class="help-syntax-special">{accent_chroma}</span>)</p>
 Create 'mini' palette
@@ -380,7 +379,7 @@ details).
 
 ---
 
-### rgb_palette_to_cterm_palette() {#minibase16.rgb_palette_to_cterm_palette}
+### rgb_palette_to_cterm_palette() {#minibase16.rgb_palette_to_cterm_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniBase16.rgb_palette_to_cterm_palette`(<span class="help-syntax-special">{palette}</span>)</p>
 Converts palette with RGB colors to terminal colors
@@ -397,5 +396,5 @@ Useful for caching `use_cterm` variable to increase speed.
 #### Return {#minibase16.rgb_palette_to_cterm_palette-return}
 
 
-`(table)` Table with base16 palette using [`highlight-cterm`](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm).
+`(table)` Table with base16 palette using [highlight-cterm](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm).
 

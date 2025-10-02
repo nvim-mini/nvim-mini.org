@@ -1,6 +1,5 @@
 ---
 title: "mini.starter documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski
 
 ---
 
-### Module {#ministarter}
+### Module {#module .help-syntax-right-anchor}
 
 Displayed items are fully customizable both in terms of what they do and
 how they look (with reasonable defaults). Item selection can be done using
@@ -22,24 +21,24 @@ Key design ideas:
 - All available actions are defined inside items. Each item should have the
   following info:
 
-    - <span class="help-syntax-keys">\<action\></span> - function or string for [`vim.cmd()`](https://neovim.io/doc/user/helptag.html?tag=vim.cmd\(\)) which is executed when
+    - <span class="help-syntax-keys">\<action\></span> - function or string for [vim.cmd()](https://neovim.io/doc/user/helptag.html?tag=vim.cmd\(\)) which is executed when
       item is chosen. Empty string result in placeholder "inactive" item.
 
     - <span class="help-syntax-keys">\<name\></span> - string which will be displayed and used for choosing.
 
     - <span class="help-syntax-keys">\<section\></span> - string representing to which section item belongs.
-  There are pre-configured whole sections in [`MiniStarter.sections`](mini-starter.qmd#ministarter.sections).
+  There are pre-configured whole sections in [MiniStarter.sections](mini-starter.qmd#ministarter.sections).
 
 
 - Configure what items are displayed by supplying an array which can be
   normalized to an array of items. Read about how supplied items are
-  normalized in [`MiniStarter.refresh()`](mini-starter.qmd#ministarter.refresh).
+  normalized in [MiniStarter.refresh()](mini-starter.qmd#ministarter.refresh).
 
 
 - Modify the final look by supplying content hooks: functions which take
-  buffer content (see [`MiniStarter.get_content()`](mini-starter.qmd#ministarter.get_content)) and identifier as input
+  buffer content (see [MiniStarter.get\_content()](mini-starter.qmd#ministarter.get_content)) and identifier as input
   while returning buffer content as output. There are pre-configured
-  content hook generators in [`MiniStarter.gen_hook`](mini-starter.qmd#ministarter.gen_hook).
+  content hook generators in [MiniStarter.gen\_hook](mini-starter.qmd#ministarter.gen_hook).
 
 
 - Choosing an item can be done in two ways:
@@ -57,7 +56,7 @@ What is doesn't do:
 
 - It doesn't support fuzzy query for items. And probably will never do.
 
-#### Setup {#ministarter-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.starter').setup({})`
@@ -65,19 +64,19 @@ This module needs a setup with `require('mini.starter').setup({})`
 `MiniStarter` which you can use for scripting or manually (with
 `:lua MiniStarter.*`).
 
-See [`MiniStarter.config`](mini-starter.qmd#ministarter.config) for `config` structure and default values. For
+See [MiniStarter.config](mini-starter.qmd#ministarter.config) for `config` structure and default values. For
 some configuration examples (including one similar to 'vim-startify' and
-'dashboard-nvim'), see [`MiniStarter-example-config`](mini-starter.qmd#ministarter-example-config).
+'dashboard-nvim'), see [MiniStarter-example-config](mini-starter.qmd#ministarter-example-config).
 
 You can override runtime config settings locally to buffer inside
 `vim.b.ministarter_config` which should have same structure as
-`MiniStarter.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniStarter.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 Note: `vim.b.ministarter_config` is copied to Starter buffer from current
 buffer allowing full customization.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Highlight groups {#ministarter-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -91,7 +90,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 - `MiniStarterItem` - item name.
 
-- `MiniStarterItemBullet` - units from [`MiniStarter.gen_hook.adding_bullet()`](mini-starter.qmd#ministarter.gen_hook.adding_bullet).
+- `MiniStarterItemBullet` - units from [MiniStarter.gen\_hook.adding\_bullet()](mini-starter.qmd#ministarter.gen_hook.adding_bullet).
 
 - `MiniStarterItemPrefix` - unique query for item.
 
@@ -99,20 +98,20 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 - `MiniStarterQuery` - current query in active items.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#ministarter-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable core functionality, set `vim.g.ministarter_disable` (globally) or
 `vim.b.ministarter_disable` (for a buffer) to `true`. Considering high number
 of different scenarios and customization intentions, writing exact rules
 for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Example config {#ministarter-example-config}
+### Example config {#ministarter-example-config .help-syntax-right-anchor}
 
 #### Similar to 'mhinz/vim-startify' {#ministarter-example-config-similartomhinzvim-startify}
 
@@ -213,17 +212,17 @@ for disabling module's functionality is left to user. See
 
 ---
 
-### Lifecycle {#ministarter-lifecycle}
+### Lifecycle {#ministarter-lifecycle .help-syntax-right-anchor}
 
 
-- Open with [`MiniStarter.open()`](mini-starter.qmd#ministarter.open). It includes creating buffer with
-  appropriate options, mappings, behavior; call to [`MiniStarter.refresh()`](mini-starter.qmd#ministarter.refresh);
-  issue `MiniStarterOpened` [`User`](https://neovim.io/doc/user/helptag.html?tag=User) event.
+- Open with [MiniStarter.open()](mini-starter.qmd#ministarter.open). It includes creating buffer with
+  appropriate options, mappings, behavior; call to [MiniStarter.refresh()](mini-starter.qmd#ministarter.refresh);
+  issue `MiniStarterOpened` [User](https://neovim.io/doc/user/helptag.html?tag=User) event.
 
 - Wait for user to choose an item. This is done using following logic:
 
     - Typing any character from `MiniStarter.config.query_updaters` leads
-      to updating query. Read more in [`MiniStarter.add_to_query()`](mini-starter.qmd#ministarter.add_to_query).
+      to updating query. Read more in [MiniStarter.add\_to\_query()](mini-starter.qmd#ministarter.add_to_query).
 
     - <span class="help-syntax-keys">\<BS\></span> deletes latest character from query.
 
@@ -239,7 +238,7 @@ for disabling module's functionality is left to user. See
 
 ---
 
-### setup() {#ministarter.setup}
+### setup() {#ministarter.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -248,7 +247,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniStarter.config`](mini-starter.qmd#ministarter.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniStarter.config](mini-starter.qmd#ministarter.config).
 
 #### Usage {#ministarter.setup-usage}
 
@@ -262,7 +261,7 @@ Module setup
 
 ---
 
-### config {#ministarter.config}
+### config {#ministarter.config .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.config`</p>
 #### Defaults {#ministarter.config-defaults}
@@ -312,7 +311,7 @@ Module setup
 
 ---
 
-### open() {#ministarter.open}
+### open() {#ministarter.open .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.open`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Open Starter buffer
@@ -320,21 +319,21 @@ Open Starter buffer
 
 - Create buffer if necessary and move into it.
 
-- Set buffer options. Note that settings are done with [`:noautocmd`](https://neovim.io/doc/user/helptag.html?tag=:noautocmd) to
+- Set buffer options. Note that settings are done with [:noautocmd](https://neovim.io/doc/user/helptag.html?tag=:noautocmd) to
   achieve a massive speedup.
 
 - Set buffer mappings. Besides basic mappings (described inside "Lifecycle
-  of Starter buffer" of [`mini.starter`](mini-starter.qmd#mini.starter)), map every character from
+  of Starter buffer" of [mini.starter](mini-starter.qmd#mini.starter)), map every character from
   `MiniStarter.config.query_updaters` to add itself to query with
-  [`MiniStarter.add_to_query()`](mini-starter.qmd#ministarter.add_to_query).
+  [MiniStarter.add\_to\_query()](mini-starter.qmd#ministarter.add_to_query).
 
-- Populate buffer with [`MiniStarter.refresh()`](mini-starter.qmd#ministarter.refresh).
+- Populate buffer with [MiniStarter.refresh()](mini-starter.qmd#ministarter.refresh).
 
 - Issue custom `MiniStarterOpened` event to allow acting upon opening
   Starter buffer. Use it with
   `autocmd User MiniStarterOpened <your command>`.
 
-Note: to fully use it in autocommand, use [`autocmd-nested`](https://neovim.io/doc/user/helptag.html?tag=autocmd-nested). Example:
+Note: to fully use it in autocommand, use [autocmd-nested](https://neovim.io/doc/user/helptag.html?tag=autocmd-nested). Example:
 
   ```lua
   local starter_open = function() MiniStarter.open() end
@@ -346,12 +345,12 @@ Note: to fully use it in autocommand, use [`autocmd-nested`](https://neovim.io/d
 
 
 
-<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Identifier of existing valid buffer (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Identifier of existing valid buffer (see [bufnr()](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to
   open inside. Default: create a new one.
 
 ---
 
-### refresh() {#ministarter.refresh}
+### refresh() {#ministarter.refresh .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.refresh`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Refresh Starter buffer
@@ -371,7 +370,7 @@ Refresh Starter buffer
 - Normalize `MiniStarter.config.header` and `MiniStarter.config.footer` to
   be multiple lines by splitting at `\n`. If function - evaluate it first.
 
-- Make initial buffer content (see [`MiniStarter.get_content()`](mini-starter.qmd#ministarter.get_content) for a
+- Make initial buffer content (see [MiniStarter.get\_content()](mini-starter.qmd#ministarter.get_content) for a
   description of what a buffer content is). It consist from content lines
   with single content unit:
 
@@ -386,9 +385,9 @@ Refresh Starter buffer
   content. All hooks are applied with `(content, buf_id)` signature. Output
   of one hook serves as first argument to the next.
 
-- Gather final items from content with [`MiniStarter.content_to_items()`](mini-starter.qmd#ministarter.content_to_items).
+- Gather final items from content with [MiniStarter.content\_to\_items()](mini-starter.qmd#ministarter.content_to_items).
 
-- Convert content to buffer lines with [`MiniStarter.content_to_lines()`](mini-starter.qmd#ministarter.content_to_lines) and
+- Convert content to buffer lines with [MiniStarter.content\_to\_lines()](mini-starter.qmd#ministarter.content_to_lines) and
   add them to buffer.
 
 - Add highlighting of content units.
@@ -398,7 +397,7 @@ Refresh Starter buffer
 - Make current query. This results into some items being marked as
   "inactive" and updating highlighting of current query on "active" items.
 
-Note: this function is executed on every [`VimResized`](https://neovim.io/doc/user/helptag.html?tag=VimResized) to allow more
+Note: this function is executed on every [VimResized](https://neovim.io/doc/user/helptag.html?tag=VimResized) to allow more
 responsive behavior.
 
 #### Parameters {#ministarter.refresh-parameters}
@@ -410,7 +409,7 @@ responsive behavior.
 
 ---
 
-### close() {#ministarter.close}
+### close() {#ministarter.close .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.close`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Close Starter buffer
@@ -424,14 +423,14 @@ Close Starter buffer
 
 ---
 
-### sections {#ministarter.sections}
+### sections {#ministarter.sections .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections`</p>
 Table of pre-configured sections
 
 ---
 
-### sections.builtin_actions() {#ministarter.sections.builtin_actions}
+### sections.builtin_actions() {#ministarter.sections.builtin_actions .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections.builtin_actions`()</p>
 Section with builtin actions
@@ -443,12 +442,12 @@ Section with builtin actions
 
 ---
 
-### sections.sessions() {#ministarter.sections.sessions}
+### sections.sessions() {#ministarter.sections.sessions .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections.sessions`(<span class="help-syntax-special">{n}</span>, <span class="help-syntax-special">{recent}</span>)</p>
-Section with [`mini.sessions`](mini-sessions.qmd#mini.sessions) sessions
+Section with [mini.sessions](mini-sessions.qmd#mini.sessions) sessions
 
-Sessions are taken from [`MiniSessions.detected`](mini-sessions.qmd#minisessions.detected). Notes:
+Sessions are taken from [MiniSessions.detected](mini-sessions.qmd#minisessions.detected). Notes:
 
 - If it shows "'mini.sessions' is not set up", it means that you didn't
   call `require('mini.sessions').setup()`.
@@ -456,7 +455,7 @@ Sessions are taken from [`MiniSessions.detected`](mini-sessions.qmd#minisessions
 - If it shows "There are no detected sessions in 'mini.sessions'", it means
   that there are no sessions at the current sessions directory. Either
   create session or supply different directory where session files are
-  stored (see [`MiniSessions.setup()`](mini-sessions.qmd#minisessions.setup)).
+  stored (see [MiniSessions.setup()](mini-sessions.qmd#minisessions.setup)).
 
 - Local session (if detected) is always displayed first.
 
@@ -476,12 +475,12 @@ Sessions are taken from [`MiniSessions.detected`](mini-sessions.qmd#minisessions
 
 ---
 
-### sections.recent_files() {#ministarter.sections.recent_files}
+### sections.recent_files() {#ministarter.sections.recent_files .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections.recent_files`(<span class="help-syntax-special">{n}</span>, <span class="help-syntax-special">{current_dir}</span>, <span class="help-syntax-special">{show_path}</span>)</p>
 Section with most recently used files
 
-Files are taken from [`v:oldfiles`](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles).
+Files are taken from [v:oldfiles](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles).
 
 #### Parameters {#ministarter.sections.recent_files-parameters}
 
@@ -503,19 +502,19 @@ Files are taken from [`v:oldfiles`](https://neovim.io/doc/user/helptag.html?tag=
 
 ---
 
-### sections.pick() {#ministarter.sections.pick}
+### sections.pick() {#ministarter.sections.pick .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections.pick`()</p>
-Section with [`mini.pick`](mini-pick.qmd#mini.pick) pickers
+Section with [mini.pick](mini-pick.qmd#mini.pick) pickers
 
 Notes:
 
 - All actions require 'mini.pick' module of 'mini.nvim'.
 
 - "Command history", "Explorer", and "Visited paths" items
-  require [`mini.extra`](mini-extra.qmd#mini.extra) module of 'mini.nvim'.
+  require [mini.extra](mini-extra.qmd#mini.extra) module of 'mini.nvim'.
 
-- "Visited paths" items requires [`mini.visits`](mini-visits.qmd#mini.visits) module of 'mini.nvim'.
+- "Visited paths" items requires [mini.visits](mini-visits.qmd#mini.visits) module of 'mini.nvim'.
 
 #### Return {#ministarter.sections.pick-return}
 
@@ -524,7 +523,7 @@ Notes:
 
 ---
 
-### sections.telescope() {#ministarter.sections.telescope}
+### sections.telescope() {#ministarter.sections.telescope .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.sections.telescope`()</p>
 Section with basic Telescope pickers relevant to start screen
@@ -544,17 +543,17 @@ Notes:
 
 ---
 
-### gen_hook {#ministarter.gen_hook}
+### gen_hook {#ministarter.gen_hook .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.gen_hook`</p>
 Table with pre-configured content hook generators
 
 Each element is a function which returns content hook. So to use them
-inside [`MiniStarter.setup()`](mini-starter.qmd#ministarter.setup), call them.
+inside [MiniStarter.setup()](mini-starter.qmd#ministarter.setup), call them.
 
 ---
 
-### gen_hook.padding() {#ministarter.gen_hook.padding}
+### gen_hook.padding() {#ministarter.gen_hook.padding .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.gen_hook.padding`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{top}</span>)</p>
 Hook generator for padding
@@ -579,7 +578,7 @@ This allows tweaking the screen position of buffer content.
 
 ---
 
-### gen_hook.adding_bullet() {#ministarter.gen_hook.adding_bullet}
+### gen_hook.adding_bullet() {#ministarter.gen_hook.adding_bullet .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.gen_hook.adding_bullet`(<span class="help-syntax-special">{bullet}</span>, <span class="help-syntax-special">{place_cursor}</span>)</p>
 Hook generator for adding bullet to items
@@ -604,7 +603,7 @@ left of item.
 
 ---
 
-### gen_hook.indexing() {#ministarter.gen_hook.indexing}
+### gen_hook.indexing() {#ministarter.gen_hook.indexing .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.gen_hook.indexing`(<span class="help-syntax-special">{grouping}</span>, <span class="help-syntax-special">{exclude_sections}</span>)</p>
 Hook generator for indexing items
@@ -630,7 +629,7 @@ expense of clarity).
 
 ---
 
-### gen_hook.aligning() {#ministarter.gen_hook.aligning}
+### gen_hook.aligning() {#ministarter.gen_hook.aligning .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.gen_hook.aligning`(<span class="help-syntax-special">{horizontal}</span>, <span class="help-syntax-special">{vertical}</span>)</p>
 Hook generator for aligning content
@@ -639,7 +638,7 @@ Output is a content hook which independently aligns content horizontally
 and vertically. Window width and height are taken from first window in current
 tabpage displaying the Starter buffer.
 
-Basically, this computes left and top pads for [`MiniStarter.gen_hook.padding()`](mini-starter.qmd#ministarter.gen_hook.padding)
+Basically, this computes left and top pads for [MiniStarter.gen\_hook.padding()](mini-starter.qmd#ministarter.gen_hook.padding)
 such that output lines would appear aligned in certain way.
 
 #### Parameters {#ministarter.gen_hook.aligning-parameters}
@@ -657,7 +656,7 @@ such that output lines would appear aligned in certain way.
 
 ---
 
-### get_content() {#ministarter.get_content}
+### get_content() {#ministarter.get_content .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.get_content`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Get content of Starter buffer
@@ -678,8 +677,8 @@ Generally, buffer content is a table in the form of "2d array" (or rather
     - "hl" - which highlighting should be applied to content string. May be
       `nil` for no highlighting.
 
-See [`MiniStarter.content_to_lines()`](mini-starter.qmd#ministarter.content_to_lines) for converting content to buffer lines
-and [`MiniStarter.content_to_items()`](mini-starter.qmd#ministarter.content_to_items) - to list of parsed items.
+See [MiniStarter.content\_to\_lines()](mini-starter.qmd#ministarter.content_to_lines) for converting content to buffer lines
+and [MiniStarter.content\_to\_items()](mini-starter.qmd#ministarter.content_to_items) - to list of parsed items.
 
 Notes:
 
@@ -696,7 +695,7 @@ Notes:
 
 ---
 
-### content_coords() {#ministarter.content_coords}
+### content_coords() {#ministarter.content_coords .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.content_coords`(<span class="help-syntax-special">{content}</span>, <span class="help-syntax-special">{predicate}</span>)</p>
 Helper to iterate through content
@@ -729,7 +728,7 @@ to bottom, left to right) and returns "coordinates" of units for which
 
 ---
 
-### content_to_lines() {#ministarter.content_to_lines}
+### content_to_lines() {#ministarter.content_to_lines .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.content_to_lines`(<span class="help-syntax-special">{content}</span>)</p>
 Convert content to buffer lines
@@ -750,7 +749,7 @@ same content line.
 
 ---
 
-### content_to_items() {#ministarter.content_to_items}
+### content_to_items() {#ministarter.content_to_items .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.content_to_items`(<span class="help-syntax-special">{content}</span>)</p>
 Convert content to items
@@ -759,12 +758,12 @@ Parse content (in depth-first fashion) and retrieve each item from `item`
 element of content units with type "item". This also:
 
 - Computes some helper information about how item will be actually
-  displayed (after [`MiniStarter.content_to_lines()`](mini-starter.qmd#ministarter.content_to_lines)) and minimum number of
+  displayed (after [MiniStarter.content\_to\_lines()](mini-starter.qmd#ministarter.content_to_lines)) and minimum number of
   prefix characters needed for a particular item to be queried single.
 
 - Modifies item's `name` element taking it from corresponding `string`
   element of content unit. This allows modifying item's `name` at the stage
-  of content hooks (like, for example, in [`MiniStarter.gen_hook.indexing()`](mini-starter.qmd#ministarter.gen_hook.indexing)).
+  of content hooks (like, for example, in [MiniStarter.gen\_hook.indexing()](mini-starter.qmd#ministarter.gen_hook.indexing)).
 
 #### Parameters {#ministarter.content_to_items-parameters}
 
@@ -779,7 +778,7 @@ element of content units with type "item". This also:
 
 ---
 
-### eval_current_item() {#ministarter.eval_current_item}
+### eval_current_item() {#ministarter.eval_current_item .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.eval_current_item`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Evaluate current item
@@ -796,7 +795,7 @@ any more.
 
 ---
 
-### update_current_item() {#ministarter.update_current_item}
+### update_current_item() {#ministarter.update_current_item .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.update_current_item`(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{buf_id}</span>)</p>
 Update current item
@@ -814,7 +813,7 @@ This makes next (with respect to `direction`) active item to be current.
 
 ---
 
-### add_to_query() {#ministarter.add_to_query}
+### add_to_query() {#ministarter.add_to_query .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.add_to_query`(<span class="help-syntax-special">{char}</span>, <span class="help-syntax-special">{buf_id}</span>)</p>
 Add character to current query
@@ -841,7 +840,7 @@ Add character to current query
 
 ---
 
-### set_query() {#ministarter.set_query}
+### set_query() {#ministarter.set_query .help-syntax-right-anchor}
 
 <p align="center">`MiniStarter.set_query`(<span class="help-syntax-special">{query}</span>, <span class="help-syntax-special">{buf_id}</span>)</p>
 Set current query

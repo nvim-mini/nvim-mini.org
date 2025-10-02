@@ -19,6 +19,18 @@ local make_anchor = function(x)
   return (x:lower():gsub('[^%w%.%-_]', ''):gsub('%s', '-'):gsub('<(.-)>', '\\<%1\\>'))
 end
 
+-- Metadata ===================================================================
+local metadata_lines = {
+  -- Hide displaying the title as it is redundant and out of place
+  'format:',
+  '  html:',
+  '    include-in-header:',
+  '      - text: "<style> .quarto-title > h1.title { display: none } </style>"',
+  -- Show more nested headers (useful for documentation pages)
+  'toc-depth: 5',
+}
+vim.fn.writefile(metadata_lines, 'mini.nvim/_metadata.yml')
+
 -- Help files =================================================================
 local get_help_tags = function()
   local tags_path = '_deps/mini.nvim/doc/tags'
@@ -115,37 +127,42 @@ local add_help_syntax = function(lines, tags)
 
   local populate_bad_ranges = function(s)
     bad_ranges = {}
+    -- Inline code
     s:gsub('`().-()`', function(from, to) table.insert(bad_ranges, { from, to }) end)
-    s:gsub('()%b[]%b()()', function(from, to) table.insert(bad_ranges, { from, to }) end)
+    -- Actual link (but not visible part!) of markdown link
+    s:gsub('%b[]()%b()()', function(from, to) table.insert(bad_ranges, { from, to }) end)
   end
 
   local repl_link = function(m)
-    -- Escpe special characters to be usable inside markdown link
+    -- Escape special markdown characters to be shown as is
+    local link_name = m:gsub('[_*~$]', '\\%1')
     if tags[m] == nil then
-      local text_escaped = m:gsub('[)(]', '\\%1')
-      return string.format('[`%s`](https://neovim.io/doc/user/helptag.html?tag=%s)', m, text_escaped)
+      -- Escpe special characters to be usable inside markdown link
+      local link_anchor = m:gsub('[)(]', '\\%1')
+      return string.format('[%s](https://neovim.io/doc/user/helptag.html?tag=%s)', link_name, link_anchor)
     end
 
-    return string.format('[`%s`](%s.qmd#%s)', m, tags[m], make_anchor(m))
+    return string.format('[%s](%s.qmd#%s)', link_name, tags[m], make_anchor(m))
   end
 
   local repl_right_anchor = function(m)
     -- Transform right anchor into a heading (for table of contents entry).
     -- Compute more natural title. Common tag->title transformations:
     -- - `*MiniAi*` -> "Module" ("Overview" is commonly used later as
-    --   a 'MiniXxx-overview' tag).
+    --   a 'MiniXxx-overview' tag). Both as title and anchor.
     -- - `*MiniAi.find_textobject()*` -> "find_textobject()"
     -- - `*MiniAi-builtin-textobjects*` -> "Builtin textobjects"
     -- - `*mini.nvim-disabling-recipes*` -> "Disabling recipes"
     -- - `:DepsAdd` -> ":DepsAdd"
-    local text = m:find('^Mini%w+$') ~= nil and 'Module'
-      or (m:match('^Mini%w+(%W.+)$') or m:match('^mini%.%w+(%W.+)$') or m)
+    m = m:find('^Mini%w+$') ~= nil and 'Module' or m
+    local text = m:match('^Mini%w+(%W.+)$') or m:match('^mini%.%w+(%W.+)$') or m
     local char_one, char_two = text:sub(1, 1), text:sub(2, 2)
     local title = char_one == '.' and text:sub(2)
       or (char_one == '-' and (char_two:upper() .. text:sub(3):gsub('%-', ' ')) or text)
 
-    -- Preserve original tag as anchor for other links to work more naturally
-    return string.format('### %s {#%s}\n', title, make_anchor(m))
+    -- Preserve original tag as anchor for other converted links (coming from
+    -- the help files) to work more naturally
+    return string.format('### %s {#%s .help-syntax-right-anchor}\n', title, make_anchor(m))
   end
 
   local repl_anchor = function(m)
@@ -228,11 +245,13 @@ end
 local add_hierarchical_heading_anchors = function(lines)
   local anchor_stack = {}
   for i, l in iter_noncode(lines) do
-    -- Reuse already present anchor (like from right aligned tag heading)
-    -- They should only be present for the "top level" headings.
-    local header_prefix, header_name, header_anchor = l:match('^(#+)%s+(.-) {#(.-)}$')
+    -- Reuse already present anchor and other extra pandoc related data
+    -- (like from right aligned tag heading with its own anchor and class).
+    -- Anchors should only be present for the "top level" headings.
+    local header_prefix, header_name, header_anchor, header_extra = l:match('^(#+)%s+(.-) {#([^%s}]+)(.*)}$')
     if header_anchor == nil then
       header_prefix, header_name = l:match('^(#+)%s+(.+)$')
+      header_extra = ''
     end
 
     if header_prefix ~= nil and header_name ~= nil then
@@ -251,23 +270,29 @@ local add_hierarchical_heading_anchors = function(lines)
       local keys = vim.tbl_keys(anchor_stack)
       table.sort(keys)
       local anchor = table.concat(vim.tbl_map(function(k) return anchor_stack[k] end, keys), '-')
-      lines[i] = string.format('%s %s {#%s}', header_prefix, header_name, anchor)
+      lines[i] = string.format('%s %s {#%s%s}', header_prefix, header_name, anchor, header_extra)
     end
   end
 end
 
 local add_source_note = function(lines)
-  table.insert(lines, 1, "_Generated from the `main` branch of 'mini.nvim'_")
-  table.insert(lines, 2, '')
+  local msg = "_Generated from the `main` branch of 'mini.nvim'_"
+  if lines[1]:find('align="center"') ~= nil then
+    -- Center align if after center aligned element (i.e. top README image)
+    table.insert(lines, 2, '<p align="center">' .. msg .. '</p>')
+    table.insert(lines, 3, '')
+  else
+    table.insert(lines, 1, msg)
+    table.insert(lines, 2, '')
+  end
 end
 
 local adjust_header_footer = function(lines, title)
   -- Add informative header for better search
   table.insert(lines, 1, '---')
   table.insert(lines, 2, string.format('title: "%s"', title))
-  table.insert(lines, 3, 'toc-depth: 5')
-  table.insert(lines, 4, '---')
-  table.insert(lines, 5, '')
+  table.insert(lines, 3, '---')
+  table.insert(lines, 4, '')
 
   -- Remove modeline
   if lines[#lines]:find('^ vim:') then
@@ -360,8 +385,9 @@ local adjust_readmes = function()
   -- Main README
   local path = vim.fs.joinpath('mini.nvim/index.md')
   local lines = vim.fn.readfile(path)
-  adjust_header_footer(lines, 'mini.nvim')
   replace_help_links(lines)
+  add_source_note(lines)
+  adjust_header_footer(lines, 'mini.nvim')
   vim.fn.writefile(lines, path)
 end
 

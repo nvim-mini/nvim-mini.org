@@ -1,6 +1,5 @@
 ---
 title: "mini.map documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#minimap}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -21,46 +20,46 @@ Features:
   taking all current lines, converting it to binary whitespace/non-whitespace
   mask, rescaling to appropriate dimensions, and converting back to strings
   consisting from special encoding symbols. All this is done very fast and
-  asynchronously. See [`MiniMap.open()`](mini-map.qmd#minimap.open), [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh), [`MiniMap.close()`](mini-map.qmd#minimap.close),
-  [`MiniMap.toggle()`](mini-map.qmd#minimap.toggle), [`MiniMap.toggle_side()`](mini-map.qmd#minimap.toggle_side).
-  For a general overview and tips, see [`mini.map-usage`](mini-map.qmd#mini.map-usage).
+  asynchronously. See [MiniMap.open()](mini-map.qmd#minimap.open), [MiniMap.refresh()](mini-map.qmd#minimap.refresh), [MiniMap.close()](mini-map.qmd#minimap.close),
+  [MiniMap.toggle()](mini-map.qmd#minimap.toggle), [MiniMap.toggle\_side()](mini-map.qmd#minimap.toggle_side).
+  For a general overview and tips, see [mini.map-usage](mini-map.qmd#mini.map-usage).
 
 
 - Show scrollbar next to map content. It represents current line and view
   (top and bottom visible lines). Can be the only thing shown, making map
   window a "pure scrollbar". See "Pure scrollbar config" section in
-  [`MiniMap.config`](mini-map.qmd#minimap.config).
+  [MiniMap.config](mini-map.qmd#minimap.config).
 
 
 - Highlight map lines representing certain data in current buffer. This is
   done via extensible set of callables, called integrations (see
-  "Integrations" section in [`MiniMap.config`](mini-map.qmd#minimap.config)). There are pre-built generators
+  "Integrations" section in [MiniMap.config](mini-map.qmd#minimap.config)). There are pre-built generators
   for common integrations:
 
-    - Builtin search (as result of [`/`](https://neovim.io/doc/user/helptag.html?tag=/) and similar).
+    - Builtin search (as result of [/](https://neovim.io/doc/user/helptag.html?tag=/) and similar).
 
-    - Builtin diagnostic (taken from [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\))).
+    - Builtin diagnostic (taken from [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\))).
 
-    - General diff hunks provided by [`mini.diff`](mini-diff.qmd#mini.diff).
+    - General diff hunks provided by [mini.diff](mini-diff.qmd#mini.diff).
 
     - Hunks computed provided by 'lewis6991/gitsigns.nvim'.
-  For more details see [`MiniMap.gen_integration`](mini-map.qmd#minimap.gen_integration).
+  For more details see [MiniMap.gen\_integration](mini-map.qmd#minimap.gen_integration).
 
 
 - Focus on map window to quickly browse current (source) buffer. Moving inside
   map window updates cursor position in source window enabling fast and
   targeted buffer exploration. To focus back, hit `<CR>` to accept current
   explored position or `<Esc>` to go back to original position. See
-  [`MiniMap.toggle_focus()`](mini-map.qmd#minimap.toggle_focus).
+  [MiniMap.toggle\_focus()](mini-map.qmd#minimap.toggle_focus).
 
 
-- Customizable via [`MiniMap.config`](mini-map.qmd#minimap.config) and/or `opts` argument of [`MiniMap.open()`](mini-map.qmd#minimap.open)
-  or [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh):
+- Customizable via [MiniMap.config](mini-map.qmd#minimap.config) and/or `opts` argument of [MiniMap.open()](mini-map.qmd#minimap.open)
+  or [MiniMap.refresh()](mini-map.qmd#minimap.refresh):
 
     - Encoding symbols used to display binary information of different
       resolution (default is 3x2). There are pre-built generators for
       different basic character families and resolutions. See
-      [`MiniMap.gen_encode_symbols`](mini-map.qmd#minimap.gen_encode_symbols).
+      [MiniMap.gen\_encode\_symbols](mini-map.qmd#minimap.gen_encode_symbols).
 
     - Scrollbar symbols, separate for line and view. Can have any width
       (even zero, which virtually disables scrollbar).
@@ -76,13 +75,13 @@ What it doesn't do:
   (especially in very large files).
 
 - Has more flexible window configuration. In case a full height floating
-  window obstructs vision of underlying buffers, use [`MiniMap.toggle()`](mini-map.qmd#minimap.toggle) or
-  [`MiniMap.toggle_side()`](mini-map.qmd#minimap.toggle_side). Works best with global statusline.
+  window obstructs vision of underlying buffers, use [MiniMap.toggle()](mini-map.qmd#minimap.toggle) or
+  [MiniMap.toggle\_side()](mini-map.qmd#minimap.toggle_side). Works best with global statusline.
 
 - Provide autoopen functionality. Due to vast differences in user preference
   of when map window should be shown, set up of automatic opening is left to
-  user. A common approach would be to call `MiniMap.open()` on [`VimEnter`](https://neovim.io/doc/user/helptag.html?tag=VimEnter) event.
-  If you use [`mini.starter`](mini-starter.qmd#mini.starter), you can modify `<CR>` buffer mapping:
+  user. A common approach would be to call `MiniMap.open()` on [VimEnter](https://neovim.io/doc/user/helptag.html?tag=VimEnter) event.
+  If you use [mini.starter](mini-starter.qmd#mini.starter), you can modify `<CR>` buffer mapping:
 
     ```lua
     local set_map_keymap = function()
@@ -96,32 +95,32 @@ What it doesn't do:
     vim.api.nvim_create_autocmd('User', opts)
     ```
 
-#### Setup {#minimap-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.map').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniMap`
 which you can use for scripting or manually (with `:lua MiniMap.*`).
 
-See [`MiniMap.config`](mini-map.qmd#minimap.config) for available config settings.
+See [MiniMap.config](mini-map.qmd#minimap.config) for available config settings.
 
 You can override runtime config settings (like `config.modifiers`) locally
 to buffer inside `vim.b.minimap_config` which should have same structure
-as `MiniMap.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+as `MiniMap.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
-#### Dependencies {#minimap-dependencies}
+#### Dependencies {#module-dependencies}
 
 
 Suggested dependencies (provide extra functionality for integrations):
 
-- Enabled [`mini.diff`](mini-diff.qmd#mini.diff) module for general diff highlighting via
-  [`MiniMap.gen_integration.diff()`](mini-map.qmd#minimap.gen_integration.diff). If missing, no highlighting is added.
+- Enabled [mini.diff](mini-diff.qmd#mini.diff) module for general diff highlighting via
+  [MiniMap.gen\_integration.diff()](mini-map.qmd#minimap.gen_integration.diff). If missing, no highlighting is added.
 
 - Plugin [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-  for Git status highlighting via [`MiniMap.gen_integration.gitsigns()`](mini-map.qmd#minimap.gen_integration.gitsigns).
+  for Git status highlighting via [MiniMap.gen\_integration.gitsigns()](mini-map.qmd#minimap.gen_integration.gitsigns).
   If missing, no highlighting is added.
 
-#### Comparisons {#minimap-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -155,7 +154,7 @@ Suggested dependencies (provide extra functionality for integrations):
       while 'mini.map' by design always shows view based on actual lines.
 
     - 'nvim-scrollview' creates scrollbar which can be dragged with mouse,
-      while 'mini.nvim' does not, by design (use [`MiniMap.toggle_focus()`](mini-map.qmd#minimap.toggle_focus)).
+      while 'mini.nvim' does not, by design (use [MiniMap.toggle\_focus()](mini-map.qmd#minimap.toggle_focus)).
 
     - 'mini.map' can show buffer outline, while 'nvim-scrollview' can not.
 
@@ -177,7 +176,7 @@ Suggested dependencies (provide extra functionality for integrations):
     - Almost the same differences as with 'dstein64/nvim-scrollview', except
       'satellite.nvim' can display some set of integration highlights.
 
-#### Highlight groups {#minimap-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -189,26 +188,26 @@ Suggested dependencies (provide extra functionality for integrations):
 
 - `MiniMapSymbolView` - scrollbar part representing current view.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minimap-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable, set `vim.g.minimap_disable` (globally) or `vim.b.minimap_disable`
 (for a buffer) to `true`. Considering high number of different scenarios
 and customization intentions, writing exact rules for disabling module's
-functionality is left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
+functionality is left to user. See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
 recipes.
 
 ---
 
-### Usage {#mini.map-usage}
+### Usage {#mini.map-usage .help-syntax-right-anchor}
 
 #### Mappings {#mini.map-usage-mappings}
 
 
 This module doesn't make mappings, only provides functions for users to map
-manually. Here is how one [`<Leader>`](https://neovim.io/doc/user/helptag.html?tag=<Leader>) set of mappings can be constructed:
+manually. Here is how one [<span class="help-syntax-keys">\<Leader\></span>](https://neovim.io/doc/user/helptag.html?tag=<Leader>) set of mappings can be constructed:
 
   ```lua
   vim.keymap.set('n', '<Leader>mc', MiniMap.close)
@@ -222,26 +221,26 @@ manually. Here is how one [`<Leader>`](https://neovim.io/doc/user/helptag.html?t
 #### How automatic refresh works {#mini.map-usage-howautomaticrefreshworks}
 
 
-Automatic refresh is done by calling [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh) when appropriate
-[`events`](https://neovim.io/doc/user/helptag.html?tag=events) occur. It is done with specially chosen `parts` argument value (to
+Automatic refresh is done by calling [MiniMap.refresh()](mini-map.qmd#minimap.refresh) when appropriate
+[events](https://neovim.io/doc/user/helptag.html?tag=events) occur. It is done with specially chosen `parts` argument value (to
 avoid unnecessary computations). For example, when only cursor has moved
-([`CursorMoved`](https://neovim.io/doc/user/helptag.html?tag=CursorMoved)), only scrollbar is updated; so no recomputation of integrations
+([CursorMoved](https://neovim.io/doc/user/helptag.html?tag=CursorMoved)), only scrollbar is updated; so no recomputation of integrations
 or line encoding is done.
 
 To avoid visual clutter, automatic refresh is done only in normal buffers
-and help pages (i.e. with [`'buftype'`](https://neovim.io/doc/user/helptag.html?tag='buftype') being empty or "help")
+and help pages (i.e. with ['buftype'](https://neovim.io/doc/user/helptag.html?tag='buftype') being empty or "help")
 
 When you think content is not up to date, try one of these:
 
-- Call [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh) manually. Make mapping to make it easier.
+- Call [MiniMap.refresh()](mini-map.qmd#minimap.refresh) manually. Make mapping to make it easier.
 
-- Save current buffer, for example with [`:write`](https://neovim.io/doc/user/helptag.html?tag=:write).
+- Save current buffer, for example with [:write](https://neovim.io/doc/user/helptag.html?tag=:write).
 
-- Exit and enter Normal mode (if your Neovim version supports [`ModeChanged`](https://neovim.io/doc/user/helptag.html?tag=ModeChanged)).
+- Exit and enter Normal mode (if your Neovim version supports [ModeChanged](https://neovim.io/doc/user/helptag.html?tag=ModeChanged)).
 
 ---
 
-### setup() {#minimap.setup}
+### setup() {#minimap.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -250,7 +249,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniMap.config`](mini-map.qmd#minimap.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniMap.config](mini-map.qmd#minimap.config).
 
 #### Usage {#minimap.setup-usage}
 
@@ -264,7 +263,7 @@ Module setup
 
 ---
 
-### config {#minimap.config}
+### config {#minimap.config .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.config`</p>
 #### Defaults {#minimap.config-defaults}
@@ -322,7 +321,7 @@ information in map window.
 
 The `config.symbols.encode` option defines which characters are used to
 encode source buffer lines. For details of encode algorithm, see
-[`MiniMap.encode_strings()`](mini-map.qmd#minimap.encode_strings).
+[MiniMap.encode\_strings()](mini-map.qmd#minimap.encode_strings).
 
 This option should be a table with the following structure:
 
@@ -337,7 +336,7 @@ This option should be a table with the following structure:
   lowest bit, bottom-right - highest). So first symbol encodes a complete
   whitespace, last - complete non-whitespace.
 
-If `nil` (default), output of [`MiniMap.gen_encode_symbols.block()`](mini-map.qmd#minimap.gen_encode_symbols.block) with `'3x2'`
+If `nil` (default), output of [MiniMap.gen\_encode\_symbols.block()](mini-map.qmd#minimap.gen_encode_symbols.block) with `'3x2'`
 identifier is used.
 
 Example: { '1', '2', '3', '4', resolution = { row = 1, col = 2 } }. This
@@ -346,11 +345,11 @@ be encoded as `'1234'`.
 
 There are pre-built generators of encode symbols:
 
-- [`MiniMap.gen_encode_symbols.block()`](mini-map.qmd#minimap.gen_encode_symbols.block)
+- [MiniMap.gen\_encode\_symbols.block()](mini-map.qmd#minimap.gen_encode_symbols.block)
 
-- [`MiniMap.gen_encode_symbols.dot()`](mini-map.qmd#minimap.gen_encode_symbols.dot)
+- [MiniMap.gen\_encode\_symbols.dot()](mini-map.qmd#minimap.gen_encode_symbols.dot)
 
-- [`MiniMap.gen_encode_symbols.shade()`](mini-map.qmd#minimap.gen_encode_symbols.shade)
+- [MiniMap.gen\_encode\_symbols.shade()](mini-map.qmd#minimap.gen_encode_symbols.shade)
 
 ##### Scrollbar symbols {#minimap.config-symbols-scrollbarsymbols}
 
@@ -400,7 +399,7 @@ output convertible to that map line. Other outputs with same map line
 (after conversion) contribute to integration count shown between scrollbar
 and encoded lines (if `config.window.show_integration_count` is `true`).
 
-Previous example output with default `'3x2'` resolution will add [`hl-Search`](https://neovim.io/doc/user/helptag.html?tag=hl-Search)
+Previous example output with default `'3x2'` resolution will add [hl-Search](https://neovim.io/doc/user/helptag.html?tag=hl-Search)
 highlight on map lines 1 and 3, and show integration count 2 on first line.
 
 Every element of integrations array is called one by one from start to end
@@ -428,7 +427,7 @@ Example of using `config.integrations`:
 Option `config.window` defines some properties of map window.
 
 `window.focusable` - whether to allow focusing on map window with other
-methods beside [`MiniMap.toggle_focus()`](mini-map.qmd#minimap.toggle_focus) (like [`:wincmd`](https://neovim.io/doc/user/helptag.html?tag=:wincmd), [`CTRL-W`](https://neovim.io/doc/user/helptag.html?tag=CTRL-W), or mouse).
+methods beside [MiniMap.toggle\_focus()](mini-map.qmd#minimap.toggle_focus) (like [:wincmd](https://neovim.io/doc/user/helptag.html?tag=:wincmd), [CTRL-W](https://neovim.io/doc/user/helptag.html?tag=CTRL-W), or mouse).
 Default: `false`.
 
 `window.side` - which side to stick map window: `'left'` or `'right'` (default).
@@ -455,7 +454,7 @@ visible, but with slightly different highlights).
 "Pure scrollbar" is a configuration when window width is not enough to show
 encoded content. It has following differences from default "map" approach:
 
-- It doesn't perform line encoding with [`MiniMap.encode_strings()`](mini-map.qmd#minimap.encode_strings)
+- It doesn't perform line encoding with [MiniMap.encode\_strings()](mini-map.qmd#minimap.encode_strings)
   but instead uses encoding with fixed number of lines (equal to window
   height).
 
@@ -482,7 +481,7 @@ Config:
 
 ---
 
-### current {#minimap.current}
+### current {#minimap.current .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.current`</p>
 Table with information about current state of map
@@ -497,12 +496,12 @@ At least these keys are supported:
   tabpage. Keys: tabpage identifier. Values: window identifier.
 
 - <span class="help-syntax-keys">\<opts\></span> - current options used to control map display. Same structure
-  as [`MiniMap.config`](mini-map.qmd#minimap.config). Takes precedence over global and buffer-local configs.
-  Is reset when last map window is closed with [`MiniMap.close()`](mini-map.qmd#minimap.close).
+  as [MiniMap.config](mini-map.qmd#minimap.config). Takes precedence over global and buffer-local configs.
+  Is reset when last map window is closed with [MiniMap.close()](mini-map.qmd#minimap.close).
 
 ---
 
-### encode_strings() {#minimap.encode_strings}
+### encode_strings() {#minimap.encode_strings .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.encode_strings`(<span class="help-syntax-special">{strings}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Encode strings
@@ -515,7 +514,7 @@ Each encode symbol is assumed to have resolution within which it can convey
 binary information. For example, resolution `3x2` (row resolution 3,
 column - 2) means that each symbol can encode 3 rows and 2 columns of
 binary data. Here it is used to encode non-whitespace mask. See more in
-"Encode symbols" section of [`MiniMap.config`](mini-map.qmd#minimap.config).
+"Encode symbols" section of [MiniMap.config](mini-map.qmd#minimap.config).
 
 Encoding has the following steps:
 
@@ -616,8 +615,8 @@ Steps:
     symbols column resolution). Default: `math.huge`.
 
   - <span class="help-syntax-keys">\<symbols\></span> - array of symbols with extra `resolution` field. See "Encode
-    symbols" section of [`MiniMap.config`](mini-map.qmd#minimap.config) for more details. Default: output
-    of [`MiniMap.gen_encode_symbols.block()`](mini-map.qmd#minimap.gen_encode_symbols.block) with `'3x2'` identifier.
+    symbols" section of [MiniMap.config](mini-map.qmd#minimap.config) for more details. Default: output
+    of [MiniMap.gen\_encode\_symbols.block()](mini-map.qmd#minimap.gen_encode_symbols.block) with `'3x2'` identifier.
 
 #### Return {#minimap.encode_strings-return}
 
@@ -626,7 +625,7 @@ Steps:
 
 ---
 
-### open() {#minimap.open}
+### open() {#minimap.open .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.open`(<span class="help-syntax-special">{opts}</span>)</p>
 Open map window
@@ -637,25 +636,25 @@ two steps:
 - If not already done, create map buffer (used to set lines and other
   visual indicators) and map window.
 
-- Call [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh).
+- Call [MiniMap.refresh()](mini-map.qmd#minimap.refresh).
 
 #### Parameters {#minimap.open-parameters}
 
 
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options used to define map configuration. Same structure
-  as [`MiniMap.config`](mini-map.qmd#minimap.config). Will have effect until at least one tabpage has opened
+  as [MiniMap.config](mini-map.qmd#minimap.config). Will have effect until at least one tabpage has opened
   map window. Default values are taken in the following order:
 
-  - From `opts` field of [`MiniMap.current`](mini-map.qmd#minimap.current).
+  - From `opts` field of [MiniMap.current](mini-map.qmd#minimap.current).
 
   - From `vim.b.minimap_config`.
 
-  - From [`MiniMap.config`](mini-map.qmd#minimap.config).
+  - From [MiniMap.config](mini-map.qmd#minimap.config).
 
 ---
 
-### refresh() {#minimap.refresh}
+### refresh() {#minimap.refresh .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.refresh`(<span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{parts}</span>)</p>
 Refresh map window
@@ -671,14 +670,14 @@ This function serves two purposes:
 
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options used to define map configuration. Same structure
-  as [`MiniMap.config`](mini-map.qmd#minimap.config). Will have effect until at least one tabpage has opened
+  as [MiniMap.config](mini-map.qmd#minimap.config). Will have effect until at least one tabpage has opened
   map window. Default values are taken in the following order:
 
-  - From `opts` field of [`MiniMap.current`](mini-map.qmd#minimap.current).
+  - From `opts` field of [MiniMap.current](mini-map.qmd#minimap.current).
 
   - From `vim.b.minimap_config`.
 
-  - From [`MiniMap.config`](mini-map.qmd#minimap.config).
+  - From [MiniMap.config](mini-map.qmd#minimap.config).
 
 <span class="help-syntax-special">{parts}</span> `(table|nil)` Which parts to update. Recognised keys with boolean
   values (all `true` by default):
@@ -691,17 +690,17 @@ This function serves two purposes:
 
 ---
 
-### close() {#minimap.close}
+### close() {#minimap.close .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.close`()</p>
 Close map window
 
-Also resets `opts` field of [`MiniMap.current`](mini-map.qmd#minimap.current) after closing last map window
+Also resets `opts` field of [MiniMap.current](mini-map.qmd#minimap.current) after closing last map window
 (among possibly several tabpages).
 
 ---
 
-### toggle() {#minimap.toggle}
+### toggle() {#minimap.toggle .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.toggle`(<span class="help-syntax-special">{opts}</span>)</p>
 Toggle map window
@@ -712,11 +711,11 @@ Open if not shown in current tabpage, close otherwise.
 
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Input for [`MiniMap.open()`](mini-map.qmd#minimap.open).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Input for [MiniMap.open()](mini-map.qmd#minimap.open).
 
 ---
 
-### toggle_focus() {#minimap.toggle_focus}
+### toggle_focus() {#minimap.toggle_focus .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.toggle_focus`(<span class="help-syntax-special">{use_previous_cursor}</span>)</p>
 Toggle focus to/from map window
@@ -745,17 +744,17 @@ There are at least these extra methods to focus back from map window:
 
 ---
 
-### toggle_side() {#minimap.toggle_side}
+### toggle_side() {#minimap.toggle_side .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.toggle_side`()</p>
 Toggle side of map window
 
-A small convenience wrapper for calling [`MiniMap.refresh()`](mini-map.qmd#minimap.refresh) to change the
+A small convenience wrapper for calling [MiniMap.refresh()](mini-map.qmd#minimap.refresh) to change the
 side of map window.
 
 ---
 
-### gen_encode_symbols {#minimap.gen_encode_symbols}
+### gen_encode_symbols {#minimap.gen_encode_symbols .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_encode_symbols`</p>
 Generate encode symbols
@@ -768,7 +767,7 @@ can encode) and `c` is a column resolution (how many columns it can encode).
 
 ---
 
-### gen_encode_symbols.block() {#minimap.gen_encode_symbols.block}
+### gen_encode_symbols.block() {#minimap.gen_encode_symbols.block .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_encode_symbols.block`(<span class="help-syntax-special">{id}</span>)</p>
 Generate block encode symbols
@@ -784,7 +783,7 @@ Outputs use solid block to encode binary data. Example: '🬗', '▟', '█'.
 
 ---
 
-### gen_encode_symbols.dot() {#minimap.gen_encode_symbols.dot}
+### gen_encode_symbols.dot() {#minimap.gen_encode_symbols.dot .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_encode_symbols.dot`(<span class="help-syntax-special">{id}</span>)</p>
 Generate dot encode symbols
@@ -799,7 +798,7 @@ Outputs use dots to encode binary data. Example: '⡪', '⣼', '⣿'.
 
 ---
 
-### gen_encode_symbols.shade() {#minimap.gen_encode_symbols.shade}
+### gen_encode_symbols.shade() {#minimap.gen_encode_symbols.shade .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_encode_symbols.shade`(<span class="help-syntax-special">{id}</span>)</p>
 Generate shade encode symbols
@@ -815,7 +814,7 @@ characters ('░', '▒', '▒', '▓), but with different resolution.
 
 ---
 
-### gen_integration {#minimap.gen_integration}
+### gen_integration {#minimap.gen_integration .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_integration`</p>
 Generate integrations
@@ -827,18 +826,18 @@ map lines.
 
 ---
 
-### gen_integration.builtin_search() {#minimap.gen_integration.builtin_search}
+### gen_integration.builtin_search() {#minimap.gen_integration.builtin_search .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_integration.builtin_search`(<span class="help-syntax-special">{hl_groups}</span>)</p>
 Builtin search
 
-Highlight lines with matches of current builtin search (like with [`/`](https://neovim.io/doc/user/helptag.html?tag=/), [`?`](https://neovim.io/doc/user/helptag.html?tag=?), etc.).
+Highlight lines with matches of current builtin search (like with [/](https://neovim.io/doc/user/helptag.html?tag=/), [?](https://neovim.io/doc/user/helptag.html?tag=?), etc.).
 Integration count reflects number of actual matches.
 
-It prompts integration highlighting update on every change of [`'hlsearch'`](https://neovim.io/doc/user/helptag.html?tag='hlsearch')
-(see [`OptionSet`](https://neovim.io/doc/user/helptag.html?tag=OptionSet)). Note that it is not happening for some keys:
+It prompts integration highlighting update on every change of ['hlsearch'](https://neovim.io/doc/user/helptag.html?tag='hlsearch')
+(see [OptionSet](https://neovim.io/doc/user/helptag.html?tag=OptionSet)). Note that it is not happening for some keys:
 
-- Toggle search highlight with [`CTRL-L-default`](https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default) or `\h` from [`mini.basics`](mini-basics.qmd#mini.basics).
+- Toggle search highlight with [CTRL-L-default](https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default) or `\h` from [mini.basics](mini-basics.qmd#mini.basics).
   Use custom mapping which changes mode. Like this:
 
   ```lua
@@ -846,7 +845,7 @@ It prompts integration highlighting update on every change of [`'hlsearch'`](htt
   ```
 
 
-- After starting search with [`n`](https://neovim.io/doc/user/helptag.html?tag=n), [`N`](https://neovim.io/doc/user/helptag.html?tag=N), [`star`](https://neovim.io/doc/user/helptag.html?tag=star), or [`#`](https://neovim.io/doc/user/helptag.html?tag=#).
+- After starting search with [n](https://neovim.io/doc/user/helptag.html?tag=n), [N](https://neovim.io/doc/user/helptag.html?tag=N), [star](https://neovim.io/doc/user/helptag.html?tag=star), or [#](https://neovim.io/doc/user/helptag.html?tag=#).
   To enable highlight update on this keys, make custom mappings. Like this:
 
   ```lua
@@ -864,20 +863,20 @@ It prompts integration highlighting update on every change of [`'hlsearch'`](htt
 <span class="help-syntax-special">{hl_groups}</span> `(table|nil)` Table defining highlight groups. Can have the
   following fields:
 
-  - <span class="help-syntax-keys">\<search\></span> - highlight group for search matches. Default: [`hl-Search`](https://neovim.io/doc/user/helptag.html?tag=hl-Search).
+  - <span class="help-syntax-keys">\<search\></span> - highlight group for search matches. Default: [hl-Search](https://neovim.io/doc/user/helptag.html?tag=hl-Search).
 
 ---
 
-### gen_integration.diagnostic() {#minimap.gen_integration.diagnostic}
+### gen_integration.diagnostic() {#minimap.gen_integration.diagnostic .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_integration.diagnostic`(<span class="help-syntax-special">{hl_groups}</span>)</p>
 Builtin diagnostic
 
 Highlight lines with matches of current diagnostic items. Items are computed
-with [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) for current (source) buffer.
+with [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) for current (source) buffer.
 
-It prompts integration highlighting update on every [`DiagnosticChanged`](https://neovim.io/doc/user/helptag.html?tag=DiagnosticChanged) event.
-Diagnostic items with higher severity (see [`vim.diagnostic.severity`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.severity)) have
+It prompts integration highlighting update on every [DiagnosticChanged](https://neovim.io/doc/user/helptag.html?tag=DiagnosticChanged) event.
+Diagnostic items with higher severity (see [vim.diagnostic.severity](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.severity)) have
 higher highlight priority (errors will be shown over all others, etc.).
 
 #### Parameters {#minimap.gen_integration.diagnostic-parameters}
@@ -889,7 +888,7 @@ higher highlight priority (errors will be shown over all others, etc.).
   Can have the following fields:
 
   - <span class="help-syntax-keys">\<error\></span> - highlight group for error items.
-    Default: [`hl-DiagnosticFloatingError`](https://neovim.io/doc/user/helptag.html?tag=hl-DiagnosticFloatingError).
+    Default: [hl-DiagnosticFloatingError](https://neovim.io/doc/user/helptag.html?tag=hl-DiagnosticFloatingError).
 
   - <span class="help-syntax-keys">\<warn\></span> - highlight group for warning items. Default: `nil` (not shown).
 
@@ -915,10 +914,10 @@ higher highlight priority (errors will be shown over all others, etc.).
 
 ---
 
-### gen_integration.diff() {#minimap.gen_integration.diff}
+### gen_integration.diff() {#minimap.gen_integration.diff .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_integration.diff`(<span class="help-syntax-special">{hl_groups}</span>)</p>
-General diff hunks from [`mini.diff`](mini-diff.qmd#mini.diff)
+General diff hunks from [mini.diff](mini-diff.qmd#mini.diff)
 
 Highlight lines which are part of current diff.
 Requires 'mini.diff' as dependency.
@@ -938,7 +937,7 @@ Requires 'mini.diff' as dependency.
 
 ---
 
-### gen_integration.gitsigns() {#minimap.gen_integration.gitsigns}
+### gen_integration.gitsigns() {#minimap.gen_integration.gitsigns .help-syntax-right-anchor}
 
 <p align="center">`MiniMap.gen_integration.gitsigns`(<span class="help-syntax-special">{hl_groups}</span>)</p>
 Hunks from 'lewis6991/gitsigns.nvim'

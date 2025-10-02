@@ -1,6 +1,5 @@
 ---
 title: "mini.icons documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,12 +10,12 @@ MIT License Copyright (c) 2024 Evgeni Chasnovski
 
 ---
 
-### Module {#miniicons}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
 
-- Provide icons with their highlighting via a single [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) for
+- Provide icons with their highlighting via a single [MiniIcons.get()](mini-icons.qmd#miniicons.get) for
   various categories: filetype, file/directory path, extension, operating
   system, LSP kind values. Icons and category defaults can be overridden.
 
@@ -31,22 +30,22 @@ Features:
 - Caching for maximum performance.
 
 
-- Integration with [`vim.filetype.add()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add\(\)) and [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)).
+- Integration with [vim.filetype.add()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add\(\)) and [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)).
 
 
 - Mocking methods of 'nvim-tree/nvim-web-devicons' for better integrations
-  with plugins outside 'mini.nvim'. See [`MiniIcons.mock_nvim_web_devicons()`](mini-icons.qmd#miniicons.mock_nvim_web_devicons).
+  with plugins outside 'mini.nvim'. See [MiniIcons.mock\_nvim\_web\_devicons()](mini-icons.qmd#miniicons.mock_nvim_web_devicons).
 
 
 - Tweaking built-in maps for "LSP kind" to include icons. In particular, this
-  makes [`mini.completion`](mini-completion.qmd#mini.completion) use icons in LSP step. See [`MiniIcons.tweak_lsp_kind()`](mini-icons.qmd#miniicons.tweak_lsp_kind).
+  makes [mini.completion](mini-completion.qmd#mini.completion) use icons in LSP step. See [MiniIcons.tweak\_lsp\_kind()](mini-icons.qmd#miniicons.tweak_lsp_kind).
 
 Notes:
 
 
 - It is not a goal to become a collection of icons for as much use cases as
   possible. There are specific criteria for icon data to be included as
-  built-in in each category (see [`MiniIcons.get()`](mini-icons.qmd#miniicons.get)).
+  built-in in each category (see [MiniIcons.get()](mini-icons.qmd#miniicons.get)).
   The main supported category is "filetype".
 
 Recommendations for plugin authors using 'mini.icons' as a dependency:
@@ -56,14 +55,14 @@ Recommendations for plugin authors using 'mini.icons' as a dependency:
   enabled 'mini.icons') and provide icons only if it is.
 
 
-- Use [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) function to get icon string and more data about it.
+- Use [MiniIcons.get()](mini-icons.qmd#miniicons.get) function to get icon string and more data about it.
 
 
 - For file icons prefer using full path instead of relative or only basename.
   It makes a difference if path matches pattern that uses parent directories.
-  The [`MiniIcons.config`](mini-icons.qmd#miniicons.config) has an example of that.
+  The [MiniIcons.config](mini-icons.qmd#miniicons.config) has an example of that.
 
-#### Dependencies {#miniicons-dependencies}
+#### Dependencies {#module-dependencies}
 
 
 Suggested dependencies:
@@ -88,16 +87,16 @@ If using terminal emulator and/or font with icon support is impossible, use
 `config.style = 'ascii'`. It will use a (less visually appealing) set of
 non-glyph icons.
 
-#### Setup {#miniicons-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.icons').setup({})` (replace `{}`
 with your `config` table). It will create global Lua table `MiniIcons` which you
 can use for scripting or manually (with `:lua MiniIcons.*`).
 
-See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure and default values.
+See [MiniIcons.config](mini-icons.qmd#miniicons.config) for `config` structure and default values.
 
-#### Comparisons {#miniicons-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -123,7 +122,7 @@ See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure
 
     - Using this module can occasionally result in small delays when used
       synchronously for many times to get icons for not typical files (like
-      in [`mini.files`](mini-files.qmd#mini.files)). This is due to using [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) fallback and
+      in [mini.files](mini-files.qmd#mini.files)). This is due to using [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) fallback and
       is present only during first call, as value is cached for later uses.
 
 
@@ -131,7 +130,7 @@ See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure
       glyphs is not possible), while 'nvim-web-devicons' does not.
 
 
-    - This module provides [`MiniIcons.mock_nvim_web_devicons()`](mini-icons.qmd#miniicons.mock_nvim_web_devicons) function which
+    - This module provides [MiniIcons.mock\_nvim\_web\_devicons()](mini-icons.qmd#miniicons.mock_nvim_web_devicons) function which
       when called imitates installed 'nvim-web-devicons' plugin to support
       other plugins which do not provide 'mini.icons' yet.
 
@@ -148,10 +147,10 @@ See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure
           return `nil`. This module's approach is more aligned with the most
           common use case of always showing an icon instead or near some data.
           There is a third returned value indicating if output is a result of
-          a fallback (see [`MiniIcons.get()`](mini-icons.qmd#miniicons.get)).
+          a fallback (see [MiniIcons.get()](mini-icons.qmd#miniicons.get)).
 
 
-        - This module uses [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) as a fallback for "file"
+        - This module uses [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) as a fallback for "file"
           and "extension" categories, while 'nvim-web-devicons' completely
           relies on the manually maintained tables of supported filenames
           and extensions.
@@ -168,7 +167,7 @@ See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure
         - This module works with full file/directory paths as input.
 
 
-    - Different sets of supported categories (see [`MiniIcons.config`](mini-icons.qmd#miniicons.config)):
+    - Different sets of supported categories (see [MiniIcons.config](mini-icons.qmd#miniicons.config)):
 
         - Both support "file", "extension", "filetype", "operating system".
           Albeit in different volumes: 'nvim-web-devicons' covers more
@@ -193,7 +192,7 @@ See [`MiniIcons.config`](mini-icons.qmd#miniicons.config) for `config` structure
       module intentionally does not (adding icons should be straightforward
       to manually implement while anything else is out of scope).
 
-#### Highlight groups {#miniicons-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 Only the following set of highlight groups is used as icon highlight.
@@ -218,11 +217,11 @@ It is recommended that they all only define colored foreground:
 
 - `MiniIconsYellow` - yellow.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
 ---
 
-### setup() {#miniicons.setup}
+### setup() {#miniicons.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -231,7 +230,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniIcons.config`](mini-icons.qmd#miniicons.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniIcons.config](mini-icons.qmd#miniicons.config).
 
 #### Usage {#miniicons.setup-usage}
 
@@ -245,7 +244,7 @@ Module setup
 
 ---
 
-### config {#miniicons.config}
+### config {#miniicons.config .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.config`</p>
 #### Defaults {#miniicons.config-defaults}
@@ -333,19 +332,19 @@ name entry. Example:
 
 Notes:
 
-- These customizations only take effect inside [`MiniIcons.setup()`](mini-icons.qmd#miniicons.setup) call.
+- These customizations only take effect inside [MiniIcons.setup()](mini-icons.qmd#miniicons.setup) call.
 | Changing interactively via `:lua MiniIcons.config.xxx = { | }` does not work |
   for performance reasons.
 
 - Use lower case names for categories which are matched ignoring case.
-  See [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) for more details.
+  See [MiniIcons.get()](mini-icons.qmd#miniicons.get) for more details.
 
 #### Using extension during file resolution {#miniicons.config-usingextensionduringfileresolution}
 
 
 `config.use_file_extension` is a function which can be used to control which
 extensions will be considered as a source of icon data during "file" category
-resolution (see [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) for more details).
+resolution (see [MiniIcons.get()](mini-icons.qmd#miniicons.get) for more details).
 Default: function which always returns `true` (i.e. consider all extensions).
 
 Will be called once for the biggest suffix after dot found in the file name.
@@ -355,7 +354,7 @@ be considered (i.e. call `MiniIcons.get('extension', ext)` and use its
 output if it is not default). Otherwise extension won't be even considered.
 
 The primary use case for this setting is to ensure that some extensions are
-ignored in order for resolution to reach [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) stage. This
+ignored in order for resolution to reach [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) stage. This
 is needed if there is a set up filetype detection for files with recognizable
 extension and conflicting icons (which you want to use). Note: if problematic
 filetype detection involves only known in advance file names, prefer using
@@ -378,7 +377,7 @@ Example:
 
 ---
 
-### get() {#miniicons.get}
+### get() {#miniicons.get .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.get`(<span class="help-syntax-special">{category}</span>, <span class="help-syntax-special">{name}</span>)</p>
 Get icon data
@@ -402,12 +401,12 @@ Notes:
 
 
 - Output is cached after the first call to increase performance of next calls
-  with same arguments. To reset cache, call [`MiniIcons.setup()`](mini-icons.qmd#miniicons.setup).
+  with same arguments. To reset cache, call [MiniIcons.setup()](mini-icons.qmd#miniicons.setup).
 
 
 - To increase first call performance for "extension" and "file" categories,
-  add frequently used values in [`MiniIcons.config`](mini-icons.qmd#miniicons.config). They will be preferred
-  over executing [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)).
+  add frequently used values in [MiniIcons.config](mini-icons.qmd#miniicons.config). They will be preferred
+  over executing [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)).
 
 
 - Matching icon name for "file" and "directory" categories is done exactly
@@ -469,7 +468,7 @@ Notes:
         Run `:=MiniIcons.list('extension')` to see them.
         Used also if present as suffix after the dot (widest one preferred).
 
-      - Filetype as a result of [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with placeholder
+      - Filetype as a result of [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with placeholder
         file name. Uses icon data from "filetype" category.
 
     Examples:
@@ -505,7 +504,7 @@ Notes:
 
           - Only recognizable extensions (i.e. not default fallback) are used.
 
-      - Filetype as a result of [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with full input (not
+      - Filetype as a result of [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with full input (not
         basename) as `filename`. Uses icon data from "filetype" category.
 
     Examples:
@@ -575,7 +574,7 @@ Notes:
       ```
 
 
-<span class="help-syntax-special">{name}</span> `(string)` Icon name within category. Use [`MiniIcons.list()`](mini-icons.qmd#miniicons.list) to get icon
+<span class="help-syntax-special">{name}</span> `(string)` Icon name within category. Use [MiniIcons.list()](mini-icons.qmd#miniicons.list) to get icon
   names which are explicitly supported for specific category.
 
 #### Return {#miniicons.get-return}
@@ -595,7 +594,7 @@ Notes:
 
 ---
 
-### list() {#miniicons.list}
+### list() {#miniicons.list .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.list`(<span class="help-syntax-special">{category}</span>)</p>
 List explicitly supported icon names
@@ -604,25 +603,25 @@ List explicitly supported icon names
 
 
 
-<span class="help-syntax-special">{category}</span> `(string)` Category name supported by [`MiniIcons.get()`](mini-icons.qmd#miniicons.get).
+<span class="help-syntax-special">{category}</span> `(string)` Category name supported by [MiniIcons.get()](mini-icons.qmd#miniicons.get).
 
 #### Return {#miniicons.list-return}
 
 
 `(table)` Array of icon names which are explicitly supported for category.
   Note, that `'file'` and `'extension'` categories support much more icon names
-  via their fallback to using [`vim.filetype.match()`](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with `'filetype'` category.
+  via their fallback to using [vim.filetype.match()](https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match\(\)) with `'filetype'` category.
 
 ---
 
-### mock_nvim_web_devicons() {#miniicons.mock_nvim_web_devicons}
+### mock_nvim_web_devicons() {#miniicons.mock_nvim_web_devicons .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.mock_nvim_web_devicons`()</p>
 Mock 'nvim-web-devicons' module
 
 Call this function to mock exported functions of 'nvim-tree/nvim-web-devicons'
 plugin. It will mock all its functions which return icon data by
-using [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) equivalent.
+using [MiniIcons.get()](mini-icons.qmd#miniicons.get) equivalent.
 
 This function is useful if any plugins relevant to you depend solely on
 'nvim-web-devicons' and have not yet added an integration with 'mini.icons'.
@@ -639,12 +638,12 @@ to be called after 'nvim-web-devicons' is set up).
 
 ---
 
-### tweak_lsp_kind() {#miniicons.tweak_lsp_kind}
+### tweak_lsp_kind() {#miniicons.tweak_lsp_kind .help-syntax-right-anchor}
 
 <p align="center">`MiniIcons.tweak_lsp_kind`(<span class="help-syntax-special">{mode}</span>)</p>
 Tweak built-in LSP kind names
 
-Update in place appropriate maps in [`vim.lsp.protocol`](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol) (`CompletionItemKind`
+Update in place appropriate maps in [vim.lsp.protocol](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol) (`CompletionItemKind`
 and `SymbolKind`) by using icon strings from "lsp" category. Only "numeric
 id to kind name" part is updated (to preserve data from original map).
 
@@ -658,10 +657,10 @@ Updating is done in one of these modes:
 
 Notes:
 
-- Makes [`mini.completion`](mini-completion.qmd#mini.completion) show icons, as it uses built-in protocol map.
+- Makes [mini.completion](mini-completion.qmd#mini.completion) show icons, as it uses built-in protocol map.
 
 - Results in loading whole `vim.lsp` module, so might add significant amount
-  of time on startup. Call it lazily. For example, with [`MiniDeps.later()`](mini-deps.qmd#minideps.later):
+  of time on startup. Call it lazily. For example, with [MiniDeps.later()](mini-deps.qmd#minideps.later):
 
     ```lua
     require('mini.icons').setup()

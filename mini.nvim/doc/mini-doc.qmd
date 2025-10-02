@@ -1,6 +1,5 @@
 ---
 title: "mini.doc documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,30 +10,30 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#minidoc}
+### Module {#module .help-syntax-right-anchor}
 
 Key design ideas:
 
 - Keep documentation next to code by writing EmmyLua-like annotation
   comments. They will be parsed as is, so formatting should follow built-in
-  guide in [`help-writing`](https://neovim.io/doc/user/helptag.html?tag=help-writing). However, custom hooks are allowed at many
+  guide in [help-writing](https://neovim.io/doc/user/helptag.html?tag=help-writing). However, custom hooks are allowed at many
   generation stages for more granular management of output help file.
 
 
 - Generation is done by processing a set of ordered files line by line.
   Each line can either be considered as a part of documentation block (if
   it matches certain configurable pattern) or not (considered to be an
-  "afterline" of documentation block). See [`MiniDoc.generate()`](mini-doc.qmd#minidoc.generate) for more
+  "afterline" of documentation block). See [MiniDoc.generate()](mini-doc.qmd#minidoc.generate) for more
   details.
 
 
 - Processing is done by using nested data structures (section, block, file,
-  doc) describing certain parts of help file. See [`MiniDoc-data-structures`](mini-doc.qmd#minidoc-data-structures)
+  doc) describing certain parts of help file. See [MiniDoc-data-structures](mini-doc.qmd#minidoc-data-structures)
   for more details.
 
 
 - Project specific script can be written as plain Lua file with
-  configuratble path. See [`MiniDoc.generate()`](mini-doc.qmd#minidoc.generate) for more details.
+  configuratble path. See [MiniDoc.generate()](mini-doc.qmd#minidoc.generate) for more details.
 
 What it doesn't do:
 
@@ -44,22 +43,22 @@ What it doesn't do:
   tasks (parsing annotations, formatting, auto-generating tags, etc.). This
   is done to manage complexity and be dependency free.
 
-#### Setup {#minidoc-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.doc').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniDoc`
 which you can use for scripting or manually (with `:lua MiniDoc.*`).
 
-See [`MiniDoc.config`](mini-doc.qmd#minidoc.config) for available config settings.
+See [MiniDoc.config](mini-doc.qmd#minidoc.config) for available config settings.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minidoc_config` which should have same structure as `MiniDoc.config`.
-See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Tips {#minidoc-tips}
+#### Tips {#module-tips}
 
 
 
@@ -68,7 +67,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
     - Set up appropriate 'comments' for `lua` file type to respect
       EmmyLua-like's `---` comment leader. Value `:---,:--` seems to work.
 
-    - Set up appropriate 'formatoptions' (see also [`fo-table`](https://neovim.io/doc/user/helptag.html?tag=fo-table)). Consider
+    - Set up appropriate 'formatoptions' (see also [fo-table](https://neovim.io/doc/user/helptag.html?tag=fo-table)). Consider
       adding `j`, `n`, `q`, and `r` flags.
 
     - Set up appropriate 'formatlistpat' to help auto-formatting lists (if
@@ -82,7 +81,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
   best practice when using this module is this whole plugin. Look at source
   code for the reference.
 
-#### Comparisons {#minidoc-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -98,7 +97,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 ---
 
-### Data structures {#minidoc-data-structures}
+### Data structures {#minidoc-data-structures .help-syntax-right-anchor}
 
 Data structures
 
@@ -187,15 +186,15 @@ Description of `info` fields per structure type:
 
 - `Doc`:
 
-    - `input` - array of input file paths (as in [`MiniDoc.generate()`](mini-doc.qmd#minidoc.generate)).
+    - `input` - array of input file paths (as in [MiniDoc.generate()](mini-doc.qmd#minidoc.generate)).
 
-    - `output` - output path (as in [`MiniDoc.generate()`](mini-doc.qmd#minidoc.generate)).
+    - `output` - output path (as in [MiniDoc.generate()](mini-doc.qmd#minidoc.generate)).
 
-    - `config` - configuration used (as in [`MiniDoc.generate()`](mini-doc.qmd#minidoc.generate)).
+    - `config` - configuration used (as in [MiniDoc.generate()](mini-doc.qmd#minidoc.generate)).
 
 ---
 
-### setup() {#minidoc.setup}
+### setup() {#minidoc.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -204,7 +203,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniDoc.config`](mini-doc.qmd#minidoc.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniDoc.config](mini-doc.qmd#minidoc.config).
 
 #### Usage {#minidoc.setup-usage}
 
@@ -218,7 +217,7 @@ Module setup
 
 ---
 
-### config {#minidoc.config}
+### config {#minidoc.config .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.config`</p>
 #### Defaults {#minidoc.config-defaults}
@@ -315,11 +314,11 @@ Module setup
 - Hooks are expected to be functions. Their default values might do many
   things which might change over time, so for more information please look
   at source code. Some more information can be found in
-  [`MiniDoc.default_hooks`](mini-doc.qmd#minidoc.default_hooks).
+  [MiniDoc.default\_hooks](mini-doc.qmd#minidoc.default_hooks).
 
 ---
 
-### current {#minidoc.current}
+### current {#minidoc.current .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.current`</p>
 Table with information about current state of auto-generation
@@ -339,7 +338,7 @@ At least these keys are supported:
 
 ---
 
-### default_hooks {#minidoc.default_hooks}
+### default_hooks {#minidoc.default_hooks .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.default_hooks`</p>
 Default hooks
@@ -389,7 +388,7 @@ Some more insight about their behavior:
 
 ---
 
-### generate() {#minidoc.generate}
+### generate() {#minidoc.generate .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.generate`(<span class="help-syntax-special">{input}</span>, <span class="help-syntax-special">{output}</span>, <span class="help-syntax-special">{config}</span>)</p>
 Generate help file
@@ -462,9 +461,9 @@ Generate help file
 
 
 If all arguments have default `nil` values, first there is an attempt to
-source project specific script. This is basically a `luafile
-<span class="help-syntax-keys">\<MiniDoc.config.script_path\></span>` with current Lua runtime while caching and
-restoring current `MiniDoc.config`. Its successful execution stops any
+source project specific script. This is basically a
+`luafile <MiniDoc.config.script_path>` with current Lua runtime while caching
+and restoring current `MiniDoc.config`. Its successful execution stops any
 further generation actions while error means proceeding generation as if no
 script was found.
 
@@ -485,7 +484,7 @@ or without arguments).
   `doc/<current_directory>.txt` (designed to be used for generating help
   file for plugin).
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Configuration overriding parts of [`MiniDoc.config`](mini-doc.qmd#minidoc.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Configuration overriding parts of [MiniDoc.config](mini-doc.qmd#minidoc.config).
 
 #### Return {#minidoc.generate-return}
 
@@ -496,7 +495,7 @@ or without arguments).
 
 ---
 
-### afterlines_to_code() {#minidoc.afterlines_to_code}
+### afterlines_to_code() {#minidoc.afterlines_to_code .help-syntax-right-anchor}
 
 <p align="center">`MiniDoc.afterlines_to_code`(<span class="help-syntax-special">{struct}</span>)</p>
 Convert afterlines to code

@@ -1,6 +1,5 @@
 ---
 title: "mini.test documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#minitest}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -20,11 +19,11 @@ Features:
 
 - Helper for creating child Neovim process which is designed to be used in
   tests (including taking and verifying screenshots). See
-  [`MiniTest.new_child_neovim()`](mini-test.qmd#minitest.new_child_neovim) and [`MiniTest.expect.reference_screenshot()`](mini-test.qmd#minitest.expect.reference_screenshot).
+  [MiniTest.new\_child\_neovim()](mini-test.qmd#minitest.new_child_neovim) and [MiniTest.expect.reference\_screenshot()](mini-test.qmd#minitest.expect.reference_screenshot).
 
 
 - Hierarchical organization of tests with custom hooks, parametrization,
-  and user data. See [`MiniTest.new_set()`](mini-test.qmd#minitest.new_set).
+  and user data. See [MiniTest.new\_set()](mini-test.qmd#minitest.new_set).
 
 
 - Emulation of [lunarmodules/busted](https://github.com/lunarmodules/busted)
@@ -32,22 +31,22 @@ Features:
 
 
 - Predefined small yet usable set of expectations (`assert`-like functions).
-  See [`MiniTest.expect`](mini-test.qmd#minitest.expect).
+  See [MiniTest.expect](mini-test.qmd#minitest.expect).
 
 
 - Customizable definition of what files should be tested.
 
 
 - Test case filtering. There are predefined wrappers for testing a file
-  ([`MiniTest.run_file()`](mini-test.qmd#minitest.run_file)) and case at a location like current cursor position
-  ([`MiniTest.run_at_location()`](mini-test.qmd#minitest.run_at_location)).
+  ([MiniTest.run\_file()](mini-test.qmd#minitest.run_file)) and case at a location like current cursor position
+  ([MiniTest.run\_at\_location()](mini-test.qmd#minitest.run_at_location)).
 
 
 - Customizable reporter of output results. There are two predefined ones:
 
-    - [`MiniTest.gen_reporter.buffer()`](mini-test.qmd#minitest.gen_reporter.buffer) for interactive usage.
+    - [MiniTest.gen\_reporter.buffer()](mini-test.qmd#minitest.gen_reporter.buffer) for interactive usage.
 
-    - [`MiniTest.gen_reporter.stdout()`](mini-test.qmd#minitest.gen_reporter.stdout) for headless Neovim.
+    - [MiniTest.gen\_reporter.stdout()](mini-test.qmd#minitest.gen_reporter.stdout) for headless Neovim.
 
 
 - Customizable project specific testing script.
@@ -67,7 +66,7 @@ What it doesn't support:
 - "Overly specific" expectations. Tests for (no) equality and (absence of)
   errors usually cover most of the needs. Adding new expectations is a
   subject to weighing its usefulness against additional implementation
-  complexity. Use [`MiniTest.new_expectation()`](mini-test.qmd#minitest.new_expectation) to create custom ones.
+  complexity. Use [MiniTest.new\_expectation()](mini-test.qmd#minitest.new_expectation) to create custom ones.
 
 For more information see:
 
@@ -77,7 +76,7 @@ For more information see:
 - Code of this plugin's tests. Consider it to be an example of intended
   way to use 'mini.test' for test organization and creation.
 
-#### Workflow {#minitest-workflow}
+#### Workflow {#module-workflow}
 
 
 
@@ -86,36 +85,36 @@ For more information see:
 
 
 - Write test actions as callable entries of test set. Use child process
-  inside test actions (see [`MiniTest.new_child_neovim()`](mini-test.qmd#minitest.new_child_neovim)) and builtin
-  expectations (see [`MiniTest.expect`](mini-test.qmd#minitest.expect)).
+  inside test actions (see [MiniTest.new\_child\_neovim()](mini-test.qmd#minitest.new_child_neovim)) and builtin
+  expectations (see [MiniTest.expect](mini-test.qmd#minitest.expect)).
 
 
 - Run tests. This does two steps:
 
     - Collect. This creates single hierarchical test set, flattens into
-      array of test cases (see [`MiniTest-test-case`](mini-test.qmd#minitest-test-case)) while expanding with
+      array of test cases (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)) while expanding with
       parametrization, and possibly filters them.
 
     - Execute. This safely calls hooks and main test actions in specified
       order while allowing reporting progress in asynchronous fashion.
       Detected errors means test case fail; otherwise - pass.
 
-#### Setup {#minitest-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.test').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniTest`
 which you can use for scripting or manually (with `:lua MiniTest.*`).
 
-See [`MiniTest.config`](mini-test.qmd#minitest.config) for available config settings.
+See [MiniTest.config](mini-test.qmd#minitest.config) for available config settings.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minitest_config` which should have same structure as `MiniTest.config`.
-See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Comparisons {#minitest-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -125,12 +124,12 @@ To stop module from showing non-error feedback, set `config.silent = true`.
     - Executes each file in separate headless Neovim process with customizable
       'init.vim' file. While 'mini.test' executes everything in current
       Neovim process encouraging writing tests with help of manually
-      managed child Neovim process (see [`MiniTest.new_child_neovim()`](mini-test.qmd#minitest.new_child_neovim)).
+      managed child Neovim process (see [MiniTest.new\_child\_neovim()](mini-test.qmd#minitest.new_child_neovim)).
 
     - Tests are expected to be written with embedded simplified versions of
       'lunarmodules/busted' and 'lunarmodules/luassert'. While 'mini.test'
-      uses concepts of test set (see [`MiniTest.new_set()`](mini-test.qmd#minitest.new_set)) and test case
-      (see [`MiniTest-test-case`](mini-test.qmd#minitest-test-case)). It also can emulate bigger part of
+      uses concepts of test set (see [MiniTest.new\_set()](mini-test.qmd#minitest.new_set)) and test case
+      (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)). It also can emulate bigger part of
       "busted" framework.
 
     - Has single way of reporting progress (shows result after every case
@@ -158,16 +157,16 @@ Some hints for converting from 'plenary.nvim' tests to 'mini.test':
 - Rename files from "*_spec.lua" to "test_*.lua" and put them in
   "tests" directory.
 
-- Replace `assert` calls with 'mini.test' expectations. See [`MiniTest.expect`](mini-test.qmd#minitest.expect).
+- Replace `assert` calls with 'mini.test' expectations. See [MiniTest.expect](mini-test.qmd#minitest.expect).
 
 - Create main test set `T = MiniTest.new_set()` and eventually return it.
 
-- Make new sets ([`MiniTest.new_set()`](mini-test.qmd#minitest.new_set)) from `describe` blocks. Convert
+- Make new sets ([MiniTest.new\_set()](mini-test.qmd#minitest.new_set)) from `describe` blocks. Convert
   `before_each()` and `after_each` to `pre_case` and `post_case` hooks.
 
 - Make test cases from `it` blocks.
 
-#### Highlight groups {#minitest-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -179,20 +178,20 @@ Some hints for converting from 'plenary.nvim' tests to 'mini.test':
 - `MiniTestPass` - highlighting of passed cases. By default it is a bold
   text with `vim.g.terminal_color_2` color (green).
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minitest-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable, set `vim.g.minitest_disable` (globally) or `vim.b.minitest_disable`
 (for a buffer) to `true`. Considering high number of different scenarios
 and customization intentions, writing exact rules for disabling module's
-functionality is left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
+functionality is left to user. See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
 recipes.
 
 ---
 
-### setup() {#minitest.setup}
+### setup() {#minitest.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -201,7 +200,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniTest.config`](mini-test.qmd#minitest.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniTest.config](mini-test.qmd#minitest.config).
 
 #### Usage {#minitest.setup-usage}
 
@@ -215,7 +214,7 @@ Module setup
 
 ---
 
-### config {#minitest.config}
+### config {#minitest.config .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.config`</p>
 #### Defaults {#minitest.config-defaults}
@@ -260,12 +259,12 @@ Module setup
 
 ---
 
-### current {#minitest.current}
+### current {#minitest.current .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.current`</p>
 Table with information about current state of test execution
 
-Use it to examine result of [`MiniTest.execute()`](mini-test.qmd#minitest.execute). It is reset at the
+Use it to examine result of [MiniTest.execute()](mini-test.qmd#minitest.execute). It is reset at the
 beginning of every call.
 
 At least these keys are supported:
@@ -273,19 +272,19 @@ At least these keys are supported:
 - <span class="help-syntax-keys">\<all_cases\></span> - array with all cases being currently executed. Basically,
   an input of `MiniTest.execute()`.
 
-- <span class="help-syntax-keys">\<case\></span> - currently executed test case. See [`MiniTest-test-case`](mini-test.qmd#minitest-test-case). Use it
+- <span class="help-syntax-keys">\<case\></span> - currently executed test case. See [MiniTest-test-case](mini-test.qmd#minitest-test-case). Use it
   to customize execution output (like adding custom notes, etc).
 
 ---
 
-### new_set() {#minitest.new_set}
+### new_set() {#minitest.new_set .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.new_set`(<span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{tbl}</span>)</p>
 Create test set
 
 Test set is one of the two fundamental data structures. It is a table that
 defines hierarchical test organization as opposed to sequential
-organization with [`MiniTest-test-case`](mini-test.qmd#minitest-test-case).
+organization with [MiniTest-test-case](mini-test.qmd#minitest-test-case).
 
 All its elements are one of three categories:
 
@@ -295,7 +294,7 @@ All its elements are one of three categories:
   further). If it throws error, test has failed.
 
 - A test set (output of this function) defines nested structure. Its
-  options during collection (see [`MiniTest.collect()`](mini-test.qmd#minitest.collect)) will be extended
+  options during collection (see [MiniTest.collect()](mini-test.qmd#minitest.collect)) will be extended
   with options of this (parent) test set.
 
 - Any other elements are considered helpers and don't directly participate
@@ -384,13 +383,13 @@ Notes:
 
 ---
 
-### Test case {#minitest-test-case}
+### Test case {#minitest-test-case .help-syntax-right-anchor}
 
 Test case
 
 An item of sequential test organization, as opposed to hierarchical with
-test set (see [`MiniTest.new_set()`](mini-test.qmd#minitest.new_set)). It is created as result of test
-collection with [`MiniTest.collect()`](mini-test.qmd#minitest.collect) to represent all necessary information
+test set (see [MiniTest.new\_set()](mini-test.qmd#minitest.new_set)). It is created as result of test
+collection with [MiniTest.collect()](mini-test.qmd#minitest.collect) to represent all necessary information
 of test execution.
 
 Execution of test case goes by the following rules:
@@ -459,7 +458,7 @@ Execution of test case goes by the following rules:
 
 ---
 
-### skip() {#minitest.skip}
+### skip() {#minitest.skip .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.skip`(<span class="help-syntax-special">{msg}</span>)</p>
 Skip the rest of current case
@@ -481,12 +480,12 @@ Notes:
 
 ---
 
-### add_note() {#minitest.add_note}
+### add_note() {#minitest.add_note .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.add_note`(<span class="help-syntax-special">{msg}</span>)</p>
 Add note to currently executed test case
 
-Appends `msg` to `exec.notes` field of `case` in [`MiniTest.current`](mini-test.qmd#minitest.current).
+Appends `msg` to `exec.notes` field of `case` in [MiniTest.current](mini-test.qmd#minitest.current).
 
 #### Parameters {#minitest.add_note-parameters}
 
@@ -496,7 +495,7 @@ Appends `msg` to `exec.notes` field of `case` in [`MiniTest.current`](mini-test.
 
 ---
 
-### finally() {#minitest.finally}
+### finally() {#minitest.finally .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.finally`(<span class="help-syntax-special">{f}</span>)</p>
 Register callable execution after current callable
@@ -512,7 +511,7 @@ Can be used several times inside hooks and main test callable of test case.
 
 ---
 
-### run() {#minitest.run}
+### run() {#minitest.run .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.run`(<span class="help-syntax-special">{opts}</span>)</p>
 Run tests
@@ -521,25 +520,25 @@ Run tests
 - Try executing project specific script at path `opts.script_path`. If
   successful (no errors), then stop.
 
-- Collect cases with [`MiniTest.collect()`](mini-test.qmd#minitest.collect) and `opts.collect`.
+- Collect cases with [MiniTest.collect()](mini-test.qmd#minitest.collect) and `opts.collect`.
 
-- Execute collected cases with [`MiniTest.execute()`](mini-test.qmd#minitest.execute) and `opts.execute`.
+- Execute collected cases with [MiniTest.execute()](mini-test.qmd#minitest.execute) and `opts.execute`.
 
 #### Parameters {#minitest.run-parameters}
 
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options with structure similar to [`MiniTest.config`](mini-test.qmd#minitest.config).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options with structure similar to [MiniTest.config](mini-test.qmd#minitest.config).
   Absent values are inferred from there.
 
 ---
 
-### run_file() {#minitest.run_file}
+### run_file() {#minitest.run_file .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.run_file`(<span class="help-syntax-special">{file}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Run specific test file
 
-Basically a [`MiniTest.run()`](mini-test.qmd#minitest.run) wrapper with custom `collect.find_files` option.
+Basically a [MiniTest.run()](mini-test.qmd#minitest.run) wrapper with custom `collect.find_files` option.
 
 #### Parameters {#minitest.run_file-parameters}
 
@@ -547,11 +546,11 @@ Basically a [`MiniTest.run()`](mini-test.qmd#minitest.run) wrapper with custom `
 
 <span class="help-syntax-special">{file}</span> `(string|nil)` Path to test file. By default a path of current buffer.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options for [`MiniTest.run()`](mini-test.qmd#minitest.run).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options for [MiniTest.run()](mini-test.qmd#minitest.run).
 
 ---
 
-### run_at_location() {#minitest.run_at_location}
+### run_at_location() {#minitest.run_at_location .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.run_at_location`(<span class="help-syntax-special">{location}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Run case(s) covering location
@@ -560,9 +559,9 @@ Try filtering case(s) covering location, meaning that definition of its
 main `test` action (as taken from builtin `debug.getinfo`) is located in
 specified file and covers specified line. Note that it can result in
 multiple cases if they come from parametrized test set (see `parametrize`
-option in [`MiniTest.new_set()`](mini-test.qmd#minitest.new_set)).
+option in [MiniTest.new\_set()](mini-test.qmd#minitest.new_set)).
 
-Basically a [`MiniTest.run()`](mini-test.qmd#minitest.run) wrapper with custom `collect.find_files` option.
+Basically a [MiniTest.run()](mini-test.qmd#minitest.run) wrapper with custom `collect.find_files` option.
 
 #### Parameters {#minitest.run_at_location-parameters}
 
@@ -573,7 +572,7 @@ Basically a [`MiniTest.run()`](mini-test.qmd#minitest.run) wrapper with custom `
 
 ---
 
-### collect() {#minitest.collect}
+### collect() {#minitest.collect .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.collect`(<span class="help-syntax-special">{opts}</span>)</p>
 Collect test cases
@@ -585,13 +584,13 @@ Overview of collection process:
   test files to create hierarchical structure of test cases.
 
 - Source each file from array output of `opts.find_files`. It should output
-  a test set (see [`MiniTest.new_set()`](mini-test.qmd#minitest.new_set)) or `nil` (if "busted" style is used;
+  a test set (see [MiniTest.new\_set()](mini-test.qmd#minitest.new_set)) or `nil` (if "busted" style is used;
   test set is created implicitly).
 
 - Combine all test sets into single set with fields equal to its file path.
 
 - Convert from hierarchical test configuration to sequential: from single
-  test set to array of test cases (see [`MiniTest-test-case`](mini-test.qmd#minitest-test-case)). Conversion is
+  test set to array of test cases (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)). Conversion is
   done in the form of "for every table element do: for every `parametrize`
   element do: ...". Details:
 
@@ -611,7 +610,7 @@ Overview of collection process:
           will be inserted closer to all child cases than hooks from parent
           test sets: `pre_case` at end, `post_case` at start.
 
-        - `data` is extended via [`vim.tbl_deep_extend()`](https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend\(\)).
+        - `data` is extended via [vim.tbl\_deep\_extend()](https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend\(\)).
 
     - Any other element is not processed.
 
@@ -628,38 +627,38 @@ Overview of collection process:
 
   - <span class="help-syntax-keys">\<emulate_busted\></span> - whether to emulate 'lunarmodules/busted' interface.
     It emulates these global functions: `describe`, `it`, `setup`, `teardown`,
-<p align="center">`before_each`, `after_each`. Use [`MiniTest.skip()`](mini-test.qmd#minitest.skip) instead of `pending()`</p>
-    and [`MiniTest.finally()`](mini-test.qmd#minitest.finally) instead of `finally`.
+<p align="center">`before_each`, `after_each`. Use [MiniTest.skip()](mini-test.qmd#minitest.skip) instead of `pending()`</p>
+    and [MiniTest.finally()](mini-test.qmd#minitest.finally) instead of `finally`.
 
   - <span class="help-syntax-keys">\<find_files\></span> - function which when called without arguments returns
     array with file paths. Each file should be a Lua file returning single
     test set or `nil`.
 
   - <span class="help-syntax-keys">\<filter_cases\></span> - function which when called with single test case
-    (see [`MiniTest-test-case`](mini-test.qmd#minitest-test-case)) returns `false` if this case should be filtered
+    (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)) returns `false` if this case should be filtered
     out; `true` otherwise.
 
 #### Return {#minitest.collect-return}
 
 
-`(table)` Array of test cases ready to be used by [`MiniTest.execute()`](mini-test.qmd#minitest.execute).
+`(table)` Array of test cases ready to be used by [MiniTest.execute()](mini-test.qmd#minitest.execute).
 
 ---
 
-### execute() {#minitest.execute}
+### execute() {#minitest.execute .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.execute`(<span class="help-syntax-special">{cases}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Execute array of test cases
 
 Overview of execution process:
 
-- Reset `all_cases` in [`MiniTest.current`](mini-test.qmd#minitest.current) with `cases` input.
+- Reset `all_cases` in [MiniTest.current](mini-test.qmd#minitest.current) with `cases` input.
 
 - Call `reporter.start(cases)` (if present).
 
 - Execute each case in natural array order (aligned with their integer
   keys). Set `MiniTest.current.case` to currently executed case. Detailed
-  test case execution is described in [`MiniTest-test-case`](mini-test.qmd#minitest-test-case). After any state
+  test case execution is described in [MiniTest-test-case](mini-test.qmd#minitest-test-case). After any state
   change (including case retry attempts), call `reporter.update(case_num)`
   (if present), where `case_num` is an integer key of current test case.
 
@@ -671,27 +670,27 @@ Notes:
   making meaningful progress report during execution.
 
 - This function doesn't return anything. Instead, it updates `cases` in
-  place with proper `exec` field. Use `all_cases` at [`MiniTest.current`](mini-test.qmd#minitest.current) to
+  place with proper `exec` field. Use `all_cases` at [MiniTest.current](mini-test.qmd#minitest.current) to
   look at execution result.
 
 #### Parameters {#minitest.execute-parameters}
 
 
 
-<span class="help-syntax-special">{cases}</span> `(table)` Array of test cases (see [`MiniTest-test-case`](mini-test.qmd#minitest-test-case)).
+<span class="help-syntax-special">{cases}</span> `(table)` Array of test cases (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options controlling case collection. Possible fields:
 
   - <span class="help-syntax-keys">\<reporter\></span> - table with possible callable fields `start`, `update`,
-    `finish`. Default: [`MiniTest.gen_reporter.buffer()`](mini-test.qmd#minitest.gen_reporter.buffer) in interactive
-    usage and [`MiniTest.gen_reporter.stdout()`](mini-test.qmd#minitest.gen_reporter.stdout) in headless usage.
+    `finish`. Default: [MiniTest.gen\_reporter.buffer()](mini-test.qmd#minitest.gen_reporter.buffer) in interactive
+    usage and [MiniTest.gen\_reporter.stdout()](mini-test.qmd#minitest.gen_reporter.stdout) in headless usage.
 
-  - <span class="help-syntax-keys">\<stop_on_error\></span> - whether to stop execution (see [`MiniTest.stop()`](mini-test.qmd#minitest.stop))
+  - <span class="help-syntax-keys">\<stop_on_error\></span> - whether to stop execution (see [MiniTest.stop()](mini-test.qmd#minitest.stop))
     after first error. Default: `false`.
 
 ---
 
-### stop() {#minitest.stop}
+### stop() {#minitest.stop .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.stop`(<span class="help-syntax-special">{opts}</span>)</p>
 Stop test execution
@@ -703,11 +702,11 @@ Stop test execution
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options with fields:
 
   - <span class="help-syntax-keys">\<close_all_child_neovim\></span> - whether to close all child neovim processes
-    created with [`MiniTest.new_child_neovim()`](mini-test.qmd#minitest.new_child_neovim). Default: `true`.
+    created with [MiniTest.new\_child\_neovim()](mini-test.qmd#minitest.new_child_neovim). Default: `true`.
 
 ---
 
-### is_executing() {#minitest.is_executing}
+### is_executing() {#minitest.is_executing .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.is_executing`()</p>
 Check if tests are being executed
@@ -719,7 +718,7 @@ Check if tests are being executed
 
 ---
 
-### expect {#minitest.expect}
+### expect {#minitest.expect .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect`</p>
 Table with expectation functions
@@ -744,12 +743,12 @@ Mostly designed to be used within 'mini.test' framework.
 
 ---
 
-### expect.equality() {#minitest.expect.equality}
+### expect.equality() {#minitest.expect.equality .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect.equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)</p>
 Expect equality of two objects
 
-Equality is tested via [`vim.deep_equal()`](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
+Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
 
 #### Parameters {#minitest.expect.equality-parameters}
 
@@ -761,12 +760,12 @@ Equality is tested via [`vim.deep_equal()`](https://neovim.io/doc/user/helptag.h
 
 ---
 
-### expect.no_equality() {#minitest.expect.no_equality}
+### expect.no_equality() {#minitest.expect.no_equality .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect.no_equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)</p>
 Expect no equality of two objects
 
-Equality is tested via [`vim.deep_equal()`](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
+Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
 
 #### Parameters {#minitest.expect.no_equality-parameters}
 
@@ -778,7 +777,7 @@ Equality is tested via [`vim.deep_equal()`](https://neovim.io/doc/user/helptag.h
 
 ---
 
-### expect.error() {#minitest.expect.error}
+### expect.error() {#minitest.expect.error .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect.error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{...}</span>)</p>
 Expect function call to raise error
@@ -796,7 +795,7 @@ Expect function call to raise error
 
 ---
 
-### expect.no_error() {#minitest.expect.no_error}
+### expect.no_error() {#minitest.expect.no_error .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect.no_error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{...}</span>)</p>
 Expect function call to not raise error
@@ -811,7 +810,7 @@ Expect function call to not raise error
 
 ---
 
-### expect.reference_screenshot() {#minitest.expect.reference_screenshot}
+### expect.reference_screenshot() {#minitest.expect.reference_screenshot .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.expect.reference_screenshot`(<span class="help-syntax-special">{screenshot}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Expect equality to reference screenshot
@@ -821,7 +820,7 @@ Expect equality to reference screenshot
 
 
 <span class="help-syntax-special">{screenshot}</span> `(table|nil)` Array with screenshot information. Usually an output
-  of `child.get_screenshot()` (see [`MiniTest-child-neovim-get_screenshot()`](mini-test.qmd#minitest-child-neovim-get_screenshot)).
+  of `child.get_screenshot()` (see [MiniTest-child-neovim-get\_screenshot()](mini-test.qmd#minitest-child-neovim-get_screenshot)).
   If `nil`, expectation passed.
 
 <span class="help-syntax-special">{path}</span> `(string|nil)` Path to reference screenshot. If `nil`, constructed
@@ -847,13 +846,13 @@ Expect equality to reference screenshot
 
 ---
 
-### new_expectation() {#minitest.new_expectation}
+### new_expectation() {#minitest.new_expectation .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.new_expectation`(<span class="help-syntax-special">{subject}</span>, <span class="help-syntax-special">{predicate}</span>, <span class="help-syntax-special">{fail_context}</span>)</p>
 Create new expectation function
 
 Helper for writing custom functions with behavior similar to other methods
-of [`MiniTest.expect`](mini-test.qmd#minitest.expect).
+of [MiniTest.expect](mini-test.qmd#minitest.expect).
 
 #### Parameters {#minitest.new_expectation-parameters}
 
@@ -887,7 +886,7 @@ of [`MiniTest.expect`](mini-test.qmd#minitest.expect).
 
 ---
 
-### gen_reporter {#minitest.gen_reporter}
+### gen_reporter {#minitest.gen_reporter .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.gen_reporter`</p>
 Table with pre-configured report generators
@@ -897,7 +896,7 @@ Each element is a function which returns reporter - table with callable
 
 ---
 
-### gen_reporter.buffer() {#minitest.gen_reporter.buffer}
+### gen_reporter.buffer() {#minitest.gen_reporter.buffer .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.gen_reporter.buffer`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate buffer reporter
@@ -907,8 +906,8 @@ with dedicated non-terminal buffer and updates it with throttled redraws.
 
 Opened buffer has the following helpful Normal mode mappings:
 
-- `<Esc>` - stop test execution if executing (see [`MiniTest.is_executing()`](mini-test.qmd#minitest.is_executing)
-  and [`MiniTest.stop()`](mini-test.qmd#minitest.stop)). Close window otherwise.
+- `<Esc>` - stop test execution if executing (see [MiniTest.is\_executing()](mini-test.qmd#minitest.is_executing)
+  and [MiniTest.stop()](mini-test.qmd#minitest.stop)). Close window otherwise.
 
 - `q` - same as `<Esc>` for convenience and compatibility.
 
@@ -954,12 +953,12 @@ General idea:
         (current window is used if output is `nil`). Use this to open in
         "normal" window (like `function() vim.cmd('vsplit') end`).
 
-      - Table. Used as `config` argument in [`nvim_open_win()`](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)).
+      - Table. Used as `config` argument in [nvim\_open\_win()](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)).
     Default: table for centered floating window.
 
 ---
 
-### gen_reporter.stdout() {#minitest.gen_reporter.stdout}
+### gen_reporter.stdout() {#minitest.gen_reporter.stdout .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.gen_reporter.stdout`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate stdout reporter
@@ -968,7 +967,7 @@ This is a default choice for headless usage. Writes to `stdout`. Uses
 coloring ANSI escape sequences to make pretty and informative output
 (should work in most modern terminals and continuous integration providers).
 
-It has same general idea as [`MiniTest.gen_reporter.buffer()`](mini-test.qmd#minitest.gen_reporter.buffer) with slightly
+It has same general idea as [MiniTest.gen\_reporter.buffer()](mini-test.qmd#minitest.gen_reporter.buffer) with slightly
 less output (it doesn't overwrite previous text) to overcome typical
 terminal limitations.
 
@@ -987,7 +986,7 @@ terminal limitations.
 
 ---
 
-### new_child_neovim() {#minitest.new_child_neovim}
+### new_child_neovim() {#minitest.new_child_neovim .help-syntax-right-anchor}
 
 <p align="center">`MiniTest.new_child_neovim`()</p>
 Create child Neovim process
@@ -995,14 +994,14 @@ Create child Neovim process
 This creates an object designed to be a fundamental piece of 'mini.test'
 methodology. It can start/stop/restart a separate (child) Neovim process
 (headless, but fully functioning) together with convenience helpers to
-interact with it through [`RPC`](https://neovim.io/doc/user/helptag.html?tag=RPC) messages.
+interact with it through [RPC](https://neovim.io/doc/user/helptag.html?tag=RPC) messages.
 
-For more information see [`MiniTest-child-neovim`](mini-test.qmd#minitest-child-neovim).
+For more information see [MiniTest-child-neovim](mini-test.qmd#minitest-child-neovim).
 
 #### Return {#minitest.new_child_neovim-return}
 
 
-`(MiniTest.child)` Object of [`MiniTest-child-neovim`](mini-test.qmd#minitest-child-neovim).
+`(MiniTest.child)` Object of [MiniTest-child-neovim](mini-test.qmd#minitest-child-neovim).
 
 #### Usage {#minitest.new_child_neovim-usage}
 
@@ -1033,13 +1032,13 @@ For more information see [`MiniTest-child-neovim`](mini-test.qmd#minitest-child-
 
 ---
 
-### Child neovim {#minitest-child-neovim}
+### Child neovim {#minitest-child-neovim .help-syntax-right-anchor}
 
 Child class
 
 It offers a great set of tools to write reliable and reproducible tests by
 allowing to use fresh process in any test action. Interaction with it is done
-through [`RPC`](https://neovim.io/doc/user/helptag.html?tag=RPC) protocol.
+through [RPC](https://neovim.io/doc/user/helptag.html?tag=RPC) protocol.
 
 Although quite flexible, at the moment it has certain limitations:
 
@@ -1051,7 +1050,7 @@ Although quite flexible, at the moment it has certain limitations:
   stops executing without any output. Most of the time it is because Neovim
   process is "blocked", i.e. it waits for user input and won't return from
   other call (like `child.api.nvim_exec_lua()`). Common causes are active
-  [`hit-enter-prompt`](https://neovim.io/doc/user/helptag.html?tag=hit-enter-prompt) (increase prompt height to a bigger value) or
+  [hit-enter-prompt](https://neovim.io/doc/user/helptag.html?tag=hit-enter-prompt) (increase prompt height to a bigger value) or
   Operator-pending mode (exit it). To mitigate this experience, most helpers
   will throw an error if its immediate execution will lead to hanging state.
   Also in case of hanging state try `child.api_notify` instead of `child.api`.
@@ -1071,8 +1070,8 @@ Notes:
   They still have same limitations listed above, so are not perfect. In
   case of a doubt, use `child.lua()`.
 
-- Almost all methods use [`vim.rpcrequest()`](https://neovim.io/doc/user/helptag.html?tag=vim.rpcrequest\(\)) (i.e. wait for call to finish and
-  then return value). See for `*_notify` variant to use [`vim.rpcnotify()`](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)).
+- Almost all methods use [vim.rpcrequest()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcrequest\(\)) (i.e. wait for call to finish and
+  then return value). See for `*_notify` variant to use [vim.rpcnotify()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)).
 
 - All fields and methods should be called with `.`, not `:`.
 
@@ -1086,7 +1085,7 @@ Notes:
 
 
 
-<span class="help-syntax-special">{start}</span> `(function)` Start child process. See [`MiniTest-child-neovim-start()`](mini-test.qmd#minitest-child-neovim-start).
+<span class="help-syntax-special">{start}</span> `(function)` Start child process. See [MiniTest-child-neovim-start()](mini-test.qmd#minitest-child-neovim-start).
 
 <span class="help-syntax-special">{stop}</span> `(function)` Stop current child process.
 
@@ -1096,22 +1095,22 @@ Notes:
 
 
 <span class="help-syntax-special">{type_keys}</span> `(function)` Emulate typing keys.
-  See [`MiniTest-child-neovim-type_keys()`](mini-test.qmd#minitest-child-neovim-type_keys). Doesn't check for blocked state.
+  See [MiniTest-child-neovim-type\_keys()](mini-test.qmd#minitest-child-neovim-type_keys). Doesn't check for blocked state.
 
 
 <span class="help-syntax-special">{cmd}</span> `(function)` Execute Vimscript code from a string.
-  A wrapper for [`nvim_exec()`](https://neovim.io/doc/user/helptag.html?tag=nvim_exec\(\)) without capturing output.
+  A wrapper for [nvim\_exec()](https://neovim.io/doc/user/helptag.html?tag=nvim_exec\(\)) without capturing output.
 
 <span class="help-syntax-special">{cmd_capture}</span> `(function)` Execute Vimscript code from a string and
-  capture output. A wrapper for [`nvim_exec()`](https://neovim.io/doc/user/helptag.html?tag=nvim_exec\(\)) with capturing output.
+  capture output. A wrapper for [nvim\_exec()](https://neovim.io/doc/user/helptag.html?tag=nvim_exec\(\)) with capturing output.
 
 
-<span class="help-syntax-special">{lua}</span> `(function)` Execute Lua code. A wrapper for [`nvim_exec_lua()`](https://neovim.io/doc/user/helptag.html?tag=nvim_exec_lua\(\)).
+<span class="help-syntax-special">{lua}</span> `(function)` Execute Lua code. A wrapper for [nvim\_exec\_lua()](https://neovim.io/doc/user/helptag.html?tag=nvim_exec_lua\(\)).
 
 <span class="help-syntax-special">{lua_notify}</span> `(function)` Execute Lua code without waiting for output.
 
 <span class="help-syntax-special">{lua_get}</span> `(function)` Execute Lua code and return result. A wrapper
-  for [`nvim_exec_lua()`](https://neovim.io/doc/user/helptag.html?tag=nvim_exec_lua\(\)) but prepends string code with `return`.
+  for [nvim\_exec\_lua()](https://neovim.io/doc/user/helptag.html?tag=nvim_exec_lua\(\)) but prepends string code with `return`.
 
 <span class="help-syntax-special">{lua_func}</span> `(function)` Execute Lua function and return it's result.
   Function will be called with all extra parameters (second one and later).
@@ -1135,60 +1134,60 @@ Notes:
 
 <span class="help-syntax-special">{api}</span> `(table)` Redirection table for `vim.api`. Doesn't check for blocked state.
 
-<span class="help-syntax-special">{api_notify}</span> `(table)` Same as `api`, but uses [`vim.rpcnotify()`](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)).
+<span class="help-syntax-special">{api_notify}</span> `(table)` Same as `api`, but uses [vim.rpcnotify()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)).
 
 
-<span class="help-syntax-special">{diagnostic}</span> `(table)` Redirection table for [`vim.diagnostic`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic).
+<span class="help-syntax-special">{diagnostic}</span> `(table)` Redirection table for [vim.diagnostic](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic).
 
-<span class="help-syntax-special">{fn}</span> `(table)` Redirection table for [`vim.fn`](https://neovim.io/doc/user/helptag.html?tag=vim.fn).
+<span class="help-syntax-special">{fn}</span> `(table)` Redirection table for [vim.fn](https://neovim.io/doc/user/helptag.html?tag=vim.fn).
 
-<span class="help-syntax-special">{highlight}</span> `(table)` Redirection table for [`vim.highlight`](https://neovim.io/doc/user/helptag.html?tag=vim.highlight).
+<span class="help-syntax-special">{highlight}</span> `(table)` Redirection table for [vim.highlight](https://neovim.io/doc/user/helptag.html?tag=vim.highlight).
 
-<span class="help-syntax-special">{hl}</span> `(table)` Redirection table for [`vim.hl`](https://neovim.io/doc/user/helptag.html?tag=vim.hl).
+<span class="help-syntax-special">{hl}</span> `(table)` Redirection table for [vim.hl](https://neovim.io/doc/user/helptag.html?tag=vim.hl).
 
 <span class="help-syntax-special">{json}</span> `(table)` Redirection table for `vim.json`.
 
-<span class="help-syntax-special">{loop}</span> `(table)` Redirection table for [`vim.loop`](https://neovim.io/doc/user/helptag.html?tag=vim.loop).
+<span class="help-syntax-special">{loop}</span> `(table)` Redirection table for [vim.loop](https://neovim.io/doc/user/helptag.html?tag=vim.loop).
 
-<span class="help-syntax-special">{lsp}</span> `(table)` Redirection table for `vim.lsp` ([`lsp-core`](https://neovim.io/doc/user/helptag.html?tag=lsp-core)).
+<span class="help-syntax-special">{lsp}</span> `(table)` Redirection table for `vim.lsp` ([lsp-core](https://neovim.io/doc/user/helptag.html?tag=lsp-core)).
 
-<span class="help-syntax-special">{mpack}</span> `(table)` Redirection table for [`vim.mpack`](https://neovim.io/doc/user/helptag.html?tag=vim.mpack).
+<span class="help-syntax-special">{mpack}</span> `(table)` Redirection table for [vim.mpack](https://neovim.io/doc/user/helptag.html?tag=vim.mpack).
 
-<span class="help-syntax-special">{spell}</span> `(table)` Redirection table for [`vim.spell`](https://neovim.io/doc/user/helptag.html?tag=vim.spell).
+<span class="help-syntax-special">{spell}</span> `(table)` Redirection table for [vim.spell](https://neovim.io/doc/user/helptag.html?tag=vim.spell).
 
-<span class="help-syntax-special">{treesitter}</span> `(table)` Redirection table for `vim.treesitter` ([`lua-treesitter-core`](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core)).
+<span class="help-syntax-special">{treesitter}</span> `(table)` Redirection table for `vim.treesitter` ([lua-treesitter-core](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core)).
 
-<span class="help-syntax-special">{ui}</span> `(table)` Redirection table for [`vim.ui`](https://neovim.io/doc/user/helptag.html?tag=vim.ui). Currently of no
+<span class="help-syntax-special">{ui}</span> `(table)` Redirection table for [vim.ui](https://neovim.io/doc/user/helptag.html?tag=vim.ui). Currently of no
   use because it requires sending function through RPC, which is impossible
   at the moment.
 
-<span class="help-syntax-special">{fs}</span> `(table)` Redirection table for [`vim.fs`](https://neovim.io/doc/user/helptag.html?tag=vim.fs).
+<span class="help-syntax-special">{fs}</span> `(table)` Redirection table for [vim.fs](https://neovim.io/doc/user/helptag.html?tag=vim.fs).
 
 
-<span class="help-syntax-special">{g}</span> `(table)` Redirection table for [`vim.g`](https://neovim.io/doc/user/helptag.html?tag=vim.g).
+<span class="help-syntax-special">{g}</span> `(table)` Redirection table for [vim.g](https://neovim.io/doc/user/helptag.html?tag=vim.g).
 
-<span class="help-syntax-special">{b}</span> `(table)` Redirection table for [`vim.b`](https://neovim.io/doc/user/helptag.html?tag=vim.b).
+<span class="help-syntax-special">{b}</span> `(table)` Redirection table for [vim.b](https://neovim.io/doc/user/helptag.html?tag=vim.b).
 
-<span class="help-syntax-special">{w}</span> `(table)` Redirection table for [`vim.w`](https://neovim.io/doc/user/helptag.html?tag=vim.w).
+<span class="help-syntax-special">{w}</span> `(table)` Redirection table for [vim.w](https://neovim.io/doc/user/helptag.html?tag=vim.w).
 
-<span class="help-syntax-special">{t}</span> `(table)` Redirection table for [`vim.t`](https://neovim.io/doc/user/helptag.html?tag=vim.t).
+<span class="help-syntax-special">{t}</span> `(table)` Redirection table for [vim.t](https://neovim.io/doc/user/helptag.html?tag=vim.t).
 
-<span class="help-syntax-special">{v}</span> `(table)` Redirection table for [`vim.v`](https://neovim.io/doc/user/helptag.html?tag=vim.v).
+<span class="help-syntax-special">{v}</span> `(table)` Redirection table for [vim.v](https://neovim.io/doc/user/helptag.html?tag=vim.v).
 
-<span class="help-syntax-special">{env}</span> `(table)` Redirection table for [`vim.env`](https://neovim.io/doc/user/helptag.html?tag=vim.env).
+<span class="help-syntax-special">{env}</span> `(table)` Redirection table for [vim.env](https://neovim.io/doc/user/helptag.html?tag=vim.env).
 
 
-<span class="help-syntax-special">{o}</span> `(table)` Redirection table for [`vim.o`](https://neovim.io/doc/user/helptag.html?tag=vim.o).
+<span class="help-syntax-special">{o}</span> `(table)` Redirection table for [vim.o](https://neovim.io/doc/user/helptag.html?tag=vim.o).
 
-<span class="help-syntax-special">{go}</span> `(table)` Redirection table for [`vim.go`](https://neovim.io/doc/user/helptag.html?tag=vim.go).
+<span class="help-syntax-special">{go}</span> `(table)` Redirection table for [vim.go](https://neovim.io/doc/user/helptag.html?tag=vim.go).
 
-<span class="help-syntax-special">{bo}</span> `(table)` Redirection table for [`vim.bo`](https://neovim.io/doc/user/helptag.html?tag=vim.bo).
+<span class="help-syntax-special">{bo}</span> `(table)` Redirection table for [vim.bo](https://neovim.io/doc/user/helptag.html?tag=vim.bo).
 
-<span class="help-syntax-special">{wo}</span> `(table)` Redirection table for [`vim.wo`](https://neovim.io/doc/user/helptag.html?tag=vim.wo).
+<span class="help-syntax-special">{wo}</span> `(table)` Redirection table for [vim.wo](https://neovim.io/doc/user/helptag.html?tag=vim.wo).
 
 ---
 
-### Child neovim start() {#minitest-child-neovim-start}
+### Child neovim start() {#minitest-child-neovim-start .help-syntax-right-anchor}
 
 <p align="center">`child.start`(<span class="help-syntax-special">{args}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 
@@ -1199,7 +1198,7 @@ Start child process and connect to it. Won't work if child is already running.
 
 
 <span class="help-syntax-special">{args}</span> `(table)` Array with arguments for executable. Will be prepended with
-  the following default arguments (see [`startup-options`](https://neovim.io/doc/user/helptag.html?tag=startup-options)):
+  the following default arguments (see [startup-options](https://neovim.io/doc/user/helptag.html?tag=startup-options)):
 
   ```lua
   { '--clean', '-n', '--listen', <some address>,
@@ -1209,7 +1208,7 @@ Start child process and connect to it. Won't work if child is already running.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options:
 
-  - <span class="help-syntax-keys">\<nvim_executable\></span> - name of Neovim executable. Default: [`v:progpath`](https://neovim.io/doc/user/helptag.html?tag=v:progpath).
+  - <span class="help-syntax-keys">\<nvim_executable\></span> - name of Neovim executable. Default: [v:progpath](https://neovim.io/doc/user/helptag.html?tag=v:progpath).
 
   - <span class="help-syntax-keys">\<connection_timeout\></span> - stop trying to connect after this amount of
     milliseconds. Default: 5000.
@@ -1230,17 +1229,17 @@ Start child process and connect to it. Won't work if child is already running.
 
 ---
 
-### Child neovim type_keys() {#minitest-child-neovim-type_keys}
+### Child neovim type_keys() {#minitest-child-neovim-type_keys .help-syntax-right-anchor}
 
 <p align="center">`child.type_keys`(<span class="help-syntax-special">{wait}</span>, <span class="help-syntax-special">{...}</span>)</p>
 
-Basically a wrapper for [`nvim_input()`](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)) applied inside child process.
+Basically a wrapper for [nvim\_input()](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)) applied inside child process.
 Differences:
 
 - Can wait after each group of characters.
 
 - Raises error if typing keys resulted into error in child process (i.e. its
-  [`v:errmsg`](https://neovim.io/doc/user/helptag.html?tag=v:errmsg) was updated).
+  [v:errmsg](https://neovim.io/doc/user/helptag.html?tag=v:errmsg) was updated).
 
 - Key '<' as separate entry may not be escaped as '<span class="help-syntax-keys">\<LT\></span>'.
 
@@ -1251,7 +1250,7 @@ Differences:
 <span class="help-syntax-special">{wait}</span> `(number|nil)` Number of milliseconds to wait after each entry. May be
   omitted, in which case no waiting is done.
 
-<span class="help-syntax-special">{...}</span> `(string|table<number,string>)` Separate entries for [`nvim_input()`](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)),
+<span class="help-syntax-special">{...}</span> `(string|table<number,string>)` Separate entries for [nvim\_input()](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)),
   after which `wait` will be applied. Can be either string or array of strings.
 
 #### Usage {#minitest-child-neovim-type_keys-usage}
@@ -1273,12 +1272,12 @@ Differences:
 
 ---
 
-### Child neovim get_screenshot() {#minitest-child-neovim-get_screenshot}
+### Child neovim get_screenshot() {#minitest-child-neovim-get_screenshot .help-syntax-right-anchor}
 
 <p align="center">`child.get_screenshot`(<span class="help-syntax-special">{opts}</span>)</p>
 
 Compute what is displayed on (default TUI) screen and how it is displayed.
-This basically calls [`screenstring()`](https://neovim.io/doc/user/helptag.html?tag=screenstring\(\)) and [`screenattr()`](https://neovim.io/doc/user/helptag.html?tag=screenattr\(\)) for every visible
+This basically calls [screenstring()](https://neovim.io/doc/user/helptag.html?tag=screenstring\(\)) and [screenattr()](https://neovim.io/doc/user/helptag.html?tag=screenattr\(\)) for every visible
 cell (row from 1 to 'lines', column from 1 to 'columns').
 
 Notes:
@@ -1294,7 +1293,7 @@ Notes:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possieble fields:
 
-  - <span class="help-syntax-keys">\<redraw\></span> `(boolean)` - whether to call [`:redraw`](https://neovim.io/doc/user/helptag.html?tag=:redraw) prior to computing
+  - <span class="help-syntax-keys">\<redraw\></span> `(boolean)` - whether to call [:redraw](https://neovim.io/doc/user/helptag.html?tag=:redraw) prior to computing
     screenshot. Default: `true`.
 
 #### Return {#minitest-child-neovim-get_screenshot-return}

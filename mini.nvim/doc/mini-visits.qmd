@@ -1,6 +1,5 @@
 ---
 title: "mini.visits documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#minivisits}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -21,27 +20,27 @@ Features:
 
 
 - Visit index is normalized on every write to contain relevant information.
-  Exact details can be customized. See [`MiniVisits.normalize_index()`](mini-visits.qmd#minivisits.normalize_index).
+  Exact details can be customized. See [MiniVisits.normalize\_index()](mini-visits.qmd#minivisits.normalize_index).
 
 
 - Built-in ability to persistently add labels to path for later use.
-  See [`MiniVisits.add_label()`](mini-visits.qmd#minivisits.add_label) and [`MiniVisits.remove_label()`](mini-visits.qmd#minivisits.remove_label).
+  See [MiniVisits.add\_label()](mini-visits.qmd#minivisits.add_label) and [MiniVisits.remove\_label()](mini-visits.qmd#minivisits.remove_label).
 
 
 - Exported functions to reuse visit data:
 
     - List visited paths/labels with custom filter and sort (uses "robust
       frecency" by default). Can be used as source for pickers.
-      See [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths) and [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
-      See [`MiniVisits.gen_filter`](mini-visits.qmd#minivisits.gen_filter) and [`MiniVisits.gen_sort`](mini-visits.qmd#minivisits.gen_sort).
+      See [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths) and [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
+      See [MiniVisits.gen\_filter](mini-visits.qmd#minivisits.gen_filter) and [MiniVisits.gen\_sort](mini-visits.qmd#minivisits.gen_sort).
 
 
-    - Select visited paths/labels using [`vim.ui.select()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)).
-      See [`MiniVisits.select_path()`](mini-visits.qmd#minivisits.select_path) and [`MiniVisits.select_label()`](mini-visits.qmd#minivisits.select_label).
+    - Select visited paths/labels using [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)).
+      See [MiniVisits.select\_path()](mini-visits.qmd#minivisits.select_path) and [MiniVisits.select\_label()](mini-visits.qmd#minivisits.select_label).
 
 
     - Iterate through visit paths in target direction ("forward", "backward",
-      "first", "last"). See [`MiniVisits.iterate_paths()`](mini-visits.qmd#minivisits.iterate_paths).
+      "first", "last"). See [MiniVisits.iterate\_paths()](mini-visits.qmd#minivisits.iterate_paths).
 
 
 - Exported functions to manually update visit index allowing persistent
@@ -60,31 +59,31 @@ Notes:
   index is required after the change but _before_ the next writing to disk
   (usually before closing current session) because it will treat previous
   path as deleted and remove it from index.
-  There is a [`MiniVisits.rename_in_index()`](mini-visits.qmd#minivisits.rename_in_index) helper for that.
-  If rename/move is done with [`mini.files`](mini-files.qmd#mini.files), index is autoupdated.
+  There is a [MiniVisits.rename\_in\_index()](mini-visits.qmd#minivisits.rename_in_index) helper for that.
+  If rename/move is done with [mini.files](mini-files.qmd#mini.files), index is autoupdated.
 
 Sources with more details:
 
-- [`MiniVisits-overview`](mini-visits.qmd#minivisits-overview)
+- [MiniVisits-overview](mini-visits.qmd#minivisits-overview)
 
-- [`MiniVisits-index-specification`](mini-visits.qmd#minivisits-index-specification)
+- [MiniVisits-index-specification](mini-visits.qmd#minivisits-index-specification)
 
-- [`MiniVisits-examples`](mini-visits.qmd#minivisits-examples)
+- [MiniVisits-examples](mini-visits.qmd#minivisits-examples)
 
-#### Setup {#minivisits-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.visits').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniVisits`
 which you can use for scripting or manually (with `:lua MiniVisits.*`).
 
-See [`MiniVisits.config`](mini-visits.qmd#minivisits.config) for `config` structure and default values.
+See [MiniVisits.config](mini-visits.qmd#minivisits.config) for `config` structure and default values.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minivisits_config` which should have same structure as
-`MiniVisits.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniVisits.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
-#### Comparisons {#minivisits-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -104,7 +103,7 @@ You can override runtime config settings locally to buffer inside
 
     - Mostly designed to work with 'nvim-telescope/telescope.nvim', while
       this module provides general function to list paths and select
-      with [`vim.ui.select()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)).
+      with [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)).
 
     - Does not allow use of custom data (like labels), while this module does.
 
@@ -130,36 +129,36 @@ You can override runtime config settings locally to buffer inside
     - Does not provide functionality to track and reuse any visited path,
       while this module does.
 
-#### Disabling {#minivisits-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable automated tracking, set `vim.g.minivisits_disable` (globally) or
 `vim.b.minivisits_disable` (for a buffer) to `true`. Considering high
 number of different scenarios and customization intentions, writing exact
 rules for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Overview {#minivisits-overview}
+### Overview {#minivisits-overview .help-syntax-right-anchor}
 
 #### Tracking visits {#minivisits-overview-trackingvisits}
 
 
 File system visits (both directory and files) tracking is done in two steps:
 
-- On every dedicated event (`config.track.event`, [`BufEnter`](https://neovim.io/doc/user/helptag.html?tag=BufEnter) by default) timer
+- On every dedicated event (`config.track.event`, [BufEnter](https://neovim.io/doc/user/helptag.html?tag=BufEnter) by default) timer
   is (re)started to actually register visit after certain amount of time
   (`config.track.delay` milliseconds, 1000 by default). It is not registered
   immediately to allow navigation to target buffer in several steps
-  (for example, with series of [`:bnext`](https://neovim.io/doc/user/helptag.html?tag=:bnext) / [`:bprevious`](https://neovim.io/doc/user/helptag.html?tag=:bprevious)).
+  (for example, with series of [:bnext](https://neovim.io/doc/user/helptag.html?tag=:bnext) / [:bprevious](https://neovim.io/doc/user/helptag.html?tag=:bprevious)).
 
 
 - When delay time passes without any dedicated events being triggered
-  (meaning user is "settled" on certain buffer), [`MiniVisits.register_visit()`](mini-visits.qmd#minivisits.register_visit)
+  (meaning user is "settled" on certain buffer), [MiniVisits.register\_visit()](mini-visits.qmd#minivisits.register_visit)
   is called if all of the following conditions are met:
 
-    - Module is not disabled (see "Disabling" section in [`mini.visits`](mini-visits.qmd#mini.visits)).
+    - Module is not disabled (see "Disabling" section in [mini.visits](mini-visits.qmd#mini.visits)).
 
     - Buffer is normal with non-empty name (used as visit path).
 
@@ -167,8 +166,8 @@ File system visits (both directory and files) tracking is done in two steps:
       temporary enter of non-normal buffers (like help, terminal, etc.)
       without artificial increase of visit count.
 
-Visit is autoregistered for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory) and leads to increase of count
-and latest time of visit. See [`MiniVisits-index-specification`](mini-visits.qmd#minivisits-index-specification) for more details.
+Visit is autoregistered for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory) and leads to increase of count
+and latest time of visit. See [MiniVisits-index-specification](mini-visits.qmd#minivisits-index-specification) for more details.
 
 Notes:
 
@@ -178,7 +177,7 @@ Notes:
 
 
 - Tracking can be disabled by supplying empty string as `track.event`.
-  Then it is up to the user to properly call [`MiniVisits.register_visit()`](mini-visits.qmd#minivisits.register_visit).
+  Then it is up to the user to properly call [MiniVisits.register\_visit()](mini-visits.qmd#minivisits.register_visit).
 
 #### Reusing visits {#minivisits-overview-reusingvisits}
 
@@ -186,14 +185,14 @@ Notes:
 Visit data can be reused in at least these ways:
 
 
-- Get a list of visited paths (see [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths)) and use it
+- Get a list of visited paths (see [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths)) and use it
   to visualize/pick/navigate visit history.
 
 
-- Select one of the visited paths to open it (see [`MiniVisits.select_path()`](mini-visits.qmd#minivisits.select_path)).
+- Select one of the visited paths to open it (see [MiniVisits.select\_path()](mini-visits.qmd#minivisits.select_path)).
 
 
-- Move along visit history (see [`MiniVisits.iterate_paths()`](mini-visits.qmd#minivisits.iterate_paths)).
+- Move along visit history (see [MiniVisits.iterate\_paths()](mini-visits.qmd#minivisits.iterate_paths)).
 
 
 - Utilize labels. Any visit can be added one or more labels (like "core",
@@ -201,7 +200,7 @@ Visit data can be reused in at least these ways:
   directory) and are stored persistently.
   Labels can be used to manually create groups of files and/or directories
   that have particular interest to the user.
-  There is no one right way to use them, though. See [`MiniVisits-examples`](mini-visits.qmd#minivisits-examples)
+  There is no one right way to use them, though. See [MiniVisits-examples](mini-visits.qmd#minivisits-examples)
   for some inspiration.
 
 
@@ -210,11 +209,11 @@ Visit data can be reused in at least these ways:
   metatables) user data inside index is then stored on disk, so it can be
   used to create any kind of workflow user wants.
 
-See [`MiniVisits-examples`](mini-visits.qmd#minivisits-examples) for some actual configuration and workflow examples.
+See [MiniVisits-examples](mini-visits.qmd#minivisits-examples) for some actual configuration and workflow examples.
 
 ---
 
-### Index specification {#minivisits-index-specification}
+### Index specification {#minivisits-index-specification .help-syntax-right-anchor}
 
 #### Structure {#minivisits-index-specification-structure}
 
@@ -232,7 +231,7 @@ data which should follow these requirements:
 
 - Field <span class="help-syntax-keys">\<latest\></span> should be present and be a number. It represents the time
   of latest path visit under particular cwd.
-  By default computed with [`os.time()`](https://neovim.io/doc/user/helptag.html?tag=os.time\(\)) (up to a second).
+  By default computed with [os.time()](https://neovim.io/doc/user/helptag.html?tag=os.time\(\)) (up to a second).
 
 - Field <span class="help-syntax-keys">\<labels\></span> might not be present. If present, it should be a table
   with string labels as keys and `true` as values. It represents labels of
@@ -270,7 +269,7 @@ Example of an index data:
 
 When stored on disk, visit index is a file containing Lua code returning
 visit index table. It can be edited by hand as long as it contains a valid
-Lua code (to be executed with [`dofile()`](https://neovim.io/doc/user/helptag.html?tag=dofile\(\))).
+Lua code (to be executed with [dofile()](https://neovim.io/doc/user/helptag.html?tag=dofile\(\))).
 
 Notes:
 
@@ -283,16 +282,16 @@ Notes:
 
 
 To ensure that visit index contains mostly relevant data, it gets normalized:
-automatically inside [`MiniVisits.write_index()`](mini-visits.qmd#minivisits.write_index) or
-via [`MiniVisits.normalize_index()`](mini-visits.qmd#minivisits.normalize_index).
+automatically inside [MiniVisits.write\_index()](mini-visits.qmd#minivisits.write_index) or
+via [MiniVisits.normalize\_index()](mini-visits.qmd#minivisits.normalize_index).
 
 What normalization actually does can be configured in `config.store.normalize`.
 
-See [`MiniVisits.gen_normalize.default()`](mini-visits.qmd#minivisits.gen_normalize.default) for default normalization approach.
+See [MiniVisits.gen\_normalize.default()](mini-visits.qmd#minivisits.gen_normalize.default) for default normalization approach.
 
 ---
 
-### Examples {#minivisits-examples}
+### Examples {#minivisits-examples .help-syntax-right-anchor}
 
 This module provides a flexible framework for working with file system visits.
 Exact choice of how to organize workflow is left to the user.
@@ -301,7 +300,7 @@ Here are some examples for inspiration which can be combined together.
 #### Use different sorting {#minivisits-examples-usedifferentsorting}
 
 
-Default sorting in [`MiniVisits.gen_sort.default()`](mini-visits.qmd#minivisits.gen_sort.default) allows flexible adjustment
+Default sorting in [MiniVisits.gen\_sort.default()](mini-visits.qmd#minivisits.gen_sort.default) allows flexible adjustment
 of which feature to prefer more: recency or frequency. Here is an example of
 how to make set of keymaps for three types of sorting combined with two types
 of scopes (all visits and only for current cwd):
@@ -330,7 +329,7 @@ of scopes (all visits and only for current cwd):
   map('<Leader>vF', 'Select frequent (cwd)', false, 0)
   ```
 
-Note: If using [`mini.pick`](mini-pick.qmd#mini.pick), consider [`MiniExtra.pickers.visit_paths()`](mini-extra.qmd#miniextra.pickers.visit_paths).
+Note: If using [mini.pick](mini-pick.qmd#mini.pick), consider [MiniExtra.pickers.visit\_paths()](mini-extra.qmd#miniextra.pickers.visit_paths).
 
 #### Use manual labels {#minivisits-examples-usemanuallabels}
 
@@ -338,14 +337,14 @@ Note: If using [`mini.pick`](mini-pick.qmd#mini.pick), consider [`MiniExtra.pick
 Labels is a powerful tool to create groups of associated paths.
 Usual workflow consists of:
 
-- Add label with [`MiniVisits.add_label()`](mini-visits.qmd#minivisits.add_label) (prompts for actual label).
+- Add label with [MiniVisits.add\_label()](mini-visits.qmd#minivisits.add_label) (prompts for actual label).
 
-- Remove label with [`MiniVisits.remove_label()`](mini-visits.qmd#minivisits.remove_label) (prompts for actual label).
+- Remove label with [MiniVisits.remove\_label()](mini-visits.qmd#minivisits.remove_label) (prompts for actual label).
 
-- When need to use labeled groups, call [`MiniVisits.select_label()`](mini-visits.qmd#minivisits.select_label) which
-  will then call [`MiniVisits.select_path()`](mini-visits.qmd#minivisits.select_path) to select path among those
+- When need to use labeled groups, call [MiniVisits.select\_label()](mini-visits.qmd#minivisits.select_label) which
+  will then call [MiniVisits.select\_path()](mini-visits.qmd#minivisits.select_path) to select path among those
   having selected label.
-  Note: If using [`mini.pick`](mini-pick.qmd#mini.pick), consider [`MiniExtra.pickers.visit_labels()`](mini-extra.qmd#miniextra.pickers.visit_labels).
+  Note: If using [mini.pick](mini-pick.qmd#mini.pick), consider [MiniExtra.pickers.visit\_labels()](mini-extra.qmd#miniextra.pickers.visit_labels).
 
 To make this workflow smoother, here is an example of keymaps:
 
@@ -421,7 +420,7 @@ Here is an example of keymaps to add/remove label equal to branch name:
 
 ---
 
-### setup() {#minivisits.setup}
+### setup() {#minivisits.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -430,7 +429,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniVisits.config`](mini-visits.qmd#minivisits.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniVisits.config](mini-visits.qmd#minivisits.config).
 
 #### Usage {#minivisits.setup-usage}
 
@@ -444,7 +443,7 @@ Module setup
 
 ---
 
-### config {#minivisits.config}
+### config {#minivisits.config .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.config`</p>
 #### Defaults {#minivisits.config-defaults}
@@ -498,7 +497,7 @@ Module setup
 
 `list.filter` is a callable which should take a path data and return `true` if
 this path should be present in the list.
-Default: output of [`MiniVisits.gen_filter.default()`](mini-visits.qmd#minivisits.gen_filter.default).
+Default: output of [MiniVisits.gen\_filter.default()](mini-visits.qmd#minivisits.gen_filter.default).
 
 Path data is a table with at least these fields:
 
@@ -513,13 +512,13 @@ Path data is a table with at least these fields:
 Notes:
 
 - Both `count` and `latest` (in theory) can be any number. But built-in tracking
-  results into positive integer `count` and `latest` coming from [`os.time()`](https://neovim.io/doc/user/helptag.html?tag=os.time\(\)).
+  results into positive integer `count` and `latest` coming from [os.time()](https://neovim.io/doc/user/helptag.html?tag=os.time\(\)).
 
 - There can be other entries if they are set by user as index entry.
 
 `list.sort` is a callable which should take an array of path data and return
 a sorted array of path data (or at least tables each containing <span class="help-syntax-keys">\<path\></span> field).
-Default: output of [`MiniVisits.gen_sort.default()`](mini-visits.qmd#minivisits.gen_sort.default).
+Default: output of [MiniVisits.gen\_sort.default()](mini-visits.qmd#minivisits.gen_sort.default).
 Single path data entry is a table with a same structure as for `list.filter`.
 
 Note, that `list.sort` can be used both to filter, sort, or even return paths
@@ -538,30 +537,30 @@ unrelated to the input.
 data across several sessions.
 
 `store.autowrite` is a boolean controlling whether to write visit data to
-disk on [`VimLeavePre`](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre) event. Default: `true`.
+disk on [VimLeavePre](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre) event. Default: `true`.
 
 `store.normalize` is a callable which should take visit index
-(see [`MiniVisits-index-specification`](mini-visits.qmd#minivisits-index-specification)) as input and return "normalized" visit
+(see [MiniVisits-index-specification](mini-visits.qmd#minivisits-index-specification)) as input and return "normalized" visit
 index as output. This is used to ensure that visit index is up to date and
 contains only relevant data. For example, it controls how old and
 irrelevant visits are "forgotten", and more.
-Default: output of [`MiniVisits.gen_normalize.default()`](mini-visits.qmd#minivisits.gen_normalize.default).
+Default: output of [MiniVisits.gen\_normalize.default()](mini-visits.qmd#minivisits.gen_normalize.default).
 
 `store.path` is a path to which visit index is written. See "Storage" section
-of [`MiniVisits-index-specification`](mini-visits.qmd#minivisits-index-specification) for more details.
+of [MiniVisits-index-specification](mini-visits.qmd#minivisits-index-specification) for more details.
 Note: set to empty string to disable any writing with not explicitly set
-path (including the one on [`VimLeavePre`](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre)).
-Default: "mini-visits-index" file inside [`$XDG_DATA_HOME`](https://neovim.io/doc/user/helptag.html?tag=$XDG_DATA_HOME).
+path (including the one on [VimLeavePre](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre)).
+Default: "mini-visits-index" file inside [\$XDG\_DATA\_HOME](https://neovim.io/doc/user/helptag.html?tag=$XDG_DATA_HOME).
 
 #### Track {#minivisits.config-track}
 
 
 `config.track` defines how visits are tracked (index entry is autoupdated).
-See "Tracking visits" section in [`MiniVisits-overview`](mini-visits.qmd#minivisits-overview) for more details.
+See "Tracking visits" section in [MiniVisits-overview](mini-visits.qmd#minivisits-overview) for more details.
 
-`track.event` is a proper Neovim [`{event}`](https://neovim.io/doc/user/helptag.html?tag={event}) on which track get triggered.
+`track.event` is a proper Neovim [<span class="help-syntax-special">{event}</span>](https://neovim.io/doc/user/helptag.html?tag={event}) on which track get triggered.
 Note: set to empty string to disable automated tracking.
-Default: [`BufEnter`](https://neovim.io/doc/user/helptag.html?tag=BufEnter).
+Default: [BufEnter](https://neovim.io/doc/user/helptag.html?tag=BufEnter).
 
 `track.delay` is a delay in milliseconds after event is triggered and visit
 is autoregistered.
@@ -570,7 +569,7 @@ intermediate ones).
 
 ---
 
-### register_visit() {#minivisits.register_visit}
+### register_visit() {#minivisits.register_visit .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.register_visit`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)</p>
 Register visit
@@ -590,11 +589,11 @@ Steps:
 <span class="help-syntax-special">{path}</span> `(string|nil)` Visit path. Default: path of current buffer if normal,
   error otherwise.
 
-<span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+<span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 ---
 
-### add_path() {#minivisits.add_path}
+### add_path() {#minivisits.add_path .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.add_path`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)</p>
 Add path to index
@@ -611,11 +610,11 @@ already present, does nothing. If not - creates it with both `count` and
   paths for `cwd`". Default: path of current buffer if normal, error otherwise.
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 ---
 
-### add_label() {#minivisits.add_label}
+### add_label() {#minivisits.add_label .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.add_label`(<span class="help-syntax-special">{label}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)</p>
 Add label to path
@@ -636,11 +635,11 @@ Steps:
   paths for `cwd`". Default: path of current buffer if normal, error otherwise.
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 ---
 
-### remove_path() {#minivisits.remove_path}
+### remove_path() {#minivisits.remove_path .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.remove_path`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)</p>
 Remove path
@@ -650,7 +649,7 @@ already absent, does nothing.
 
 Notes:
 
-- Affects only in-session Lua variable. Call [`MiniVisits.write_index()`](mini-visits.qmd#minivisits.write_index) to
+- Affects only in-session Lua variable. Call [MiniVisits.write\_index()](mini-visits.qmd#minivisits.write_index) to
   make it persistent.
 
 #### Parameters {#minivisits.remove_path-parameters}
@@ -661,11 +660,11 @@ Notes:
   paths for `cwd`". Default: path of current buffer if normal, error otherwise.
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 ---
 
-### remove_label() {#minivisits.remove_label}
+### remove_label() {#minivisits.remove_label .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.remove_label`(<span class="help-syntax-special">{label}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>)</p>
 Remove label from path
@@ -686,11 +685,11 @@ Steps:
   paths for `cwd`". Default: path of current buffer if normal, error otherwise.
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 ---
 
-### list_paths() {#minivisits.list_paths}
+### list_paths() {#minivisits.list_paths .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.list_paths`(<span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 List visit paths
@@ -721,18 +720,18 @@ Examples:
 
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
   - <span class="help-syntax-keys">\<filter\></span> `(function)` - predicate to filter paths. For more information
-    about how it is used, see [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list).
-    Default: value of `config.list.filter` with [`MiniVisits.gen_filter.default()`](mini-visits.qmd#minivisits.gen_filter.default)
+    about how it is used, see [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list).
+    Default: value of `config.list.filter` with [MiniVisits.gen\_filter.default()](mini-visits.qmd#minivisits.gen_filter.default)
     as its default.
 
   - <span class="help-syntax-keys">\<sort\></span> `(function)` - path data sorter. For more information about how
-    it is used, see [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list).
-    Default: value of `config.list.sort` or [`MiniVisits.gen_sort.default()`](mini-visits.qmd#minivisits.gen_sort.default)
+    it is used, see [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list).
+    Default: value of `config.list.sort` or [MiniVisits.gen\_sort.default()](mini-visits.qmd#minivisits.gen_sort.default)
     as its default.
 
 #### Return {#minivisits.list_paths-return}
@@ -742,7 +741,7 @@ Examples:
 
 ---
 
-### list_labels() {#minivisits.list_labels}
+### list_labels() {#minivisits.list_labels .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.list_labels`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 List visit labels
@@ -775,18 +774,18 @@ Examples:
   paths for `cwd`". Default: path of current buffer if normal, error otherwise.
 
 <span class="help-syntax-special">{cwd}</span> `(string|nil)` Visit cwd (project directory). Can be empty string to mean
-  "all visited cwd". Default: [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  "all visited cwd". Default: [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
   - <span class="help-syntax-keys">\<filter\></span> `(function)` - predicate to filter paths. For more information
-    about how it is used, see [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list).
-    Default: value of `config.list.filter` with [`MiniVisits.gen_filter.default()`](mini-visits.qmd#minivisits.gen_filter.default)
+    about how it is used, see [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list).
+    Default: value of `config.list.filter` with [MiniVisits.gen\_filter.default()](mini-visits.qmd#minivisits.gen_filter.default)
     as its default.
 
   - <span class="help-syntax-keys">\<sort\></span> `(function)` - path data sorter. For more information about how
-    it is used, see [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list).
-    Default: value of `config.list.sort` or [`MiniVisits.gen_sort.default()`](mini-visits.qmd#minivisits.gen_sort.default)
+    it is used, see [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list).
+    Default: value of `config.list.sort` or [MiniVisits.gen\_sort.default()](mini-visits.qmd#minivisits.gen_sort.default)
     as its default.
 
 #### Return {#minivisits.list_labels-return}
@@ -796,16 +795,16 @@ Examples:
 
 ---
 
-### select_path() {#minivisits.select_path}
+### select_path() {#minivisits.select_path .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.select_path`(<span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Select visit path
 
-Uses [`vim.ui.select()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) with an output of [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths) and
-calls [`:edit`](https://neovim.io/doc/user/helptag.html?tag=:edit) on the chosen item.
+Uses [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) with an output of [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths) and
+calls [:edit](https://neovim.io/doc/user/helptag.html?tag=:edit) on the chosen item.
 
-Note: if you have [`mini.pick`](mini-pick.qmd#mini.pick), consider using [`MiniExtra.pickers.visit_labels()`](mini-extra.qmd#miniextra.pickers.visit_labels)
-and [`MiniExtra.pickers.visit_paths()`](mini-extra.qmd#miniextra.pickers.visit_paths).
+Note: if you have [mini.pick](mini-pick.qmd#mini.pick), consider using [MiniExtra.pickers.visit\_labels()](mini-extra.qmd#miniextra.pickers.visit_labels)
+and [MiniExtra.pickers.visit\_paths()](mini-extra.qmd#miniextra.pickers.visit_paths).
 
 Examples:
 
@@ -824,21 +823,21 @@ Examples:
 
 
 
-<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
 ---
 
-### select_label() {#minivisits.select_label}
+### select_label() {#minivisits.select_label .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.select_label`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Select visit label
 
-Uses [`vim.ui.select()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) with an output of [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels) and
-calls [`MiniVisits.select_path()`](mini-visits.qmd#minivisits.select_path) to get target paths with selected label.
+Uses [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) with an output of [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels) and
+calls [MiniVisits.select\_path()](mini-visits.qmd#minivisits.select_path) to get target paths with selected label.
 
-Note: if you have [`mini.pick`](mini-pick.qmd#mini.pick), consider using [`MiniExtra.pickers.visit_labels()`](mini-extra.qmd#miniextra.pickers.visit_labels).
+Note: if you have [mini.pick](mini-pick.qmd#mini.pick), consider using [MiniExtra.pickers.visit\_labels()](mini-extra.qmd#miniextra.pickers.visit_labels).
 
 Examples:
 
@@ -861,23 +860,23 @@ Examples:
 
 
 
-<span class="help-syntax-special">{path}</span> `(string|nil)` Forwarded to [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
+<span class="help-syntax-special">{path}</span> `(string|nil)` Forwarded to [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
 
-<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
+<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Forwarded to both [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels)
- and [`MiniVisits.select_path()`](mini-visits.qmd#minivisits.select_path) (after choosing a label).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Forwarded to both [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels)
+ and [MiniVisits.select\_path()](mini-visits.qmd#minivisits.select_path) (after choosing a label).
 
 ---
 
-### iterate_paths() {#minivisits.iterate_paths}
+### iterate_paths() {#minivisits.iterate_paths .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.iterate_paths`(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{cwd}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Iterate visit paths
 
 Steps:
 
-- Compute a sorted array of target paths using [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+- Compute a sorted array of target paths using [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
 - Identify the current index inside the array based on path of current buffer.
 
@@ -901,7 +900,7 @@ Notes:
   starting index is inferred such that first iteration lands on first item
   (if iterating forward) or last item (if iterating backward).
 
-- Navigation with this function is not tracked (see [`MiniVisits-overview`](mini-visits.qmd#minivisits-overview)).
+- Navigation with this function is not tracked (see [MiniVisits-overview](mini-visits.qmd#minivisits-overview)).
   This is done to allow consecutive application without affecting
   underlying list of paths.
 
@@ -922,22 +921,22 @@ Examples assuming underlying array of files `{ "file1", "file2", "file3" }`:
 
 <span class="help-syntax-special">{direction}</span> `(string)` One of "first", "backward", "forward", "last".
 
-<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+<span class="help-syntax-special">{cwd}</span> `(string|nil)` Forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
-  - <span class="help-syntax-keys">\<filter\></span> `(function)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+  - <span class="help-syntax-keys">\<filter\></span> `(function)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
-  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 
   - <span class="help-syntax-keys">\<n_times\></span> `(number)` - number of steps to go in certain direction.
-    Default: [`v:count1`](https://neovim.io/doc/user/helptag.html?tag=v:count1).
+    Default: [v:count1](https://neovim.io/doc/user/helptag.html?tag=v:count1).
 
   - <span class="help-syntax-keys">\<wrap\></span> `(boolean)` - whether to wrap around list edges. Default: `false`.
 
 ---
 
-### get_index() {#minivisits.get_index}
+### get_index() {#minivisits.get_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.get_index`()</p>
 Get active visit index
@@ -949,7 +948,7 @@ Get active visit index
 
 ---
 
-### set_index() {#minivisits.set_index}
+### set_index() {#minivisits.set_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.set_index`(<span class="help-syntax-special">{index}</span>)</p>
 Set active visit index
@@ -962,24 +961,24 @@ Set active visit index
 
 ---
 
-### reset_index() {#minivisits.reset_index}
+### reset_index() {#minivisits.reset_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.reset_index`()</p>
 Reset active visit index
 
-Set currently active visit index to the output of [`MiniVisits.read_index()`](mini-visits.qmd#minivisits.read_index).
+Set currently active visit index to the output of [MiniVisits.read\_index()](mini-visits.qmd#minivisits.read_index).
 Does nothing if reading the index failed.
 
 ---
 
-### normalize_index() {#minivisits.normalize_index}
+### normalize_index() {#minivisits.normalize_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.normalize_index`(<span class="help-syntax-special">{index}</span>)</p>
 Normalize visit index
 
-Applies `config.store.normalize` ([`MiniVisits.gen_normalize.default()`](mini-visits.qmd#minivisits.gen_normalize.default) by default)
+Applies `config.store.normalize` ([MiniVisits.gen\_normalize.default()](mini-visits.qmd#minivisits.gen_normalize.default) by default)
 to the input index object and returns the output (if it fits in the definition
-of index object; see [`MiniVisits-index-specification`](mini-visits.qmd#minivisits-index-specification)).
+of index object; see [MiniVisits-index-specification](mini-visits.qmd#minivisits-index-specification)).
 
 #### Parameters {#minivisits.normalize_index-parameters}
 
@@ -994,7 +993,7 @@ of index object; see [`MiniVisits-index-specification`](mini-visits.qmd#minivisi
 
 ---
 
-### read_index() {#minivisits.read_index}
+### read_index() {#minivisits.read_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.read_index`(<span class="help-syntax-special">{store_path}</span>)</p>
 Read visit index from disk
@@ -1009,7 +1008,7 @@ Read visit index from disk
 
   - Can return `nil` if path is empty string or file is not readable.
 
-  - File is sourced with [`dofile()`](https://neovim.io/doc/user/helptag.html?tag=dofile\(\)) as a regular Lua file.
+  - File is sourced with [dofile()](https://neovim.io/doc/user/helptag.html?tag=dofile\(\)) as a regular Lua file.
 
 #### Return {#minivisits.read_index-return}
 
@@ -1018,19 +1017,19 @@ Read visit index from disk
 
 ---
 
-### write_index() {#minivisits.write_index}
+### write_index() {#minivisits.write_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.write_index`(<span class="help-syntax-special">{store_path}</span>, <span class="help-syntax-special">{index}</span>)</p>
 Write visit index to disk
 
 Steps:
 
-- Normalize index with [`MiniVisits.normalize_index()`](mini-visits.qmd#minivisits.normalize_index).
+- Normalize index with [MiniVisits.normalize\_index()](mini-visits.qmd#minivisits.normalize_index).
 
 - Ensure path is valid (all parent directories are created, etc.).
 
 - Write index object to the path so that it is readable
-  with [`MiniVisits.read_index()`](mini-visits.qmd#minivisits.read_index).
+  with [MiniVisits.read\_index()](mini-visits.qmd#minivisits.read_index).
 
 #### Parameters {#minivisits.write_index-parameters}
 
@@ -1044,7 +1043,7 @@ Steps:
 
 ---
 
-### rename_in_index() {#minivisits.rename_in_index}
+### rename_in_index() {#minivisits.rename_in_index .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.rename_in_index`(<span class="help-syntax-special">{path_from}</span>, <span class="help-syntax-special">{path_to}</span>, <span class="help-syntax-special">{index}</span>)</p>
 Rename path in index
@@ -1055,7 +1054,7 @@ It works both for file and directory paths.
 Notes:
 
 - It does not update current index, but returns a modified index object.
-  Use [`MiniVisits.set_index()`](mini-visits.qmd#minivisits.set_index) to make it current.
+  Use [MiniVisits.set\_index()](mini-visits.qmd#minivisits.set_index) to make it current.
 
 - Use only full paths.
 
@@ -1087,7 +1086,7 @@ before and after rename/move, here is an example to update current index:
 
 ---
 
-### gen_filter {#minivisits.gen_filter}
+### gen_filter {#minivisits.gen_filter .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_filter`</p>
 Generate filter function
@@ -1096,7 +1095,7 @@ This is a table with function elements. Call to actually get specification.
 
 ---
 
-### gen_filter.default() {#minivisits.gen_filter.default}
+### gen_filter.default() {#minivisits.gen_filter.default .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_filter.default`()</p>
 Default filter
@@ -1106,11 +1105,11 @@ Always returns `true` resulting in no actual filter.
 #### Return {#minivisits.gen_filter.default-return}
 
 
-`(function)` Visit filter function. See [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list) for more details.
+`(function)` Visit filter function. See [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list) for more details.
 
 ---
 
-### gen_filter.this_session() {#minivisits.gen_filter.this_session}
+### gen_filter.this_session() {#minivisits.gen_filter.this_session .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_filter.this_session`()</p>
 Filter visits from current session
@@ -1118,11 +1117,11 @@ Filter visits from current session
 #### Return {#minivisits.gen_filter.this_session-return}
 
 
-`(function)` Visit filter function. See [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list) for more details.
+`(function)` Visit filter function. See [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list) for more details.
 
 ---
 
-### gen_sort {#minivisits.gen_sort}
+### gen_sort {#minivisits.gen_sort .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_sort`</p>
 Generate sort function
@@ -1131,7 +1130,7 @@ This is a table with function elements. Call to actually get specification.
 
 ---
 
-### gen_sort.default() {#minivisits.gen_sort.default}
+### gen_sort.default() {#minivisits.gen_sort.default .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_sort.default`(<span class="help-syntax-special">{opts}</span>)</p>
 Default sort
@@ -1180,11 +1179,11 @@ Examples:
 #### Return {#minivisits.gen_sort.default-return}
 
 
-`(function)` Visit sort function. See [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list) for more details.
+`(function)` Visit sort function. See [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list) for more details.
 
 ---
 
-### gen_sort.z() {#minivisits.gen_sort.z}
+### gen_sort.z() {#minivisits.gen_sort.z .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_sort.z`()</p>
 Z sort
@@ -1194,11 +1193,11 @@ Sort as in https://github.com/rupa/z.
 #### Return {#minivisits.gen_sort.z-return}
 
 
-`(function)` Visit sort function. See [`MiniVisits.config.list`](mini-visits.qmd#minivisits.config.list) for more details.
+`(function)` Visit sort function. See [MiniVisits.config.list](mini-visits.qmd#minivisits.config.list) for more details.
 
 ---
 
-### gen_normalize {#minivisits.gen_normalize}
+### gen_normalize {#minivisits.gen_normalize .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_normalize`</p>
 Generate normalize function
@@ -1207,7 +1206,7 @@ This is a table with function elements. Call to actually get specification.
 
 ---
 
-### gen_normalize.default() {#minivisits.gen_normalize.default}
+### gen_normalize.default() {#minivisits.gen_normalize.default .help-syntax-right-anchor}
 
 <p align="center">`MiniVisits.gen_normalize.default`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate default normalize function
@@ -1254,5 +1253,5 @@ Steps:
 #### Return {#minivisits.gen_normalize.default-return}
 
 
-`(function)` Visit index normalize function. See "Store" in [`MiniVisits.config`](mini-visits.qmd#minivisits.config).
+`(function)` Visit index normalize function. See "Store" in [MiniVisits.config](mini-visits.qmd#minivisits.config).
 

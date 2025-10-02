@@ -1,6 +1,5 @@
 ---
 title: "mini.cursorword documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski
 
 ---
 
-### Module {#minicursorword}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -21,16 +20,16 @@ Features:
 - Current word under cursor can be highlighted differently.
 
 
-- Highlighting is triggered only if current cursor character is a [`[:keyword:]`](https://neovim.io/doc/user/helptag.html?tag=[:keyword:]).
+- Highlighting is triggered only if current cursor character is a [[:keyword:]](https://neovim.io/doc/user/helptag.html?tag=[:keyword:]).
 
 
 - Highlighting stops in insert and terminal modes.
 
 
-- "Word under cursor" is meant as in Vim's [`<cword>`](https://neovim.io/doc/user/helptag.html?tag=<cword>): something user would
+- "Word under cursor" is meant as in Vim's [<span class="help-syntax-keys">\<cword\></span>](https://neovim.io/doc/user/helptag.html?tag=<cword>): something user would
   get as 'iw' text object.
 
-#### Setup {#minicursorword-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.cursorword').setup({})`
@@ -38,13 +37,13 @@ This module needs a setup with `require('mini.cursorword').setup({})`
 `MiniCursorword` which you can use for scripting or manually (with
 `:lua MiniCursorword.*`).
 
-See [`MiniCursorword.config`](mini-cursorword.qmd#minicursorword.config) for `config` structure and default values.
+See [MiniCursorword.config](mini-cursorword.qmd#minicursorword.config) for `config` structure and default values.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minicursorword_config` which should have same structure as
-`MiniCursorword.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniCursorword.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
-#### Highlight groups {#minicursorword-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -61,16 +60,16 @@ You can override runtime config settings locally to buffer inside
   vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', {})
   ```
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minicursorword-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable core functionality, set `vim.g.minicursorword_disable` (globally) or
 `vim.b.minicursorword_disable` (for a buffer) to `true`. Considering high
 number of different scenarios and customization intentions, writing exact
 rules for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes. Note: after disabling
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes. Note: after disabling
 there might be highlighting left; it will be removed after next
 highlighting update.
 
@@ -102,7 +101,7 @@ Module-specific disabling:
 
 ---
 
-### setup() {#minicursorword.setup}
+### setup() {#minicursorword.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniCursorword.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -111,7 +110,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniCursorword.config`](mini-cursorword.qmd#minicursorword.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniCursorword.config](mini-cursorword.qmd#minicursorword.config).
 
 #### Usage {#minicursorword.setup-usage}
 
@@ -125,7 +124,7 @@ Module setup
 
 ---
 
-### config {#minicursorword.config}
+### config {#minicursorword.config .help-syntax-right-anchor}
 
 <p align="center">`MiniCursorword.config`</p>
 #### Defaults {#minicursorword.config-defaults}

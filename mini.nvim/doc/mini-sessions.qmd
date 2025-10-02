@@ -1,6 +1,5 @@
 ---
 title: "mini.sessions documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,9 +10,9 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski
 
 ---
 
-### Module {#minisessions}
+### Module {#module .help-syntax-right-anchor}
 
-Read, write, and delete sessions. Uses [`:mksession`](https://neovim.io/doc/user/helptag.html?tag=:mksession) (meaning 'sessionoptions'
+Read, write, and delete sessions. Uses [:mksession](https://neovim.io/doc/user/helptag.html?tag=:mksession) (meaning 'sessionoptions'
 is fully respected). This is intended as a drop-in Lua replacement for
 [mhinz/vim-startify](https://github.com/mhinz/vim-startify) session management
 (works out of the box with sessions created by it). Implements both global
@@ -21,12 +20,12 @@ is fully respected). This is intended as a drop-in Lua replacement for
 
 Key design ideas:
 
-- Sessions are represented by readable files (results of applying [`:mksession`](https://neovim.io/doc/user/helptag.html?tag=:mksession)).
+- Sessions are represented by readable files (results of applying [:mksession](https://neovim.io/doc/user/helptag.html?tag=:mksession)).
   There are two kinds of sessions:
 
     - Global: any file inside a configurable directory.
 
-    - Local: configurable file inside current working directory ([`getcwd()`](https://neovim.io/doc/user/helptag.html?tag=getcwd\(\))).
+    - Local: configurable file inside current working directory ([getcwd()](https://neovim.io/doc/user/helptag.html?tag=getcwd\(\))).
 
 
 - All session files are detected during `MiniSessions.setup()` and during
@@ -34,13 +33,13 @@ Key design ideas:
   names (including possible extension).
 
 
-- No automated new session creation. Use [`MiniSessions.write()`](mini-sessions.qmd#minisessions.write) manually.
+- No automated new session creation. Use [MiniSessions.write()](mini-sessions.qmd#minisessions.write) manually.
 
 
 - Store information about detected sessions in separate table
-  ([`MiniSessions.detected`](mini-sessions.qmd#minisessions.detected)) and operate only on it. Meaning if this information
+  ([MiniSessions.detected](mini-sessions.qmd#minisessions.detected)) and operate only on it. Meaning if this information
   changes, there will be no effect until next detection. To avoid confusion,
-  don't directly use [`:mksession`](https://neovim.io/doc/user/helptag.html?tag=:mksession) / [`:source`](https://neovim.io/doc/user/helptag.html?tag=:source) for writing / reading session files.
+  don't directly use [:mksession](https://neovim.io/doc/user/helptag.html?tag=:mksession) / [:source](https://neovim.io/doc/user/helptag.html?tag=:source) for writing / reading session files.
 
 Features:
 
@@ -54,7 +53,7 @@ Features:
 
 - Configurable severity level of all actions.
 
-#### Setup {#minisessions-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.sessions').setup({})`
@@ -62,23 +61,23 @@ This module needs a setup with `require('mini.sessions').setup({})`
 `MiniSessions` which you can use for scripting or manually (with
 `:lua MiniSessions.*`).
 
-See [`MiniSessions.config`](mini-sessions.qmd#minisessions.config) for `config` structure and default values.
+See [MiniSessions.config](mini-sessions.qmd#minisessions.config) for `config` structure and default values.
 
 This module doesn't benefit from buffer local configuration, so using
 `vim.b.minisessions_config` will have no effect here.
 
-#### Disabling {#minisessions-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable core functionality, set `vim.g.minisessions_disable` (globally) or
 `vim.b.minisessions_disable` (for a buffer) to `true`. Considering high
 number of different scenarios and customization intentions, writing exact
 rules for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### setup() {#minisessions.setup}
+### setup() {#minisessions.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -87,7 +86,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniSessions.config`](mini-sessions.qmd#minisessions.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniSessions.config](mini-sessions.qmd#minisessions.config).
 
 #### Usage {#minisessions.setup-usage}
 
@@ -101,7 +100,7 @@ Module setup
 
 ---
 
-### config {#minisessions.config}
+### config {#minisessions.config .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.config`</p>
 #### Defaults {#minisessions.config-defaults}
@@ -141,14 +140,14 @@ Module setup
 
 ---
 
-### detected {#minisessions.detected}
+### detected {#minisessions.detected .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.detected`</p>
 Table of detected sessions. Keys represent session name. Values are tables
 with session information that currently has these fields (but subject to
 change):
 
-- <span class="help-syntax-keys">\<modify_time\></span> `(number)` modification time (see [`getftime()`](https://neovim.io/doc/user/helptag.html?tag=getftime\(\))) of session file.
+- <span class="help-syntax-keys">\<modify_time\></span> `(number)` modification time (see [getftime()](https://neovim.io/doc/user/helptag.html?tag=getftime\(\))) of session file.
 
 - <span class="help-syntax-keys">\<name\></span> `(string)` name of session (should be equal to table key).
 
@@ -158,17 +157,17 @@ change):
 
 ---
 
-### read() {#minisessions.read}
+### read() {#minisessions.read .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.read`(<span class="help-syntax-special">{session_name}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Read detected session
 
 What it does:
 
-- If there is an active session and `autowrite` is `true` in [`MiniSessions.config`](mini-sessions.qmd#minisessions.config),
-  write it with [`MiniSessions.write()`](mini-sessions.qmd#minisessions.write).
+- If there is an active session and `autowrite` is `true` in [MiniSessions.config](mini-sessions.qmd#minisessions.config),
+  write it with [MiniSessions.write()](mini-sessions.qmd#minisessions.write).
 
-- Delete all current buffers with [`:bwipeout`](https://neovim.io/doc/user/helptag.html?tag=:bwipeout). This is needed to correctly
+- Delete all current buffers with [:bwipeout](https://neovim.io/doc/user/helptag.html?tag=:bwipeout). This is needed to correctly
   restore buffers from target session. If `force` is not `true`, checks
   beforehand for unsaved listed buffers and stops if there is any.
 
@@ -180,7 +179,7 @@ What it does:
 
 <span class="help-syntax-special">{session_name}</span> `(string|nil)` Name of detected session file to read. Default:
   `nil` for default session: local (if detected) or latest session (see
-  [`MiniSessions.get_latest()`](mini-sessions.qmd#minisessions.get_latest)).
+  [MiniSessions.get\_latest()](mini-sessions.qmd#minisessions.get_latest)).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Table with options. Current allowed keys:
 
@@ -197,7 +196,7 @@ What it does:
 
 ---
 
-### write() {#minisessions.write}
+### write() {#minisessions.write .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.write`(<span class="help-syntax-special">{session_name}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Write session
@@ -207,26 +206,26 @@ What it does:
 - Check if file for supplied session name already exists. If it does and
   `force` is not `true`, then stop.
 
-- Write session with [`:mksession`](https://neovim.io/doc/user/helptag.html?tag=:mksession) to a file named `session_name`. Its
+- Write session with [:mksession](https://neovim.io/doc/user/helptag.html?tag=:mksession) to a file named `session_name`. Its
   directory is determined based on type of session:
 
-    - It is at location [`v:this_session`](https://neovim.io/doc/user/helptag.html?tag=v:this_session) if `session_name` is `nil` and
+    - It is at location [v:this\_session](https://neovim.io/doc/user/helptag.html?tag=v:this_session) if `session_name` is `nil` and
       there is currently read session.
 
-    - It is current working directory ([`getcwd()`](https://neovim.io/doc/user/helptag.html?tag=getcwd\(\))) if `session_name` is equal
+    - It is current working directory ([getcwd()](https://neovim.io/doc/user/helptag.html?tag=getcwd\(\))) if `session_name` is equal
       to `MiniSessions.config.file` (represents local session).
 
     - It is `MiniSessions.config.directory` otherwise (represents global
       session).
 
-- Update [`MiniSessions.detected`](mini-sessions.qmd#minisessions.detected).
+- Update [MiniSessions.detected](mini-sessions.qmd#minisessions.detected).
 
 #### Parameters {#minisessions.write-parameters}
 
 
 
 <span class="help-syntax-special">{session_name}</span> `(string|nil)` Name of session file to write. Default: `nil` for
-  currently read session ([`v:this_session`](https://neovim.io/doc/user/helptag.html?tag=v:this_session)).
+  currently read session ([v:this\_session](https://neovim.io/doc/user/helptag.html?tag=v:this_session)).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Table with options. Current allowed keys:
 
@@ -243,7 +242,7 @@ What it does:
 
 ---
 
-### delete() {#minisessions.delete}
+### delete() {#minisessions.delete .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.delete`(<span class="help-syntax-special">{session_name}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Delete detected session
@@ -255,14 +254,14 @@ What it does:
 
 - Delete session.
 
-- Update [`MiniSessions.detected`](mini-sessions.qmd#minisessions.detected).
+- Update [MiniSessions.detected](mini-sessions.qmd#minisessions.detected).
 
 #### Parameters {#minisessions.delete-parameters}
 
 
 
 <span class="help-syntax-special">{session_name}</span> `(string|nil)` Name of detected session file to delete. Default:
-  `nil` for name of currently read session (taken from [`v:this_session`](https://neovim.io/doc/user/helptag.html?tag=v:this_session)).
+  `nil` for name of currently read session (taken from [v:this\_session](https://neovim.io/doc/user/helptag.html?tag=v:this_session)).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Table with options. Current allowed keys:
 
@@ -279,13 +278,13 @@ What it does:
 
 ---
 
-### select() {#minisessions.select}
+### select() {#minisessions.select .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.select`(<span class="help-syntax-special">{action}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Select session interactively and perform action
 
-Note: this uses [`vim.ui.select()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) function. For more user-friendly
-experience, override it (for example, see [`MiniPick.ui_select()`](mini-pick.qmd#minipick.ui_select)).
+Note: this uses [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) function. For more user-friendly
+experience, override it (for example, see [MiniPick.ui\_select()](mini-pick.qmd#minipick.ui_select)).
 
 #### Parameters {#minisessions.select-parameters}
 
@@ -298,13 +297,13 @@ experience, override it (for example, see [`MiniPick.ui_select()`](mini-pick.qmd
 
 ---
 
-### get_latest() {#minisessions.get_latest}
+### get_latest() {#minisessions.get_latest .help-syntax-right-anchor}
 
 <p align="center">`MiniSessions.get_latest`()</p>
 Get name of latest detected session
 
 Latest session is the session with the latest modification time determined
-by [`getftime()`](https://neovim.io/doc/user/helptag.html?tag=getftime\(\)).
+by [getftime()](https://neovim.io/doc/user/helptag.html?tag=getftime\(\)).
 
 #### Return {#minisessions.get_latest-return}
 

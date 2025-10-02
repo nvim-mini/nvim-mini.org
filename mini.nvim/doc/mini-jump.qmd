@@ -1,6 +1,5 @@
 ---
 title: "mini.jump documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski, Adam Blažek
 
 ---
 
-### Module {#minijump}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -35,7 +34,7 @@ This module follows vim's 'ignorecase' and 'smartcase' options. When
 'smartcase' is also set, f, F, t, T will only match lowercase
 characters case-insensitively.
 
-#### Setup {#minijump-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.jump').setup({})`
@@ -43,40 +42,40 @@ This module needs a setup with `require('mini.jump').setup({})`
 `MiniJump` which you can use for scripting or manually (with
 `:lua MiniJump.*`).
 
-See [`MiniJump.config`](mini-jump.qmd#minijump.config) for `config` structure and default values.
+See [MiniJump.config](mini-jump.qmd#minijump.config) for `config` structure and default values.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minijump_config` which should have same structure as
-`MiniJump.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniJump.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Highlight groups {#minijump-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
 - `MiniJump` - all possible cursor positions.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minijump-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable core functionality, set `vim.g.minijump_disable` (globally) or
 `vim.b.minijump_disable` (for a buffer) to `true`. Considering high number of
 different scenarios and customization intentions, writing exact rules for
 disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Events {#minijump-events}
+### Events {#minijump-events .help-syntax-right-anchor}
 
-To allow user customization and integration of external tools, certain [`User`](https://neovim.io/doc/user/helptag.html?tag=User)
+To allow user customization and integration of external tools, certain [User](https://neovim.io/doc/user/helptag.html?tag=User)
 autocommand events are triggered under common circumstances:
 
 
-- `MiniJumpGetTarget` - before asking user for the target. Use [`MiniJump.state`](mini-jump.qmd#minijump.state)
+- `MiniJumpGetTarget` - before asking user for the target. Use [MiniJump.state](mini-jump.qmd#minijump.state)
   for more information about the upcoming jump.
 
 - `MiniJumpStart` - after jumping has started.
@@ -87,7 +86,7 @@ autocommand events are triggered under common circumstances:
 
 ---
 
-### setup() {#minijump.setup}
+### setup() {#minijump.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -96,7 +95,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniJump.config`](mini-jump.qmd#minijump.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniJump.config](mini-jump.qmd#minijump.config).
 
 #### Usage {#minijump.setup-usage}
 
@@ -110,7 +109,7 @@ Module setup
 
 ---
 
-### config {#minijump.config}
+### config {#minijump.config .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.config`</p>
 #### Defaults {#minijump.config-defaults}
@@ -147,7 +146,7 @@ Module setup
 
 ---
 
-### state {#minijump.state}
+### state {#minijump.state .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.state`</p>
 Data about jumping state
@@ -160,7 +159,7 @@ similar arguments.
 
 
 This can be used to define mappings which depend on state; either as
-a standalone mapping or part of [`MiniKeymap.map_multistep()`](mini-keymap.qmd#minikeymap.map_multistep). For example:
+a standalone mapping or part of [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep). For example:
 
   ```lua
   -- Stop jumping after pressing `<Esc>`
@@ -193,10 +192,10 @@ a standalone mapping or part of [`MiniKeymap.map_multistep()`](mini-keymap.qmd#m
 
 <span class="help-syntax-special">{n_times}</span> `(number|nil)` Number of times to perform consecutive jumps.
 
-<span class="help-syntax-special">{mode}</span> `(string)` Mode of latest jump (output of [`mode()`](https://neovim.io/doc/user/helptag.html?tag=mode\(\)) with non-zero argument).
+<span class="help-syntax-special">{mode}</span> `(string)` Mode of latest jump (output of [mode()](https://neovim.io/doc/user/helptag.html?tag=mode\(\)) with non-zero argument).
 
 <span class="help-syntax-special">{jumping}</span> `(boolean)` Whether module is currently in "jumping mode": usage of
-  [`MiniJump.smart_jump()`](mini-jump.qmd#minijump.smart_jump) and all mappings won't require target.
+  [MiniJump.smart\_jump()](mini-jump.qmd#minijump.smart_jump) and all mappings won't require target.
 
 Initial values:
 
@@ -214,14 +213,14 @@ Initial values:
 
 ---
 
-### jump() {#minijump.jump}
+### jump() {#minijump.jump .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.jump`(<span class="help-syntax-special">{target}</span>, <span class="help-syntax-special">{backward}</span>, <span class="help-syntax-special">{till}</span>, <span class="help-syntax-special">{n_times}</span>)</p>
 Jump to target
 
 Takes a string and jumps to its first occurrence in desired direction.
 
-All default values are taken from [`MiniJump.state`](mini-jump.qmd#minijump.state) to emulate latest jump.
+All default values are taken from [MiniJump.state](mini-jump.qmd#minijump.state) to emulate latest jump.
 
 #### Parameters {#minijump.jump-parameters}
 
@@ -240,15 +239,15 @@ All default values are taken from [`MiniJump.state`](mini-jump.qmd#minijump.stat
 
 ---
 
-### smart_jump() {#minijump.smart_jump}
+### smart_jump() {#minijump.smart_jump .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.smart_jump`(<span class="help-syntax-special">{backward}</span>, <span class="help-syntax-special">{till}</span>)</p>
 Make smart jump
 
 If the last movement was a jump, perform another jump with the same target.
-Otherwise, wait for a target input (via [`getcharstr()`](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))). Respects [`v:count`](https://neovim.io/doc/user/helptag.html?tag=v:count).
+Otherwise, wait for a target input (via [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))). Respects [v:count](https://neovim.io/doc/user/helptag.html?tag=v:count).
 
-All default values are taken from [`MiniJump.state`](mini-jump.qmd#minijump.state) to emulate latest jump.
+All default values are taken from [MiniJump.state](mini-jump.qmd#minijump.state) to emulate latest jump.
 
 #### Parameters {#minijump.smart_jump-parameters}
 
@@ -263,11 +262,11 @@ All default values are taken from [`MiniJump.state`](mini-jump.qmd#minijump.stat
 
 ---
 
-### stop_jumping() {#minijump.stop_jumping}
+### stop_jumping() {#minijump.stop_jumping .help-syntax-right-anchor}
 
 <p align="center">`MiniJump.stop_jumping`()</p>
 Stop jumping
 
 Removes highlights (if any) and forces the next smart jump to prompt for
-the target. Automatically called on appropriate Neovim [`events`](https://neovim.io/doc/user/helptag.html?tag=events).
+the target. Automatically called on appropriate Neovim [events](https://neovim.io/doc/user/helptag.html?tag=events).
 

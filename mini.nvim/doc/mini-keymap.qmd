@@ -1,6 +1,5 @@
 ---
 title: "mini.keymap documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2025 Evgeni Chasnovski
 
 ---
 
-### Module {#minikeymap}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -19,16 +18,16 @@ Features:
 - Map keys to perform configurable multi-step actions: if condition for step
   one is true - execute step one action, else check step two, and so on until
   falling back to executing original keys. This is usually referred to as
-  "smart" keys (like "smart tab"). See [`MiniKeymap.map_multistep()`](mini-keymap.qmd#minikeymap.map_multistep).
+  "smart" keys (like "smart tab"). See [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep).
 
   There are many built-in steps targeted for Insert mode mappings of special
   keys like <span class="help-syntax-keys">\<Tab\></span>, <span class="help-syntax-keys">\<S-Tab\></span>, <span class="help-syntax-keys">\<CR\></span>, and <span class="help-syntax-keys">\<BS\></span>:
 
-  - Navigate and accept [`popupmenu-completion`](https://neovim.io/doc/user/helptag.html?tag=popupmenu-completion). Useful for [`mini.completion`](mini-completion.qmd#mini.completion).
+  - Navigate and accept [popupmenu-completion](https://neovim.io/doc/user/helptag.html?tag=popupmenu-completion). Useful for [mini.completion](mini-completion.qmd#mini.completion).
 
-  - Navigate and expand [`mini.snippets`](mini-snippets.qmd#mini.snippets).
+  - Navigate and expand [mini.snippets](mini-snippets.qmd#mini.snippets).
 
-  - Execute <span class="help-syntax-keys">\<CR\></span> and <span class="help-syntax-keys">\<BS\></span> respecting [`mini.pairs`](mini-pairs.qmd#mini.pairs).
+  - Execute <span class="help-syntax-keys">\<CR\></span> and <span class="help-syntax-keys">\<BS\></span> respecting [mini.pairs](mini-pairs.qmd#mini.pairs).
 
   - Jump before/after current tree-sitter node.
 
@@ -38,7 +37,7 @@ Features:
 
   - Delete all whitespace to the left ("hungry backspace").
 
-  - Navigate [`vim.snippet`](https://neovim.io/doc/user/helptag.html?tag=vim.snippet).
+  - Navigate [vim.snippet](https://neovim.io/doc/user/helptag.html?tag=vim.snippet).
 
   - Navigate and accept in [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) completion.
 
@@ -51,7 +50,7 @@ Features:
 
 - Map keys as "combo": each key acts immediately plus execute extra action if
   all are typed within configurable delay between each other.
-  See [`MiniKeymap.map_combo()`](mini-keymap.qmd#minikeymap.map_combo). Some of the common use cases include:
+  See [MiniKeymap.map\_combo()](mini-keymap.qmd#minikeymap.map_combo). Some of the common use cases include:
 
     - Map insertable keys (like "jk", "kj") in Insert and Command-line mode
       to exit into Normal mode.
@@ -61,9 +60,9 @@ Features:
 
 Sources with more details:
 
-- [`MiniKeymap-examples`](mini-keymap.qmd#minikeymap-examples)
+- [MiniKeymap-examples](mini-keymap.qmd#minikeymap-examples)
 
-#### Setup {#minikeymap-setup}
+#### Setup {#module-setup}
 
 
 This module doesn't need setup, but it can be done to improve usability.
@@ -71,18 +70,18 @@ Setup with `require('mini.keymap').setup({})` (replace `{}` with your `config`
 table). It will create global Lua table `MiniKeymap` which you can use for
 scripting or manually (with `:lua MiniKeymap.*`).
 
-See [`MiniKeymap.config`](mini-keymap.qmd#minikeymap.config) for `config` structure and default values.
+See [MiniKeymap.config](mini-keymap.qmd#minikeymap.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.minikeymap_config`
 will have no effect here.
 
-#### Comparisons {#minikeymap-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
 - [max397574/better-escape.nvim](https://github.com/max397574/better-escape.nvim):
 
-    - Mostly similar to [`MiniKeymap.map_combo()`](mini-keymap.qmd#minikeymap.map_combo) with a different approach
+    - Mostly similar to [MiniKeymap.map\_combo()](mini-keymap.qmd#minikeymap.map_combo) with a different approach
       to creating mappings.
 
     - Mostly targeted for Insert mode mappings as pressed keys get removed
@@ -93,7 +92,7 @@ will have no effect here.
 - [abecodes/tabout.nvim](https://github.com/abecodes/tabout.nvim):
 
     - Similar general idea as in `'jump_{after,before}_tsnode'` steps
-      of [`MiniKeymap.map_multistep()`](mini-keymap.qmd#minikeymap.map_multistep).
+      of [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep).
 
     - Works only with enabled tree-sitter parser. This module provides
       fallback via 'jump_after_close' and 'jump_before_open' that work
@@ -102,26 +101,26 @@ will have no effect here.
     - 'tabout.nvim' has finer control of how the tree-sitter node movement
       is done, while this module has "jump outside of current node" behavior.
 
-#### Disabling {#minikeymap-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable acting in mappings, set `vim.g.minikeymap_disable` (globally) or
 `vim.b.minikeymap_disable` (for a buffer) to `true`. Considering high number
 of different scenarios and customization intentions, writing exact rules
 for disabling module's functionality is left to user.
-See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Examples {#minikeymap-examples}
+### Examples {#minikeymap-examples .help-syntax-right-anchor}
 
 #### Multi-step {#minikeymap-examples-multi-step}
 
 
-See [`MiniKeymap.map_multistep()`](mini-keymap.qmd#minikeymap.map_multistep) for a general description of how multi-step
+See [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep) for a general description of how multi-step
 mappings work and what built-in steps are available.
 
-Setup that works well with [`mini.completion`](mini-completion.qmd#mini.completion) and [`mini.pairs`](mini-pairs.qmd#mini.pairs):
+Setup that works well with [mini.completion](mini-completion.qmd#mini.completion) and [mini.pairs](mini-pairs.qmd#mini.pairs):
 
   ```lua
   local map_multistep = require('mini.keymap').map_multistep
@@ -131,7 +130,7 @@ Setup that works well with [`mini.completion`](mini-completion.qmd#mini.completi
   map_multistep('i', '<BS>',    { 'minipairs_bs' })
   ```
 
-Use <span class="help-syntax-keys">\<Tab\></span> / <span class="help-syntax-keys">\<S-Tab\></span> to also navigate and expand [`mini.snippets`](mini-snippets.qmd#mini.snippets):
+Use <span class="help-syntax-keys">\<Tab\></span> / <span class="help-syntax-keys">\<S-Tab\></span> to also navigate and expand [mini.snippets](mini-snippets.qmd#mini.snippets):
 
   ```lua
   local map_multistep = require('mini.keymap').map_multistep
@@ -162,7 +161,7 @@ An extra smart <span class="help-syntax-keys">\<Tab\></span> and <span class="he
   map_multistep('i', '<S-Tab>', shifttab_steps)
   ```
 
-Navigation in active [`vim.snippet`](https://neovim.io/doc/user/helptag.html?tag=vim.snippet) session also requires mapping in [`Select-mode`](https://neovim.io/doc/user/helptag.html?tag=Select-mode):
+Navigation in active [vim.snippet](https://neovim.io/doc/user/helptag.html?tag=vim.snippet) session also requires mapping in [Select-mode](https://neovim.io/doc/user/helptag.html?tag=Select-mode):
 
   ```lua
   local map_multistep = require('mini.keymap').map_multistep
@@ -173,7 +172,7 @@ Navigation in active [`vim.snippet`](https://neovim.io/doc/user/helptag.html?tag
 #### Combos {#minikeymap-examples-combos}
 
 
-See [`MiniKeymap.map_combo()`](mini-keymap.qmd#minikeymap.map_combo) for a general description of what is a combo and
+See [MiniKeymap.map\_combo()](mini-keymap.qmd#minikeymap.map_combo) for a general description of what is a combo and
 more caveats about its usage.
 
 All combos require their left hand side keys to be typed relatively quickly.
@@ -183,7 +182,7 @@ fourth argument.
 ##### "Better escape" to Normal mode {#minikeymap-examples-combos-betterescapetonormalmode}
 
 
-Leave into [`Normal-mode`](https://neovim.io/doc/user/helptag.html?tag=Normal-mode) without having to reach for <span class="help-syntax-keys">\<Esc\></span> key:
+Leave into [Normal-mode](https://neovim.io/doc/user/helptag.html?tag=Normal-mode) without having to reach for <span class="help-syntax-keys">\<Esc\></span> key:
 
   ```lua
   -- Support most common modes. This can also contain 't', but would
@@ -219,7 +218,7 @@ Show notification if there is too much movement by repeating same key:
 ##### Fix previous spelling mistake {#minikeymap-examples-combos-fixpreviousspellingmistake}
 
 
-Fix previous spelling mistake (see [`[s`](https://neovim.io/doc/user/helptag.html?tag=[s) and [`z=`](https://neovim.io/doc/user/helptag.html?tag=z=)) without manually leaving
+Fix previous spelling mistake (see [[s](https://neovim.io/doc/user/helptag.html?tag=[s) and [z=](https://neovim.io/doc/user/helptag.html?tag=z=)) without manually leaving
 Insert mode:
 
   ```lua
@@ -230,7 +229,7 @@ Insert mode:
 ##### Hide search highlighting {#minikeymap-examples-combos-hidesearchhighlighting}
 
 
-Use double <span class="help-syntax-keys">\<Esc\></span><span class="help-syntax-keys">\<Esc\></span> to execute [`:nohlsearch`](https://neovim.io/doc/user/helptag.html?tag=:nohlsearch). Although this can also be done
+Use double <span class="help-syntax-keys">\<Esc\></span><span class="help-syntax-keys">\<Esc\></span> to execute [:nohlsearch](https://neovim.io/doc/user/helptag.html?tag=:nohlsearch). Although this can also be done
 with `nmap <Esc> <Cmd>nohl<CR>`, the combo approach also exists and can be used
 to free <span class="help-syntax-keys">\<Esc\></span> mapping in Normal mode for something else.
 
@@ -254,7 +253,7 @@ Replace some movements with easier to type alternatives:
 
 ---
 
-### setup() {#minikeymap.setup}
+### setup() {#minikeymap.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -263,7 +262,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniKeymap.config`](mini-keymap.qmd#minikeymap.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniKeymap.config](mini-keymap.qmd#minikeymap.config).
 
 #### Usage {#minikeymap.setup-usage}
 
@@ -276,7 +275,7 @@ Module setup
 
 ---
 
-### config {#minikeymap.config}
+### config {#minikeymap.config .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.config`</p>
 #### Defaults {#minikeymap.config-defaults}
@@ -289,12 +288,12 @@ Module setup
 
 ---
 
-### map_multistep() {#minikeymap.map_multistep}
+### map_multistep() {#minikeymap.map_multistep .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.map_multistep`(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{steps}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Map multi-step action
 
-Mapping of a multi-step action is an expression mapping ([`:map-expression`](https://neovim.io/doc/user/helptag.html?tag=:map-expression)).
+Mapping of a multi-step action is an expression mapping ([:map-expression](https://neovim.io/doc/user/helptag.html?tag=:map-expression)).
 Executing a multi-step action is essentially:
 
 - Check condition for step one. If `true` - execute step one action and stop.
@@ -355,9 +354,9 @@ Available built-in steps ("For key" is a suggestion, any can be used):
 
 Notes:
 
-- Executing action has limitations of [`:map-expression`](https://neovim.io/doc/user/helptag.html?tag=:map-expression) (like not allowed text
-  or buffer changes, etc.). To execute complex lua code, use [`vim.schedule()`](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\))
-  inside action, return the code as string in [`:map-cmd`](https://neovim.io/doc/user/helptag.html?tag=:map-cmd) format, or return
+- Executing action has limitations of [:map-expression](https://neovim.io/doc/user/helptag.html?tag=:map-expression) (like not allowed text
+  or buffer changes, etc.). To execute complex lua code, use [vim.schedule()](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\))
+  inside action, return the code as string in [:map-cmd](https://neovim.io/doc/user/helptag.html?tag=:map-cmd) format, or return
   a function to be later executed. See usage examples.
 
 
@@ -368,9 +367,9 @@ Notes:
 
 
 
-<span class="help-syntax-special">{mode}</span> `(string|table)` Same as for [`vim.keymap.set()`](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
+<span class="help-syntax-special">{mode}</span> `(string|table)` Same as for [vim.keymap.set()](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
 
-<span class="help-syntax-special">{lhs}</span> `(string)` Same as for [`vim.keymap.set()`](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
+<span class="help-syntax-special">{lhs}</span> `(string)` Same as for [vim.keymap.set()](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
 
 <span class="help-syntax-special">{steps}</span> `(table)` Array of steps. Each step can be a string with the name
   of built-in step or a table with two callable methods (will be called
@@ -384,19 +383,19 @@ Notes:
       - String - will be returned as expression output. Can be something like
         `"<Tab>"` (treat as <span class="help-syntax-keys">\<Tab\></span> key) or `"<Cmd>lua vim.notify('Hello')<CR>"`.
         Should not escape keycodes (i.e. return "<span class="help-syntax-keys">\<Tab\></span>" and not "\t").
-        To undo already done escape, use [`keytrans()`](https://neovim.io/doc/user/helptag.html?tag=keytrans\(\)).
+        To undo already done escape, use [keytrans()](https://neovim.io/doc/user/helptag.html?tag=keytrans\(\)).
 
       - Function - will be executed as if `"<Cmd>lua f()<CR>"`, but does not
         need to create a global function for that.
 
       - `false` - do not stop going through steps.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as for [`vim.keymap.set()`](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as for [vim.keymap.set()](https://neovim.io/doc/user/helptag.html?tag=vim.keymap.set\(\)).
 
 #### Usage {#minikeymap.map_multistep-usage}
 
 
-See [`MiniKeymap-examples`](mini-keymap.qmd#minikeymap-examples) for practical examples.
+See [MiniKeymap-examples](mini-keymap.qmd#minikeymap-examples) for practical examples.
 
 Some illustrative examples:
 
@@ -439,7 +438,7 @@ Some illustrative examples:
 
 ---
 
-### gen_step {#minikeymap.gen_step}
+### gen_step {#minikeymap.gen_step .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.gen_step`</p>
 Generate step for multi-step mappings
@@ -448,32 +447,32 @@ This is a table with function elements. Call to actually get a step.
 
 ---
 
-### gen_step.search_pattern() {#minikeymap.gen_step.search_pattern}
+### gen_step.search_pattern() {#minikeymap.gen_step.search_pattern .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.gen_step.search_pattern`(<span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{flags}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Search pattern step
 
-Use [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)) to jump to pattern match. Possibly adjust final position to
+Use [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)) to jump to pattern match. Possibly adjust final position to
 be just to the right of the match (useful in Insert mode).
 
 #### Parameters {#minikeymap.gen_step.search_pattern-parameters}
 
 
 
-<span class="help-syntax-special">{pattern}</span> `(string)` Same as for [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
+<span class="help-syntax-special">{pattern}</span> `(string)` Same as for [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
 
-<span class="help-syntax-special">{flags}</span> `(string|nil)` Same as for [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
+<span class="help-syntax-special">{flags}</span> `(string|nil)` Same as for [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
   - <span class="help-syntax-keys">\<side\></span> `(string)` - one of `"before"` (default) or `"after"`.
 
-  - <span class="help-syntax-keys">\<stopline\></span> `(number|function)` - forwarded to [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)) (as number or
+  - <span class="help-syntax-keys">\<stopline\></span> `(number|function)` - forwarded to [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)) (as number or
     as function's output after calling it before every search).
 
-  - <span class="help-syntax-keys">\<timeout\></span> `(number)` - forwarded to [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
+  - <span class="help-syntax-keys">\<timeout\></span> `(number)` - forwarded to [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
 
-  - <span class="help-syntax-keys">\<skip\></span> `(string|function)` - forwarded to [`search()`](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
+  - <span class="help-syntax-keys">\<skip\></span> `(string|function)` - forwarded to [search()](https://neovim.io/doc/user/helptag.html?tag=search\(\)).
 
 #### Return {#minikeymap.gen_step.search_pattern-return}
 
@@ -483,7 +482,7 @@ be just to the right of the match (useful in Insert mode).
 #### Usage {#minikeymap.gen_step.search_pattern-usage}
 
 
-Built-in [`MiniKeymap.map_multistep()`](mini-keymap.qmd#minikeymap.map_multistep) steps "jump_after_close" and
+Built-in [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep) steps "jump_after_close" and
 "jump_before_open" use this, but only in Insert mode.
 
 Steps that jump before/after all consecutive brackets in several modes:
@@ -504,7 +503,7 @@ Steps that jump before/after all consecutive brackets in several modes:
 
 ---
 
-### map_combo() {#minikeymap.map_combo}
+### map_combo() {#minikeymap.map_combo .help-syntax-right-anchor}
 
 <p align="center">`MiniKeymap.map_combo`(<span class="help-syntax-special">{mode}</span>, <span class="help-syntax-special">{lhs}</span>, <span class="help-syntax-special">{action}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Map combo post action
@@ -523,13 +522,13 @@ Example for Insert mode "better escape" `jk` combo with `<BS><BS><Esc>` action:
 Notes:
 
 - IMPORTANT! Combo is not a regular mapping but a separate key tracking
-  with [`vim.on_key()`](https://neovim.io/doc/user/helptag.html?tag=vim.on_key\(\)). This is important as combos will not be visible and
+  with [vim.on\_key()](https://neovim.io/doc/user/helptag.html?tag=vim.on_key\(\)). This is important as combos will not be visible and
   can not be managed as regular mappings. Instead each combo is associated
-  with a dedicated [`namespace`](https://neovim.io/doc/user/helptag.html?tag=namespace) (named for human readability). However, it is not
+  with a dedicated [namespace](https://neovim.io/doc/user/helptag.html?tag=namespace) (named for human readability). However, it is not
   really expected to manage them on the fly after they are created.
 
 
-- String action is executed with [`nvim_input()`](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)), i.e. emulated keys will
+- String action is executed with [nvim\_input()](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)), i.e. emulated keys will
   respect custom mappings.
 
 
@@ -537,7 +536,7 @@ Notes:
   if there are combos for `jjk` and `jk` keys, fast typing `jjk` will execute both.
 
 
-- Neovim>=0.11 is recommended due to [`vim.on_key()`](https://neovim.io/doc/user/helptag.html?tag=vim.on_key\(\)) improvement to allow
+- Neovim>=0.11 is recommended due to [vim.on\_key()](https://neovim.io/doc/user/helptag.html?tag=vim.on_key\(\)) improvement to allow
   watching for keys as they are typed and not as if coming from mappings.
   For example, this matters when creating a `jk` combo for Visual mode while
   also having `xnoremap j gj` style of remaps. On Neovim<0.11 the fix is to
@@ -561,8 +560,8 @@ Notes:
   tracked keys (one element - one key).
 
 <span class="help-syntax-special">{action}</span> `(string|function)` Action to perform after key sequence is detected.
-  If string, treated as keys and emulated with [`nvim_input()`](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)).
-  If function, executed in [`vim.schedule()`](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\)). Can return string keys which will
+  If string, treated as keys and emulated with [nvim\_input()](https://neovim.io/doc/user/helptag.html?tag=nvim_input\(\)).
+  If function, executed in [vim.schedule()](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\)). Can return string keys which will
   be emulated.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
@@ -573,7 +572,7 @@ Notes:
 #### Usage {#minikeymap.map_combo-usage}
 
 
-See [`MiniKeymap-examples`](mini-keymap.qmd#minikeymap-examples) for practical examples.
+See [MiniKeymap-examples](mini-keymap.qmd#minikeymap-examples) for practical examples.
 
 Some illustrative examples:
 

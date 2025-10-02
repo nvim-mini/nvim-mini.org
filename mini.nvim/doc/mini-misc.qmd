@@ -1,6 +1,5 @@
 ---
 title: "mini.misc documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,44 +10,44 @@ MIT License Copyright (c) 2021 Evgeni Chasnovski
 
 ---
 
-### Module {#minimisc}
+### Module {#module .help-syntax-right-anchor}
 
 Features the following functions:
 
-- [`MiniMisc.bench_time()`](mini-misc.qmd#minimisc.bench_time) to benchmark function execution time.
+- [MiniMisc.bench\_time()](mini-misc.qmd#minimisc.bench_time) to benchmark function execution time.
   Useful in combination with `stat_summary()`.
 
 
-- [`MiniMisc.put()`](mini-misc.qmd#minimisc.put) and [`MiniMisc.put_text()`](mini-misc.qmd#minimisc.put_text) to pretty print its arguments
+- [MiniMisc.put()](mini-misc.qmd#minimisc.put) and [MiniMisc.put\_text()](mini-misc.qmd#minimisc.put_text) to pretty print its arguments
   into command line and current buffer respectively.
 
 
-- [`MiniMisc.setup_auto_root()`](mini-misc.qmd#minimisc.setup_auto_root) to set up automated change of current directory.
+- [MiniMisc.setup\_auto\_root()](mini-misc.qmd#minimisc.setup_auto_root) to set up automated change of current directory.
 
 
-- [`MiniMisc.setup_termbg_sync()`](mini-misc.qmd#minimisc.setup_termbg_sync) to set up terminal background synchronization
+- [MiniMisc.setup\_termbg\_sync()](mini-misc.qmd#minimisc.setup_termbg_sync) to set up terminal background synchronization
   (removes possible "frame" around current Neovim instance).
 
 
-- [`MiniMisc.setup_restore_cursor()`](mini-misc.qmd#minimisc.setup_restore_cursor) to set up automated restoration of
+- [MiniMisc.setup\_restore\_cursor()](mini-misc.qmd#minimisc.setup_restore_cursor) to set up automated restoration of
   cursor position on file reopen.
 
 
-- [`MiniMisc.stat_summary()`](mini-misc.qmd#minimisc.stat_summary) to compute summary statistics of numerical array.
+- [MiniMisc.stat\_summary()](mini-misc.qmd#minimisc.stat_summary) to compute summary statistics of numerical array.
   Useful in combination with `bench_time()`.
 
 
-- [`MiniMisc.tbl_head()`](mini-misc.qmd#minimisc.tbl_head) and [`MiniMisc.tbl_tail()`](mini-misc.qmd#minimisc.tbl_tail) to return "first" and "last"
+- [MiniMisc.tbl\_head()](mini-misc.qmd#minimisc.tbl_head) and [MiniMisc.tbl\_tail()](mini-misc.qmd#minimisc.tbl_tail) to return "first" and "last"
   elements of table.
 
 
-- [`MiniMisc.zoom()`](mini-misc.qmd#minimisc.zoom) to zoom in and out of a buffer, making it full screen
+- [MiniMisc.zoom()](mini-misc.qmd#minimisc.zoom) to zoom in and out of a buffer, making it full screen
   in a floating window.
 
 
 - And more.
 
-#### Setup {#minimisc-setup}
+#### Setup {#module-setup}
 
 
 This module doesn't need setup, but it can be done to improve usability.
@@ -56,14 +55,14 @@ Setup with `require('mini.misc').setup({})` (replace `{}` with your
 `config` table). It will create global Lua table `MiniMisc` which you can
 use for scripting or manually (with `:lua MiniMisc.*`).
 
-See [`MiniMisc.config`](mini-misc.qmd#minimisc.config) for `config` structure and default values.
+See [MiniMisc.config](mini-misc.qmd#minimisc.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.minimisc_config`
 will have no effect here.
 
 ---
 
-### setup() {#minimisc.setup}
+### setup() {#minimisc.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -72,7 +71,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniMisc.config`](mini-misc.qmd#minimisc.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniMisc.config](mini-misc.qmd#minimisc.config).
 
 #### Usage {#minimisc.setup-usage}
 
@@ -86,7 +85,7 @@ Module setup
 
 ---
 
-### config {#minimisc.config}
+### config {#minimisc.config .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.config`</p>
 #### Defaults {#minimisc.config-defaults}
@@ -102,7 +101,7 @@ Module setup
 
 ---
 
-### bench_time() {#minimisc.bench_time}
+### bench_time() {#minimisc.bench_time .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.bench_time`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{n}</span>, <span class="help-syntax-special">{...}</span>)</p>
 Execute `f` several times and time how long it took
@@ -125,7 +124,7 @@ Execute `f` several times and time how long it took
 
 ---
 
-### get_gutter_width() {#minimisc.get_gutter_width}
+### get_gutter_width() {#minimisc.get_gutter_width .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.get_gutter_width`(<span class="help-syntax-special">{win_id}</span>)</p>
 Compute width of gutter (info column on the left of the window)
@@ -134,12 +133,12 @@ Compute width of gutter (info column on the left of the window)
 
 
 
-<span class="help-syntax-special">{win_id}</span> `(number|nil)` Window identifier (see [`win_getid()`](https://neovim.io/doc/user/helptag.html?tag=win_getid\(\))) for which gutter
+<span class="help-syntax-special">{win_id}</span> `(number|nil)` Window identifier (see [win\_getid()](https://neovim.io/doc/user/helptag.html?tag=win_getid\(\))) for which gutter
   width is computed. Default: 0 for current.
 
 ---
 
-### put() {#minimisc.put}
+### put() {#minimisc.put .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.put`(<span class="help-syntax-special">{...}</span>)</p>
 Print Lua objects in command line
@@ -152,7 +151,7 @@ Print Lua objects in command line
 
 ---
 
-### put_text() {#minimisc.put_text}
+### put_text() {#minimisc.put_text .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.put_text`(<span class="help-syntax-special">{...}</span>)</p>
 Print Lua objects in current buffer
@@ -165,7 +164,7 @@ Print Lua objects in current buffer
 
 ---
 
-### resize_window() {#minimisc.resize_window}
+### resize_window() {#minimisc.resize_window .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.resize_window`(<span class="help-syntax-special">{win_id}</span>, <span class="help-syntax-special">{text_width}</span>)</p>
 Resize window to have exact number of editable columns
@@ -174,7 +173,7 @@ Resize window to have exact number of editable columns
 
 
 
-<span class="help-syntax-special">{win_id}</span> `(number|nil)` Window identifier (see [`win_getid()`](https://neovim.io/doc/user/helptag.html?tag=win_getid\(\))) to be resized.
+<span class="help-syntax-special">{win_id}</span> `(number|nil)` Window identifier (see [win\_getid()](https://neovim.io/doc/user/helptag.html?tag=win_getid\(\))) to be resized.
   Default: 0 for current.
 
 <span class="help-syntax-special">{text_width}</span> `(number|nil)` Number of editable columns resized window will
@@ -183,26 +182,26 @@ Resize window to have exact number of editable columns
 
 ---
 
-### setup_auto_root() {#minimisc.setup_auto_root}
+### setup_auto_root() {#minimisc.setup_auto_root .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.setup_auto_root`(<span class="help-syntax-special">{names}</span>, <span class="help-syntax-special">{fallback}</span>)</p>
 Set up automated change of current directory
 
 What it does:
 
-- Creates autocommand which on every [`BufEnter`](https://neovim.io/doc/user/helptag.html?tag=BufEnter) event with [`MiniMisc.find_root()`](mini-misc.qmd#minimisc.find_root)
-  finds root directory for current buffer file and sets [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory)
-  to it (using [`chdir()`](https://neovim.io/doc/user/helptag.html?tag=chdir\(\))).
+- Creates autocommand which on every [BufEnter](https://neovim.io/doc/user/helptag.html?tag=BufEnter) event with [MiniMisc.find\_root()](mini-misc.qmd#minimisc.find_root)
+  finds root directory for current buffer file and sets [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory)
+  to it (using [chdir()](https://neovim.io/doc/user/helptag.html?tag=chdir\(\))).
 
-- Resets [`'autochdir'`](https://neovim.io/doc/user/helptag.html?tag='autochdir') to `false`.
+- Resets ['autochdir'](https://neovim.io/doc/user/helptag.html?tag='autochdir') to `false`.
 
 #### Parameters {#minimisc.setup_auto_root-parameters}
 
 
 
-<span class="help-syntax-special">{names}</span> `(table|function|nil)` Forwarded to [`MiniMisc.find_root()`](mini-misc.qmd#minimisc.find_root).
+<span class="help-syntax-special">{names}</span> `(table|function|nil)` Forwarded to [MiniMisc.find\_root()](mini-misc.qmd#minimisc.find_root).
 
-<span class="help-syntax-special">{fallback}</span> `(function|nil)` Forwarded to [`MiniMisc.find_root()`](mini-misc.qmd#minimisc.find_root).
+<span class="help-syntax-special">{fallback}</span> `(function|nil)` Forwarded to [MiniMisc.find\_root()](mini-misc.qmd#minimisc.find_root).
 
 #### Usage {#minimisc.setup_auto_root-usage}
 
@@ -215,7 +214,7 @@ What it does:
 
 ---
 
-### find_root() {#minimisc.find_root}
+### find_root() {#minimisc.find_root .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.find_root`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{names}</span>, <span class="help-syntax-special">{fallback}</span>)</p>
 Find root directory
@@ -224,7 +223,7 @@ Based on a buffer name (full path to file opened in a buffer) find a root
 directory. If buffer is not associated with file, returns `nil`.
 
 Root directory is a directory containing at least one of pre-defined files.
-It is searched using [`vim.fs.find()`](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)) with `upward = true` starting from
+It is searched using [vim.fs.find()](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)) with `upward = true` starting from
 directory of current buffer file until first occurrence of root file(s).
 
 Notes:
@@ -237,20 +236,20 @@ Notes:
 
 
 
-<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to use.
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [bufnr()](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to use.
   Default: 0 for current.
 
 <span class="help-syntax-special">{names}</span> `(table|function|nil)` Array of file names or a callable used to
-  identify a root directory. Forwarded to [`vim.fs.find()`](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)).
+  identify a root directory. Forwarded to [vim.fs.find()](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)).
   Default: `{ '.git', 'Makefile' }`.
 
 <span class="help-syntax-special">{fallback}</span> `(function|nil)` Callable fallback to use if no root is found
-  with [`vim.fs.find()`](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)). Will be called with a buffer path and should return
+  with [vim.fs.find()](https://neovim.io/doc/user/helptag.html?tag=vim.fs.find\(\)). Will be called with a buffer path and should return
   a valid directory path.
 
 ---
 
-### setup_termbg_sync() {#minimisc.setup_termbg_sync}
+### setup_termbg_sync() {#minimisc.setup_termbg_sync .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.setup_termbg_sync`()</p>
 Set up terminal background synchronization
@@ -260,34 +259,34 @@ What it does:
 - Checks if terminal emulator supports OSC 11 control sequence through
   appropriate `stdout`. Stops if not.
 
-- Creates autocommands for [`ColorScheme`](https://neovim.io/doc/user/helptag.html?tag=ColorScheme) and [`VimResume`](https://neovim.io/doc/user/helptag.html?tag=VimResume) events, which
-  change terminal background to have same color as [`guibg`](https://neovim.io/doc/user/helptag.html?tag=guibg) of [`hl-Normal`](https://neovim.io/doc/user/helptag.html?tag=hl-Normal).
+- Creates autocommands for [ColorScheme](https://neovim.io/doc/user/helptag.html?tag=ColorScheme) and [VimResume](https://neovim.io/doc/user/helptag.html?tag=VimResume) events, which
+  change terminal background to have same color as [guibg](https://neovim.io/doc/user/helptag.html?tag=guibg) of [hl-Normal](https://neovim.io/doc/user/helptag.html?tag=hl-Normal).
 
-- Creates autocommands for [`VimLeavePre`](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre) and [`VimSuspend`](https://neovim.io/doc/user/helptag.html?tag=VimSuspend) events which set
+- Creates autocommands for [VimLeavePre](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre) and [VimSuspend](https://neovim.io/doc/user/helptag.html?tag=VimSuspend) events which set
   terminal background back to the color at the time this function was
   called first time in current session.
 
 - Synchronizes background immediately to allow not depend on loading order.
 
 Primary use case is to remove possible "frame" around current Neovim instance
-which appears if Neovim's [`hl-Normal`](https://neovim.io/doc/user/helptag.html?tag=hl-Normal) background color differs from what is
+which appears if Neovim's [hl-Normal](https://neovim.io/doc/user/helptag.html?tag=hl-Normal) background color differs from what is
 used by terminal emulator itself.
 
 Works only on Neovim>=0.10.
 
 ---
 
-### setup_restore_cursor() {#minimisc.setup_restore_cursor}
+### setup_restore_cursor() {#minimisc.setup_restore_cursor .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.setup_restore_cursor`(<span class="help-syntax-special">{opts}</span>)</p>
 Restore cursor position on file open
 
 When reopening a file this will make sure the cursor is placed back to the
-position where you left before. This implements [`restore-cursor`](https://neovim.io/doc/user/helptag.html?tag=restore-cursor) in a nicer way.
+position where you left before. This implements [restore-cursor](https://neovim.io/doc/user/helptag.html?tag=restore-cursor) in a nicer way.
 File should have a recognized file type (see 'filetype') and be opened in
 a normal buffer (see 'buftype').
 
-Note: it relies on file mark data stored in 'shadafile' (see [`shada-f`](https://neovim.io/doc/user/helptag.html?tag=shada-f)).
+Note: it relies on file mark data stored in 'shadafile' (see [shada-f](https://neovim.io/doc/user/helptag.html?tag=shada-f)).
 Be sure to enable it.
 
 #### Parameters {#minimisc.setup_restore_cursor-parameters}
@@ -312,13 +311,13 @@ Be sure to enable it.
 
 ---
 
-### stat_summary() {#minimisc.stat_summary}
+### stat_summary() {#minimisc.stat_summary .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.stat_summary`(<span class="help-syntax-special">{t}</span>)</p>
 Compute summary statistics of numerical array
 
 This might be useful to compute summary of time benchmarking with
-[`MiniMisc.bench_time()`](mini-misc.qmd#minimisc.bench_time).
+[MiniMisc.bench\_time()](mini-misc.qmd#minimisc.bench_time).
 
 #### Parameters {#minimisc.stat_summary-parameters}
 
@@ -335,7 +334,7 @@ This might be useful to compute summary of time benchmarking with
 
 ---
 
-### tbl_head() {#minimisc.tbl_head}
+### tbl_head() {#minimisc.tbl_head .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.tbl_head`(<span class="help-syntax-special">{t}</span>, <span class="help-syntax-special">{n}</span>)</p>
 Return "first" elements of table as decided by `pairs`
@@ -357,7 +356,7 @@ Note: order of elements might vary.
 
 ---
 
-### tbl_tail() {#minimisc.tbl_tail}
+### tbl_tail() {#minimisc.tbl_tail .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.tbl_tail`(<span class="help-syntax-special">{t}</span>, <span class="help-syntax-special">{n}</span>)</p>
 Return "last" elements of table as decided by `pairs`
@@ -385,7 +384,7 @@ Note: order of elements might vary.
 
 ---
 
-### use_nested_comments() {#minimisc.use_nested_comments}
+### use_nested_comments() {#minimisc.use_nested_comments .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.use_nested_comments`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Add possibility of nested comment leader
@@ -401,7 +400,7 @@ nested comments. For example, have in Lua "first-level" comments with '--'
 and "second-level" comments with '----'. With nested comment leader second
 type can be formatted with `gq` in the same way as first one.
 
-Recommended usage is with [`autocmd`](https://neovim.io/doc/user/helptag.html?tag=autocmd):
+Recommended usage is with [autocmd](https://neovim.io/doc/user/helptag.html?tag=autocmd):
 
   ```lua
   local use_nested_comments = function() MiniMisc.use_nested_comments() end
@@ -416,12 +415,12 @@ to desired effect.
 
 
 
-<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) in which function
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [bufnr()](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) in which function
   will operate. Default: 0 for current.
 
 ---
 
-### zoom() {#minimisc.zoom}
+### zoom() {#minimisc.zoom .help-syntax-right-anchor}
 
 <p align="center">`MiniMisc.zoom`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{config}</span>)</p>
 Zoom in and out of a buffer, making it full screen in a floating window
@@ -434,10 +433,10 @@ again (without arguments) to zoom out.
 
 
 
-<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [`bufnr()`](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to be zoomed.
+<span class="help-syntax-special">{buf_id}</span> `(number|nil)` Buffer identifier (see [bufnr()](https://neovim.io/doc/user/helptag.html?tag=bufnr\(\))) to be zoomed.
   Default: 0 for current.
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Optional config for window (as for [`nvim_open_win()`](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\))).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Optional config for window (as for [nvim\_open\_win()](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\))).
 
 #### Return {#minimisc.zoom-return}
 

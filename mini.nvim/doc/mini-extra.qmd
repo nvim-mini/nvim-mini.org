@@ -1,6 +1,5 @@
 ---
 title: "mini.extra documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#miniextra}
+### Module {#module .help-syntax-right-anchor}
 
 Extra useful functionality which is not essential enough for other 'mini.nvim'
 modules to include directly.
@@ -19,53 +18,53 @@ modules to include directly.
 Features:
 
 
-- Various pickers for [`mini.pick`](mini-pick.qmd#mini.pick):
+- Various pickers for [mini.pick](mini-pick.qmd#mini.pick):
 
-    - Built-in diagnostic ([`MiniExtra.pickers.diagnostic()`](mini-extra.qmd#miniextra.pickers.diagnostic)).
+    - Built-in diagnostic ([MiniExtra.pickers.diagnostic()](mini-extra.qmd#miniextra.pickers.diagnostic)).
 
-    - File explorer ([`MiniExtra.pickers.explorer()`](mini-extra.qmd#miniextra.pickers.explorer)).
+    - File explorer ([MiniExtra.pickers.explorer()](mini-extra.qmd#miniextra.pickers.explorer)).
 
-    - Git branches/commits/files/hunks ([`MiniExtra.pickers.git_hunks()`](mini-extra.qmd#miniextra.pickers.git_hunks), etc.).
+    - Git branches/commits/files/hunks ([MiniExtra.pickers.git\_hunks()](mini-extra.qmd#miniextra.pickers.git_hunks), etc.).
 
-    - Command/search/input history ([`MiniExtra.pickers.history()`](mini-extra.qmd#miniextra.pickers.history)).
+    - Command/search/input history ([MiniExtra.pickers.history()](mini-extra.qmd#miniextra.pickers.history)).
 
-    - LSP references/symbols/etc. ([`MiniExtra.pickers.lsp()`](mini-extra.qmd#miniextra.pickers.lsp)).
+    - LSP references/symbols/etc. ([MiniExtra.pickers.lsp()](mini-extra.qmd#miniextra.pickers.lsp)).
 
-    - Tree-sitter nodes ([`MiniExtra.pickers.treesitter()`](mini-extra.qmd#miniextra.pickers.treesitter)).
+    - Tree-sitter nodes ([MiniExtra.pickers.treesitter()](mini-extra.qmd#miniextra.pickers.treesitter)).
 
     - And much more.
-  See [`MiniExtra.pickers`](mini-extra.qmd#miniextra.pickers) for more.
+  See [MiniExtra.pickers](mini-extra.qmd#miniextra.pickers) for more.
 
 
-- Various textobject specifications for [`mini.ai`](mini-ai.qmd#mini.ai). See [`MiniExtra.gen_ai_spec`](mini-extra.qmd#miniextra.gen_ai_spec).
+- Various textobject specifications for [mini.ai](mini-ai.qmd#mini.ai). See [MiniExtra.gen\_ai\_spec](mini-extra.qmd#miniextra.gen_ai_spec).
 
 
-- Various highlighters for [`mini.hipatterns`](mini-hipatterns.qmd#mini.hipatterns). See [`MiniExtra.gen_highlighter`](mini-extra.qmd#miniextra.gen_highlighter).
+- Various highlighters for [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns). See [MiniExtra.gen\_highlighter](mini-extra.qmd#miniextra.gen_highlighter).
 
 Notes:
 
 - This module requires only those 'mini.nvim' modules which are needed for
   a particular functionality: 'mini.pick' for pickers, etc.
 
-#### Setup {#miniextra-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.extra').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniExtra`
 which you can use for scripting or manually (with `:lua MiniExtra.*`).
 
-See [`MiniExtra.config`](mini-extra.qmd#miniextra.config) for `config` structure and default values.
+See [MiniExtra.config](mini-extra.qmd#miniextra.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.miniextra_config`
 will have no effect here.
 
-#### Comparisons {#miniextra-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim):
 
-    - With [`MiniExtra.pickers`](mini-extra.qmd#miniextra.pickers), 'mini.pick' is reasonably on par when it comes
+    - With [MiniExtra.pickers](mini-extra.qmd#miniextra.pickers), 'mini.pick' is reasonably on par when it comes
       to built-in pickers.
 
 
@@ -75,7 +74,7 @@ will have no effect here.
 
 ---
 
-### setup() {#miniextra.setup}
+### setup() {#miniextra.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -84,7 +83,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniExtra.config`](mini-extra.qmd#miniextra.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniExtra.config](mini-extra.qmd#miniextra.config).
 
 #### Usage {#miniextra.setup-usage}
 
@@ -98,7 +97,7 @@ Module setup
 
 ---
 
-### config {#miniextra.config}
+### config {#miniextra.config .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.config`</p>
 #### Defaults {#miniextra.config-defaults}
@@ -111,14 +110,14 @@ Module setup
 
 ---
 
-### gen_ai_spec {#miniextra.gen_ai_spec}
+### gen_ai_spec {#miniextra.gen_ai_spec .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec`</p>
-[`mini.ai`](mini-ai.qmd#mini.ai) textobject specification generators
+[mini.ai](mini-ai.qmd#mini.ai) textobject specification generators
 
 This is a table with function elements. Call to actually get specification.
 
-Assumed to be used as part of [`MiniAi.setup()`](mini-ai.qmd#miniai.setup). Example:
+Assumed to be used as part of [MiniAi.setup()](mini-ai.qmd#miniai.setup). Example:
 
   ```lua
   local gen_ai_spec = require('mini.extra').gen_ai_spec
@@ -135,7 +134,7 @@ Assumed to be used as part of [`MiniAi.setup()`](mini-ai.qmd#miniai.setup). Exam
 
 ---
 
-### gen_ai_spec.buffer() {#miniextra.gen_ai_spec.buffer}
+### gen_ai_spec.buffer() {#miniextra.gen_ai_spec.buffer .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec.buffer`()</p>
 Current buffer textobject
@@ -149,35 +148,35 @@ Notes:
 #### Return {#miniextra.gen_ai_spec.buffer-return}
 
 
-`(function)` Function implementing [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+`(function)` Function implementing [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 ---
 
-### gen_ai_spec.diagnostic() {#miniextra.gen_ai_spec.diagnostic}
+### gen_ai_spec.diagnostic() {#miniextra.gen_ai_spec.diagnostic .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec.diagnostic`(<span class="help-syntax-special">{severity}</span>)</p>
 Current buffer diagnostic textobject
 
 Notes:
 
-- Both `a` and `i` textobjects return [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) output for the
-  current buffer. It is modified to fit [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+- Both `a` and `i` textobjects return [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) output for the
+  current buffer. It is modified to fit [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 #### Parameters {#miniextra.gen_ai_spec.diagnostic-parameters}
 
 
 
-<span class="help-syntax-special">{severity}</span> `(any)` Which severity to use. Forwarded to [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)).
+<span class="help-syntax-special">{severity}</span> `(any)` Which severity to use. Forwarded to [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)).
   Default: `nil` to use all diagnostic entries.
 
 #### Return {#miniextra.gen_ai_spec.diagnostic-return}
 
 
-`(function)` Function implementing [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+`(function)` Function implementing [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 ---
 
-### gen_ai_spec.indent() {#miniextra.gen_ai_spec.indent}
+### gen_ai_spec.indent() {#miniextra.gen_ai_spec.indent .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec.indent`()</p>
 Current buffer indent scopes textobject
@@ -189,7 +188,7 @@ Indent scope is a set of consecutive lines with the following properties:
 - There is at least one non-blank line in a set.
 
 - All non-blank lines between borders have strictly greater indent
-  (perceived leading space respecting [`'tabstop'`](https://neovim.io/doc/user/helptag.html?tag='tabstop')) than either of borders.
+  (perceived leading space respecting ['tabstop'](https://neovim.io/doc/user/helptag.html?tag='tabstop')) than either of borders.
 
 Notes:
 
@@ -197,7 +196,7 @@ Notes:
 
 - `i` textobject selects the scope charwise.
 
-- Differences with [`MiniIndentscope.textobject()`](mini-indentscope.qmd#miniindentscope.textobject):
+- Differences with [MiniIndentscope.textobject()](mini-indentscope.qmd#miniindentscope.textobject):
 
     - This textobject always treats blank lines on top and bottom of `i`
       textobject as part of it, while 'mini.indentscope' can configure that.
@@ -213,13 +212,13 @@ Notes:
 #### Return {#miniextra.gen_ai_spec.indent-return}
 
 
-`(function)` Function implementing [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+`(function)` Function implementing [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
   It returns array of regions representing all indent scopes in the buffer
   ordered increasingly by the start line.
 
 ---
 
-### gen_ai_spec.line() {#miniextra.gen_ai_spec.line}
+### gen_ai_spec.line() {#miniextra.gen_ai_spec.line .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec.line`()</p>
 Current line textobject
@@ -233,11 +232,11 @@ Notes:
 #### Return {#miniextra.gen_ai_spec.line-return}
 
 
-`(function)` Function implementing [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+`(function)` Function implementing [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 ---
 
-### gen_ai_spec.number() {#miniextra.gen_ai_spec.number}
+### gen_ai_spec.number() {#miniextra.gen_ai_spec.number .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_ai_spec.number`()</p>
 Number textobject
@@ -252,18 +251,18 @@ Notes:
 #### Return {#miniextra.gen_ai_spec.number-return}
 
 
-`(function)` Function implementing [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+`(function)` Function implementing [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 ---
 
-### gen_highlighter {#miniextra.gen_highlighter}
+### gen_highlighter {#miniextra.gen_highlighter .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_highlighter`</p>
-[`mini.hipatterns`](mini-hipatterns.qmd#mini.hipatterns) highlighter generators
+[mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns) highlighter generators
 
 This is a table with function elements. Call to actually get specification.
 
-Assumed to be used as part of [`MiniHipatterns.setup()`](mini-hipatterns.qmd#minihipatterns.setup). Example:
+Assumed to be used as part of [MiniHipatterns.setup()](mini-hipatterns.qmd#minihipatterns.setup). Example:
 
   ```lua
   local hi_words = require('mini.extra').gen_highlighter.words
@@ -276,7 +275,7 @@ Assumed to be used as part of [`MiniHipatterns.setup()`](mini-hipatterns.qmd#min
 
 ---
 
-### gen_highlighter.words() {#miniextra.gen_highlighter.words}
+### gen_highlighter.words() {#miniextra.gen_highlighter.words .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.gen_highlighter.words`(<span class="help-syntax-special">{words}</span>, <span class="help-syntax-special">{group}</span>, <span class="help-syntax-special">{extmark_opts}</span>)</p>
 Highlight words
@@ -296,17 +295,17 @@ Notes:
   as Lua pattern.
 
 <span class="help-syntax-special">{group}</span> `(string|function)` Proper `group` field for `highlighter`.
-  See [`MiniHipatterns.config`](mini-hipatterns.qmd#minihipatterns.config).
+  See [MiniHipatterns.config](mini-hipatterns.qmd#minihipatterns.config).
 
 <span class="help-syntax-special">{extmark_opts}</span> `(any)` Proper `extmark_opts` field for `highlighter`.
-  See [`MiniHipatterns.config`](mini-hipatterns.qmd#minihipatterns.config).
+  See [MiniHipatterns.config](mini-hipatterns.qmd#minihipatterns.config).
 
 ---
 
-### pickers {#miniextra.pickers}
+### pickers {#miniextra.pickers .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers`</p>
-[`mini.pick`](mini-pick.qmd#mini.pick) pickers
+[mini.pick](mini-pick.qmd#mini.pick) pickers
 
 A table with 'mini.pick' pickers (which is a hard dependency).
 Notes:
@@ -315,25 +314,25 @@ Notes:
 
     - <span class="help-syntax-keys">\<local_opts\></span> - optional table with options local to picker.
 
-    - <span class="help-syntax-keys">\<opts\></span> - optional table with options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+    - <span class="help-syntax-keys">\<opts\></span> - optional table with options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
-- All of them are automatically registered in [`MiniPick.registry`](mini-pick.qmd#minipick.registry) inside
-  both [`MiniExtra.setup()`](mini-extra.qmd#miniextra.setup) or [`MiniPick.setup()`](mini-pick.qmd#minipick.setup) (only one is enough).
+- All of them are automatically registered in [MiniPick.registry](mini-pick.qmd#minipick.registry) inside
+  both [MiniExtra.setup()](mini-extra.qmd#miniextra.setup) or [MiniPick.setup()](mini-pick.qmd#minipick.setup) (only one is enough).
 
-- All use default versions of [`MiniPick-source.preview`](mini-pick.qmd#minipick-source.preview), [`MiniPick-source.choose`](mini-pick.qmd#minipick-source.choose),
-  and [`MiniPick-source.choose_marked`](mini-pick.qmd#minipick-source.choose_marked) if not stated otherwise.
-  Shown text and [`MiniPick-source.show`](mini-pick.qmd#minipick-source.show) are targeted to the picked items.
+- All use default versions of [MiniPick-source.preview](mini-pick.qmd#minipick-source.preview), [MiniPick-source.choose](mini-pick.qmd#minipick-source.choose),
+  and [MiniPick-source.choose\_marked](mini-pick.qmd#minipick-source.choose_marked) if not stated otherwise.
+  Shown text and [MiniPick-source.show](mini-pick.qmd#minipick-source.show) are targeted to the picked items.
 
 Examples of usage:
 
 - As Lua code: `MiniExtra.pickers.buf_lines()`.
 
-- With [`:Pick`](mini-pick.qmd#pick) command: `:Pick buf_lines scope='current'`
-  Note: this requires calling [`MiniExtra.setup()`](mini-extra.qmd#miniextra.setup).
+- With [:Pick](mini-pick.qmd#pick) command: `:Pick buf_lines scope='current'`
+  Note: this requires calling [MiniExtra.setup()](mini-extra.qmd#miniextra.setup).
 
 ---
 
-### pickers.buf_lines() {#miniextra.pickers.buf_lines}
+### pickers.buf_lines() {#miniextra.pickers.buf_lines .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.buf_lines`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Buffer lines picker
@@ -355,7 +354,7 @@ Pick from buffer lines. Notes:
   - <span class="help-syntax-keys">\<preserve_order\></span> `(boolean)` - whether to preserve original order
     during query. Default: `false`.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.buf_lines-return}
 
@@ -364,7 +363,7 @@ Pick from buffer lines. Notes:
 
 ---
 
-### pickers.colorschemes() {#miniextra.pickers.colorschemes}
+### pickers.colorschemes() {#miniextra.pickers.colorschemes .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.colorschemes`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Color scheme picker
@@ -373,9 +372,9 @@ Pick and apply color scheme. Preview temporarily applies item's color scheme
 and shows how selected highlight groups look.
 Canceling reverts to color scheme before picker start:
 
-- With [`MiniColors-colorscheme:apply()`](mini-colors.qmd#minicolors-colorschemeapply) if [`mini.colors`](mini-colors.qmd#mini.colors) was available.
+- With [MiniColors-colorscheme:apply()](mini-colors.qmd#minicolors-colorschemeapply) if [mini.colors](mini-colors.qmd#mini.colors) was available.
 
-- With [`:colorscheme`](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) if [`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) was available.
+- With [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) if [g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) was available.
 
 #### Parameters {#miniextra.pickers.colorschemes-parameters}
 
@@ -391,7 +390,7 @@ Canceling reverts to color scheme before picker start:
     window. Default: all defined highlight groups in alphabetical order.
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.colorschemes-return}
 
@@ -400,12 +399,12 @@ Canceling reverts to color scheme before picker start:
 
 ---
 
-### pickers.commands() {#miniextra.pickers.commands}
+### pickers.commands() {#miniextra.pickers.commands .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.commands`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim commands picker
 
-Pick from Neovim built-in ([`Ex-commands`](https://neovim.io/doc/user/helptag.html?tag=Ex-commands)) and [`user-commands`](https://neovim.io/doc/user/helptag.html?tag=user-commands).
+Pick from Neovim built-in ([Ex-commands](https://neovim.io/doc/user/helptag.html?tag=Ex-commands)) and [user-commands](https://neovim.io/doc/user/helptag.html?tag=user-commands).
 Notes:
 
 - Preview shows information about the command (if available).
@@ -420,7 +419,7 @@ Notes:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Not used at the moment.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.commands-return}
 
@@ -429,12 +428,12 @@ Notes:
 
 ---
 
-### pickers.diagnostic() {#miniextra.pickers.diagnostic}
+### pickers.diagnostic() {#miniextra.pickers.diagnostic .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.diagnostic`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Built-in diagnostic picker
 
-Pick from [`vim.diagnostic`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic) using [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)).
+Pick from [vim.diagnostic](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic) using [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)).
 
 #### Parameters {#miniextra.pickers.diagnostic-parameters}
 
@@ -443,7 +442,7 @@ Pick from [`vim.diagnostic`](https://neovim.io/doc/user/helptag.html?tag=vim.dia
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Possible fields:
 
-  - <span class="help-syntax-keys">\<get_opts\></span> `(table)` - options for [`vim.diagnostic.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)). Can be used
+  - <span class="help-syntax-keys">\<get_opts\></span> `(table)` - options for [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)). Can be used
     to limit severity or namespace. Default: `{}`.
 
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - one of "all" (available) or "current" (buffer).
@@ -452,7 +451,7 @@ Pick from [`vim.diagnostic`](https://neovim.io/doc/user/helptag.html?tag=vim.dia
   - <span class="help-syntax-keys">\<sort_by\></span> `(string)` - sort priority. One of "severity", "path", "none".
     Default: "severity".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.diagnostic-return}
 
@@ -461,7 +460,7 @@ Pick from [`vim.diagnostic`](https://neovim.io/doc/user/helptag.html?tag=vim.dia
 
 ---
 
-### pickers.explorer() {#miniextra.pickers.explorer}
+### pickers.explorer() {#miniextra.pickers.explorer .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.explorer`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 File explorer picker
@@ -491,7 +490,7 @@ Examples:
   Possible fields:
 
   - <span class="help-syntax-keys">\<cwd\></span> `(string)` - initial directory to explore. Should be a valid
-    directory path. Default: `nil` for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+    directory path. Default: `nil` for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
   - <span class="help-syntax-keys">\<filter\></span> `(function)` - callable predicate to filter items to show.
     Will be called for every item and should return `true` if it should be
@@ -507,7 +506,7 @@ Examples:
     of items (each element with structure as described above) and should
     return sorted array of items.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.explorer-return}
 
@@ -516,7 +515,7 @@ Examples:
 
 ---
 
-### pickers.git_branches() {#miniextra.pickers.git_branches}
+### pickers.git_branches() {#miniextra.pickers.git_branches .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.git_branches`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Git branches picker
@@ -537,7 +536,7 @@ Examples:
 
 
 - `MiniExtra.pickers.git_branches({ scope = 'local' })` - local branches of
-  the [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory) parent Git repository.
+  the [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory) parent Git repository.
 
 - `:Pick git_branches path='%'` - all branches of the current file parent
   Git repository.
@@ -551,12 +550,12 @@ Examples:
 
   - <span class="help-syntax-keys">\<path\></span> `(string|nil)` - target path for Git operation (if required). Also
     used to find Git repository inside which to construct items.
-    Default: `nil` for root of Git repository containing [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+    Default: `nil` for root of Git repository containing [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - branch scope to show. One of "all", "local", "remotes".
     Default: "all".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.git_branches-return}
 
@@ -565,7 +564,7 @@ Examples:
 
 ---
 
-### pickers.git_commits() {#miniextra.pickers.git_commits}
+### pickers.git_commits() {#miniextra.pickers.git_commits .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.git_commits`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Git commits picker
@@ -586,7 +585,7 @@ Examples:
 
 
 - `MiniExtra.pickers.git_commits()` - all commits from parent Git
-  repository of [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `MiniExtra.pickers.git_commits({ path = 'subdir' })` - commits affecting
   files from 'subdir' subdirectory.
@@ -602,9 +601,9 @@ Examples:
 
   - <span class="help-syntax-keys">\<path\></span> `(string|nil)` - target path for Git operation (if required). Also
     used to find Git repository inside which to construct items.
-    Default: `nil` for root of Git repository containing [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+    Default: `nil` for root of Git repository containing [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.git_commits-return}
 
@@ -613,7 +612,7 @@ Examples:
 
 ---
 
-### pickers.git_files() {#miniextra.pickers.git_files}
+### pickers.git_files() {#miniextra.pickers.git_files .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.git_files`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Git files picker
@@ -632,7 +631,7 @@ Examples:
 
 
 - `MiniExtra.pickers.git_files({ scope = 'ignored' })` - ignored files from
-  parent Git repository of [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  parent Git repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `:Pick git_files path='subdir' scope='modified'` - files from 'subdir'
   subdirectory which are ignored by Git.
@@ -646,7 +645,7 @@ Examples:
 
   - <span class="help-syntax-keys">\<path\></span> `(string|nil)` - target path for Git operation (if required). Also
     used to find Git repository inside which to construct items.
-    Default: `nil` for root of Git repository containing [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+    Default: `nil` for root of Git repository containing [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - files scope to show. One of
 
@@ -661,7 +660,7 @@ Examples:
       - "deleted"   (`--deleted`  Git flag).
     Default: "tracked".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.git_files-return}
 
@@ -670,7 +669,7 @@ Examples:
 
 ---
 
-### pickers.git_hunks() {#miniextra.pickers.git_hunks}
+### pickers.git_hunks() {#miniextra.pickers.git_hunks .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.git_hunks`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Git hunks picker
@@ -691,7 +690,7 @@ Examples:
 
 
 - `MiniExtra.pickers.git_hunks({ scope = 'staged' })` - staged hunks from
-  parent Git repository of [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  parent Git repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `:Pick git_hunks path='%' n_context=0` - hunks from current file computed
   with no context.
@@ -708,12 +707,12 @@ Examples:
 
   - <span class="help-syntax-keys">\<path\></span> `(string|nil)` - target path for Git operation (if required). Also
     used to find Git repository inside which to construct items.
-    Default: `nil` for root of Git repository containing [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+    Default: `nil` for root of Git repository containing [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - hunks scope to show. One of "unstaged" or "staged".
     Default: "unstaged".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.git_hunks-return}
 
@@ -722,12 +721,12 @@ Examples:
 
 ---
 
-### pickers.hipatterns() {#miniextra.pickers.hipatterns}
+### pickers.hipatterns() {#miniextra.pickers.hipatterns .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.hipatterns`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Matches from 'mini.hipatterns' picker
 
-Pick from [`mini.hipatterns`](mini-hipatterns.qmd#mini.hipatterns) matches using [`MiniHipatterns.get_matches()`](mini-hipatterns.qmd#minihipatterns.get_matches).
+Pick from [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns) matches using [MiniHipatterns.get\_matches()](mini-hipatterns.qmd#minihipatterns.get_matches).
 Notes:
 
 - Requires 'mini.hipatterns'.
@@ -745,9 +744,9 @@ Notes:
     or "current" (buffer). Default: "all".
 
   - <span class="help-syntax-keys">\<highlighters\></span> `(table|nil)` - highlighters for which to find matches.
-    Forwarded to [`MiniHipatterns.get_matches()`](mini-hipatterns.qmd#minihipatterns.get_matches). Default: `nil`.
+    Forwarded to [MiniHipatterns.get\_matches()](mini-hipatterns.qmd#minihipatterns.get_matches). Default: `nil`.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.hipatterns-return}
 
@@ -756,12 +755,12 @@ Notes:
 
 ---
 
-### pickers.history() {#miniextra.pickers.history}
+### pickers.history() {#miniextra.pickers.history .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.history`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim history picker
 
-Pick from output of [`:history`](https://neovim.io/doc/user/helptag.html?tag=:history). Use `<C-e>` to edit current match in
+Pick from output of [:history](https://neovim.io/doc/user/helptag.html?tag=:history). Use `<C-e>` to edit current match in
 Command line.
 
 Notes:
@@ -792,10 +791,10 @@ Examples:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Possible fields:
 
-  - <span class="help-syntax-keys">\<scope\></span> `(string)` - any allowed {name} flag of [`:history`](https://neovim.io/doc/user/helptag.html?tag=:history) command.
+  - <span class="help-syntax-keys">\<scope\></span> `(string)` - any allowed {name} flag of [:history](https://neovim.io/doc/user/helptag.html?tag=:history) command.
     Note: word abbreviations are not allowed. Default: "all".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.history-return}
 
@@ -804,7 +803,7 @@ Examples:
 
 ---
 
-### pickers.hl_groups() {#miniextra.pickers.hl_groups}
+### pickers.hl_groups() {#miniextra.pickers.hl_groups .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.hl_groups`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Highlight groups picker
@@ -814,7 +813,7 @@ Notes:
 
 - Item line is colored with same highlight group it represents.
 
-- Preview shows highlight's definition (as in [`:highlight`](https://neovim.io/doc/user/helptag.html?tag=:highlight) with <span class="help-syntax-special">{group-name}</span>).
+- Preview shows highlight's definition (as in [:highlight](https://neovim.io/doc/user/helptag.html?tag=:highlight) with <span class="help-syntax-special">{group-name}</span>).
 
 - Choosing places highlight definition in Command line to update and apply.
 
@@ -825,7 +824,7 @@ Notes:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Not used at the moment.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.hl_groups-return}
 
@@ -834,7 +833,7 @@ Notes:
 
 ---
 
-### pickers.keymaps() {#miniextra.pickers.keymaps}
+### pickers.keymaps() {#miniextra.pickers.keymaps .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.keymaps`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim keymaps picker
@@ -857,12 +856,12 @@ Notes:
   Possible fields:
 
   - <span class="help-syntax-keys">\<mode\></span> `(string)` - modes to show. One of "all" or appropriate mode
-    for [`nvim_set_keymap()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)). Default: "all".
+    for [nvim\_set\_keymap()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_keymap\(\)). Default: "all".
 
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - scope to show. One of "all", "global", "buf".
     Default: "all".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.keymaps-return}
 
@@ -871,20 +870,20 @@ Notes:
 
 ---
 
-### pickers.list() {#miniextra.pickers.list}
+### pickers.list() {#miniextra.pickers.list .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.list`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim lists picker
 
 Pick and navigate to elements of the following Neovim lists:
 
-- [`quickfix`](https://neovim.io/doc/user/helptag.html?tag=quickfix) list.
+- [quickfix](https://neovim.io/doc/user/helptag.html?tag=quickfix) list.
 
-- [`location-list`](https://neovim.io/doc/user/helptag.html?tag=location-list) of current window.
+- [location-list](https://neovim.io/doc/user/helptag.html?tag=location-list) of current window.
 
-- [`jumplist`](https://neovim.io/doc/user/helptag.html?tag=jumplist).
+- [jumplist](https://neovim.io/doc/user/helptag.html?tag=jumplist).
 
-- [`changelist`](https://neovim.io/doc/user/helptag.html?tag=changelist).
+- [changelist](https://neovim.io/doc/user/helptag.html?tag=changelist).
 
 Note: it requires explicit `scope`.
 
@@ -905,7 +904,7 @@ Examples:
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - type of list to show. One of "quickfix", "location",
     "jump", "change". Default: `nil` which means explicit scope is needed.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.list-return}
 
@@ -914,7 +913,7 @@ Examples:
 
 ---
 
-### pickers.lsp() {#miniextra.pickers.lsp}
+### pickers.lsp() {#miniextra.pickers.lsp .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.lsp`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 LSP picker
@@ -938,13 +937,13 @@ Notes:
 
     - "workspace_symbol".
 
-- Relies on `vim.lsp.buf` methods supporting [`vim.lsp.LocationOpts.OnList`](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.LocationOpts.OnList).
+- Relies on `vim.lsp.buf` methods supporting [vim.lsp.LocationOpts.OnList](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.LocationOpts.OnList).
   In particular, it means that picker is started only if LSP server returns
   list of locations and not a single location.
 
 - Doesn't return anything due to async nature of `vim.lsp.buf` methods.
 
-- Requires set up [`mini.icons`](mini-icons.qmd#mini.icons) to show extra icons and highlighting in
+- Requires set up [mini.icons](mini-icons.qmd#mini.icons) to show extra icons and highlighting in
   "document_symbol" and "workspace_symbol" scopes.
 
 Examples:
@@ -965,10 +964,10 @@ Examples:
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - LSP method to use. One of the supported ones (see
     list above). Default: `nil` which means explicit scope is needed.
 
-  - <span class="help-syntax-keys">\<symbol_query\></span> `(string)` - query for [`vim.lsp.buf.workspace_symbol()`](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.workspace_symbol\(\)).
+  - <span class="help-syntax-keys">\<symbol_query\></span> `(string)` - query for [vim.lsp.buf.workspace\_symbol()](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.workspace_symbol\(\)).
     Default: empty string for all symbols (according to LSP specification).
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.lsp-return}
 
@@ -977,12 +976,12 @@ Examples:
 
 ---
 
-### pickers.marks() {#miniextra.pickers.marks}
+### pickers.marks() {#miniextra.pickers.marks .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.marks`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim marks picker
 
-Pick and preview position of Neovim [`mark`](https://neovim.io/doc/user/helptag.html?tag=mark)s.
+Pick and preview position of Neovim [mark](https://neovim.io/doc/user/helptag.html?tag=mark)s.
 
 #### Parameters {#miniextra.pickers.marks-parameters}
 
@@ -994,7 +993,7 @@ Pick and preview position of Neovim [`mark`](https://neovim.io/doc/user/helptag.
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - scope to show. One of "all", "global", "buf".
     Default: "all".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.marks-return}
 
@@ -1003,12 +1002,12 @@ Pick and preview position of Neovim [`mark`](https://neovim.io/doc/user/helptag.
 
 ---
 
-### pickers.oldfiles() {#miniextra.pickers.oldfiles}
+### pickers.oldfiles() {#miniextra.pickers.oldfiles .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.oldfiles`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Old files picker
 
-Pick from [`v:oldfiles`](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles) entries representing readable files.
+Pick from [v:oldfiles](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles) entries representing readable files.
 
 #### Parameters {#miniextra.pickers.oldfiles-parameters}
 
@@ -1023,7 +1022,7 @@ Pick from [`v:oldfiles`](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles)
   - <span class="help-syntax-keys">\<preserve_order\></span> `(boolean)` - whether to preserve original order
     during query. Default: `false`.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.oldfiles-return}
 
@@ -1032,7 +1031,7 @@ Pick from [`v:oldfiles`](https://neovim.io/doc/user/helptag.html?tag=v:oldfiles)
 
 ---
 
-### pickers.options() {#miniextra.pickers.options}
+### pickers.options() {#miniextra.pickers.options .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.options`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim options picker
@@ -1056,7 +1055,7 @@ Notes:
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - options to show. One of "all", "global", "win", "buf".
     Default: "all".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.options-return}
 
@@ -1065,19 +1064,19 @@ Notes:
 
 ---
 
-### pickers.registers() {#miniextra.pickers.registers}
+### pickers.registers() {#miniextra.pickers.registers .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.registers`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim registers picker
 
-Pick from Neovim [`registers`](https://neovim.io/doc/user/helptag.html?tag=registers).
+Pick from Neovim [registers](https://neovim.io/doc/user/helptag.html?tag=registers).
 Notes:
 
 - There is no preview (all information is in the item's text).
 
-- Choosing pastes content of a register: with [`i_CTRL-R`](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-R) in Insert mode,
-  [`c_CTRL-R`](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R) in Command-line mode, and [`P`](https://neovim.io/doc/user/helptag.html?tag=P) otherwise.
-  Expression register [`quote=`](https://neovim.io/doc/user/helptag.html?tag=quote=) is reevaluated (if present) and pasted.
+- Choosing pastes content of a register: with [i\_CTRL-R](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-R) in Insert mode,
+  [c\_CTRL-R](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R) in Command-line mode, and [P](https://neovim.io/doc/user/helptag.html?tag=P) otherwise.
+  Expression register [quote=](https://neovim.io/doc/user/helptag.html?tag=quote=) is reevaluated (if present) and pasted.
 
 #### Parameters {#miniextra.pickers.registers-parameters}
 
@@ -1086,7 +1085,7 @@ Notes:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Not used at the moment.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.registers-return}
 
@@ -1095,7 +1094,7 @@ Notes:
 
 ---
 
-### pickers.spellsuggest() {#miniextra.pickers.spellsuggest}
+### pickers.spellsuggest() {#miniextra.pickers.spellsuggest .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.spellsuggest`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim spell suggestions picker
@@ -1105,7 +1104,7 @@ Notes:
 
 - No preview is available.
 
-- Choosing replaces current word ([`<cword>`](https://neovim.io/doc/user/helptag.html?tag=<cword>)) with suggestion.
+- Choosing replaces current word ([<span class="help-syntax-keys">\<cword\></span>](https://neovim.io/doc/user/helptag.html?tag=<cword>)) with suggestion.
 
 #### Parameters {#miniextra.pickers.spellsuggest-parameters}
 
@@ -1117,7 +1116,7 @@ Notes:
   - <span class="help-syntax-keys">\<n_suggestions\></span> `(number)` - number of spell suggestions. Default: 25.
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.spellsuggest-return}
 
@@ -1126,12 +1125,12 @@ Notes:
 
 ---
 
-### pickers.treesitter() {#miniextra.pickers.treesitter}
+### pickers.treesitter() {#miniextra.pickers.treesitter .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.treesitter`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Tree-sitter nodes picker
 
-Pick and navigate to [`treesitter`](https://neovim.io/doc/user/helptag.html?tag=treesitter) nodes of current buffer.
+Pick and navigate to [treesitter](https://neovim.io/doc/user/helptag.html?tag=treesitter) nodes of current buffer.
 Notes:
 
 - Requires active tree-sitter parser in the current buffer.
@@ -1143,7 +1142,7 @@ Notes:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Not used at the moment.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.treesitter-return}
 
@@ -1152,12 +1151,12 @@ Notes:
 
 ---
 
-### pickers.visit_paths() {#miniextra.pickers.visit_paths}
+### pickers.visit_paths() {#miniextra.pickers.visit_paths .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.visit_paths`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Visit paths from 'mini.visits' picker
 
-Pick paths from [`mini.visits`](mini-visits.qmd#mini.visits) using [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+Pick paths from [mini.visits](mini-visits.qmd#mini.visits) using [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 Notes:
 
 - Requires 'mini.visits'.
@@ -1165,7 +1164,7 @@ Notes:
 Examples:
 
 
-- `MiniExtra.pickers.visit_paths()` - visits registered for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory)
+- `MiniExtra.pickers.visit_paths()` - visits registered for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory)
   and ordered by "robust frecency".
 
 - `:Pick visit_paths cwd='' recency_weight=1 filter='core'` - all visits with
@@ -1178,23 +1177,23 @@ Examples:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Possible fields:
 
-  - <span class="help-syntax-keys">\<cwd\></span> `(string)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
-    Default: `nil` to get paths registered for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  - <span class="help-syntax-keys">\<cwd\></span> `(string)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
+    Default: `nil` to get paths registered for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
-  - <span class="help-syntax-keys">\<filter\></span> `(function|string)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+  - <span class="help-syntax-keys">\<filter\></span> `(function|string)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
     Default: `nil` to use all paths.
 
   - <span class="help-syntax-keys">\<preserve_order\></span> `(boolean)` - whether to preserve original order
     during query. Default: `false`.
 
-  - <span class="help-syntax-keys">\<recency_weight\></span> `(number)` - forwarded to [`MiniVisits.gen_sort.default()`](mini-visits.qmd#minivisits.gen_sort.default).
+  - <span class="help-syntax-keys">\<recency_weight\></span> `(number)` - forwarded to [MiniVisits.gen\_sort.default()](mini-visits.qmd#minivisits.gen_sort.default).
     Default: 0.5 to use "robust frecency" sorting.
 
-  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
     Default: `nil` to use "robust frecency".
     Note: if supplied, has precedence over `recency_weight`.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.visit_paths-return}
 
@@ -1203,27 +1202,27 @@ Examples:
 
 ---
 
-### pickers.visit_labels() {#miniextra.pickers.visit_labels}
+### pickers.visit_labels() {#miniextra.pickers.visit_labels .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.visit_labels`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Visit labels from 'mini.visits' picker
 
-Pick labels from [`mini.visits`](mini-visits.qmd#mini.visits) using [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels)
-and [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths).
+Pick labels from [mini.visits](mini-visits.qmd#mini.visits) using [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels)
+and [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 Notes:
 
 - Requires 'mini.visits'.
 
 - Preview shows target visit paths filtered to those having previewed label.
 
-- Choosing essentially starts [`MiniExtra.pickers.visit_paths()`](mini-extra.qmd#miniextra.pickers.visit_paths) for paths
+- Choosing essentially starts [MiniExtra.pickers.visit\_paths()](mini-extra.qmd#miniextra.pickers.visit_paths) for paths
   with the chosen label.
 
 Examples:
 
 
 - `MiniExtra.pickers.visit_labels()` - labels from visits registered
-  for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `:Pick visit_labels cwd=''` - labels from all visits.
 
@@ -1234,19 +1233,19 @@ Examples:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Possible fields:
 
-  - <span class="help-syntax-keys">\<cwd\></span> `(string)` - forwarded to [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
-    Default: `nil` to get labels from visits registered for [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  - <span class="help-syntax-keys">\<cwd\></span> `(string)` - forwarded to [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
+    Default: `nil` to get labels from visits registered for [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
-  - <span class="help-syntax-keys">\<filter\></span> `(function|string)` - forwarded to [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
+  - <span class="help-syntax-keys">\<filter\></span> `(function|string)` - forwarded to [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
     Default: `nil` to use all visits.
 
-  - <span class="help-syntax-keys">\<path\></span> `(string)` - forwarded to [`MiniVisits.list_labels()`](mini-visits.qmd#minivisits.list_labels).
+  - <span class="help-syntax-keys">\<path\></span> `(string)` - forwarded to [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels).
     Default: `""` to get labels from all visits for target `cwd`.
 
-  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [`MiniVisits.list_paths()`](mini-visits.qmd#minivisits.list_paths) for
+  - <span class="help-syntax-keys">\<sort\></span> `(function)` - forwarded to [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths) for
     preview and choose. Default: `nil` to use "robust frecency".
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [`MiniPick.start()`](mini-pick.qmd#minipick.start).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 #### Return {#miniextra.pickers.visit_labels-return}
 

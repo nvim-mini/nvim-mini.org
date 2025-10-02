@@ -1,6 +1,5 @@
 ---
 title: "mini.jump2d documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#minijump2d}
+### Module {#module .help-syntax-right-anchor}
 
 Jump within visible lines via iterative label filtering.
 
@@ -22,7 +21,7 @@ Features:
   character that is visualized at jump spot.
 
 
-- Customizable (see [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config)):
+- Customizable (see [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config)):
 
     - Way of computing possible jump spots with opinionated default.
 
@@ -45,7 +44,7 @@ Features:
 - Works in Visual and Operator-pending (with dot-repeat) modes.
 
 
-- Preconfigured ways of computing jump spots (see [`MiniJump2d.builtin_opts`](mini-jump2d.qmd#minijump2d.builtin_opts)):
+- Preconfigured ways of computing jump spots (see [MiniJump2d.builtin\_opts](mini-jump2d.qmd#minijump2d.builtin_opts)):
 
     - Starts of lines.
 
@@ -65,9 +64,9 @@ General overview of how jump is intended to be performed:
 
 
 - Initiate jump. Either by custom keybinding or with a call to
-  [`MiniJump2d.start()`](mini-jump2d.qmd#minijump2d.start) (allows customization options). This will highlight
+  [MiniJump2d.start()](mini-jump2d.qmd#minijump2d.start) (allows customization options). This will highlight
   all possible jump spots with their labels (letters from "a" to "z" by
-  default). For more details, read [`MiniJump2d.start()`](mini-jump2d.qmd#minijump2d.start) and [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config).
+  default). For more details, read [MiniJump2d.start()](mini-jump2d.qmd#minijump2d.start) and [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config).
 
 
 - Type character that appeared over desired location. If its label was
@@ -79,7 +78,7 @@ General overview of how jump is intended to be performed:
   to jump to first available jump spot. Typing anything else stops jumping
    without moving cursor.
 
-#### Setup {#minijump2d-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.jump2d').setup({})` (replace
@@ -87,15 +86,15 @@ This module needs a setup with `require('mini.jump2d').setup({})` (replace
 `MiniJump2d` which you can use for scripting or manually (with
 `:lua MiniJump2d.*`).
 
-See [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config) for available config settings.
+See [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config) for available config settings.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minijump2d_config` which should have same structure as
-`MiniJump2d.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniJump2d.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Example usage {#minijump2d-exampleusage}
+#### Example usage {#module-exampleusage}
 
 
 
@@ -110,7 +109,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 
 - Jump to line start using combination of options supplied in
-  [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config) and [`MiniJump2d.builtin_opts.line_start`](mini-jump2d.qmd#minijump2d.builtin_opts.line_start):
+  [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config) and [MiniJump2d.builtin\_opts.line\_start](mini-jump2d.qmd#minijump2d.builtin_opts.line_start):
 
   ```vim
   :lua MiniJump2d.start(MiniJump2d.builtin_opts.line_start)
@@ -124,9 +123,9 @@ To stop module from showing non-error feedback, set `config.silent = true`.
   ```
 
 
-- See more examples in [`MiniJump2d.start()`](mini-jump2d.qmd#minijump2d.start) and [`MiniJump2d.builtin_opts`](mini-jump2d.qmd#minijump2d.builtin_opts).
+- See more examples in [MiniJump2d.start()](mini-jump2d.qmd#minijump2d.start) and [MiniJump2d.builtin\_opts](mini-jump2d.qmd#minijump2d.builtin_opts).
 
-#### Comparisons {#minijump2d-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -142,7 +141,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
       line start, one character or query based on user input). 'hop.nvim'
       does that by exporting many targeted Neovim commands, while this
       module has preconfigured basic options leaving others to
-      customization with Lua code (see [`MiniJump2d.builtin_opts`](mini-jump2d.qmd#minijump2d.builtin_opts)).
+      customization with Lua code (see [MiniJump2d.builtin\_opts](mini-jump2d.qmd#minijump2d.builtin_opts)).
 
     - 'hop.nvim' computes labels (called "hints") differently. Contrary to
       this module deliberately not having preference of one jump spot over
@@ -153,9 +152,9 @@ To stop module from showing non-error feedback, set `config.silent = true`.
       order of sequences is based on distance to the cursor.
 
     - 'mini.jump2d' has opinionated default algorithm of computing jump
-      spots. See [`MiniJump2d.default_spotter()`](mini-jump2d.qmd#minijump2d.default_spotter).
+      spots. See [MiniJump2d.default\_spotter()](mini-jump2d.qmd#minijump2d.default_spotter).
 
-#### Highlight groups {#minijump2d-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -189,20 +188,20 @@ To stop module from showing non-error feedback, set `config.silent = true`.
   Make it non-bright in order for jump spot labels to be more visible.
   By default linked to `Comment` highlight group.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minijump2d-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable, set `vim.g.minijump2d_disable` (globally) or
 `vim.b.minijump2d_disable` (for a buffer) to `true`. Considering high
 number of different scenarios and customization intentions, writing exact
 rules for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### setup() {#minijump2d.setup}
+### setup() {#minijump2d.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -211,7 +210,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config).
 
 #### Usage {#minijump2d.setup-usage}
 
@@ -225,7 +224,7 @@ Module setup
 
 ---
 
-### config {#minijump2d.config}
+### config {#minijump2d.config .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.config`</p>
 #### Defaults {#minijump2d.config-defaults}
@@ -305,7 +304,7 @@ Note: for a more aligned visualization this list should be (but not
 strictly necessary) sorted increasingly.
 
 Note: spotter function is always called with `win_id` window being
-"temporary current" (see [`nvim_win_call()`](https://neovim.io/doc/user/helptag.html?tag=nvim_win_call\(\))). This allows using builtin
+"temporary current" (see [nvim\_win\_call()](https://neovim.io/doc/user/helptag.html?tag=nvim_win_call\(\))). This allows using builtin
 Vimscript functions that operate only inside current window.
 
 #### View {#minijump2d.config-view}
@@ -315,7 +314,7 @@ Option `view.n_steps_ahead` controls how many steps ahead to show along
 with the currently required label. Those future steps are shown with
 different (less visible) highlight group ("MiniJump2dSpotAhead"). Usually
 it is a good idea to use this with a spotter which doesn't result into many
-jump spots (like, for example, [`MiniJump2d.builtin_opts.word_start`](mini-jump2d.qmd#minijump2d.builtin_opts.word_start)).
+jump spots (like, for example, [MiniJump2d.builtin\_opts.word\_start](mini-jump2d.qmd#minijump2d.builtin_opts.word_start)).
 Default is 0 to not show anything ahead as it reduces visual noise.
 
 Option `view.dim` controls whether to dim lines with at least one jump spot.
@@ -328,8 +327,8 @@ Option `allowed_lines` controls which lines will be used for computing
 possible jump spots:
 
 - If `blank` or `fold` is `true`, it is possible to jump to first column of blank
-  line (determined by [`prevnonblank()`](https://neovim.io/doc/user/helptag.html?tag=prevnonblank\(\))) or first folded one (determined by
-  [`foldclosed()`](https://neovim.io/doc/user/helptag.html?tag=foldclosed\(\))) respectively. Otherwise they are skipped. These lines are
+  line (determined by [prevnonblank()](https://neovim.io/doc/user/helptag.html?tag=prevnonblank\(\))) or first folded one (determined by
+  [foldclosed()](https://neovim.io/doc/user/helptag.html?tag=foldclosed\(\))) respectively. Otherwise they are skipped. These lines are
   not processed by spotter function even if the option is `true`.
 
 - If `cursor_before`, (`cursor_at`, `cursor_after`) is `true`, lines before
@@ -350,7 +349,7 @@ Following hook functions can be used to further tweak jumping experience:
 
 ---
 
-### start() {#minijump2d.start}
+### start() {#minijump2d.start .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.start`(<span class="help-syntax-special">{opts}</span>)</p>
 Start jumping
@@ -414,7 +413,7 @@ default spotter function. Rarely 3 steps are needed with several windows.
 
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Configuration of jumping, overriding global and buffer
-  local values. Has the same structure as [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config)
+  local values. Has the same structure as [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config)
   without <span class="help-syntax-keys">\<mappings\></span> field. Extra allowed fields:
 
   - <span class="help-syntax-keys">\<hl_group\></span> - highlight group for first step.
@@ -456,18 +455,18 @@ default spotter function. Rarely 3 steps are needed with several windows.
 #### See also {#minijump2d.start-seealso}
 
 
-[`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config)
+[MiniJump2d.config](mini-jump2d.qmd#minijump2d.config)
 
 ---
 
-### stop() {#minijump2d.stop}
+### stop() {#minijump2d.stop .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.stop`()</p>
 Stop jumping
 
 ---
 
-### gen_spotter {#minijump2d.gen_spotter}
+### gen_spotter {#minijump2d.gen_spotter .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.gen_spotter`</p>
 Generate spotter
@@ -476,7 +475,7 @@ This is a table with function elements. Call to actually get a spotter.
 
 ---
 
-### gen_spotter.pattern() {#minijump2d.gen_spotter.pattern}
+### gen_spotter.pattern() {#minijump2d.gen_spotter.pattern .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.gen_spotter.pattern`(<span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{side}</span>)</p>
 Generate spotter for Lua pattern
@@ -520,7 +519,7 @@ Generate spotter for Lua pattern
 
 ---
 
-### gen_spotter.vimpattern() {#minijump2d.gen_spotter.vimpattern}
+### gen_spotter.vimpattern() {#minijump2d.gen_spotter.vimpattern .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.gen_spotter.vimpattern`(<span class="help-syntax-special">{pattern}</span>)</p>
 Generate spotter for Vimscript pattern
@@ -529,7 +528,7 @@ Generate spotter for Vimscript pattern
 
 
 
-<span class="help-syntax-special">{pattern}</span> `(string|nil)` Vimscript [`pattern`](https://neovim.io/doc/user/helptag.html?tag=pattern). Default: `\k\+` to match group
+<span class="help-syntax-special">{pattern}</span> `(string|nil)` Vimscript [pattern](https://neovim.io/doc/user/helptag.html?tag=pattern). Default: `\k\+` to match group
   of "keyword characters" (see 'iskeyword').
 
 #### Return {#minijump2d.gen_spotter.vimpattern-return}
@@ -551,7 +550,7 @@ Generate spotter for Vimscript pattern
 
 ---
 
-### gen_spotter.union() {#minijump2d.gen_spotter.union}
+### gen_spotter.union() {#minijump2d.gen_spotter.union .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.gen_spotter.union`(<span class="help-syntax-special">{...}</span>)</p>
 Generate union of spotters
@@ -561,7 +560,7 @@ Generate union of spotters
 
 
 <span class="help-syntax-special">{...}</span> `(any)` Each argument should be a valid spotter.
-  See [`MiniJump2d.config`](mini-jump2d.qmd#minijump2d.config) for more details.
+  See [MiniJump2d.config](mini-jump2d.qmd#minijump2d.config) for more details.
 
 #### Return {#minijump2d.gen_spotter.union-return}
 
@@ -581,7 +580,7 @@ Generate union of spotters
 
 ---
 
-### default_spotter() {#minijump2d.default_spotter}
+### default_spotter() {#minijump2d.default_spotter .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.default_spotter`</p>
 Default spotter function
@@ -606,14 +605,14 @@ Usually takes from 2 to 3 keystrokes to get to destination.
 
 ---
 
-### builtin_opts {#minijump2d.builtin_opts}
+### builtin_opts {#minijump2d.builtin_opts .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts`</p>
-Table with builtin `opts` values for [`MiniJump2d.start()`](mini-jump2d.qmd#minijump2d.start)
+Table with builtin `opts` values for [MiniJump2d.start()](mini-jump2d.qmd#minijump2d.start)
 
 Each element of table is itself a table defining one or several options for
 `MiniJump2d.start()`. Read help description to see which options it defines
-(like in [`MiniJump2d.builtin_opts.line_start`](mini-jump2d.qmd#minijump2d.builtin_opts.line_start)).
+(like in [MiniJump2d.builtin\_opts.line\_start](mini-jump2d.qmd#minijump2d.builtin_opts.line_start)).
 
 #### Usage {#minijump2d.builtin_opts-usage}
 
@@ -641,16 +640,16 @@ Each element of table is itself a table defining one or several options for
 
 ---
 
-### builtin_opts.default {#minijump2d.builtin_opts.default}
+### builtin_opts.default {#minijump2d.builtin_opts.default .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts.default`</p>
-Jump with [`MiniJump2d.default_spotter()`](mini-jump2d.qmd#minijump2d.default_spotter)
+Jump with [MiniJump2d.default\_spotter()](mini-jump2d.qmd#minijump2d.default_spotter)
 
 Defines `spotter`.
 
 ---
 
-### builtin_opts.line_start {#minijump2d.builtin_opts.line_start}
+### builtin_opts.line_start {#minijump2d.builtin_opts.line_start .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts.line_start`</p>
 Jump to line start
@@ -659,7 +658,7 @@ Defines `spotter` and `hooks.after_jump`.
 
 ---
 
-### builtin_opts.word_start {#minijump2d.builtin_opts.word_start}
+### builtin_opts.word_start {#minijump2d.builtin_opts.word_start .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts.word_start`</p>
 Jump to word start
@@ -670,7 +669,7 @@ Defines `spotter`.
 
 ---
 
-### builtin_opts.single_character {#minijump2d.builtin_opts.single_character}
+### builtin_opts.single_character {#minijump2d.builtin_opts.single_character .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts.single_character`</p>
 Jump to single character taken from user input
@@ -680,7 +679,7 @@ Defines `spotter`, `allowed_lines.blank`, `allowed_lines.fold`, and
 
 ---
 
-### builtin_opts.query {#minijump2d.builtin_opts.query}
+### builtin_opts.query {#minijump2d.builtin_opts.query .help-syntax-right-anchor}
 
 <p align="center">`MiniJump2d.builtin_opts.query`</p>
 Jump to query taken from user input

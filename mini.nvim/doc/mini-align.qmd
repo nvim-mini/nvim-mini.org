@@ -1,6 +1,5 @@
 ---
 title: "mini.align documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#minialign}
+### Module {#module .help-syntax-right-anchor}
 
 Rich and flexible customization of both alignment rules and user interaction.
 Works with charwise, linewise, and blockwise selections in both Normal mode
@@ -27,8 +26,8 @@ Features:
 
     - <span class="help-syntax-keys">\<Merge\></span> parts to be lines, with customizable delimiter(s).
   Each main step can be preceded by other steps (pre-steps) to achieve
-  highly customizable outcome. See `steps` value in [`MiniAlign.config`](mini-align.qmd#minialign.config). For
-  more details, see [`MiniAlign-glossary`](mini-align.qmd#minialign-glossary) and [`MiniAlign-algorithm`](mini-align.qmd#minialign-algorithm).
+  highly customizable outcome. See `steps` value in [MiniAlign.config](mini-align.qmd#minialign.config). For
+  more details, see [MiniAlign-glossary](mini-align.qmd#minialign-glossary) and [MiniAlign-algorithm](mini-align.qmd#minialign-algorithm).
 
 
 - User can control alignment interactively by pressing customizable modifiers
@@ -52,7 +51,7 @@ Features:
     - Press `t` to trim whitespace from parts.
 
     - Press `<BS>` (backspace) to delete some last pre-step.
-  For more details, see [`MiniAlign-modifiers-builtin`](mini-align.qmd#minialign-modifiers-builtin) and [`MiniAlign-examples`](mini-align.qmd#minialign-examples).
+  For more details, see [MiniAlign-modifiers-builtin](mini-align.qmd#minialign-modifiers-builtin) and [MiniAlign-examples](mini-align.qmd#minialign-examples).
 
 
 - Alignment can be done with instant preview (result is updated after each
@@ -63,22 +62,22 @@ Features:
 - Every user interaction is accompanied with helper status message showing
   relevant information about current alignment process.
 
-#### Setup {#minialign-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.align').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniAlign`
 which you can use for scripting or manually (with `:lua MiniAlign.*`).
 
-See [`MiniAlign.config`](mini-align.qmd#minialign.config) for available config settings.
+See [MiniAlign.config](mini-align.qmd#minialign.config) for available config settings.
 
 You can override runtime config settings (like `config.modifiers`) locally
 to buffer inside `vim.b.minialign_config` which should have same structure
-as `MiniAlign.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+as `MiniAlign.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Comparisons {#minialign-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -90,7 +89,7 @@ To stop module from showing non-error feedback, set `config.silent = true`.
     - Both plugins allow users to change alignment options interactively by
       pressing modifier keys (albeit completely different default ones).
       'junegunn/vim-easy-align' has those modifiers fixed, while 'mini.align'
-      allows their full customization. See [`MiniAlign.config`](mini-align.qmd#minialign.config) for examples.
+      allows their full customization. See [MiniAlign.config](mini-align.qmd#minialign.config) for examples.
 
     - 'junegunn/vim-easy-align' is designed to treat delimiters differently
       than other parts of strings. 'mini.align' doesn't distinguish split
@@ -102,14 +101,14 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
     - 'junegunn/vim-easy-align' implements special filtering by delimiter
       row number. 'mini.align' has builtin filtering based on Lua code
-      supplied by user in modifier phase. See [`MiniAlign.gen_step.filter()`](mini-align.qmd#minialign.gen_step.filter)
+      supplied by user in modifier phase. See [MiniAlign.gen\_step.filter()](mini-align.qmd#minialign.gen_step.filter)
       and 'f' builtin modifier.
 
     - 'mini.align' treats any non-registered modifier as a plain delimiter
       pattern, while 'junegunn/vim-easy-align' does not.
 
     - 'mini.align' exports core Lua function used for aligning strings
-      ([`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings)).
+      ([MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings)).
 
 - [godlygeek/tabular](https://github.com/godlygeek/tabular):
 
@@ -122,24 +121,24 @@ To stop module from showing non-error feedback, set `config.silent = true`.
       desirable. 'mini.align' does not by design: use Visual selection or
       textobject/motion to explicitly define region to align.
 
-#### Disabling {#minialign-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable, set `vim.g.minialign_disable` (globally) or `vim.b.minialign_disable`
 (for a buffer) to `true`. Considering high number of different scenarios
 and customization intentions, writing exact rules for disabling module's
-functionality is left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
+functionality is left to user. See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
 recipes.
 
 ---
 
-### Glossary {#minialign-glossary}
+### Glossary {#minialign-glossary .help-syntax-right-anchor}
 
 #### PARTS {#minialign-glossary-parts}
 
 
 2d array of strings (array of arrays of strings).
-See more in [`MiniAlign.as_parts()`](mini-align.qmd#minialign.as_parts).
+See more in [MiniAlign.as\_parts()](mini-align.qmd#minialign.as_parts).
 
 #### ROW {#minialign-glossary-row}
 
@@ -155,7 +154,7 @@ Array of strings, constructed from parts elements with the same
 #### STEP {#minialign-glossary-step}
 
 
-A named callable. See [`MiniAlign.new_step()`](mini-align.qmd#minialign.new_step). When used in terms of alignment
+A named callable. See [MiniAlign.new\_step()](mini-align.qmd#minialign.new_step). When used in terms of alignment
 steps, callable takes two arguments: some object (parts or string array)
 and option table.
 
@@ -186,21 +185,21 @@ Positions are also tables with <span class="help-syntax-keys">\<line\></span> an
 #### MODE {#minialign-glossary-mode}
 
 
-Either charwise ("char", `v`, [`charwise`](https://neovim.io/doc/user/helptag.html?tag=charwise)), linewise ("line", `V`, [`linewise`](https://neovim.io/doc/user/helptag.html?tag=linewise))
-or blockwise ("block", `<C-v>`, [`blockwise-visual`](https://neovim.io/doc/user/helptag.html?tag=blockwise-visual))
+Either charwise ("char", `v`, [charwise](https://neovim.io/doc/user/helptag.html?tag=charwise)), linewise ("line", `V`, [linewise](https://neovim.io/doc/user/helptag.html?tag=linewise))
+or blockwise ("block", `<C-v>`, [blockwise-visual](https://neovim.io/doc/user/helptag.html?tag=blockwise-visual))
 
 ---
 
-### Algorithm {#minialign-algorithm}
+### Algorithm {#minialign-algorithm .help-syntax-right-anchor}
 
 There are two main processes implemented in 'mini.align': strings alignment
-and interactive region alignment. See [`MiniAlign-glossary`](mini-align.qmd#minialign-glossary) for more information
+and interactive region alignment. See [MiniAlign-glossary](mini-align.qmd#minialign-glossary) for more information
 about used terms.
 
 #### Strings alignment {#minialign-algorithm-stringsalignment}
 
 
-Main implementation is in [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings). Its input is array of
+Main implementation is in [MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings). Its input is array of
 strings and output - array of aligned strings. The process consists from three
 main steps (split, justify, merge) which can be preceded by any number of
 preliminary steps (pre-split, pre-justify, pre-merge).
@@ -234,7 +233,7 @@ Notes:
   affect workflow.
 
 - Default main steps are designed to be controlled via options. See
-  [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings) and default step entries in [`MiniAlign.gen_step`](mini-align.qmd#minialign.gen_step).
+  [MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings) and default step entries in [MiniAlign.gen\_step](mini-align.qmd#minialign.gen_step).
 
 - All steps are guaranteed to take same option table as second argument.
   This allows steps to "talk" to each other, i.e. earlier steps can pass data
@@ -265,14 +264,14 @@ Lifecycle (assuming default mappings):
 
     - In Visual mode select region and type `ga` (or `gA` to show preview).
   Strings contained in selected region will be used as input to
-  [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings).
+  [MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings).
   Beware of mode when selecting region: charwise (`v`), linewise (`V`), or
   blockwise (`<C-v>`). They all behave differently.
 
 - <span class="help-syntax-keys">\<Press-modifiers\></span>. Press single keys one at a time:
 
     - If pressed key is among table keys of `modifiers` table of
-      [`MiniAlign.config`](mini-align.qmd#minialign.config), its function value is executed. It usually modifies
+      [MiniAlign.config](mini-align.qmd#minialign.config), its function value is executed. It usually modifies
       some options(s) and/or affects some pre-step(s).
 
     - If pressed key is not among defined modifiers, it is treated as plain
@@ -284,7 +283,7 @@ Lifecycle (assuming default mappings):
   pressing `<CR>`. Discard any result and return to initial regions with
   either `<Esc>` or `<C-c>`.
 
-See more in [`MiniAlign-modifiers-builtin`](mini-align.qmd#minialign-modifiers-builtin) and [`MiniAlign-examples`](mini-align.qmd#minialign-examples).
+See more in [MiniAlign-modifiers-builtin](mini-align.qmd#minialign-modifiers-builtin) and [MiniAlign-examples](mini-align.qmd#minialign-examples).
 
 Notes:
 
@@ -295,7 +294,7 @@ Notes:
 
 ---
 
-### Modifiers builtin {#minialign-modifiers-builtin}
+### Modifiers builtin {#minialign-modifiers-builtin .help-syntax-right-anchor}
 
 Overview of builtin modifiers
 
@@ -308,8 +307,8 @@ Notes:
 - Any pressed key which doesn't have defined modifier will be treated as
   plain split pattern.
 
-- All modifiers can be customized inside [`MiniAlign.setup()`](mini-align.qmd#minialign.setup). See "Modifiers"
-  section of [`MiniAlign.config`](mini-align.qmd#minialign.config).
+- All modifiers can be customized inside [MiniAlign.setup()](mini-align.qmd#minialign.setup). See "Modifiers"
+  section of [MiniAlign.config](mini-align.qmd#minialign.config).
 
 #### Main option modifiers {#minialign-modifiers-builtin-mainoptionmodifiers}
 
@@ -367,7 +366,7 @@ Notes:
 #### Modifiers adding pre-steps {#minialign-modifiers-builtin-modifiersaddingpre-steps}
 
 
-<span class="help-syntax-keys">\<f\></span> Enter filter expression. See more details in [`MiniAlign.gen_step.filter()`](mini-align.qmd#minialign.gen_step.filter).
+<span class="help-syntax-keys">\<f\></span> Enter filter expression. See more details in [MiniAlign.gen\_step.filter()](mini-align.qmd#minialign.gen_step.filter).
 
   Before:
 
@@ -385,7 +384,7 @@ Notes:
 
 <span class="help-syntax-keys">\<i\></span> Ignore some split matches. It modifies `split_exclude_patterns` option by
   adding commonly wanted patterns. See more details in
-  [`MiniAlign.gen_step.ignore_split()`](mini-align.qmd#minialign.gen_step.ignore_split).
+  [MiniAlign.gen\_step.ignore\_split()](mini-align.qmd#minialign.gen_step.ignore_split).
 
   Before:
 
@@ -530,7 +529,7 @@ Notes:
 
 ---
 
-### Examples {#minialign-examples}
+### Examples {#minialign-examples .help-syntax-right-anchor}
 
 Copy lines in modifiable buffer, initiate alignment with preview (`gAip`)
 and try typing suggested key sequences.
@@ -596,7 +595,7 @@ Key sequences:
 
 ---
 
-### setup() {#minialign.setup}
+### setup() {#minialign.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -605,7 +604,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniAlign.config`](mini-align.qmd#minialign.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniAlign.config](mini-align.qmd#minialign.config).
 
 #### Usage {#minialign.setup-usage}
 
@@ -619,7 +618,7 @@ Module setup
 
 ---
 
-### config {#minialign.config}
+### config {#minialign.config .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.config`</p>
 #### Defaults {#minialign.config-defaults}
@@ -745,8 +744,8 @@ Examples:
 
 - Set `justify_side = 'center'` to center align at initialization.
 
-For more details about options see [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings) and entries of
-[`MiniAlign.gen_step`](mini-align.qmd#minialign.gen_step) for default main steps.
+For more details about options see [MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings) and entries of
+[MiniAlign.gen\_step](mini-align.qmd#minialign.gen_step) for default main steps.
 
 #### Steps {#minialign.config-steps}
 
@@ -769,12 +768,12 @@ Examples:
 
 ---
 
-### align_strings() {#minialign.align_strings}
+### align_strings() {#minialign.align_strings .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.align_strings`(<span class="help-syntax-special">{strings}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{steps}</span>)</p>
 Align strings
 
-For details about alignment process see [`MiniAlign-algorithm`](mini-align.qmd#minialign-algorithm).
+For details about alignment process see [MiniAlign-algorithm](mini-align.qmd#minialign-algorithm).
 
 #### Parameters {#minialign.align_strings-parameters}
 
@@ -795,38 +794,38 @@ For details about alignment process see [`MiniAlign-algorithm`](mini-align.qmd#m
   - `opts.justify_offsets` - offsets tweaking width of first column
 
   - `opts.merge_delimiter` - which delimiter(s) to use when merging.
-  For more information see [`MiniAlign.gen_step`](mini-align.qmd#minialign.gen_step) entry for corresponding
+  For more information see [MiniAlign.gen\_step](mini-align.qmd#minialign.gen_step) entry for corresponding
   default step.
 
 <span class="help-syntax-special">{steps}</span> `(table|nil)` Steps. Extended with `MiniAlign.config.steps`.
   Possible `nil` values are replaced with corresponding default steps:
 
-  - `split` - [`MiniAlign.gen_step.default_split()`](mini-align.qmd#minialign.gen_step.default_split).
+  - `split` - [MiniAlign.gen\_step.default\_split()](mini-align.qmd#minialign.gen_step.default_split).
 
-  - `justify` - [`MiniAlign.gen_step.default_justify()`](mini-align.qmd#minialign.gen_step.default_justify).
+  - `justify` - [MiniAlign.gen\_step.default\_justify()](mini-align.qmd#minialign.gen_step.default_justify).
 
-  - `merge` - [`MiniAlign.gen_step.default_merge()`](mini-align.qmd#minialign.gen_step.default_merge).
+  - `merge` - [MiniAlign.gen\_step.default\_merge()](mini-align.qmd#minialign.gen_step.default_merge).
 
 ---
 
-### align_user() {#minialign.align_user}
+### align_user() {#minialign.align_user .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.align_user`(<span class="help-syntax-special">{mode}</span>)</p>
 Align current region with user-supplied steps
 
 Mostly designed to be used inside mappings.
 
-Will use [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings) and set the following options in `opts`:
+Will use [MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings) and set the following options in `opts`:
 
 - `justify_offsets` - array of offsets used to achieve actual alignment of
   a region. It is non-trivial (not array of zeros) only for charwise
   selection: offset of first string is computed as width of prefix to the
   left of region start.
 
-- `region` - current affected region (see [`MiniAlign-glossary`](mini-align.qmd#minialign-glossary)). Can be
+- `region` - current affected region (see [MiniAlign-glossary](mini-align.qmd#minialign-glossary)). Can be
   used to create more advanced steps.
 
-- `mode` - mode of selection (see [`MiniAlign-glossary`](mini-align.qmd#minialign-glossary)).
+- `mode` - mode of selection (see [MiniAlign-glossary](mini-align.qmd#minialign-glossary)).
 
 #### Parameters {#minialign.align_user-parameters}
 
@@ -836,7 +835,7 @@ Will use [`MiniAlign.align_strings()`](mini-align.qmd#minialign.align_strings) a
 
 ---
 
-### as_parts() {#minialign.as_parts}
+### as_parts() {#minialign.as_parts .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.as_parts`(<span class="help-syntax-special">{arr2d}</span>)</p>
 Convert 2d array of strings to parts
@@ -935,7 +934,7 @@ methods to its copy.
 
 ---
 
-### new_step() {#minialign.new_step}
+### new_step() {#minialign.new_step .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.new_step`(<span class="help-syntax-special">{name}</span>, <span class="help-syntax-special">{action}</span>)</p>
 Create step
@@ -950,7 +949,7 @@ some action powers helper status message during interactive alignment process.
 <span class="help-syntax-special">{name}</span> `(string)` Step name.
 
 <span class="help-syntax-special">{action}</span> `(function|table)` Step action. Should be a callable object
-  (see [`vim.is_callable()`](https://neovim.io/doc/user/helptag.html?tag=vim.is_callable\(\))).
+  (see [vim.is\_callable()](https://neovim.io/doc/user/helptag.html?tag=vim.is_callable\(\))).
 
 #### Return {#minialign.new_step-return}
 
@@ -959,7 +958,7 @@ some action powers helper status message during interactive alignment process.
 
 ---
 
-### gen_step {#minialign.gen_step}
+### gen_step {#minialign.gen_step .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step`</p>
 Generate common action steps
@@ -1004,7 +1003,7 @@ can be used several times in pre-steps.
 
 ---
 
-### gen_step.default_split() {#minialign.gen_step.default_split}
+### gen_step.default_split() {#minialign.gen_step.default_split .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.default_split`()</p>
 Generate default split step
@@ -1044,11 +1043,11 @@ Output uses following options (as part second argument, `opts` table):
 #### See also {#minialign.gen_step.default_split-seealso}
 
 
-[`MiniAlign.gen_step.ignore_split()`](mini-align.qmd#minialign.gen_step.ignore_split) heavily uses `split_exclude_patterns`.
+[MiniAlign.gen\_step.ignore\_split()](mini-align.qmd#minialign.gen_step.ignore_split) heavily uses `split_exclude_patterns`.
 
 ---
 
-### gen_step.default_justify() {#minialign.gen_step.default_justify}
+### gen_step.default_justify() {#minialign.gen_step.default_justify .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.default_justify`()</p>
 Generate default justify step
@@ -1092,7 +1091,7 @@ Output uses following options (as part second argument, `opts` table):
 
 ---
 
-### gen_step.default_merge() {#minialign.gen_step.default_merge}
+### gen_step.default_merge() {#minialign.gen_step.default_merge .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.default_merge`()</p>
 Generate default merge step
@@ -1124,7 +1123,7 @@ Output uses following options (as part second argument, `opts` table):
 
 ---
 
-### gen_step.filter() {#minialign.gen_step.filter}
+### gen_step.filter() {#minialign.gen_step.filter .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.filter`(<span class="help-syntax-special">{expr}</span>)</p>
 Generate filter step
@@ -1141,7 +1140,7 @@ Outline of how filtering is done:
   2d array with special variables set to specific values (see next section).
 
 - Group parts with computed mask. See `group()` method of parts in
-  [`MiniAlign.as_parts()`](mini-align.qmd#minialign.as_parts).
+  [MiniAlign.as\_parts()](mini-align.qmd#minialign.as_parts).
 
 Special variables which can be used in expression:
 
@@ -1187,7 +1186,7 @@ Tips:
 
 ---
 
-### gen_step.ignore_split() {#minialign.gen_step.ignore_split}
+### gen_step.ignore_split() {#minialign.gen_step.ignore_split .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.ignore_split`(<span class="help-syntax-special">{patterns}</span>, <span class="help-syntax-special">{exclude_comment}</span>)</p>
 Generate ignore step
@@ -1215,17 +1214,17 @@ used as pre-split step.
 #### See also {#minialign.gen_step.ignore_split-seealso}
 
 
-[`MiniAlign.gen_step.default_split()`](mini-align.qmd#minialign.gen_step.default_split) for details about
+[MiniAlign.gen\_step.default\_split()](mini-align.qmd#minialign.gen_step.default_split) for details about
   `split_exclude_patterns` option.
 
 ---
 
-### gen_step.pair() {#minialign.gen_step.pair}
+### gen_step.pair() {#minialign.gen_step.pair .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.pair`(<span class="help-syntax-special">{direction}</span>)</p>
 Generate pair step
 
-Output calls `pair()` method of parts (see [`MiniAlign.as_parts()`](mini-align.qmd#minialign.as_parts)) with
+Output calls `pair()` method of parts (see [MiniAlign.as\_parts()](mini-align.qmd#minialign.as_parts)) with
 supplied `direction` argument.
 
 #### Parameters {#minialign.gen_step.pair-parameters}
@@ -1242,12 +1241,12 @@ supplied `direction` argument.
 
 ---
 
-### gen_step.trim() {#minialign.gen_step.trim}
+### gen_step.trim() {#minialign.gen_step.trim .help-syntax-right-anchor}
 
 <p align="center">`MiniAlign.gen_step.trim`(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{indent}</span>)</p>
 Generate trim step
 
-Output calls `trim()` method of parts (see [`MiniAlign.as_parts()`](mini-align.qmd#minialign.as_parts)) with
+Output calls `trim()` method of parts (see [MiniAlign.as\_parts()](mini-align.qmd#minialign.as_parts)) with
 supplied `direction` and `indent` arguments.
 
 #### Parameters {#minialign.gen_step.trim-parameters}

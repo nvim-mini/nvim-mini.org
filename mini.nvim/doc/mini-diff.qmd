@@ -1,6 +1,5 @@
 ---
 title: "mini.diff documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2024 Evgeni Chasnovski
 
 ---
 
-### Module {#minidiff}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -23,13 +22,13 @@ Features:
 
 
 - Special toggleable overlay view with more hunk details inside text area.
-  See [`MiniDiff.toggle_overlay()`](mini-diff.qmd#minidiff.toggle_overlay).
+  See [MiniDiff.toggle\_overlay()](mini-diff.qmd#minidiff.toggle_overlay).
 
 
 - Completely configurable per buffer source(s) of reference text used to keep
   it up to date and define interactions with it. Can be array of sources which
-  are attempted to attach in order. See [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification).
-  By default uses Git source. See [`MiniDiff.gen_source.git()`](mini-diff.qmd#minidiff.gen_source.git).
+  are attempted to attach in order. See [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification).
+  By default uses Git source. See [MiniDiff.gen\_source.git()](mini-diff.qmd#minidiff.gen_source.git).
 
 
 - Configurable mappings to manage diff hunks:
@@ -39,39 +38,39 @@ Features:
 
     - "Hunk range under cursor" textobject to be used as operator target.
 
-    - Navigate to first/previous/next/last hunk. See [`MiniDiff.goto_hunk()`](mini-diff.qmd#minidiff.goto_hunk).
+    - Navigate to first/previous/next/last hunk. See [MiniDiff.goto\_hunk()](mini-diff.qmd#minidiff.goto_hunk).
 
 What it doesn't do:
 
 
 - Provide functionality to work directly with Git outside of visualizing
   and staging (applying) hunks with (default) Git source. In particular,
-  unstaging hunks is not supported. See [`MiniDiff.gen_source.git()`](mini-diff.qmd#minidiff.gen_source.git).
+  unstaging hunks is not supported. See [MiniDiff.gen\_source.git()](mini-diff.qmd#minidiff.gen_source.git).
 
 Sources with more details:
 
-- [`MiniDiff-overview`](mini-diff.qmd#minidiff-overview)
+- [MiniDiff-overview](mini-diff.qmd#minidiff-overview)
 
-- [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification)
+- [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification)
 
-- [`MiniDiff-hunk-specification`](mini-diff.qmd#minidiff-hunk-specification)
+- [MiniDiff-hunk-specification](mini-diff.qmd#minidiff-hunk-specification)
 
-- [`MiniDiff-diff-summary`](mini-diff.qmd#minidiff-diff-summary)
+- [MiniDiff-diff-summary](mini-diff.qmd#minidiff-diff-summary)
 
-#### Setup {#minidiff-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.diff').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniDiff`
 which you can use for scripting or manually (with `:lua MiniDiff.*`).
 
-See [`MiniDiff.config`](mini-diff.qmd#minidiff.config) for `config` structure and default values.
+See [MiniDiff.config](mini-diff.qmd#minidiff.config) for `config` structure and default values.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.minidiff_config` which should have same structure as
-`MiniDiff.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniDiff.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
-#### Comparisons {#minidiff-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -84,7 +83,7 @@ You can override runtime config settings locally to buffer inside
     - Provides more functionality to work with Git outside of hunks.
       This module does not (by design).
 
-#### Highlight groups {#minidiff-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -106,21 +105,21 @@ You can override runtime config settings locally to buffer inside
 
 - `MiniDiffOverDelete`     - deleted reference text shown in overlay.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minidiff-disabling}
+#### Disabling {#module-disabling}
 
 
-To temporarily disable features without relying on [`MiniDiff.disable()`](mini-diff.qmd#minidiff.disable),
+To temporarily disable features without relying on [MiniDiff.disable()](mini-diff.qmd#minidiff.disable),
 set `vim.g.minidiff_disable` (globally) or `vim.b.minidiff_disable` (for
 a buffer) to `true`. Considering high number of different scenarios and
 customization intentions, writing exact rules for disabling module's
 functionality is left to user.
-See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Overview {#minidiff-overview}
+### Overview {#minidiff-overview .help-syntax-right-anchor}
 
 #### Diffs and hunks {#minidiff-overview-diffsandhunks}
 
@@ -134,7 +133,7 @@ Although computing diff is a general concept (used on its own, in Git, etc.),
 this module computes difference between current text in a buffer and some
 reference text which is kept up to date specifically for that buffer.
 For example, default reference text is computed as file content in Git index.
-This can be customized in `config.source` (see [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification)).
+This can be customized in `config.source` (see [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification)).
 
 #### Hunk specification {#minidiff-overview-hunkspecification}
 
@@ -188,8 +187,8 @@ a table with the following fields:
     - Update visualization based on configurable style: either by placing
       colored text in sign column or coloring line numbers. Colors for both
       styles are defined per hunk type in corresponding `MiniDiffSign*`
-      highlight group (see [`mini.diff`](mini-diff.qmd#mini.diff)) and sign text for "sign" style can
-      be configured in `view.signs` of [`MiniDiff.config`](mini-diff.qmd#minidiff.config).
+      highlight group (see [mini.diff](mini-diff.qmd#mini.diff)) and sign text for "sign" style can
+      be configured in `view.signs` of [MiniDiff.config](mini-diff.qmd#minidiff.config).
 
     - Update overlay view (if it is enabled).
 
@@ -197,11 +196,11 @@ a table with the following fields:
       buffer-local variables. These can be used, for example, in statusline.
 
     - <a name="minidiff-update-event" href="mini-diff.qmd#minidiff-update-event"><b>MiniDiff-update-event</b></a> Trigger `MiniDiffUpdated` `User` event.
-      See [`MiniDiff-diff-summary`](mini-diff.qmd#minidiff-diff-summary) for example of how to use it.
+      See [MiniDiff-diff-summary](mini-diff.qmd#minidiff-diff-summary) for example of how to use it.
 
 Notes:
 
-- Use [`:edit`](https://neovim.io/doc/user/helptag.html?tag=:edit) to reset (disable and re-enable) current buffer.
+- Use [:edit](https://neovim.io/doc/user/helptag.html?tag=:edit) to reset (disable and re-enable) current buffer.
 
 - To work with BOM bytes, set 'bomb' and have `ucs-bom` in 'fileencodings'.
 
@@ -210,7 +209,7 @@ Notes:
 
 Along with basic visualization, there is a special view called "overlay".
 Although it is meant for temporary overview of diff details and can be
-manually toggled via [`MiniDiff.toggle_overlay()`](mini-diff.qmd#minidiff.toggle_overlay), text can be changed with
+manually toggled via [MiniDiff.toggle\_overlay()](mini-diff.qmd#minidiff.toggle_overlay), text can be changed with
 overlay reacting accordingly.
 
 It shows more diff details inside text area:
@@ -242,7 +241,7 @@ Notes:
   reduces visual noise.
 
 - Virtual lines above line 1 (like deleted or changed lines) need manual
-  scroll to become visible (with [`CTRL-Y`](https://neovim.io/doc/user/helptag.html?tag=CTRL-Y)).
+  scroll to become visible (with [CTRL-Y](https://neovim.io/doc/user/helptag.html?tag=CTRL-Y)).
 
 #### Mappings {#minidiff-overview-mappings}
 
@@ -259,7 +258,7 @@ Examples:
 
 - `vip` followed by `gh` / `gH` applies/resets hunks inside current paragraph.
   Same can be achieved in operator form `ghip` / `gHip`, which has the
-  advantage of being dot-repeatable (see [`single-repeat`](https://neovim.io/doc/user/helptag.html?tag=single-repeat)).
+  advantage of being dot-repeatable (see [single-repeat](https://neovim.io/doc/user/helptag.html?tag=single-repeat)).
 
 - `gh_` / `gH_` applies/resets current line (even if it is not a full hunk).
 
@@ -271,7 +270,7 @@ Examples:
   hunk range of the current buffer.
 
 Mappings for some functionality are assumed to be done manually.
-See [`MiniDiff.operator()`](mini-diff.qmd#minidiff.operator).
+See [MiniDiff.operator()](mini-diff.qmd#minidiff.operator).
 
 #### Buffer-local variables {#minidiff-overview-buffer-localvariables}
 
@@ -299,7 +298,7 @@ used in custom statusline to show an overview of hunks in current buffer:
   with a fixed format. It is expected to be used as is. To achieve
   different formatting, use `vim.b.minidiff_summary` to construct one.
   The best way to do this is by overriding `vim.b.minidiff_summary_string`
-  in the callback for [`MiniDiff-update-event`](mini-diff.qmd#minidiff-update-event) event:
+  in the callback for [MiniDiff-update-event](mini-diff.qmd#minidiff-update-event) event:
 
   ```lua
   local format_summary = function(data)
@@ -316,7 +315,7 @@ used in custom statusline to show an overview of hunks in current buffer:
 
 ---
 
-### setup() {#minidiff.setup}
+### setup() {#minidiff.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -325,7 +324,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniDiff.config`](mini-diff.qmd#minidiff.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniDiff.config](mini-diff.qmd#minidiff.config).
 
 #### Usage {#minidiff.setup-usage}
 
@@ -339,7 +338,7 @@ Module setup
 
 ---
 
-### config {#minidiff.config}
+### config {#minidiff.config .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.config`</p>
 #### Defaults {#minidiff.config-defaults}
@@ -423,18 +422,18 @@ Example of using custom signs:
   ```
 
 `view.style` is a string defining visualization style. Can be one of "sign"
-(as a colored sign in a [`sign-column`](https://neovim.io/doc/user/helptag.html?tag=sign-column)) or "number" (colored line number).
-Default: "number" if [`'number'`](https://neovim.io/doc/user/helptag.html?tag='number') option is enabled, "sign" otherwise.
-Note: with "sign" style it is better to have [`'signcolumn'`](https://neovim.io/doc/user/helptag.html?tag='signcolumn') always shown.
+(as a colored sign in a [sign-column](https://neovim.io/doc/user/helptag.html?tag=sign-column)) or "number" (colored line number).
+Default: "number" if ['number'](https://neovim.io/doc/user/helptag.html?tag='number') option is enabled, "sign" otherwise.
+Note: with "sign" style it is better to have ['signcolumn'](https://neovim.io/doc/user/helptag.html?tag='signcolumn') always shown.
 
 `view.signs` is a table with one or two character strings used as signs for
 corresponding ("add", "change", "delete") hunks.
 Default: all hunks use "▒" character resulting in a contiguous colored lines.
 
 `view.priority` is a number with priority used for visualization and
-overlay [`extmarks`](https://neovim.io/doc/user/helptag.html?tag=extmarks).
-Default: 199 which is one less than `user` in [`vim.hl.priorities`](https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities) (on Neovim<0.11
-see [`vim.hl.priorities`](https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities)) to have higher priority than automated
+overlay [extmarks](https://neovim.io/doc/user/helptag.html?tag=extmarks).
+Default: 199 which is one less than `user` in [vim.hl.priorities](https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities) (on Neovim<0.11
+see [vim.hl.priorities](https://neovim.io/doc/user/helptag.html?tag=vim.hl.priorities)) to have higher priority than automated
 extmarks but not as in user enabled ones.
 
 #### Source {#minidiff.config-source}
@@ -444,25 +443,25 @@ extmarks but not as in user enabled ones.
 
 `config.source` is a table with single source or array of them. Single source
 defines how reference text is managed in a particular buffer. Sources in array
-are attempted to attach in order; call [`MiniDiff.disable()`](mini-diff.qmd#minidiff.disable) if none attaches.
+are attempted to attach in order; call [MiniDiff.disable()](mini-diff.qmd#minidiff.disable) if none attaches.
 
 A single source table can have the following fields:
 
 
 - <span class="help-syntax-keys">\<attach\></span> `(function)` - callable which defines how and when reference text
-  is updated inside a particular buffer. It is used inside [`MiniDiff.enable()`](mini-diff.qmd#minidiff.enable)
+  is updated inside a particular buffer. It is used inside [MiniDiff.enable()](mini-diff.qmd#minidiff.enable)
   with a buffer identifier as a single argument.
 
-  Should execute logic which results into calling [`MiniDiff.set_ref_text()`](mini-diff.qmd#minidiff.set_ref_text)
+  Should execute logic which results into calling [MiniDiff.set\_ref\_text()](mini-diff.qmd#minidiff.set_ref_text)
   when reference text for buffer needs to be updated. Like inside callback
-  for an [`autocommand`](https://neovim.io/doc/user/helptag.html?tag=autocommand) or file watcher (see [`watch-file`](https://neovim.io/doc/user/helptag.html?tag=watch-file)).
+  for an [autocommand](https://neovim.io/doc/user/helptag.html?tag=autocommand) or file watcher (see [watch-file](https://neovim.io/doc/user/helptag.html?tag=watch-file)).
 
   For example, default Git source watches when ".git/index" file is changed
   and computes reference text as the one from Git index for current file.
 
   Can return `false` to indicate that attach has failed. If attach fail can
   not be inferred immediately (for example, due to asynchronous execution),
-  should explicitly call [`MiniDiff.fail_attach()`](mini-diff.qmd#minidiff.fail_attach) with appropriate arguments.
+  should explicitly call [MiniDiff.fail\_attach()](mini-diff.qmd#minidiff.fail_attach) with appropriate arguments.
   This is important to properly process array of sources.
 
   No default value, should be always supplied.
@@ -472,7 +471,7 @@ A single source table can have the following fields:
 
 
 - <span class="help-syntax-keys">\<detach\></span> `(function|nil)` - callable with cleanup action to be done when
-  buffer is disabled. It is called inside [`MiniDiff.disable()`](mini-diff.qmd#minidiff.disable) with a buffer
+  buffer is disabled. It is called inside [MiniDiff.disable()](mini-diff.qmd#minidiff.disable) with a buffer
   identifier as a single argument.
 
   If not supplied, nothing is done during detaching.
@@ -480,8 +479,8 @@ A single source table can have the following fields:
 
 - <span class="help-syntax-keys">\<apply_hunks\></span> `(function|nil)` - callable which defines how hunks are applied.
   It is called with buffer identifier as first argument and array of hunks
-  (see [`MiniDiff-hunk-specification`](mini-diff.qmd#minidiff-hunk-specification)) as second. It should eventually update
-  reference text: either by explicitly calling [`MiniDiff.set_ref_text()`](mini-diff.qmd#minidiff.set_ref_text) or
+  (see [MiniDiff-hunk-specification](mini-diff.qmd#minidiff-hunk-specification)) as second. It should eventually update
+  reference text: either by explicitly calling [MiniDiff.set\_ref\_text()](mini-diff.qmd#minidiff.set_ref_text) or
   performing action triggering its call.
 
   For example, default Git source computes patch based on the hunks and
@@ -489,7 +488,7 @@ A single source table can have the following fields:
 
   If not supplied, applying hunks throws an error.
 
-Default: a single [`MiniDiff.gen_source.git()`](mini-diff.qmd#minidiff.gen_source.git).
+Default: a single [MiniDiff.gen\_source.git()](mini-diff.qmd#minidiff.gen_source.git).
 
 #### Delay {#minidiff.config-delay}
 
@@ -503,7 +502,7 @@ Default: 200.
 #### Mappings {#minidiff.config-mappings}
 
 
-`config.mappings` contains keys which are mapped during [`MiniDiff.setup()`](mini-diff.qmd#minidiff.setup).
+`config.mappings` contains keys which are mapped during [MiniDiff.setup()](mini-diff.qmd#minidiff.setup).
 
 `mappings.apply` keys can be used to apply hunks inside visual/operator region.
 What exactly "apply hunks" means depends on the source and its `apply_hunks()`.
@@ -514,7 +513,7 @@ Reset means replacing buffer text in region with corresponding reference text.
 
 `mappings.textobject` keys define "hunk range under cursor" textobject
 which can be used in Operator-pending mode as target for operator (like
-[`d`](https://neovim.io/doc/user/helptag.html?tag=d), [`y`](https://neovim.io/doc/user/helptag.html?tag=y), apply/reset hunks, etc.). It is also set up in Visual mode if
+[d](https://neovim.io/doc/user/helptag.html?tag=d), [y](https://neovim.io/doc/user/helptag.html?tag=y), apply/reset hunks, etc.). It is also set up in Visual mode if
 keys do not conflict with `mappings.apply` and `mappings.reset`.
 "Hunk range" is used in a sense that contiguous (back-to-back) hunks are
 considered as parts of a same hunk range.
@@ -529,7 +528,7 @@ last hunk range in the current buffer.
 `config.options` contains various customization options.
 
 `options.algorithm` is a string defining which diff algorithm to use.
-Default: "histogram". See [`vim.diff()`](https://neovim.io/doc/user/helptag.html?tag=vim.diff\(\)) for possible values.
+Default: "histogram". See [vim.diff()](https://neovim.io/doc/user/helptag.html?tag=vim.diff\(\)) for possible values.
 
 `options.indent_heuristic` is a boolean defining whether to use indent
 heuristic for a (possibly) more naturally aligned hunks.
@@ -537,16 +536,16 @@ Default: `true`.
 
 `options.linematch` is a number defining hunk size for which a second
 stage diff is executed for a better aligned and more granular hunks.
-Default: 60. See [`vim.diff()`](https://neovim.io/doc/user/helptag.html?tag=vim.diff\(\)) and 'diffopt' for more details.
+Default: 60. See [vim.diff()](https://neovim.io/doc/user/helptag.html?tag=vim.diff\(\)) and 'diffopt' for more details.
 
 `options.wrap_goto` is a boolean indicating whether to wrap around edges during
-hunk navigation (with [`MiniDiff.goto_hunk()`](mini-diff.qmd#minidiff.goto_hunk) or `goto_*` mappings). Like if
+hunk navigation (with [MiniDiff.goto\_hunk()](mini-diff.qmd#minidiff.goto_hunk) or `goto_*` mappings). Like if
 cursor is after the last hunk, going "next" will put cursor on the first hunk.
 Default: `false`.
 
 ---
 
-### enable() {#minidiff.enable}
+### enable() {#minidiff.enable .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.enable`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Enable diff processing in buffer
@@ -559,7 +558,7 @@ Enable diff processing in buffer
 
 ---
 
-### disable() {#minidiff.disable}
+### disable() {#minidiff.disable .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.disable`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Disable diff processing in buffer
@@ -572,7 +571,7 @@ Disable diff processing in buffer
 
 ---
 
-### toggle() {#minidiff.toggle}
+### toggle() {#minidiff.toggle .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.toggle`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Toggle diff processing in buffer
@@ -587,7 +586,7 @@ Enable if disabled, disable if enabled.
 
 ---
 
-### toggle_overlay() {#minidiff.toggle_overlay}
+### toggle_overlay() {#minidiff.toggle_overlay .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.toggle_overlay`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Toggle overlay view in buffer
@@ -600,7 +599,7 @@ Toggle overlay view in buffer
 
 ---
 
-### export() {#minidiff.export}
+### export() {#minidiff.export .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.export`(<span class="help-syntax-special">{format}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Export hunks
@@ -628,11 +627,11 @@ Get and convert hunks from current/all buffers. Example of using it:
 
 `(table)` Result of export. Depends on the `format`:
 
-  - If "qf", an array compatible with [`setqflist()`](https://neovim.io/doc/user/helptag.html?tag=setqflist\(\)) and [`setloclist()`](https://neovim.io/doc/user/helptag.html?tag=setloclist\(\)).
+  - If "qf", an array compatible with [setqflist()](https://neovim.io/doc/user/helptag.html?tag=setqflist\(\)) and [setloclist()](https://neovim.io/doc/user/helptag.html?tag=setloclist\(\)).
 
 ---
 
-### get_buf_data() {#minidiff.get_buf_data}
+### get_buf_data() {#minidiff.get_buf_data .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.get_buf_data`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Get buffer data
@@ -651,7 +650,7 @@ Get buffer data
 
   - <span class="help-syntax-keys">\<config\></span> `(table)` - config used for this particular buffer.
 
-  - <span class="help-syntax-keys">\<hunks\></span> `(table)` - array of hunks. See [`MiniDiff-hunk-specification`](mini-diff.qmd#minidiff-hunk-specification).
+  - <span class="help-syntax-keys">\<hunks\></span> `(table)` - array of hunks. See [MiniDiff-hunk-specification](mini-diff.qmd#minidiff-hunk-specification).
 
   - <span class="help-syntax-keys">\<overlay\></span> `(boolean)` - whether an overlay view is shown.
 
@@ -659,16 +658,16 @@ Get buffer data
     separated with newline character (`'\n'`). Can be `nil` indicating that
     reference text was not yet set (for example, if source did not yet react).
 
-  - <span class="help-syntax-keys">\<summary\></span> `(table)` - overall diff summary. See [`MiniDiff-diff-summary`](mini-diff.qmd#minidiff-diff-summary).
+  - <span class="help-syntax-keys">\<summary\></span> `(table)` - overall diff summary. See [MiniDiff-diff-summary](mini-diff.qmd#minidiff-diff-summary).
 
 ---
 
-### set_ref_text() {#minidiff.set_ref_text}
+### set_ref_text() {#minidiff.set_ref_text .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.set_ref_text`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{text}</span>)</p>
 Set reference text for the buffer
 
-Note: this will call [`MiniDiff.enable()`](mini-diff.qmd#minidiff.enable) for target buffer if it is not
+Note: this will call [MiniDiff.enable()](mini-diff.qmd#minidiff.enable) for target buffer if it is not
 already enabled.
 
 #### Parameters {#minidiff.set_ref_text-parameters}
@@ -685,7 +684,7 @@ already enabled.
 
 ---
 
-### gen_source {#minidiff.gen_source}
+### gen_source {#minidiff.gen_source .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.gen_source`</p>
 Generate builtin sources
@@ -705,7 +704,7 @@ Examples:
 
 ---
 
-### gen_source.git() {#minidiff.gen_source.git}
+### gen_source.git() {#minidiff.gen_source.git .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.gen_source.git`()</p>
 Git source
@@ -728,26 +727,26 @@ Notes:
 #### Return {#minidiff.gen_source.git-return}
 
 
-`(table)` Source. See [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification).
+`(table)` Source. See [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification).
 
 ---
 
-### gen_source.none() {#minidiff.gen_source.none}
+### gen_source.none() {#minidiff.gen_source.none .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.gen_source.none`()</p>
 "Do nothing" source
 
 Allows buffers to be enabled while not setting any reference text.
-Use this if the goal is to rely on manual [`MiniDiff.set_ref_text()`](mini-diff.qmd#minidiff.set_ref_text) calls.
+Use this if the goal is to rely on manual [MiniDiff.set\_ref\_text()](mini-diff.qmd#minidiff.set_ref_text) calls.
 
 #### Return {#minidiff.gen_source.none-return}
 
 
-`(table)` Source. See [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification).
+`(table)` Source. See [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification).
 
 ---
 
-### gen_source.save() {#minidiff.gen_source.save}
+### gen_source.save() {#minidiff.gen_source.save .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.gen_source.save`()</p>
 Latest save source
@@ -758,11 +757,11 @@ difference after the latest save.
 #### Return {#minidiff.gen_source.save-return}
 
 
-`(table)` Source. See [`MiniDiff-source-specification`](mini-diff.qmd#minidiff-source-specification).
+`(table)` Source. See [MiniDiff-source-specification](mini-diff.qmd#minidiff-source-specification).
 
 ---
 
-### do_hunks() {#minidiff.do_hunks}
+### do_hunks() {#minidiff.do_hunks .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.do_hunks`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{action}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Perform action on hunks in region
@@ -771,7 +770,7 @@ Compute hunks inside a target region (even for hunks only partially inside it)
 and perform apply/reset/yank operation on them.
 
 The "yank" action yanks all reference lines of target hunks into
-a specified register (should be one of [`registers`](https://neovim.io/doc/user/helptag.html?tag=registers)).
+a specified register (should be one of [registers](https://neovim.io/doc/user/helptag.html?tag=registers)).
 
 Notes:
 
@@ -783,7 +782,7 @@ Notes:
 
 Used directly in `config.mappings.apply` and `config.mappings.reset`.
 Usually there is no need to use this function manually.
-See [`MiniDiff.operator()`](mini-diff.qmd#minidiff.operator) for how to set up a mapping for "yank".
+See [MiniDiff.operator()](mini-diff.qmd#minidiff.operator) for how to set up a mapping for "yank".
 
 #### Parameters {#minidiff.do_hunks-parameters}
 
@@ -800,11 +799,11 @@ See [`MiniDiff.operator()`](mini-diff.qmd#minidiff.operator) for how to set up a
   - <span class="help-syntax-keys">\<line_end\></span> `(number)` - start line of the region. Default: last buffer line.
 
   - <span class="help-syntax-keys">\<register\></span> `(string)` - register to yank reference lines into.
-    Default: [`v:register`](https://neovim.io/doc/user/helptag.html?tag=v:register).
+    Default: [v:register](https://neovim.io/doc/user/helptag.html?tag=v:register).
 
 ---
 
-### goto_hunk() {#minidiff.goto_hunk}
+### goto_hunk() {#minidiff.goto_hunk .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.goto_hunk`(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Go to hunk range in current buffer
@@ -817,7 +816,7 @@ Go to hunk range in current buffer
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. A table with fields:
 
-  - <span class="help-syntax-keys">\<n_times\></span> `(number)` - Number of times to advance. Default: [`v:count1`](https://neovim.io/doc/user/helptag.html?tag=v:count1).
+  - <span class="help-syntax-keys">\<n_times\></span> `(number)` - Number of times to advance. Default: [v:count1](https://neovim.io/doc/user/helptag.html?tag=v:count1).
 
   - <span class="help-syntax-keys">\<line_start\></span> `(number)` - Line number to start from for directions
     "prev" and "next". Default: cursor line.
@@ -827,7 +826,7 @@ Go to hunk range in current buffer
 
 ---
 
-### operator() {#minidiff.operator}
+### operator() {#minidiff.operator .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.operator`(<span class="help-syntax-special">{mode}</span>)</p>
 Perform action over region
@@ -846,11 +845,11 @@ Example of a mapping to yank reference lines of hunk range under cursor
 
 
 
-<span class="help-syntax-special">{mode}</span> `(string)` One of "apply", "reset", "yank", or the ones used in [`g@`](https://neovim.io/doc/user/helptag.html?tag=g@).
+<span class="help-syntax-special">{mode}</span> `(string)` One of "apply", "reset", "yank", or the ones used in [g@](https://neovim.io/doc/user/helptag.html?tag=g@).
 
 ---
 
-### textobject() {#minidiff.textobject}
+### textobject() {#minidiff.textobject .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.textobject`()</p>
 Select hunk range textobject
@@ -861,12 +860,12 @@ Used in default mappings.
 
 ---
 
-### fail_attach() {#minidiff.fail_attach}
+### fail_attach() {#minidiff.fail_attach .help-syntax-right-anchor}
 
 <p align="center">`MiniDiff.fail_attach`(<span class="help-syntax-special">{buf_id}</span>)</p>
 Indicate source attach fail
 
-Try to attach next source; if there is none - call [`MiniDiff.disable()`](mini-diff.qmd#minidiff.disable).
+Try to attach next source; if there is none - call [MiniDiff.disable()](mini-diff.qmd#minidiff.disable).
 
 #### Parameters {#minidiff.fail_attach-parameters}
 

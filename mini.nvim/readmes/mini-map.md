@@ -1,11 +1,10 @@
 ---
 title: "mini.map"
-toc-depth: 5
 ---
 
-_Generated from the `main` branch of 'mini.nvim'_
-
 <p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-map_readme.png?raw=true" alt="mini.map" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
+
 
 ### Window with buffer text overview, scrollbar, and highlights
 

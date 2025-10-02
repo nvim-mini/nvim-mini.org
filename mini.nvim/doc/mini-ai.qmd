@@ -1,6 +1,5 @@
 ---
 title: "mini.ai documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,9 +10,9 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#miniai}
+### Module {#module .help-syntax-right-anchor}
 
-Enhance some builtin [`text-objects`](https://neovim.io/doc/user/helptag.html?tag=text-objects) (like [`a(`](https://neovim.io/doc/user/helptag.html?tag=a\(), [`a)`](https://neovim.io/doc/user/helptag.html?tag=a\)), [`a'`](https://neovim.io/doc/user/helptag.html?tag=a'), and more),
+Enhance some builtin [text-objects](https://neovim.io/doc/user/helptag.html?tag=text-objects) (like [a(](https://neovim.io/doc/user/helptag.html?tag=a\(), [a)](https://neovim.io/doc/user/helptag.html?tag=a\)), [a'](https://neovim.io/doc/user/helptag.html?tag=a'), and more),
 create new ones (like `a*`, `a<Space>`, `af`, `a?`, and more), and allow
 user to create their own.
 
@@ -24,16 +23,16 @@ Features:
 
     - Dot-repeat.
 
-    - [`v:count`](https://neovim.io/doc/user/helptag.html?tag=v:count).
+    - [v:count](https://neovim.io/doc/user/helptag.html?tag=v:count).
 
-    - Different search methods (see [`MiniAi.config`](mini-ai.qmd#miniai.config)).
+    - Different search methods (see [MiniAi.config](mini-ai.qmd#miniai.config)).
 
     - Consecutive application (update selection without leaving Visual mode).
 
     - Aliases for multiple textobjects.
 
 
-- Comprehensive builtin textobjects (see more in [`MiniAi-builtin-textobjects`](mini-ai.qmd#miniai-builtin-textobjects)):
+- Comprehensive builtin textobjects (see more in [MiniAi-builtin-textobjects](mini-ai.qmd#miniai-builtin-textobjects)):
 
     - Balanced brackets (with and without whitespace) plus alias.
 
@@ -47,25 +46,25 @@ Features:
 
     - Derived from user prompt.
 
-    - Default for anything but Latin letters (to fall back to [`text-objects`](https://neovim.io/doc/user/helptag.html?tag=text-objects)).
+    - Default for anything but Latin letters (to fall back to [text-objects](https://neovim.io/doc/user/helptag.html?tag=text-objects)).
 
-    For more textobjects see [`MiniExtra.gen_ai_spec`](mini-extra.qmd#miniextra.gen_ai_spec).
+    For more textobjects see [MiniExtra.gen\_ai\_spec](mini-extra.qmd#miniextra.gen_ai_spec).
 
 
 - Motions for jumping to left/right edge of textobject.
 
 
 - Set of specification generators to tweak some builtin textobjects (see
-  [`MiniAi.gen_spec`](mini-ai.qmd#miniai.gen_spec)).
+  [MiniAi.gen\_spec](mini-ai.qmd#miniai.gen_spec)).
 
 
-- Treesitter textobjects (through [`MiniAi.gen_spec.treesitter()`](mini-ai.qmd#miniai.gen_spec.treesitter) helper).
+- Treesitter textobjects (through [MiniAi.gen\_spec.treesitter()](mini-ai.qmd#miniai.gen_spec.treesitter) helper).
 
 This module works by defining mappings for both `a` and `i` in Visual and
 Operator-pending mode. After typing, they wait for single character user input
 treated as textobject identifier and apply resolved textobject specification
 (fall back to other mappings if can't find proper textobject id). For more
-information see [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification) and [`MiniAi-algorithm`](mini-ai.qmd#miniai-algorithm).
+information see [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification) and [MiniAi-algorithm](mini-ai.qmd#miniai-algorithm).
 
 Known issues which won't be resolved:
 
@@ -89,22 +88,22 @@ What it doesn't (and probably won't) do:
   in 'targets.vim'). Whitespace handling is assumed to be done inside
   textobject specification (like `i(` and `i)` handle whitespace differently).
 
-#### Setup {#miniai-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.ai').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniAi`
 which you can use for scripting or manually (with `:lua MiniAi.*`).
 
-See [`MiniAi.config`](mini-ai.qmd#miniai.config) for available config settings.
+See [MiniAi.config](mini-ai.qmd#miniai.config) for available config settings.
 
 You can override runtime config settings (like `config.custom_textobjects`)
 locally to buffer inside `vim.b.miniai_config` which should have same structure
-as `MiniAi.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+as `MiniAi.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
 To stop module from showing non-error feedback, set `config.silent = true`.
 
-#### Comparisons {#miniai-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -112,13 +111,13 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
     - Has limited support for creating own textobjects: it is constrained
       to pre-defined detection rules. 'mini.ai' allows creating own rules
-      via Lua patterns and functions (see [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification)).
+      via Lua patterns and functions (see [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification)).
 
     - Doesn't provide any programmatical API for getting information about
-      textobjects. 'mini.ai' does it via [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject).
+      textobjects. 'mini.ai' does it via [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject).
 
     - Has no implementation of "moving to edge of textobject". 'mini.ai'
-      does it via [`MiniAi.move_cursor()`](mini-ai.qmd#miniai.move_cursor) and `g[` and `g]` default mappings.
+      does it via [MiniAi.move\_cursor()](mini-ai.qmd#miniai.move_cursor) and `g[` and `g]` default mappings.
 
     - Both implement the notion of manual "next"/"last" search directions.
 
@@ -136,31 +135,31 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
     - Along with textobject functionality provides a curated and maintained
       set of popular textobject queries for many languages (which can power
-      [`MiniAi.gen_spec.treesitter()`](mini-ai.qmd#miniai.gen_spec.treesitter) functionality).
+      [MiniAi.gen\_spec.treesitter()](mini-ai.qmd#miniai.gen_spec.treesitter) functionality).
 
-    - Both support working with [`treesitter-directives`](https://neovim.io/doc/user/helptag.html?tag=treesitter-directives) allowing more
+    - Both support working with [treesitter-directives](https://neovim.io/doc/user/helptag.html?tag=treesitter-directives) allowing more
       fine-tuned textobjects.
 
     - Implements only textobjects based on treesitter.
 
-    - Doesn't support [`v:count`](https://neovim.io/doc/user/helptag.html?tag=v:count).
+    - Doesn't support [v:count](https://neovim.io/doc/user/helptag.html?tag=v:count).
 
     - Doesn't support multiple search method (basically, only 'cover').
 
     - Doesn't support consecutive application of target textobject.
 
-#### Disabling {#miniai-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable, set `vim.g.miniai_disable` (globally) or `vim.b.miniai_disable`
 (for a buffer) to `true`. Considering high number of different scenarios
 and customization intentions, writing exact rules for disabling module's
-functionality is left to user. See [`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
+functionality is left to user. See [mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common
 recipes.
 
 ---
 
-### Builtin textobjects {#miniai-builtin-textobjects}
+### Builtin textobjects {#miniai-builtin-textobjects .help-syntax-right-anchor}
 
 This table describes all builtin textobjects along with what they
 represent. Explanation:
@@ -176,13 +175,13 @@ represent. Explanation:
 - `a`/`i` describe inclusive region representing `a` and `i` textobjects.
   Use numbers in separators for easier navigation.
 
-- `2a`/`2i` describe either `2a`/`2i` (support for [`v:count`](https://neovim.io/doc/user/helptag.html?tag=v:count)) textobjects
+- `2a`/`2i` describe either `2a`/`2i` (support for [v:count](https://neovim.io/doc/user/helptag.html?tag=v:count)) textobjects
   or `a`/`i` textobject followed by another `a`/`i` textobject (consecutive
   application leads to incremental selection).
 
 Example: typing `va)` with cursor on `*` leads to selection from column 2
 to column 12. Another typing `a)` changes selection to [1; 13]. Also, besides
-visual selection, any [`operator`](https://neovim.io/doc/user/helptag.html?tag=operator) can be used or `g[`/`g]` motions to move
+visual selection, any [operator](https://neovim.io/doc/user/helptag.html?tag=operator) can be used or `g[`/`g]` motions to move
 to left/right edge of `a` textobject.
 
 
@@ -233,7 +232,7 @@ Notes:
 - Default textobject is activated for identifiers which are not Latin letters.
   They are designed to be treated as separators, so include only right edge
   in `a` textobject. To include both edges, use custom textobjects
-  (see [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification) and [`MiniAi.config`](mini-ai.qmd#miniai.config)). Note:
+  (see [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification) and [MiniAi.config](mini-ai.qmd#miniai.config)). Note:
 
     - When cursor is exactly on the identifier character while there are
       two matching candidates on both left and right, the resulting region
@@ -241,9 +240,9 @@ Notes:
 
 ---
 
-### Glossary {#miniai-glossary}
+### Glossary {#miniai-glossary .help-syntax-right-anchor}
 
-Note: this is similar to [`MiniSurround-glossary`](mini-surround.qmd#minisurround-glossary).
+Note: this is similar to [MiniSurround-glossary](mini-surround.qmd#minisurround-glossary).
 
 #### REGION {#miniai-glossary-region}
 
@@ -255,7 +254,7 @@ Table representing region in a buffer. Fields:
   line <span class="help-syntax-keys">\<line\></span> and column <span class="help-syntax-keys">\<col\></span> (both start at 1).
 
 - <span class="help-syntax-keys">\<vis_mode\></span> for which Visual mode will be used to select textobject.
-  See `opts` argument of [`MiniAi.select_textobject()`](mini-ai.qmd#miniai.select_textobject).
+  See `opts` argument of [MiniAi.select\_textobject()](mini-ai.qmd#miniai.select_textobject).
   One of `'v'`, `'V'`, `'\22'` (escaped `'<C-v>'`).
 
 Examples:
@@ -349,10 +348,10 @@ If it matches at least one nested pattern from expanded composed pattern.
 
 ---
 
-### Textobject specification {#miniai-textobject-specification}
+### Textobject specification {#miniai-textobject-specification .help-syntax-right-anchor}
 
 Textobject specification has a structure of composed pattern (see
-[`MiniAi-glossary`](mini-ai.qmd#miniai-glossary)) with two differences:
+[MiniAi-glossary](mini-ai.qmd#miniai-glossary)) with two differences:
 
 - Last pattern(s) should have even number of empty capture groups denoting
   how the last string should be processed to extract `a` or `i` textobject:
@@ -367,12 +366,12 @@ Textobject specification has a structure of composed pattern (see
       inside captures 2 and 3. Example: `x()()x()x()` defines `a`
       textobject to be last `xx`, `i` - middle `x`.
 
-- Allows callable objects (see [`vim.is_callable()`](https://neovim.io/doc/user/helptag.html?tag=vim.is_callable\(\))) in certain places
+- Allows callable objects (see [vim.is\_callable()](https://neovim.io/doc/user/helptag.html?tag=vim.is_callable\(\))) in certain places
   (enables more complex textobjects in exchange of increase in configuration
   complexity and computations):
 
     - If specification itself is a callable, it will be called with the same
-      arguments as [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject) and should return one of:
+      arguments as [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject) and should return one of:
 
         - Composed pattern. Useful for implementing user input. Example of
           simplified variant of textobject for function call with name taken
@@ -402,7 +401,7 @@ Textobject specification has a structure of composed pattern (see
 
 
         - Array of output region(s). Useful for incorporating other
-          instruments, like treesitter (see [`MiniAi.gen_spec.treesitter()`](mini-ai.qmd#miniai.gen_spec.treesitter)).
+          instruments, like treesitter (see [MiniAi.gen\_spec.treesitter()](mini-ai.qmd#miniai.gen_spec.treesitter)).
           The best region will be picked in the same manner as with composed
           pattern (respecting options `n_lines`, `search_method`, etc.).
           Example of selecting "best" line with display width more than 80:
@@ -475,28 +474,28 @@ More examples:
   { '%[%[().-()%]%]' }
   ```
 
-See [`MiniAi.gen_spec`](mini-ai.qmd#miniai.gen_spec) for function wrappers to create commonly used
+See [MiniAi.gen\_spec](mini-ai.qmd#miniai.gen_spec) for function wrappers to create commonly used
 textobject specifications.
 
 ---
 
-### Algorithm {#miniai-algorithm}
+### Algorithm {#miniai-algorithm .help-syntax-right-anchor}
 
 Search for the textobjects relies on these principles:
 
-- It uses same input data as described in [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject),
+- It uses same input data as described in [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject),
   i.e. whether it is `a` or `i` textobject, its identifier, reference region, etc.
 
 - Textobject specification is constructed based on textobject identifier
-  (see [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification)).
+  (see [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification)).
 
 - General search is done by converting some 2d buffer region (neighborhood
   of reference region) into 1d string (each line is appended with `\n`).
   Then search for a best span matching textobject specification is done
-  inside string (see [`MiniAi-glossary`](mini-ai.qmd#miniai-glossary)). After that, span is converted back
+  inside string (see [MiniAi-glossary](mini-ai.qmd#miniai-glossary)). After that, span is converted back
   into 2d region. Note: first search is done inside reference region lines,
   and only after that - inside its neighborhood within `config.n_lines`
-  (see [`MiniAi.config`](mini-ai.qmd#miniai.config)).
+  (see [MiniAi.config](mini-ai.qmd#miniai.config)).
 
 - The best matching span is chosen by iterating over all spans matching
   textobject specification and comparing them with "current best".
@@ -530,11 +529,11 @@ Notes:
       smallest width. For example, `e.-o` for `e e o o` will result only in
       middle `e o`. Note: it has some implications for when parts have
       quantifiers (like `+`, etc.), which usually can be resolved with
-      frontier pattern `%f[]` (see examples in [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification)).
+      frontier pattern `%f[]` (see examples in [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification)).
 
 ---
 
-### setup() {#miniai.setup}
+### setup() {#miniai.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -543,7 +542,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniAi.config`](mini-ai.qmd#miniai.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniAi.config](mini-ai.qmd#miniai.config).
 
 #### Usage {#miniai.setup-usage}
 
@@ -557,7 +556,7 @@ Module setup
 
 ---
 
-### config {#miniai.config}
+### config {#miniai.config .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.config`</p>
 #### Defaults {#miniai.config-defaults}
@@ -609,16 +608,16 @@ Module setup
 
 User can define own textobjects by supplying `config.custom_textobjects`.
 It should be a table with keys being single character textobject identifier
-(supported by [`getcharstr()`](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))) and values - textobject specification
-(see [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification)).
+(supported by [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))) and values - textobject specification
+(see [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification)).
 
 General recommendations:
 
-- This can be used to override builtin ones ([`MiniAi-builtin-textobjects`](mini-ai.qmd#miniai-builtin-textobjects)).
+- This can be used to override builtin ones ([MiniAi-builtin-textobjects](mini-ai.qmd#miniai-builtin-textobjects)).
   Supply non-valid input (not in specification format) to disable module's
   builtin textobject in favor of external or Neovim's builtin mapping.
 
-- Keys should use character representation which can be [`getcharstr()`](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\)) output.
+- Keys should use character representation which can be [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\)) output.
   For example, `'\r'` and not `'<CR>'`.
 
 Examples:
@@ -659,7 +658,7 @@ Examples:
   }
   ```
 
-There are more example specifications in [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification).
+There are more example specifications in [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification).
 
 #### Search method {#miniai.config-searchmethod}
 
@@ -727,9 +726,9 @@ Here is an example of what `a)` textobject is based on a value of
 Mappings `around_next` / `inside_next` and `around_last` / `inside_last` are
 essentially `around` / `inside` but using search method `'next'` and `'prev'`.
 
-NOTE: with default config, built-in LSP mappings [`v_an`](https://neovim.io/doc/user/helptag.html?tag=v_an) and [`v_in`](https://neovim.io/doc/user/helptag.html?tag=v_in) on Neovim>=0.12
+NOTE: with default config, built-in LSP mappings [v\_an](https://neovim.io/doc/user/helptag.html?tag=v_an) and [v\_in](https://neovim.io/doc/user/helptag.html?tag=v_in) on Neovim>=0.12
 are overridden. Either use different `around_next` / `inside_next` keys or
-map manually using [`vim.lsp.buf.selection_range()`](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.selection_range\(\)). For example:
+map manually using [vim.lsp.buf.selection\_range()](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.selection_range\(\)). For example:
 
   ```lua
   local map_lsp_selection = function(lhs, desc)
@@ -743,7 +742,7 @@ map manually using [`vim.lsp.buf.selection_range()`](https://neovim.io/doc/user/
 
 ---
 
-### find_textobject() {#miniai.find_textobject}
+### find_textobject() {#miniai.find_textobject .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.find_textobject`(<span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Find textobject region
@@ -762,13 +761,13 @@ Find textobject region
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
   - <span class="help-syntax-keys">\<n_lines\></span> - Number of lines within which textobject is searched.
-    Default: `config.n_lines` (see [`MiniAi.config`](mini-ai.qmd#miniai.config)).
+    Default: `config.n_lines` (see [MiniAi.config](mini-ai.qmd#miniai.config)).
 
   - <span class="help-syntax-keys">\<n_times\></span> - Number of times to perform a consecutive search. Each one
     is done with reference region being previous found textobject region.
     Default: 1.
 
-  - <span class="help-syntax-keys">\<reference_region\></span> - region to try to cover (see [`MiniAi-glossary`](mini-ai.qmd#miniai-glossary)). It
+  - <span class="help-syntax-keys">\<reference_region\></span> - region to try to cover (see [MiniAi-glossary](mini-ai.qmd#miniai-glossary)). It
     is guaranteed that output region will not be inside or equal to this one.
     Default: empty region at cursor position.
 
@@ -782,7 +781,7 @@ Find textobject region
 
 ---
 
-### move_cursor() {#miniai.move_cursor}
+### move_cursor() {#miniai.move_cursor .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.move_cursor`(<span class="help-syntax-special">{side}</span>, <span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Move cursor to edge of textobject
@@ -797,13 +796,13 @@ Move cursor to edge of textobject
 
 <span class="help-syntax-special">{id}</span> `(string)` Single character string representing textobject id.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as in [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject).
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as in [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject).
   `opts.n_times` means number of actual jumps (important when cursor
   already on the potential jump spot).
 
 ---
 
-### gen_spec {#miniai.gen_spec}
+### gen_spec {#miniai.gen_spec .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec`</p>
 Generate common textobject specifications
@@ -833,7 +832,7 @@ Example:
 
 ---
 
-### gen_spec.argument() {#miniai.gen_spec.argument}
+### gen_spec.argument() {#miniai.gen_spec.argument .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec.argument`(<span class="help-syntax-special">{opts}</span>)</p>
 Argument specification
@@ -879,7 +878,7 @@ Examples:
 
 ---
 
-### gen_spec.function_call() {#miniai.gen_spec.function_call}
+### gen_spec.function_call() {#miniai.gen_spec.function_call .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec.function_call`(<span class="help-syntax-special">{opts}</span>)</p>
 Function call specification
@@ -904,7 +903,7 @@ Example:
 
 ---
 
-### gen_spec.pair() {#miniai.gen_spec.pair}
+### gen_spec.pair() {#miniai.gen_spec.pair .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec.pair`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Pair specification
@@ -944,7 +943,7 @@ both `left` and `right`:
 
 ---
 
-### gen_spec.treesitter() {#miniai.gen_spec.treesitter}
+### gen_spec.treesitter() {#miniai.gen_spec.treesitter .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec.treesitter`(<span class="help-syntax-special">{ai_captures}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Treesitter specification
@@ -955,7 +954,7 @@ array of regions that match corresponding (`a` or `i`) capture.
 
 In order for this to work, apart from working treesitter parser for desired
 language, user should have a reachable language-specific 'textobjects'
-query (see [`vim.treesitter.query.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\))).
+query (see [vim.treesitter.query.get()](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\))).
 The most straightforward way for this is to have 'textobjects.scm' query
 file with treesitter captures stored in some recognized path. This is
 primarily designed to be compatible with plugin
@@ -968,8 +967,8 @@ Two most common approaches for having a query file:
   capture names, like `function.outer`, `function.inner`, etc.
 
 - Manually create file 'after/queries/<language name>/textobjects.scm' in
-  your [`$XDG_CONFIG_HOME`](https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME) directory. It should contain queries with
-  captures (later used to define textobjects). See [`lua-treesitter-query`](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query).
+  your [\$XDG\_CONFIG\_HOME](https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME) directory. It should contain queries with
+  captures (later used to define textobjects). See [lua-treesitter-query](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query).
 To verify that query file is reachable, run (example for "lua" language,
 output should have at least an intended file):
 
@@ -996,13 +995,13 @@ Example configuration for function definition textobject with
 
 Notes:
 
-- Be sure that query files don't contain unknown [`treesitter-directives`](https://neovim.io/doc/user/helptag.html?tag=treesitter-directives)
+- Be sure that query files don't contain unknown [treesitter-directives](https://neovim.io/doc/user/helptag.html?tag=treesitter-directives)
   (like `#make-range!`, for example). Otherwise textobject for such capture
-  might not be found as [`lua-treesitter-core`](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core) won't treat them as captures.
+  might not be found as [lua-treesitter-core](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core) won't treat them as captures.
   Verify with `:=vim.treesitter.query.get('lang', 'textobjects')` and see
   if the target capture is recognized as one.
 
-- It uses buffer's [`filetype`](https://neovim.io/doc/user/helptag.html?tag=filetype) to determine query language.
+- It uses buffer's [filetype](https://neovim.io/doc/user/helptag.html?tag=filetype) to determine query language.
 
 - On large files it is slower than pattern-based textobjects. Still very
   fast though (one search should be magnitude of milliseconds or tens of
@@ -1022,14 +1021,14 @@ Notes:
   - <span class="help-syntax-keys">\<use_nvim_treesitter\></span> - whether to try to use 'nvim-treesitter' plugin
     (if present) to do the query. It used to implement more advanced behavior
     and more coherent experience if 'nvim-treesitter-textobjects' queries are
-    used. However, as [`lua-treesitter-core`](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core) methods are more capable now,
+    used. However, as [lua-treesitter-core](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core) methods are more capable now,
     the option will soon be removed. Only present for backward compatibility.
     Default: `false`.
 
 #### Return {#miniai.gen_spec.treesitter-return}
 
 
-`(function)` Function with [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject) signature which
+`(function)` Function with [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject) signature which
   returns array of current buffer regions representing matches for
   corresponding (`a` or `i`) treesitter capture.
 
@@ -1037,17 +1036,17 @@ Notes:
 
 
 
-- [`MiniAi-textobject-specification`](mini-ai.qmd#miniai-textobject-specification) for how this type of textobject
+- [MiniAi-textobject-specification](mini-ai.qmd#miniai-textobject-specification) for how this type of textobject
   specification is processed.
 
-- [`vim.treesitter.query.get()`](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\)) for how query is fetched.
+- [vim.treesitter.query.get()](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\)) for how query is fetched.
 
-- [`Query:iter_captures()`](https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures\(\)) for how all query captures are iterated in case of
+- [Query:iter\_captures()](https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures\(\)) for how all query captures are iterated in case of
   no 'nvim-treesitter'.
 
 ---
 
-### gen_spec.user_prompt() {#miniai.gen_spec.user_prompt}
+### gen_spec.user_prompt() {#miniai.gen_spec.user_prompt .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.gen_spec.user_prompt`()</p>
 Specification from user prompt
@@ -1058,7 +1057,7 @@ Specification from user prompt
 - Construct specification for a textobject that matches from left edge string
   to right edge string: `a` includes both strings, `i` only insides.
 
-Used for [`MiniAi-builtin-textobjects`](mini-ai.qmd#miniai-builtin-textobjects) with identifier `?`.
+Used for [MiniAi-builtin-textobjects](mini-ai.qmd#miniai-builtin-textobjects) with identifier `?`.
 
 #### Return {#miniai.gen_spec.user_prompt-return}
 
@@ -1067,7 +1066,7 @@ Used for [`MiniAi-builtin-textobjects`](mini-ai.qmd#miniai-builtin-textobjects) 
 
 ---
 
-### select_textobject() {#miniai.select_textobject}
+### select_textobject() {#miniai.select_textobject .help-syntax-right-anchor}
 
 <p align="center">`MiniAi.select_textobject`(<span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Visually select textobject region
@@ -1082,7 +1081,7 @@ Does nothing if no region is found.
 
 <span class="help-syntax-special">{id}</span> `(string)` Single character string representing textobject id.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as in [`MiniAi.find_textobject()`](mini-ai.qmd#miniai.find_textobject). Extra fields:
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Same as in [MiniAi.find\_textobject()](mini-ai.qmd#miniai.find_textobject). Extra fields:
 
   - <span class="help-syntax-keys">\<vis_mode\></span> - One of `'v'`, `'V'`, or `'\22'` (escaped version of `'<C-v>'`).
     Default: Latest visual mode.

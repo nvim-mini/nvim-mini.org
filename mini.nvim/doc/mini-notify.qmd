@@ -1,6 +1,5 @@
 ---
 title: "mini.notify documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2024 Evgeni Chasnovski
 
 ---
 
-### Module {#mininotify}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
@@ -22,30 +21,30 @@ Features:
 - Manage notifications (add, update, remove, clear).
 
 
-- Custom [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) implementation. To adjust, use [`MiniNotify.make_notify()`](mini-notify.qmd#mininotify.make_notify)
-  or save-restore `vim.notify` manually after calling [`MiniNotify.setup()`](mini-notify.qmd#mininotify.setup).
+- Custom [vim.notify()](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) implementation. To adjust, use [MiniNotify.make\_notify()](mini-notify.qmd#mininotify.make_notify)
+  or save-restore `vim.notify` manually after calling [MiniNotify.setup()](mini-notify.qmd#mininotify.setup).
 
 
 - Automated show of LSP progress report.
 
 
-- Track history which can be accessed with [`MiniNotify.get_all()`](mini-notify.qmd#mininotify.get_all)
-  and shown with [`MiniNotify.show_history()`](mini-notify.qmd#mininotify.show_history).
+- Track history which can be accessed with [MiniNotify.get\_all()](mini-notify.qmd#mininotify.get_all)
+  and shown with [MiniNotify.show\_history()](mini-notify.qmd#mininotify.show_history).
 
-#### Setup {#mininotify-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.notify').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniNotify`
 which you can use for scripting or manually (with `:lua MiniNotify.*`).
 
-See [`MiniNotify.config`](mini-notify.qmd#mininotify.config) for `config` structure and default values.
+See [MiniNotify.config](mini-notify.qmd#mininotify.config) for `config` structure and default values.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.mininotify_config` which should have same structure as
-`MiniNotify.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+`MiniNotify.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
 
-#### Comparisons {#mininotify-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -61,7 +60,7 @@ You can override runtime config settings locally to buffer inside
 
     - Similar to 'j-hui/fidget.nvim'.
 
-#### Highlight groups {#mininotify-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -73,20 +72,23 @@ You can override runtime config settings locally to buffer inside
 
 - `MiniNotifyTitle` - window title.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#mininotify-disabling}
+NOTE: [vim.notify()](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) override after [MiniNotify.make\_notify()](mini-notify.qmd#mininotify.make_notify) uses own
+highlight groups per notification level.
+
+#### Disabling {#module-disabling}
 
 
 To disable showing notifications, set `vim.g.mininotify_disable` (globally) or
 `vim.b.mininotify_disable` (for a buffer) to `true`. Considering high number
 of different scenarios and customization intentions, writing exact rules
 for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Specification {#mininotify-specification}
+### Specification {#mininotify-specification .help-syntax-right-anchor}
 
 #### Notification specification {#mininotify-specification-notificationspecification}
 
@@ -97,7 +99,7 @@ Notification is a table with the following keys:
 - <span class="help-syntax-keys">\<msg\></span> `(string)` - single string with notification message.
   Use `\n` to delimit several lines.
 
-- <span class="help-syntax-keys">\<level\></span> `(string)` - notification level as key of [`vim.log.levels`](https://neovim.io/doc/user/helptag.html?tag=vim.log.levels).
+- <span class="help-syntax-keys">\<level\></span> `(string)` - notification level as key of [vim.log.levels](https://neovim.io/doc/user/helptag.html?tag=vim.log.levels).
   Like "ERROR", "WARN", "INFO", etc.
 
 - <span class="help-syntax-keys">\<hl_group\></span> `(string)` - highlight group with which notification is shown.
@@ -113,18 +115,18 @@ Notification is a table with the following keys:
 
 Notes:
 
-- Timestamps are compatible with [`strftime()`](https://neovim.io/doc/user/helptag.html?tag=strftime\(\)) and have fractional part.
+- Timestamps are compatible with [strftime()](https://neovim.io/doc/user/helptag.html?tag=strftime\(\)) and have fractional part.
 
 ---
 
-### setup() {#mininotify.setup}
+### setup() {#mininotify.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
 
 This will also:
 
-- Set [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) custom implementation (see [`MiniNotify.make_notify()`](mini-notify.qmd#mininotify.make_notify)).
+- Set [vim.notify()](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) custom implementation (see [MiniNotify.make\_notify()](mini-notify.qmd#mininotify.make_notify)).
 
 - Clean the history. Use `MiniNotify.setup(MiniNotify.config)` to force
   clean history while preserving the config.
@@ -133,7 +135,7 @@ This will also:
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniNotify.config`](mini-notify.qmd#mininotify.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniNotify.config](mini-notify.qmd#mininotify.config).
 
 #### Usage {#mininotify.setup-usage}
 
@@ -147,7 +149,7 @@ This will also:
 
 ---
 
-### config {#mininotify.config}
+### config {#mininotify.config .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.config`</p>
 #### Defaults {#mininotify.config-defaults}
@@ -199,16 +201,16 @@ This will also:
 `config.content` defines how notifications are shown.
 
 `content.format` is a function which takes single notification object
-(see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)) and returns a string to be used directly
+(see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)) and returns a string to be used directly
 when showing notification.
-Default: `nil` for [`MiniNotify.default_format()`](mini-notify.qmd#mininotify.default_format).
+Default: `nil` for [MiniNotify.default\_format()](mini-notify.qmd#mininotify.default_format).
 
 `content.sort` is a function which takes array of notification objects
-(see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)) and returns an array of such objects.
+(see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)) and returns an array of such objects.
 It can be used to define custom order and/or filter for notifications which
 are shown simultaneously.
 Note: Input contains notifications before applying `content.format`.
-Default: `nil` for [`MiniNotify.default_sort()`](mini-notify.qmd#mininotify.default_sort).
+Default: `nil` for [MiniNotify.default\_sort()](mini-notify.qmd#mininotify.default_sort).
 
 Example:
 
@@ -239,15 +241,15 @@ Example:
 `config.lsp_progress` defines automated notifications for LSP progress.
 It is implemented as a single updating notification per progress with all
 information about it.
-Setting up is done inside [`MiniNotify.setup()`](mini-notify.qmd#mininotify.setup) via [`vim.schedule()`](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\))'ed setting
-of [`lsp-handler`](https://neovim.io/doc/user/helptag.html?tag=lsp-handler) for "$/progress" method.
+Setting up is done inside [MiniNotify.setup()](mini-notify.qmd#mininotify.setup) via [vim.schedule()](https://neovim.io/doc/user/helptag.html?tag=vim.schedule\(\))'ed setting
+of [lsp-handler](https://neovim.io/doc/user/helptag.html?tag=lsp-handler) for "$/progress" method.
 
 `lsp_progress.enable` is a boolean indicating whether LSP progress should
 be shown in notifications. Can be disabled in current session.
-Default: `true`. Note: Should be `true` during [`MiniNotify.setup()`](mini-notify.qmd#mininotify.setup) call to be able
+Default: `true`. Note: Should be `true` during [MiniNotify.setup()](mini-notify.qmd#mininotify.setup) call to be able
 to enable it in current session.
 
-`lsp_progress.level` is a level to be used in [`MiniNotify.add()`](mini-notify.qmd#mininotify.add).
+`lsp_progress.level` is a level to be used in [MiniNotify.add()](mini-notify.qmd#mininotify.add).
 Default: `'INFO'`.
 
 `lsp_progress.duration_last` is a number of milliseconds for the last progress
@@ -266,9 +268,9 @@ Notes:
 
     - <span class="help-syntax-keys">\<client_name\></span> is set to client's name (provided by client or inferred).
 
-    - <span class="help-syntax-keys">\<context\></span> is the latest LSP request context (`ctx` arg of [`lsp-handler`](https://neovim.io/doc/user/helptag.html?tag=lsp-handler)).
+    - <span class="help-syntax-keys">\<context\></span> is the latest LSP request context (`ctx` arg of [lsp-handler](https://neovim.io/doc/user/helptag.html?tag=lsp-handler)).
 
-    - <span class="help-syntax-keys">\<response\></span> is the latest LSP response (`result` arg of [`lsp-handler`](https://neovim.io/doc/user/helptag.html?tag=lsp-handler)).
+    - <span class="help-syntax-keys">\<response\></span> is the latest LSP response (`result` arg of [lsp-handler](https://neovim.io/doc/user/helptag.html?tag=lsp-handler)).
 
 #### Window {#mininotify.config-window}
 
@@ -278,7 +280,7 @@ Notes:
 `window.config` is a table defining floating window characteristics
 or a callable returning such table (will be called with identifier of
 window's buffer already showing notifications). It should have the same
-structure as in [`nvim_open_win()`](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)). It has the following default values
+structure as in [nvim\_open\_win()](https://neovim.io/doc/user/helptag.html?tag=nvim_open_win\(\)). It has the following default values
 which show notifications in the upper right corner with upper limit on width:
 
 - `width` is chosen to fit buffer content but at most `window.max_width_share`
@@ -315,18 +317,18 @@ Default: 25.
 
 ---
 
-### make_notify() {#mininotify.make_notify}
+### make_notify() {#mininotify.make_notify .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.make_notify`(<span class="help-syntax-special">{opts}</span>)</p>
 Make vim.notify wrapper
 
-Calling this function creates an implementation of [`vim.notify()`](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) powered by
+Calling this function creates an implementation of [vim.notify()](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) powered by
 this module. General idea is to show notification as soon as safely possible
-(see [`vim.schedule_wrap()`](https://neovim.io/doc/user/helptag.html?tag=vim.schedule_wrap\(\))) and remove it after a configurable amount of time.
+(see [vim.schedule\_wrap()](https://neovim.io/doc/user/helptag.html?tag=vim.schedule_wrap\(\))) and remove it after a configurable amount of time.
 
 All notifications set `source = "vim.notify"` in their `data` field.
 
-This is used with default options inside [`MiniNotify.setup()`](mini-notify.qmd#mininotify.setup). To adjust,
+This is used with default options inside [MiniNotify.setup()](mini-notify.qmd#mininotify.setup). To adjust,
 call manually after `setup()`. For example, to show errors longer:
 
   ```lua
@@ -347,7 +349,7 @@ To preserve original `vim.notify`:
 
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options to configure behavior of notification `level`
-  (as in [`MiniNotify.add()`](mini-notify.qmd#mininotify.add)). Fields are the same as names of `vim.log.levels`
+  (as in [MiniNotify.add()](mini-notify.qmd#mininotify.add)). Fields are the same as names of `vim.log.levels`
   with values being tables with possible fields:
 
   - <span class="help-syntax-keys">\<duration\></span> `(number)` - duration (in ms) of how much a notification
@@ -371,13 +373,13 @@ To preserve original `vim.notify`:
 
 ---
 
-### add() {#mininotify.add}
+### add() {#mininotify.add .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.add`(<span class="help-syntax-special">{msg}</span>, <span class="help-syntax-special">{level}</span>, <span class="help-syntax-special">{hl_group}</span>, <span class="help-syntax-special">{data}</span>)</p>
 Add notification
 
 Add notification to history. It is considered "active" and is shown.
-To hide, call [`MiniNotify.remove()`](mini-notify.qmd#mininotify.remove) with identifier this function returns.
+To hide, call [MiniNotify.remove()](mini-notify.qmd#mininotify.remove) with identifier this function returns.
 
 Example:
 
@@ -392,7 +394,7 @@ Example:
 
 <span class="help-syntax-special">{msg}</span> `(string)` Notification message.
 
-<span class="help-syntax-special">{level}</span> `(string|nil)` Notification level as key of [`vim.log.levels`](https://neovim.io/doc/user/helptag.html?tag=vim.log.levels).
+<span class="help-syntax-special">{level}</span> `(string|nil)` Notification level as key of [vim.log.levels](https://neovim.io/doc/user/helptag.html?tag=vim.log.levels).
   Default: `'INFO'`.
 
 <span class="help-syntax-special">{hl_group}</span> `(string|nil)` Notification highlight group.
@@ -408,7 +410,7 @@ Example:
 
 ---
 
-### update() {#mininotify.update}
+### update() {#mininotify.update .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.update`(<span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{new}</span>)</p>
 Update active notification
@@ -420,16 +422,16 @@ Modify contents of active notification.
 
 
 <span class="help-syntax-special">{id}</span> `(number)` Identifier of currently active notification as returned
-  by [`MiniNotify.add()`](mini-notify.qmd#mininotify.add).
+  by [MiniNotify.add()](mini-notify.qmd#mininotify.add).
 
 <span class="help-syntax-special">{new}</span> `(table)` Table with contents to update. Keys should be as non-timestamp
-  fields of [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification) and values - new content values.
-  If present, field `data` is updated as is. Use [`MiniNotify.get()`](mini-notify.qmd#mininotify.get) together
-  with [`vim.tbl_deep_extend()`](https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend\(\)) to change only part of it.
+  fields of [MiniNotify-specification](mini-notify.qmd#mininotify-specification) and values - new content values.
+  If present, field `data` is updated as is. Use [MiniNotify.get()](mini-notify.qmd#mininotify.get) together
+  with [vim.tbl\_deep\_extend()](https://neovim.io/doc/user/helptag.html?tag=vim.tbl_deep_extend\(\)) to change only part of it.
 
 ---
 
-### remove() {#mininotify.remove}
+### remove() {#mininotify.remove .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.remove`(<span class="help-syntax-special">{id}</span>)</p>
 Remove notification
@@ -446,7 +448,7 @@ If not active, do nothing.
 
 ---
 
-### clear() {#mininotify.clear}
+### clear() {#mininotify.clear .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.clear`()</p>
 Remove all active notifications
@@ -455,14 +457,14 @@ Hide all active notifications and stop showing window (if shown).
 
 ---
 
-### refresh() {#mininotify.refresh}
+### refresh() {#mininotify.refresh .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.refresh`()</p>
 Refresh notification window
 
 Make notification window show relevant information:
 
-- Create an array of active notifications (see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)).
+- Create an array of active notifications (see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)).
 
 - Apply `config.content.sort` to an array. If output has zero notifications,
   make notification window to not show.
@@ -472,11 +474,11 @@ Make notification window show relevant information:
 
 - Construct content from notifications and show them in a window.
 
-Note: effects are delayed if inside fast event ([`vim.in_fast_event()`](https://neovim.io/doc/user/helptag.html?tag=vim.in_fast_event\(\))).
+Note: effects are delayed if inside fast event ([vim.in\_fast\_event()](https://neovim.io/doc/user/helptag.html?tag=vim.in_fast_event\(\))).
 
 ---
 
-### get() {#mininotify.get}
+### get() {#mininotify.get .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.get`(<span class="help-syntax-special">{id}</span>)</p>
 Get previously added notification by id
@@ -490,11 +492,11 @@ Get previously added notification by id
 #### Return {#mininotify.get-return}
 
 
-`(table)` Notification object (see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)).
+`(table)` Notification object (see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)).
 
 ---
 
-### get_all() {#mininotify.get_all}
+### get_all() {#mininotify.get_all .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.get_all`()</p>
 Get all previously added notifications
@@ -514,12 +516,12 @@ Can be used to get only active notification objects. Example:
 #### Return {#mininotify.get_all-return}
 
 
-`(table)` Map with notification object values (see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)).
+`(table)` Map with notification object values (see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)).
   Note: messages are taken from last valid update.
 
 ---
 
-### show_history() {#mininotify.show_history}
+### show_history() {#mininotify.show_history .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.show_history`()</p>
 Show history
@@ -534,7 +536,7 @@ Notes:
 
 ---
 
-### default_format() {#mininotify.default_format}
+### default_format() {#mininotify.default_format .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.default_format`(<span class="help-syntax-special">{notif}</span>)</p>
 Default content format
@@ -546,7 +548,7 @@ with the human readable update time and a separator.
 
 
 
-<span class="help-syntax-special">{notif}</span> `(table)` Notification object (see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)).
+<span class="help-syntax-special">{notif}</span> `(table)` Notification object (see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)).
 
 #### Return {#mininotify.default_format-return}
 
@@ -555,7 +557,7 @@ with the human readable update time and a separator.
 
 ---
 
-### default_sort() {#mininotify.default_sort}
+### default_sort() {#mininotify.default_sort .help-syntax-right-anchor}
 
 <p align="center">`MiniNotify.default_sort`(<span class="help-syntax-special">{notif_arr}</span>)</p>
 Default content sort
@@ -568,7 +570,7 @@ important); if draw - by latest update time (the later the more important).
 
 
 
-<span class="help-syntax-special">{notif_arr}</span> `(table)` Array of notifications (see [`MiniNotify-specification`](mini-notify.qmd#mininotify-specification)).
+<span class="help-syntax-special">{notif_arr}</span> `(table)` Array of notifications (see [MiniNotify-specification](mini-notify.qmd#mininotify-specification)).
 
 #### Return {#mininotify.default_sort-return}
 

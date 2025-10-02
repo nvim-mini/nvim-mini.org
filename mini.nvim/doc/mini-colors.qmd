@@ -1,6 +1,5 @@
 ---
 title: "mini.colors documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,13 +10,13 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#minicolors}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
-- Create colorscheme object: either manually ([`MiniColors.as_colorscheme()`](mini-colors.qmd#minicolors.as_colorscheme))
+- Create colorscheme object: either manually ([MiniColors.as\_colorscheme()](mini-colors.qmd#minicolors.as_colorscheme))
   or by querying present color schemes (including currently active one; see
-  [`MiniColors.get_colorscheme()`](mini-colors.qmd#minicolors.get_colorscheme)).
+  [MiniColors.get\_colorscheme()](mini-colors.qmd#minicolors.get_colorscheme)).
 
 
 - Infer data about color scheme and/or modify based on it:
@@ -25,24 +24,24 @@ Features:
     - Add transparency by removing background color (requires transparency
       in terminal emulator).
 
-    - Infer cterm attributes ([`cterm-colors`](https://neovim.io/doc/user/helptag.html?tag=cterm-colors)) based on gui colors making it
+    - Infer cterm attributes ([cterm-colors](https://neovim.io/doc/user/helptag.html?tag=cterm-colors)) based on gui colors making it
       compatible with 'notermguicolors'.
 
-    - Resolve highlight group links ([`:highlight-link`](https://neovim.io/doc/user/helptag.html?tag=:highlight-link)).
+    - Resolve highlight group links ([:highlight-link](https://neovim.io/doc/user/helptag.html?tag=:highlight-link)).
 
     - Compress by removing redundant highlight groups.
 
     - Extract palette of used colors and/or infer terminal colors
-      ([`terminal-config`](https://neovim.io/doc/user/helptag.html?tag=terminal-config)) based on it.
+      ([terminal-config](https://neovim.io/doc/user/helptag.html?tag=terminal-config)) based on it.
 
 
 - Modify colors to better fit your taste and/or goals (see more in
-  [`MiniColors-colorscheme-methods`](mini-colors.qmd#minicolors-colorscheme-methods)):
+  [MiniColors-colorscheme-methods](mini-colors.qmd#minicolors-colorscheme-methods)):
 
     - Apply any function to color hex string.
 
     - Update channels (like lightness, saturation, hue, temperature, red,
-      green, blue, etc.; see more in [`MiniColors-channels`](mini-colors.qmd#minicolors-channels)).
+      green, blue, etc.; see more in [MiniColors-channels](mini-colors.qmd#minicolors-channels)).
       Use either own function or one of the implemented methods:
 
         - Add value to channel or multiply it by coefficient. Like "add 10
@@ -65,14 +64,14 @@ Features:
   write it into a Lua file as a fully functioning separate color scheme.
 
 
-- Experiment interactively with a feedback ([`MiniColors.interactive()`](mini-colors.qmd#minicolors.interactive)).
+- Experiment interactively with a feedback ([MiniColors.interactive()](mini-colors.qmd#minicolors.interactive)).
 
 
-- Animate transition between color schemes either with [`MiniColors.animate()`](mini-colors.qmd#minicolors.animate)
-  or with [`:Colorscheme`](mini-colors.qmd#colorscheme) user command.
+- Animate transition between color schemes either with [MiniColors.animate()](mini-colors.qmd#minicolors.animate)
+  or with [:Colorscheme](mini-colors.qmd#colorscheme) user command.
 
 
-- Convert within supported color spaces ([`MiniColors.convert()`](mini-colors.qmd#minicolors.convert)):
+- Convert within supported color spaces ([MiniColors.convert()](mini-colors.qmd#minicolors.convert)):
 
     - Hex string.
 
@@ -84,13 +83,13 @@ Features:
 
 Notes:
 
-- There is a collection of [`MiniColors-recipes`](mini-colors.qmd#minicolors-recipes) with code snippets for some
+- There is a collection of [MiniColors-recipes](mini-colors.qmd#minicolors-recipes) with code snippets for some
   common tasks.
 
 - There is no goal to support as many color spaces as possible, only the
   already present ones.
 
-#### Tweak quick start {#minicolors-tweakquickstart}
+#### Tweak quick start {#module-tweakquickstart}
 
 
 
@@ -98,8 +97,8 @@ Notes:
 
 
 - Experiment by writing calls to exposed color scheme methods and applying
-  them with `<M-a>`. For more information, see [`MiniColors-colorscheme-methods`](mini-colors.qmd#minicolors-colorscheme-methods)
-  and [`MiniColors-recipes`](mini-colors.qmd#minicolors-recipes).
+  them with `<M-a>`. For more information, see [MiniColors-colorscheme-methods](mini-colors.qmd#minicolors-colorscheme-methods)
+  and [MiniColors-recipes](mini-colors.qmd#minicolors-recipes).
 
 
 - If you are happy with result, write color scheme with `<M-w>`. If not,
@@ -109,7 +108,7 @@ Notes:
 - If only some highlight groups can be made better, adjust them manually
   inside written color scheme file.
 
-#### Setup {#minicolors-setup}
+#### Setup {#module-setup}
 
 
 This module doesn't need setup, but it can be done to improve usability.
@@ -117,12 +116,12 @@ Setup with `require('mini.colors').setup({})` (replace `{}` with your
 `config` table). It will create global Lua table `MiniColors` which you can
 use for scripting or manually (with `:lua MiniColors.*`).
 
-See [`MiniColors.config`](mini-colors.qmd#minicolors.config) for `config` structure and default values.
+See [MiniColors.config](mini-colors.qmd#minicolors.config) for `config` structure and default values.
 
 This module doesn't have runtime options, so using `vim.b.minicolors_config`
 will have no effect here.
 
-#### Comparisons {#minicolors-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -151,10 +150,10 @@ will have no effect here.
 
 ---
 
-### Recipes {#minicolors-recipes}
+### Recipes {#minicolors-recipes .help-syntax-right-anchor}
 
 All following code snippets assume to be executed inside interactive buffer
-([`MiniColors.interactive()`](mini-colors.qmd#minicolors.interactive)). They are directly copy-pasteable.
+([MiniColors.interactive()](mini-colors.qmd#minicolors.interactive)). They are directly copy-pasteable.
 
 To apply single method to current color scheme, use
 
@@ -258,17 +257,17 @@ Recipes:
       ```
 
 
-- For color scheme creators use [`MiniColors-colorscheme:simulate_cvd()`](mini-colors.qmd#minicolors-colorschemesimulate_cvd) to
+- For color scheme creators use [MiniColors-colorscheme:simulate\_cvd()](mini-colors.qmd#minicolors-colorschemesimulate_cvd) to
   simulate various color vision deficiency types to see how color scheme
   would look in the eyes of color blind person.
 
 ---
 
-### Color spaces {#minicolors-color-spaces}
+### Color spaces {#minicolors-color-spaces .help-syntax-right-anchor}
 
 Color space is a way to quantitatively describe a color. In this module
-color spaces are used both as source for [`MiniColors-channels`](mini-colors.qmd#minicolors-channels) and inputs
-for [`MiniColors.convert()`](mini-colors.qmd#minicolors.convert)
+color spaces are used both as source for [MiniColors-channels](mini-colors.qmd#minicolors-channels) and inputs
+for [MiniColors.convert()](mini-colors.qmd#minicolors.convert)
 
 List of supported color spaces (along with their id in parenthesis):
 
@@ -317,7 +316,7 @@ Note that Oklab/Oklch/Okhsl use channel normalization for `l`, `a`, `b`, `c`, `s
 is more oriented towards integer numbers (according to the above sources).
 Some implementations (like in CSS) are more oriented towards [0; 1] range or
 percentages. Adjust accordingly by dividing/multiplying output by 100.
-Also use `adjust_lightness = false` in [`MiniColors.convert()`](mini-colors.qmd#minicolors.convert).
+Also use `adjust_lightness = false` in [MiniColors.convert()](mini-colors.qmd#minicolors.convert).
 
 #### Gamut clip {#minicolors-color-spaces-gamutclip}
 
@@ -325,10 +324,10 @@ Also use `adjust_lightness = false` in [`MiniColors.convert()`](mini-colors.qmd#
 <a name="minicolors-gamut-clip" href="mini-colors.qmd#minicolors-gamut-clip"><b>MiniColors-gamut-clip</b></a>
 
 In Neovim highlight group colors are usually specified by their red, green,
-and blue values from 0 to 255 in the form of HEX string (see [`gui-colors`](https://neovim.io/doc/user/helptag.html?tag=gui-colors)).
+and blue values from 0 to 255 in the form of HEX string (see [gui-colors](https://neovim.io/doc/user/helptag.html?tag=gui-colors)).
 Although plenty, these are not all possible colors.
 
-When performing color manipulation using [`MiniColors-colorscheme-methods`](mini-colors.qmd#minicolors-colorscheme-methods),
+When performing color manipulation using [MiniColors-colorscheme-methods](mini-colors.qmd#minicolors-colorscheme-methods),
 it is possible to end up with "impossible" color (which can't be directly
 converted to HEX string). For example, inverting lightness of color "#fce094"
 will lead to a color `{ l = 10, c = 10, h = 90 }` in Oklch space, i.e.
@@ -377,11 +376,11 @@ Notes:
 
 ---
 
-### Channels {#minicolors-channels}
+### Channels {#minicolors-channels .help-syntax-right-anchor}
 
 A color channel is a number describing one particular aspect of a color.
 It is usually direct or modified coordinate of a color space. See
-[`MiniColors-color-spaces`](mini-colors.qmd#minicolors-color-spaces) for information on color spaces.
+[MiniColors-color-spaces](mini-colors.qmd#minicolors-color-spaces) for information on color spaces.
 
 List of supported channels (along with their id in parenthesis):
 
@@ -456,12 +455,12 @@ List of supported channels (along with their id in parenthesis):
 
 ---
 
-### Colorscheme {#minicolors-colorscheme}
+### Colorscheme {#minicolors-colorscheme .help-syntax-right-anchor}
 
 Colorscheme object is a central structure of this module. It contains all
 data relevant to colors in fields and provides methods to modify it.
 
-Create colorscheme object manually with [`MiniColors.as_colorscheme()`](mini-colors.qmd#minicolors.as_colorscheme):
+Create colorscheme object manually with [MiniColors.as\_colorscheme()](mini-colors.qmd#minicolors.as_colorscheme):
 
   ```lua
   MiniColors.as_colorscheme({
@@ -475,7 +474,7 @@ Create colorscheme object manually with [`MiniColors.as_colorscheme()`](mini-col
   ```
 
 Get any registered color scheme (including currently active) as colorscheme
-object with [`MiniColors.get_colorscheme()`](mini-colors.qmd#minicolors.get_colorscheme):
+object with [MiniColors.get\_colorscheme()](mini-colors.qmd#minicolors.get_colorscheme):
 
   ```lua
   -- Get current color scheme
@@ -497,18 +496,18 @@ object with [`MiniColors.get_colorscheme()`](mini-colors.qmd#minicolors.get_colo
 
 
 
-<span class="help-syntax-special">{name}</span> `(string|nil)` Name of the color scheme (as in [`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name)).
+<span class="help-syntax-special">{name}</span> `(string|nil)` Name of the color scheme (as in [g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name)).
 
 
 <span class="help-syntax-special">{groups}</span> `(table|nil)` Table with highlight groups data. Keys are group
-  names appropriate for `name` argument of [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)), values - tables
+  names appropriate for `name` argument of [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)), values - tables
   appropriate for its `val` argument. Note: gui colors are accepted only in
   short form (`fg`, `bg`, `sp`).
 
 
-<span class="help-syntax-special">{terminal}</span> `(table|nil)` Table with terminal colors data ([`terminal-config`](https://neovim.io/doc/user/helptag.html?tag=terminal-config)).
+<span class="help-syntax-special">{terminal}</span> `(table|nil)` Table with terminal colors data ([terminal-config](https://neovim.io/doc/user/helptag.html?tag=terminal-config)).
   Keys are numbers from 0 to 15, values - strings representing color (hex
-  string or plain color name; see [`nvim_get_color_by_name()`](https://neovim.io/doc/user/helptag.html?tag=nvim_get_color_by_name\(\))).
+  string or plain color name; see [nvim\_get\_color\_by\_name()](https://neovim.io/doc/user/helptag.html?tag=nvim_get_color_by_name\(\))).
 
 #### Methods {#minicolors-colorscheme-methods}
 
@@ -537,9 +536,9 @@ Example calling methods:
 
 <a name="minicolors-colorschemeadd_cterm_attributes" href="mini-colors.qmd#minicolors-colorschemeadd_cterm_attributes"><b>MiniColors-colorscheme:add_cterm_attributes()</b></a>
 
-Infer [`cterm-colors`](https://neovim.io/doc/user/helptag.html?tag=cterm-colors) based on present [`gui-colors`](https://neovim.io/doc/user/helptag.html?tag=gui-colors). It updates `ctermbg`/`ctermfg`
+Infer [cterm-colors](https://neovim.io/doc/user/helptag.html?tag=cterm-colors) based on present [gui-colors](https://neovim.io/doc/user/helptag.html?tag=gui-colors). It updates `ctermbg`/`ctermfg`
 based on `fg`/`bg` by approximating in perceptually uniform distance in Oklab
-space ([`MiniColors-color-spaces`](mini-colors.qmd#minicolors-color-spaces)).
+space ([MiniColors-color-spaces](mini-colors.qmd#minicolors-color-spaces)).
 
 ###### Parameters {#minicolors-colorscheme-methods-add_cterm_attributes-parameters}
 
@@ -555,8 +554,8 @@ space ([`MiniColors-color-spaces`](mini-colors.qmd#minicolors-color-spaces)).
 
 <a name="minicolors-colorschemeadd_terminal_colors" href="mini-colors.qmd#minicolors-colorschemeadd_terminal_colors"><b>MiniColors-colorscheme:add_terminal_colors()</b></a>
 
-Infer terminal colors ([`terminal-config`](https://neovim.io/doc/user/helptag.html?tag=terminal-config)) based on colorscheme palette
-(see [`MiniColors-colorscheme:get_palette()`](mini-colors.qmd#minicolors-colorschemeget_palette)). It updates `terminal` field
+Infer terminal colors ([terminal-config](https://neovim.io/doc/user/helptag.html?tag=terminal-config)) based on colorscheme palette
+(see [MiniColors-colorscheme:get\_palette()](mini-colors.qmd#minicolors-colorschemeget_palette)). It updates `terminal` field
 based on color scheme's palette by picking the most appropriate entry to
 represent terminal color. Colors from 0 to 7 are attempted to be black,
 red, green, yellow, blue, magenta, cyan, white. Colors from 8 to 15 are
@@ -571,7 +570,7 @@ the same as from 0 to 7.
   - <span class="help-syntax-keys">\<force\></span> `(boolean)` - Whether to replace already present terminal colors
     with inferred ones. Default: `true`.
 
-  - <span class="help-syntax-keys">\<palette_args\></span> `(table)` - [`MiniColors-colorscheme:get_palette()`](mini-colors.qmd#minicolors-colorschemeget_palette) arguments.
+  - <span class="help-syntax-keys">\<palette_args\></span> `(table)` - [MiniColors-colorscheme:get\_palette()](mini-colors.qmd#minicolors-colorschemeget_palette) arguments.
 
 ##### add_transparency() {#minicolors-colorscheme-methods-add_transparency}
 
@@ -610,7 +609,7 @@ transparency.
 
 Apply colorscheme:
 
-- Set [`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to a `name` field.
+- Set [g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name) to a `name` field.
 
 - Apply highlight groups in a `groups` field.
 
@@ -622,20 +621,20 @@ Apply colorscheme:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
-  - <span class="help-syntax-keys">\<clear\></span> `(boolean)` - whether to execute [`:hi-clear`](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) first. Default: `true`.
+  - <span class="help-syntax-keys">\<clear\></span> `(boolean)` - whether to execute [:hi-clear](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) first. Default: `true`.
 
 ##### chan_add() {#minicolors-colorscheme-methods-chan_add}
 
 
 <a name="minicolors-colorschemechan_add" href="mini-colors.qmd#minicolors-colorschemechan_add"><b>MiniColors-colorscheme:chan_add()</b></a>
 
-Add value to a channel (see [`MiniColors-channels`](mini-colors.qmd#minicolors-channels)).
+Add value to a channel (see [MiniColors-channels](mini-colors.qmd#minicolors-channels)).
 
 ###### Parameters {#minicolors-colorscheme-methods-chan_add-parameters}
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{value}</span> `(number)` Number to add (can be negative).
 
@@ -646,11 +645,11 @@ Add value to a channel (see [`MiniColors-channels`](mini-colors.qmd#minicolors-c
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 
 ##### chan_invert() {#minicolors-colorscheme-methods-chan_invert}
@@ -658,19 +657,19 @@ Add value to a channel (see [`MiniColors-channels`](mini-colors.qmd#minicolors-c
 
 <a name="minicolors-colorschemechan_invert" href="mini-colors.qmd#minicolors-colorschemechan_invert"><b>MiniColors-colorscheme:chan_invert()</b></a>
 
-Invert value in a channel (see [`MiniColors-channels`](mini-colors.qmd#minicolors-channels)).
+Invert value in a channel (see [MiniColors-channels](mini-colors.qmd#minicolors-channels)).
 
 Notes:
 
 - Most Oklab/Oklch inversions are not exactly invertible: applying it twice
   might lead to slightly different colors depending on gamut clip method
-  ([`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip)) like smaller chroma with default `'chroma'` method.
+  ([MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip)) like smaller chroma with default `'chroma'` method.
 
 ###### Parameters {#minicolors-colorscheme-methods-chan_invert-parameters}
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
@@ -679,11 +678,11 @@ Notes:
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 ##### chan_modify() {#minicolors-colorscheme-methods-chan_modify}
 
@@ -696,7 +695,7 @@ Modify channel with a callable.
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{f}</span> `(function)` - callable which defines modification. Should take current
   value of a channel and return a new one.
@@ -708,24 +707,24 @@ Modify channel with a callable.
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 ##### chan_multiply() {#minicolors-colorscheme-methods-chan_multiply}
 
 
 <a name="minicolors-colorschemechan_multiply" href="mini-colors.qmd#minicolors-colorschemechan_multiply"><b>MiniColors-colorscheme:chan_multiply()</b></a>
 
-Multiply value of a channel (see [`MiniColors-channels`](mini-colors.qmd#minicolors-channels)).
+Multiply value of a channel (see [MiniColors-channels](mini-colors.qmd#minicolors-channels)).
 
 ###### Parameters {#minicolors-colorscheme-methods-chan_multiply-parameters}
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{coef}</span> `(number)` Number to multiply with (can be negative).
 
@@ -736,11 +735,11 @@ Multiply value of a channel (see [`MiniColors-channels`](mini-colors.qmd#minicol
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 ##### chan_repel() {#minicolors-colorscheme-methods-chan_repel}
 
@@ -781,7 +780,7 @@ Examples:
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{sources}</span> `(table|number)` Single or multiple source from which to repel.
 
@@ -794,11 +793,11 @@ Examples:
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 ##### chan_set() {#minicolors-colorscheme-methods-chan_set}
 
@@ -813,7 +812,7 @@ element to current value is used.
 
 
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{values}</span> `(table|number)` Single or multiple values to set.
 
@@ -824,11 +823,11 @@ element to current value is used.
       - String representing target attributes. One of `'fg'`, `'bg'`, `'sp'`,
         `'term'` (only terminal colors).
 
-      - Callable with signature as in [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify).
+      - Callable with signature as in [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify).
     Default: `nil` to update all colors.
 
   - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - gamut clipping method. One of `'chroma'`,
-    `'lightness'`, `'cusp'`. See [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
+    `'lightness'`, `'cusp'`. See [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip). Default: `'chroma'`.
 
 ##### color_modify() {#minicolors-colorscheme-methods-color_modify}
 
@@ -846,7 +845,7 @@ string or `nil` to remove attribute) base on the following input:
 
     - <span class="help-syntax-keys">\<name\></span> - name of color source. Either a name of highlight group or
       string of the form `terminal_color_x` for terminal color (as in
-      [`terminal-config`](https://neovim.io/doc/user/helptag.html?tag=terminal-config)).
+      [terminal-config](https://neovim.io/doc/user/helptag.html?tag=terminal-config)).
 
 Example:
 
@@ -873,7 +872,7 @@ Example:
 
 Remove redundant highlight groups. These are one of the two kinds:
 
-- Having values identical to ones after [`:hi-clear`](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) (meaning they usually
+- Having values identical to ones after [:hi-clear](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) (meaning they usually
   don't add new information).
 
 - Coming from a curated list of plugins with highlight groups usually not
@@ -884,7 +883,7 @@ Remove redundant highlight groups. These are one of the two kinds:
     - [norcalli/nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)
 
 This method is useful to reduce size of color scheme before writing into
-the file with [`MiniColors-colorscheme:write()`](mini-colors.qmd#minicolors-colorschemewrite).
+the file with [MiniColors-colorscheme:write()](mini-colors.qmd#minicolors-colorschemewrite).
 
 ###### Parameters {#minicolors-colorscheme-methods-compress-parameters}
 
@@ -903,8 +902,8 @@ the file with [`MiniColors-colorscheme:write()`](mini-colors.qmd#minicolors-colo
 Get commonly used colors. This basically counts number of all color
 occurrences and filter out rare ones.
 
-It is usually a good idea to apply both [`MiniColors-colorscheme:compress()`](mini-colors.qmd#minicolors-colorschemecompress)
-and [`MiniColors-colorscheme:resolve_links()`](mini-colors.qmd#minicolors-colorschemeresolve_links) before applying this.
+It is usually a good idea to apply both [MiniColors-colorscheme:compress()](mini-colors.qmd#minicolors-colorschemecompress)
+and [MiniColors-colorscheme:resolve\_links()](mini-colors.qmd#minicolors-colorschemeresolve_links) before applying this.
 
 ###### Parameters {#minicolors-colorscheme-methods-get_palette-parameters}
 
@@ -921,7 +920,7 @@ and [`MiniColors-colorscheme:resolve_links()`](mini-colors.qmd#minicolors-colors
 
 <a name="minicolors-colorschemeresolve_links" href="mini-colors.qmd#minicolors-colorschemeresolve_links"><b>MiniColors-colorscheme:resolve_links()</b></a>
 
-Resolve links ([`:highlight-link`](https://neovim.io/doc/user/helptag.html?tag=:highlight-link)). This makes all highlight groups with `link`
+Resolve links ([:highlight-link](https://neovim.io/doc/user/helptag.html?tag=:highlight-link)). This makes all highlight groups with `link`
 attribute have data from a linked one.
 
 Notes:
@@ -937,8 +936,8 @@ Notes:
 <a name="minicolors-colorschemesimulate_cvd" href="mini-colors.qmd#minicolors-colorschemesimulate_cvd"><b>MiniColors-colorscheme:simulate_cvd()</b></a>
 
 Simulate color vision deficiency (CVD, color blindness). This is basically
-a wrapper using [`MiniColors.simulate_cvd()`](mini-colors.qmd#minicolors.simulate_cvd) as a part of
-call to [`MiniColors-colorscheme:color_modify()`](mini-colors.qmd#minicolors-colorschemecolor_modify) method.
+a wrapper using [MiniColors.simulate\_cvd()](mini-colors.qmd#minicolors.simulate_cvd) as a part of
+call to [MiniColors-colorscheme:color\_modify()](mini-colors.qmd#minicolors-colorschemecolor_modify) method.
 
 ###### Parameters {#minicolors-colorscheme-methods-simulate_cvd-parameters}
 
@@ -959,11 +958,11 @@ and making local snapshot of some other color scheme.
 
 Sourcing this file on startup usually leads to a better performance that
 sourcing initial color scheme, as it is essentially a conditioned
-[`:hi-clear`](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) call followed by a series of [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)) calls.
+[:hi-clear](https://neovim.io/doc/user/helptag.html?tag=:hi-clear) call followed by a series of [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)) calls.
 
 Default writing location is a "colors" directory of your Neovim config
-directory (see [`base-directories`](https://neovim.io/doc/user/helptag.html?tag=base-directories)). After writing, it should be available
-for sourcing with [`:colorscheme`](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) or [`:Colorscheme`](mini-colors.qmd#colorscheme).
+directory (see [base-directories](https://neovim.io/doc/user/helptag.html?tag=base-directories)). After writing, it should be available
+for sourcing with [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme) or [:Colorscheme](mini-colors.qmd#colorscheme).
 
 Name of the file by default is taken from `name` field (`'mini_colors'` is
 used if it is `nil`). If color scheme with this name already exists, it
@@ -972,7 +971,7 @@ appends prefix based on current time to make it unique.
 Notes:
 
 - If colors were updated, it is usually a good idea to infer cterm attributes
-  with [`MiniColors-colorscheme:add_cterm_attributes()`](mini-colors.qmd#minicolors-colorschemeadd_cterm_attributes) prior to writing.
+  with [MiniColors-colorscheme:add\_cterm\_attributes()](mini-colors.qmd#minicolors-colorschemeadd_cterm_attributes) prior to writing.
 
 ###### Parameters {#minicolors-colorscheme-methods-write-parameters}
 
@@ -980,7 +979,7 @@ Notes:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
-  - <span class="help-syntax-keys">\<compress\></span> `(boolean)` - whether to call [`MiniColors-colorscheme:compress()`](mini-colors.qmd#minicolors-colorschemecompress)
+  - <span class="help-syntax-keys">\<compress\></span> `(boolean)` - whether to call [MiniColors-colorscheme:compress()](mini-colors.qmd#minicolors-colorschemecompress)
     prior to writing. Default: `true`.
 
   - <span class="help-syntax-keys">\<name\></span> `(string|nil)` - basename of written file. Default: `nil` to infer
@@ -991,7 +990,7 @@ Notes:
 
 ---
 
-### setup() {#minicolors.setup}
+### setup() {#minicolors.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -1004,13 +1003,13 @@ Module setup
 Calling this function creates a `:Colorscheme` user command. It takes one or
 more registered color scheme names and performs animated transition between
 them (starting from currently active color scheme).
-It uses [`MiniColors.animate()`](mini-colors.qmd#minicolors.animate) with default options.
+It uses [MiniColors.animate()](mini-colors.qmd#minicolors.animate) with default options.
 
 #### Parameters {#minicolors.setup-parameters}
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniColors.config`](mini-colors.qmd#minicolors.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniColors.config](mini-colors.qmd#minicolors.config).
 
 #### Usage {#minicolors.setup-usage}
 
@@ -1024,7 +1023,7 @@ It uses [`MiniColors.animate()`](mini-colors.qmd#minicolors.animate) with defaul
 
 ---
 
-### config {#minicolors.config}
+### config {#minicolors.config .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.config`</p>
 #### Defaults {#minicolors.config-defaults}
@@ -1037,7 +1036,7 @@ It uses [`MiniColors.animate()`](mini-colors.qmd#minicolors.animate) with defaul
 
 ---
 
-### as_colorscheme() {#minicolors.as_colorscheme}
+### as_colorscheme() {#minicolors.as_colorscheme .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.as_colorscheme`(<span class="help-syntax-special">{x}</span>)</p>
 Create colorscheme object
@@ -1046,7 +1045,7 @@ Create colorscheme object
 
 
 
-<span class="help-syntax-special">{x}</span> `(table)` Table to be transformed into [`MiniColors-colorscheme`](mini-colors.qmd#minicolors-colorscheme) object.
+<span class="help-syntax-special">{x}</span> `(table)` Table to be transformed into [MiniColors-colorscheme](mini-colors.qmd#minicolors-colorscheme) object.
 
 #### Return {#minicolors.as_colorscheme-return}
 
@@ -1055,7 +1054,7 @@ Create colorscheme object
 
 ---
 
-### get_colorscheme() {#minicolors.get_colorscheme}
+### get_colorscheme() {#minicolors.get_colorscheme .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.get_colorscheme`(<span class="help-syntax-special">{name}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Get colorscheme object from registered color scheme
@@ -1065,7 +1064,7 @@ Get colorscheme object from registered color scheme
 
 
 <span class="help-syntax-special">{name}</span> `(string|nil)` Name of color scheme to use. If `nil` (default) creates
- colorscheme object based on currently active data ([`g:colors_name`](https://neovim.io/doc/user/helptag.html?tag=g:colors_name),
+ colorscheme object based on currently active data ([g:colors\_name](https://neovim.io/doc/user/helptag.html?tag=g:colors_name),
  highlight groups, terminal colors). If string, converts color scheme with
  that name to a colorscheme object.
 
@@ -1076,11 +1075,11 @@ Get colorscheme object from registered color scheme
 #### Return {#minicolors.get_colorscheme-return}
 
 
-`(table)` Colorscheme object ([`MiniColors-colorscheme`](mini-colors.qmd#minicolors-colorscheme)).
+`(table)` Colorscheme object ([MiniColors-colorscheme](mini-colors.qmd#minicolors-colorscheme)).
 
 ---
 
-### interactive() {#minicolors.interactive}
+### interactive() {#minicolors.interactive .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.interactive`(<span class="help-syntax-special">{opts}</span>)</p>
 Start interactive experiments
@@ -1102,7 +1101,7 @@ color scheme and apply to get visual feedback.
     - Reset color scheme (make initial colorscheme the current one).
 
     - Write to a file the result of applying current buffer content.
-      This sources current content and calls [`MiniColors-colorscheme:write()`](mini-colors.qmd#minicolors-colorschemewrite).
+      This sources current content and calls [MiniColors-colorscheme:write()](mini-colors.qmd#minicolors-colorschemewrite).
 
     - Quit interactive buffer.
 
@@ -1137,7 +1136,7 @@ Example of interactive buffer content:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
-  - <span class="help-syntax-keys">\<colorscheme\></span> `(table|nil)` - [`MiniColors-colorscheme`](mini-colors.qmd#minicolors-colorscheme) object to be
+  - <span class="help-syntax-keys">\<colorscheme\></span> `(table|nil)` - [MiniColors-colorscheme](mini-colors.qmd#minicolors-colorscheme) object to be
     used as initial colorscheme for executed code. By default uses current
     color scheme.
 
@@ -1150,26 +1149,26 @@ Example of interactive buffer content:
       - <span class="help-syntax-keys">\<Quit\></span> `(string)` - close interactive buffer. Default: `'<M-q>'`.
 
       - <span class="help-syntax-keys">\<Write\></span> `(string)` - write result of buffer code into a file.
-        Prompts for file name with [`vim.ui.input()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) and then
-        uses [`MiniColors-colorscheme:write()`](mini-colors.qmd#minicolors-colorschemewrite) with other options being default.
+        Prompts for file name with [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) and then
+        uses [MiniColors-colorscheme:write()](mini-colors.qmd#minicolors-colorschemewrite) with other options being default.
         Default: `'<M-w>'`.
 
 ---
 
-### animate() {#minicolors.animate}
+### animate() {#minicolors.animate .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.animate`(<span class="help-syntax-special">{cs_array}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Animate color scheme change
 
 Start from currently active color scheme and loop through `cs_array`.
 
-Powers [`:Colorscheme`](mini-colors.qmd#colorscheme) user command created in [`MiniColors.setup()`](mini-colors.qmd#minicolors.setup).
+Powers [:Colorscheme](mini-colors.qmd#colorscheme) user command created in [MiniColors.setup()](mini-colors.qmd#minicolors.setup).
 
 #### Parameters {#minicolors.animate-parameters}
 
 
 
-<span class="help-syntax-special">{cs_array}</span> `(table)` Array of [`MiniColors-colorscheme`](mini-colors.qmd#minicolors-colorscheme) objects.
+<span class="help-syntax-special">{cs_array}</span> `(table)` Array of [MiniColors-colorscheme](mini-colors.qmd#minicolors-colorscheme) objects.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
@@ -1186,12 +1185,12 @@ Powers [`:Colorscheme`](mini-colors.qmd#colorscheme) user command created in [`M
 
 ---
 
-### convert() {#minicolors.convert}
+### convert() {#minicolors.convert .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.convert`(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{to_space}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Convert between color spaces
 
-For a list of supported colors spaces see [`MiniColors-color-spaces`](mini-colors.qmd#minicolors-color-spaces).
+For a list of supported colors spaces see [MiniColors-color-spaces](mini-colors.qmd#minicolors-color-spaces).
 
 #### Parameters {#minicolors.convert-parameters}
 
@@ -1211,7 +1210,7 @@ For a list of supported colors spaces see [`MiniColors-color-spaces`](mini-color
     https://bottosson.github.io/posts/colorpicker
     Default: `true`.
 
-  - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - method for [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip).
+  - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - method for [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip).
     Default: `'chroma'`.
 
 #### Return {#minicolors.convert-return}
@@ -1221,7 +1220,7 @@ For a list of supported colors spaces see [`MiniColors-color-spaces`](mini-color
 
 ---
 
-### modify_channel() {#minicolors.modify_channel}
+### modify_channel() {#minicolors.modify_channel .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.modify_channel`(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{channel}</span>, <span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Modify channel
@@ -1233,14 +1232,14 @@ Modify channel
 <span class="help-syntax-special">{x}</span> `(table|string|number|nil)` Color which channel will be modified. Color
   space is inferred automatically.
 
-<span class="help-syntax-special">{channel}</span> `(string)` One of supported [`MiniColors-channels`](mini-colors.qmd#minicolors-channels).
+<span class="help-syntax-special">{channel}</span> `(string)` One of supported [MiniColors-channels](mini-colors.qmd#minicolors-channels).
 
 <span class="help-syntax-special">{f}</span> `(function)` Callable which defines modification. Should take current
   value of a channel and return a new one.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
-  - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - method for [`MiniColors-gamut-clip`](mini-colors.qmd#minicolors-gamut-clip).
+  - <span class="help-syntax-keys">\<gamut_clip\></span> `(string)` - method for [MiniColors-gamut-clip](mini-colors.qmd#minicolors-gamut-clip).
     Default: `'chroma'`.
 
 #### Return {#minicolors.modify_channel-return}
@@ -1250,7 +1249,7 @@ Modify channel
 
 ---
 
-### simulate_cvd() {#minicolors.simulate_cvd}
+### simulate_cvd() {#minicolors.simulate_cvd .help-syntax-right-anchor}
 
 <p align="center">`MiniColors.simulate_cvd`(<span class="help-syntax-special">{x}</span>, <span class="help-syntax-special">{cvd_type}</span>, <span class="help-syntax-special">{severity}</span>)</p>
 Simulate color vision deficiency

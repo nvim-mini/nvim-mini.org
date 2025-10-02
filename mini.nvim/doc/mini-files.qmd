@@ -1,6 +1,5 @@
 ---
 title: "mini.files documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,19 +10,19 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ---
 
-### Module {#minifiles}
+### Module {#module .help-syntax-right-anchor}
 
 Features:
 
 - Navigate file system using column view (Miller columns) to display nested
-  directories. See [`MiniFiles-navigation`](mini-files.qmd#minifiles-navigation) for overview.
+  directories. See [MiniFiles-navigation](mini-files.qmd#minifiles-navigation) for overview.
 
 
 - Opt-in preview of file or directory under cursor.
 
 
 - Manipulate files and directories by editing text buffers: create, delete,
-  copy, rename, move. See [`MiniFiles-manipulation`](mini-files.qmd#minifiles-manipulation) for overview.
+  copy, rename, move. See [MiniFiles-manipulation](mini-files.qmd#minifiles-manipulation) for overview.
 
 
 - Use as default file explorer instead of `netrw`.
@@ -50,12 +49,12 @@ What it doesn't do:
 
 
 - Provide built-in interactive toggle of content `filter` and `sort`.
-  See [`MiniFiles-examples`](mini-files.qmd#minifiles-examples) for some common examples.
+  See [MiniFiles-examples](mini-files.qmd#minifiles-examples) for some common examples.
 
 
 - Provide out of the box extra information like git or diagnostic status.
-  This can be achieved by setting [`extmarks`](https://neovim.io/doc/user/helptag.html?tag=extmarks) on appropriate event(s)
-  (see [`MiniFiles-events`](mini-files.qmd#minifiles-events))
+  This can be achieved by setting [extmarks](https://neovim.io/doc/user/helptag.html?tag=extmarks) on appropriate event(s)
+  (see [MiniFiles-events](mini-files.qmd#minifiles-events))
 
 Notes:
 
@@ -69,31 +68,31 @@ Notes:
 
     - In case of no manipulation result, check write permissions.
 
-#### Dependencies {#minifiles-dependencies}
+#### Dependencies {#module-dependencies}
 
 
 Suggested dependencies (provide extra functionality, will work without them):
 
 
-- Enabled [`mini.icons`](mini-icons.qmd#mini.icons) module to show icons near file/directory names.
+- Enabled [mini.icons](mini-icons.qmd#mini.icons) module to show icons near file/directory names.
   Falls back to [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
   plugin or uses default icons.
 
-#### Setup {#minifiles-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.files').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniFiles`
 which you can use for scripting or manually (with `:lua MiniFiles.*`).
 
-See [`MiniFiles.config`](mini-files.qmd#minifiles.config) for available config settings.
+See [MiniFiles.config](mini-files.qmd#minifiles.config) for available config settings.
 
 You can override runtime config settings (like mappings or window options)
 locally to buffer inside `vim.b.minifiles_config` which should have same
-structure as `MiniFiles.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for
+structure as `MiniFiles.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for
 more details.
 
-#### Comparisons {#minifiles-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -123,7 +122,7 @@ more details.
 
     - Compares to this module mostly the same as 'nvim-tree/nvim-tree.lua'.
 
-#### Highlight groups {#minifiles-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -143,9 +142,9 @@ more details.
 
 - `MiniFilesTitleFocused` - title of focused window.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#minifiles-disabling}
+#### Disabling {#module-disabling}
 
 
 This plugin provides only manually started functionality, so no disabling
@@ -153,9 +152,9 @@ is available.
 
 ---
 
-### Navigation {#minifiles-navigation}
+### Navigation {#minifiles-navigation .help-syntax-right-anchor}
 
-Every navigation starts by calling [`MiniFiles.open()`](mini-files.qmd#minifiles.open), either directly or via
+Every navigation starts by calling [MiniFiles.open()](mini-files.qmd#minifiles.open), either directly or via
 mapping (see its help for examples of some common scenarios). It will show
 an explorer consisting of side-by-side floating windows with the following
 principles:
@@ -181,11 +180,11 @@ principles:
 
 
 - Every buffer line represents separate file system entry following certain
-  format (not visible for users by default; set [`'conceallevel'`](https://neovim.io/doc/user/helptag.html?tag='conceallevel') to 0 to see it)
+  format (not visible for users by default; set ['conceallevel'](https://neovim.io/doc/user/helptag.html?tag='conceallevel') to 0 to see it)
 
 
 - Once directory is shown, its buffer is not updated automatically following
-  external file system changes. Manually use [`MiniFiles.synchronize()`](mini-files.qmd#minifiles.synchronize) for that.
+  external file system changes. Manually use [MiniFiles.synchronize()](mini-files.qmd#minifiles.synchronize) for that.
 
 After opening explorer, in-buffer navigation is done the same way as any
 regular buffer, except without some keys reserved for built-in actions.
@@ -266,7 +265,7 @@ Details:
   explorer) and resets all stored directory cursor positions.
 
 
-- "Reveal cwd" extends branch to include [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+- "Reveal cwd" extends branch to include [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
   If it is not an ancestor of the current branch, nothing is done.
 
 
@@ -278,7 +277,7 @@ Details:
   confirmation), and updates all directory buffers with the most relevant
   file system information. Can also be used without user edits to show up
   to date file system entries.
-  See [`MiniFiles-manipulation`](mini-files.qmd#minifiles-manipulation) for more info about file system manipulation.
+  See [MiniFiles-manipulation](mini-files.qmd#minifiles-manipulation) for more info about file system manipulation.
 
 
 - "Trim left" and "Trim right" trim parts of the whole branch, not only its
@@ -290,14 +289,14 @@ Notes:
 - Each action has exported function with more details about it.
 
 
-- Keys can be configured with `mappings` table of [`MiniFiles.config`](mini-files.qmd#minifiles.config).
+- Keys can be configured with `mappings` table of [MiniFiles.config](mini-files.qmd#minifiles.config).
 
 ---
 
-### Manipulation {#minifiles-manipulation}
+### Manipulation {#minifiles-manipulation .help-syntax-right-anchor}
 
 File system manipulation is done by editing text inside directory buffers,
-which are shown inside dedicated window(s). See [`MiniFiles-navigation`](mini-files.qmd#minifiles-navigation) for
+which are shown inside dedicated window(s). See [MiniFiles-navigation](mini-files.qmd#minifiles-navigation) for
 more information about navigating to a particular directory.
 
 General workflow:
@@ -314,7 +313,7 @@ General workflow:
   so you can navigate in and out of directory with modified buffer.
 
 
-- Execute [`MiniFiles.synchronize()`](mini-files.qmd#minifiles.synchronize) (default key is `=`). This will prompt
+- Execute [MiniFiles.synchronize()](mini-files.qmd#minifiles.synchronize) (default key is `=`). This will prompt
   confirmation dialog listing all file system actions (per directory) it is
   about to perform. READ IT CAREFULLY.
 
@@ -333,7 +332,7 @@ path indexes: text of the form `/xxx` (`xxx` is the number path index) placed
 at the start of every line representing file system entry.
 
 By default they are hidden as concealed text (along with prefix separators)
-for more convenience but you can see them by setting [`'conceallevel'`](https://neovim.io/doc/user/helptag.html?tag='conceallevel') to 0.
+for more convenience but you can see them by setting ['conceallevel'](https://neovim.io/doc/user/helptag.html?tag='conceallevel') to 0.
 DO NOT modify text to the left of entry name.
 
 During synchronization, actual text for entry name is compared to path index
@@ -366,7 +365,7 @@ Note that order of text manipulation steps does not affect performed actions.
 
 - If `options.permanent_delete` is `true`, delete is permanent. Otherwise
   file system entry is moved to a module-specific trash directory
-  (see [`MiniFiles.config`](mini-files.qmd#minifiles.config) for more details).
+  (see [MiniFiles.config](mini-files.qmd#minifiles.config) for more details).
 
 ##### Rename {#minifiles-manipulation-supportedfilesystemactions-rename}
 
@@ -379,12 +378,12 @@ Note that order of text manipulation steps does not affect performed actions.
 - With default mappings for `h` / `l` it might be not convenient to rename
   only part of an entry. You can adopt any of the following approaches:
 
-    - Use different motions, like [`$`](https://neovim.io/doc/user/helptag.html?tag=$), [`e`](https://neovim.io/doc/user/helptag.html?tag=e), [`f`](https://neovim.io/doc/user/helptag.html?tag=f), etc.
+    - Use different motions, like [\$](https://neovim.io/doc/user/helptag.html?tag=$), [e](https://neovim.io/doc/user/helptag.html?tag=e), [f](https://neovim.io/doc/user/helptag.html?tag=f), etc.
 
     - Go into Insert mode and navigate inside it.
 
     - Change mappings to be more suited for manipulation and not navigation.
-      See "Mappings" section in [`MiniFiles.config`](mini-files.qmd#minifiles.config).
+      See "Mappings" section in [MiniFiles.config](mini-files.qmd#minifiles.config).
 
 
 - It is not needed to end directory name with `/`.
@@ -426,9 +425,9 @@ Note that order of text manipulation steps does not affect performed actions.
 
 ---
 
-### Events {#minifiles-events}
+### Events {#minifiles-events .help-syntax-right-anchor}
 
-To allow user customization and integration of external tools, certain [`User`](https://neovim.io/doc/user/helptag.html?tag=User)
+To allow user customization and integration of external tools, certain [User](https://neovim.io/doc/user/helptag.html?tag=User)
 autocommand events are triggered under common circumstances.
 
 #### UI events {#minifiles-events-uievents}
@@ -447,7 +446,7 @@ autocommand events are triggered under common circumstances.
 
 
 - `MiniFilesBufferUpdate` - when path buffer is updated with new content.
-  Can be used for integrations to set useful [`extmarks`](https://neovim.io/doc/user/helptag.html?tag=extmarks).
+  Can be used for integrations to set useful [extmarks](https://neovim.io/doc/user/helptag.html?tag=extmarks).
 
 
 - `MiniFilesWindowOpen` - when new window is opened. Can be used to set
@@ -458,7 +457,7 @@ autocommand events are triggered under common circumstances.
   At least after every cursor movement and "go in" / "go out" action.
 
 Callback for each buffer/window UI event will receive <span class="help-syntax-keys">\<data\></span> field
-(see [`nvim_create_autocmd()`](https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd\(\))) with the following information:
+(see [nvim\_create\_autocmd()](https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd\(\))) with the following information:
 
 
 - <span class="help-syntax-keys">\<buf_id\></span> - index of target buffer.
@@ -486,7 +485,7 @@ Callback for each buffer/window UI event will receive <span class="help-syntax-k
 - `MiniFilesActionMove` - after entry is successfully moved.
 
 Callback for each file action event will receive `data` field
-(see [`nvim_create_autocmd()`](https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd\(\))) with the following information:
+(see [nvim\_create\_autocmd()](https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd\(\))) with the following information:
 
 
 - <span class="help-syntax-keys">\<action\></span> - string with action name.
@@ -497,12 +496,12 @@ Callback for each file action event will receive `data` field
 
 ---
 
-### Examples {#minifiles-examples}
+### Examples {#minifiles-examples .help-syntax-right-anchor}
 
 #### Toggle explorer {#minifiles-examples-toggleexplorer}
 
 
-Use a combination of [`MiniFiles.open()`](mini-files.qmd#minifiles.open) and [`MiniFiles.close()`](mini-files.qmd#minifiles.close):
+Use a combination of [MiniFiles.open()](mini-files.qmd#minifiles.open) and [MiniFiles.close()](mini-files.qmd#minifiles.close):
 
   ```lua
   local minifiles_toggle = function(...)
@@ -556,7 +555,7 @@ updated internally. Use `MiniFilesWindowUpdate` event for them:
 #### Customize icons {#minifiles-examples-customizeicons}
 
 
-Use different directory icon (if you don't use [`mini.icons`](mini-icons.qmd#mini.icons)):
+Use different directory icon (if you don't use [mini.icons](mini-icons.qmd#mini.icons)):
 
   ```lua
   local my_prefix = function(fs_entry)
@@ -580,7 +579,7 @@ Show no icons:
 
 
 Create an autocommand for `MiniFilesBufferCreate` event which calls
-[`MiniFiles.refresh()`](mini-files.qmd#minifiles.refresh) with explicit `content.filter` functions:
+[MiniFiles.refresh()](mini-files.qmd#minifiles.refresh) with explicit `content.filter` functions:
 
   ```lua
   local show_dotfiles = true
@@ -610,7 +609,7 @@ Create an autocommand for `MiniFilesBufferCreate` event which calls
 #### Create mappings to modify target window via split {#minifiles-examples-createmappingstomodifytargetwindowviasplit}
 
 
-Combine [`MiniFiles.get_explorer_state()`](mini-files.qmd#minifiles.get_explorer_state) and [`MiniFiles.set_target_window()`](mini-files.qmd#minifiles.set_target_window):
+Combine [MiniFiles.get\_explorer\_state()](mini-files.qmd#minifiles.get_explorer_state) and [MiniFiles.set\_target\_window()](mini-files.qmd#minifiles.set_target_window):
 
   ```lua
   local map_split = function(buf_id, lhs, direction)
@@ -649,7 +648,7 @@ Combine [`MiniFiles.get_explorer_state()`](mini-files.qmd#minifiles.get_explorer
 #### Create mappings which use data from entry under cursor {#minifiles-examples-createmappingswhichusedatafromentryundercursor}
 
 
-Use [`MiniFiles.get_fs_entry()`](mini-files.qmd#minifiles.get_fs_entry):
+Use [MiniFiles.get\_fs\_entry()](mini-files.qmd#minifiles.get_fs_entry):
 
   ```lua
   -- Set focused directory as current working directory
@@ -683,7 +682,7 @@ Use [`MiniFiles.get_fs_entry()`](mini-files.qmd#minifiles.get_fs_entry):
 #### Set custom bookmarks {#minifiles-examples-setcustombookmarks}
 
 
-Use [`MiniFiles.set_bookmark()`](mini-files.qmd#minifiles.set_bookmark) inside `MiniFilesExplorerOpen` event:
+Use [MiniFiles.set\_bookmark()](mini-files.qmd#minifiles.set_bookmark) inside `MiniFilesExplorerOpen` event:
 
   ```lua
   local set_mark = function(id, path, desc)
@@ -701,7 +700,7 @@ Use [`MiniFiles.set_bookmark()`](mini-files.qmd#minifiles.set_bookmark) inside `
 
 ---
 
-### setup() {#minifiles.setup}
+### setup() {#minifiles.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -710,7 +709,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniFiles.config`](mini-files.qmd#minifiles.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniFiles.config](mini-files.qmd#minifiles.config).
 
 #### Usage {#minifiles.setup-usage}
 
@@ -724,7 +723,7 @@ Module setup
 
 ---
 
-### config {#minifiles.config}
+### config {#minifiles.config .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.config`</p>
 #### Defaults {#minifiles.config-defaults}
@@ -790,7 +789,7 @@ Module setup
 
 `content.filter` is a predicate which takes file system entry data as input
 and returns `true`-ish value if it should be shown.
-Uses [`MiniFiles.default_filter()`](mini-files.qmd#minifiles.default_filter) by default.
+Uses [MiniFiles.default\_filter()](mini-files.qmd#minifiles.default_filter) by default.
 
 A file system entry data is a table with the following fields:
 
@@ -803,17 +802,17 @@ A file system entry data is a table with the following fields:
 `content.prefix` describes what text (prefix) to show to the left of file
 system entry name (if any) and how to highlight it. It also takes file
 system entry data as input and returns tuple of text and highlight group
-name to be used to highlight prefix. See [`MiniFiles-examples`](mini-files.qmd#minifiles-examples) for common
+name to be used to highlight prefix. See [MiniFiles-examples](mini-files.qmd#minifiles-examples) for common
 examples of how to use it.
 Note: due to how lines are parsed to detect user edits for file system
 manipulation, output of `content.prefix` should not contain `/` character.
-Uses [`MiniFiles.default_prefix()`](mini-files.qmd#minifiles.default_prefix) by default.
+Uses [MiniFiles.default\_prefix()](mini-files.qmd#minifiles.default_prefix) by default.
 
 `content.sort` describes in which order directory entries should be shown
 in directory buffer. Takes as input and returns as output an array of file
 system entry data. Note: technically, it can be used to filter and modify
 its elements as well.
-Uses [`MiniFiles.default_sort()`](mini-files.qmd#minifiles.default_sort) by default.
+Uses [MiniFiles.default\_sort()](mini-files.qmd#minifiles.default_sort) by default.
 
 #### Mappings {#minifiles.config-mappings}
 
@@ -847,7 +846,7 @@ Here are some alternatives:
 
 `options.use_as_default_explorer` is a boolean indicating whether this module
 will be used as a default file explorer to edit directory (instead of `netrw`).
-Note: to work with directory in [`arglist`](https://neovim.io/doc/user/helptag.html?tag=arglist), do not lazy load this module.
+Note: to work with directory in [arglist](https://neovim.io/doc/user/helptag.html?tag=arglist), do not lazy load this module.
 
 `options.permanent_delete` is a boolean indicating whether to perform
 permanent delete or move into special trash directory.
@@ -875,7 +874,7 @@ as `width` for focused and non-focused windows respectively.
 
 ---
 
-### open() {#minifiles.open}
+### open() {#minifiles.open .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.open`(<span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{use_latest}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Open file explorer
@@ -908,17 +907,17 @@ Common ways to use this function:
   If it is a path to directory, used directly.
   If it is a path to file, its parent directory is used as anchor while
   explorer will focus on the supplied file.
-  Default: path of [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  Default: path of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 <span class="help-syntax-special">{use_latest}</span> `(boolean|nil)` Whether to load explorer state from history
   (based on the supplied anchor path). Default: `true`.
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Table of options overriding [`MiniFiles.config`](mini-files.qmd#minifiles.config) and
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Table of options overriding [MiniFiles.config](mini-files.qmd#minifiles.config) and
   `vim.b.minifiles_config` for this particular explorer session.
 
 ---
 
-### refresh() {#minifiles.refresh}
+### refresh() {#minifiles.refresh .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.refresh`(<span class="help-syntax-special">{opts}</span>)</p>
 Refresh explorer
@@ -936,7 +935,7 @@ Notes:
 
 ---
 
-### synchronize() {#minifiles.synchronize}
+### synchronize() {#minifiles.synchronize .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.synchronize`()</p>
 Synchronize explorer
@@ -957,20 +956,20 @@ Synchronize explorer
 
 ---
 
-### reset() {#minifiles.reset}
+### reset() {#minifiles.reset .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.reset`()</p>
 Reset explorer
 
 
 - Show single window focused on anchor directory (which was used as first
-  argument for [`MiniFiles.open()`](mini-files.qmd#minifiles.open)).
+  argument for [MiniFiles.open()](mini-files.qmd#minifiles.open)).
 
 - Reset all tracked directory cursors to point at first entry.
 
 ---
 
-### close() {#minifiles.close}
+### close() {#minifiles.close .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.close`()</p>
 Close explorer
@@ -982,7 +981,7 @@ Close explorer
 
 ---
 
-### go_in() {#minifiles.go_in}
+### go_in() {#minifiles.go_in .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.go_in`(<span class="help-syntax-special">{opts}</span>)</p>
 Go in entry under cursor
@@ -991,7 +990,7 @@ Depends on entry under cursor:
 
 - If directory, focus on it in the window to the right.
 
-- If file, open it in the window which was current during [`MiniFiles.open()`](mini-files.qmd#minifiles.open).
+- If file, open it in the window which was current during [MiniFiles.open()](mini-files.qmd#minifiles.open).
   Explorer is not closed after that.
 
 #### Parameters {#minifiles.go_in-parameters}
@@ -1006,7 +1005,7 @@ Depends on entry under cursor:
 
 ---
 
-### go_out() {#minifiles.go_out}
+### go_out() {#minifiles.go_out .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.go_out`()</p>
 Go out to parent directory
@@ -1016,7 +1015,7 @@ Go out to parent directory
 
 ---
 
-### trim_left() {#minifiles.trim_left}
+### trim_left() {#minifiles.trim_left .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.trim_left`()</p>
 Trim left part of branch
@@ -1027,7 +1026,7 @@ Trim left part of branch
 
 ---
 
-### trim_right() {#minifiles.trim_right}
+### trim_right() {#minifiles.trim_right .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.trim_right`()</p>
 Trim right part of branch
@@ -1038,7 +1037,7 @@ Trim right part of branch
 
 ---
 
-### reveal_cwd() {#minifiles.reveal_cwd}
+### reveal_cwd() {#minifiles.reveal_cwd .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.reveal_cwd`()</p>
 Reveal current working directory
@@ -1049,7 +1048,7 @@ Reveal current working directory
 
 ---
 
-### show_help() {#minifiles.show_help}
+### show_help() {#minifiles.show_help .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.show_help`()</p>
 Show help window
@@ -1060,7 +1059,7 @@ Show help window
 
 ---
 
-### get_fs_entry() {#minifiles.get_fs_entry}
+### get_fs_entry() {#minifiles.get_fs_entry .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.get_fs_entry`(<span class="help-syntax-special">{buf_id}</span>, <span class="help-syntax-special">{line}</span>)</p>
 Get file system entry data
@@ -1090,7 +1089,7 @@ Returns `nil` if there is no proper file system entry path at the line.
 
 ---
 
-### get_explorer_state() {#minifiles.get_explorer_state}
+### get_explorer_state() {#minifiles.get_explorer_state .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.get_explorer_state`()</p>
 Get state of active explorer
@@ -1101,10 +1100,10 @@ Get state of active explorer
 `(table|nil)` Table with explorer state data or `nil` if no active explorer.
   State data is a table with the following fields:
 
-  - <span class="help-syntax-keys">\<anchor\></span> `(string)` - anchor directory path (see [`MiniFiles.open()`](mini-files.qmd#minifiles.open)).
+  - <span class="help-syntax-keys">\<anchor\></span> `(string)` - anchor directory path (see [MiniFiles.open()](mini-files.qmd#minifiles.open)).
 
   - <span class="help-syntax-keys">\<bookmarks\></span> `(table)` - map from bookmark id (single character) to its data:
-    table with <span class="help-syntax-keys">\<path\></span> and <span class="help-syntax-keys">\<desc\></span> fields (see [`MiniFiles.set_bookmark()`](mini-files.qmd#minifiles.set_bookmark)).
+    table with <span class="help-syntax-keys">\<path\></span> and <span class="help-syntax-keys">\<desc\></span> fields (see [MiniFiles.set\_bookmark()](mini-files.qmd#minifiles.set_bookmark)).
 
   - <span class="help-syntax-keys">\<branch\></span> `(table)` - array of nested paths for currently opened branch.
 
@@ -1120,15 +1119,15 @@ Get state of active explorer
 
 
 
-- [`MiniFiles.set_bookmark()`](mini-files.qmd#minifiles.set_bookmark)
+- [MiniFiles.set\_bookmark()](mini-files.qmd#minifiles.set_bookmark)
 
-- [`MiniFiles.set_branch()`](mini-files.qmd#minifiles.set_branch)
+- [MiniFiles.set\_branch()](mini-files.qmd#minifiles.set_branch)
 
-- [`MiniFiles.set_target_window()`](mini-files.qmd#minifiles.set_target_window)
+- [MiniFiles.set\_target\_window()](mini-files.qmd#minifiles.set_target_window)
 
 ---
 
-### set_target_window() {#minifiles.set_target_window}
+### set_target_window() {#minifiles.set_target_window .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.set_target_window`(<span class="help-syntax-special">{win_id}</span>)</p>
 Set target window
@@ -1141,7 +1140,7 @@ Set target window
 
 ---
 
-### set_branch() {#minifiles.set_branch}
+### set_branch() {#minifiles.set_branch .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.set_branch`(<span class="help-syntax-special">{branch}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Set branch
@@ -1156,7 +1155,7 @@ Set which paths to display. Preview (if enabled) is applied afterwards.
   Each consecutive pair should represent direct parent-child paths.
   Should contain at least one directory path.
   May end with file path (will be previwed).
-  Relative paths are resolved using [`current-directory`](https://neovim.io/doc/user/helptag.html?tag=current-directory).
+  Relative paths are resolved using [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
@@ -1166,11 +1165,11 @@ Set which paths to display. Preview (if enabled) is applied afterwards.
 #### See also {#minifiles.set_branch-seealso}
 
 
-[`MiniFiles.get_explorer_state()`](mini-files.qmd#minifiles.get_explorer_state)
+[MiniFiles.get\_explorer\_state()](mini-files.qmd#minifiles.get_explorer_state)
 
 ---
 
-### set_bookmark() {#minifiles.set_bookmark}
+### set_bookmark() {#minifiles.set_bookmark .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.set_bookmark`(<span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{path}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Set bookmark
@@ -1190,17 +1189,17 @@ Set bookmark
 
 ---
 
-### get_latest_path() {#minifiles.get_latest_path}
+### get_latest_path() {#minifiles.get_latest_path .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.get_latest_path`()</p>
 Get latest used anchor path
 
-Note: if latest used `path` argument for [`MiniFiles.open()`](mini-files.qmd#minifiles.open) was for file,
+Note: if latest used `path` argument for [MiniFiles.open()](mini-files.qmd#minifiles.open) was for file,
 this will return its parent (as it was used as anchor path).
 
 ---
 
-### default_filter() {#minifiles.default_filter}
+### default_filter() {#minifiles.default_filter .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.default_filter`(<span class="help-syntax-special">{fs_entry}</span>)</p>
 Default filter of file system entries
@@ -1226,13 +1225,13 @@ Currently does not filter anything out.
 
 ---
 
-### default_prefix() {#minifiles.default_prefix}
+### default_prefix() {#minifiles.default_prefix .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.default_prefix`(<span class="help-syntax-special">{fs_entry}</span>)</p>
 Default prefix of file system entries
 
 
-- If set up [`mini.icons`](mini-icons.qmd#mini.icons), use [`MiniIcons.get()`](mini-icons.qmd#miniicons.get) for "directory"/"file" category.
+- If set up [mini.icons](mini-icons.qmd#mini.icons), use [MiniIcons.get()](mini-icons.qmd#miniicons.get) for "directory"/"file" category.
 
 - Otherwise:
 
@@ -1256,12 +1255,12 @@ Default prefix of file system entries
 #### Return {#minifiles.default_prefix-return}
 
 
-`(...)` Icon and highlight group name. For more details, see [`MiniFiles.config`](mini-files.qmd#minifiles.config)
-  and [`MiniFiles-examples`](mini-files.qmd#minifiles-examples).
+`(...)` Icon and highlight group name. For more details, see [MiniFiles.config](mini-files.qmd#minifiles.config)
+  and [MiniFiles-examples](mini-files.qmd#minifiles-examples).
 
 ---
 
-### default_sort() {#minifiles.default_sort}
+### default_sort() {#minifiles.default_sort .help-syntax-right-anchor}
 
 <p align="center">`MiniFiles.default_sort`(<span class="help-syntax-special">{fs_entries}</span>)</p>
 Default sort of file system entries

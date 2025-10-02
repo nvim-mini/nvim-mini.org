@@ -1,6 +1,5 @@
 ---
 title: "mini.indentscope documentation"
-toc-depth: 5
 ---
 
 _Generated from the `main` branch of 'mini.nvim'_
@@ -11,7 +10,7 @@ MIT License Copyright (c) 2022 Evgeni Chasnovski
 
 ---
 
-### Module {#miniindentscope}
+### Module {#module .help-syntax-right-anchor}
 
 Indent scope (or just "scope") is a maximum set of consecutive lines which
 contains certain reference line (cursor line by default) and every member
@@ -26,9 +25,9 @@ Features:
 
 
 - Customization of scope computation options can be done on global level
-  (in [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config)), for a certain buffer (using
+  (in [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config)), for a certain buffer (using
   `vim.b.miniindentscope_config` buffer variable), or within a call (using
-  `opts` variable in [`MiniIndentscope.get_scope()`](mini-indentscope.qmd#miniindentscope.get_scope)).
+  `opts` variable in [MiniIndentscope.get\_scope()](mini-indentscope.qmd#miniindentscope.get_scope)).
 
 
 - Customizable notion of a border: which adjacent lines with strictly lower
@@ -40,10 +39,10 @@ Features:
   if you want to place cursor on function header and get scope of its body.
 
 
-- There are textobjects and motions to operate on scope. Support [`count`](https://neovim.io/doc/user/helptag.html?tag=count)
+- There are textobjects and motions to operate on scope. Support [count](https://neovim.io/doc/user/helptag.html?tag=count)
   and dot-repeat (in operator pending mode).
 
-#### Setup {#miniindentscope-setup}
+#### Setup {#module-setup}
 
 
 This module needs a setup with `require('mini.indentscope').setup({})`
@@ -51,14 +50,14 @@ This module needs a setup with `require('mini.indentscope').setup({})`
 `MiniIndentscope` which you can use for scripting or manually (with `:lua
 MiniIndentscope.*`).
 
-See [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config) for available config settings.
+See [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config) for available config settings.
 
 You can override runtime config settings locally to buffer inside
 `vim.b.miniindentscope_config` which should have same structure as
-`MiniIndentscope.config`. See [`mini.nvim-buffer-local-config`](mini-nvim.qmd#mini.nvim-buffer-local-config) for more
+`MiniIndentscope.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more
 details.
 
-#### Comparisons {#miniindentscope-comparisons}
+#### Comparisons {#module-comparisons}
 
 
 
@@ -67,11 +66,11 @@ details.
     - Its main functionality is about showing static guides of indent levels.
 
     - Implementation of 'mini.indentscope' is similar to
-      'indent-blankline.nvim' (using [`extmarks`](https://neovim.io/doc/user/helptag.html?tag=extmarks) on first column to be shown
+      'indent-blankline.nvim' (using [extmarks](https://neovim.io/doc/user/helptag.html?tag=extmarks) on first column to be shown
       even on blank lines). They can be used simultaneously, but it will
       lead to one of the visualizations being on top (hiding) of another.
 
-#### Highlight groups {#miniindentscope-highlightgroups}
+#### Highlight groups {#module-highlightgroups}
 
 
 
@@ -82,20 +81,20 @@ details.
   indent is not multiple of 'shiftwidth'.
   Default: links to `MiniIndentscopeSymbol`.
 
-To change any highlight group, set it directly with [`nvim_set_hl()`](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
 
-#### Disabling {#miniindentscope-disabling}
+#### Disabling {#module-disabling}
 
 
 To disable autodrawing, set `vim.g.miniindentscope_disable` (globally) or
 `vim.b.miniindentscope_disable` (for a buffer) to `true`. Considering high
 number of different scenarios and customization intentions, writing exact
 rules for disabling module's functionality is left to user. See
-[`mini.nvim-disabling-recipes`](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
+[mini.nvim-disabling-recipes](mini-nvim.qmd#mini.nvim-disabling-recipes) for common recipes.
 
 ---
 
-### Drawing {#miniindentscope-drawing}
+### Drawing {#miniindentscope-drawing .help-syntax-right-anchor}
 
 Draw of scope indicator is done as iterative animation. It has the
 following design:
@@ -130,7 +129,7 @@ following design:
 
 ---
 
-### setup() {#miniindentscope.setup}
+### setup() {#miniindentscope.setup .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.setup`(<span class="help-syntax-special">{config}</span>)</p>
 Module setup
@@ -139,7 +138,7 @@ Module setup
 
 
 
-<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config).
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config).
 
 #### Usage {#miniindentscope.setup-usage}
 
@@ -153,7 +152,7 @@ Module setup
 
 ---
 
-### config {#miniindentscope.config}
+### config {#miniindentscope.config .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.config`</p>
 #### Defaults {#miniindentscope.config-defaults}
@@ -268,7 +267,7 @@ on line 3 and it is whole buffer):
 ##### Number of lines {#miniindentscope.config-options-numberoflines}
 
 
-Field `n_lines` defines [`MiniIndentscope.get_scope()`](mini-indentscope.qmd#miniindentscope.get_scope) behavior for how many
+Field `n_lines` defines [MiniIndentscope.get\_scope()](mini-indentscope.qmd#miniindentscope.get_scope) behavior for how many
 lines above/below to check before iteration is stopped. Scope that reached
 computation limit has <span class="help-syntax-keys">\<is_incomplete\></span> field set to `true`. It will also not
 be auto drawn with default `config.draw.predicate`.
@@ -287,7 +286,7 @@ will be returned if it is recognized as border.
 
 ---
 
-### get_scope() {#miniindentscope.get_scope}
+### get_scope() {#miniindentscope.get_scope .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.get_scope`(<span class="help-syntax-special">{line}</span>, <span class="help-syntax-special">{col}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Compute indent scope
@@ -307,7 +306,7 @@ Options controlling actual computation is taken from these places in order:
 - Buffer local variable `vim.b.miniindentscope_config` (`options` field).
   Useful to define local behavior (for example, for a certain filetype).
 
-- Global options from [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config).
+- Global options from [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config).
 
 #### Algorithm overview {#miniindentscope.get_scope-algorithmoverview}
 
@@ -327,7 +326,7 @@ Options controlling actual computation is taken from these places in order:
 
 - Based on top and bottom lines with strictly lower indent, construct
   scopes's border. The way it is computed is decided based on `border`
-  option (see [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config) for more information).
+  option (see [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config) for more information).
 
 - Compute border indent as maximum indent of border lines (or reference
   indent minus one in case of no border). This is used during drawing
@@ -338,15 +337,15 @@ Options controlling actual computation is taken from these places in order:
 
 For every line indent is intended to be computed unambiguously:
 
-- For "normal" lines indent is an output of [`indent()`](https://neovim.io/doc/user/helptag.html?tag=indent\(\)).
+- For "normal" lines indent is an output of [indent()](https://neovim.io/doc/user/helptag.html?tag=indent\(\)).
 
 - Indent is `-1` for imaginary lines 0 and past last line.
 
 - For blank and empty lines indent is computed based on previous
-  ([`prevnonblank()`](https://neovim.io/doc/user/helptag.html?tag=prevnonblank\(\))) and next ([`nextnonblank()`](https://neovim.io/doc/user/helptag.html?tag=nextnonblank\(\))) non-blank lines. The way
+  ([prevnonblank()](https://neovim.io/doc/user/helptag.html?tag=prevnonblank\(\))) and next ([nextnonblank()](https://neovim.io/doc/user/helptag.html?tag=nextnonblank\(\))) non-blank lines. The way
   it is computed is decided based on `border` in order to not include blank
   lines at edge of scope's body if there is no border there. See
-  [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config) for a details example.
+  [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config) for a details example.
 
 #### Parameters {#miniindentscope.get_scope-parameters}
 
@@ -357,11 +356,11 @@ For every line indent is intended to be computed unambiguously:
 
 <span class="help-syntax-special">{col}</span> `(number|nil)` Column number (starts from 1). Default: if
   `indent_at_cursor` option is `true` - cursor column from `curswant` of
-  [`getcurpos()`](https://neovim.io/doc/user/helptag.html?tag=getcurpos\(\)) (allows for more natural behavior on empty lines);
+  [getcurpos()](https://neovim.io/doc/user/helptag.html?tag=getcurpos\(\)) (allows for more natural behavior on empty lines);
   `math.huge` otherwise in order to not incorporate cursor in computation.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options to override global or buffer local ones (see
-  [`MiniIndentscope.config`](mini-indentscope.qmd#miniindentscope.config)).
+  [MiniIndentscope.config](mini-indentscope.qmd#miniindentscope.config)).
 
 #### Return {#miniindentscope.get_scope-return}
 
@@ -384,7 +383,7 @@ For every line indent is intended to be computed unambiguously:
 
 ---
 
-### draw() {#miniindentscope.draw}
+### draw() {#miniindentscope.draw .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.draw`(<span class="help-syntax-special">{scope}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Draw scope manually
@@ -397,27 +396,27 @@ Numbering starts from one.
 
 
 
-<span class="help-syntax-special">{scope}</span> `(table|nil)` Scope. Default: output of [`MiniIndentscope.get_scope()`](mini-indentscope.qmd#miniindentscope.get_scope)
+<span class="help-syntax-special">{scope}</span> `(table|nil)` Scope. Default: output of [MiniIndentscope.get\_scope()](mini-indentscope.qmd#miniindentscope.get_scope)
   with default arguments.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Currently supported:
 
    - <span class="help-syntax-keys">\<animation_fun\></span> - animation function for drawing. See
-     [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing) and [`MiniIndentscope.gen_animation`](mini-indentscope.qmd#miniindentscope.gen_animation).
+     [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing) and [MiniIndentscope.gen\_animation](mini-indentscope.qmd#miniindentscope.gen_animation).
 
    - <span class="help-syntax-keys">\<priority\></span> - priority number for visualization. See `priority` option
-     for [`nvim_buf_set_extmark()`](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_extmark\(\)).
+     for [nvim\_buf\_set\_extmark()](https://neovim.io/doc/user/helptag.html?tag=nvim_buf_set_extmark\(\)).
 
 ---
 
-### undraw() {#miniindentscope.undraw}
+### undraw() {#miniindentscope.undraw .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.undraw`()</p>
 Undraw currently visible scope manually
 
 ---
 
-### gen_animation {#miniindentscope.gen_animation}
+### gen_animation {#miniindentscope.gen_animation .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation`</p>
 Generate builtin animation function
@@ -443,11 +442,11 @@ Examples:
 #### See also {#miniindentscope.gen_animation-seealso}
 
 
-[`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing) for more information about how drawing is done.
+[MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing) for more information about how drawing is done.
 
 ---
 
-### gen_animation.none() {#miniindentscope.gen_animation.none}
+### gen_animation.none() {#miniindentscope.gen_animation.none .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.none`()</p>
 Generate no animation
@@ -456,7 +455,7 @@ Show indicator immediately. Same as animation function always returning 0.
 
 ---
 
-### gen_animation.linear() {#miniindentscope.gen_animation.linear}
+### gen_animation.linear() {#miniindentscope.gen_animation.linear .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.linear`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate linear progression
@@ -480,11 +479,11 @@ Generate linear progression
 #### Return {#miniindentscope.gen_animation.linear-return}
 
 
-`(function)` Animation function (see [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing)).
+`(function)` Animation function (see [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing)).
 
 ---
 
-### gen_animation.quadratic() {#miniindentscope.gen_animation.quadratic}
+### gen_animation.quadratic() {#miniindentscope.gen_animation.quadratic .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.quadratic`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate quadratic progression
@@ -508,11 +507,11 @@ Generate quadratic progression
 #### Return {#miniindentscope.gen_animation.quadratic-return}
 
 
-`(function)` Animation function (see [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing)).
+`(function)` Animation function (see [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing)).
 
 ---
 
-### gen_animation.cubic() {#miniindentscope.gen_animation.cubic}
+### gen_animation.cubic() {#miniindentscope.gen_animation.cubic .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.cubic`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate cubic progression
@@ -536,11 +535,11 @@ Generate cubic progression
 #### Return {#miniindentscope.gen_animation.cubic-return}
 
 
-`(function)` Animation function (see [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing)).
+`(function)` Animation function (see [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing)).
 
 ---
 
-### gen_animation.quartic() {#miniindentscope.gen_animation.quartic}
+### gen_animation.quartic() {#miniindentscope.gen_animation.quartic .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.quartic`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate quartic progression
@@ -564,11 +563,11 @@ Generate quartic progression
 #### Return {#miniindentscope.gen_animation.quartic-return}
 
 
-`(function)` Animation function (see [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing)).
+`(function)` Animation function (see [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing)).
 
 ---
 
-### gen_animation.exponential() {#miniindentscope.gen_animation.exponential}
+### gen_animation.exponential() {#miniindentscope.gen_animation.exponential .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.gen_animation.exponential`(<span class="help-syntax-special">{opts}</span>)</p>
 Generate exponential progression
@@ -592,11 +591,11 @@ Generate exponential progression
 #### Return {#miniindentscope.gen_animation.exponential-return}
 
 
-`(function)` Animation function (see [`MiniIndentscope-drawing`](mini-indentscope.qmd#miniindentscope-drawing)).
+`(function)` Animation function (see [MiniIndentscope-drawing](mini-indentscope.qmd#miniindentscope-drawing)).
 
 ---
 
-### move_cursor() {#miniindentscope.move_cursor}
+### move_cursor() {#miniindentscope.move_cursor .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.move_cursor`(<span class="help-syntax-special">{side}</span>, <span class="help-syntax-special">{use_border}</span>, <span class="help-syntax-special">{scope}</span>)</p>
 Move cursor within scope
@@ -612,16 +611,16 @@ Cursor is placed on a first non-blank character of target line.
 <span class="help-syntax-special">{use_border}</span> `(boolean|nil)` Whether to move to border or within scope's body.
   If particular border is absent, body is used.
 
-<span class="help-syntax-special">{scope}</span> `(table|nil)` Scope to use. Default: output of [`MiniIndentscope.get_scope()`](mini-indentscope.qmd#miniindentscope.get_scope).
+<span class="help-syntax-special">{scope}</span> `(table|nil)` Scope to use. Default: output of [MiniIndentscope.get\_scope()](mini-indentscope.qmd#miniindentscope.get_scope).
 
 ---
 
-### operator() {#miniindentscope.operator}
+### operator() {#miniindentscope.operator .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.operator`(<span class="help-syntax-special">{side}</span>, <span class="help-syntax-special">{add_to_jumplist}</span>)</p>
 Function for motion mappings
 
-Move to a certain side of border. Respects [`count`](https://neovim.io/doc/user/helptag.html?tag=count) and dot-repeat (in
+Move to a certain side of border. Respects [count](https://neovim.io/doc/user/helptag.html?tag=count) and dot-repeat (in
 operator-pending mode). Doesn't move cursor for scope that is not shown
 (drawing indent less that zero).
 
@@ -636,12 +635,12 @@ operator-pending mode). Doesn't move cursor for scope that is not shown
 
 ---
 
-### textobject() {#miniindentscope.textobject}
+### textobject() {#miniindentscope.textobject .help-syntax-right-anchor}
 
 <p align="center">`MiniIndentscope.textobject`(<span class="help-syntax-special">{use_border}</span>)</p>
 Function for textobject mappings
 
-Respects [`count`](https://neovim.io/doc/user/helptag.html?tag=count) and dot-repeat (in operator-pending mode). Doesn't work
+Respects [count](https://neovim.io/doc/user/helptag.html?tag=count) and dot-repeat (in operator-pending mode). Doesn't work
 for scope that is not shown (drawing indent less that zero).
 
 #### Parameters {#miniindentscope.textobject-parameters}

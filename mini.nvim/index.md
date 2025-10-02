@@ -1,9 +1,12 @@
 ---
 title: "mini.nvim"
-toc-depth: 5
 ---
 
 <p align="center"> <img src="logo.png" alt="mini.nvim" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
+
+
+### All-in-one plugin
 
 Library of 40+ independent Lua modules improving overall [Neovim](https://github.com/neovim/neovim) (version 0.9 and higher) experience with minimal effort. They all share same configuration approaches and general design principles.
 
