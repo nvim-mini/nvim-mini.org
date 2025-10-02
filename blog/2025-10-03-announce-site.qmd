@@ -1,0 +1,30 @@
+---
+title: "MINI now has its own site"
+author: Evgeni Chasnovski
+date: 2025-10-03
+categories: [announce]
+description: "Dedicated domain, own blog, generated documentation"
+---
+
+Hello, Neovim users!
+
+For the entirety of the 'mini.nvim'/MINI project its main place of documentation was GitHub. It means that "official" links to module READMEs and help files were something like `https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-ai.md` and `https://github.com/nvim-mini/mini.nvim/blob/126ce3328c78399dcff58272f6f540a373b62a75/doc/mini-ai.txt#L1`. But not any more!
+
+Please welcome [nvim-mini.org](https://nvim-mini.org)! It is a long-time-in-the-works project that is finally public. It required a careful work of updating 'mini.nvim' documentation to be usable in both built-in `:help` and in this auto-generated site (it uses [Quarto](https://quarto.org/) and custom Lua scripts).
+
+Here are the improvements a dedicated site brings (apart form adding a bit more credibility to the project):
+
+- Own [blog](index.qmd) which is already populated with posts I made on Reddit for nearly four years. The main benefit is that it makes it harder to take those posts away from the web, which was a [real issue](https://www.reddit.com/r/neovim/comments/1mxxni1/comment/na8h6e3/?context=3) for me, unfortunately. Plus it opens possibilities to create posts that can be freely linked on different blog post aggregation sites.
+
+- Generated 'mini.nvim' documentation: both [READMEs](../mini.nvim/index.md), [change log](../mini.nvim/CHANGELOG.md), and [help files](../mini.nvim/doc/mini-nvim.qmd). The latter is much more readable and usable than linking to a "*.txt" file on GitHub:
+    - It has `:help` like highlighting.
+    - It auto-links tag links (like the one on which you can press `<C-]>` and navigate to its target), making reading and navigation **much** better. And not only it links within 'mini.nvim' tags, it also links to [neovim.io](https://neovim.io) documentation for built-in tags as well!
+    - It creates more robust links to help sections (like ['mini.pick' overview](../mini.nvim/doc/mini-pick.html#minipick-overview)) and change log entries (like ['mini.completion' changes in v0.16.0](../mini.nvim/CHANGELOG.html#v0.16.0-mini.completion)). The latter is not possible on GitHub because it doesn't handle duplicating headings very well for this task.
+
+    There are still downsides to this approach, of course. Links to documentation are not "immutable" (like GitHub's links to a specific commit) and now only display documentation of the 'main' branch. I'll see what I can do here (like maybe provide snapshots of documentations for releases), but this is not the highest priority right now.
+
+- A more suitable place to document things outside of 'mini.nvim' plugin but within MINI project. Which are planned and should be coming soon-ish (I hope)!
+
+All in all, I am very happy to finally have a dedicated website for the project.
+
+Thank you all for reading this post and supporting MINI. Hope to meet you soon!
