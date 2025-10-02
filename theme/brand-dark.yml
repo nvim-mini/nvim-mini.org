@@ -48,6 +48,7 @@ typography:
     color: primary
   monospace:
     family: monospace
+    background-color: bg-2
   monospace-inline:
     color: cyan
     background-color: bg-2
@@ -62,25 +63,7 @@ defaults:
       navbar-fg: "#E6E2DB"
       code-block-bg: "#11262D"
     rules: |
-      p {
-        margin-top: 0em;
-        margin-bottom: 0.5em;
-      }
-      h1 { font-size: 2em }
-      h2 { font-size: 1.8em; margin-top: 1em; margin-bottom: 0.25em; }
-      h3 { font-size: 1.6em; margin-top: 1em; margin-bottom: 0.25em; }
-      h4 { font-size: 1.4em; margin-top: 1em; margin-bottom: 0.25em; font-weight: normal }
-      h5 { font-size: 1.2em; font-weight: normal }
-      h6 { font-size: 1em; font-weight: normal }
-
-      p pre code:not(.sourceCode),
-      li pre code:not(.sourceCode),
-      pre code:not(.sourceCode) {
-        background-color: #11262D;
-      }
-      .navbar {
-        border-bottom: solid 1px #E6E2DB
-      }
+      /* General adjustments */
       .blockquote {
         border-left: solid #D9D8AA;
         color: #98948E;
@@ -89,9 +72,36 @@ defaults:
         color: #98948E;
         background: #222222;
       }
-      div.category {
-        font-size: 0.8rem;
+      .about-image { border: solid 2px }
+      div.quarto-about-trestles .about-contents { border-left: none }
+      div.category { font-size: 0.8rem; }
+
+      p { margin-top: 0em; margin-bottom: 0.5em; }
+
+      p pre code:not(.sourceCode),
+      li pre code:not(.sourceCode),
+      pre code:not(.sourceCode) {
+        background-color: #11262D;
       }
+
+      /* Headings */
+      h1 { font-size: 2em }
+      h2 { font-size: 1.75em; margin-top: 1em; margin-bottom: 0.25em; }
+      h3 { font-size: 1.5em; margin-top: 1em; margin-bottom: 0.25em; }
+      h4 { font-size: 1.25em; margin-top: 1em; margin-bottom: 0.25em; font-weight: normal; }
+      h5 { font-size: 1.1em; font-weight: normal; }
+      h6 { font-size: 1em; font-weight: normal; }
+
+      /* Navbar and offset when when navigating to the anchor*/
+      .navbar {
+        border-bottom: solid 1px #E6E2DB;
+        min-height: 60px;
+      }
+      /* Using monospace font is just a visual preference */
+      .navbar-title, .nav-item { font-family: monospace }
+      :target { scroll-margin-top: 60px; }
+
+      /* Blog listing */
       .blog-listing-item {
         padding-top: 1em;
         padding-bottom: 1em;
@@ -119,12 +129,9 @@ defaults:
         border: solid 1px;
         border-radius: .25rem;
       }
-      .help-syntax-keys {
-        color: #EDC7E7
-      }
-      .help-syntax-special {
-        color: #D9D8AA
-      }
+      /* Help file custom syntax */
+      .help-syntax-keys { color: #EDC7E7 }
+      .help-syntax-special { color: #D9D8AA }
       h3.help-syntax-right-anchor {
         text-align: right;
         font-size: 1em;
