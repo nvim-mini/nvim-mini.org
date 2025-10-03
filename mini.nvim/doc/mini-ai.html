@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-f4e84033c18e8c370a330967136b3407.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-5386360745f20d466fa5a7e94763a348.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-deb52f76cf1f38a7748e513572c41f9a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-fc10660e286e6ab0b07026e33ebb6568.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -445,8 +445,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a name="mini.ai" href="../../mini.nvim/doc/mini-ai.html#mini.ai"><b>mini.ai</b></a> Extend and create a/i textobjects</p>
 <p>MIT License Copyright (c) 2022 Evgeni Chasnovski</p>
 <hr>
-<section id="module" class="level3">
-<h3 class="anchored" data-anchor-id="module">Module</h3>
+<section id="module" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="module">Module</h3>
 <p>Enhance some builtin <a href="https://neovim.io/doc/user/helptag.html?tag=text-objects">text-objects</a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=a(">a(</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a)">a)</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=a'">a’</a>, and more), create new ones (like <code>a*</code>, <code>a&lt;Space&gt;</code>, <code>af</code>, <code>a?</code>, and more), and allow user to create their own.</p>
 <p>Features:</p>
 <ul>
@@ -521,8 +521,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai-builtin-textobjects" class="level3">
-<h3 class="anchored" data-anchor-id="miniai-builtin-textobjects">Builtin textobjects</h3>
+<section id="miniai-builtin-textobjects" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai-builtin-textobjects">Builtin textobjects</h3>
 <p>This table describes all builtin textobjects along with what they represent. Explanation:</p>
 <ul>
 <li><p><code>Key</code> represents the textobject identifier: single character which should be typed after <code>a</code>/<code>i</code>.</p></li>
@@ -577,8 +577,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="miniai-glossary" class="level3">
-<h3 class="anchored" data-anchor-id="miniai-glossary">Glossary</h3>
+<section id="miniai-glossary" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai-glossary">Glossary</h3>
 <p>Note: this is similar to <a href="../../mini.nvim/doc/mini-surround.html#minisurround-glossary">MiniSurround-glossary</a>.</p>
 <section id="miniai-glossary-region" class="level4">
 <h4 class="anchored" data-anchor-id="miniai-glossary-region">REGION</h4>
@@ -649,8 +649,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai-textobject-specification" class="level3">
-<h3 class="anchored" data-anchor-id="miniai-textobject-specification">Textobject specification</h3>
+<section id="miniai-textobject-specification" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai-textobject-specification">Textobject specification</h3>
 <p>Textobject specification has a structure of composed pattern (see <a href="../../mini.nvim/doc/mini-ai.html#miniai-glossary">MiniAi-glossary</a>) with two differences:</p>
 <ul>
 <li><p>Last pattern(s) should have even number of empty capture groups denoting how the last string should be processed to extract <code>a</code> or <code>i</code> textobject:</p>
@@ -733,8 +733,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>See <a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec">MiniAi.gen_spec</a> for function wrappers to create commonly used textobject specifications.</p>
 <hr>
 </section>
-<section id="miniai-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="miniai-algorithm">Algorithm</h3>
+<section id="miniai-algorithm" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai-algorithm">Algorithm</h3>
 <p>Search for the textobjects relies on these principles:</p>
 <ul>
 <li><p>It uses same input data as described in <a href="../../mini.nvim/doc/mini-ai.html#miniai.find_textobject">MiniAi.find_textobject()</a>, i.e.&nbsp;whether it is <code>a</code> or <code>i</code> textobject, its identifier, reference region, etc.</p></li>
@@ -756,8 +756,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="miniai.setup" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.setup">setup()</h3>
+<section id="miniai.setup" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.setup">setup()</h3>
 <p align="center">
 <code>MiniAi.setup</code>(<span class="help-syntax-special">{config}</span>)
 </p>
@@ -774,8 +774,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.config" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.config">config</h3>
+<section id="miniai.config" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.config">config</h3>
 <p align="center">
 <code>MiniAi.config</code>
 </p>
@@ -907,8 +907,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.find_textobject" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.find_textobject">find_textobject()</h3>
+<section id="miniai.find_textobject" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.find_textobject">find_textobject()</h3>
 <p align="center">
 <code>MiniAi.find_textobject</code>(<span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
@@ -931,8 +931,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.move_cursor" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.move_cursor">move_cursor()</h3>
+<section id="miniai.move_cursor" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.move_cursor">move_cursor()</h3>
 <p align="center">
 <code>MiniAi.move_cursor</code>(<span class="help-syntax-special">{side}</span>, <span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
@@ -946,8 +946,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.gen_spec" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec">gen_spec</h3>
+<section id="miniai.gen_spec" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec">gen_spec</h3>
 <p align="center">
 <code>MiniAi.gen_spec</code>
 </p>
@@ -972,8 +972,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="miniai.gen_spec.argument" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec.argument">gen_spec.argument()</h3>
+<section id="miniai.gen_spec.argument" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec.argument">gen_spec.argument()</h3>
 <p align="center">
 <code>MiniAi.gen_spec.argument</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
@@ -996,8 +996,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.gen_spec.function_call" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec.function_call">gen_spec.function_call()</h3>
+<section id="miniai.gen_spec.function_call" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec.function_call">gen_spec.function_call()</h3>
 <p align="center">
 <code>MiniAi.gen_spec.function_call</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
@@ -1016,8 +1016,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.gen_spec.pair" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec.pair">gen_spec.pair()</h3>
+<section id="miniai.gen_spec.pair" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec.pair">gen_spec.pair()</h3>
 <p align="center">
 <code>MiniAi.gen_spec.pair</code>(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
@@ -1040,8 +1040,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.gen_spec.treesitter" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec.treesitter">gen_spec.treesitter()</h3>
+<section id="miniai.gen_spec.treesitter" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec.treesitter">gen_spec.treesitter()</h3>
 <p align="center">
 <code>MiniAi.gen_spec.treesitter</code>(<span class="help-syntax-special">{ai_captures}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
@@ -1093,8 +1093,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.gen_spec.user_prompt" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.gen_spec.user_prompt">gen_spec.user_prompt()</h3>
+<section id="miniai.gen_spec.user_prompt" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.gen_spec.user_prompt">gen_spec.user_prompt()</h3>
 <p align="center">
 <code>MiniAi.gen_spec.user_prompt</code>()
 </p>
@@ -1110,8 +1110,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="miniai.select_textobject" class="level3">
-<h3 class="anchored" data-anchor-id="miniai.select_textobject">select_textobject()</h3>
+<section id="miniai.select_textobject" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.select_textobject">select_textobject()</h3>
 <p align="center">
 <code>MiniAi.select_textobject</code>(<span class="help-syntax-special">{ai_type}</span>, <span class="help-syntax-special">{id}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>

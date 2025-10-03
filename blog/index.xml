@@ -10,7 +10,42 @@
 <atom:link href="https://echasnovski.github.io/mini-site/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Thu, 10 Jul 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 03 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>MINI now has its own site</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://echasnovski.github.io/mini-site/blog/2025-10-03-announce-site.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello, Neovim users!</p>
+<p>For the entirety of the ‘mini.nvim’/MINI project its main place of documentation was GitHub. It means that “official” links to module READMEs and help files were something like <code>https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-ai.md</code> and <code>https://github.com/nvim-mini/mini.nvim/blob/126ce3328c78399dcff58272f6f540a373b62a75/doc/mini-ai.txt#L1</code>. But not any more!</p>
+<p>Please welcome <a href="nvim-mini.org">nvim-mini.org</a>! It is a long-time-in-the-works project that is finally public. It required a careful work of updating ‘mini.nvim’ documentation to be usable in both built-in <code>:help</code> and in this auto-generated site (it uses <a href="https://quarto.org/">Quarto</a> and custom Lua scripts).</p>
+<p>Here are the improvements a dedicated site brings (apart form adding a bit more credibility to the project):</p>
+<ul>
+<li><p>Own <a href="../blog/index.html">blog</a> which is already populated with posts I made on Reddit for nearly four years. The main benefit is that it makes it harder to take those posts away from the web, which was a <a href="https://www.reddit.com/r/neovim/comments/1mxxni1/comment/na8h6e3/?context=3">real issue</a> for me, unfortunately. Plus it opens possibilities to create posts that can be freely linked on different blog post aggregation sites.</p></li>
+<li><p>Generated ‘mini.nvim’ documentation: both <a href="../mini.nvim/index.html">READMEs</a>, <a href="../mini.nvim/CHANGELOG.html">change log</a>, and <a href="../mini.nvim/doc/mini-nvim.html">help files</a>. The latter is much more readable and usable than linking to a “*.txt” file on GitHub:</p>
+<ul>
+<li>It has <code>:help</code> like highlighting.</li>
+<li>It auto-links tag links (like the one on which you can press <code>&lt;C-]&gt;</code> and navigate to its target), making reading and navigation <strong>much</strong> better. And not only it links within ‘mini.nvim’ tags, it also links to <a href="https://neovim.io">neovim.io</a> documentation for built-in tags as well!</li>
+<li>It creates more robust links to help sections (like <a href="https://echasnovski.github.io/mini-site/mini.nvim/doc/mini-pick.html#minipick-overview">‘mini.pick’ overview</a>) and change log entries (like <a href="https://echasnovski.github.io/mini-site/mini.nvim/CHANGELOG.html#v0.16.0-mini.completion">‘mini.completion’ changes in v0.16.0</a>). The latter is not possible on GitHub because it doesn’t handle duplicating headings very well for this task.</li>
+</ul>
+<p>There are still downsides to this approach, of course. Links to documentation are not “immutable” (like GitHub’s links to a specific commit) and now only display documentation of the ‘main’ branch. I’ll see what I can do here (like maybe provide snapshots of documentations for releases), but this is not the highest priority right now.</p></li>
+<li><p>A more suitable place to document things outside of ‘mini.nvim’ plugin but within MINI project. Which are planned and should be coming soon-ish (I hope)!</p></li>
+</ul>
+<p>All in all, I am very happy to finally have a dedicated website for the project.</p>
+<p>Thank you all for reading this post and supporting MINI. Hope to meet you soon!</p>
+
+
+
+ ]]></description>
+  <category>announce</category>
+  <guid>https://echasnovski.github.io/mini-site/blog/2025-10-03-announce-site.html</guid>
+  <pubDate>Fri, 03 Oct 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>New color schemes</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -987,41 +1022,6 @@
   <category>reddit</category>
   <guid>https://echasnovski.github.io/mini-site/blog/2023-10-13-announce-mini-pick.html</guid>
   <pubDate>Fri, 13 Oct 2023 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Release 0.10.0</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://echasnovski.github.io/mini-site/blog/2023-09-05-release-0100.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/16antd6/mininvim_release_0100_files_clue_operators_and/">posted on Reddit</a></em></p>
-<p>Hello, Neovim users!</p>
-<p>I would like to offer you to join me in saying late greetings to this autumn with a release of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> version 0.10.0. It is mostly about introducing three (quite feature full, dare I say) modules and minor updates of existing ones.</p>
-<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/releases/tag/v0.10.0">full release description</a> if you are curious.</p>
-<hr>
-<p>Three new modules came out of beta-testing:</p>
-<ul>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md">mini.files</a> - Navigate and manipulate file system. A file explorer with column view capable of manipulating file system by editing text. Can create/delete/rename/copy/move files/directories inside and across directories.</p></li>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-clue.md">mini.clue</a> - Show next key clues. Think about it as somewhat of a cross between ‘which-key’ and ‘hydra’. Implements custom key query process with customizable opt-in triggers, next key descriptions (clues), hydra-like submodes, window delay/config. Provides clue sets for some built-in concepts: <code>g</code>/<code>z</code> keys, window commands, etc.</p></li>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-operators.md">mini.operators</a> - Various text edit operators: replace, exchange, multiply, sort, evaluate. Creates mappings to operate on textobject, line, and visual selection. Supports <code>count</code> and dot-repeat.</p></li>
-</ul>
-<hr>
-<p>The most prominent update of existing modules comes from ‘mini.surround’: its <code>add</code> (<code>sa</code>) now can replicate left and right parts by respecting <code>[count]</code>. In Normal mode two kinds of <code>[count]</code> is respected: one for operator (replicates left and right parts) and one for textobject/motion. In Visual mode <code>[count]</code> replicates parts.</p>
-<hr>
-<p>All of new modules pack a lot of functionality in a small container and (at least I hope) user-friendly design. If you haven’t already, please do check them out.</p>
-<p>Thanks for reading! Hope to see you in the next module release!</p>
-
-
-
- ]]></description>
-  <category>release</category>
-  <category>reddit</category>
-  <guid>https://echasnovski.github.io/mini-site/blog/2023-09-05-release-0100.html</guid>
-  <pubDate>Tue, 05 Sep 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
