@@ -16,8 +16,9 @@ If you want to help this project grow but don't know where to start, check out [
 
 For a history of changes, including current development version, see [change log](CHANGELOG.md).
 
-> [!NOTE]
-> This was previously hosted at `echasnovski/mini.nvim`. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+::: {.callout-note}
+This was previously hosted at `echasnovski/mini.nvim`. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+:::
 
 ## Table of contents
 

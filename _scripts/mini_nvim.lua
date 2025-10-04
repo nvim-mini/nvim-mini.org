@@ -346,6 +346,46 @@ local replace_demo_link = function(lines)
   end
 end
 
+local convert_quote_callouts = function(lines)
+  local in_alert = false
+  local i = 1
+
+  -- https://quarto.org/docs/authoring/callouts.html#callout-types
+  local allowed_tags = { "note", "warning", "important", "tip", "caution" }
+
+  while i <= #lines do
+    local line = lines[i]
+    local start_match = line:match('^>%s*%[!(%w+)%]') -- match '> [!NOTE]'
+
+    if start_match then
+      -- Start of blockquote block
+      in_alert = true
+      local alert = start_match:lower()
+      if vim.list_contains(allowed_tags, alert) then
+        lines[i] = '::: {.callout-' ..  alert .. '}'
+      else
+        lines[i] = ':::'
+      end
+    elseif in_alert then
+      if line:match('^>') then
+        -- Strip leading '>' and whitespaces
+        lines[i] = line:gsub('^>%s?', '')
+      else
+        -- End of blockquote block: insert closing ::: before this line
+        table.insert(lines, i, ':::')
+        in_alert = false
+        i = i + 1 -- skip the inserted ::: and current line
+      end
+    end
+    i = i + 1
+  end
+
+  -- Close if file ends in blockquote
+  if in_alert then
+    table.insert(lines, ':::')
+  end
+end
+
 local replace_help_links = function(lines)
   for i, l in ipairs(lines) do
     lines[i] = l:gsub('%(%.%./doc/(.-)%.txt%)', '(../doc/%1.qmd)'):gsub('%(doc/(.-)%.txt%)', '(doc/%1.qmd)')
@@ -373,6 +413,7 @@ local adjust_readmes = function()
       local lines = vim.fn.readfile(path)
 
       replace_demo_link(lines)
+      convert_quote_callouts(lines)
       replace_help_links(lines)
       add_source_note(lines)
       adjust_header_footer(lines, 'mini.' .. file:match('(%w+)%.md$'))
@@ -386,6 +427,7 @@ local adjust_readmes = function()
   local path = vim.fs.joinpath('mini.nvim/index.md')
   local lines = vim.fn.readfile(path)
   replace_help_links(lines)
+  convert_quote_callouts(lines)
   add_source_note(lines)
   adjust_header_footer(lines, 'mini.nvim')
   vim.fn.writefile(lines, path)
