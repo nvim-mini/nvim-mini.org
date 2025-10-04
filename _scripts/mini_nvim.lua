@@ -407,6 +407,3 @@ end
 
 local _, err_msg_changelog = pcall(adjust_changelog)
 if err_msg_changelog then io.write('Error during adjusting changelog:\n' .. err_msg_changelog) end
-
--- Finish
-vim.cmd('quit')
