@@ -12,8 +12,9 @@ See more details in [Features](#features) and [Documentation](../doc/mini-status
 
 ---
 
-> [!NOTE]
-> This was previously hosted at a personal `echasnovski` GitHub account. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+::: {.callout-note}
+This was previously hosted at a personal `echasnovski` GitHub account. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+:::
 
 ⦿ This is a part of [mini.nvim](https://github.com/nvim-mini/mini.nvim) library. Please use [this link](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-statusline.md) if you want to mention this module.
 

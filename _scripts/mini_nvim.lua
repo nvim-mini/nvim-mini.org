@@ -346,6 +346,45 @@ local replace_demo_link = function(lines)
   end
 end
 
+local replace_quote_alerts = function(lines)
+  -- Quotes on GitHub can start with special "Alert" syntax for special render.
+  -- The syntax is `> [!<kind>]`. Like `> [!NOTE]` or `> [!TIP]`.
+  -- Quarto has similar thing but it is called callout blocks and the syntax
+  -- is different. Thankfully, kinds are the same, just lowercase.
+  --
+  -- Sources:
+  -- https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts
+  -- https://quarto.org/docs/authoring/callouts.html#callout-types
+  local allowed_kinds = {
+    NOTE = true,
+    TIP = true,
+    IMPORTANT = true,
+    WARNING = true,
+    CAUTION = true,
+  }
+
+  local alert_start, alert_kind
+  local n_repl, n_lines = 0, #lines
+  for i, l in iter_noncode(lines) do
+    if alert_start == nil then
+      alert_kind = l:match('^>%s+%[!(%w+)%]$')
+      if allowed_kinds[alert_kind] ~= nil and is_blank(lines[i - 1] or '') then alert_start = i end
+    else
+      -- Remove quotes of the whole block until it ends.
+      -- Accout for possible quote alert at last or second to last line.
+      lines[i], n_repl = l:gsub('^>%s+', '')
+      if n_repl == 0 or i == n_lines then
+        lines[alert_start] = string.format('::: {.callout-%s}', alert_kind:lower())
+        lines[i] = n_repl == 0 and (':::\n' .. l) or (l .. '\n:::')
+
+        alert_start, alert_kind = nil, nil
+      end
+    end
+  end
+
+  reflow(lines)
+end
+
 local replace_help_links = function(lines)
   for i, l in ipairs(lines) do
     lines[i] = l:gsub('%(%.%./doc/(.-)%.txt%)', '(../doc/%1.qmd)'):gsub('%(doc/(.-)%.txt%)', '(doc/%1.qmd)')
@@ -373,6 +412,7 @@ local adjust_readmes = function()
       local lines = vim.fn.readfile(path)
 
       replace_demo_link(lines)
+      replace_quote_alerts(lines)
       replace_help_links(lines)
       add_source_note(lines)
       adjust_header_footer(lines, 'mini.' .. file:match('(%w+)%.md$'))
@@ -385,6 +425,7 @@ local adjust_readmes = function()
   -- Main README
   local path = vim.fs.joinpath('mini.nvim/index.md')
   local lines = vim.fn.readfile(path)
+  replace_quote_alerts(lines)
   replace_help_links(lines)
   add_source_note(lines)
   adjust_header_footer(lines, 'mini.nvim')
