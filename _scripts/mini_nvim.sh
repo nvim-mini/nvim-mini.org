@@ -13,4 +13,4 @@ then
   cp -r _deps/mini.nvim/doc mini.nvim/doc
 fi
 
-nvim --headless --noplugin -u ./_scripts/mini_nvim.lua
+nvim --noplugin -l ./_scripts/mini_nvim.lua
