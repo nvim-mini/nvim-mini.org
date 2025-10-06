@@ -116,7 +116,8 @@ Module setup
       extra_ui = false,
 
       -- Presets for window borders ('single', 'double', ...)
-      win_borders = 'default',
+      -- Default 'auto' infers from 'winborder' option
+      win_borders = 'auto',
     },
 
     -- Mappings. Set field to `false` to disable.
@@ -266,9 +267,11 @@ List of affected options:
 
 
 The `config.options.win_borders` updates ['fillchars'](https://neovim.io/doc/user/helptag.html?tag='fillchars') to have a consistent set
-of characters for window border (`vert`, `horiz`, etc.).
+of characters for window border (`vert`, `horiz`, `msgsep`, etc.).
 
 Available values:
+
+- `'auto'` - infer from ['winborder'](https://neovim.io/doc/user/helptag.html?tag='winborder'). On Neovim<0.11 do nothing.
 
 - `'bold'` - bold lines.
 

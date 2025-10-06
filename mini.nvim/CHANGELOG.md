@@ -49,6 +49,16 @@ There are following change types:
 
 - Add `gen_spec.user_prompt` that acts the same as `?` built-in textobject. It can be used for using this textobject under another identifier.
 
+## mini.basics {#v0.17.0-mini.basics}
+
+### Refine {#v0.17.0-mini.basics-refine}
+
+- Change default value of `options.win_border` to be `'auto'`.
+
+### Expand {#v0.17.0-mini.basics-expand}
+
+- Update `options.win_border` to allow value `'auto'` which infers target 'fillchars' values from 'winborder' option.
+
 ## mini.completion {#v0.17.0-mini.completion}
 
 ### Evolve {#v0.17.0-mini.completion-evolve}

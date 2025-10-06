@@ -134,7 +134,8 @@ Here are code snippets for some common installation methods (use only one):
     extra_ui = false,
 
     -- Presets for window borders ('single', 'double', ...)
-    win_borders = 'default',
+    -- Default 'auto' infers from 'winborder' option
+    win_borders = 'auto',
   },
 
   -- Mappings. Set field to `false` to disable.
