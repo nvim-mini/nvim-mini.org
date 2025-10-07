@@ -157,6 +157,8 @@ There are following change types:
 
 - Stop creating `update_n_lines` mapping: it occupies "mapping real estate" while being rarely needed and straightforward to create manually using `MiniSurround.update_n_lines()`.
 
+- Automatically map `s` key to `<Nop>` if any of created mappings start with it. This prevents accidental trigger of built-in `s` if there is a long delay between pressing "s" and the next key.
+
 ### Refine {#v0.17.0-mini.surround-refine}
 
 - Update `gen_spec.inpuf.treesitter()` to have `use_nvim_treesitter = false` as default option value (instead of `true`). It used to implement more advanced behavior, but as built-in `vim.treesitter` is capable enough, there is no need in extra dependency. The option will be removed after the release.

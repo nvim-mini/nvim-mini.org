@@ -704,12 +704,9 @@ Module setup
 By default it uses "prefix style" left hand side starting with "s" (for
 "surround"): `sa` - "surround add", `sd` - "surround delete", etc.
 
-Note: if 'timeoutlen' is low enough to cause occasional usage of [s](https://neovim.io/doc/user/helptag.html?tag=s) key
-(that deletes character under cursor), disable it with the following call:
-
-  ```lua
-  vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
-  ```
+Note: if any of the mappings start with "s" (as is by default), it is mapped
+to [<span class="help-syntax-keys">\<Nop\></span>](https://neovim.io/doc/user/helptag.html?tag=<Nop>) to prevent accidental trigger of built-in [s](https://neovim.io/doc/user/helptag.html?tag=s) (can happen if there
+is a long enough delay between pressing "s" and the next key). Use `cl` instead.
 
 #### Custom surroundings {#minisurround.config-customsurroundings}
 
