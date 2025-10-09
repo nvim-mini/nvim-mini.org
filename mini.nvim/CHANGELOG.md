@@ -157,7 +157,7 @@ There are following change types:
 
 - Stop creating `update_n_lines` mapping: it occupies "mapping real estate" while being rarely needed and straightforward to create manually using `MiniSurround.update_n_lines()`.
 
-- Automatically map `s` key to `<Nop>` if any of created mappings start with it. This prevents accidental trigger of built-in `s` if there is a long delay between pressing "s" and the next key.
+- Automatically map `s` key to `<Nop>` if the key is not already mapped and any of created mappings starts with it. This prevents accidental trigger of built-in `s` if there is a long delay between pressing "s" and the next key.
 
 ### Refine {#v0.17.0-mini.surround-refine}
 
