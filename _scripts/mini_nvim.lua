@@ -363,19 +363,19 @@ local replace_quote_alerts = function(lines)
     CAUTION = true,
   }
 
-  local alert_start, alert_kind
+  local alert_start, alert_kind, alert_indent
   local n_repl, n_lines = 0, #lines
   for i, l in iter_noncode(lines) do
     if alert_start == nil then
-      alert_kind = l:match('^>%s+%[!(%w+)%]$')
+      alert_indent, alert_kind = l:match('^(%s*)>%s+%[!(%w+)%]$')
       if allowed_kinds[alert_kind] ~= nil and is_blank(lines[i - 1] or '') then alert_start = i end
     else
       -- Remove quotes of the whole block until it ends.
       -- Accout for possible quote alert at last or second to last line.
-      lines[i], n_repl = l:gsub('^>%s+', '')
+      lines[i], n_repl = l:gsub('^%s*>%s+', alert_indent)
       if n_repl == 0 or i == n_lines then
-        lines[alert_start] = string.format('::: {.callout-%s}', alert_kind:lower())
-        lines[i] = n_repl == 0 and (':::\n' .. l) or (l .. '\n:::')
+        lines[alert_start] = string.format('%s::: {.callout-%s}', alert_indent, alert_kind:lower())
+        lines[i] = n_repl == 0 and (alert_indent .. ':::\n' .. l) or (l .. '\n' .. alert_indent .. ':::')
 
         alert_start, alert_kind = nil, nil
       end
