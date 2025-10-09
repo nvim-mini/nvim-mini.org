@@ -79,8 +79,8 @@ M.add_hierarchical_heading_anchors = function(lines)
   end
 end
 
-M.add_source_note = function(lines)
-  local msg = "_Generated from the `main` branch of 'mini.nvim'_"
+M.add_source_note = function(lines, src)
+  local msg = "_Generated from the `main` branch of '" .. src .. "'_"
   if lines[1]:find('align="center"') ~= nil then
     -- Center align if after center aligned element (i.e. top README image)
     table.insert(lines, 2, '<p align="center">' .. msg .. '</p>')
@@ -127,11 +127,15 @@ M.replace_quote_alerts = function(lines)
   for i, l in M.iter_noncode(lines) do
     if alert_start == nil then
       alert_indent, alert_kind = l:match('^(%s*)>%s+%[!(%w+)%]$')
-      if allowed_kinds[alert_kind] ~= nil and M.is_blank(lines[i - 1] or '') then alert_start = i end
+      -- Previous line should be blank. Account for two alerts in a row
+      -- (separated by one blank line) which are not yet reflown lines.
+      local prev = lines[i - 1] or ''
+      local prev_is_proper = M.is_blank(prev) or prev:find(':::\n%s*$') ~= nil
+      if allowed_kinds[alert_kind] ~= nil and prev_is_proper then alert_start = i end
     else
       -- Remove quotes of the whole block until it ends.
       -- Accout for possible quote alert at last or second to last line.
-      lines[i], n_repl = l:gsub('^%s*>%s+', alert_indent)
+      lines[i], n_repl = l:gsub('^%s*>%s*', alert_indent)
       if n_repl == 0 or i == n_lines then
         lines[alert_start] = string.format('%s::: {.callout-%s}', alert_indent, alert_kind:lower())
         lines[i] = n_repl == 0 and (alert_indent .. ':::\n' .. l) or (l .. '\n' .. alert_indent .. ':::')
