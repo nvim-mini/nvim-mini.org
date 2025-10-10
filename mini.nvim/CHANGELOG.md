@@ -133,6 +133,12 @@ There are following change types:
 
 - Add `gen_spotter.vimpattern()` that can generate spotter based on Vimscript (not Lua) pattern.
 
+## mini.map {#v0.17.0-mini.map}
+
+### Expand {#v0.17.0-mini.map-expand}
+
+- Update `gen_integration.builtin_search()` to react to change of `v:hlsearch`.
+
 ## mini.misc {#v0.17.0-mini.misc}
 
 ### Expand {#v0.17.0-mini.misc-expand}
