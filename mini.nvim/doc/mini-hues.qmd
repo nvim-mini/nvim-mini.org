@@ -258,6 +258,9 @@ of [MiniHues.make\_palette()](mini-hues.qmd#minihues.make_palette) and [MiniHues
     -- Plugin integrations. Use `default = false` to disable all integrations.
     -- Also can be set per plugin (see |MiniHues.config|).
     plugins = { default = true },
+
+    -- Whether to auto adjust highlight groups based on certain events
+    autoadjust = true,
   }
   ```
 
@@ -287,6 +290,16 @@ Example which will load only "mini.nvim" integration:
     },
   })
   ```
+
+#### Auto adjust {#minihues.config-autoadjust}
+
+
+`config.autoadjust` defines whether to adjust some highlight groups based on
+events relevant to them. Currently adjusted groups:
+
+
+- [hl-MsgSeparator](https://neovim.io/doc/user/helptag.html?tag=hl-MsgSeparator) is adjusted based on `msgsep` flag in ['fillchars'](https://neovim.io/doc/user/helptag.html?tag='fillchars').
+  If it is whitespace - highlight background, otherwise - foreground.
 
 #### Examples {#minihues.config-examples}
 
@@ -449,7 +462,7 @@ Notes:
 
 ### apply_palette() {#minihues.apply_palette .help-syntax-right-anchor}
 
-<p align="center">`MiniHues.apply_palette`(<span class="help-syntax-special">{palette}</span>, <span class="help-syntax-special">{plugins}</span>)</p>
+<p align="center">`MiniHues.apply_palette`(<span class="help-syntax-special">{palette}</span>, <span class="help-syntax-special">{plugins}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Apply palette
 
 Create color scheme highlight groups and terminal colors based on supplied
@@ -465,6 +478,11 @@ For regular usage prefer [MiniHues.setup()](mini-hues.qmd#minihues.setup).
 <span class="help-syntax-special">{plugins}</span> `(table|nil)` Table with boolean values indicating whether to create
   highlight groups for specific plugins. See [MiniHues.config](mini-hues.qmd#minihues.config) for more details.
   Default: the value from [MiniHues.config](mini-hues.qmd#minihues.config).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<autoadjust\></span> - whether to auto adjust some highlight groups when needed.
+    Default: value of `autoadjust` in [MiniHues.config](mini-hues.qmd#minihues.config).
 
 #### Usage {#minihues.apply_palette-usage}
 
