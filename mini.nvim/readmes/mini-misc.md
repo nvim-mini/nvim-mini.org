@@ -34,6 +34,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - `bench_time()` executes function several times and timing how long it took.
 - `put()` and `put_text()` print Lua objects in command line and current buffer respectively.
+- `resize_window()` resizes current window to its editable width.
 - `setup_auto_root()` sets up automated change of current directory.
 - `setup_termbg_sync()` to set up terminal background synchronization (removes possible "frame" around current Neovim instance).
 - `setup_restore_cursor()` sets up automated restoration of cursor position on file reopen.
