@@ -44,7 +44,8 @@ It is not a comprehensive guide on how to set up and use every Neovim feature an
 - Operating system: any OS supported by Neovim.
 - Internet connection for downloading plugins.
 - (Optional, but recommended) [`ripgrep`](https://github.com/BurntSushi/ripgrep#installation).
-- (Optional, but recommended) Terminal emulator or GUI with true colors and [Nerd Font icons](https://www.nerdfonts.com/) support. No need for full Nerd font, using `Symbols Only` nerd font as a fallback is usually enough.
+- (Optional, but recommended) Terminal emulator with [true color support](https://github.com/termstandard/colors#truecolor-support-in-output-devices).
+- (Optional, but recommended) A [Nerd Font](https://www.nerdfonts.com/). No need for full Nerd font, using the [latest](https://github.com/ryanoasis/nerd-fonts/releases/latest) `Symbols Only` nerd font as a fallback is usually enough.
 
 #### Knowledge
 
