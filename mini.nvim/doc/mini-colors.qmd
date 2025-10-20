@@ -578,8 +578,9 @@ the same as from 0 to 7.
 <a name="minicolors-colorschemeadd_transparency" href="mini-colors.qmd#minicolors-colorschemeadd_transparency"><b>MiniColors-colorscheme:add_transparency()</b></a>
 
 Add transparency by removing background from a certain highlight groups.
-Requires actual transparency from terminal emulator to experience visible
-transparency.
+Requires actual transparency from terminal emulator to see background image.
+Has no effect on linked groups; use [MiniColors-colorscheme:resolve\_links()](mini-colors.qmd#minicolors-colorschemeresolve_links)
+explicitly before applying transparency.
 
 ###### Parameters {#minicolors-colorscheme-methods-add_transparency-parameters}
 
@@ -593,8 +594,8 @@ transparency.
   - <span class="help-syntax-keys">\<float\></span> `(boolean)` - built-in groups for floating windows. Default: `false`.
 
   - <span class="help-syntax-keys">\<statuscolumn\></span> `(boolean)` - groups related to 'statuscolumn' (signcolumn,
-    numbercolumn, foldcolumn). Also updates groups for all currently
-    defined signs. Default: `false`.
+    numbercolumn, foldcolumn, `DiagnosticSignXxx`, and `XxxMsg` groups). Also
+    updates groups for all currently defined signs. Default: `false`.
 
   - <span class="help-syntax-keys">\<statusline\></span> `(boolean)` - built-in groups for 'statusline'. Default: `false`.
 

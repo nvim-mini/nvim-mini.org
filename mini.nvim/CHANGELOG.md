@@ -59,6 +59,12 @@ There are following change types:
 
 - Update `options.win_border` to allow value `'auto'` which infers target 'fillchars' values from 'winborder' option.
 
+## mini.colors {#v0.17.0-mini.colors}
+
+- Update `add_transparency()` color scheme method to adjust more groups:
+    - `XxxMsg` groups in case of `opts.general = true`.
+    - `DiagnosticSignXxx` groups in case of `opts.statuscolumn = true`.
+
 ## mini.completion {#v0.17.0-mini.completion}
 
 ### Evolve {#v0.17.0-mini.completion-evolve}
@@ -154,6 +160,8 @@ There are following change types:
 ### Expand {#v0.17.0-mini.pick-expand}
 
 - "Paste" action now supports special registers: `<C-w>` (word at cursor), `<C-a>` (WORD at cursor), `<C-l>` (line at cursor), `<C-f>` (filename at cursor).
+
+- Key query process now respects most language mappings. By @yehorb, PR #2026.
 
 ## mini.sessions {#v0.17.0-mini.sessions}
 
