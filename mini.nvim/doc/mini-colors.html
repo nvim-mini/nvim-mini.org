@@ -742,14 +742,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicolors-colorscheme-methods-add_transparency" class="level5">
 <h5 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_transparency">add_transparency()</h5>
 <p><a name="minicolors-colorschemeadd_transparency" href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_transparency"><b>MiniColors-colorscheme:add_transparency()</b></a></p>
-<p>Add transparency by removing background from a certain highlight groups. Requires actual transparency from terminal emulator to experience visible transparency.</p>
+<p>Add transparency by removing background from a certain highlight groups. Requires actual transparency from terminal emulator to see background image. Has no effect on linked groups; use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeresolve_links">MiniColors-colorscheme:resolve_links()</a> explicitly before applying transparency.</p>
 <section id="minicolors-colorscheme-methods-add_transparency-parameters" class="level6">
 <h6 class="anchored" data-anchor-id="minicolors-colorscheme-methods-add_transparency-parameters">Parameters</h6>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields can be used to configure which sets of highlight groups to update:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;general&gt;</span> <code>(boolean)</code> - general groups (like <code>Normal</code>). Default: <code>true</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;float&gt;</span> <code>(boolean)</code> - built-in groups for floating windows. Default: <code>false</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;statuscolumn&gt;</span> <code>(boolean)</code> - groups related to ‘statuscolumn’ (signcolumn, numbercolumn, foldcolumn). Also updates groups for all currently defined signs. Default: <code>false</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;statuscolumn&gt;</span> <code>(boolean)</code> - groups related to ‘statuscolumn’ (signcolumn, numbercolumn, foldcolumn, <code>DiagnosticSignXxx</code>, and <code>XxxMsg</code> groups). Also updates groups for all currently defined signs. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;statusline&gt;</span> <code>(boolean)</code> - built-in groups for ‘statusline’. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;tabline&gt;</span> <code>(boolean)</code> - built-in groups for ‘tabline’. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;winbar&gt;</span> <code>(boolean)</code> - built-in groups for ‘winbar’. Default: <code>false</code>.</p></li>
