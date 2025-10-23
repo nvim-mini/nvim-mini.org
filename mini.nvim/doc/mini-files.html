@@ -466,6 +466,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#minifiles.default_sort-parameters" id="toc-minifiles.default_sort-parameters" class="nav-link" data-scroll-target="#minifiles.default_sort-parameters">Parameters</a></li>
   <li><a href="#minifiles.default_sort-return" id="toc-minifiles.default_sort-return" class="nav-link" data-scroll-target="#minifiles.default_sort-return">Return</a></li>
   </ul></li>
+  <li><a href="#minifiles.default_highlight" id="toc-minifiles.default_highlight" class="nav-link" data-scroll-target="#minifiles.default_highlight">default_highlight()</a>
+  <ul>
+  <li><a href="#minifiles.default_highlight-parameters" id="toc-minifiles.default_highlight-parameters" class="nav-link" data-scroll-target="#minifiles.default_highlight-parameters">Parameters</a></li>
+  <li><a href="#minifiles.default_highlight-return" id="toc-minifiles.default_highlight-return" class="nav-link" data-scroll-target="#minifiles.default_highlight-return">Return</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -960,52 +965,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">content</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Predicate for which file system entries to show</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">filter</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- What prefix to show to the left of file system entry</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">prefix</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- In which order to show file system entries</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings created only inside explorer.</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `''` (empty string) to not create one.</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">close</span>       <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in</span>       <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in_plus</span>  <span class="op">=</span> <span class="st">'L'</span><span class="op">,</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out</span>      <span class="op">=</span> <span class="st">'h'</span><span class="op">,</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out_plus</span> <span class="op">=</span> <span class="st">'H'</span><span class="op">,</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_goto</span>   <span class="op">=</span> <span class="st">"'"</span><span class="op">,</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_set</span>    <span class="op">=</span> <span class="st">'m'</span><span class="op">,</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span>       <span class="op">=</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">reveal_cwd</span>  <span class="op">=</span> <span class="st">'@'</span><span class="op">,</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">show_help</span>   <span class="op">=</span> <span class="st">'g?'</span><span class="op">,</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="va">synchronize</span> <span class="op">=</span> <span class="st">'='</span><span class="op">,</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_left</span>   <span class="op">=</span> <span class="st">'&lt;'</span><span class="op">,</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_right</span>  <span class="op">=</span> <span class="st">'&gt;'</span><span class="op">,</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- General options</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to delete permanently or move into module-specific trash</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">permanent_delete</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use for editing directories</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">use_as_default_explorer</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Highlight group to use for a file system entry</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">highlight</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Prefix text and highlight to show to the left of file system entry</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">prefix</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Order in which to show file system entries</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings created only inside explorer.</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `''` (empty string) to not create one.</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">close</span>       <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in</span>       <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_in_plus</span>  <span class="op">=</span> <span class="st">'L'</span><span class="op">,</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out</span>      <span class="op">=</span> <span class="st">'h'</span><span class="op">,</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">go_out_plus</span> <span class="op">=</span> <span class="st">'H'</span><span class="op">,</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_goto</span>   <span class="op">=</span> <span class="st">"'"</span><span class="op">,</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">mark_set</span>    <span class="op">=</span> <span class="st">'m'</span><span class="op">,</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span>       <span class="op">=</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="va">reveal_cwd</span>  <span class="op">=</span> <span class="st">'@'</span><span class="op">,</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">show_help</span>   <span class="op">=</span> <span class="st">'g?'</span><span class="op">,</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">synchronize</span> <span class="op">=</span> <span class="st">'='</span><span class="op">,</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_left</span>   <span class="op">=</span> <span class="st">'&lt;'</span><span class="op">,</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_right</span>  <span class="op">=</span> <span class="st">'&gt;'</span><span class="op">,</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- General options</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to delete permanently or move into module-specific trash</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">permanent_delete</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use for editing directories</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">use_as_default_explorer</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minifiles.config-content" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-content">Content</h4>
@@ -1016,6 +1023,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
 </ul>
+<p><code>content.highlight</code> describes how file system entry name should be highlighted. Takes file system entry data as input and returns a highlight group name. Uses <a href="https://neovim.io/doc/user/helptag.html?tag=MiniFiles.default_highlight()">MiniFiles.default_highlight()</a> by default.</p>
 <p><code>content.prefix</code> describes what text (prefix) to show to the left of file system entry name (if any) and how to highlight it. It also takes file system entry data as input and returns tuple of text and highlight group name to be used to highlight prefix. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-examples">MiniFiles-examples</a> for common examples of how to use it. Note: due to how lines are parsed to detect user edits for file system manipulation, output of <code>content.prefix</code> should not contain <code>/</code> character. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_prefix">MiniFiles.default_prefix()</a> by default.</p>
 <p><code>content.sort</code> describes in which order directory entries should be shown in directory buffer. Takes as input and returns as output an array of file system entry data. Note: technically, it can be used to filter and modify its elements as well. Uses <a href="../../mini.nvim/doc/mini-files.html#minifiles.default_sort">MiniFiles.default_sort()</a> by default.</p>
 </section>
@@ -1396,6 +1404,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minifiles.default_sort-return" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.default_sort-return">Return</h4>
 <p><code>(table)</code> Sorted array of file system entries.</p>
+<hr>
+</section>
+</section>
+<section id="minifiles.default_highlight" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minifiles.default_highlight">default_highlight()</h3>
+<p align="center">
+<code>MiniFiles.default_highlight</code>(<span class="help-syntax-special">{fs_entry}</span>)
+</p>
+<p>Default file system entry highlight</p>
+<p>Returns <code>'MiniFilesDirectory'</code> for directory and <code>'MiniFilesFile'</code> otherwise.</p>
+<section id="minifiles.default_highlight-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_highlight-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{fs_entry}</span> <code>(table)</code> Table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;fs_type&gt;</span> <code>(string)</code> - one of “file” or “directory”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;name&gt;</span> <code>(string)</code> - basename of an entry (including extension).</p></li>
+<li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string)</code> - full path of an entry.</p></li>
+</ul>
+</section>
+<section id="minifiles.default_highlight-return" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles.default_highlight-return">Return</h4>
+<p><code>(string)</code> Highlight group name.</p>
 
 
 </section>

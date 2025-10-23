@@ -392,6 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#v0.17.0-mini.files-evolve" id="toc-v0.17.0-mini.files-evolve" class="nav-link" data-scroll-target="#v0.17.0-mini.files-evolve">Evolve</a></li>
   <li><a href="#v0.17.0-mini.files-refine" id="toc-v0.17.0-mini.files-refine" class="nav-link" data-scroll-target="#v0.17.0-mini.files-refine">Refine</a></li>
+  <li><a href="#v0.17.0-mini.files-expand" id="toc-v0.17.0-mini.files-expand" class="nav-link" data-scroll-target="#v0.17.0-mini.files-expand">Expand</a></li>
   </ul></li>
   <li><a href="#v0.17.0-mini.hues" id="toc-v0.17.0-mini.hues" class="nav-link" data-scroll-target="#v0.17.0-mini.hues">mini.hues</a>
   <ul>
@@ -1333,13 +1334,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Ensure preview window is never hidden, even if cursor is on the line for a not (yet) existing file system entry. This reduces flickering of preview window when creating new files in Insert mode.</li>
 </ul>
 </section>
+<section id="v0.17.0-mini.files-expand" class="level3">
+<h3 class="anchored" data-anchor-id="v0.17.0-mini.files-expand">Expand</h3>
+<ul>
+<li>Add <code>config.content.highlight</code> to customize how file system entry is highlighted. Defaults to a new <code>default_highlight()</code> function.</li>
+</ul>
+</section>
 </section>
 <section id="v0.17.0-mini.hues" class="level2">
 <h2 class="anchored" data-anchor-id="v0.17.0-mini.hues">mini.hues</h2>
 <section id="v0.17.0-mini.hues-evolve" class="level3">
 <h3 class="anchored" data-anchor-id="v0.17.0-mini.hues-evolve">Evolve</h3>
 <ul>
-<li>Add auto adjusting of highlight groups based on certain events (like <code>MsgSeparator</code> group based on changing of <code>msgsep</code> flag of ‘fillchars’ option). It can be disabled via new <code>autoadjust</code> config setting or <code>opts.autoadjust</code> in <code>apply_palette()</code>.</li>
+<li>Add auto adjusting of highlight groups based on certain events. It can be disabled via new <code>autoadjust</code> config setting or <code>opts.autoadjust</code> in <code>apply_palette()</code>. Affected groups:
+<ul>
+<li><code>MsgSeparator</code> depends on <code>msgsep</code> flag of ‘fillchars’ option.</li>
+<li><code>Pmenu</code> depends on ‘pumborder’ option value (on Neovim&gt;=0.12).</li>
+</ul></li>
 </ul>
 </section>
 <section id="v0.17.0-mini.hues-refine" class="level3">
