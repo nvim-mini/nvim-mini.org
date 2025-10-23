@@ -178,9 +178,11 @@ Here are code snippets for some common installation methods (use only one):
   content = {
     -- Predicate for which file system entries to show
     filter = nil,
-    -- What prefix to show to the left of file system entry
+    -- Highlight group to use for a file system entry
+    highlight = nil,
+    -- Prefix text and highlight to show to the left of file system entry
     prefix = nil,
-    -- In which order to show file system entries
+    -- Order in which to show file system entries
     sort = nil,
   },
 

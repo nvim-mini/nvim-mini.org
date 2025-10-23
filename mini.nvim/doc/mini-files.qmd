@@ -740,9 +740,11 @@ Module setup
     content = {
       -- Predicate for which file system entries to show
       filter = nil,
-      -- What prefix to show to the left of file system entry
+      -- Highlight group to use for a file system entry
+      highlight = nil,
+      -- Prefix text and highlight to show to the left of file system entry
       prefix = nil,
-      -- In which order to show file system entries
+      -- Order in which to show file system entries
       sort = nil,
     },
 
@@ -802,6 +804,10 @@ A file system entry data is a table with the following fields:
   - <span class="help-syntax-keys">\<name\></span> `(string)` - basename of an entry (including extension).
 
   - <span class="help-syntax-keys">\<path\></span> `(string)` - full path of an entry.
+
+`content.highlight` describes how file system entry name should be highlighted.
+Takes file system entry data as input and returns a highlight group name.
+Uses [MiniFiles.default\_highlight()](https://neovim.io/doc/user/helptag.html?tag=MiniFiles.default_highlight\(\)) by default.
 
 `content.prefix` describes what text (prefix) to show to the left of file
 system entry name (if any) and how to highlight it. It also takes file
@@ -1289,4 +1295,30 @@ put directories first.
 
 
 `(table)` Sorted array of file system entries.
+
+---
+
+### default_highlight() {#minifiles.default_highlight .help-syntax-right-anchor}
+
+<p align="center">`MiniFiles.default_highlight`(<span class="help-syntax-special">{fs_entry}</span>)</p>
+Default file system entry highlight
+
+Returns `'MiniFilesDirectory'` for directory and `'MiniFilesFile'` otherwise.
+
+#### Parameters {#minifiles.default_highlight-parameters}
+
+
+
+<span class="help-syntax-special">{fs_entry}</span> `(table)` Table with the following fields:
+
+  - <span class="help-syntax-keys">\<fs_type\></span> `(string)` - one of "file" or "directory".
+
+  - <span class="help-syntax-keys">\<name\></span> `(string)` - basename of an entry (including extension).
+
+  - <span class="help-syntax-keys">\<path\></span> `(string)` - full path of an entry.
+
+#### Return {#minifiles.default_highlight-return}
+
+
+`(string)` Highlight group name.
 
