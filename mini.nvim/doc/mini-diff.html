@@ -620,13 +620,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>vim.b.minidiff_summary</code> is a table with the following fields:</p>
 <ul>
-<li><p><code>source_name</code> - name of the active source.</p></li>
+<li><p><code>source_name</code> - name of the active source. This is the only present field if buffer’s reference text is not (yet) set.</p></li>
 <li><p><code>n_ranges</code> - number of hunk ranges (sequences of contiguous hunks).</p></li>
 <li><p><code>add</code> - number of added lines.</p></li>
 <li><p><code>change</code> - number of changed lines.</p></li>
 <li><p><code>delete</code> - number of deleted lines.</p></li>
 </ul></li>
-<li><p><code>vim.b.minidiff_summary_string</code> is a string representation of summary with a fixed format. It is expected to be used as is. To achieve different formatting, use <code>vim.b.minidiff_summary</code> to construct one. The best way to do this is by overriding <code>vim.b.minidiff_summary_string</code> in the callback for <a href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event">MiniDiff-update-event</a> event:</p>
+<li><p><code>vim.b.minidiff_summary_string</code> is a string representation of summary with a fixed format. Empty string if there is no reference text (yet). It is expected to be used as is. To achieve different formatting, use <code>vim.b.minidiff_summary</code> to construct one. The best way to do this is by overriding <code>vim.b.minidiff_summary_string</code> inside <a href="../../mini.nvim/doc/mini-diff.html#minidiff-update-event">MiniDiff-update-event</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">format_summary</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">summary</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">[</span><span class="va">data</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">minidiff_summary</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">t</span> <span class="op">=</span> <span class="op">{}</span></span>
