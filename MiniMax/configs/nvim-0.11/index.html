@@ -483,8 +483,8 @@ Code
 <span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="va">event</span><span class="op">,</span> <span class="va">opts</span><span class="op">)</span></span>
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co">-- Some plugins only and 'mini.nvim' modules need setup during startup if Neovim</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">-- is started like `nvim -- path/to/file`, otherwise delaying startup is fine</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co">-- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">-- is started like `nvim -- path/to/file`, otherwise delaying setup is fine</span></span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="cn">_G</span><span class="op">.</span><span class="va">Config</span><span class="op">.</span><span class="va">now_if_args</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>argc<span class="op">(-</span><span class="dv">1</span><span class="op">)</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> <span class="va">MiniDeps</span><span class="op">.</span><span class="va">now</span> <span class="kw">or</span> <span class="va">MiniDeps</span><span class="op">.</span><span class="va">later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
@@ -1083,7 +1083,7 @@ Code
 <span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- to find textobject covering cursor, then try to find to the right.</span></span>
 <span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Although this works in most cases, some are confusing. It is more robust to</span></span>
 <span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- always try to search only covering textobject and explicitly ask to search</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- for next (`an`/`in`) or last (`an`/`il`).</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- for next (`an`/`in`) or last (`al`/`il`).</span></span>
 <span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Try this. If you don't like it - delete next line and this comment.</span></span>
 <span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>    <span class="va">search_method</span> <span class="op">=</span> <span class="st">'cover'</span><span class="op">,</span></span>
 <span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
