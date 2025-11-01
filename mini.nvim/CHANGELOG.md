@@ -89,6 +89,12 @@ There are following change types:
 
 - Add support for working with files containing BOM bytes.
 
+## mini.doc {#v0.17.0-mini.doc}
+
+### Refine {#v0.17.0-mini.doc-refine}
+
+- Update default `write_pre` hook to remove `===` and `---` delimiters from the top of the file to better comply with `:h local-additions`.
+
 ## mini.extra {#v0.17.0-mini.extra}
 
 ### Expand {#v0.17.0-mini.extra-expand}
