@@ -413,11 +413,12 @@ Note
 <p>This was previously hosted at a personal <code>echasnovski</code> GitHub account. It was transferred to a dedicated organization to improve long term project stability. See more details <a href="https://github.com/nvim-mini/mini.nvim/discussions/1970">here</a>.</p>
 </div>
 </div>
-<p>⦿ This is a part of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> library. Please use <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-completion.md">this link</a> if you want to mention this module.</p>
+<p>⦿ This is a part of <a href="https://nvim-mini.org/mini.nvim">mini.nvim</a> library. Please use <a href="https://nvim-mini.org/mini.nvim/readmes/mini-completion">this link</a> if you want to mention this module.</p>
 <p>⦿ All contributions (issues, pull requests, discussions, etc.) are done inside of ‘mini.nvim’.</p>
-<p>⦿ See the repository page to learn about common design principles and configuration recipes.</p>
+<p>⦿ See <a href="https://nvim-mini.org/mini.nvim/doc/mini-nvim">whole library documentation</a> to learn about general design principles, disable/configuration recipes, and more.</p>
+<p>⦿ See <a href="https://nvim-mini.org/MiniMax">MiniMax</a> for a full config example that uses this module.</p>
 <hr>
-<p>If you want to help this project grow but don’t know where to start, check out <a href="https://github.com/nvim-mini/mini.nvim/blob/main/CONTRIBUTING.md">contributing guides of ‘mini.nvim’</a> or leave a Github star for ‘mini.nvim’ project and/or any its standalone Git repositories.</p>
+<p>If you want to help this project grow but don’t know where to start, check out <a href="https://nvim-mini.org/mini.nvim/CONTRIBUTING">contributing guides of ‘mini.nvim’</a> or leave a Github star for ‘mini.nvim’ project and/or any its standalone Git repositories.</p>
 </section>
 <section id="demo" class="level2">
 <h2 class="anchored" data-anchor-id="demo">Demo</h2>
@@ -428,7 +429,7 @@ Note
 <ul>
 <li>Two-stage chain completion:
 <ul>
-<li>First stage is an LSP completion. Supports <code>additionalTextEdits</code> (like auto-import, etc.) and snippets (see <a href="#snippets">“Snippets”</a>) (best results require <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md">‘mini.snippets’</a> dependency).</li>
+<li>First stage is an LSP completion. Supports <code>additionalTextEdits</code> (like auto-import, etc.) and snippets (see <a href="#snippets">“Snippets”</a>) (best results require <a href="https://nvim-mini.org/mini.nvim/readmes/mini-snippets">‘mini.snippets’</a> dependency).</li>
 <li>If first stage is not set up or resulted into no candidates, fallback action is executed. The most tested actions are Neovim’s built-in insert completion.</li>
 </ul></li>
 <li>Automatic display in floating window of completion item info (via ‘completionItem/resolve’ request) and signature help (with highlighting of active parameter if LSP server provides such information). Scrolling is possible in both info/signature window (<code>&lt;C-f&gt;</code> / <code>&lt;C-b&gt;</code> by default).</li>
@@ -437,7 +438,7 @@ Note
 <li>Customizable highlighting of LSP items. Requires Neovim&gt;=0.11. Supported:
 <ul>
 <li>Item label. By default only checks if item is marked as deprecated and sets <code>MiniCompletionDeprecated</code> highlight group.</li>
-<li>LSP kind (like “Function”, “Keyword”, etc.). Requires enabled <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-icons.md">‘mini.icons’</a> (uses its “lsp” category)</li>
+<li>LSP kind (like “Function”, “Keyword”, etc.). Requires enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-icons">‘mini.icons’</a> (uses its “lsp” category)</li>
 </ul></li>
 </ul>
 </section>
@@ -445,8 +446,8 @@ Note
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <p>For full experience needs (still works without any of suggestions):</p>
 <ul>
-<li>Enabled <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-icons.md">‘mini.icons’</a> module to highlight LSP kind (requires Neovim&gt;=0.11). If absent, <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_process_items"><code>MiniCompletion.default_process_items()</code></a> does not add highlighting. Also take a look at <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind"><code>MiniIcons.tweak_lsp_kind()</code></a>.</li>
-<li>Enabled <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md">‘mini.snippets’</a> module for better snippet handling (<strong>much recommended</strong>). If absent and custom snippet insert is not configured, <code>vim.snippet.expand()</code> is used on Neovim&gt;=0.10 (nothing extra is done on earlier versions). See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert"><code>:h MiniCompletion.default_snippet_insert()</code></a>.</li>
+<li>Enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-icons">‘mini.icons’</a> module to highlight LSP kind (requires Neovim&gt;=0.11). If absent, <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_process_items"><code>MiniCompletion.default_process_items()</code></a> does not add highlighting. Also take a look at <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind"><code>MiniIcons.tweak_lsp_kind()</code></a>.</li>
+<li>Enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-snippets">‘mini.snippets’</a> module for better snippet handling (<strong>much recommended</strong>). If absent and custom snippet insert is not configured, <code>vim.snippet.expand()</code> is used on Neovim&gt;=0.10 (nothing extra is done on earlier versions). See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert"><code>:h MiniCompletion.default_snippet_insert()</code></a>.</li>
 </ul>
 </section>
 <section id="snippets" class="level2">
@@ -471,7 +472,7 @@ Note
 <p>Here are code snippets for some common installation methods (use only one):</p>
 <details>
 <summary>
-With <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md">mini.deps</a>
+With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a>
 </summary>
 <ul>
 <li><p>‘mini.nvim’ library:</p>
