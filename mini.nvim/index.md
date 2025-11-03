@@ -12,9 +12,14 @@ Library of 40+ independent Lua modules improving overall [Neovim](https://github
 
 Think about this project as "Swiss Army knife" among Neovim plugins: it has many different independent tools (modules) suitable for most common tasks. Each module can be used separately without any startup and usage overhead.
 
-If you want to help this project grow but don't know where to start, check out [contributing guides](CONTRIBUTING.md) or leave a Github star for 'mini.nvim' project and/or any its standalone Git repositories.
+If you want to help this project grow but don't know where to start:
 
-For a history of changes, including current development version, see [change log](CHANGELOG.md).
+- Leave a Github star for 'mini.nvim' and/or any other [MINI projects](https://nvim-mini.org).
+- Check out [contributing guides](CONTRIBUTING.md).
+
+See [change log](CHANGELOG.md) for a history of changes, including current development version.
+
+See [MiniMax](https://nvim-mini.org/MiniMax) for a full config example based on 'mini.nvim'.
 
 ::: {.callout-note}
 This was previously hosted at `echasnovski/mini.nvim`. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
@@ -37,7 +42,7 @@ There are two branches to install from:
 
 Here are code snippets for some common installation methods:
 
-- Manually with `git clone` (compatible with [mini.deps](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md)):
+- Manually with `git clone` (compatible with [mini.deps](https://nvim-mini.org/mini.nvim/readmes/mini-deps)):
 
 ```lua
 -- Put this at the top of 'init.lua'
