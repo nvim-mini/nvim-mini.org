@@ -1575,7 +1575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Pick from pattern matches</p>
 <p>Lists all pattern matches recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()">vim.fs.dir()</a> and Lua pattern matches (NOT recommended in large directories).</p>
-<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command.</p>
+<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command. Options ‘ignorecase’ and ‘smartcase’ are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
 <section id="minipick.builtin.grep-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
@@ -1595,7 +1595,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Pick from pattern matches with live feedback</p>
 <p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a> to revert to regular matching. Use <code>&lt;C-o&gt;</code> to restrict search to files matching glob patterns. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
-<p>To customize search, use tool’s global configuration approach.</p>
+<p>To customize search, use tool’s global configuration approach. Options ‘ignorecase’ and ‘smartcase’ are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
 <section id="minipick.builtin.grep_live-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep_live-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>

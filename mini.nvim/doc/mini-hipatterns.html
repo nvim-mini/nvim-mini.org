@@ -648,12 +648,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string|function|table)</code> - Lua pattern to highlight. Can be either string, callable returning the string, or an array of those. If string:</p>
 <ul>
-<li>It can have submatch delimited by placing <code>()</code> on start and end, NOT by surrounding with it. Otherwise it will result in error containing <code>number expected, got string</code>. Example: <code>xx()abcd()xx</code> will match <code>abcd</code> only if <code>xx</code> is placed before and after it.</li>
+<li>It can have submatch delimited by placing <code>()</code> on start and end, NOT by surrounding it with parenthesis (results in an error containing <code>number expected, got string</code>). Example: <code>xx()abcd()xx</code> will match <code>abcd</code> only if <code>xx</code> is placed before and after it.</li>
 </ul>
 <p>If callable:</p>
 <ul>
-<li><p>It will be called for every enabled buffer with its identifier as input.</p></li>
-<li><p>It can return <code>nil</code> meaning this particular highlighter will not work in this particular buffer.</p></li>
+<li>It will be called for every enabled buffer with its identifier as input. Should return single string pattern or <code>nil</code> (meaning this particular highlighter will not work in this particular buffer).</li>
 </ul>
 <p>If array:</p>
 <ul>
