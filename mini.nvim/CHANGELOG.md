@@ -173,6 +173,10 @@ There are following change types:
 
 ## mini.pick {#v0.17.0-mini.pick}
 
+### Evolve {#v0.17.0-mini.pick-evolve}
+
+- Pickers `grep` and `grep_live` with `rg` tool now respect Neovim's `'ignorecase'` and `'smartcase'` options. This forces corresponding case matching flag (thus overriding global configuration) in favor of a more consistent user experience.
+
 ### Expand {#v0.17.0-mini.pick-expand}
 
 - "Paste" action now supports special registers: `<C-w>` (word at cursor), `<C-a>` (WORD at cursor), `<C-l>` (line at cursor), `<C-f>` (filename at cursor).

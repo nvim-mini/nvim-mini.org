@@ -341,17 +341,15 @@ Each entry defines single highlighter as a table with the following fields:
   If string:
 
     - It can have submatch delimited by placing `()` on start and end, NOT
-      by surrounding with it. Otherwise it will result in error
-      containing `number expected, got string`. Example: `xx()abcd()xx`
-      will match `abcd` only if `xx` is placed before and after it.
+      by surrounding it with parenthesis (results in an error containing
+      `number expected, got string`). Example: `xx()abcd()xx` will match
+      `abcd` only if `xx` is placed before and after it.
 
   If callable:
 
     - It will be called for every enabled buffer with its identifier as input.
-
-
-    - It can return `nil` meaning this particular highlighter will not work
-      in this particular buffer.
+      Should return single string pattern or `nil` (meaning this particular
+      highlighter will not work in this particular buffer).
 
   If array:
 
