@@ -22,7 +22,10 @@ end
 
 M.get_help_tags = function(tags_path)
   tags_path = tags_path or '_deps/mini.nvim/doc/tags'
-  if vim.uv.fs_stat(tags_path) == nil then vim.cmd('helptags _deps/mini.nvim/doc') end
+
+  -- Ensure freshly genereated helptags
+  pcall(vim.fs.rm, tags_path)
+  vim.cmd('helptags _deps/mini.nvim/doc')
 
   local tags = {}
   for _, l in ipairs(vim.fn.readfile(tags_path)) do
