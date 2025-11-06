@@ -374,6 +374,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#minimisc.get_gutter_width-parameters" id="toc-minimisc.get_gutter_width-parameters" class="nav-link" data-scroll-target="#minimisc.get_gutter_width-parameters">Parameters</a></li>
   </ul></li>
+  <li><a href="#minimisc.log_add" id="toc-minimisc.log_add" class="nav-link" data-scroll-target="#minimisc.log_add">log_add()</a>
+  <ul>
+  <li><a href="#minimisc.log_add-parameters" id="toc-minimisc.log_add-parameters" class="nav-link" data-scroll-target="#minimisc.log_add-parameters">Parameters</a></li>
+  <li><a href="#minimisc.log_add-usage" id="toc-minimisc.log_add-usage" class="nav-link" data-scroll-target="#minimisc.log_add-usage">Usage</a></li>
+  <li><a href="#minimisc.log_add-seealso" id="toc-minimisc.log_add-seealso" class="nav-link" data-scroll-target="#minimisc.log_add-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minimisc.log_get" id="toc-minimisc.log_get" class="nav-link" data-scroll-target="#minimisc.log_get">log_get()</a>
+  <ul>
+  <li><a href="#minimisc.log_get-return" id="toc-minimisc.log_get-return" class="nav-link" data-scroll-target="#minimisc.log_get-return">Return</a></li>
+  <li><a href="#minimisc.log_get-seealso" id="toc-minimisc.log_get-seealso" class="nav-link" data-scroll-target="#minimisc.log_get-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minimisc.log_show" id="toc-minimisc.log_show" class="nav-link" data-scroll-target="#minimisc.log_show">log_show()</a>
+  <ul>
+  <li><a href="#minimisc.log_show-seealso" id="toc-minimisc.log_show-seealso" class="nav-link" data-scroll-target="#minimisc.log_show-seealso">See also</a></li>
+  </ul></li>
+  <li><a href="#minimisc.log_clear" id="toc-minimisc.log_clear" class="nav-link" data-scroll-target="#minimisc.log_clear">log_clear()</a>
+  <ul>
+  <li><a href="#minimisc.log_clear-seealso" id="toc-minimisc.log_clear-seealso" class="nav-link" data-scroll-target="#minimisc.log_clear-seealso">See also</a></li>
+  </ul></li>
   <li><a href="#minimisc.put" id="toc-minimisc.put" class="nav-link" data-scroll-target="#minimisc.put">put()</a>
   <ul>
   <li><a href="#minimisc.put-parameters" id="toc-minimisc.put-parameters" class="nav-link" data-scroll-target="#minimisc.put-parameters">Parameters</a></li>
@@ -460,6 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Features the following functions:</p>
 <ul>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.bench_time">MiniMisc.bench_time()</a> to benchmark function execution time. Useful in combination with <code>stat_summary()</code>.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_add()">MiniMisc.log_add()</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_show()">MiniMisc.log_show()</a> and other helper functions to work with a special in-memory log array. Useful when debugging Lua code.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.put">MiniMisc.put()</a> and <a href="../../mini.nvim/doc/mini-misc.html#minimisc.put_text">MiniMisc.put_text()</a> to pretty print its arguments into command line and current buffer respectively.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.resize_window">MiniMisc.resize_window()</a> to resize current window to its editable width.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.setup_auto_root">MiniMisc.setup_auto_root()</a> to set up automated change of current directory.</p></li>
@@ -540,6 +560,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
+<section id="minimisc.log_add" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.log_add">log_add()</h3>
+<p align="center">
+<code>MiniMisc.log_add</code>(<span class="help-syntax-special">{desc}</span>, <span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Add an entry to the in-memory log array</p>
+<p>Useful when trying to debug a Lua code (like Neovim config or plugin). Use this instead of ad-hoc <code>print()</code> statements.</p>
+<p>Each entry is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;desc&gt;</span> <code>(any)</code> - entry description. Usually a string describing a place in the code.</p></li>
+<li><p><span class="help-syntax-keys">&lt;state&gt;</span> <code>(any)</code> - data about current state. Usually a table.</p></li>
+<li><p><span class="help-syntax-keys">&lt;timestamp&gt;</span> <code>(number)</code> - a timestamp of when the entry was added. A number of milliseconds since the in-memory log was initiated (after <a href="../../mini.nvim/doc/mini-misc.html#minimisc.setup">MiniMisc.setup()</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_clear()">MiniMisc.log_clear()</a>). Useful during profiling.</p></li>
+</ul>
+<section id="minimisc.log_add-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_add-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{desc}</span> <code>(any)</code> Entry description.</p>
+<p><span class="help-syntax-special">{state}</span> <code>(any)</code> Data about current state.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;deepcopy&gt;</span> - (boolean) Whether to apply <a href="https://neovim.io/doc/user/helptag.html?tag=vim.deepcopy">vim.deepcopy</a> to the <span class="help-syntax-special">{state}</span>. Usually helpful to record the exact state during code execution and avoid side effects of tables being changed in-place. Default <code>true</code>.</li>
+</ul>
+</section>
+<section id="minimisc.log_add-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_add-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">t</span> <span class="op">=</span> <span class="op">{</span> <span class="va">a</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>log_add<span class="op">(</span><span class="st">'before'</span><span class="op">,</span> <span class="op">{</span> <span class="va">t</span> <span class="op">=</span> <span class="va">t</span> <span class="op">})</span> <span class="co">-- Will show `t = { a = 1 }` state</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">t</span><span class="op">.</span><span class="va">a</span> <span class="op">=</span> <span class="va">t</span><span class="op">.</span><span class="va">a</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>log_add<span class="op">(</span><span class="st">'after'</span><span class="op">,</span> <span class="op">{</span> <span class="va">t</span> <span class="op">=</span> <span class="va">t</span> <span class="op">})</span>  <span class="co">-- Will show `t = { a = 2 }` state</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use `:lua MiniMisc.log_show()` or `:=MiniMisc.log_get()` to see the log</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minimisc.log_add-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_add-seealso">See also</h4>
+<ul>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_get()">MiniMisc.log_get()</a> to get log array</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_show()">MiniMisc.log_show()</a> to show log array in the dedicated buffer</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_clear()">MiniMisc.log_clear()</a> to clear the log array</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minimisc.log_get" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.log_get">log_get()</h3>
+<p align="center">
+<code>MiniMisc.log_get</code>()
+</p>
+<p>Get log array</p>
+<section id="minimisc.log_get-return" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_get-return">Return</h4>
+<p><code>(table[])</code> Log array. Returned as is, without <a href="https://neovim.io/doc/user/helptag.html?tag=vim.deepcopy()">vim.deepcopy()</a>.</p>
+</section>
+<section id="minimisc.log_get-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_get-seealso">See also</h4>
+<ul>
+<li><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_add()">MiniMisc.log_add()</a> to add to the log array</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minimisc.log_show" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.log_show">log_show()</h3>
+<p align="center">
+<code>MiniMisc.log_show</code>()
+</p>
+<p>Show log array in a scratch buffer</p>
+<section id="minimisc.log_show-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_show-seealso">See also</h4>
+<ul>
+<li><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_add()">MiniMisc.log_add()</a> to add to the log array</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minimisc.log_clear" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.log_clear">log_clear()</h3>
+<p align="center">
+<code>MiniMisc.log_clear</code>()
+</p>
+<p>Clear log array</p>
+<p>This also sets a new starting point for entry timestamps.</p>
+<section id="minimisc.log_clear-seealso" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.log_clear-seealso">See also</h4>
+<ul>
+<li><a href="https://neovim.io/doc/user/helptag.html?tag=MiniMisc.log_add()">MiniMisc.log_add()</a> to add to the log array</li>
+</ul>
+<hr>
+</section>
+</section>
 <section id="minimisc.put" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.put">put()</h3>
 <p align="center">
@@ -595,8 +703,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minimisc.setup_auto_root-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.setup_auto_root-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -655,7 +763,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minimisc.setup_restore_cursor-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.setup_restore_cursor-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup_restore_cursor<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup_restore_cursor<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -726,8 +834,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This works by parsing ‘commentstring’ buffer option, extracting non-whitespace comment leader (symbols on the left of commented line), and locally modifying ‘comments’ option (by prepending <code>n:&lt;leader&gt;</code>). Does nothing if ‘commentstring’ is empty or has comment symbols both in front and back (like “/%s/”).</p>
 <p>Nested comment leader added with this function is useful for formatting nested comments. For example, have in Lua “first-level” comments with ‘–’ and “second-level” comments with ‘—-’. With nested comment leader second type can be formatted with <code>gq</code> in the same way as first one.</p>
 <p>Recommended usage is with <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd">autocmd</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">use_nested_comments</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniMisc</span><span class="op">.</span>use_nested_comments<span class="op">()</span> <span class="kw">end</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'BufEnter'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">use_nested_comments</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">use_nested_comments</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniMisc</span><span class="op">.</span>use_nested_comments<span class="op">()</span> <span class="kw">end</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'BufEnter'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">use_nested_comments</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note: for most filetypes ‘commentstring’ option is added only when buffer with this filetype is entered, so using non-current <code>buf_id</code> can not lead to desired effect.</p>
 <section id="minimisc.use_nested_comments-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.use_nested_comments-parameters">Parameters</h4>
