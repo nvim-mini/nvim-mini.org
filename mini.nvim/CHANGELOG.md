@@ -171,6 +171,8 @@ There are following change types:
 
 - Update `zoom()` to return whether current buffer is zoomed in. By @loichyan, PR #1954.
 
+- Add `log_add()` and related functions (`log_get()`, `log_show()`, `log_clear()`) to work with a special in-memory log array. Useful when debugging Lua code (instead of `print()`).
+
 ## mini.pick {#v0.17.0-mini.pick}
 
 ### Evolve {#v0.17.0-mini.pick-evolve}
