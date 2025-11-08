@@ -79,9 +79,15 @@ There are following change types:
 
 ## mini.clue {#v0.17.0-mini.clue}
 
+### Evolve {#v0.17.0-mini.clue-evolve}
+
+- Use current query clue (if not immediately after trigger) as a window title instead of showing keys verbatim. This shows extra context when navigating through mappings.
+
 ### Expand {#v0.17.0-mini.clue-expand}
 
 - Add `gen_clues.square_brackets` to generate clues for `[` and `]` keys. By @TheLeoP, PR #1937.
+
+- Ensure triggers for 'mini.starter' buffers, but not override its query updaters (like for "g" and "z" triggers).
 
 ## mini.diff {#v0.17.0-mini.diff}
 
