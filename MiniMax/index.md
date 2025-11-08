@@ -85,7 +85,7 @@ NVIM_APPNAME=nvim-minimax nvim
 # Wait for plugins to install (there should be no new notifications)
 
 # Enjoy your new config!
-# Start with reading its files (type `<Space>`+`e`+`i`, without much delay in between)
+# Start with reading its files. Type `<Space>`+`e`+`i` to open 'init.lua'.
 ```
 
 Notes:
