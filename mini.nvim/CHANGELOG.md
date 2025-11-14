@@ -107,6 +107,8 @@ There are following change types:
 
 - Add `pickers.colorschemes` picker. By @pkazmier, PR #1789.
 
+- Add `workspace_symbol_live` scope to `pickers.lsp` picker. It allows searching for LSP symbols in the workspace with live feedback. Relates to `workspace_symbol` scope similarly to how `MiniPick.builtin.grep_live()` relates to `MiniPick.builtin.grep()`.
+
 - Add `<C-e>` mapping for `pickers.history` picker to edit commands or searches in cmdline. By @TheLeoP, PR #1960.
 
 ## mini.files {#v0.17.0-mini.files}

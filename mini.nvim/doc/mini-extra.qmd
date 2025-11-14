@@ -937,6 +937,11 @@ Notes:
 
     - "workspace_symbol".
 
+    - "workspace_symbol_live" - same as "workspace_symbol", but with live
+      feedback treating picker's prompt as LSP server query. Similar to
+      how [MiniPick.builtin.grep\_live()](mini-pick.qmd#minipick.builtin.grep_live) and [MiniPick.builtin.grep()](mini-pick.qmd#minipick.builtin.grep) are
+      related. To use regular matching, activate [MiniPick-actions-refine](mini-pick.qmd#minipick-actions-refine).
+
 - Relies on `vim.lsp.buf` methods supporting [vim.lsp.LocationOpts.OnList](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.LocationOpts.OnList).
   In particular, it means that picker is started only if LSP server returns
   list of locations and not a single location.
@@ -944,7 +949,7 @@ Notes:
 - Doesn't return anything due to async nature of `vim.lsp.buf` methods.
 
 - Requires set up [mini.icons](mini-icons.qmd#mini.icons) to show extra icons and highlighting in
-  "document_symbol" and "workspace_symbol" scopes.
+  "document_symbol", "workspace_symbol", "workspace_symbol_live" scopes.
 
 Examples:
 
@@ -964,7 +969,7 @@ Examples:
   - <span class="help-syntax-keys">\<scope\></span> `(string)` - LSP method to use. One of the supported ones (see
     list above). Default: `nil` which means explicit scope is needed.
 
-  - <span class="help-syntax-keys">\<symbol_query\></span> `(string)` - query for [vim.lsp.buf.workspace\_symbol()](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.workspace_symbol\(\)).
+  - <span class="help-syntax-keys">\<symbol_query\></span> `(string)` - query for `"workspace_symbol"` scope.
     Default: empty string for all symbols (according to LSP specification).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
