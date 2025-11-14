@@ -1225,10 +1225,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>“references”.</p></li>
 <li><p>“type_definition”.</p></li>
 <li><p>“workspace_symbol”.</p></li>
+<li><p>“workspace_symbol_live” - same as “workspace_symbol”, but with live feedback treating picker’s prompt as LSP server query. Similar to how <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live">MiniPick.builtin.grep_live()</a> and <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep">MiniPick.builtin.grep()</a> are related. To use regular matching, activate <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a>.</p></li>
 </ul></li>
 <li><p>Relies on <code>vim.lsp.buf</code> methods supporting <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.LocationOpts.OnList">vim.lsp.LocationOpts.OnList</a>. In particular, it means that picker is started only if LSP server returns list of locations and not a single location.</p></li>
 <li><p>Doesn’t return anything due to async nature of <code>vim.lsp.buf</code> methods.</p></li>
-<li><p>Requires set up <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> to show extra icons and highlighting in “document_symbol” and “workspace_symbol” scopes.</p></li>
+<li><p>Requires set up <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> to show extra icons and highlighting in “document_symbol”, “workspace_symbol”, “workspace_symbol_live” scopes.</p></li>
 </ul>
 <p>Examples:</p>
 <ul>
@@ -1240,7 +1241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - LSP method to use. One of the supported ones (see list above). Default: <code>nil</code> which means explicit scope is needed.</p></li>
-<li><p><span class="help-syntax-keys">&lt;symbol_query&gt;</span> <code>(string)</code> - query for <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.workspace_symbol()">vim.lsp.buf.workspace_symbol()</a>. Default: empty string for all symbols (according to LSP specification).</p></li>
+<li><p><span class="help-syntax-keys">&lt;symbol_query&gt;</span> <code>(string)</code> - query for <code>"workspace_symbol"</code> scope. Default: empty string for all symbols (according to LSP specification).</p></li>
 </ul>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 </section>
