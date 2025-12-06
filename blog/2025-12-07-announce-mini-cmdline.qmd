@@ -1,0 +1,43 @@
+---
+title: "Announcing 'mini.cmdline'"
+author: Evgeni Chasnovski
+date: 2025-120-07
+categories: [announce]
+description: "Command line tweaks: autocompletion, autocorrection, autopeek"
+---
+
+{{< video 2025-12-07-announce-mini-cmdline/demo.mp4 >}}
+
+Hello, Neovim users!
+
+After what feels like an eternity, there is now a new module: ['mini.cmdline'](/mini.nvim/readmes/mini-cmdline.md).
+
+The 'mini.nvim' is long overdue a new 0.17 release. After contemplating "just do it" approach, I decided that keeping the "every release has at least one new module" streak is worth it.
+
+So after deciding which module would be the most beneficial while taking not-so-long to write, the choice fell on implementing various Neovim command line tweaks.
+
+------
+
+Features of 'mini.cmdline':
+
+- Autocomplete with customizable delay. This is basically an automated pressing of [`'wildchar'`](https://neovim.io/doc/user/helptag.html?tag='wildchar') (`<Tab>` by default). Proved to be more useful than I anticipated.
+
+    Requires Neovim>=0.11, though Neovim>=0.12 is recommended.
+
+- Autocorrect words as-you-type. Only words that must come from a fixed set of candidates (like commands and options) are autocorrected by default.
+
+- Autopeek command range as-you-type. Shows a floating window with range lines along with customizable context lines. Looks really cool!
+
+What it doesn't do:
+
+- Customization of command line UI. Use [`:h vim._extui`](https://neovim.io/doc/user/helptag.html?tag=vim._extui) (on Neovim>=0.12).
+
+- Customization of autocompletion candidates. They are computed via [`:h cmdline-completion`](https://neovim.io/doc/user/helptag.html?tag=cmdline-completion).
+
+------
+
+Please, check it out and tell me what you think! For the time being (until there are comments on the site) leave a comment in a dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/!!!!!!!!!!!).
+
+I'd like to make 0.17 release relatively soon, so extensive public beta-testing will help a lot.
+
+Thanks!
