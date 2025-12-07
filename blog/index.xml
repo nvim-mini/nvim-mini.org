@@ -10,7 +10,47 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Mon, 13 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 07 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Announcing ‘mini.cmdline’</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2025-12-07-announce-mini-cmdline.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2025-12-07-announce-mini-cmdline/demo.mp4"></video></div>
+<p>Hello, Neovim users!</p>
+<p>After what feels like an eternity, there is now a new module: <a href="../mini.nvim/readmes/mini-cmdline.html">‘mini.cmdline’</a>.</p>
+<p>The ‘mini.nvim’ is long overdue a new 0.17 release. After contemplating a “just do it” approach, I decided that keeping the “every release has at least one new module” streak is worth it.</p>
+<p>So after looking for which module would be the most beneficial while taking not-so-long to write, the choice fell on implementing various Neovim command line tweaks.</p>
+<hr>
+<p>Features of ‘mini.cmdline’:</p>
+<ul>
+<li><p>Autocomplete with customizable delay. This is basically an automated pressing of <a href="https://neovim.io/doc/user/helptag.html?tag='wildchar'"><code>'wildchar'</code></a> (<code>&lt;Tab&gt;</code> by default) with some extra configuration possibilities. Proved to be more useful than I anticipated.</p>
+<p>Requires Neovim&gt;=0.11, though Neovim&gt;=0.12 is recommended.</p></li>
+<li><p>Autocorrect words as-you-type. Only words that must come from a fixed set of candidates (like commands and options) are autocorrected by default.</p></li>
+<li><p>Autopeek command range as-you-type. Shows a floating window with range lines along with customizable context lines. Looks really cool!</p></li>
+</ul>
+<p>What it doesn’t do:</p>
+<ul>
+<li><p>Customization of command line UI. Hopefully <a href="https://neovim.io/doc/user/helptag.html?tag=vim._extui"><code>:h vim._extui</code></a> will be enough for that (on Neovim&gt;=0.12).</p></li>
+<li><p>Customization of autocompletion candidates. They are computed via <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-completion"><code>:h cmdline-completion</code></a> based on how current command defines its completion.</p></li>
+</ul>
+<hr>
+<p>Please, check it out and tell me what you think! For the time being (until there are comments on the site) leave a comment in a dedicated <a href="https://github.com/nvim-mini/mini.nvim/issues/2158">beta-testing issue</a>.</p>
+<p>I’d like to make 0.17 release relatively soon, so extensive public beta-testing will help a lot.</p>
+<p>Thanks!</p>
+
+
+
+ ]]></description>
+  <category>announce</category>
+  <guid>https://nvim-mini.org/blog/2025-12-07-announce-mini-cmdline.html</guid>
+  <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>MiniMax - Neovim with maximum MINI</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -974,55 +1014,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2023-11-17-release-0110.html</guid>
   <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Announcing ‘mini.extra’</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2023-11-02-announce-mini-extra.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/17m65jn/miniextra_extra_mininvim_functionality_many/">posted on Reddit</a></em></p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2023-11-02-announce-mini-extra/demo.mp4"></video></div>
-<p>Hello, Neovim users!</p>
-<p>Today I would like to tell you about the release of <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md">mini.extra</a> - new module of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a>. It can also be installed using <a href="https://github.com/nvim-mini/mini.extra">separate GitHub repository</a>.</p>
-<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md#demo">link to the video demo</a>.</p>
-<hr>
-<p>This is basically meant as a collection of functionality which is not essential enough for other ‘mini.nvim’ modules to include directly.</p>
-<p>Right now it mostly consists from many (20, to be exact) pre-built pickers for <a href="../blog/2023-10-13-announce-mini-pick.html">mini.pick</a> plus some ‘mini.ai’ textobjects and ‘mini.hipatterns’ highlighters. But there might be more functionality and for other modules in the future.</p>
-<hr>
-<p>Features:</p>
-<ul>
-<li><p>Various pickers for ‘mini.pick’:</p>
-<ul>
-<li>Built-in diagnostic (<code>*MiniExtra.pickers.diagnostic()*</code>).</li>
-<li>File explorer (<code>*MiniExtra.pickers.explorer()*</code>).</li>
-<li>Git branches/commits/files/hunks (<code>*MiniExtra.pickers.git_hunks()*</code>, etc.).</li>
-<li>Command/search/input history (<code>*MiniExtra.pickers.history()*</code>).</li>
-<li>LSP references/symbols/etc. (<code>*MiniExtra.pickers.lsp()*</code>).</li>
-<li>Treesitter nodes (<code>*MiniExtra.pickers.treesitter()*</code>).</li>
-<li><strong>And much more</strong>.</li>
-</ul>
-<p>See <a href="https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L209"><code>*MiniExtra.pickers*</code> help tag</a> for more.</p></li>
-<li><p>Various textobject specifications for ‘mini.ai’. See <a href="https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L73"><code>*MiniExtra.gen_ai_spec*</code> help tag</a>.</p></li>
-<li><p>Various highlighters for ‘mini.hipatterns’. See <a href="https://github.com/nvim-mini/mini.nvim/blob/eaf0e040362fa0c20db1a7f0cccda9099b6b0362/doc/mini-extra.txt#L175"><code>*MiniExtra.gen_highlighter*</code> help tag</a>.</p></li>
-</ul>
-<p>Notes: - This module requires only those ‘mini.nvim’ modules which are needed for a particular functionality: ‘mini.pick’ for pickers, etc.</p>
-<p>For full documentation see <a href="https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-extra.txt">help file</a>.</p>
-<hr>
-<p>Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in <a href="https://github.com/nvim-mini/mini.nvim/issues/550">dedicated beta-testing issue</a>.</p>
-<p>Thanks!</p>
-
-
-
- ]]></description>
-  <category>announce</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2023-11-02-announce-mini-extra.html</guid>
-  <pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

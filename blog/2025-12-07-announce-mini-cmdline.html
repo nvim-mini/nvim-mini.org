@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Evgeni Chasnovski">
+<meta name="dcterms.date" content="2025-12-07">
+<meta name="description" content="Command line tweaks: autocompletion, autocorrection, autopeek range">
 
-<title>contributing – MINI</title>
+<title>Announcing ‘mini.cmdline’ – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,6 +47,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3e1533199cf0bf1e072b6c22d59bf330.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-8fb413afc8e529ea6f0b69a7c79bd225.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,17 +76,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="MINI">
-<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:title" content="Announcing ‘mini.cmdline’ – MINI">
+<meta property="og:description" content="Command line tweaks: autocompletion, autocorrection, autopeek range">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_xmas-social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="MINI">
-<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:title" content="Announcing ‘mini.cmdline’ – MINI">
+<meta name="twitter:description" content="Command line tweaks: autocompletion, autocorrection, autopeek range">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_xmas-social.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -312,368 +316,76 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#contributing" id="toc-contributing" class="nav-link active" data-scroll-target="#contributing">Contributing</a>
-  <ul>
-  <li><a href="#commit-messages" id="toc-commit-messages" class="nav-link" data-scroll-target="#commit-messages">Commit messages</a>
-  <ul>
-  <li><a href="#automated-commit-linting" id="toc-automated-commit-linting" class="nav-link" data-scroll-target="#automated-commit-linting">Automated commit linting</a></li>
-  </ul></li>
-  <li><a href="#generating-help-file" id="toc-generating-help-file" class="nav-link" data-scroll-target="#generating-help-file">Generating help file</a></li>
-  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
-  <li><a href="#formatting" id="toc-formatting" class="nav-link" data-scroll-target="#formatting">Formatting</a></li>
-  <li><a href="#list-of-highlight-groups" id="toc-list-of-highlight-groups" class="nav-link" data-scroll-target="#list-of-highlight-groups">List of highlight groups</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Announcing ‘mini.cmdline’</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">announce</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Command line tweaks: autocompletion, autocorrection, autopeek range
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="contributing" class="level1">
-<h1>Contributing</h1>
-<p>Thank you for your willingness to contribute to ‘mini.nvim’. It means a lot!</p>
-<p>You can make contributions in the following ways:</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Evgeni Chasnovski </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 7, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2025-12-07-announce-mini-cmdline/demo.mp4"></video></div>
+<p>Hello, Neovim users!</p>
+<p>After what feels like an eternity, there is now a new module: <a href="../mini.nvim/readmes/mini-cmdline.html">‘mini.cmdline’</a>.</p>
+<p>The ‘mini.nvim’ is long overdue a new 0.17 release. After contemplating a “just do it” approach, I decided that keeping the “every release has at least one new module” streak is worth it.</p>
+<p>So after looking for which module would be the most beneficial while taking not-so-long to write, the choice fell on implementing various Neovim command line tweaks.</p>
+<hr>
+<p>Features of ‘mini.cmdline’:</p>
 <ul>
-<li><strong>Mention it</strong> somehow to help reach broader audience. This helps a lot.</li>
-<li><strong>Create a GitHub issue</strong>. It can be one of the following types:
-<ul>
-<li><strong>Bug report</strong>. Describe your actions in a reproducible way along with their effect and what you expected should happen. Before making one, please make your best efforts to:
-<ul>
-<li>Make sure that it is not an intended behavior, i.e.&nbsp;not described in documentation as such.</li>
-<li>Make sure that it was not reported before, i.e.&nbsp;there is no bug report already created (no matter open or closed).</li>
-</ul></li>
-<li><strong>Feature request</strong>. A concise and justified description of what one or several modules should be able to do. Before making one, please make your best efforts to make sure that it is not a feature that won’t get implemented (these should be described in documentation; for example: block comments in ‘mini.comment’).</li>
-</ul></li>
-<li><strong>Create a pull request (PR)</strong>. It can be one of the following types:
-<ul>
-<li><strong>Code related</strong>. For example, fix a bug or implement a feature. <strong>Before even starting one, please make sure that it is aligned with project vision and goals</strong>. The best way to do so is to receive positive feedback from maintainer on your initiative in one of the GitHub issues (existing or created by you). Please, make sure to regenerate latest help file and that all tests pass (see later sections).</li>
-<li><strong>Documentation related</strong>. For example, fix typo/wording in ‘README.md’, code comments or annotations (which are used to generate Neovim documentation; see later section). Feel free to make these without creating a GitHub issue.</li>
-<li><strong>Add plugin integration to ‘mini.base16’ and ‘mini.hues’ modules</strong>.</li>
-</ul></li>
-<li><strong>Add explicit support to other colorschemes</strong>. Every ‘mini.nvim’ module supports any colorscheme right out of the box. This is done by making most highlight groups be linked to a semantically similar builtin highlight group. Other groups are hard-coded based on personal preference. However, these choices might be out of tune with a particular colorscheme. Updating as many colorschemes as possible to have explicit ‘mini.nvim’ support is highly appreciated. For your convenience, there is a list of all highlight groups in later section of this file.</li>
-<li><strong>Participate in <a href="https://github.com/nvim-mini/mini.nvim/discussions">discussions</a></strong>.</li>
+<li><p>Autocomplete with customizable delay. This is basically an automated pressing of <a href="https://neovim.io/doc/user/helptag.html?tag='wildchar'"><code>'wildchar'</code></a> (<code>&lt;Tab&gt;</code> by default) with some extra configuration possibilities. Proved to be more useful than I anticipated.</p>
+<p>Requires Neovim&gt;=0.11, though Neovim&gt;=0.12 is recommended.</p></li>
+<li><p>Autocorrect words as-you-type. Only words that must come from a fixed set of candidates (like commands and options) are autocorrected by default.</p></li>
+<li><p>Autopeek command range as-you-type. Shows a floating window with range lines along with customizable context lines. Looks really cool!</p></li>
 </ul>
-<p>All well-intentioned, polite, and respectful contributions are always welcome! Thanks for reading this!</p>
-<section id="commit-messages" class="level2">
-<h2 class="anchored" data-anchor-id="commit-messages">Commit messages</h2>
+<p>What it doesn’t do:</p>
 <ul>
-<li><p>Try to make commit message as concise as possible while giving enough information about nature of a change. Think about whether it will be easy to understand in one year time when browsing through commit history.</p></li>
-<li><p>Single commit should change either zero or one module, or affect all modules (i.e.&nbsp;enforcing some universal rule but not necessarily change files). Changes for two or more modules should be split in several module-specific commits.</p></li>
-<li><p>Use <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional commits</a> style:</p>
-<ul>
-<li><p>Messages should have the following structure:</p>
-<pre><code>&lt;type&gt;[optional scope][!]: &lt;description&gt;
-&lt;empty line&gt;
-[optional body]
-&lt;empty line&gt;
-[optional footer(s)]</code></pre></li>
-<li><p><code>&lt;type&gt;</code> is <strong>mandatory</strong> and can be one of:</p>
-<ul>
-<li><code>ci</code> - change in how automation (GitHub actions, dual distribution scripts, etc.) is done.</li>
-<li><code>docs</code> - change in user facing documentation (help, README, CONTRIBUTING, etc.).</li>
-<li><code>feat</code> - adding new user facing feature.</li>
-<li><code>fix</code> - resolving user facing issue.</li>
-<li><code>refactor</code> - change in code or documentation that should not affect users.</li>
-<li><code>style</code> - change in convention of how something should be done (formatting, wording, etc.) and its effects.</li>
-<li><code>test</code> - change in tests. For temporary commits which later should be squashed (when working on PR, for example), use <code>fixup</code> type.</li>
-</ul></li>
-<li><p><code>[optional scope]</code>, if present, should be done in parenthesis <code>()</code>. If commit changes single module (as it usually should), using scope with module name is <strong>mandatory</strong>. If commit enforces something for all modules, use <code>ALL</code> scope.</p></li>
-<li><p>Breaking change, if present, should be expressed with <code>!</code> before <code>:</code>.</p></li>
-<li><p><code>&lt;description&gt;</code> is a change overview in imperative, present tense (“change” not “changed” nor “changes”). Should result into first line under 72 characters. Should start with not capitalized word and NOT end with sentence ending punctuation (i.e.&nbsp;one of <code>.,?!;</code>).</p></li>
-<li><p><code>[optional body]</code>, if present, should contain details and motivation about the change in plain language. Should be formatted to have maximum 80 characters in line.</p></li>
-<li><p><code>[optional footer(s)]</code>, if present, should be instruction(s) to Git or Github. Use “Resolve #xxx” on separate line if this commit resolves issue or PR.</p></li>
-</ul></li>
-<li><p>Use module’s function and field names without module’s name. Like <code>add()</code> and not <code>MiniSurround.add()</code>.</p></li>
+<li><p>Customization of command line UI. Hopefully <a href="https://neovim.io/doc/user/helptag.html?tag=vim._extui"><code>:h vim._extui</code></a> will be enough for that (on Neovim&gt;=0.12).</p></li>
+<li><p>Customization of autocompletion candidates. They are computed via <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-completion"><code>:h cmdline-completion</code></a> based on how current command defines its completion.</p></li>
 </ul>
-<p>Examples:</p>
-<pre><code>feat(deps): add folds in update confirmation buffer</code></pre>
-<pre><code>fix(jump): make operator not delete one character if target is not found
-
-One main goal is to do that in a dot-repeatable way, because this is very
-likely to be repeated after an unfortunate first try.
-
-Resolve #688</code></pre>
-<pre><code>refactor(bracketed): do not source 'vim.treesitter' on `require()`
-
-Although less explicit, this considerably reduces startup footprint of
-'mini.bracketed' in isolation.</code></pre>
-<pre><code>feat(hues)!: update verbatim text to be distinctive</code></pre>
-<pre><code>test(ALL): update screenshots to work on Nightly</code></pre>
-<section id="automated-commit-linting" class="level3">
-<h3 class="anchored" data-anchor-id="automated-commit-linting">Automated commit linting</h3>
-<ul>
-<li>To lint messages of already done commits, execute <code>scripts/lintcommit-ci.sh &lt;git-log-range&gt;</code>. For example, to lint currently latest commit use <code>scripts/lintcommit-ci.sh HEAD~..HEAD</code>.</li>
-<li>To lint commit message before doing commit, install <a href="https://pre-commit.com/#install"><code>pre-commit</code></a> and enable it with <code>pre-commit install --hook-type commit-msg</code> (from the root directory). NOTE: requires <code>nvim</code> executable. If it throws (usually descriptive) error - recommit with proper message.</li>
-</ul>
-</section>
-</section>
-<section id="generating-help-file" class="level2">
-<h2 class="anchored" data-anchor-id="generating-help-file">Generating help file</h2>
-<p>If your contribution updates annotations used to generate help file, please regenerate it. You can make this with one of the following (assuming current directory being project root):</p>
-<ul>
-<li>From command line execute <code>make documentation</code>.</li>
-<li>Inside Neovim instance run <code>:luafile scripts/minidoc.lua</code> or <code>:lua require('mini.doc').generate()</code>.</li>
-</ul>
-</section>
-<section id="testing" class="level2">
-<h2 class="anchored" data-anchor-id="testing">Testing</h2>
-<p>If your contribution updates code, please make sure that it doesn’t break existing tests. If it adds new functionality or fixes a recognized bug, add new test case(s). There are two ways of running tests:</p>
-<ul>
-<li>From command line:
-<ul>
-<li>Execute <code>make test</code> to run all tests (with <code>nvim</code> as executable).</li>
-<li>Execute <code>make test_xxx</code> to run tests only from file <code>tests/test_xxx.lua</code> (with <code>nvim</code> as executable). For example, <code>make test_ai</code>.</li>
-<li>If you have multiple Neovim executables (say, <code>nvim_07</code>, <code>nvim_08</code>, <code>nvim_09</code>, <code>nvim_010</code>), you can use <code>NVIM_EXEC</code> variable to tests against multiple versions like this: <code>NVIM_EXEC="nvim_07 nvim_08 nvim_09 nvim_010" make test</code> or <code>NVIM_EXEC="nvim_07 nvim_08 nvim_09 nvim_010" make test_xxx</code>.</li>
-</ul></li>
-<li>Inside Neovim instance execute <code>:lua require('mini.test').setup(); MiniTest.run()</code> to run all tests or <code>:lua require('mini.test').setup(); MiniTest.run_file()</code> to run tests only from current buffer.</li>
-</ul>
-<p>This plugin uses ‘mini.test’ to manage its tests. For a more hands-on introduction, see <a href="../mini.nvim/TESTING.html">TESTING.md</a>.</p>
-<p><strong>Notes</strong>:</p>
-<ul>
-<li><p>If new functionality relies on an external dependency (<code>git</code> CLI tool, LSP server, etc.), use mocking (writing Lua code which emulates dependency usage as close as reasonably possible). For examples, take a look at tests for ‘mini.pick’, ‘mini.completion’, and ‘mini.statusline’.</p></li>
-<li><p>There is a certain number of tests that are flaky (i.e.&nbsp;will sometimes report an error due to other reasons than actual functionality being broke). It is usually the ones which test time related functionality (i.e.&nbsp;that certain action was done after specific amount of delay).</p>
-<p>A commonly used way to know if the test is flaky is that it fails on non-nightly Neovim version yet there were no changes to its tested module after it had passed in the past. For example, some ‘mini.animate’ test is shown to break but there were no changes to it since test passed in CI couple of days before.</p>
-<p>This issue is addressed by having test cases being executed several times in case of failure (with more retries in slow context). See <a href="../mini.nvim/TESTING.html#Retry">“Retry” section in ‘TESTING.md’</a>.</p>
-<p>In case there is some test breaking which reasonably should not, rerun that test (or the whole file) at least several times.</p></li>
-<li><p>Advice for writing more robust tests:</p>
-<ul>
-<li>To test asynchronous or slow execution, use common <code>sleep()</code> test helper. For a more robust testing code, <strong>never</strong> directly use numbers to compute sleep time. Use precomputed time delay constants, which should always take into account different testing OSs (like be bigger on Windows, etc.). If module testing requires its extensive use and tests can not be made robust enough (examples are ‘mini.animate’, ‘mini.jump’, etc.), consider using it with argument that skips entire test case if <code>sleep()</code> is called in slow context.</li>
-<li>Take into account that Windows uses “" as default path separator instead of Unix”/“. This should be accounted either in module’s code (preferably) or in test files (for example, by computing path separator and relying on it).</li>
-</ul></li>
-</ul>
-</section>
-<section id="formatting" class="level2">
-<h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
-<p>This project uses <a href="https://github.com/JohnnyMorganz/StyLua">StyLua</a> version 2.1.0 for formatting Lua code. Before making changes to code, please:</p>
-<ul>
-<li><a href="https://github.com/JohnnyMorganz/StyLua#installation">Install StyLua</a>. NOTE: use <code>v2.1.0</code>.</li>
-<li>Format with it. Currently there are two ways to do this:
-<ul>
-<li>Manually run <code>stylua .</code> from the root directory of this project.</li>
-<li>Install <a href="https://pre-commit.com/#install"><code>pre-commit</code></a> and enable it with <code>pre-commit install</code> (from the root directory). This will auto-format relevant code before making commits.</li>
-</ul></li>
-</ul>
-</section>
-<section id="list-of-highlight-groups" class="level2">
-<h2 class="anchored" data-anchor-id="list-of-highlight-groups">List of highlight groups</h2>
-<p>Here is a list of all highlight groups defined inside ‘mini.nvim’ modules. See documentation in ‘doc’ directory to find out what they are used for.</p>
-<ul>
-<li>‘mini.animate’:
-<ul>
-<li><code>MiniAnimateCursor</code></li>
-<li><code>MiniAnimateNormalFloat</code></li>
-</ul></li>
-<li>‘mini.clue’:
-<ul>
-<li><code>MiniClueBorder</code></li>
-<li><code>MiniClueDescGroup</code></li>
-<li><code>MiniClueDescSingle</code></li>
-<li><code>MiniClueNextKey</code></li>
-<li><code>MiniClueNextKeyWithPostkeys</code></li>
-<li><code>MiniClueSeparator</code></li>
-<li><code>MiniClueTitle</code></li>
-</ul></li>
-<li>‘mini.cmdline’:
-<ul>
-<li><code>MiniCmdlinePeekBorder</code></li>
-<li><code>MiniCmdlinePeekLineNr</code></li>
-<li><code>MiniCmdlinePeekNormal</code></li>
-<li><code>MiniCmdlinePeekSep</code></li>
-<li><code>MiniCmdlinePeekSign</code></li>
-<li><code>MiniCmdlinePeekTitle</code></li>
-</ul></li>
-<li>‘mini.completion’:
-<ul>
-<li><code>MiniCompletionActiveParameter</code></li>
-<li><code>MiniCompletionDeprecated</code></li>
-<li><code>MiniCompletionInfoBorderOutdated</code></li>
-</ul></li>
-<li>‘mini.cursorword’:
-<ul>
-<li><code>MiniCursorword</code></li>
-<li><code>MiniCursorwordCurrent</code></li>
-</ul></li>
-<li>‘mini.deps’:
-<ul>
-<li><code>MiniDepsChangeAdded</code></li>
-<li><code>MiniDepsChangeRemoved</code></li>
-<li><code>MiniDepsHint</code></li>
-<li><code>MiniDepsInfo</code></li>
-<li><code>MiniDepsMsgBreaking</code></li>
-<li><code>MiniDepsPlaceholder</code></li>
-<li><code>MiniDepsTitle</code></li>
-<li><code>MiniDepsTitleError</code></li>
-<li><code>MiniDepsTitleSame</code></li>
-<li><code>MiniDepsTitleUpdate</code></li>
-</ul></li>
-<li>‘mini.diff’:
-<ul>
-<li><code>MiniDiffSignAdd</code></li>
-<li><code>MiniDiffSignChange</code></li>
-<li><code>MiniDiffSignDelete</code></li>
-<li><code>MiniDiffOverAdd</code></li>
-<li><code>MiniDiffOverChange</code></li>
-<li><code>MiniDiffOverChangeBuf</code></li>
-<li><code>MiniDiffOverContext</code></li>
-<li><code>MiniDiffOverContextBuf</code></li>
-<li><code>MiniDiffOverDelete</code></li>
-</ul></li>
-<li>‘mini.files’:
-<ul>
-<li><code>MiniFilesBorder</code></li>
-<li><code>MiniFilesBorderModified</code></li>
-<li><code>MiniFilesCursorLine</code></li>
-<li><code>MiniFilesDirectory</code></li>
-<li><code>MiniFilesFile</code></li>
-<li><code>MiniFilesNormal</code></li>
-<li><code>MiniFilesTitle</code></li>
-<li><code>MiniFilesTitleFocused</code></li>
-</ul></li>
-<li>‘mini.hipatterns’:
-<ul>
-<li><code>MiniHipatternsFixme</code></li>
-<li><code>MiniHipatternsHack</code></li>
-<li><code>MiniHipatternsNote</code></li>
-<li><code>MiniHipatternsTodo</code></li>
-</ul></li>
-<li>‘mini.icons’:
-<ul>
-<li><code>MiniIconsAzure</code></li>
-<li><code>MiniIconsBlue</code></li>
-<li><code>MiniIconsCyan</code></li>
-<li><code>MiniIconsGreen</code></li>
-<li><code>MiniIconsGrey</code></li>
-<li><code>MiniIconsOrange</code></li>
-<li><code>MiniIconsPurple</code></li>
-<li><code>MiniIconsRed</code></li>
-<li><code>MiniIconsYellow</code></li>
-</ul></li>
-<li>‘mini.indentscope’:
-<ul>
-<li><code>MiniIndentscopeSymbol</code></li>
-<li><code>MiniIndentscopeSymbolOff</code></li>
-</ul></li>
-<li>‘mini.jump’:
-<ul>
-<li><code>MiniJump</code></li>
-</ul></li>
-<li>‘mini.jump2d’:
-<ul>
-<li><code>MiniJump2dDim</code></li>
-<li><code>MiniJump2dSpot</code></li>
-<li><code>MiniJump2dSpotAhead</code></li>
-<li><code>MiniJump2dSpotUnique</code></li>
-</ul></li>
-<li>‘mini.map’:
-<ul>
-<li><code>MiniMapNormal</code></li>
-<li><code>MiniMapSymbolCount</code></li>
-<li><code>MiniMapSymbolLine</code></li>
-<li><code>MiniMapSymbolView</code></li>
-</ul></li>
-<li>‘mini.notify’:
-<ul>
-<li><code>MiniNotifyBorder</code></li>
-<li><code>MiniNotifyLspProgress</code></li>
-<li><code>MiniNotifyNormal</code></li>
-<li><code>MiniNotifyTitle</code></li>
-</ul></li>
-<li>‘mini.operators’:
-<ul>
-<li><code>MiniOperatorsExchangeFrom</code></li>
-</ul></li>
-<li>‘mini.pick’:
-<ul>
-<li><code>MiniPickBorder</code></li>
-<li><code>MiniPickBorderBusy</code></li>
-<li><code>MiniPickBorderText</code></li>
-<li><code>MiniPickCursor</code></li>
-<li><code>MiniPickIconDirectory</code></li>
-<li><code>MiniPickIconFile</code></li>
-<li><code>MiniPickHeader</code></li>
-<li><code>MiniPickMatchCurrent</code></li>
-<li><code>MiniPickMatchMarked</code></li>
-<li><code>MiniPickMatchRanges</code></li>
-<li><code>MiniPickNormal</code></li>
-<li><code>MiniPickPreviewLine</code></li>
-<li><code>MiniPickPreviewRegion</code></li>
-<li><code>MiniPickPrompt</code></li>
-<li><code>MiniPickPromptCaret</code></li>
-<li><code>MiniPickPromptPrefix</code></li>
-</ul></li>
-<li>‘mini.snippets’:
-<ul>
-<li><code>MiniSnippetsCurrent</code></li>
-<li><code>MiniSnippetsCurrentReplace</code></li>
-<li><code>MiniSnippetsFinal</code></li>
-<li><code>MiniSnippetsUnvisited</code></li>
-<li><code>MiniSnippetsVisited</code></li>
-</ul></li>
-<li>‘mini.starter’:
-<ul>
-<li><code>MiniStarterCurrent</code></li>
-<li><code>MiniStarterFooter</code></li>
-<li><code>MiniStarterHeader</code></li>
-<li><code>MiniStarterInactive</code></li>
-<li><code>MiniStarterItem</code></li>
-<li><code>MiniStarterItemBullet</code></li>
-<li><code>MiniStarterItemPrefix</code></li>
-<li><code>MiniStarterSection</code></li>
-<li><code>MiniStarterQuery</code></li>
-</ul></li>
-<li>‘mini.statusline’:
-<ul>
-<li><code>MiniStatuslineDevinfo</code></li>
-<li><code>MiniStatuslineFileinfo</code></li>
-<li><code>MiniStatuslineFilename</code></li>
-<li><code>MiniStatuslineInactive</code></li>
-<li><code>MiniStatuslineModeCommand</code></li>
-<li><code>MiniStatuslineModeInsert</code></li>
-<li><code>MiniStatuslineModeNormal</code></li>
-<li><code>MiniStatuslineModeOther</code></li>
-<li><code>MiniStatuslineModeReplace</code></li>
-<li><code>MiniStatuslineModeVisual</code></li>
-</ul></li>
-<li>‘mini.surround’:
-<ul>
-<li><code>MiniSurround</code></li>
-</ul></li>
-<li>‘mini.tabline’:
-<ul>
-<li><code>MiniTablineCurrent</code></li>
-<li><code>MiniTablineFill</code></li>
-<li><code>MiniTablineHidden</code></li>
-<li><code>MiniTablineModifiedCurrent</code></li>
-<li><code>MiniTablineModifiedHidden</code></li>
-<li><code>MiniTablineModifiedVisible</code></li>
-<li><code>MiniTablineTabpagesection</code></li>
-<li><code>MiniTablineTrunc</code></li>
-<li><code>MiniTablineVisible</code></li>
-</ul></li>
-<li>‘mini.test’:
-<ul>
-<li><code>MiniTestEmphasis</code></li>
-<li><code>MiniTestFail</code></li>
-<li><code>MiniTestPass</code></li>
-</ul></li>
-<li>‘mini.trailspace’:
-<ul>
-<li><code>MiniTrailspace</code></li>
-</ul></li>
-</ul>
+<hr>
+<p>Please, check it out and tell me what you think! For the time being (until there are comments on the site) leave a comment in a dedicated <a href="https://github.com/nvim-mini/mini.nvim/issues/2158">beta-testing issue</a>.</p>
+<p>I’d like to make 0.17 release relatively soon, so extensive public beta-testing will help a lot.</p>
+<p>Thanks!</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <!-- Original source: https://gc.zgo.at/count.js -->
@@ -1374,6 +1086,7 @@ Although less explicit, this considerably reduces startup footprint of
     </div>
   </div>
 </footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
