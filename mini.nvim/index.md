@@ -119,6 +119,7 @@ These modules improve your general workflow. Start with 'mini.bracketed', 'mini.
 | mini.bracketed | Go forward/backward with square brackets | [README](readmes/mini-bracketed.md) | [Documentation](doc/mini-bracketed.qmd) |
 | mini.bufremove | Remove buffers                           | [README](readmes/mini-bufremove.md) | [Documentation](doc/mini-bufremove.qmd) |
 | mini.clue      | Show next key clues                      | [README](readmes/mini-clue.md)      | [Documentation](doc/mini-clue.qmd)      |
+| mini.cmdline   | Command line tweaks                      | [README](readmes/mini-cmdline.md)   | [Documentation](doc/mini-cmdline.qmd)   |
 | mini.deps      | Plugin manager                           | [README](readmes/mini-deps.md)      | [Documentation](doc/mini-deps.qmd)      |
 | mini.diff      | Work with diff hunks                     | [README](readmes/mini-diff.md)      | [Documentation](doc/mini-diff.qmd)      |
 | mini.extra     | Extra 'mini.nvim' functionality          | [README](readmes/mini-extra.md)     | [Documentation](doc/mini-extra.qmd)     |
