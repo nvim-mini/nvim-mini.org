@@ -383,6 +383,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#minicmdline.default_autocorrect_func-parameters" id="toc-minicmdline.default_autocorrect_func-parameters" class="nav-link" data-scroll-target="#minicmdline.default_autocorrect_func-parameters">Parameters</a></li>
   <li><a href="#minicmdline.default_autocorrect_func-return" id="toc-minicmdline.default_autocorrect_func-return" class="nav-link" data-scroll-target="#minicmdline.default_autocorrect_func-return">Return</a></li>
   </ul></li>
+  <li><a href="#minicmdline.default_autopeek_predicate" id="toc-minicmdline.default_autopeek_predicate" class="nav-link" data-scroll-target="#minicmdline.default_autopeek_predicate">default_autopeek_predicate()</a>
+  <ul>
+  <li><a href="#minicmdline.default_autopeek_predicate-parameters" id="toc-minicmdline.default_autopeek_predicate-parameters" class="nav-link" data-scroll-target="#minicmdline.default_autopeek_predicate-parameters">Parameters</a></li>
+  <li><a href="#minicmdline.default_autopeek_predicate-return" id="toc-minicmdline.default_autopeek_predicate-return" class="nav-link" data-scroll-target="#minicmdline.default_autopeek_predicate-return">Return</a></li>
+  </ul></li>
   <li><a href="#minicmdline.default_autopeek_statuscolumn" id="toc-minicmdline.default_autopeek_statuscolumn" class="nav-link" data-scroll-target="#minicmdline.default_autopeek_statuscolumn">default_autopeek_statuscolumn()</a>
   <ul>
   <li><a href="#minicmdline.default_autopeek_statuscolumn-parameters" id="toc-minicmdline.default_autopeek_statuscolumn-parameters" class="nav-link" data-scroll-target="#minicmdline.default_autopeek_statuscolumn-parameters">Parameters</a></li>
@@ -539,16 +544,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Number of lines to show above and below range lines</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">n_context</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Window options</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Floating window config</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="va">config</span> <span class="op">=</span> <span class="op">{},</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Function to render statuscolumn</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>      <span class="va">statuscolumn</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Custom rule of when to show peek window</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">predicate</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Window options</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Floating window config</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>      <span class="va">config</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Function to render statuscolumn</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>      <span class="va">statuscolumn</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minicmdline.config-general" class="level4">
 <h4 class="anchored" data-anchor-id="minicmdline.config-general">General</h4>
@@ -588,6 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>This is intended mostly for fixing typos and not as a shortcut for fuzzy matching. Performing the latter automatically is too intrusive. Explicitly use fuzzy completion for that (set up by default).</p></li>
 <li><p>Default autocorrection is done only for words that must come from a fixed set of candidates (like commands and options) by choosing the one with the lowest string distance. See <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.default_autocorrect_func">MiniCmdline.default_autocorrect_func()</a> for details.</p></li>
+<li><p>Word that matches some Command-line <a href="https://neovim.io/doc/user/helptag.html?tag=abbreviation">abbreviation</a> is not autocorrected.</p></li>
 <li><p>If current command expects only a single argument (like <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a>), then autocorrection will happen only just before executing the command.</p></li>
 </ul>
 <p><code>autocorrect.func</code> is a function that can be used to customize autocorrection. Takes a table with input data and should return a string with the correct word or <code>nil</code> for no autocorrection. Default: <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.default_autocorrect_func">MiniCmdline.default_autocorrect_func()</a>.</p>
@@ -601,12 +610,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minicmdline.config-autopeek">Autopeek</h4>
 <p><code>config.autopeek</code> is used to configure automatic peeking: show command’s target range in a floating window. The window will appear above command line and show current buffer with the focus on left and right (if present and differs from left) range lines.</p>
 <p><code>autopeek.n_context</code> defines how many lines to show above and below the target. The range itself is visualized by default with the statuscolumn signs. Default: 1.</p>
-<p><code>autopeek.window</code> defines behavior of a peek window. <code>autopeek.window.config</code> is a table defining floating window characteristics or a callable returning such table. It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()">nvim_open_win()</a>.</p>
-<p><code>autopeek.window.statuscolumn</code> is a special function that can be used to customize <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'">‘statuscolumn’</a> value for the peek window. Takes a table with input data and should return a string to display for line <a href="https://neovim.io/doc/user/helptag.html?tag=v:lnum">v:lnum</a>. Default: <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.default_autopeek_statuscolumn">MiniCmdline.default_autopeek_statuscolumn()</a>. Input data fields:</p>
+<p><code>autopeek.predicate</code> defines a condition of whether to show peek window at the current command line state. Takes a table with input data and should return <code>true</code> to peek and <code>false</code> otherwise. Will be called only if it is possible to parse range from the current command line text and it is for buffer lines (no command or <a href="https://neovim.io/doc/user/helptag.html?tag=:command-addr">:command-addr</a> is <code>lines</code>) Default: <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.default_autopeek_predicate">MiniCmdline.default_autopeek_predicate()</a>.</p>
+<p>Input data fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;left&gt;</span> <code>(number)</code> - left range edge. Not necessarily smallest.</p></li>
 <li><p><span class="help-syntax-keys">&lt;right&gt;</span> <code>(number)</code> - right range edge. Same as <code>left</code> for a single line range.</p></li>
+<li><p><span class="help-syntax-keys">&lt;cmd&gt;</span> <code>(string)</code> - full command name. Can be empty string if no valid command is (yet) entered.</p></li>
 </ul>
+<p><code>autopeek.window</code> defines behavior of a peek window. <code>autopeek.window.config</code> is a table defining floating window characteristics or a callable returning such table. It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()">nvim_open_win()</a>.</p>
+<p><code>autopeek.window.statuscolumn</code> is a special function that can be used to customize <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'">‘statuscolumn’</a> value for the peek window. Takes a table with input data and should return a string to display for line <a href="https://neovim.io/doc/user/helptag.html?tag=v:lnum">v:lnum</a>. Default: <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.default_autopeek_statuscolumn">MiniCmdline.default_autopeek_statuscolumn()</a>. Input data fields are the same as for <code>autopeek.predicate</code>.</p>
 <p>Example of showing <code>&lt;</code> and <code>&gt;</code> signs on range lines:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">n</span><span class="op">,</span> <span class="va">l</span><span class="op">,</span> <span class="va">r</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">v</span><span class="op">.</span><span class="va">lnum</span><span class="op">,</span> <span class="va">data</span><span class="op">.</span><span class="va">left</span><span class="op">,</span> <span class="va">data</span><span class="op">.</span><span class="va">right</span></span>
@@ -675,6 +687,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicmdline.default_autocorrect_func-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicmdline.default_autocorrect_func-return">Return</h4>
 <p><code>(string)</code> Autocorrected word.</p>
+<hr>
+</section>
+</section>
+<section id="minicmdline.default_autopeek_predicate" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minicmdline.default_autopeek_predicate">default_autopeek_predicate()</h3>
+<p align="center">
+<code>MiniCmdline.default_autopeek_predicate</code>(<span class="help-syntax-special">{data}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Default autopeek predicate</p>
+<section id="minicmdline.default_autopeek_predicate-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minicmdline.default_autopeek_predicate-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{data}</span> <code>(table)</code> Input autopeek data. As described in <a href="../../mini.nvim/doc/mini-cmdline.html#minicmdline.config">MiniCmdline.config</a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Reserved for future use.</p>
+</section>
+<section id="minicmdline.default_autopeek_predicate-return" class="level4">
+<h4 class="anchored" data-anchor-id="minicmdline.default_autopeek_predicate-return">Return</h4>
+<p><code>(boolean)</code> If command defines <a href="https://neovim.io/doc/user/helptag.html?tag=:command-preview">:command-preview</a> - <code>false</code>, otherwise - <code>true</code>. This makes autopeek easier to use for commands like <a href="https://neovim.io/doc/user/helptag.html?tag=:substitute">:substitute</a>, especially if <a href="https://neovim.io/doc/user/helptag.html?tag='inccommand'">‘inccommand’</a> is set to <code>split</code>.</p>
 <hr>
 </section>
 </section>
