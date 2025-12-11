@@ -153,6 +153,9 @@ Here are code snippets for some common installation methods (use only one):
     -- Number of lines to show above and below range lines
     n_context = 1,
 
+    -- Custom rule of when to show peek window
+    predicate = nil,
+
     -- Window options
     window = {
       -- Floating window config

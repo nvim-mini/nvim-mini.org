@@ -179,6 +179,9 @@ Module setup
       -- Number of lines to show above and below range lines
       n_context = 1,
 
+      -- Custom rule of when to show peek window
+      predicate = nil,
+
       -- Window options
       window = {
         -- Floating window config
@@ -269,6 +272,9 @@ Notes:
   See [MiniCmdline.default\_autocorrect\_func()](mini-cmdline.qmd#minicmdline.default_autocorrect_func) for details.
 
 
+- Word that matches some Command-line [abbreviation](https://neovim.io/doc/user/helptag.html?tag=abbreviation) is not autocorrected.
+
+
 - If current command expects only a single argument (like [:colorscheme](https://neovim.io/doc/user/helptag.html?tag=:colorscheme)), then
   autocorrection will happen only just before executing the command.
 
@@ -294,6 +300,22 @@ left) range lines.
 The range itself is visualized by default with the statuscolumn signs.
 Default: 1.
 
+`autopeek.predicate` defines a condition of whether to show peek window at
+the current command line state. Takes a table with input data and should
+return `true` to peek and `false` otherwise.
+Will be called only if it is possible to parse range from the current command
+line text and it is for buffer lines (no command or [:command-addr](https://neovim.io/doc/user/helptag.html?tag=:command-addr) is `lines`)
+Default: [MiniCmdline.default\_autopeek\_predicate()](mini-cmdline.qmd#minicmdline.default_autopeek_predicate).
+
+Input data fields:
+
+- <span class="help-syntax-keys">\<left\></span> `(number)` - left range edge. Not necessarily smallest.
+
+- <span class="help-syntax-keys">\<right\></span> `(number)` - right range edge. Same as `left` for a single line range.
+
+- <span class="help-syntax-keys">\<cmd\></span> `(string)` - full command name. Can be empty string if no valid
+  command is (yet) entered.
+
 `autopeek.window` defines behavior of a peek window.
 `autopeek.window.config` is a table defining floating window characteristics
 or a callable returning such table.
@@ -303,11 +325,7 @@ It should have the same structure as in [nvim\_open\_win()](https://neovim.io/do
 customize ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') value for the peek window. Takes a table with input
 data and should return a string to display for line [v:lnum](https://neovim.io/doc/user/helptag.html?tag=v:lnum).
 Default: [MiniCmdline.default\_autopeek\_statuscolumn()](mini-cmdline.qmd#minicmdline.default_autopeek_statuscolumn).
-Input data fields:
-
-- <span class="help-syntax-keys">\<left\></span> `(number)` - left range edge. Not necessarily smallest.
-
-- <span class="help-syntax-keys">\<right\></span> `(number)` - right range edge. Same as `left` for a single line range.
+Input data fields are the same as for `autopeek.predicate`.
 
 Example of showing `<` and `>` signs on range lines:
 
@@ -412,6 +430,28 @@ Default autocorrection function
 
 
 `(string)` Autocorrected word.
+
+---
+
+### default_autopeek_predicate() {#minicmdline.default_autopeek_predicate .help-syntax-right-anchor}
+
+<p align="center">`MiniCmdline.default_autopeek_predicate`(<span class="help-syntax-special">{data}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Default autopeek predicate
+
+#### Parameters {#minicmdline.default_autopeek_predicate-parameters}
+
+
+
+<span class="help-syntax-special">{data}</span> `(table)` Input autopeek data. As described in [MiniCmdline.config](mini-cmdline.qmd#minicmdline.config).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Reserved for future use.
+
+#### Return {#minicmdline.default_autopeek_predicate-return}
+
+
+`(boolean)` If command defines [:command-preview](https://neovim.io/doc/user/helptag.html?tag=:command-preview) - `false`, otherwise - `true`.
+  This makes autopeek easier to use for commands like [:substitute](https://neovim.io/doc/user/helptag.html?tag=:substitute),
+  especially if ['inccommand'](https://neovim.io/doc/user/helptag.html?tag='inccommand') is set to `split`.
 
 ---
 
