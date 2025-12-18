@@ -48,9 +48,8 @@ This plugin can be installed as part of 'mini.nvim' library (**recommended**) or
 
 During beta-testing phase there is only one branch to install from:
 
-- `main` (default, **recommended**) will have latest development version of plugin.
-<!-- - `main` (default, **recommended**) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled). -->
-<!-- - `stable` will be updated only upon releases with code tested during public beta-testing phase in `main` branch. -->
+- `main` (default, **recommended**) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).
+- `stable` will be updated only upon releases with code tested during public beta-testing phase in `main` branch.
 
 Here are code snippets for some common installation methods (use only one):
 
@@ -62,14 +61,14 @@ Here are code snippets for some common installation methods (use only one):
     | Branch | Code snippet                                  |
     |--------|-----------------------------------------------|
     | Main   | *Follow recommended ‘mini.deps’ installation* |
-    <!-- | Stable | *Follow recommended ‘mini.deps’ installation* | -->
+    | Stable | *Follow recommended ‘mini.deps’ installation* |
 
 - Standalone plugin:
 
-    | Branch | Code snippet                                                     |
-    |--------|------------------------------------------------------------------|
+    | Branch | Code snippet                                                      |
+    |--------|-------------------------------------------------------------------|
     | Main   | `add(‘nvim-mini/mini.cmdline’)`                                   |
-    <!-- | Stable | `add({ source = ‘nvim-mini/mini.cmdline’, checkout = ‘stable’ })` | -->
+    | Stable | `add({ source = ‘nvim-mini/mini.cmdline’, checkout = ‘stable’ })` |
 
 </details>
 
@@ -81,14 +80,14 @@ Here are code snippets for some common installation methods (use only one):
     | Branch | Code snippet                                  |
     |--------|-----------------------------------------------|
     | Main   | `{ 'nvim-mini/mini.nvim', version = false },` |
-    <!-- | Stable | `{ 'nvim-mini/mini.nvim', version = '*' },`   | -->
+    | Stable | `{ 'nvim-mini/mini.nvim', version = '*' },`   |
 
 - Standalone plugin:
 
-    | Branch | Code snippet                                    |
-    |--------|-------------------------------------------------|
+    | Branch | Code snippet                                     |
+    |--------|--------------------------------------------------|
     | Main   | `{ 'nvim-mini/mini.cmdline', version = false },` |
-    <!-- | Stable | `{ 'nvim-mini/mini.cmdline', version = '*' },`   | -->
+    | Stable | `{ 'nvim-mini/mini.cmdline', version = '*' },`   |
 
 </details>
 
@@ -100,14 +99,14 @@ Here are code snippets for some common installation methods (use only one):
     | Branch | Code snippet                                         |
     |--------|------------------------------------------------------|
     | Main   | `Plug 'nvim-mini/mini.nvim'`                         |
-    <!-- | Stable | `Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }` | -->
+    | Stable | `Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }` |
 
 - Standalone plugin:
 
-    | Branch | Code snippet                                           |
-    |--------|--------------------------------------------------------|
+    | Branch | Code snippet                                            |
+    |--------|---------------------------------------------------------|
     | Main   | `Plug 'nvim-mini/mini.cmdline'`                         |
-    <!-- | Stable | `Plug 'nvim-mini/mini.cmdline', { 'branch': 'stable' }` | -->
+    | Stable | `Plug 'nvim-mini/mini.cmdline', { 'branch': 'stable' }` |
 
 </details>
 
