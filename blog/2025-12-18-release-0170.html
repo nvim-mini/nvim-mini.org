@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Evgeni Chasnovski">
+<meta name="dcterms.date" content="2025-12-18">
+<meta name="description" content="Command line tweaks, move to a GitHub org, new website, and a ton of module updates">
 
-<title>mini.cmdline – MINI</title>
+<title>Release 0.17.0 – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,65 +23,30 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3e1533199cf0bf1e072b6c22d59bf330.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-8fb413afc8e529ea6f0b69a7c79bd225.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e1533199cf0bf1e072b6c22d59bf330.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8fb413afc8e529ea6f0b69a7c79bd225.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,17 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="mini.cmdline – MINI">
-<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:title" content="Release 0.17.0 – MINI">
+<meta property="og:description" content="Command line tweaks, move to a GitHub org, new website, and a ton of module updates">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_xmas-social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="mini.cmdline – MINI">
-<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:title" content="Release 0.17.0 – MINI">
+<meta name="twitter:description" content="Command line tweaks, move to a GitHub org, new website, and a ton of module updates">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_xmas-social.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -299,9 +266,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MINI</span>
     </a>
   </div>
@@ -312,15 +279,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../mini.nvim/index.html"> 
+    <a class="nav-link" href="../mini.nvim/index.html"> 
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../MiniMax/index.html"> 
+    <a class="nav-link" href="../MiniMax/index.html"> 
 <span class="menu-text">MiniMax</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog/index.html"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -331,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+    <a class="nav-link" href="../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -347,19 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#command-line-tweaks" id="toc-command-line-tweaks" class="nav-link active" data-scroll-target="#command-line-tweaks">Command line tweaks</a></li>
-  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
-  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#default-config" id="toc-default-config" class="nav-link" data-scroll-target="#default-config">Default config</a></li>
-  <li><a href="#similar-plugins" id="toc-similar-plugins" class="nav-link" data-scroll-target="#similar-plugins">Similar plugins</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -367,14 +323,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">mini.cmdline</h1>
-</div>
+<h1 class="title">Release 0.17.0</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">release</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Command line tweaks, move to a GitHub org, new website, and a ton of module updates
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Evgeni Chasnovski </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 18, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -384,253 +360,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p align="center">
-<img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-cmdline_readme.png?raw=true" alt="mini.cmdline" style="max-width:100%;border:solid 2px">
-</p>
-<p align="center">
-<em>Generated from the <code>main</code> branch of ‘mini.nvim’</em>
-</p>
-<section id="command-line-tweaks" class="level3">
-<h3 class="anchored" data-anchor-id="command-line-tweaks">Command line tweaks</h3>
-<p>See more details in <a href="#features">Features</a> and <a href="../../mini.nvim/doc/mini-cmdline.html">Documentation</a>.</p>
+<p>Hello, Neovim users!</p>
+<p>The ‘mini.nvim’ plugin has released a new 0.17.0 version. The previous release was a whopping 7 months and 235 commits ago. The new one is long overdue, to say the least.</p>
+<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/releases/tag/v0.17.0">full release description</a> if you are curious.</p>
 <hr>
-<p>⦿ This is a part of <a href="https://nvim-mini.org/mini.nvim">mini.nvim</a> library. Please use <a href="https://nvim-mini.org/mini.nvim/readmes/mini-cmdline">this link</a> if you want to mention this module.</p>
-<p>⦿ All contributions (issues, pull requests, discussions, etc.) are done inside of ‘mini.nvim’.</p>
-<p>⦿ See <a href="https://nvim-mini.org/mini.nvim/doc/mini-nvim">whole library documentation</a> to learn about general design principles, disable/configuration recipes, and more.</p>
-<!-- ⦿ See [MiniMax](https://nvim-mini.org/MiniMax) for a full config example that uses this module. -->
+<p>There is only one new module in this release:</p>
+<ul>
+<li><a href="../mini.nvim/readmes/mini-cmdline.html">‘mini.cmdline’</a> - Command line tweaks. It enables autocomplete (requires Neovim&gt;=0.11), autocorrect, and autopeek range when using command line. You can read more in <a href="../blog/2025-12-07-announce-mini-cmdline.html">this release post</a>.</li>
+</ul>
 <hr>
-<p>If you want to help this project grow but don’t know where to start, check out <a href="https://nvim-mini.org/mini.nvim/CONTRIBUTING">contributing guides of ‘mini.nvim’</a> or leave a Github star for ‘mini.nvim’ project and/or any its standalone Git repositories.</p>
-</section>
-<section id="demo" class="level2">
-<h2 class="anchored" data-anchor-id="demo">Demo</h2>
-<p><video src="https://github.com/nvim-mini/assets/blob/main/demo/demo-cmdline.mp4?raw=true" class="img-fluid" controls=""><a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-cmdline.mp4?raw=true">Video</a></video></p>
-</section>
-<section id="features" class="level2">
-<h2 class="anchored" data-anchor-id="features">Features</h2>
+<p>One of the big reasons why this release took so much more time than previous ones is that there was a lot of adjacent work:</p>
 <ul>
-<li><p>Autocomplete with customizable delay. Enhances <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-completion"><code>:h cmdline-completion</code></a> and manual <a href="https://neovim.io/doc/user/helptag.html?tag='wildchar'"><code>:h 'wildchar'</code></a> pressing experience. Requires Neovim&gt;=0.11, though Neovim&gt;=0.12 is recommended.</p></li>
-<li><p>Autocorrect words as-you-type. Only words that must come from a fixed set of candidates (like commands and options) are autocorrected by default.</p></li>
-<li><p>Autopeek command range as-you-type. Shows a floating window with range lines along with customizable context lines.</p></li>
+<li><p>The whole project was rebranded to be MINI: Modular Independent Neovim Improvements.</p></li>
+<li><p>There is now a website. It took a lot of time to plan and execute.</p></li>
+<li><p>Hosting moved from <code>echasnovski</code> personal GitHub account to a dedicated <code>nvim-mini</code> organization. This change is made to improve long term project stability. See more details <a href="https://github.com/nvim-mini/mini.nvim/discussions/1970">here</a>.</p></li>
+<li><p>There is now an amazing <a href="https://github.com/orgs/nvim-mini/people">team</a> that helps me with MINI. Improving bus factor of the project is very important for its longevity.</p></li>
+<li><p>There is an “official” Neovim config example based on ‘mini.nvim’: <a href="../MiniMax">MiniMax</a>. In fact, it is designed as a collection of examples, each independent and tailored to specific Neovim version. It is not a lot now, but with time it might be a valuable resource about how Neovim config can change with time.</p></li>
 </ul>
-<p>What it doesn’t do:</p>
+<p>The other big reason for a long release delay is that in July my initial PR for the Neovim’s built-in plugin manager (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack"><code>vim.pack</code></a>) got merged. Its core ideas come from ‘mini.deps’ with some adjustments and overall improvements. It required a lot of time and effort to address initial issues and discussions.</p>
+<hr>
+<p>The full changelog for 0.17 is <a href="../mini.nvim/CHANGELOG.html#v0.17.0">here</a>. Noticeable changes include:</p>
 <ul>
-<li><p>Customization of command line UI. Use <a href="https://neovim.io/doc/user/helptag.html?tag=vim._extui"><code>:h vim._extui</code></a> (on Neovim&gt;=0.12).</p></li>
-<li><p>Customization of autocompletion candidates. They are computed via <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-completion"><code>:h cmdline-completion</code></a>.</p></li>
-</ul>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>This plugin can be installed as part of ‘mini.nvim’ library (<strong>recommended</strong>) or as a standalone Git repository.</p>
-<p>During beta-testing phase there is only one branch to install from:</p>
+<li><p>There is now a set of <a href="../mini.nvim/readmes/mini-hues.html#four-seasons">static ‘mini.hues’ based color schemes</a> to complete <code>randomhue</code>. They are inspired by four seasons: <code>miniwinter</code>, <code>minispring</code>, <code>minisummer</code>, <code>miniautumn</code>.</p></li>
+<li><p>‘mini.ai’ and ‘mini.surround’ tree-sitter integrations now don’t use ‘nvim-treesitter’ functions by default in favor of built-in <code>vim.treesitter</code> approaches.</p></li>
+<li><p>‘mini.extra’ got <code>colorschemes</code> picker and <code>workspace_symbol_live</code> scope to <code>lsp</code> picker.</p></li>
+<li><p>‘mini.files’ now:</p>
 <ul>
-<li><code>main</code> (default, <strong>recommended</strong>) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).</li>
-<li><code>stable</code> will be updated only upon releases with code tested during public beta-testing phase in <code>main</code> branch.</li>
-</ul>
-<p>Here are code snippets for some common installation methods (use only one):</p>
-<details>
-<summary>
-With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a>
-</summary>
+<li>Never hides a preview window, even if cursor is on something that can not be previewed. This should reduce flickering in various situations.</li>
+<li>Treats appending <code>/</code> to a file name as “delete it and create a directory with the same name”. Useful when earlier you wanted to create a directory but forgot to append “/”.</li>
+<li>Has <code>config.content.highlight</code> to adjust highlighting of file system entries.</li>
+</ul></li>
+<li><p>‘mini.hues’ has several groups autoadjust their highlighting based on certain events. Like <code>Pmenu</code> adjusts based on the value of ‘pumborder’ option (on Neovim&gt;=0.12).</p></li>
+<li><p>‘mini.jump2d’ moved <code>gen_xxx_spotter</code> functions into a separate <code>gen_spotter</code> table to follow the pattern from other modules.</p></li>
+<li><p>‘mini.misc’ got logging related functions (<code>log_add</code>, <code>log_show</code>, etc.). I use them very frequently during ‘mini.nvim’ development.</p></li>
+<li><p>‘mini.pick’ now:</p>
 <ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 89%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>add(‘nvim-mini/mini.cmdline’)</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>add({ source = ‘nvim-mini/mini.cmdline’, checkout = ‘stable’ })</code></td>
-</tr>
-</tbody>
-</table></li>
+<li>Has <code>grep</code> and <code>grep_live</code> pickers with <code>rg</code> tool respect Neovim’s ‘ignorecase’ and ‘smartcase’ options when matching.</li>
+<li>“Paste” action supports some special registers. Like <code>&lt;C-r&gt;&lt;C-w&gt;</code> will paste word at cursor.</li>
+</ul></li>
+<li><p>‘mini.surround’ doesn’t create <code>update_n_lines</code> to save “mapping real estate”. This will be useful later.</p></li>
+<li><p>‘mini.test’ screenshot testing now ignores text and highlighting attributes separately via <code>ignore_text</code> and <code>ignore_attr</code>.</p></li>
 </ul>
-</details>
-<details>
-<summary>
-With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
-</summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.cmdline', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.cmdline', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
-</details>
-<details>
-<summary>
-With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
-</summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.nvim'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.cmdline'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.cmdline', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
-</details>
-<p><strong>Important</strong>: don’t forget to call <code>require('mini.cmdline').setup()</code> to enable its functionality.</p>
-<p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
-<ul>
-<li>Enable corresponding git global config value: <code>git config --system core.longpaths true</code>. Then try to reinstall.</li>
-<li>Install plugin in other place with shorter path.</li>
-</ul>
-</section>
-<section id="default-config" class="level2">
-<h2 class="anchored" data-anchor-id="default-config">Default config</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autocompletion: show `:h 'wildmenu'` as you type</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocomplete</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">enable</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Delay (in ms) after which to trigger completion</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Neovim&gt;=0.12 is recommended for positive values</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">delay</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Custom rule of when to trigger completion</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">predicate</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to map arrow keys for more consistent wildmenu behavior</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">map_arrows</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autocorrection: adjust non-existing words (commands, options, etc.)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocorrect</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">enable</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Custom autocorrection rule</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">func</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autopeek: show command's target range in a floating window</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">autopeek</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">enable</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Number of lines to show above and below range lines</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">n_context</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Custom rule of when to show peek window</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">predicate</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Window options</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">window</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Floating window config</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      <span class="va">config</span> <span class="op">=</span> <span class="op">{},</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Function to render statuscolumn</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      <span class="va">statuscolumn</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="similar-plugins" class="level2">
-<h2 class="anchored" data-anchor-id="similar-plugins">Similar plugins</h2>
-<ul>
-<li><a href="https://github.com/folke/noice.nvim">folke/noice.nvim</a></li>
-<li><a href="https://github.com/nacro90/numb.nvim">nacro90/numb.nvim</a></li>
-<li>Built-in <a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-autocompletion">cmdline-autocompletion</a> (on Neovim&gt;=0.12):</li>
-</ul>
+<hr>
+<p>Huge thank you for the continued support of ‘mini.nvim’ project! We are past 8.4K stars now 🙏</p>
+<p>There is a lot more planned for ‘mini.nvim’ and MINI. So let’s keep in touch :)</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <!-- Original source: https://gc.zgo.at/count.js -->

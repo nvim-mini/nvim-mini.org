@@ -10,7 +10,69 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Sun, 07 Dec 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 18 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Release 0.17.0</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2025-12-18-release-0170.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello, Neovim users!</p>
+<p>The ‘mini.nvim’ plugin has released a new 0.17.0 version. The previous release was a whopping 7 months and 235 commits ago. The new one is long overdue, to say the least.</p>
+<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/releases/tag/v0.17.0">full release description</a> if you are curious.</p>
+<hr>
+<p>There is only one new module in this release:</p>
+<ul>
+<li><a href="../mini.nvim/readmes/mini-cmdline.html">‘mini.cmdline’</a> - Command line tweaks. It enables autocomplete (requires Neovim&gt;=0.11), autocorrect, and autopeek range when using command line. You can read more in <a href="../blog/2025-12-07-announce-mini-cmdline.html">this release post</a>.</li>
+</ul>
+<hr>
+<p>One of the big reasons why this release took so much more time than previous ones is that there was a lot of adjacent work:</p>
+<ul>
+<li><p>The whole project was rebranded to be MINI: Modular Independent Neovim Improvements.</p></li>
+<li><p>There is now a website. It took a lot of time to plan and execute.</p></li>
+<li><p>Hosting moved from <code>echasnovski</code> personal GitHub account to a dedicated <code>nvim-mini</code> organization. This change is made to improve long term project stability. See more details <a href="https://github.com/nvim-mini/mini.nvim/discussions/1970">here</a>.</p></li>
+<li><p>There is now an amazing <a href="https://github.com/orgs/nvim-mini/people">team</a> that helps me with MINI. Improving bus factor of the project is very important for its longevity.</p></li>
+<li><p>There is an “official” Neovim config example based on ‘mini.nvim’: <a href="../MiniMax">MiniMax</a>. In fact, it is designed as a collection of examples, each independent and tailored to specific Neovim version. It is not a lot now, but with time it might be a valuable resource about how Neovim config can change with time.</p></li>
+</ul>
+<p>The other big reason for a long release delay is that in July my initial PR for the Neovim’s built-in plugin manager (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack"><code>vim.pack</code></a>) got merged. Its core ideas come from ‘mini.deps’ with some adjustments and overall improvements. It required a lot of time and effort to address initial issues and discussions.</p>
+<hr>
+<p>The full changelog for 0.17 is <a href="../mini.nvim/CHANGELOG.html#v0.17.0">here</a>. Noticeable changes include:</p>
+<ul>
+<li><p>There is now a set of <a href="../mini.nvim/readmes/mini-hues.html#four-seasons">static ‘mini.hues’ based color schemes</a> to complete <code>randomhue</code>. They are inspired by four seasons: <code>miniwinter</code>, <code>minispring</code>, <code>minisummer</code>, <code>miniautumn</code>.</p></li>
+<li><p>‘mini.ai’ and ‘mini.surround’ tree-sitter integrations now don’t use ‘nvim-treesitter’ functions by default in favor of built-in <code>vim.treesitter</code> approaches.</p></li>
+<li><p>‘mini.extra’ got <code>colorschemes</code> picker and <code>workspace_symbol_live</code> scope to <code>lsp</code> picker.</p></li>
+<li><p>‘mini.files’ now:</p>
+<ul>
+<li>Never hides a preview window, even if cursor is on something that can not be previewed. This should reduce flickering in various situations.</li>
+<li>Treats appending <code>/</code> to a file name as “delete it and create a directory with the same name”. Useful when earlier you wanted to create a directory but forgot to append “/”.</li>
+<li>Has <code>config.content.highlight</code> to adjust highlighting of file system entries.</li>
+</ul></li>
+<li><p>‘mini.hues’ has several groups autoadjust their highlighting based on certain events. Like <code>Pmenu</code> adjusts based on the value of ‘pumborder’ option (on Neovim&gt;=0.12).</p></li>
+<li><p>‘mini.jump2d’ moved <code>gen_xxx_spotter</code> functions into a separate <code>gen_spotter</code> table to follow the pattern from other modules.</p></li>
+<li><p>‘mini.misc’ got logging related functions (<code>log_add</code>, <code>log_show</code>, etc.). I use them very frequently during ‘mini.nvim’ development.</p></li>
+<li><p>‘mini.pick’ now:</p>
+<ul>
+<li>Has <code>grep</code> and <code>grep_live</code> pickers with <code>rg</code> tool respect Neovim’s ‘ignorecase’ and ‘smartcase’ options when matching.</li>
+<li>“Paste” action supports some special registers. Like <code>&lt;C-r&gt;&lt;C-w&gt;</code> will paste word at cursor.</li>
+</ul></li>
+<li><p>‘mini.surround’ doesn’t create <code>update_n_lines</code> to save “mapping real estate”. This will be useful later.</p></li>
+<li><p>‘mini.test’ screenshot testing now ignores text and highlighting attributes separately via <code>ignore_text</code> and <code>ignore_attr</code>.</p></li>
+</ul>
+<hr>
+<p>Huge thank you for the continued support of ‘mini.nvim’ project! We are past 8.4K stars now 🙏</p>
+<p>There is a lot more planned for ‘mini.nvim’ and MINI. So let’s keep in touch :)</p>
+
+
+
+ ]]></description>
+  <category>release</category>
+  <guid>https://nvim-mini.org/blog/2025-12-18-release-0170.html</guid>
+  <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Announcing ‘mini.cmdline’</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -972,48 +1034,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2023-11-28-announce-mini-visits.html</guid>
   <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Release 0.11.0</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2023-11-17-release-0110.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/17xhmgz/mininvim_release_0110_new_fuzzy_picker_in_town/">posted on Reddit</a></em></p>
-<p>Hello, Neovim users!</p>
-<p>Today is the day to update <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> to version 0.11.0. It includes two big plugins coming out of beta-testing and many small updates to other modules as a result of backlog cleanup.</p>
-<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/releases/tag/v0.11.0">full release description</a> if you are curious.</p>
-<hr>
-<p>Two new modules are about making a performant picker with minimal UI and a lot of preconfigured pickers:</p>
-<ul>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pick.md">mini.pick</a> - pick anything. A general picker as alternative to Telescope and Fzf-Lua. Both of these plugins are great, but I wanted to have a slightly different UI and UX: a one window design with on demand preview. I am daily driving it for about two and a half months now and don’t miss anything. Here is a link to <a href="../blog/2023-10-13-announce-mini-pick.html">the announcement</a>.</p></li>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-extra.md">mini.extra</a> - extra functionality for ‘mini.nvim’ modules. Its main goal is mostly to contain 20+ preconfigured pickers for ‘mini.pick’ (like for built-in diagnostic, LSP, Neovim histories, etc.) and several textobject specifications for ‘mini.ai’ (line, buffer, indent, etc.), while still allowing more diverse functionality in the future. Here is a link to <a href="../blog/2023-11-02-announce-mini-extra.html">the announcement</a>.</p></li>
-</ul>
-<hr>
-<p>‘mini.hipatterns’ got a substantial update:</p>
-<ul>
-<li>Highlighter can now have an array of patterns to highlight, not just a single one.</li>
-<li>Highlighter can now define more general <code>extmark_opts</code>. This allows highlighting not only with single highlight group over the matched range, but adding virtual text (like covering some sensitive words with <code>x</code>), highlighting whole line of the match, add sign, etc.</li>
-<li>Built-in hex color highlighter now can highlight using inline extmarks (so that colored symbols appear to the left of the color and not over it). But only on Neovim&gt;=0.10.</li>
-<li>There is a new <code>get_matches()</code> function to get current matches with their positions. This powers the <code>pickers.hipatterns</code> picker form ‘mini.extra’.</li>
-</ul>
-<hr>
-<p>There are also small-ish feature updates for ‘mini.bufremove’, ‘mini.clue’, ‘mini.comment’, ‘mini.completion’, ‘mini.files’, ‘mini.map’, ‘mini.misc’, ‘mini.starter’, and ‘mini.test’.</p>
-<hr>
-<p>On another note, ‘mini.nvim’ just passed the 3000 GitHub stars mark. Thank you all for continuous support. I love you 3000!</p>
-<p>Thanks for reading! Hope to see you in the next module release!</p>
-
-
-
- ]]></description>
-  <category>release</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2023-11-17-release-0110.html</guid>
-  <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
