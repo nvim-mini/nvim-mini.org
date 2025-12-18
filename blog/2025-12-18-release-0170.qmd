@@ -1,0 +1,70 @@
+---
+title: "Release 0.17.0"
+author: Evgeni Chasnovski
+date: 2025-12-18
+categories: [release]
+description: Command line tweaks, move to a GitHub org, new website, and a ton of module updates
+---
+
+Hello, Neovim users!
+
+The 'mini.nvim' plugin has released a new 0.17.0 version. The previous release was a whopping 7 months and 235 commits ago. The new one is long overdue, to say the least.
+
+Here is a [full release description](https://github.com/nvim-mini/mini.nvim/releases/tag/v0.17.0) if you are curious.
+
+---
+
+There is only one new module in this release:
+
+- ['mini.cmdline'](/mini.nvim/readmes/mini-cmdline.md) - Command line tweaks. It enables autocomplete (requires Neovim>=0.11), autocorrect, and autopeek range when using command line. You can read more in [this release post](2025-12-07-announce-mini-cmdline.qmd).
+
+---
+
+One of the big reasons why this release took so much more time than previous ones is that there was a lot of adjacent work:
+
+- The whole project was rebranded to be MINI: Modular Independent Neovim Improvements.
+
+- There is now a website. It took a lot of time to plan and execute.
+
+- Hosting moved from `echasnovski` personal GitHub account to a dedicated `nvim-mini` organization. This change is made to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
+
+- There is now an amazing [team](https://github.com/orgs/nvim-mini/people) that helps me with MINI. Improving bus factor of the project is very important for its longevity.
+
+- There is an "official" Neovim config example based on 'mini.nvim': [MiniMax](/MiniMax). In fact, it is designed as a collection of examples, each independent and tailored to specific Neovim version. It is not a lot now, but with time it might be a valuable resource about how Neovim config can change with time.
+
+The other big reason for a long release delay is that in July my initial PR for the Neovim's built-in plugin manager ([`vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack)) got merged. Its core ideas come from 'mini.deps' with some adjustments and overall improvements. It required a lot of time and effort to address initial issues and discussions.
+
+---
+
+The full changelog for 0.17 is [here](/mini.nvim/CHANGELOG.html#v0.17.0). Noticeable changes include:
+
+- There is now a set of [static 'mini.hues' based color schemes](/mini.nvim/readmes/mini-hues.html#four-seasons) to complete `randomhue`. They are inspired by four seasons: `miniwinter`, `minispring`, `minisummer`, `miniautumn`.
+
+- 'mini.ai' and 'mini.surround' tree-sitter integrations now don't use 'nvim-treesitter' functions by default in favor of built-in `vim.treesitter` approaches.
+
+- 'mini.extra' got `colorschemes` picker and `workspace_symbol_live` scope to `lsp` picker.
+
+- 'mini.files' now:
+    - Never hides a preview window, even if cursor is on something that can not be previewed. This should reduce flickering in various situations.
+    - Treats appending `/` to a file name as "delete it and create a directory with the same name". Useful when earlier you wanted to create a directory but forgot to append "/".
+    - Has `config.content.highlight` to adjust highlighting of file system entries.
+
+- 'mini.hues' has several groups autoadjust their highlighting based on certain events. Like `Pmenu` adjusts based on the value of 'pumborder' option (on Neovim>=0.12).
+
+- 'mini.jump2d' moved `gen_xxx_spotter` functions into a separate `gen_spotter` table to follow the pattern from other modules.
+
+- 'mini.misc' got logging related functions (`log_add`, `log_show`, etc.). I use them very frequently during 'mini.nvim' development.
+
+- 'mini.pick' now:
+    - Has `grep` and `grep_live` pickers with `rg` tool respect Neovim's 'ignorecase' and 'smartcase' options when matching.
+    - "Paste" action supports some special registers. Like `<C-r><C-w>` will paste word at cursor.
+
+- 'mini.surround' doesn't create `update_n_lines` to save "mapping real estate". This will be useful later.
+
+- 'mini.test' screenshot testing now ignores text and highlighting attributes separately via `ignore_text` and `ignore_attr`.
+
+---
+
+Huge thank you for the continued support of 'mini.nvim' project! We are past 8.4K stars now 🙏
+
+There is a lot more planned for 'mini.nvim' and MINI. So let's keep in touch :)
