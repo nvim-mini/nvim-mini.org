@@ -256,7 +256,7 @@
     "href": "mini.nvim/index.html#planned-modules",
     "title": "mini.nvim",
     "section": "Planned modules",
-    "text": "Planned modules\nThis is the list of modules I currently intend to implement eventually (as my free time and dedication will allow), in alphabetical order:\n\n‘mini.abbrev’ - helper to manage/setup Insert mode abbreviations.\n‘mini.cmdline’ - improved Command line. Possibly with custom vim.ui.input implementation.\n‘mini.cycle’ - cycle through alternatives with pre-defined rules. Something like monaqa/dial.nvim and AndrewRadev/switch.vim\n‘mini.folds’ - more capable and user-friendly folds.\n‘mini.repl’ - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.\n‘mini.sendtext’ - send text between buffers. In particular between regular and built-in terminal buffers.\n‘mini.statuscolumn’ - customizable ‘statuscolumn’.\n‘mini.terminals’ - coherently manage interactive terminal buffers. Something like kassio/neoterm. Might also incorporate functionality to asynchronously run code in shell with post-processed results.\n‘mini.quickfix’ - more capable and user-friendly quickfix list. Possibly with preview and inline editing for search-and-replace workflow.\n‘mini.windows’ - window manager. Interactive picker, layout organizer, and maybe more."
+    "text": "Planned modules\nThis is the list of modules I currently intend to implement eventually (as my free time and dedication will allow), in alphabetical order:\n\n‘mini.abbrev’ - helper to manage/setup Insert mode abbreviations.\n‘mini.cycle’ - cycle through alternatives with pre-defined rules. Something like monaqa/dial.nvim and AndrewRadev/switch.vim\n‘mini.folds’ - more capable and user-friendly folds.\n‘mini.repl’ - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.\n‘mini.sendtext’ - send text between buffers. In particular between regular and built-in terminal buffers.\n‘mini.statuscolumn’ - customizable ‘statuscolumn’.\n‘mini.terminals’ - coherently manage interactive terminal buffers. Something like kassio/neoterm. Might also incorporate functionality to asynchronously run code in shell with post-processed results.\n‘mini.quickfix’ - more capable and user-friendly quickfix list. Possibly with preview and inline editing for search-and-replace workflow.\n‘mini.windows’ - window manager. Interactive picker, layout organizer, and maybe more."
   },
   {
     "objectID": "mini.nvim/readmes/mini-animate.html",
@@ -1633,1309 +1633,1309 @@
   {
     "objectID": "mini.nvim/CHANGELOG.html",
     "href": "mini.nvim/CHANGELOG.html",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "",
     "text": "Generated from the main branch of ‘mini.nvim’\nThis is the log of changes for past and current development versions. It lists changes in user-facing functionality per module (or all modules) and type.\nThere are following change types:"
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nEvolve\n\nMove repository hosting from personal ‘echasnovski’ GitHub account to the ‘nvim-mini’ organization. All git pull and git clone should be automatically redirected from previous to new locations without breaking user configurations. Yet updating source links to point to new locations (like 'echasnovski/mini.nvim' -&gt; 'nvim-mini/mini.nvim' and standalone repos) is recommended.\nThis change is made to improve long term project stability. See more details here.\nStart setting custom Neovim method implementation during setup() (if module provides one). This is usually the expected behavior for majority of use cases and should improve “out of the box” experience. Modules should still export a function to manually adjust the implementation.\nIt is a breaking change only if the implementation was not explicitly used. Can still be done if set or restored after calling module’s setup().\nAffected modules:\n\n‘mini.notify’ sets vim.notify.\n‘mini.pick’ sets vim.ui.select.\n\n\n\n\nRefine\n\nStop official support of Neovim 0.8.\n\n\n\nExpand\n\nAdd new bundled color schemes based on ‘mini.hues’:\n\nminiwinter: “icy winter” palette with azure background.\nminispring: “blooming spring” palette with green background.\nminisummer: “hot summer” palette with brown/yellow background.\nminiautumn: “cooling autumn” palette with purple background."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.ai",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.ai",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.ai",
     "text": "mini.ai\n\nRefine\n\nUpdate gen_spec.treesitter() to have use_nvim_treesitter = false as default option value (instead of true). It used to implement more advanced behavior, but as built-in vim.treesitter is capable enough, there is no need in extra dependency. The option will be removed after the release.\n\n\n\nExpand\n\nAdd gen_spec.user_prompt that acts the same as ? built-in textobject. It can be used for using this textobject under another identifier."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.basics",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.basics",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.basics",
     "text": "mini.basics\n\nRefine\n\nChange default value of options.win_border to be 'auto'.\n\n\n\nExpand\n\nUpdate options.win_border to allow value 'auto' which infers target ‘fillchars’ values from ‘winborder’ option."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.colors",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.colors",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.colors",
     "text": "mini.colors\n\nUpdate add_transparency() color scheme method to adjust more groups:\n\nXxxMsg groups in case of opts.general = true.\nDiagnosticSignXxx groups in case of opts.statuscolumn = true."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nEvolve\n\nUpdate setup() to remove “t” flag from ‘complete’ option (if not previously set and fallback action is default) as it leads to visible lags.\n\n\n\nExpand\n\nAdd MiniCompletionWindowOpen and MiniCompletionWindowUpdate events.\nAdd support for highlighting LSP item label via setting abbr_hlgroup field as part of an LSP item (like inside config.lsp_completion.process_items)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.clue",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.clue",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.clue",
     "text": "mini.clue\n\nEvolve\n\nUse current query clue (if not immediately after trigger) as a window title instead of showing keys verbatim. This shows extra context when navigating through mappings.\n\n\n\nExpand\n\nAdd gen_clues.square_brackets to generate clues for [ and ] keys. By @TheLeoP, PR #1937.\nEnsure triggers for ‘mini.starter’ buffers, but not override its query updaters (like for “g” and “z” triggers)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.cmdline",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.cmdline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.cmdline",
     "text": "mini.cmdline\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.diff",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.diff",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.diff",
     "text": "mini.diff\n\nExpand\n\nAdd support for working with files containing BOM bytes."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nRefine\n\nUpdate default write_pre hook to remove === and --- delimiters from the top of the file to better comply with :h local-additions."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.extra",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.extra",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.extra",
     "text": "mini.extra\n\nExpand\n\nAdd pickers.colorschemes picker. By @pkazmier, PR #1789.\nAdd workspace_symbol_live scope to pickers.lsp picker. It allows searching for LSP symbols in the workspace with live feedback. Relates to workspace_symbol scope similarly to how MiniPick.builtin.grep_live() relates to MiniPick.builtin.grep().\nAdd &lt;C-e&gt; mapping for pickers.history picker to edit commands or searches in cmdline. By @TheLeoP, PR #1960."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nEvolve\n\nAllow appending / to a file name to mean “delete file” + “create directory”. This is useful when initial intention was to create a directory but there was no / at the end.\n\n\n\nRefine\n\nEnsure preview window is never hidden, even if cursor is on the line for a not (yet) existing file system entry. This reduces flickering of preview window when creating new files in Insert mode.\n\n\n\nExpand\n\nAdd config.content.highlight to customize how file system entry is highlighted. Defaults to a new default_highlight() function."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nEvolve\n\nAdd auto adjusting of highlight groups based on certain events. It can be disabled via new autoadjust config setting or opts.autoadjust in apply_palette(). Affected groups:\n\nMsgSeparator depends on msgsep flag of ‘fillchars’ option.\nPmenu depends on ‘pumborder’ option value (on Neovim&gt;=0.12).\n\n\n\n\nRefine\n\nMake black (0 and 8) and white (7 and 15) colors for built-in terminal different from regular background and foreground. This improves color coverage and does not affect default uncolored text (it is highlighted as Normal).\n\n\n\nExpand\n\nAdd get_palette() function."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.jump",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.jump",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump",
     "text": "mini.jump\n\nExpand\n\nTrigger dedicated events during steps of jumping life cycle. See :h MiniJump-events."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.jump2d",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.jump2d",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump2d",
     "text": "mini.jump2d\n\nEvolve\n\nUpdate builtin_opts.word_start to use built-in notion of “keyword” (see :h 'iskeyword') when computing word start.\n\n\n\nRefine\n\nMove gen_xxx_spotter into separate gen_spotter table for consistency with other modules:\n\ngen_pattern_spotter -&gt; gen_spotter.pattern\ngen_union_spotter -&gt; gen_spotter.union\n\nThe gen_xxx_spotter functions will work (with warning) until at least next release.\nNot focusable windows are now ignored when computing jump spots.\n\n\n\nExpand\n\nAdd gen_spotter.vimpattern() that can generate spotter based on Vimscript (not Lua) pattern."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.map",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.map",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.map",
     "text": "mini.map\n\nExpand\n\nUpdate gen_integration.builtin_search() to react to change of v:hlsearch."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.misc",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.misc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.misc",
     "text": "mini.misc\n\nExpand\n\nUpdate zoom() to return whether current buffer is zoomed in. By @loichyan, PR #1954.\nAdd log_add() and related functions (log_get(), log_show(), log_clear()) to work with a special in-memory log array. Useful when debugging Lua code (instead of print())."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nEvolve\n\nPickers grep and grep_live with rg tool now respect Neovim’s 'ignorecase' and 'smartcase' options. This forces corresponding case matching flag (thus overriding global configuration) in favor of a more consistent user experience.\n\n\n\nExpand\n\n“Paste” action now supports special registers: &lt;C-w&gt; (word at cursor), &lt;C-a&gt; (WORD at cursor), &lt;C-l&gt; (line at cursor), &lt;C-f&gt; (filename at cursor).\nKey query process now respects most language mappings. By @yehorb, PR #2026."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nRefine\n\nUpdate read() to write currently read session only if MiniSessions.config.autowrite is set to true."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nEvolve\n\nStop creating update_n_lines mapping: it occupies “mapping real estate” while being rarely needed and straightforward to create manually using MiniSurround.update_n_lines().\nAutomatically map s key to &lt;Nop&gt; if the key is not already mapped and any of created mappings starts with it. This prevents accidental trigger of built-in s if there is a long delay between pressing “s” and the next key.\n\n\n\nRefine\n\nUpdate gen_spec.inpuf.treesitter() to have use_nvim_treesitter = false as default option value (instead of true). It used to implement more advanced behavior, but as built-in vim.treesitter is capable enough, there is no need in extra dependency. The option will be removed after the release."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.17.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.17.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nRefine\n\nSoft deprecate ignore_lines option in expect.reference_screenshot() in favor of more capable ignore_text and ignore_attr options. For example, ignore_lines = { 1 } is the same as supplying both ignore_text = { 1 } and ignore_attr = { 1 }.\nIt will work at least until the next release, after which its support will be removed. Sorry for the inconvenience.\n\n\n\nExpand\n\nUpdate expect.reference_screenshot() to support separate ignoring of text and attribute screenshot data via new ignore_text and ignore_attr options."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nEvolve\n\nUnify behavior of floating windows:\n\nTruncate title/footer from left if it is too wide.\nSet default title if window is allowed to have border.\nUse single space padding for default title/footer.\nUse ‘single’ as default window border in modules where it can be configured. On Neovim&gt;=0.11 also respect non-empty ‘winborder’ option with lower precedence than explicitly configured value for the module.\n\nUnify how module-related buffers are named: mini&lt;module-name&gt;://&lt;buffer-number&gt;/&lt;useful-info&gt;. This structure allows creating identifiable, reasonably unique, and useful buffer names. This is a user facing change because in some cases the shown buffer’s name will change (like in statusline of opened ‘mini.starter’ buffer or output of :buffers!).\nStop forcing recommended option values behind set_vim_settings config setting. Instead set them automatically in setup(). If it is not essential, do so only if it was not set by user/plugin beforehand (no matter the value). Document this as a new general principle to be followed in the future. Affected modules:\n\n‘mini.bufremove’ (do nothing as recommended ‘hidden’ is on by default)\n‘mini.completion’ (conditionally set ‘completeopt=menuone,noselect’ and flags “c” in ‘shortmess’)\n‘mini.statusline’ (do nothing as recommended ‘laststatus=2’ is default)\n‘mini.tabline’ (unconditionally set ‘showtabline=2’, as it is essential to module’s functinonality)\n\n\n\n\nRefine\n\nSoft deprecate support for Neovim 0.8. It will be fully stopped in next release."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.ai",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.ai",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.ai",
     "text": "mini.ai\n\nRefine\n\nVisual textobject selection now puts the cursor on the right edge instead of left. This better aligns with the (undocumented) behavior of how built-in a / i textobjects work in Visual mode, as opposed to the (documented in :h operator-resulting-pos) behavior of how it is done after applying the operator.\n\n\n\nExpand\n\nTextobject identifier can now be any single character supported by :h getcharstr(). This also makes it possible to use characters outside of Latin alphanumeric and punctuation sets as custom_textobjects keys. Default textobject is extended to be anything but Latin letters (to fall back to :h text-objects).\nUpdate gen_spec.treesitter() to respect capture ranges specified by query directives (like (#offset! @table.inner 0 1 0 -1))."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nRefine\n\nUpdate ‘mini.pick’ highlight groups to show prompt text with same colors as match ranges, as they are connected.\n\n\n\nExpand\n\nAdd support for colored markdown headings.\nAdd new plugin integrations:\n\n‘ibhagwan/fzf-lua’\n‘MeanderingProgrammer/render-markdown.nvim’\n‘OXY2DEV/helpview.nvim’\n‘OXY2DEV/markview.nvim’"
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.colors",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.colors",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.colors",
     "text": "mini.colors\n\nExpand\n\nUpdate convert() to have adjust_lightness option which can be used to disable lightness adjustment (which is enabled by default for a more uniform progression from 0 to 100). This can be useful for output to be more consistent with other Oklab/Oklch implementations."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nUpdate textobject to respect ignore_blank_line option. Blank lines between commented lines are treated as part of a textobject."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nEvolve\n\nAdd snippet support. By default uses ‘mini.snippets’ to manage snippet session (if enabled, **highly recommended), falls back to vim.snippet on Neovim&gt;=0.10. See “Snippets” section in :h MiniCompletion for more details.\nThis affect existing functionality because items with Snippet kind are no longer filtered out by default.\nRework how LSP completion items are converted to Neovim’s completion items:\n\nShow detail highlighted as buffer’s language at the start of info window, but only if detail provides information not already present in documentation. It was previously used as extra text in the popup menu (via menu field), but this doesn’t quite follow LSP specification: detail and documentation fields can be delayed up until completionItem/resolve request which implies they should be treated similarly.\nShow labelDetails as a part of the popup menu via menu completion item field.\n\nRework how information window is shown with the goal to reduce flickering during fast up/down navigation through completion candidates:\n\nDo not close the window immediately after the move. Instead highlight border with MiniCompletionInfoBorderOutdated immediately while update window when its content is ready. Close the window only if no candidate is selected.\nShow content of already visited/resolved candidate without delay.\nShow default -No-info- text if there is no extra information about the candidate.\n\nUpdate behavior and capabilities of default_process_items():\n\nAdd filtersort option to control how items are filtered and/or sorted. Its new default value has changed behavior: do fuzzy matching if ‘completeopt’ option contains “fuzzy” entry; same as before otherwise.\nAdd kind_priority option to allow arranging items by completion item kind (like “Variable”, “Snippet”, “Text”, etc.) after applying filtersort. This allows finer filter and/or sort based on kind, like “put Variable on top, Snippet on bottom, remove Text”.\nUse filterText and label item fields during matching (instead of textEdit.newText, insertText, and label as before). This is more aligned with LSP specification.\n\n\n\n\nRefine\n\nPrefer in some cases to use nil as default config value with explicit fallback. This should not have any user facing effects and marked as breaking only because a structure of a default config has changed. Affected fields:\n\nlsp_completion.process_items (use default_process_items as fallback) and fallback_action (use '&lt;C-n&gt;' as fallback). This makes it more aligned with other modules that usually avoid using function values in default config.\nwindow.info.border and window.signature.border (use non-empty ‘winborder’ and 'single' as fallback).\n\nChange default value of MiniCompletionActiveParameter highlight group to link to LspSignatureActiveParameter (instead of forcing underline).\nCall lsp_completion.process_items with an array of items from all buffer servers at once (and not for each server separately). This can be used for more elaborate filter/sort strategies.\n\n\n\nExpand\n\nAdd scrolling in info and signature window. By default can be done with &lt;C-f&gt; / &lt;C-b&gt; when target window is shown. Can be configured via mappings.scroll_down and mappings.scroll_up config options.\nRespect isIncomplete in LSP completion response and immediately force new completion request on the next key press.\nAdd support for context in ‘textDocument/completion’ request.\nBoth info and signature help windows now use tree-sitter highlighting:\n\nInfo window uses “markdown” parser (works best on Neovim&gt;=0.10 as its parser is built-in). Special markdown characters are concealed (i.e. hidden) which might result into seemingly unnecessary whitespace as dimensions are computed not accounting for that.\nSignature help uses same parser as in current filetype.\n\nUpdate signature help without delay if it is already shown. This helps to keep signature help up to date after cursor jumps in Insert mode (like during snippet session).\nAdd support for item defaults in CompletionList response.\nAdd get_lsp_capabilities() that returns data about which part of LSP specification is supported in ‘mini.completion’.\nInput items for lsp_completion.process_items now have client_id field with the identifier of the server that item came from. Use vim.lsp.get_client_by_id() to get an actual data about the server."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.diff",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.diff",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.diff",
     "text": "mini.diff\n\nExpand\n\nThe config.source can now be array of sources, which will be attempted to attach in order. Important for source’s attach to either return false or call MiniDiff.fail_attach() (even not immediately) to signal that source has failed to attach to a particular buffer.\nOverlay virtual lines now scroll horizontally along with buffer lines. Requires Neovim&gt;=0.11 and disabled ‘wrap’ option.\nHighlighting of buffer parts of change hunks can now be customized with these new highlight groups:\n\nMiniDiffOverChangeBuf - changed buffer text. Previously used MiniDiffOverChange (for changed reference text); links to it by default.\nMiniDiffOverContextBuf - context of a change shown in buffer overlay. Previously not highlighted, default highlight group is not created."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nExpand\n\nFEATURE: improve detection and formatting for types in @param, @return, and similar."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.fuzzy",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.fuzzy",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.fuzzy",
     "text": "mini.fuzzy\n\nRefine\n\nUpdate process_lsp_items() to only use filterText and label item fields during fuzzy matching (instead of textEdit.newText, insertText, and label as before). This is more aligned with LSP specification.\nTreat empty word as matching any candidate (matched positions is empty array and score is -1). This behavior is usually more useful in practice."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nEvolve\n\n\nRefine\n\nUpdate ‘mini.pick’ highlight groups to show prompt text with same colors as match ranges, as they are connected.\n\n\n\nExpand\n\nAdd support for colored markdown headings.\nAdd new plugin integrations:\n\n‘ibhagwan/fzf-lua’\n‘MeanderingProgrammer/render-markdown.nvim’\n‘OXY2DEV/helpview.nvim’\n‘OXY2DEV/markview.nvim’"
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.keymap",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.keymap",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.keymap",
     "text": "mini.keymap\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.notify",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.notify",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.notify",
     "text": "mini.notify\n\nExpand\n\nAdd lsp_progress.level option to control level of LSP progress notifications.\nAdd MiniNotifyLspProgress highlight group to be used for LSP progress notifications.\nAdd data field to notification specification and as a new argument to MiniNotify.add(). It can be used to store any data relevant to the notification. For example, notifications from make_notify() output set source field to 'vim.notify', while notifications from LSP progress set source to 'lsp_progress'."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.operators",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.operators",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.operators",
     "text": "mini.operators\n\nExpand\n\nUpdate setup() to remap built-in gx Normal/Visual mode mappings (for opening an URI under cursor) to gX (if that is not already taken)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.pairs",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.pairs",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pairs",
     "text": "mini.pairs\n\nExpand\n\nUpdate all actions to work with pairs containing multibyte characters (like “¿?”, “「」”, and similar)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nRefine\n\nRename prompt_cursor in config.window to prompt_caret for better naming consistency. It works for now, but will stop in the next release. Sorry for the inconvenience.\n\n\n\nExpand\n\nAdd MiniPickPromptCaret and MiniPickPromptPrefix highlight groups to allow finer customization of picker’s prompt.\nUpdate get_picker_matches() to return data (items and indexes) about currently shown items.\nUpdate set_picker_match_inds() to be able to set current match and marked items indexes."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.snippets",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.snippets",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.snippets",
     "text": "mini.snippets\n\nExpand\n\nAdd start_lsp_server() to start specialized in-process LSP server to show loaded snippets inside (auto)completion engines (like ‘mini.completion’)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nRefine\n\nFunction section_fileinfo() got several updates:\n\nFile size is now computed based on the current buffer text and not for file’s saved version.\nFile info is now shown even for buffers with empty ‘filetype’. It previously was treated as a sign of a “temporary buffer”, but it might be a result of an unsuccessful filetype matching."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nExpand\n\nSurrounding identifier can now be any single character supported by :h getcharstr(). This also makes it possible to use characters outside of Latin alphanumeric and punctuation sets as custom_surroundings keys.\nUpdate gen_spec.input.treesitter() to respect capture ranges specified by query directives (like (#offset! @table.inner 0 1 0 -1))."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.16.0-mini.tabline",
     "href": "mini.nvim/CHANGELOG.html#v0.16.0-mini.tabline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.tabline",
     "text": "mini.tabline\n\nExpand\n\nAdd support for showing special (truncation) characters at left and/or right if there are more tabs to the left and/or right. They are shown with the new MiniTablineTrunc highlight group in case ‘list’ option is enabled (i.e. user deliberately enabled similar functionality for windows). Exact characters are taken from ‘listchars’ option: precedes and extends fields.\nLabels for quickfix and location lists are now different."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.align",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.align",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.align",
     "text": "mini.align\n\nExpand\n\nAdd built-in modifier for “|” character with aligning Markdown-like tables in mind."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.animate",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.animate",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.animate",
     "text": "mini.animate\n\nEvolve\n\nAdd max_output_steps option to gen_path.line() and gen_path.angle() to limit the number of steps the return. Default is 1000 to improve performance on large cursor jumps which also is set for config.cursor.path."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nExpand\n\nClosing and refreshing explorer now requires confirmation only if there are pending file system actions (and not in case of at least one modified buffer present).\nConfirming file system actions in synchronize() now can cancel synchronization (by pressing c) while keeping buffer contents the same. synchronize() also returns a boolean representing whether synchronization was done."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.git",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.git",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.git",
     "text": "mini.git\n\nExpand\n\nGit data is computed after resolving symlinks. This allows working with files symlinked into outside of Git repo. This behavior is the same as in ‘mini.diff’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.hipatterns",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.hipatterns",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hipatterns",
     "text": "mini.hipatterns\n\nRefine\n\nMake MiniHipatterns{Fixme,Hack,Todo,Note} highlight groups by default be reverse and bold variant of Diagnostic{Error,Warn,Info,Hint} group instead of directly link to them. This ensures better visibility for color schemes which don’t have explicit ‘mini.hipatterns’ support."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nExpand\n\nAdd 'lowmedium' and 'mediumhigh' saturation levels."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.icons",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.icons",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.icons",
     "text": "mini.icons\n\nExpand\n\nAdd distinctive glyphs and highlighting for special Neovim directories (from :h 'runtimepath')."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.indentscope",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.indentscope",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.indentscope",
     "text": "mini.indentscope\n\nEvolve\n\nAdd options.n_lines option to limit the scope computation (for better performance). It’s default value is 10000 while previous behavior behavior had no restriction (as with n_lines = math.huge) which should matter only in very big scopes.\nAdd draw.predicate configuration to customize whether the scope should be autodrawn. It’s default value does not draw scope with incomplete computation (i.e. interrupted due to options.n_lines value), which should matter only in very big scopes."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.notify",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.notify",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.notify",
     "text": "mini.notify\n\nFEATURE: setup() now also can be used to clean history (for example, like MiniNotify.setup(MiniNotify.config))."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nEvolve\n\nPicker window now has local current directory set to source’s cwd. This allows easier code for “in window” functions (callable items, choose, preview, etc.) as relative paths will be properly resolved. It also results in some changes:\n\nCalling set_picker_items_from_cli() with active picker now resolves explicitly set to relative path spawn_opts.cwd against picker’s cwd (and not against global current directory as was done previously).\n\n\n\n\nExpand\n\nUpdate grep and grep_live pickers to allow globs local option which restricts search to files that match any of its glob patterns (for example, { '*.lua', 'lua/**' } will only search in Lua files and files in ‘lua’ directory). The grep_live picker also has custom &lt;C-o&gt; mapping to add globs interactively after picker is opened.\nUpdate help picker to have default_split local option which customizes split direction of choose action (&lt;CR&gt; by default).\nUpdate ui_select() to allow fourth argument start_opts to customize MiniPick.start() call.\nAdd MiniPickMatch event triggered after updating query matches or setting items. Can be used, for example, to adjust window height based on current matches."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.snippets",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.snippets",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.snippets",
     "text": "mini.snippets\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nRefine\n\nCreated mappings for find, find_left, and highlight are now not dot-repeatable. Dot-repeat should repeat last text change but neither of those actions change text. Having them dot-repeatable breaks the common “move cursor -&gt; press dot” workflow. Initially making them dot-repeatable was a “you can but you should not” type of mistake."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.15.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.15.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nEvolve\n\nNow calling skip() in set’s pre_case hook results in skipping all test cases in a set. Calling in other hooks has no effect. This enables a more structured skipping of all test cases inside a set. To skip inside hooks, use add_note() followed by return.\n\n\n\nExpand\n\nAdd n_retry test set property. When set, each case will be tried that at most that many times until first success (if any).\nAdd hooks.pre_source and hooks.post_source fields to collected cases. They can be either 'once' or 'case' and allow a more granular control over case execution.\nFunction finally() now can be called several times inside a single function with callbacks executed in order of how they were registered.\nUpdate expect.reference_screenshot() to allow directory option pointing to a directory where automatically constructed reference path is located."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nEvolve\n\nUpdate help files to use code blocks with language annotation, as it results in a better code highlighting. Implies enabled tree-sitter highlighting in ‘help’ filetype:\n\nIt is default in Neovim&gt;=0.10.\nTree-sitter parser is built-in in Neovim 0.9.x, needs manual enabling via vim.treesitter.start().\nHas visual regressions on Neovim 0.8.0 and 0.8.1 without enabled tree-sitter (code blocks are highlighted as normal text). Use 0.8.2 or newer.\n\nUniversally prefer ‘mini.icons’ module over ‘nvim-tree/nvim-web-devicons’.\n\n\n\nRefine\n\nStop official support of Neovim 0.7.\n\n\n\nExpand\n\nStart automated testing on Windows and MacOS.\nUniversally ensure that all plugin’s highlight groups are defined after any color scheme takes effect."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nExpand\n\nAdd ‘kevinhwang91/nvim-bqf’ plugin integration."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nExpand\n\nAdd highlighting of LSP kind (like “Function”, “Keyword”, etc.). Works only on Neovim&gt;=0.11. Requires enabled ‘mini.icons’ to work out of the box."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nEvolve\n\nUpdate afterlines_to_code() to result into Lua code block in help file by using &gt;lua at the start instead of &gt;. NOTE: users need enabled help tree-sitter parser (which is default on Neovim&gt;=0.9) for code blocks to have proper highlighting."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.extra",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.extra",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.extra",
     "text": "mini.extra\n\nRefine\n\nUse “│” as line/position separator instead of “:”. This aligns with changes in ‘mini.pick’ and makes line/position more easily visible.\n\n\n\nExpand\n\nUpdate oldfiles picker to have current_dir option which if true shows files only from picker’s working directory. By @abeldekat, PR #997.\nUpdate git_hunks, list, and lsp pickers to show icons. Scopes document_symbol and workspace_symbol in lsp picker show icon based on LSP kind (requires set up ‘mini.icons’), others - based on path data.\nUpdate buf_lines and oldfiles pickers to have preserve_order local option, similar to visit_paths picker. Other possible candidates for this option are intentionally not updated to not increase maintenance (manually override match source method to call MiniPick.default_match() with { preserve_order = true } options).\nUpdate buf_lines picker to pad line numbers to achieve more aligned look."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.git",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.git",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.git",
     "text": "mini.git\n\nExpand\n\nUpdate show_at_cursor() to include commit’s statistics when showing commit.\nUpdate show_at_cursor() to show relevant at cursor commit data inside ‘mini.deps’ confirmation buffer."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.hipatterns",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.hipatterns",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hipatterns",
     "text": "mini.hipatterns\n\nEvolve\n\nUpdate compute_hex_color_group() to compute based on combination of hex_color and style, opposed to just hex_color. This allows simultaneous usage of several styles in user’s custom highlighters."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nExpand\n\nImplement apply_palette() (to compliment make_palette()) providing a way to tweak applied palette before applying it.\nAdd ‘kevinhwang91/nvim-bqf’ plugin integration."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nEvolve\n\n\nRefine\n\nUpdate how confirmation lines are computed:\n\nShow create actions in the group directory where text manipulation took place. This matters during creating nested entries and is usually a more intuitive representation.\nFor delete show its type after the file name (“permanently” or “to trash”) as an additional visual indication of delete type.\nFor create, copy and move prefer showing its “to” path relative to group directory.\nSeparate action name and paths with “│” (instead of “:”) for better visual separation.\nDon’t enclose paths in quotes. Initially it was done to reliably show possible whitespace in paths, but inferring it from overall line structure should be good enough.\n\nSoft deprecate get_target_window() in favor of get_explorer_state().target_window. Will be completely removed after the next release.\n\n\n\nExpand\n\nPrefer using ‘mini.icons’ as icon provider.\nImplement bookmarks. With default config:\n\nType m followed by a single character &lt;char&gt; to set directory path of focused window as a bookmark with id &lt;char&gt;.\nType ' followed by a bookmark id to make bookmark’s path focused in explorer.\nUse MiniFiles.set_bookmark() inside MiniFilesExplorerOpen event to set custom bookmarks.\n\nMake data for MiniFilesActionDelete contain to field in case of not permanent delete.\nMake file manipulation work better for special complex/overlapping cases (like delete ‘file-a’ and copy ‘file-b’ as ‘file-a’). It is still a better idea to split overlapping manipulations into smaller and not related steps, as there are cases which won’t work.\nAdd get_explorer_state() to allow more reliable user customizations.\nAdd set_branch() to allow to set what paths should be displayed and focused."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.icons",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.icons",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.icons",
     "text": "mini.icons\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.misc",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.misc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.misc",
     "text": "mini.misc\n\nExpand\n\nImplement setup_termbg_sync() to set up terminal background synchronization (removes possible “frame” around current Neovim instance). Works only on Neovim&gt;=0.10."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nEvolve\n\n\nRefine\n\nUpdate default_match() to have table opts as fourth argument (instead of boolean do_sync). Use { sync = true } to run synchronously. The new design is more aligned with other functions and is more forward compatible.\nEncoding line or position in string items has changed:\n\nUse “\\0” (null character; use “\\000” form if it is in a string before digit) instead of “:” as delimiter. This makes it work with files similar to “:” position encoding (like “time_12:34:56”). This only matters for custom sources which provide line or position in string items.\nUpdate default_show() to display “│” character instead of “\\0” in item’s string representation (previously was “:”). In particular, this changes how line/position is displayed in grep and grep_live built-in pickers. This change was done because “│” is more visible as separator.\n\n\n\n\nExpand\n\nPrefer using ‘mini.icons’ as icon provider.\nAdd preserve_order option to default_match() to allow asynchronous matching which preserves order (i.e. doesn’t do sort step of fuzzy matching).\nExplicitly hide cursor when picker is active (instead of putting it in command line)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nRefine\n\nChange filetype of Starter buffer from ‘starter’ to ‘ministarter’. This is a more robust value and more aligned with other modules."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nRefine\n\nUpdate section_fileinfo() to show non-empty filetype even in not normal buffers (like plugin’s scratch buffers, help, quickfix, etc.). Previously it showed nothing, which was a mistake as filetype can be a valuable information.\nThe default set_vim_settings config value now does not affect laststatus = 3 (aka global statusline).\n\n\n\nExpand\n\nPrefer using ‘mini.icons’ as icon provider for section_fileinfo()."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nRefine\n\nAdding surrounding in linewise mode now also ignores trailing whitespace on the last line (same as it ignores indent on the first line)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.tabline",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.tabline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.tabline",
     "text": "mini.tabline\n\nExpand\n\nPrefer using ‘mini.icons’ as icon provider."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.14.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.14.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nExpand\n\nMake it work on Windows. By @cameronr, PR #1101."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nRefine\n\nBlank lines are now completely ignored when deciding the toggling action. In practice this means that if target block consists only from commented and/or blank lines, it will be uncommented rather than commented.\nWhitespace in comment parts is now treated more explicitly. In particular:\n\nDefault options.pad_comment_parts = true now more explicitly means that any value of ‘commentstring’ is transformed so that comment parts have exactly single space inner padding.\nExample: any /*%s*/, /* %s */, or /*  %s  */ is equivalent to having /* %s */.\nDetection of whether consecutive lines are commented or not does not depend on whitespace in comment parts. Uncommenting is first attempted with exact comment parts and falls back on trying its trimmed parts.\nExample of toggling comment on single line with /* %s */ ‘commentstring’ value:\n\n/* this is commented */ -&gt; this is commented.\n/*this is also commented */ -&gt; this is also commented (notice trailing space).\n\nCommenting blank lines is done with trimmed comments parts, while uncommenting explicitly results into empty lines.\n\n\n\n\nExpand\n\nSupport dot-repeat after initial commenting is done for visual selection; repeating is done for same relative range."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.deps",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.deps",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.deps",
     "text": "mini.deps\n\nExpand\n\nAdd MiniDepsMsgBreaking highlight group for messages indicating a breaking change in a conventional commit style."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.diff",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.diff",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.diff",
     "text": "mini.diff\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nExpand\n\nAdd new MiniFilesExplorerOpen and MiniFilesExplorerClose events."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.git",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.git",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.git",
     "text": "mini.git\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nRefine\n\nUpdate some highlight groups for better usability:\n\nDiffChange and DiffText - make changed diff lines have colored background.\nFolded - make folds differ from CursorLine.\nQuickFixLine - make current quickfix item differ from CursorLine."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.map",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.map",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.map",
     "text": "mini.map\n\nExpand\n\nAdd gen_integration.diff() which highlights general diff hunks from ‘mini.diff’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nEvolve\n\n\nRefine\n\nStop trying to parse path for special format (“path:row” and “path:row:col”) if supplied inside a table item. This made impossible working with paths containing “:”.\nUpdate builtin.files() to use table items when string item might be ambiguous.\n\n\n\nExpand\n\nRespect general URI format for paths inside table items."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nRefine\n\nExplicitly block all events in open() during startup for a better performance."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nEvolve\n\nUpdate section_git() to prefer using data from ‘mini.git’ with fallback on pure HEAD data from ‘lewis6991/gistigns.nvim’.\nUpdate default active content:\n\nAdd section_diff() (shows diff data near  icon) following refactor of section_git().\nAdd section_lsp() (shows number of attached LSP servers near 󰰎 icon) following refactor of section_diagnostics().\n\n\n\n\nRefine\n\nUpdate section_diagnostics() to depend only on defined diagnostic. This means:\n\nSomething is shown only if there is any diagnostic actually present in the buffer. No diagnostic entries - nothing is shown. Previously it did not show if there was no LSP servers attached (as initially diagnostics came only from LSP) or buffer was not normal.\nFallback icon is “Diag” instead of “LSP”.\n\n\n\n\nExpand\n\nUpdate section_diagnostics() to support signs table option to customize signs for severity levels.\nAdd section_diff() to show data from ‘mini.diff’ with fallback on diff data from ‘lewis6991/gistigns.nvim’.\nAdd section_lsp() to show indicator of LSP servers attached to the buffer."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.tabline",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.tabline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.tabline",
     "text": "mini.tabline\n\nExpand\n\nImplement config.format for custom label formatting."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.13.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.13.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nRefine\n\nChild process is now created with extra --headless --cmd \"set lines=24 columns=80\" arguments making it headless but still reasonably similar to fully functioning Neovim during interactive usage. This change should generally not break a lot of things, while enabling a faster and more robust test execution."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.basics",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.basics",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.basics",
     "text": "mini.basics\n\nRefine\n\nRemove &lt;C-z&gt; mapping, as it is more useful in most terminal emulators for suspending Neovim process (to later resume with fg command). To correct latest misspelled word, use mappings like this:\nvim.keymap.set('n', '&lt;C-z&gt;', '[s1z=',                     { desc = 'Correct latest misspelled word' })\nvim.keymap.set('i', '&lt;C-z&gt;', '&lt;C-g&gt;u&lt;Esc&gt;[s1z=`]a&lt;C-g&gt;u', { desc = 'Correct latest misspelled word' })\n\n\n\nExpand\n\nAdd tab:&gt; to ‘listchars’ option when options.extra_ui is set. This prevents showing ^I instead of a tab and actual value comes from Neovim’s default.\nSet termguicolors only on Neovim&lt;0.10, as later versions should have it on by default (if terminal emulator supports it)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nHooks are now called with data about commenting action."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.deps",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.deps",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.deps",
     "text": "mini.deps\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nRefine\n\nStop using :echo to display messages and warnings in favor of vim.notify().\nUpdate default write_post hook to not display current time in success message.\nUpdate to include space before ~ in generated section headings."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nExpand\n\nUpdate go_in() to have close_on_file option.\nShow warning if action is set to override existing path."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nRefine\n\nUpdate verbatim text (@text.literal and @markup.raw) color to be distinctive instead of dimmed.\n\n\n\nExpand\n\nAdd support for new standard tree-sitter captures on Neovim&gt;=0.10 (see https://github.com/neovim/neovim/pull/27067)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.misc",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.misc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.misc",
     "text": "mini.misc\n\nRefine\n\nUpdate bench_time() to use vim.loop.hrtime() (as better designed for benchmarking) instead of vim.loop.gettimeofday()."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.notify",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.notify",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.notify",
     "text": "mini.notify\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nExpand\n\nImplement window.prompt_cursor and window.prompt_prefix config options.\nUpdate builtin.help() to use tree-sitter highlighting (if there is any)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nRefine\n\nUpdate read() to first write() current session (if there is any)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nExpand\n\nAdd sections.pick() with ‘mini.pick’ pickers."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nEvolve\n\nAdd search_count section to default active content."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.12.0-mini.visits",
     "href": "mini.nvim/CHANGELOG.html#v0.12.0-mini.visits",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.visits",
     "text": "mini.visits\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nRefine\n\nStop supporting deprecated ‘HiPhish/nvim-ts-rainbow2’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.bufremove",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.bufremove",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.bufremove",
     "text": "mini.bufremove\n\nEvolve\n\nApplying delete() and wipeout() without force in a modified buffer now asks for confirmation instead of declining and showing message."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.clue",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.clue",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.clue",
     "text": "mini.clue\n\nExpand\n\nValue of config.window.config now can be callable returning window config."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nImplement config.mappings.comment_visual to configure mapped keys in Visual mode."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nEvolve\n\nStart adding C flag to shortmess option on Neovim&gt;=0.9. By @yamin-shihab, PR #554."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.extra",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.extra",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.extra",
     "text": "mini.extra\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nRefine\n\nOpening file which is present in unlisted buffer now makes the buffer listed.\nHighlight in preview now is not enabled if file is sufficiently large.\n\n\n\nExpand\n\nExplorer now tracks if focus is lost and properly closes on detection.\nImplement MiniFilesCursorLine highlight group."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.hipatterns",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.hipatterns",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hipatterns",
     "text": "mini.hipatterns\n\nRefine\n\nField priority in highlighter definitions is soft deprecated in favor of extmark_opts = { priority = &lt;value&gt; }.\n\n\n\nExpand\n\nAllow pattern in highlighter definitions to be an array to highlight several patterns under the same highlighter name.\nImplement extmark_opts in highlighter definitions for a more control over extmarks placed at matches.\nUpdate compute_hex_color_group() to allow style = 'fg'.\nUpdate gen_highlighter.hex_color() to allow style = 'inline' (requires Neovim&gt;=0.10 with support of inline extmarks).\nImplement get_matches() to get buffer matches."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nRefine\n\nStop supporting deprecated ‘HiPhish/nvim-ts-rainbow2’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.map",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.map",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.map",
     "text": "mini.map\n\nExpand\n\nImplement config.window.zindex to configure z-index of map window."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.misc",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.misc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.misc",
     "text": "mini.misc\n\nExpand\n\nUpdate setup_auto_root() and find_root() to now have fallback argument to be applied when no root is found with vim.fn.find()."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.pick",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.pick",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pick",
     "text": "mini.pick\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nExpand\n\nValue of show_path in sections.recent_files() can now be callable for more control on how full path is displayed."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.11.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.11.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nEvolve\n\nUpdate child.get_screenshot() to now by default call :redraw prior to computing screenshot. Can be disabled by new opts.redraw argument.\n\n\n\nRefine\n\nError in any “pre” hook now leads to test case not being executed (with note).\n\n\n\nExpand\n\nNew method child.lua_func() can execute simple functions inside child process and return the result (stasjok, #437).\nUpdate expect.reference_screenshot() to now have ignore_lines option allowing to ignore specified lines during screenshot compare."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.ai",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.ai",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.ai",
     "text": "mini.ai\n\nExpand\n\nAllow vis_mode field in custom texobject region to force Visual mode with which textobject is selected."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.animate",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.animate",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.animate",
     "text": "mini.animate\n\nExpand\n\nAdd MiniAnimateNormalFloat highlight group to tweak highlighting of open and close animations."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nExpand\n\nAdd ‘HiPhish/rainbow-delimiters.nvim’ integration."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.basics",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.basics",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.basics",
     "text": "mini.basics\n\nRefine\n\nRemove &lt;C-w&gt; mapping in Terminal mode, as it is more useful inside terminal emulator itself."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.bracketed",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.bracketed",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.bracketed",
     "text": "mini.bracketed\n\nExpand\n\nAdd add_to_jumplist option to relevant targets (which move cursor and don’t already add to jumplist)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.bufremove",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.bufremove",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.bufremove",
     "text": "mini.bufremove\n\nRefine\n\nCreate normal buffer instead of scratch when there is no reasonable target to focus (#394)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.clue",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.clue",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.clue",
     "text": "mini.clue\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.files",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.files",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.files",
     "text": "mini.files\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nExpand\n\nAdd ‘HiPhish/rainbow-delimiters.nvim’ integration."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.jump2d",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.jump2d",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump2d",
     "text": "mini.jump2d\n\nExpand\n\nAdd gen_union_spotter() to allow combining separate spotters into one."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.operators",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.operators",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.operators",
     "text": "mini.operators\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.pairs",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.pairs",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pairs",
     "text": "mini.pairs\n\nExpand\n\nAllow false in config.mappings to not map the key."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.10.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.10.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nExpand\n\nUpdate add (sa) with ability to replicate left and right parts by respecting [count]. In Normal mode two kinds of [count] is respected: one for operator (replicates left and right parts) and one for textobject/motion. In Visual mode [count] replicates parts."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nEvolve\n\nUse Lua API to create autocommands. Stop exporting functions only related to autocommands.\nUse vim.keymap to deal with mappings. Stop exporting functions only related to mappings.\n\n\n\nRefine\n\nStop official support of Neovim 0.6.\n\n\n\nExpand\n\nAdd ‘randomhue’ color scheme."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nEvolve\n\nStop supporting archived ‘p00f/nvim-ts-rainbow’ in favor of ‘HiPhish/nvim-ts-rainbow2’.\n\n\n\nExpand\n\nAdd new integrations:\n\nLsp semantic tokens.\n‘folke/lazy.nvim’.\n‘folke/noice.nvim’.\n‘kevinhwang91/nvim-ufo’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.basics",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.basics",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.basics",
     "text": "mini.basics\n\nExpand\n\nAdd dot-repeat support for adding empty lines (go and gO mappings)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.colors",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.colors",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.colors",
     "text": "mini.colors\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nUse tree-sitter information about locally active language to infer ‘commentstring’ option value.\nAdd options.custom_commentstring option for a more granular customization of comment structure.\nAdd get_commentstring() function representing built-in logic of computing relevant ‘commentstring’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.hipatterns",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.hipatterns",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hipatterns",
     "text": "mini.hipatterns\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.9.0-mini.hues",
     "href": "mini.nvim/CHANGELOG.html#v0.9.0-mini.hues",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.hues",
     "text": "mini.hues\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nExpand\n\nAdd and implement design principle for silencing module by setting config.silent = true. It is now present in modules capable of showing non-error feedback:\n\nmini.ai\nmini.align\nmini.basics\nmini.bufremove\nmini.doc\nmini.jump\nmini.jump2d\nmini.starter\nmini.surround\nmini.test"
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.bracketed",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.bracketed",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.bracketed",
     "text": "mini.bracketed\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nAdd options.start_of_line option which controls whether to recognize as comment only lines without indent.\nAdd options.ignore_blank_line option which controls whether to ignore blank lines.\nAdd options.pad_comment_parts option which controls whether to ensure single space pad for comment leaders."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nExpand\n\nAdd config.hooks.write_pre hook to be executed before writing to a file."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.indentscope",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.indentscope",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.indentscope",
     "text": "mini.indentscope\n\nExpand\n\nAdd MiniIndentscopeSymbolOff highlight group to be used if scope’s indent is not multiple of ‘shiftwidth’.\nAdd draw.priority option to control priority of scope line draw."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.jump2d",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.jump2d",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump2d",
     "text": "mini.jump2d\n\nExpand\n\nAdd view.n_steps_ahead option which controls how many steps ahead to show. Appearance is controlled by new MiniJump2dSpotAhead highlight group.\nAdd view.dim option which controls whether to dim lines with at least one jump spot. Appearance is controlled by new MiniJump2dDim highlight group.\nAdd MiniJump2dSpotUnique highlight group to be used for spots with unique label for next step."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.pairs",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.pairs",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pairs",
     "text": "mini.pairs\n\nExpand\n\nBoth MiniPairs.br() and MiniPairs.cr() can now take a key which will be used instead of default &lt;BS&gt; and &lt;CR&gt;."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nExpand\n\nUpdate setup() to now create global directory at path config.directory if it doesn’t exist.\nAll actions now keep list of detected sessions up to date."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.splitjoin",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.splitjoin",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.splitjoin",
     "text": "mini.splitjoin\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.8.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.8.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nExpand\n\nAdd respect_selection_type option which, when enabled, makes adding and deleting surrounding respect selection type:\n\nLinewise adding places surrounding parts on separate lines while indenting surrounded lines once.\nDeleting surrounding which looks like a result of linewise adding will act to revert it: delete lines with surrounding parts and dedent surrounded lines once.\nBlockwise adding places surrounding parts on whole edges, not only start and end of selection."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nExpand\n\nStart dual distribution. Every module is now distributed both as part of ‘mini.nvim’ library and as standalone plugin (in separate git repository)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.ai",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.ai",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.ai",
     "text": "mini.ai\n\nRefine\n\nIn MiniAi.gen_spec.argument() option separators (plural; array of characters) is soft deprecated in favor of separator (singular; Lua pattern) option."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.animate",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.animate",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.animate",
     "text": "mini.animate\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.basics",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.basics",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.basics",
     "text": "mini.basics\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nRefine\n\nRename MiniCompletion.config.window_dimensions to MiniCompletion.config.window to be able to handle more general configuration.\n\n\n\nExpand\n\nAdd MiniCompletion.config.window.info.border and MiniCompletion.config.window.signature.border which can be used to define border of info and signature floating windows respectively."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.indentscope",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.indentscope",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.indentscope",
     "text": "mini.indentscope\n\nRefine\n\nStop using (deprecate) MiniIndentscopePrefix highlight groups. It was initially introduced as a way to properly show scope indicator on empty lines. It had a drawback of overshadowing ‘listchars’ symbols (see #125) and vertical guides from ‘lukas-reineke/indent-blankline.nvim’. As the other implementation approach was found by @mivort (see #161), MiniIndentscopePrefix is no longer needed and no overshadowing is done.\nUpdate MiniIndentscope.gen_animation to now be a table (for consistency with other gen_* functions in ‘mini.nvim’). See “Migrate from function type” section of :h MiniIndentscope.gen_animation. Calling it as function will be available until next release."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.misc",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.misc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.misc",
     "text": "mini.misc\n\nExpand\n\nAdd MiniMisc.setup_auto_root() and MiniMisc.find_root() for root finding functionality. NOTE: requires Neovim&gt;=0.8.\nAdd MiniMisc.setup_restore_cursor() for automatically restoring latest cursor position on file reopen. By @cryptomilk, PR #198."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.7.0-mini.move",
     "href": "mini.nvim/CHANGELOG.html#v0.7.0-mini.move",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.move",
     "text": "mini.move\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nRefine\n\nStop official support of Neovim 0.5.\n\n\n\nExpand\n\nMake all messages use colors and not cause hit-enter-prompt."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.align",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.align",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.align",
     "text": "mini.align\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nRefine\n\nChange some ‘mini.nvim’ highlights:\n\nMiniCompletionActiveParameter now highlights with background instead of underline.\nMiniJump2dSpot now explicitly defined to use plugin’s palette.\nMiniStarterItemPrefix and MiniStarterQuery are now bold for better visibility.\n\nUpdate highlight for changed git diff to be more visible and to comply more with general guidelines.\n\n\n\nExpand\n\nAdd support for many plugin integrations.\nImplement MiniBase16.config.plugins for configuring plugin integrations."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.jump",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.jump",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump",
     "text": "mini.jump\n\nRefine\n\nAllow cursor to be positioned past the end of previous/current line (#113)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.map",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.map",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.map",
     "text": "mini.map\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nRefine\n\nItem evaluation is now prepended with query reset, as it is rarely needed any more (#105).\nAll hooks are now called with (content, buf_id) signature allowing them properly use current window layout."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.6.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.6.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nEvolve\n\nUpdate ‘mini.surround’ to share as much with ‘mini.ai’ as possible. This provides more integrated experience while enabling more useful features. Details:\n\nCustom surrounding specification for input action has changed. Instead of { find = &lt;string&gt;, extract = &lt;string&gt; } it is now { &lt;function or composed pattern&gt; }. Previous format will work until the next release. See more in help file.\nAlgorithm for finding surrounding is now more powerful. It allows searching for more complex surroundings (via composed patterns or array of region pairs) and respects v:count.\nMultiline input and output surroundings are now supported.\nOpening brackets ((, [, {, &lt;) now include whitespace in surrounding: input surrounding selects all inner edge whitespace, output surrounding is padded with single space.\nSurrounding identifier i (“interactive”) is soft deprecated in favor of ? (“user prompt”).\nNew surrounding aliases:\n\nb for “brackets”. Input - any of balanced (), [] {}. Output - ().\nq for “quotes”. Input - any of \", ', `. Output - \"\".\n\nThree new search methods 'prev', 'next', and 'nearest' for finding non-covering previous and next surrounding.\n\nImplement “last”/“next” extended mappings which force 'prev' or 'next' search method. Controlled with config.mappings.suffix_last and config.mappings.suffix_nextrespectively. This also means that custom surroundings with identifier equal to “last”/“next” mappings suffixes (defaults to ‘l’ and ‘n’) will work only with long enough delay after typing action mapping.\n\n\n\nExpand\n\nImplement MiniSurround.gen_spec with generators of common surrounding specifications (like MiniSurround.gen_spec.input.treesitter for tree-sitter based input surrounding)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nRefine\n\nUpdate all tests to use new ‘mini.test’ module.\n\n\n\nExpand\n\nImplement buffer local configuration. This is done with vim.b.mini*_config buffer variables.\nAdd new minicyan color scheme."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.ai",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.ai",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.ai",
     "text": "mini.ai\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nNow hooks can be used to terminate further actions by returning false (#108)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.indentscope",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.indentscope",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.indentscope",
     "text": "mini.indentscope\n\nRefine\n\nSoft deprecate vim.b.miniindentscope_options in favor of using options field of miniindentscope_config."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nExpand\n\nHooks are now called with active session data as argument."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nEvolve\n\n\nRefine\n\nDeprecate MiniStarter.content in favor of MiniStarter.get_content().\n\n\n\nExpand\n\nMake it possible to open multiple Starter buffers at the same time (#82).\nAll functions dealing with Starter buffer now have buf_id as argument."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nExpand\n\nImplement config.use_icons which controls whether to use icons by default."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.test",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.test",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.test",
     "text": "mini.test\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.5.0-mini.trailspace",
     "href": "mini.nvim/CHANGELOG.html#v0.5.0-mini.trailspace",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.trailspace",
     "text": "mini.trailspace\n\nExpand\n\nImplement MiniTrailspace.trim_last_lines()."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nExpand\n\nUpdate all modules to supply mapping description for Neovim&gt;=0.7.\nCover all modules with extensive tests."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nImplement config.hooks with pre and post hooks (executed before and after successful commenting). Fixes #50, #59."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.completion",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.completion",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.completion",
     "text": "mini.completion\n\nExpand\n\nImplement support for additionalTextEdits (issue #61)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.jump",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.jump",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump",
     "text": "mini.jump\n\nRefine\n\nSoft deprecate config.highlight_delay in favor of config.delay.highlight.\n\n\n\nExpand\n\nImplement idle timeout to stop jumping automatically (@annenpolka, #56).\nImplement MiniJump.state: table with useful model-related information.\nUpdate process of querying target symbol: show help message after delay, allow &lt;C-c&gt; to stop selecting target."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.jump2d",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.jump2d",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump2d",
     "text": "mini.jump2d\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.pairs",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.pairs",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pairs",
     "text": "mini.pairs\n\nRefine\n\nCreate mappings for &lt;BS&gt; and &lt;CR&gt; in certain mode only after some pair is registered in that mode."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nRefine\n\nAll feedback about incorrect behavior is now an error instead of message notifications.\n\n\n\nExpand\n\nImplement MiniSessions.select() to select session interactively and perform action on it.\nImplement config.hooks to execute hook functions before and after successful action."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nExpand\n\nAllow config.header and config.footer be any value, which will be converted to string via tostring().\nUpdate query logic to not allow queries which result into no items.\nAdd &lt;C-n&gt; and &lt;C-p&gt; to default mappings."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nRefine\n\nChange default icon for MiniStatusline.section_diagnostics() from ﯭ to  due to former having issues in some terminal emulators."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.surround",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.surround",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.surround",
     "text": "mini.surround\n\nEvolve\n\n\nRefine\n\nDeprecate config.funname_pattern option in favor of manually modifying f surrounding.\nAlways move cursor to the right of left surrounding in add(), delete(), and replace() (instead of moving only if it was on the same line as left surrounding).\n\n\n\nExpand\n\nImplement config.search_method.\nImplement custom surroundings via config.custom_surroundings.\nImplement MiniSurround.user_input().\nUpdate process of getting user input: allow &lt;C-c&gt; to cancel and make empty string a valid input."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.4.0-mini.tabline",
     "href": "mini.nvim/CHANGELOG.html#v0.4.0-mini.tabline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.tabline",
     "text": "mini.tabline\n\nRefine\n\nShow listed buffers also in case of multiple tabpages (instead of using builtin behavior).\n\n\n\nExpand\n\nImplement config.tabpage_section.\nShow quickfix/loclist buffers with special *quickfix* label."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.3.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.3.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nExpand\n\nUpdate all modules to have annotations formatted for ‘mini.doc’."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.3.0-mini.cursorword",
     "href": "mini.nvim/CHANGELOG.html#v0.3.0-mini.cursorword",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.cursorword",
     "text": "mini.cursorword\n\nExpand\n\nCurrent word under cursor now can be highlighted differently."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.3.0-mini.doc",
     "href": "mini.nvim/CHANGELOG.html#v0.3.0-mini.doc",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.doc",
     "text": "mini.doc\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.3.0-mini.indentscope",
     "href": "mini.nvim/CHANGELOG.html#v0.3.0-mini.indentscope",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.indentscope",
     "text": "mini.indentscope\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.3.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.3.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nExpand\n\nImplement MiniStarter.set_query() and make &lt;Esc&gt; mapping for resetting query."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.base16",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.base16",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.base16",
     "text": "mini.base16\n\nExpand\n\nUse new Diagnostic* highlight groups in Neovim 0.6.0."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.comment",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.comment",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.comment",
     "text": "mini.comment\n\nExpand\n\nRespect tab indentation (#20)."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.jump",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.jump",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.jump",
     "text": "mini.jump\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.pairs",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.pairs",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.pairs",
     "text": "mini.pairs\n\nExpand\n\nImplement pair registration with custom mapping functions:\n\nImplement MiniPairs.map(), MiniPairs.map_buf(), MiniPairs.unmap(), MiniPairs.unmap_buf() to (un)make mappings for pairs which automatically register them for &lt;BS&gt; and &lt;CR&gt;. Note, that this has a minor break of previous behavior: now MiniPairs.bs() and MiniPairs.cr() don’t have any input argument. But default behavior didn’t change.\nAllow setting global pair mappings inside config of MiniPairs.setup()."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.sessions",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.sessions",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.sessions",
     "text": "mini.sessions\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.starter",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.starter",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.starter",
     "text": "mini.starter\n\nExpand\n\nIntroduction of a new module."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.2.0-mini.statusline",
     "href": "mini.nvim/CHANGELOG.html#v0.2.0-mini.statusline",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "mini.statusline",
     "text": "mini.statusline\n\nExpand\n\nImplement new section MiniStatusline.section_searchcount().\nUpdate section_diagnostics to use vim.diagnostic in Neovim 0.6.0."
   },
   {
     "objectID": "mini.nvim/CHANGELOG.html#v0.1.0-all",
     "href": "mini.nvim/CHANGELOG.html#v0.1.0-all",
-    "title": "Version 0.17.0",
+    "title": "Version 0.18.0-dev",
     "section": "All",
     "text": "All\n\nExpand\n\nInitial stable version."
   },
