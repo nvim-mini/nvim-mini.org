@@ -241,7 +241,6 @@ This plugin comes with several color schemes (all have both dark and light varia
 This is the list of modules I currently intend to implement eventually (as my free time and dedication will allow), in alphabetical order:
 
 - 'mini.abbrev' - helper to manage/setup Insert mode abbreviations.
-- 'mini.cmdline' - improved Command line. Possibly with custom `vim.ui.input` implementation.
 - 'mini.cycle' - cycle through alternatives with pre-defined rules. Something like [monaqa/dial.nvim](https://github.com/monaqa/dial.nvim) and [AndrewRadev/switch.vim](https://github.com/AndrewRadev/switch.vim)
 - 'mini.folds' - more capable and user-friendly folds.
 - 'mini.repl' - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.
