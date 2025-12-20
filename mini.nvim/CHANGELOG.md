@@ -10,6 +10,14 @@ There are following change types:
 
 # Version 0.18.0-dev {#v0.18.0}
 
+## mini.misc {#v0.18.0-mini.misc}
+
+### Evolve {#v0.18.0-mini.misc-evolve}
+
+- Update `setup_termbg_sync()` to use OSC 111 control sequence to reset terminal emulator's background color. This provides a more robust behavior across platforms (like `tmux`).
+
+    The previous "reset by explicitly setting initial background color" behavior is available by setting the new `opts.explicit_reset` option to `true`.
+
 
 # Version 0.17.0 {#v0.17.0}
 

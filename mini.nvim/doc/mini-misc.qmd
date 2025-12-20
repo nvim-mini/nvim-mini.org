@@ -362,7 +362,7 @@ Notes:
 
 ### setup_termbg_sync() {#minimisc.setup_termbg_sync .help-syntax-right-anchor}
 
-<p align="center">`MiniMisc.setup_termbg_sync`()</p>
+<p align="center">`MiniMisc.setup_termbg_sync`(<span class="help-syntax-special">{opts}</span>)</p>
 Set up terminal background synchronization
 
 What it does:
@@ -374,8 +374,7 @@ What it does:
   change terminal background to have same color as [guibg](https://neovim.io/doc/user/helptag.html?tag=guibg) of [hl-Normal](https://neovim.io/doc/user/helptag.html?tag=hl-Normal).
 
 - Creates autocommands for [VimLeavePre](https://neovim.io/doc/user/helptag.html?tag=VimLeavePre) and [VimSuspend](https://neovim.io/doc/user/helptag.html?tag=VimSuspend) events which set
-  terminal background back to the color at the time this function was
-  called first time in current session.
+  terminal background back to its original color.
 
 - Synchronizes background immediately to allow not depend on loading order.
 
@@ -384,6 +383,17 @@ which appears if Neovim's [hl-Normal](https://neovim.io/doc/user/helptag.html?ta
 used by terminal emulator itself.
 
 Works only on Neovim>=0.10.
+
+#### Parameters {#minimisc.setup_termbg_sync-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<explicit_reset\></span> `(boolean)` - whether to reset terminal background by
+    explicitly setting it to the color it had when this function was called.
+    Set to `true` if terminal emulator doesn't support OSC 111 control sequence.
+    Default: `false`.
 
 ---
 
