@@ -414,7 +414,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#minimisc.find_root-parameters" id="toc-minimisc.find_root-parameters" class="nav-link" data-scroll-target="#minimisc.find_root-parameters">Parameters</a></li>
   </ul></li>
-  <li><a href="#minimisc.setup_termbg_sync" id="toc-minimisc.setup_termbg_sync" class="nav-link" data-scroll-target="#minimisc.setup_termbg_sync">setup_termbg_sync()</a></li>
+  <li><a href="#minimisc.setup_termbg_sync" id="toc-minimisc.setup_termbg_sync" class="nav-link" data-scroll-target="#minimisc.setup_termbg_sync">setup_termbg_sync()</a>
+  <ul>
+  <li><a href="#minimisc.setup_termbg_sync-parameters" id="toc-minimisc.setup_termbg_sync-parameters" class="nav-link" data-scroll-target="#minimisc.setup_termbg_sync-parameters">Parameters</a></li>
+  </ul></li>
   <li><a href="#minimisc.setup_restore_cursor" id="toc-minimisc.setup_restore_cursor" class="nav-link" data-scroll-target="#minimisc.setup_restore_cursor">setup_restore_cursor()</a>
   <ul>
   <li><a href="#minimisc.setup_restore_cursor-parameters" id="toc-minimisc.setup_restore_cursor-parameters" class="nav-link" data-scroll-target="#minimisc.setup_restore_cursor-parameters">Parameters</a></li>
@@ -731,19 +734,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minimisc.setup_termbg_sync" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.setup_termbg_sync">setup_termbg_sync()</h3>
 <p align="center">
-<code>MiniMisc.setup_termbg_sync</code>()
+<code>MiniMisc.setup_termbg_sync</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Set up terminal background synchronization</p>
 <p>What it does:</p>
 <ul>
 <li><p>Checks if terminal emulator supports OSC 11 control sequence through appropriate <code>stdout</code>. Stops if not.</p></li>
 <li><p>Creates autocommands for <a href="https://neovim.io/doc/user/helptag.html?tag=ColorScheme">ColorScheme</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=VimResume">VimResume</a> events, which change terminal background to have same color as <a href="https://neovim.io/doc/user/helptag.html?tag=guibg">guibg</a> of <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Normal">hl-Normal</a>.</p></li>
-<li><p>Creates autocommands for <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre">VimLeavePre</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=VimSuspend">VimSuspend</a> events which set terminal background back to the color at the time this function was called first time in current session.</p></li>
+<li><p>Creates autocommands for <a href="https://neovim.io/doc/user/helptag.html?tag=VimLeavePre">VimLeavePre</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=VimSuspend">VimSuspend</a> events which set terminal background back to its original color.</p></li>
 <li><p>Synchronizes background immediately to allow not depend on loading order.</p></li>
 </ul>
 <p>Primary use case is to remove possible “frame” around current Neovim instance which appears if Neovim’s <a href="https://neovim.io/doc/user/helptag.html?tag=hl-Normal">hl-Normal</a> background color differs from what is used by terminal emulator itself.</p>
 <p>Works only on Neovim&gt;=0.10.</p>
+<section id="minimisc.setup_termbg_sync-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.setup_termbg_sync-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;explicit_reset&gt;</span> <code>(boolean)</code> - whether to reset terminal background by explicitly setting it to the color it had when this function was called. Set to <code>true</code> if terminal emulator doesn’t support OSC 111 control sequence. Default: <code>false</code>.</li>
+</ul>
 <hr>
+</section>
 </section>
 <section id="minimisc.setup_restore_cursor" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.setup_restore_cursor">setup_restore_cursor()</h3>
