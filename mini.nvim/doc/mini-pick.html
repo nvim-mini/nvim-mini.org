@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#minipick-examples-disableicons" id="toc-minipick-examples-disableicons" class="nav-link" data-scroll-target="#minipick-examples-disableicons">Disable icons</a></li>
   <li><a href="#minipick-examples-switchtoggleandmovekeys" id="toc-minipick-examples-switchtoggleandmovekeys" class="nav-link" data-scroll-target="#minipick-examples-switchtoggleandmovekeys">Switch toggle and move keys</a></li>
-  <li><a href="#minipick-examples-differentwindowstyles" id="toc-minipick-examples-differentwindowstyles" class="nav-link" data-scroll-target="#minipick-examples-differentwindowstyles">Different window styles:</a></li>
+  <li><a href="#minipick-examples-differentwindowstyles" id="toc-minipick-examples-differentwindowstyles" class="nav-link" data-scroll-target="#minipick-examples-differentwindowstyles">Different window styles</a></li>
   </ul></li>
   <li><a href="#minipick.setup" id="toc-minipick.setup" class="nav-link" data-scroll-target="#minipick.setup">setup()</a>
   <ul>
@@ -885,7 +885,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>buf_id</code> - identifier of the target buffer. Note: for every separate instance of item previewing new scratch buffer is be created.</p></li>
 <li><p><code>item</code> - item to preview.</p></li>
 </ul>
-<p>It should update buffer <code>buf_id</code> to visually represent <code>item</code>.</p>
+<p>It should update buffer <code>buf_id</code> to visually represent <code>item</code>. It can also directly set another buffer in picker’s main window, but usually it is more robust to update given <code>buf_id</code> directly.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">preview_inspect</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">item</span><span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">lines</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>split<span class="op">(</span><span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">item</span><span class="op">),</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span><span class="op">)</span></span>
@@ -1108,7 +1108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minipick-examples-differentwindowstyles" class="level4">
-<h4 class="anchored" data-anchor-id="minipick-examples-differentwindowstyles">Different window styles:</h4>
+<h4 class="anchored" data-anchor-id="minipick-examples-differentwindowstyles">Different window styles</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Different border</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">window</span> <span class="op">=</span> <span class="op">{</span> <span class="va">config</span> <span class="op">=</span> <span class="op">{</span> <span class="va">border</span> <span class="op">=</span> <span class="st">'double'</span> <span class="op">}</span> <span class="op">}</span> <span class="op">}</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
