@@ -18,6 +18,12 @@ There are following change types:
 
     The previous "reset by explicitly setting initial background color" behavior is available by setting the new `opts.explicit_reset` option to `true`.
 
+## mini.pick {#v0.18.0-mini.pick}
+
+### Expand {#v0.18.0-mini.pick-expand}
+
+- Allow `source.preview` to directly set another buffer into picker's main window. The recommended way is still to adjust the provided `buf_id` buffer, but there is now a workaround if this is not reasonably possible.
+
 
 # Version 0.17.0 {#v0.17.0}
 
