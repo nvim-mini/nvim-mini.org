@@ -10,6 +10,20 @@ There are following change types:
 
 # Version 0.18.0-dev {#v0.18.0}
 
+## mini.base16 {#v0.18.0-mini.base16}
+
+### Expand {#v0.18.0-mini.base16-expand}
+
+- Add new plugin integrations:
+    - 'folke/snacks.nvim'
+
+## mini.hues {#v0.18.0-mini.hues}
+
+### Expand {#v0.18.0-mini.hues-expand}
+
+- Add new plugin integrations:
+    - 'folke/snacks.nvim'
+
 ## mini.misc {#v0.18.0-mini.misc}
 
 ### Evolve {#v0.18.0-mini.misc-evolve}
