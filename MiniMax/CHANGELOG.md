@@ -1,5 +1,12 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-01-03 {#2026-01-03}
+
+- Improve 'mini.clue' setup:
+    - Use array `mode` where possible for a more concise setup.
+    - Use `gen_clues.square_brackets()` to show more built-in clues.
+    - Use `s` as a trigger. Currently only for 'mini.surround' actions, but will be more useful in the future.
+
 ## 2025-12-20 {#2025-12-20}
 
 - Start using 'mini.cmdline'.
