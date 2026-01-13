@@ -1,5 +1,11 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-01-13 {#2026-01-13}
+
+- Improve 'stevearc/conform.nvim' setup:
+    - Setup plugin to allow formatting from LSP server if no dedicated formatter is available. This provides more versatile behavior. Previously it was forced in `<Leader>lf` mapping.
+    - Use plain `require('conform').format()` in `<Leader>lf` keymaps.
+
 ## 2026-01-08 {#2026-01-08}
 
 - Improve keymaps for exploring quickfix list (make implementation shorter and more robust) and location list (add it as `<Leader>eQ` to compliment `<Leader>eq` for quickfix).
