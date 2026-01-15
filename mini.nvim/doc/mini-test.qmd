@@ -728,6 +728,7 @@ Each function has the following behavior:
 - Silently returns `true` if expectation is fulfilled.
 
 - Throws an informative error with information helpful for debugging.
+  Allows customizable fail reason to provide more context.
 
 Mostly designed to be used within 'mini.test' framework.
 
@@ -738,17 +739,38 @@ Mostly designed to be used within 'mini.test' framework.
   ```lua
   local x = 1 + 1
   MiniTest.expect.equality(x, 2) -- passes
-  MiniTest.expect.equality(x, 1) -- fails
+  MiniTest.expect.equality(x, 1, { fail_reason = 'Not equal' }) -- fails
   ```
 
 ---
 
 ### expect.equality() {#minitest.expect.equality .help-syntax-right-anchor}
 
-<p align="center">`MiniTest.expect.equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)</p>
+<p align="center">`MiniTest.expect.equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Expect equality of two objects
 
-Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
+Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)). It also tries to compute more
+detailed cause for equality (for easier spotting the difference):
+
+- If they have different types.
+
+- For strings if they have different length or if some character is different.
+
+- For tables it shows a "key branch" at which values are different along with
+  the actual values. A single difference is shown, there might be more.
+  For not nested tables key branch is just a key. If the difference is inside
+  nested tables, the key branch shows a "path through nested tables" to
+  a different value. Examples:
+
+    ```lua
+    local eq = MiniTest.expect.equality
+    eq({ 1, 2 }, { 1, 3 })         -- Key branch is `2`
+    eq({ 1, { 2 } }, { 1, 'c' })   -- Key branch is `2` ('c' is not a table)
+    eq({ 1, { 2 } }, { 1, { 3 } }) -- Key branch is `2->1`
+
+    -- Key branch is either `1->1->"a"` or `1->1->"b"`
+    eq({ { { a = 1 } } }, { { { b = 2 } } })
+    ```
 
 #### Parameters {#minitest.expect.equality-parameters}
 
@@ -758,11 +780,17 @@ Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.ht
 
 <span class="help-syntax-special">{right}</span> `(any)` Second object.
 
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<fail_reason\></span> `(string|function)` - reason for failing expectation.
+    a function is called with expectation input and should return a string.
+    Default: `nil` for default reason like "Failed expectation for ...".
+
 ---
 
 ### expect.no_equality() {#minitest.expect.no_equality .help-syntax-right-anchor}
 
-<p align="center">`MiniTest.expect.no_equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)</p>
+<p align="center">`MiniTest.expect.no_equality`(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Expect no equality of two objects
 
 Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal\(\)).
@@ -775,38 +803,52 @@ Equality is tested via [vim.deep\_equal()](https://neovim.io/doc/user/helptag.ht
 
 <span class="help-syntax-special">{right}</span> `(any)` Second object.
 
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<fail_reason\></span> `(string|function)` - reason for failing expectation.
+    a function is called with expectation input and should return a string.
+    Default: `nil` for default reason like "Failed expectation for ...".
+
 ---
 
 ### expect.error() {#minitest.expect.error .help-syntax-right-anchor}
 
-<p align="center">`MiniTest.expect.error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{...}</span>)</p>
+<p align="center">`MiniTest.expect.error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{...}</span>)</p>
 Expect function call to raise error
 
 #### Parameters {#minitest.expect.error-parameters}
 
 
 
-<span class="help-syntax-special">{f}</span> `(function|table)` Callable to be tested for raising error.
+<span class="help-syntax-special">{f}</span> `(function)` Function to be tested for raising error.
 
 <span class="help-syntax-special">{pattern}</span> `(string|nil)` Pattern which error message should match.
   Use `nil` or empty string to not test for pattern matching.
 
-<span class="help-syntax-special">{...}</span> `(any)` Extra arguments with which `f` will be called.
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<fail_reason\></span> `(string|function)` - reason for failing expectation.
+    a function is called with expectation input and should return a string.
+    Default: `nil` for default reason like "Failed expectation for ...".
 
 ---
 
 ### expect.no_error() {#minitest.expect.no_error .help-syntax-right-anchor}
 
-<p align="center">`MiniTest.expect.no_error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{...}</span>)</p>
+<p align="center">`MiniTest.expect.no_error`(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{...}</span>)</p>
 Expect function call to not raise error
 
 #### Parameters {#minitest.expect.no_error-parameters}
 
 
 
-<span class="help-syntax-special">{f}</span> `(function|table)` Callable to be tested for raising error.
+<span class="help-syntax-special">{f}</span> `(function)` Function to be tested for not raising error.
 
-<span class="help-syntax-special">{...}</span> `(any)` Extra arguments with which `f` will be called.
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<fail_reason\></span> `(string|function)` - reason for failing expectation.
+    a function is called with expectation input and should return a string.
+    Default: `nil` for default reason like "Failed expectation for ...".
 
 ---
 
@@ -843,6 +885,10 @@ Expect equality to reference screenshot
 
   - <span class="help-syntax-keys">\<directory\></span> `(string)` - directory where automatically constructed `path`
     is located. Default: "tests/screenshots".
+
+  - <span class="help-syntax-keys">\<fail_reason\></span> `(string|function)` - reason for failing expectation.
+    a function is called with expectation input and should return a string.
+    Default: `nil` for default reason like "Failed expectation for ...".
 
 ---
 

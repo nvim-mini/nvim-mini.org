@@ -50,6 +50,24 @@ There are following change types:
 
 - Allow `source.preview` to directly set another buffer into picker's main window. The recommended way is still to adjust the provided `buf_id` buffer, but there is now a workaround if this is not reasonably possible.
 
+## mini.test {#v0.18.0-mini.test}
+
+### Refine {#v0.18.0-mini.test-refine}
+
+- Update `expect.error` and `expect.no_error` to not accept extra arguments for tested function. It will mostly work until the next 'mini.nvim' release, but not after that.
+
+    Use them explicitly inside anonymous function: `expect.error(f, "", 1, 2)` -> `expect.error(function() f(1, 2) end, "")` and `expect.no_error(f, 1, 2)` -> `expect.no_error(function() f(1, 2) end)`.
+
+    Sorry for the inconvenience.
+
+- Update all built-in reporters (`gen_reporter.buffer` and `gen_reporter.stdout`) to first show all fails followed by all notes. This makes it easier to find failed cases when there are many notes (like from `MiniTest.skip()`).
+
+### Expand {#v0.18.0-mini.test-expand}
+
+- Update all `MiniTest.expect` expectations to allow customization of failure reason instead of default "Failed expectation for ...". This also consistently introduces `opts` last argument.
+
+- Update `MiniTest.expect.equality` to show more detailed cause of failed equality. Like which character is different in two string or which values are different in two tables and at what key branch.
+
 
 # Version 0.17.0 {#v0.17.0}
 
