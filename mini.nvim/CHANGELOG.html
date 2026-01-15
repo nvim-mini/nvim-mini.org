@@ -378,6 +378,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#v0.18.0-mini.pick-expand" id="toc-v0.18.0-mini.pick-expand" class="nav-link" data-scroll-target="#v0.18.0-mini.pick-expand">Expand</a></li>
   </ul></li>
+  <li><a href="#v0.18.0-mini.test" id="toc-v0.18.0-mini.test" class="nav-link" data-scroll-target="#v0.18.0-mini.test">mini.test</a>
+  <ul>
+  <li><a href="#v0.18.0-mini.test-refine" id="toc-v0.18.0-mini.test-refine" class="nav-link" data-scroll-target="#v0.18.0-mini.test-refine">Refine</a></li>
+  <li><a href="#v0.18.0-mini.test-expand" id="toc-v0.18.0-mini.test-expand" class="nav-link" data-scroll-target="#v0.18.0-mini.test-expand">Expand</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#v0.17.0" id="toc-v0.17.0" class="nav-link" data-scroll-target="#v0.17.0">Version 0.17.0</a>
   <ul>
@@ -1293,6 +1298,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="v0.18.0-mini.pick-expand">Expand</h3>
 <ul>
 <li>Allow <code>source.preview</code> to directly set another buffer into picker’s main window. The recommended way is still to adjust the provided <code>buf_id</code> buffer, but there is now a workaround if this is not reasonably possible.</li>
+</ul>
+</section>
+</section>
+<section id="v0.18.0-mini.test" class="level2">
+<h2 class="anchored" data-anchor-id="v0.18.0-mini.test">mini.test</h2>
+<section id="v0.18.0-mini.test-refine" class="level3">
+<h3 class="anchored" data-anchor-id="v0.18.0-mini.test-refine">Refine</h3>
+<ul>
+<li><p>Update <code>expect.error</code> and <code>expect.no_error</code> to not accept extra arguments for tested function. It will mostly work until the next ‘mini.nvim’ release, but not after that.</p>
+<p>Use them explicitly inside anonymous function: <code>expect.error(f, "", 1, 2)</code> -&gt; <code>expect.error(function() f(1, 2) end, "")</code> and <code>expect.no_error(f, 1, 2)</code> -&gt; <code>expect.no_error(function() f(1, 2) end)</code>.</p>
+<p>Sorry for the inconvenience.</p></li>
+<li><p>Update all built-in reporters (<code>gen_reporter.buffer</code> and <code>gen_reporter.stdout</code>) to first show all fails followed by all notes. This makes it easier to find failed cases when there are many notes (like from <code>MiniTest.skip()</code>).</p></li>
+</ul>
+</section>
+<section id="v0.18.0-mini.test-expand" class="level3">
+<h3 class="anchored" data-anchor-id="v0.18.0-mini.test-expand">Expand</h3>
+<ul>
+<li><p>Update all <code>MiniTest.expect</code> expectations to allow customization of failure reason instead of default “Failed expectation for …”. This also consistently introduces <code>opts</code> last argument.</p></li>
+<li><p>Update <code>MiniTest.expect.equality</code> to show more detailed cause of failed equality. Like which character is different in two string or which values are different in two tables and at what key branch.</p></li>
 </ul>
 </section>
 </section>

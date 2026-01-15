@@ -990,35 +990,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each function has the following behavior:</p>
 <ul>
 <li><p>Silently returns <code>true</code> if expectation is fulfilled.</p></li>
-<li><p>Throws an informative error with information helpful for debugging.</p></li>
+<li><p>Throws an informative error with information helpful for debugging. Allows customizable fail reason to provide more context.</p></li>
 </ul>
 <p>Mostly designed to be used within ‘mini.test’ framework.</p>
 <section id="minitest.expect-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.expect-usage">Usage</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="co">-- passes</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span> <span class="co">-- fails</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span>equality<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">{</span> <span class="va">fail_reason</span> <span class="op">=</span> <span class="st">'Not equal'</span> <span class="op">})</span> <span class="co">-- fails</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
 <section id="minitest.expect.equality" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minitest.expect.equality">expect.equality()</h3>
 <p align="center">
-<code>MiniTest.expect.equality</code>(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)
+<code>MiniTest.expect.equality</code>(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Expect equality of two objects</p>
-<p>Equality is tested via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal()">vim.deep_equal()</a>.</p>
+<p>Equality is tested via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal()">vim.deep_equal()</a>. It also tries to compute more detailed cause for equality (for easier spotting the difference):</p>
+<ul>
+<li><p>If they have different types.</p></li>
+<li><p>For strings if they have different length or if some character is different.</p></li>
+<li><p>For tables it shows a “key branch” at which values are different along with the actual values. A single difference is shown, there might be more. For not nested tables key branch is just a key. If the difference is inside nested tables, the key branch shows a “path through nested tables” to a different value. Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">eq</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span><span class="va">expect</span><span class="op">.</span><span class="va">equality</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eq<span class="op">({</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">3</span> <span class="op">})</span>         <span class="co">-- Key branch is `2`</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>eq<span class="op">({</span> <span class="dv">1</span><span class="op">,</span> <span class="op">{</span> <span class="dv">2</span> <span class="op">}</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="st">'c'</span> <span class="op">})</span>   <span class="co">-- Key branch is `2` ('c' is not a table)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>eq<span class="op">({</span> <span class="dv">1</span><span class="op">,</span> <span class="op">{</span> <span class="dv">2</span> <span class="op">}</span> <span class="op">},</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="op">{</span> <span class="dv">3</span> <span class="op">}</span> <span class="op">})</span> <span class="co">-- Key branch is `2-&gt;1`</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Key branch is either `1-&gt;1-&gt;"a"` or `1-&gt;1-&gt;"b"`</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>eq<span class="op">({</span> <span class="op">{</span> <span class="op">{</span> <span class="va">a</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">}</span> <span class="op">}</span> <span class="op">},</span> <span class="op">{</span> <span class="op">{</span> <span class="op">{</span> <span class="va">b</span> <span class="op">=</span> <span class="dv">2</span> <span class="op">}</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
 <section id="minitest.expect.equality-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.expect.equality-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{left}</span> <code>(any)</code> First object.</p>
 <p><span class="help-syntax-special">{right}</span> <code>(any)</code> Second object.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;fail_reason&gt;</span> <code>(string|function)</code> - reason for failing expectation. a function is called with expectation input and should return a string. Default: <code>nil</code> for default reason like “Failed expectation for …”.</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="minitest.expect.no_equality" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minitest.expect.no_equality">expect.no_equality()</h3>
 <p align="center">
-<code>MiniTest.expect.no_equality</code>(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>)
+<code>MiniTest.expect.no_equality</code>(<span class="help-syntax-special">{left}</span>, <span class="help-syntax-special">{right}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Expect no equality of two objects</p>
 <p>Equality is tested via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.deep_equal()">vim.deep_equal()</a>.</p>
@@ -1026,33 +1042,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minitest.expect.no_equality-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{left}</span> <code>(any)</code> First object.</p>
 <p><span class="help-syntax-special">{right}</span> <code>(any)</code> Second object.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;fail_reason&gt;</span> <code>(string|function)</code> - reason for failing expectation. a function is called with expectation input and should return a string. Default: <code>nil</code> for default reason like “Failed expectation for …”.</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="minitest.expect.error" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minitest.expect.error">expect.error()</h3>
 <p align="center">
-<code>MiniTest.expect.error</code>(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{…}</span>)
+<code>MiniTest.expect.error</code>(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{…}</span>)
 </p>
 <p>Expect function call to raise error</p>
 <section id="minitest.expect.error-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.expect.error-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{f}</span> <code>(function|table)</code> Callable to be tested for raising error.</p>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> Function to be tested for raising error.</p>
 <p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Pattern which error message should match. Use <code>nil</code> or empty string to not test for pattern matching.</p>
-<p><span class="help-syntax-special">{…}</span> <code>(any)</code> Extra arguments with which <code>f</code> will be called.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;fail_reason&gt;</span> <code>(string|function)</code> - reason for failing expectation. a function is called with expectation input and should return a string. Default: <code>nil</code> for default reason like “Failed expectation for …”.</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="minitest.expect.no_error" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minitest.expect.no_error">expect.no_error()</h3>
 <p align="center">
-<code>MiniTest.expect.no_error</code>(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{…}</span>)
+<code>MiniTest.expect.no_error</code>(<span class="help-syntax-special">{f}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{…}</span>)
 </p>
 <p>Expect function call to not raise error</p>
 <section id="minitest.expect.no_error-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.expect.no_error-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{f}</span> <code>(function|table)</code> Callable to be tested for raising error.</p>
-<p><span class="help-syntax-special">{…}</span> <code>(any)</code> Extra arguments with which <code>f</code> will be called.</p>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> Function to be tested for not raising error.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;fail_reason&gt;</span> <code>(string|function)</code> - reason for failing expectation. a function is called with expectation input and should return a string. Default: <code>nil</code> for default reason like “Failed expectation for …”.</li>
+</ul>
 <hr>
 </section>
 </section>
@@ -1072,6 +1098,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;ignore_text&gt;</span> <code>(boolean|table)</code> - whether to ignore all or some text lines. If <code>true</code> - ignore all, if number array - ignore text of those lines, if <code>false</code> - do not ignore any. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;ignore_attr&gt;</span> <code>(boolean|table)</code> - whether to ignore all or some attr lines. If <code>true</code> - ignore all, if number array - ignore attr of those lines, if <code>false</code> - do not ignore any. Default: <code>false</code>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;directory&gt;</span> <code>(string)</code> - directory where automatically constructed <code>path</code> is located. Default: “tests/screenshots”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;fail_reason&gt;</span> <code>(string|function)</code> - reason for failing expectation. a function is called with expectation input and should return a string. Default: <code>nil</code> for default reason like “Failed expectation for …”.</p></li>
 </ul>
 <hr>
 </section>
@@ -1095,11 +1122,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitest.new_expectation-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.new_expectation-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect_truthy</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_expectation<span class="op">(</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'truthy'</span><span class="op">,</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="va">x</span> <span class="kw">end</span><span class="op">,</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="st">'Object: '</span> <span class="op">..</span> <span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">end</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">expect_truthy</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_expectation<span class="op">(</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'truthy'</span><span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="va">x</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="cf">return</span> <span class="st">'Object: '</span> <span class="op">..</span> <span class="va">vim</span><span class="op">.</span>inspect<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -1185,26 +1212,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitest.new_child_neovim-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.new_child_neovim-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Initiate</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">()</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use API functions</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="op">{</span> <span class="st">'Line inside child Neovim'</span> <span class="op">})</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Execute Lua code, Vimscript commands, etc.</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'_G.n = 0'</span><span class="op">)</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'au CursorMoved * lua _G.n = _G.n + 1'</span><span class="op">)</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'l'</span><span class="op">)</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'_G.n'</span><span class="op">))</span> <span class="co">-- Should be 1</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use other `vim.xxx` Lua wrappers (executed inside child process)</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span> <span class="op">=</span> <span class="st">'current process'</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span> <span class="op">=</span> <span class="st">'child process'</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'vim.b.aaa'</span><span class="op">))</span> <span class="co">-- Should be 'child process'</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- Always stop process after it is not needed</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>stop<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Initiate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">()</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use API functions</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_buf_set_lines<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="op">{</span> <span class="st">'Line inside child Neovim'</span> <span class="op">})</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Execute Lua code, Vimscript commands, etc.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>lua<span class="op">(</span><span class="st">'_G.n = 0'</span><span class="op">)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'au CursorMoved * lua _G.n = _G.n + 1'</span><span class="op">)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'l'</span><span class="op">)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'_G.n'</span><span class="op">))</span> <span class="co">-- Should be 1</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use other `vim.xxx` Lua wrappers (executed inside child process)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span> <span class="op">=</span> <span class="st">'current process'</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span><span class="va">b</span><span class="op">.</span><span class="va">aaa</span> <span class="op">=</span> <span class="st">'child process'</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">child</span><span class="op">.</span>lua_get<span class="op">(</span><span class="st">'vim.b.aaa'</span><span class="op">))</span> <span class="co">-- Should be 'child process'</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- Always stop process after it is not needed</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>stop<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -1284,8 +1311,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minitest-child-neovim-start-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-start-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{args}</span> <code>(table)</code> Array with arguments for executable. Will be prepended with the following default arguments (see <a href="https://neovim.io/doc/user/helptag.html?tag=startup-options">startup-options</a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'--clean'</span><span class="op">,</span> <span class="st">'-n'</span><span class="op">,</span> <span class="st">'--listen'</span><span class="op">,</span> <span class="op">&lt;</span><span class="va">some</span> <span class="va">address</span><span class="op">&gt;,</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'--headless'</span><span class="op">,</span> <span class="st">'--cmd'</span><span class="op">,</span> <span class="st">'set lines=24 columns=80'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'--clean'</span><span class="op">,</span> <span class="st">'-n'</span><span class="op">,</span> <span class="st">'--listen'</span><span class="op">,</span> <span class="op">&lt;</span><span class="va">some</span> <span class="va">address</span><span class="op">&gt;,</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'--headless'</span><span class="op">,</span> <span class="st">'--cmd'</span><span class="op">,</span> <span class="st">'set lines=24 columns=80'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;nvim_executable&gt;</span> - name of Neovim executable. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:progpath">v:progpath</a>.</p></li>
@@ -1294,13 +1321,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitest-child-neovim-start-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-start-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start default clean Neovim instance</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">()</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start with custom 'init.lua' file</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">child</span> <span class="op">=</span> <span class="va">MiniTest</span><span class="op">.</span>new_child_neovim<span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start default clean Neovim instance</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">()</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start with custom 'init.lua' file</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>start<span class="op">({</span> <span class="st">'-u'</span><span class="op">,</span> <span class="st">'scripts/minimal_init.lua'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -1322,16 +1349,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitest-child-neovim-type_keys-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-type_keys-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these type keys 'c', 'a', 'w'</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'caw'</span><span class="op">)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span><span class="op">)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span> <span class="op">})</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Waits 5 ms after `c` and after 'w'</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="st">'c'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span> <span class="op">})</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Special keys can also be used</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'Hello world'</span><span class="op">,</span> <span class="st">'&lt;Esc&gt;'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- All of these type keys 'c', 'a', 'w'</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'caw'</span><span class="op">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span><span class="op">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span> <span class="op">})</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Waits 5 ms after `c` and after 'w'</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="st">'c'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'a'</span><span class="op">,</span> <span class="st">'w'</span> <span class="op">})</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Special keys can also be used</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="va">child</span><span class="op">.</span>type_keys<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'Hello world'</span><span class="op">,</span> <span class="st">'&lt;Esc&gt;'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -1362,13 +1389,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitest-child-neovim-get_screenshot-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-get_screenshot-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">screenshot</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span>get_screenshot<span class="op">()</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Show character displayed row=3 and column=4</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">screenshot</span><span class="op">.</span><span class="va">text</span><span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">4</span><span class="op">])</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Convert to string</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tostring</span><span class="op">(</span><span class="va">screenshot</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">screenshot</span> <span class="op">=</span> <span class="va">child</span><span class="op">.</span>get_screenshot<span class="op">()</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Show character displayed row=3 and column=4</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">screenshot</span><span class="op">.</span><span class="va">text</span><span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">4</span><span class="op">])</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Convert to string</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tostring</span><span class="op">(</span><span class="va">screenshot</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
