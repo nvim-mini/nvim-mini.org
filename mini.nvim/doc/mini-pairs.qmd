@@ -170,21 +170,21 @@ Module setup
     -- - <action> - one of "open", "close", "closeopen".
     -- - <pair> - two character string for pair to be used.
     -- By default pair is not inserted after `\`, quotes are not recognized by
-    -- <CR>, `'` does not insert pair after a letter.
+    -- <CR>, `'` does not insert the pair after a letter.
     -- Only parts of tables can be tweaked (others will use these defaults).
     -- Supply `false` instead of table to not map particular key.
     mappings = {
-      ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
-      ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
-      ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+      ['('] = { action = 'open', pair = '()', neigh_pattern = '^[^\\]' },
+      ['['] = { action = 'open', pair = '[]', neigh_pattern = '^[^\\]' },
+      ['{'] = { action = 'open', pair = '{}', neigh_pattern = '^[^\\]' },
 
-      [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
-      [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
-      ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+      [')'] = { action = 'close', pair = '()', neigh_pattern = '^[^\\]' },
+      [']'] = { action = 'close', pair = '[]', neigh_pattern = '^[^\\]' },
+      ['}'] = { action = 'close', pair = '{}', neigh_pattern = '^[^\\]' },
 
-      ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].',   register = { cr = false } },
-      ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-      ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].',   register = { cr = false } },
+      ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '^[^\\]',   register = { cr = false } },
+      ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '^[^%a\\]', register = { cr = false } },
+      ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '^[^\\]',   register = { cr = false } },
     },
   }
   ```
@@ -216,12 +216,12 @@ It also infers mapping description from `pair_info`.
   - <span class="help-syntax-keys">\<action\></span> - one of "open" for [MiniPairs.open()](mini-pairs.qmd#minipairs.open),
     "close" for [MiniPairs.close()](mini-pairs.qmd#minipairs.close), or "closeopen" for [MiniPairs.closeopen()](mini-pairs.qmd#minipairs.closeopen).
 
-  - <span class="help-syntax-keys">\<pair\></span> - two character string to be used as argument for action function.
+  - <span class="help-syntax-keys">\<pair\></span> - two character string to be passed to an action function.
     Can contain multibyte characters.
 
-  - <span class="help-syntax-keys">\<neigh_pattern\></span> - optional 'two character' neighborhood pattern to be
-    used as argument for action function. Note: neighborhood might contain
-    multiple characters.
+  - <span class="help-syntax-keys">\<neigh_pattern\></span> - optional neighborhood pattern to be passed to an action
+    function. Will be matched against two character neighborhood (might
+    contain multibyte characters).
     Default: `'..'` (no restriction from neighborhood).
 
   - <span class="help-syntax-keys">\<register\></span> - optional table with information about whether this pair will

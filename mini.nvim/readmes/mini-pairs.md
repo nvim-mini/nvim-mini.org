@@ -126,20 +126,20 @@ Here are code snippets for some common installation methods (use only one):
   -- - <action> - one of 'open', 'close', 'closeopen'.
   -- - <pair> - two character string for pair to be used.
   -- By default pair is not inserted after `\`, quotes are not recognized by
-  -- <CR>, `'` does not insert pair after a letter.
+  -- <CR>, `'` does not insert the pair after a letter.
   -- Only parts of tables can be tweaked (others will use these defaults).
   mappings = {
-    ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
-    ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
-    ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+    ['('] = { action = 'open', pair = '()', neigh_pattern = '^[^\\]' },
+    ['['] = { action = 'open', pair = '[]', neigh_pattern = '^[^\\]' },
+    ['{'] = { action = 'open', pair = '{}', neigh_pattern = '^[^\\]' },
 
-    [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
-    [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
-    ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+    [')'] = { action = 'close', pair = '()', neigh_pattern = '^[^\\]' },
+    [']'] = { action = 'close', pair = '[]', neigh_pattern = '^[^\\]' },
+    ['}'] = { action = 'close', pair = '{}', neigh_pattern = '^[^\\]' },
 
-    ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
-    ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-    ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+    ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '^[^\\]',   register = { cr = false } },
+    ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '^[^%a\\]', register = { cr = false } },
+    ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '^[^\\]',   register = { cr = false } },
   },
 }
 ```
