@@ -4,7 +4,9 @@ title: "MiniMax configs"
 
 _Generated from the `main` branch of 'MiniMax'_
 
-## MiniMax configs
+## MiniMax reference configs
+
+The most appropriate one based on Neovim version is chosen during initial config generation.
 
 Available:
 
