@@ -79,6 +79,7 @@ end
 require('mini.deps').setup()
 
 -- Define config table to be able to pass data between scripts
+-- It is a global variable which can be use both as `_G.Config` and `Config`
 _G.Config = {}
 
 -- Define custom autocommand group and helper to create an autocommand.
@@ -90,14 +91,14 @@ _G.Config = {}
 -- - `:h nvim_create_augroup()`
 -- - `:h nvim_create_autocmd()`
 local gr = vim.api.nvim_create_augroup('custom-config', {})
-_G.Config.new_autocmd = function(event, pattern, callback, desc)
+Config.new_autocmd = function(event, pattern, callback, desc)
   local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
   vim.api.nvim_create_autocmd(event, opts)
 end
 
 -- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
 -- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
-_G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
+Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
 ```
 
 </details>
@@ -199,7 +200,7 @@ vim.o.completeopt = 'menuone,noselect,fuzzy,nosort' -- Use custom behavior
 -- Don't auto-wrap comments and don't insert comment leader after hitting 'o'.
 -- Do on `FileType` to always override these changes from filetype plugins.
 local f = function() vim.cmd('setlocal formatoptions-=c formatoptions-=o') end
-_G.Config.new_autocmd('FileType', nil, f, "Proper 'formatoptions'")
+Config.new_autocmd('FileType', nil, f, "Proper 'formatoptions'")
 
 -- There are other autocommands created by 'mini.basics'. See 'plugin/30_mini.lua'.
 
@@ -289,7 +290,7 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 -- Create a global table with information about Leader groups in certain modes.
 -- This is used to provide 'mini.clue' with extra clues.
 -- Add an entry if you create a new group.
-_G.Config.leader_group_clues = {
+Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
@@ -521,7 +522,7 @@ nmap_leader('vL', '<Cmd>lua MiniVisits.remove_label()<CR>',       'Remove label'
 --   Sometimes is needed only if Neovim is started as `nvim -- path/to/file`.
 -- - Everything else is delayed until the first draw with `later()`.
 local now, later = MiniDeps.now, MiniDeps.later
-local now_if_args = _G.Config.now_if_args
+local now_if_args = Config.now_if_args
 
 -- Step one ===================================================================
 -- Enable 'miniwinter' color scheme. It comes with 'mini.nvim' and uses 'mini.hues'.
@@ -680,7 +681,7 @@ now_if_args(function()
   local on_attach = function(ev)
     vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
   end
-  _G.Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
+  Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
 
   -- Advertise to servers that Neovim now supports certain set of completion and
   -- signature features through 'mini.completion'.
@@ -956,7 +957,7 @@ later(function()
     MiniFiles.set_bookmark('p', minideps_plugins, { desc = 'Plugins' })
     MiniFiles.set_bookmark('w', vim.fn.getcwd, { desc = 'Working directory' })
   end
-  _G.Config.new_autocmd('User', 'MiniFilesExplorerOpen', add_marks, 'Add bookmarks')
+  Config.new_autocmd('User', 'MiniFilesExplorerOpen', add_marks, 'Add bookmarks')
 end)
 
 -- Git integration for more straightforward Git actions based on Neovim's state.
@@ -1318,7 +1319,7 @@ later(function() require('mini.visits').setup() end)
 
 -- Make concise helpers for installing/adding plugins in two stages
 local add, later = MiniDeps.add, MiniDeps.later
-local now_if_args = _G.Config.now_if_args
+local now_if_args = Config.now_if_args
 
 -- Tree-sitter ================================================================
 
@@ -1386,7 +1387,7 @@ now_if_args(function()
     end
   end
   local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-  _G.Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
+  Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
 end)
 
 -- Language servers ===========================================================

@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-02-10 {#2026-02-10}
+
+- Update using global variable for config as just `Config` and not `_G.Config`. This is more concise and makes it more consistent with how `MiniXxx` variables are used.
+
 ## 2026-01-29 {#2026-01-29}
 
 - Update 'mini.completion' setup to use `now_if_args` instead of `later`. Otherwise it doesn't set proper omnifunc for files opened during startup (because necessary `LspAttach` events are already triggered).
@@ -39,7 +43,7 @@ _Generated from the `main` branch of 'MiniMax'_
 
 ## 2025-10-16 {#2025-10-16}
 
-- Move `now_if_args` startup helper to 'init.lua' as `_G.Config.now_if_args` to be directly usable from other config files.
+- Move `now_if_args` startup helper to 'init.lua' as `Config.now_if_args` to be directly usable from other config files.
 
 - Enable 'mini.misc' behind `now_if_args` instead of `now`. Otherwise `setup_auto_root()` and `setup_restore_cursor()` don't work on initial file(s) if Neovim is started as `nvim -- path/to/file`.
 
