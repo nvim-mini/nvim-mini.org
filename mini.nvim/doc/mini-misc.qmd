@@ -29,6 +29,10 @@ Features the following functions:
 - [MiniMisc.resize\_window()](mini-misc.qmd#minimisc.resize_window) to resize current window to its editable width.
 
 
+- [MiniMisc.safely()](mini-misc.qmd#minimisc.safely) to execute a function on a condition and warn on error.
+  Useful to organize [init.lua](https://neovim.io/doc/user/helptag.html?tag=init.lua) in fail-safe sections with simple lazy loading.
+
+
 - [MiniMisc.setup\_auto\_root()](mini-misc.qmd#minimisc.setup_auto_root) to set up automated change of current directory.
 
 
@@ -290,6 +294,65 @@ Resize window to have exact number of editable columns
 <span class="help-syntax-special">{text_width}</span> `(number|nil)` Number of editable columns resized window will
   display. Default: first element of 'colorcolumn' or otherwise 'textwidth'
   (using screen width as its default but not more than 79).
+
+---
+
+### safely() {#minimisc.safely .help-syntax-right-anchor}
+
+<p align="center">`MiniMisc.safely`(<span class="help-syntax-special">{when}</span>, <span class="help-syntax-special">{f}</span>)</p>
+Execute a function on a condition and warn on error
+
+Input function is executed exactly once. Its possible error is captured and is
+shown as a [vim.notify()](https://neovim.io/doc/user/helptag.html?tag=vim.notify\(\)) warning.
+
+Useful to organize [init.lua](https://neovim.io/doc/user/helptag.html?tag=init.lua) in fail-safe sections with simple lazy loading.
+
+#### Parameters {#minimisc.safely-parameters}
+
+
+
+<span class="help-syntax-special">{when}</span> `(string)` When to execute a function. One of:
+
+  - `'now'` - immediately.
+
+  - `'later'` - queue to be executed soon without blocking the execution of next
+    code in file. Queued functions are executed in order they are added.
+
+  - `'delay:<number>'` - after a specified delay with [vim.defer\_fn()](https://neovim.io/doc/user/helptag.html?tag=vim.defer_fn\(\)).
+
+  - `'event:<events>'` - on whichever specified event is triggered first.
+
+  - `'event:<events>~<patterns>` - same as above, but events must match
+    specified [autocmd-pattern](https://neovim.io/doc/user/helptag.html?tag=autocmd-pattern).
+
+  - `'filetype:<filetypes>'` - same as `'event:FileType~<filetypes>'`, but follow
+    successful function execution with [filetype-detect](https://neovim.io/doc/user/helptag.html?tag=filetype-detect) for all normal buffers
+    (if new [ftdetect](https://neovim.io/doc/user/helptag.html?tag=ftdetect) scripts were added) and sourcing [ftplugin](https://neovim.io/doc/user/helptag.html?tag=ftplugin) (for buffers
+    matching `<filetypes>`). Intended to be used for loading "language plugins".
+
+<span class="help-syntax-special">{f}</span> `(function)` Function to execute (without arguments).
+
+#### Usage {#minimisc.safely-usage}
+
+
+
+  ```lua
+  MiniMisc.safely('later', function()
+    vim.notify('This will be executed after the next "now" call')
+  end)
+  MiniMisc.safely('now', function() error('This will be a warning') end)
+
+  MiniMisc.safely('event:InsertEnter', function()
+    require('mini.completion').setup()
+  end)
+  MiniMisc.safely('event:CmdlineEnter~/', function()
+    vim.notify('Start searching for the first time')
+  end)
+
+  MiniMisc.safely('filetype:tex,plaintex', function()
+    -- Load plugin to improve writing LaTeX
+  end)
+  ```
 
 ---
 
