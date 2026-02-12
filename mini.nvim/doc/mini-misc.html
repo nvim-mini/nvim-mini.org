@@ -405,6 +405,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#minimisc.resize_window-parameters" id="toc-minimisc.resize_window-parameters" class="nav-link" data-scroll-target="#minimisc.resize_window-parameters">Parameters</a></li>
   </ul></li>
+  <li><a href="#minimisc.safely" id="toc-minimisc.safely" class="nav-link" data-scroll-target="#minimisc.safely">safely()</a>
+  <ul>
+  <li><a href="#minimisc.safely-parameters" id="toc-minimisc.safely-parameters" class="nav-link" data-scroll-target="#minimisc.safely-parameters">Parameters</a></li>
+  <li><a href="#minimisc.safely-usage" id="toc-minimisc.safely-usage" class="nav-link" data-scroll-target="#minimisc.safely-usage">Usage</a></li>
+  </ul></li>
   <li><a href="#minimisc.setup_auto_root" id="toc-minimisc.setup_auto_root" class="nav-link" data-scroll-target="#minimisc.setup_auto_root">setup_auto_root()</a>
   <ul>
   <li><a href="#minimisc.setup_auto_root-parameters" id="toc-minimisc.setup_auto_root-parameters" class="nav-link" data-scroll-target="#minimisc.setup_auto_root-parameters">Parameters</a></li>
@@ -485,6 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.log_add">MiniMisc.log_add()</a>, <a href="../../mini.nvim/doc/mini-misc.html#minimisc.log_show">MiniMisc.log_show()</a> and other helper functions to work with a special in-memory log array. Useful when debugging Lua code.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.put">MiniMisc.put()</a> and <a href="../../mini.nvim/doc/mini-misc.html#minimisc.put_text">MiniMisc.put_text()</a> to pretty print its arguments into command line and current buffer respectively.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.resize_window">MiniMisc.resize_window()</a> to resize current window to its editable width.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.safely">MiniMisc.safely()</a> to execute a function on a condition and warn on error. Useful to organize <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua">init.lua</a> in fail-safe sections with simple lazy loading.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.setup_auto_root">MiniMisc.setup_auto_root()</a> to set up automated change of current directory.</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.setup_termbg_sync">MiniMisc.setup_termbg_sync()</a> to set up terminal background synchronization (removes possible “frame” around current Neovim instance).</p></li>
 <li><p><a href="../../mini.nvim/doc/mini-misc.html#minimisc.setup_restore_cursor">MiniMisc.setup_restore_cursor()</a> to set up automated restoration of cursor position on file reopen.</p></li>
@@ -688,6 +694,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
+<section id="minimisc.safely" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.safely">safely()</h3>
+<p align="center">
+<code>MiniMisc.safely</code>(<span class="help-syntax-special">{when}</span>, <span class="help-syntax-special">{f}</span>)
+</p>
+<p>Execute a function on a condition and warn on error</p>
+<p>Input function is executed exactly once. Its possible error is captured and is shown as a <a href="https://neovim.io/doc/user/helptag.html?tag=vim.notify()">vim.notify()</a> warning.</p>
+<p>Useful to organize <a href="https://neovim.io/doc/user/helptag.html?tag=init.lua">init.lua</a> in fail-safe sections with simple lazy loading.</p>
+<section id="minimisc.safely-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.safely-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{when}</span> <code>(string)</code> When to execute a function. One of:</p>
+<ul>
+<li><p><code>'now'</code> - immediately.</p></li>
+<li><p><code>'later'</code> - queue to be executed soon without blocking the execution of next code in file. Queued functions are executed in order they are added.</p></li>
+<li><p><code>'delay:&lt;number&gt;'</code> - after a specified delay with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.defer_fn()">vim.defer_fn()</a>.</p></li>
+<li><p><code>'event:&lt;events&gt;'</code> - on whichever specified event is triggered first.</p></li>
+<li><p><code>'event:&lt;events&gt;~&lt;patterns&gt;</code> - same as above, but events must match specified <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd-pattern">autocmd-pattern</a>.</p></li>
+<li><p><code>'filetype:&lt;filetypes&gt;'</code> - same as <code>'event:FileType~&lt;filetypes&gt;'</code>, but follow successful function execution with <a href="https://neovim.io/doc/user/helptag.html?tag=filetype-detect">filetype-detect</a> for all normal buffers (if new <a href="https://neovim.io/doc/user/helptag.html?tag=ftdetect">ftdetect</a> scripts were added) and sourcing <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin">ftplugin</a> (for buffers matching <code>&lt;filetypes&gt;</code>). Intended to be used for loading “language plugins”.</p></li>
+</ul>
+<p><span class="help-syntax-special">{f}</span> <code>(function)</code> Function to execute (without arguments).</p>
+</section>
+<section id="minimisc.safely-usage" class="level4">
+<h4 class="anchored" data-anchor-id="minimisc.safely-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>safely<span class="op">(</span><span class="st">'later'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>notify<span class="op">(</span><span class="st">'This will be executed after the next "now" call'</span><span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>safely<span class="op">(</span><span class="st">'now'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span> <span class="fu">error</span><span class="op">(</span><span class="st">'This will be a warning'</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>safely<span class="op">(</span><span class="st">'event:InsertEnter'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.completion'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>safely<span class="op">(</span><span class="st">'event:CmdlineEnter~/'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>notify<span class="op">(</span><span class="st">'Start searching for the first time'</span><span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>safely<span class="op">(</span><span class="st">'filetype:tex,plaintex'</span><span class="op">,</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Load plugin to improve writing LaTeX</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
 <section id="minimisc.setup_auto_root" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minimisc.setup_auto_root">setup_auto_root()</h3>
 <p align="center">
@@ -706,8 +753,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minimisc.setup_auto_root-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.setup_auto_root-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -773,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minimisc.setup_restore_cursor-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.setup_restore_cursor-usage">Usage</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup_restore_cursor<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup_restore_cursor<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
@@ -844,8 +891,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This works by parsing ‘commentstring’ buffer option, extracting non-whitespace comment leader (symbols on the left of commented line), and locally modifying ‘comments’ option (by prepending <code>n:&lt;leader&gt;</code>). Does nothing if ‘commentstring’ is empty or has comment symbols both in front and back (like “/%s/”).</p>
 <p>Nested comment leader added with this function is useful for formatting nested comments. For example, have in Lua “first-level” comments with ‘–’ and “second-level” comments with ‘—-’. With nested comment leader second type can be formatted with <code>gq</code> in the same way as first one.</p>
 <p>Recommended usage is with <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd">autocmd</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">use_nested_comments</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniMisc</span><span class="op">.</span>use_nested_comments<span class="op">()</span> <span class="kw">end</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'BufEnter'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">use_nested_comments</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">use_nested_comments</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniMisc</span><span class="op">.</span>use_nested_comments<span class="op">()</span> <span class="kw">end</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'BufEnter'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">use_nested_comments</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note: for most filetypes ‘commentstring’ option is added only when buffer with this filetype is entered, so using non-current <code>buf_id</code> can not lead to desired effect.</p>
 <section id="minimisc.use_nested_comments-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.use_nested_comments-parameters">Parameters</h4>
