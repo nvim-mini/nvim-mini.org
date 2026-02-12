@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language
+[
+  <!ENTITY file  "(====|\*\*\*|\-\-\-|diff|Only in [^:]*:).*$">
+]>
+<!--
+Simplified highlighting for diff hunks to only show header, added, and removed lines.
+Needed to overcome default `diff` syntax treating removed Lua comments as file header,
+as both start with three `-`.
+-->
+<language name="DiffHunks" version="9" kateversion="5.62" section="Other" extensions="*.diff;*patch;*.rej" mimetype="text/x-patch">
+
+  <highlighting>
+      <contexts>
+        <context name="Normal" attribute="Other" lineEndContext="#stay">
+          <RegExpr attribute="Header" String="^@.*" context="#stay" />
+          <RegExpr attribute="Added" String="^\+.*" context="#stay" />
+          <RegExpr attribute="Removed" String="^-.*" context="#stay" />
+        </context>
+      </contexts>
+      <itemDatas>
+        <!-- Mapped to specific standard groups to have proper colors based on
+        `seabed-{dark,light}.theme`. Because its `custom-styles` section
+        doesn't seem to work. -->
+        <itemData name="Header"  defStyleNum="dsDataType" /> <!-- purple -->
+        <itemData name="Added"   defStyleNum="dsString" /> <!-- green -->
+        <itemData name="Removed" defStyleNum="dsAnnotation" /> <!-- red -->
+        <itemData name="Other"   defStyleNum="dsComment" /> <!-- dimmed -->
+      </itemDatas>
+    </highlighting>
+
+</language>
