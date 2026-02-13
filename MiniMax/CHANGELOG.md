@@ -1,5 +1,11 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-02-15 {#2026-02-15}
+
+- Add new reference configs:
+    - `nvim-0.10` - for Neovim>=0.10
+    - `nvim-0.12` - for Neovim>=0.12.
+
 ## 2026-02-10 {#2026-02-10}
 
 - Update using global variable for config as just `Config` and not `_G.Config`. This is more concise and makes it more consistent with how `MiniXxx` variables are used.

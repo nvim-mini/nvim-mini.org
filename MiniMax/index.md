@@ -83,6 +83,7 @@ NVIM_APPNAME=nvim-minimax nvim -l ./MiniMax/setup.lua
 # Start Neovim
 NVIM_APPNAME=nvim-minimax nvim
 
+# On Neovim>=0.12 press `y` to confirm installation of all listed plugins
 # Wait for plugins to install (there should be no new notifications)
 
 # Enjoy your new config!

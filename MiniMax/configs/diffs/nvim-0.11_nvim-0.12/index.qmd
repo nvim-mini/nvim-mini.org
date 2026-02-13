@@ -1,0 +1,283 @@
+---
+title: "Difference between configs `nvim-0.11` and `nvim-0.12`"
+---
+
+_Generated from the `main` branch of 'MiniMax'_
+
+### Difference between configs `nvim-0.11` and `nvim-0.12`
+
+This page shows changes when moving from config [`nvim-0.11`](../../nvim-0.11/index.qmd) to config [`nvim-0.12`](../../nvim-0.12/index.qmd).
+They are broken down into per-file differences that are shown in [unified `diff` format](https://en.wikipedia.org/wiki/Diff#Unified_format).
+The suggested usage is to consult this page when updating from `nvim-0.11` to `nvim-0.12` to see what is new.
+
+In short:
+
+- Lines with `@` show line numbers of where the change is made.
+- Lines with `-` are removed from `nvim-0.11` config file.
+- Lines with `+` are added into `nvim-0.12` config file.
+
+#### init.lua {#init.lua}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -0,0 +1,5 @@
++-- WARNING: NEOVIM 0.12 IS STILL UNDER DEVELOPMENT AND NOT YET STABLE.
++-- BE SURE YOU ARE COMFORTABLE WITH KEEPING UP TO DATE DEVELOPMENT VERSION.
++-- THIS CONFIG IS VERIFIED FOR AT LEAST VERSION `v0.12.0-dev-2260+g6b4ec2264e`.
++-- WHEN IN DOUBT - UPDATE TO THE LATEST DEVELOPMENT VERSION.
++
+@@ -45,12 +50,8 @@
+--- Bootstrap 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
+-local mini_path = vim.fn.stdpath('data') .. '/site/pack/deps/start/mini.nvim'
+-if not vim.loop.fs_stat(mini_path) then
+-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+-  local origin = 'https://github.com/nvim-mini/mini.nvim'
+-  local clone_cmd = { 'git', 'clone', '--filter=blob:none', origin, mini_path }
+-  vim.fn.system(clone_cmd)
+-  vim.cmd('packadd mini.nvim | helptags ALL')
+-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+-end
+-
+--- Plugin manager. Set up immediately for `now()`/`later()` helpers.
++-- ┌────────────────┐
++-- │ Plugin manager │
++-- └────────────────┘
++--
++-- This config uses `vim.pack` - built-in plugin manager. Its main entry
++-- point is a `vim.pack.add()` function, which acts like a "smarter `:packadd`":
++-- load plugin after making sure it is installed from source. The state of
++-- installed plugins is recorded in the lockfile named 'nvim-pack-lock.json'.
+@@ -58,3 +59,3 @@
+--- - `MiniDeps.add('...')` - use inside config to add a plugin
+--- - `:DepsUpdate` - update all plugins
+--- - `:DepsSnapSave` - save a snapshot of currently active plugins
++-- - `vim.pack.add({ ... })` - use inside config to add one or more plugins.
++-- - `:lua vim.pack.update()` - update all plugins; execute `:write` to confirm.
++-- - `:lua vim.pack.del({ ... })` - delete specific plugins.
+@@ -63,4 +64,4 @@
+--- - `:h MiniDeps-overview` - how to use it
+--- - `:h MiniDeps-commands` - all available commands
+--- - 'plugin/30_mini.lua' - more details about 'mini.nvim' in general
+-require('mini.deps').setup()
++-- - `:h vim.pack-examples` - how to use it
++-- - `:h vim.pack-lockfile` - lockfile info
++-- - `:h vim.pack.update()` - more details about confirmation step
++-- - `:h vim.pack-events` - available events and plugin hooks examples
+@@ -71,0 +73,28 @@
++-- 'mini.nvim' - all-in-one plugin powering most MiniMax features.
++-- See 'plugin/30_mini.lua' for how it is used.
++-- Load now to have 'mini.misc' available for custom loading helpers.
++vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
++
++-- Loading helpers used to organize config into fail-safe parts. Example usage:
++-- - `now` - execute immediately. Use for what must be executed during startup.
++--   Like colorscheme, statusline, tabline, dashboard, etc.
++-- - `later` - execute a bit later. Use for things not needed during startup.
++-- - `now_if_args` - use only if needed during startup when Neovim is started
++--   like `nvim -- path/to/file`, but otherwise delaying is fine.
++-- - Others are better used only if the above is not enough for good performance.
++--   Use only if you are comfortable with adding complexity to your config:
++--   - `on_event` - execute once on a first matched event. Like "delay until
++--     first Insert mode enter": `on_event('InsertEnter', function() ... end)`.
++--   - `on_filetype` - execute once on a first matched filetype. Like "delay
++--     until first Lua file": `on_filetype('lua', function() ... end)`.
++--
++-- See also:
++-- - `:h MiniMisc.safely()`
++-- - 'plugin/30_mini.lua' and 'plugin/40_plugins.lua'
++local misc = require('mini.misc')
++Config.now = function(f) misc.safely('now', f) end
++Config.later = function(f) misc.safely('later', f) end
++Config.now_if_args = vim.fn.argc(-1) > 0 and Config.now or Config.later
++Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
++Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
++
+@@ -86,3 +115,11 @@
+--- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
+--- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
+-Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
++-- Define custom `vim.pack.add()` hook helper. See `:h vim.pack-events`.
++-- Example usage: see 'plugin/40_plugins.lua'.
++Config.on_packchanged = function(plugin_name, kinds, callback, desc)
++  local f = function(ev)
++    local name, kind = ev.data.spec.name, ev.data.kind
++    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
++    if not ev.data.active then vim.cmd.packadd(plugin_name) end
++    callback()
++  end
++  Config.new_autocmd('PackChanged', '*', f, desc)
++end
+```
+
+</details>
+
+#### nvim-pack-lock.json {#nvim-pack-lock.json}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -0,0 +1,29 @@
++{
++  "plugins": {
++    "conform.nvim": {
++      "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
++      "src": "https://github.com/stevearc/conform.nvim"
++    },
++    "friendly-snippets": {
++      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
++      "src": "https://github.com/rafamadriz/friendly-snippets"
++    },
++    "mini.nvim": {
++      "rev": "4e61631464a12138bc0c82ea216b1d0d3cc2b315",
++      "src": "https://github.com/nvim-mini/mini.nvim"
++    },
++    "nvim-lspconfig": {
++      "rev": "f4e9d367d4e067d7a5fabc9fd3f1349b291eb718",
++      "src": "https://github.com/neovim/nvim-lspconfig"
++    },
++    "nvim-treesitter": {
++      "rev": "9f2dad22ef8bb14fd1e0a3aa8859cdc88170668b",
++      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
++    },
++    "nvim-treesitter-textobjects": {
++      "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
++      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
++      "version": "'main'"
++    }
++  }
++}
+```
+
+</details>
+
+#### plugin/10_options.lua {#plugin-10_options.lua}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -39,0 +40 @@
++vim.o.pumborder      = 'single'   -- Use border in popup menu
+@@ -40,0 +42 @@
++vim.o.pummaxwidth    = 100        -- Make popup menu not too wide
+@@ -85,2 +87,3 @@
+-vim.o.complete    = '.,w,b,kspell'                  -- Use less sources
+-vim.o.completeopt = 'menuone,noselect,fuzzy,nosort' -- Use custom behavior
++vim.o.complete        = '.,w,b,kspell'                  -- Use less sources
++vim.o.completeopt     = 'menuone,noselect,fuzzy,nosort' -- Use custom behavior
++vim.o.completetimeout = 100                             -- Limit sources delay
+@@ -121 +124 @@
+-MiniDeps.later(function() vim.diagnostic.config(diagnostic_opts) end)
++Config.later(function() vim.diagnostic.config(diagnostic_opts) end)
+```
+
+</details>
+
+#### plugin/20_keymaps.lua {#plugin-20_keymaps.lua}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -19,2 +19,2 @@
+-nmap('[p', '<Cmd>exe "put! " . v:register<CR>', 'Paste Above')
+-nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
++nmap('[p', '<Cmd>exe "iput! " . v:register<CR>', 'Paste Above')
++nmap(']p', '<Cmd>exe "iput "  . v:register<CR>', 'Paste Below')
+```
+
+</details>
+
+#### plugin/30_mini.lua {#plugin-30_mini.lua}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -27,2 +27 @@
+-local now, later = MiniDeps.now, MiniDeps.later
+-local now_if_args = Config.now_if_args
++local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
+@@ -459,2 +458,2 @@
+-    local minideps_plugins = vim.fn.stdpath('data') .. '/site/pack/deps/opt'
+-    MiniFiles.set_bookmark('p', minideps_plugins, { desc = 'Plugins' })
++    local vimpack_plugins = vim.fn.stdpath('data') .. '/site/pack/core/opt'
++    MiniFiles.set_bookmark('p', vimpack_plugins, { desc = 'Plugins' })
+```
+
+</details>
+
+#### plugin/40_plugins.lua {#plugin-40_plugins.lua}
+
+<details><summary>Diff</summary>
+
+```diffhunks
+@@ -12,2 +12,2 @@
+-local add, later = MiniDeps.add, MiniDeps.later
+-local now_if_args = Config.now_if_args
++local add = vim.pack.add
++local now_if_args, later = Config.now_if_args, Config.later
+@@ -40,0 +41,4 @@
++  -- Define hook to update tree-sitter parsers after plugin is updated
++  local ts_update = function() vim.cmd('TSUpdate') end
++  Config.on_packchanged('nvim-treesitter', { 'update' }, ts_update, ':TSUpdate')
++
+@@ -42,9 +46,7 @@
+-    source = 'nvim-treesitter/nvim-treesitter',
+-    -- Update tree-sitter parser after plugin is updated
+-    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+-  })
+-  add({
+-    source = 'nvim-treesitter/nvim-treesitter-textobjects',
+-    -- Use `main` branch since `master` branch is frozen, yet still default
+-    -- It is needed for compatibility with 'nvim-treesitter' `main` branch
+-    checkout = 'main',
++    'https://github.com/nvim-treesitter/nvim-treesitter',
++    {
++      src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
++      -- Use `main` branch since `master` branch is frozen, yet still default
++      -- It is needed for compatibility with 'nvim-treesitter' `main` branch
++      version = 'main',
++    },
+@@ -100 +102 @@
+-  add('neovim/nvim-lspconfig')
++  add({ 'https://github.com/neovim/nvim-lspconfig' })
+@@ -120 +122 @@
+-  add('stevearc/conform.nvim')
++  add({ 'https://github.com/stevearc/conform.nvim' })
+@@ -146 +148 @@
+-later(function() add('rafamadriz/friendly-snippets') end)
++later(function() add({ 'https://github.com/rafamadriz/friendly-snippets' }) end)
+@@ -159 +161 @@
+---   add('mason-org/mason.nvim')
++--   add({ 'https://github.com/mason-org/mason.nvim' })
+@@ -166,5 +168,7 @@
+--- MiniDeps.now(function()
+---   -- Install only those that you need
+---   add('sainnhe/everforest')
+---   add('Shatur/neovim-ayu')
+---   add('ellisonleao/gruvbox.nvim')
++-- Config.now(function()
++--  -- Install only those that you need
++--  add({
++--    'https://github.com/sainnhe/everforest',
++--    'https://github.com/Shatur/neovim-ayu',
++--    'https://github.com/ellisonleao/gruvbox.nvim',
++--  })
+```
+
+</details>
+
+#### snippets/global.json {#snippets-global.json}
+
+No difference
+
+#### after/ftplugin/markdown.lua {#after-ftplugin-markdown.lua}
+
+No difference
+
+#### after/lsp/lua_ls.lua {#after-lsp-lua_ls.lua}
+
+No difference
+
+#### after/snippets/lua.json {#after-snippets-lua.json}
+
+No difference
