@@ -321,7 +321,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a>
   <ul>
-  <li><a href="#init.lua" id="toc-init.lua" class="nav-link" data-scroll-target="#init.lua"><code>init.lua</code></a></li>
+  <li><a href="#init.lua" id="toc-init.lua" class="nav-link" data-scroll-target="#init.lua"><code>init.lua</code></a>
+  <ul class="collapse">
+  <li><a href="#nvim-pack-lock.json-for-neovim0.12" id="toc-nvim-pack-lock.json-for-neovim0.12" class="nav-link" data-scroll-target="#nvim-pack-lock.json-for-neovim0.12"><code>nvim-pack-lock.json</code> (for Neovim&gt;=0.12)</a></li>
+  </ul></li>
   <li><a href="#plugin" id="toc-plugin" class="nav-link" data-scroll-target="#plugin"><code>plugin/</code></a></li>
   <li><a href="#snippets" id="toc-snippets" class="nav-link" data-scroll-target="#snippets"><code>snippets/</code></a></li>
   <li><a href="#after" id="toc-after" class="nav-link" data-scroll-target="#after"><code>after/</code></a>
@@ -364,19 +367,26 @@ ul.task-list li input[type="checkbox"] {
 <p>The most appropriate one based on Neovim version is chosen during initial config generation.</p>
 <p>Available:</p>
 <ul>
+<li><a href="nvim-0.10"><code>nvim-0.10</code></a> - for Neovim&gt;=0.10</li>
 <li><a href="nvim-0.11"><code>nvim-0.11</code></a> - for Neovim&gt;=0.11</li>
+<li><a href="nvim-0.12"><code>nvim-0.12</code></a> - for Neovim&gt;=0.12 (currently under development)</li>
 </ul>
-<p>Planned (after some time of ‘nvim-0.11’ public testing):</p>
+<p>Differences between selected configs:</p>
 <ul>
-<li><code>nvim-0.9</code> - for Neovim&gt;=0.9</li>
-<li><code>nvim-0.10</code> - for Neovim&gt;=0.10</li>
-<li><code>nvim-0.12</code> - for Neovim&gt;=0.12</li>
+<li><a href="https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.10_nvim-0.11">Between <code>nvim-0.10</code> and <code>nvim-0.11</code></a></li>
+<li><a href="https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.11_nvim-0.12">Between <code>nvim-0.11</code> and <code>nvim-0.12</code></a></li>
 </ul>
 <section id="structure" class="level3">
 <h3 class="anchored" data-anchor-id="structure">Structure</h3>
 <section id="init.lua" class="level4">
 <h4 class="anchored" data-anchor-id="init.lua"><code>init.lua</code></h4>
 <p>Initial file executed first during startup.</p>
+<section id="nvim-pack-lock.json-for-neovim0.12" class="level5">
+<h5 class="anchored" data-anchor-id="nvim-pack-lock.json-for-neovim0.12"><code>nvim-pack-lock.json</code> (for Neovim&gt;=0.12)</h5>
+<p>Lockfile for <code>vim.pack</code> (built-in plugin manager) that contains information about all installed plugins. Provided to install necessary plugins during initial setting up at revisions that were tested to work in MiniMax.</p>
+<p>It is updated automatically whenever installed plugins change: their state on disk is updated, their tracked <code>version</code> is changed, they are deleted, etc. Do not delete and do not edit by hand.</p>
+<p>See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack-lockfile"><code>:h vim.pack-lockfile</code></a> for more information about the lockfile and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack"><code>:h vim.pack</code></a> about the plugin manager in general.</p>
+</section>
 </section>
 <section id="plugin" class="level4">
 <h4 class="anchored" data-anchor-id="plugin"><code>plugin/</code></h4>

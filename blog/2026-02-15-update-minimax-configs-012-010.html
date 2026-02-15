@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Evgeni Chasnovski">
+<meta name="dcterms.date" content="2026-02-15">
+<meta name="description" content="MiniMax got two new reference configs: nvim-0.12 for Neovim>=0.12 (uses vim.pack) and nvim-0.10 for Neovim=0.10">
 
-<title>MiniMax – MINI</title>
+<title>MiniMax updates: vim.pack on Neovim&gt;=0.12, config for Neovim=0.10 – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -106,17 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="MiniMax – MINI">
-<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:title" content="MiniMax updates: vim.pack on Neovim>=0.12, config for Neovim=0.10 – MINI">
+<meta property="og:description" content="MiniMax got two new reference configs: nvim-0.12 for Neovim>=0.12 (uses vim.pack) and nvim-0.10 for Neovim=0.10">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="MiniMax – MINI">
-<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:title" content="MiniMax updates: vim.pack on Neovim>=0.12, config for Neovim=0.10 – MINI">
+<meta name="twitter:description" content="MiniMax got two new reference configs: nvim-0.12 for Neovim>=0.12 (uses vim.pack) and nvim-0.10 for Neovim=0.10">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -316,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../MiniMax/index.html" aria-current="page"> 
+    <a class="nav-link" href="../MiniMax/index.html"> 
 <span class="menu-text">MiniMax</span></a>
   </li>  
   <li class="nav-item">
@@ -347,27 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#neovim-with-maximum-mini" id="toc-neovim-with-maximum-mini" class="nav-link active" data-scroll-target="#neovim-with-maximum-mini">Neovim with maximum MINI</a>
-  <ul>
-  <li><a href="#how-it-looks" id="toc-how-it-looks" class="nav-link" data-scroll-target="#how-it-looks">How it looks</a></li>
-  <li><a href="#what-it-is-not" id="toc-what-it-is-not" class="nav-link" data-scroll-target="#what-it-is-not">What it is not</a></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a>
-  <ul>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#knowledge" id="toc-knowledge" class="nav-link" data-scroll-target="#knowledge">Knowledge</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  </ul></li>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a></li>
-  <li><a href="#updating" id="toc-updating" class="nav-link" data-scroll-target="#updating">Updating</a></li>
-  <li><a href="#similar-projects" id="toc-similar-projects" class="nav-link" data-scroll-target="#similar-projects">Similar projects</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -375,14 +323,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MiniMax</h1>
-</div>
+<h1 class="title">MiniMax updates: <code>vim.pack</code> on Neovim&gt;=0.12, config for Neovim=0.10</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">update</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    MiniMax got two new reference configs: <code>nvim-0.12</code> for Neovim&gt;=0.12 (uses <code>vim.pack</code>) and <code>nvim-0.10</code> for Neovim=0.10
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Evgeni Chasnovski </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 15, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -392,135 +360,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p align="center">
-<img src="logo.png" alt="mini.nvim" style="max-width:100%;border:solid 2px">
-</p>
-<p align="center">
-<em>Generated from the <code>main</code> branch of ‘MiniMax’</em>
-</p>
-<section id="neovim-with-maximum-mini" class="level2">
-<h2 class="anchored" data-anchor-id="neovim-with-maximum-mini">Neovim with maximum MINI</h2>
-<p>MiniMax is a Neovim config generator. After <a href="#setting-up">running a script</a>, your config will:</p>
+<p>Hello, Neovim users!</p>
+<p><a href="../MiniMax/index.html">MiniMax</a> (a Neovim config generator based on ‘mini.nvim’) got two new reference versions:</p>
 <ul>
-<li>Be primarily based on the ‘mini.nvim’ modules for a coherent, powerful, and flexible setup.</li>
-<li>Provide out of the box a stable, polished, and feature rich Neovim experience.</li>
-<li>Have minimal structure with potential to build upon.</li>
-<li>Contain extensively commented files meant to be read.</li>
+<li><a href="../MiniMax/configs/nvim-0.12"><code>nvim-0.12</code></a> for Neovim=0.12. Although this Neovim version is currently under development, its release is expected soon-ish. The main theme of this config is that it will switch from using ‘mini.deps’ as a plugin manager to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack"><code>vim.pack</code></a>.</li>
+<li><a href="../MiniMax/configs/nvim-0.10"><code>nvim-0.10</code></a> for Neovim=0.10. Although this is not the latest stable release, it is not yet very old so might be still used by a few people. It is fairly similar to <code>nvim-0.10</code> with the main differences in how ‘nvim-treesitter’ and ‘nvim-lspconfig’ plugins are set up.</li>
 </ul>
-<p>Explore <a href="configs">reference configs</a>. The most appropriate one is picked during generation based on Neovim version.</p>
-<p>See <a href="../MiniMax/CHANGELOG.html">change log</a> for a history of changes.</p>
-<p>If you find this project useful, please consider leaving a Github star.</p>
-<section id="how-it-looks" class="level3">
-<h3 class="anchored" data-anchor-id="how-it-looks">How it looks</h3>
-<p><a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_1.png?raw=true"> <img alt="During setup" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_1.png?raw=true" style="width: 45%"> </a> <a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_2.png?raw=true"> <img alt="Picker" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_2.png?raw=true" style="width: 45%"> </a></p>
-<p><a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_3.png?raw=true"> <img alt="Clues" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_3.png?raw=true" style="width: 45%"> </a> <a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_4.png?raw=true"> <img alt="File explorer" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minimax_4.png?raw=true" style="width: 45%"> </a></p>
-</section>
-<section id="what-it-is-not" class="level3">
-<h3 class="anchored" data-anchor-id="what-it-is-not">What it is not</h3>
-<p>It is not a “Neovim distribution”, i.e.&nbsp;there are no automatic config updates. After your config is set up, it is yours to improve and update (which makes this approach more stable). You can still see how MiniMax itself gets updated (see <a href="#updating">Updating</a> and <a href="../MiniMax/CHANGELOG.html">Change log</a>) and adjust the config accordingly.</p>
-<p>It is not a comprehensive guide on how to set up and use every Neovim feature and plugin. Most of the config parts are carefully chosen in order to reach a balance between stability and features.</p>
-</section>
-<section id="requirements" class="level3">
-<h3 class="anchored" data-anchor-id="requirements">Requirements</h3>
-<section id="software" class="level4">
-<h4 class="anchored" data-anchor-id="software">Software</h4>
+<p>For new MiniMax users it means that <a href="../MiniMax/index.html#setting-up">setting up</a> with <code>nvim</code> executable for version 0.12 (you can check your version with <code>nvim --version</code>) will generate a config that uses more up-to-date Neovim features. And for <code>nvim</code> version 0.10 it is now possible to generate a MiniMax config at all.</p>
+<p>For (hopefully) happy users of MiniMax, it means a guided opportunity to practise updating their config after Neovim 0.12 becomes a stable release. MiniMax <a href="../MiniMax/index.html#updating">doesn’t come</a> with full proof updating mechanism (by design, the generated config is fully owned by the user). However, I am excited to share that there are now dedicated pages that show differences when moving from one config to the next:</p>
 <ul>
-<li><a href="https://neovim.io/">Neovim</a> executable. Assumed to be named <code>nvim</code>.</li>
-<li><a href="https://git-scm.com/">Git</a> executable. Assumed to be named <code>git</code>.</li>
-<li>Operating system: any OS supported by Neovim.</li>
-<li>Internet connection for downloading plugins.</li>
-<li>(Optional, but recommended) <a href="https://github.com/BurntSushi/ripgrep#installation"><code>ripgrep</code></a>.</li>
-<li>(Optional, but recommended) Terminal emulator (or GUI) with <a href="https://github.com/termstandard/colors#truecolor-support-in-output-devices">true colors</a> and <a href="https://www.nerdfonts.com/">Nerd Font icons</a> support. No need for a full Nerd font, using <a href="https://github.com/ryanoasis/nerd-fonts/releases/latest"><code>NerdFontsSymbolsOnly</code></a> as a fallback is usually enough.</li>
-<li>(Optional, but recommended) System requirements for <a href="https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#requirements"><code>main</code> branch of ‘nvim-treesitter/nvim-treesitter’ plugin</a>.</li>
+<li><a href="../MiniMax/configs/diffs/nvim-0.10_nvim-0.11"><code>nvim-0.10</code> -&gt; <code>nvim-0.11</code></a></li>
+<li><a href="../MiniMax/configs/diffs/nvim-0.11_nvim-0.12"><code>nvim-0.11</code> -&gt; <code>nvim-0.12</code></a></li>
 </ul>
-</section>
-<section id="knowledge" class="level4">
-<h4 class="anchored" data-anchor-id="knowledge">Knowledge</h4>
-<p>Basic level of understanding of how to:</p>
-<ul>
-<li><p>Use CLI (command line): open, navigate file system, execute commands, close.</p></li>
-<li><p>Use Neovim: open, modal editing, reading help, close. If inside Neovim, type <a href="https://neovim.io/doc/user/helptag.html?tag=help.txt"><code>:h help.txt</code></a> (or click it if it is a link) followed by <code>&lt;Enter&gt;</code> and it should guide you through understanding basics.</p>
-<p>Several personal recommendations (no need to read in full; be aware of their content): <a href="https://neovim.io/doc/user/helptag.html?tag=notation"><code>:h notation</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=key-notation"><code>:h key-notation</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=vim-modes"><code>:h vim-modes</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=mode-switching"><code>:h mode-switching</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=windows-intro"><code>:h windows-intro</code></a>, <a href="https://neovim.io/doc/user/helptag.html?tag=vimtutor"><code>:h vimtutor</code></a></p></li>
-<li><p>Read help files from inside Neovim: notion of help tags, key notations, navigation.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If already inside MiniMax config, press <code>&lt;Space&gt;</code> + <code>f</code> + <code>h</code> to fuzzy search across all help tags.</p>
-</div>
-</div></li>
-<li><p>Read <a href="https://learnxinyminutes.com/lua/">Lua language</a>: variables, tables, function calls, iterations. See also <a href="https://neovim.io/doc/user/helptag.html?tag=lua-concepts"><code>:h lua-concepts</code></a> and <a href="https://neovim.io/doc/user/helptag.html?tag=lua-guide"><code>:h lua-guide</code></a>.</p></li>
-</ul>
-</section>
-<section id="motivation" class="level4">
-<h4 class="anchored" data-anchor-id="motivation">Motivation</h4>
-<ul>
-<li>It will be really helpful if you are mentally ready to read documentation and practice. If you are new to Neovim and/or MINI, it might feel like a lot. It gets easier the more you learn and practice. Without this you likely won’t enjoy Neovim and MiniMax as much.</li>
-</ul>
-</section>
-</section>
-<section id="setting-up" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up">Setting up</h3>
-<p>This sets up temporary ‘nvim-minimax’ config and doesn’t affect your regular config. To set up a full time config, remove all instances of <code>NVIM_APPNAME=nvim-minimax</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--filter</span><span class="op">=</span>blob:none https://github.com/nvim-mini/MiniMax ./MiniMax</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up config (copies config files and possibly initiates Git repository)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">NVIM_APPNAME</span><span class="op">=</span>nvim-minimax <span class="ex">nvim</span> <span class="at">-l</span> ./MiniMax/setup.lua</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Neovim</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">NVIM_APPNAME</span><span class="op">=</span>nvim-minimax <span class="ex">nvim</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># On Neovim&gt;=0.12 press `y` to confirm installation of all listed plugins</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait for plugins to install (there should be no new notifications)</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Enjoy your new config!</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Start with reading its files. Type `&lt;Space&gt;`+`e`+`i` to open 'init.lua'.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Notes:</p>
-<ul>
-<li><p>MiniMax project can be downloaded manually (like via GitHub UI).</p></li>
-<li><p>With <code>NVIM_APPNAME=nvim-minimax</code> config directory is ‘~/.config/nvim-minimax’ on Unix and ‘~/AppData/Local/nvim-minimax’ on Windows.</p>
-<p>A full-time config directory is ‘~/.config/nvim’ on Unix and ‘~/AppData/Local/nvim’ on Windows.</p></li>
-<li><p>If there are messages about backed up files during setup, it means the target config directory already contained files that are meant to come from MiniMax. Previous files were moved to <code>MiniMax-backup</code> directory. Review/restore them and delete the whole backup directory.</p></li>
-<li><p>You can explore <a href="configs">MiniMax</a> manually to find which (parts of) reference configs suit you best. Read through the relevant config example (starting at ‘init.lua’) and use interesting parts in your already existing config.</p></li>
-</ul>
-</section>
-<section id="updating" class="level3">
-<h3 class="anchored" data-anchor-id="updating">Updating</h3>
-<p>MiniMax doesn’t provide fully automatic updates of an already set up config. The recommended approach is to manually explore <a href="configs">reference configs</a> and <a href="../MiniMax/CHANGELOG.html">change log</a> to see the changes.</p>
-<p>The closest approach to automatic updating is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull updates of MiniMax itself</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ./MiniMax pull</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run setup script again. Remove `NVIM_APPNAME=nvim-minimax` for full-time config</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">NVIM_APPNAME</span><span class="op">=</span>nvim-minimax <span class="ex">nvim</span> <span class="at">-l</span> ./MiniMax/setup.lua</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># There probably be messages about backed up files:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Examine 'MiniMax-backup' directory with conflicting files.</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Recover the ones you need.</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Delete the backup directory.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="similar-projects" class="level3">
-<h3 class="anchored" data-anchor-id="similar-projects">Similar projects</h3>
-<ul>
-<li><p><a href="https://github.com/nvim-lua/kickstart.nvim">nvim-lua/kickstart.nvim</a></p></li>
-<li><p>More automated approaches (“Neovim distributions”):</p>
-<ul>
-<li><a href="https://github.com/LazyVim/LazyVim">LazyVim/LazyVim</a></li>
-<li><a href="https://github.com/NvChad/NvChad">NvChad/NvChad</a></li>
-<li><a href="https://github.com/AstroNvim/AstroNvim">AstroNvim/AstroNvim</a></li>
-</ul></li>
-</ul>
+<p>These pages show only the parts that change which should make it easier to reference when manually updating.</p>
+<hr>
+<p>The release of <code>nvim-0.12</code> is a very exciting event for MINI since it is a first step towards adapting <code>vim.pack</code> as the recommended plugin manager. The ‘mini.deps’ module is planned to be retired (i.e.&nbsp;will be present but without updates) soon-ish after Neovim=0.12 is released. There will be a separate blog post about it.</p>
+<p>Give the new configs a try and reach out with the feedback in dedicated issue: <a href="https://github.com/nvim-mini/MiniMax/issues/35">for <code>nvim-0.12</code></a> and <a href="https://github.com/nvim-mini/MiniMax/issues/36">for <code>nvim-0.10</code></a>.</p>
+<p>Thank you for reading!</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <!-- Original source: https://gc.zgo.at/count.js -->

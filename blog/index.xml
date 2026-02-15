@@ -10,7 +10,42 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Thu, 18 Dec 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 15 Feb 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>MiniMax updates: vim.pack on Neovim&gt;=0.12, config for Neovim=0.10</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2026-02-15-update-minimax-configs-012-010.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello, Neovim users!</p>
+<p><a href="../MiniMax/index.html">MiniMax</a> (a Neovim config generator based on ‘mini.nvim’) got two new reference versions:</p>
+<ul>
+<li><a href="../MiniMax/configs/nvim-0.12"><code>nvim-0.12</code></a> for Neovim=0.12. Although this Neovim version is currently under development, its release is expected soon-ish. The main theme of this config is that it will switch from using ‘mini.deps’ as a plugin manager to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack"><code>vim.pack</code></a>.</li>
+<li><a href="../MiniMax/configs/nvim-0.10"><code>nvim-0.10</code></a> for Neovim=0.10. Although this is not the latest stable release, it is not yet very old so might be still used by a few people. It is fairly similar to <code>nvim-0.10</code> with the main differences in how ‘nvim-treesitter’ and ‘nvim-lspconfig’ plugins are set up.</li>
+</ul>
+<p>For new MiniMax users it means that <a href="../MiniMax/index.html#setting-up">setting up</a> with <code>nvim</code> executable for version 0.12 (you can check your version with <code>nvim --version</code>) will generate a config that uses more up-to-date Neovim features. And for <code>nvim</code> version 0.10 it is now possible to generate a MiniMax config at all.</p>
+<p>For (hopefully) happy users of MiniMax, it means a guided opportunity to practise updating their config after Neovim 0.12 becomes a stable release. MiniMax <a href="../MiniMax/index.html#updating">doesn’t come</a> with full proof updating mechanism (by design, the generated config is fully owned by the user). However, I am excited to share that there are now dedicated pages that show differences when moving from one config to the next:</p>
+<ul>
+<li><a href="../MiniMax/configs/diffs/nvim-0.10_nvim-0.11"><code>nvim-0.10</code> -&gt; <code>nvim-0.11</code></a></li>
+<li><a href="../MiniMax/configs/diffs/nvim-0.11_nvim-0.12"><code>nvim-0.11</code> -&gt; <code>nvim-0.12</code></a></li>
+</ul>
+<p>These pages show only the parts that change which should make it easier to reference when manually updating.</p>
+<hr>
+<p>The release of <code>nvim-0.12</code> is a very exciting event for MINI since it is a first step towards adapting <code>vim.pack</code> as the recommended plugin manager. The ‘mini.deps’ module is planned to be retired (i.e.&nbsp;will be present but without updates) soon-ish after Neovim=0.12 is released. There will be a separate blog post about it.</p>
+<p>Give the new configs a try and reach out with the feedback in dedicated issue: <a href="https://github.com/nvim-mini/MiniMax/issues/35">for <code>nvim-0.12</code></a> and <a href="https://github.com/nvim-mini/MiniMax/issues/36">for <code>nvim-0.10</code></a>.</p>
+<p>Thank you for reading!</p>
+
+
+
+ ]]></description>
+  <category>update</category>
+  <guid>https://nvim-mini.org/blog/2026-02-15-update-minimax-configs-012-010.html</guid>
+  <pubDate>Sun, 15 Feb 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Release 0.17.0</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -981,59 +1016,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2024-01-04-announce-mini-notify.html</guid>
   <pubDate>Thu, 04 Jan 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Announcing ‘mini.visits’</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2023-11-28-announce-mini-visits.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/185yi7q/minivisits_track_and_reuse_file_system_visits/">posted on Reddit</a></em></p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2023-11-28-announce-mini-visits/demo.mp4"></video></div>
-<p>Hello, Neovim users!</p>
-<p>It is my pleasure to bring you <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-visits.md">mini.visits</a> - new module of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> which can track and reuse file system visits. It can also be installed using <a href="https://github.com/nvim-mini/mini.visits">separate GitHub repository</a>.</p>
-<p><strong>Note</strong>: This demo uses custom <code>vim.ui.select()</code> from <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pick.md">mini.pick</a>.</p>
-<hr>
-<p>TL;DR: This is a ‘mini.nvim’ version of a combination of <a href="https://github.com/nvim-telescope/telescope-frecency.nvim">nvim-telescope/telescope-frecency.nvim</a> (persistently track file visits and select from them) and <a href="https://github.com/ThePrimeagen/harpoon">ThePrimeagen/harpoon</a> (persistently add/remove labels to paths and select based on them).</p>
-<p><strong>But</strong> there is no feature parity with any of them (and is not planned), as the overall design and assumed workflows are slightly different. Here is a <a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-visits.txt#L64">link to a more detailed comparisons</a>.</p>
-<hr>
-<p>Features:</p>
-<ul>
-<li><p>Persistently track file system visits (both files and directories) per project directory. Store visit index is human readable and editable.</p></li>
-<li><p>Visit index is normalized on every write to contain relevant information. Exact details can be customized.</p></li>
-<li><p>Built-in ability to persistently use label paths for later use.</p></li>
-<li><p>Exported functions to reuse visit data:</p>
-<ul>
-<li><p>List visited paths/labels with custom filter and sort (uses “robust frecency” by default). Can be used as source for pickers.</p></li>
-<li><p>Select visited paths/labels using <code>vim.ui.select()</code>.</p></li>
-<li><p>Iterate through visit paths in target direction (“forward”, “backward”, “first”, “last”).</p></li>
-</ul></li>
-<li><p>Exported functions to manually update visit index allowing persistent track of any user information.</p></li>
-</ul>
-<p>For more information, see these tags in help file:</p>
-<ul>
-<li><a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-visits.txt#L105"><code>*MiniVisits-overview*</code></a></li>
-<li><a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-visits.txt#L162"><code>*MiniVisits-index-specification*</code></a></li>
-<li><a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-visits.txt#L225"><code>*MiniVisits-examples*</code></a></li>
-</ul>
-<p>For full documentation see <a href="https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-visits.txt">help file</a>.</p>
-<hr>
-<p>There are also two new ‘mini.pick’ pickers for <a href="../blog/2023-11-02-announce-mini-extra.html">mini.extra</a>: <a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-extra.txt#L731"><code>visit_paths()</code></a> and <a href="https://github.com/nvim-mini/mini.nvim/blob/964fab7fecd14f66a69a96162f8aa816480690fd/doc/mini-extra.txt#L766"><code>visit_labels()</code></a>. These are essentially a slightly polished alternatives (with file icons, preview, etc.) to built-in pickers which use <code>vim.ui.select()</code>.</p>
-<hr>
-<p>Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in <a href="https://github.com/nvim-mini/mini.nvim/issues/591">dedicated beta-testing issue</a>.</p>
-<p>Thanks!</p>
-
-
-
- ]]></description>
-  <category>announce</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2023-11-28-announce-mini-visits.html</guid>
-  <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
