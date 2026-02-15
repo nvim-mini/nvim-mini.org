@@ -10,19 +10,28 @@ The most appropriate one based on Neovim version is chosen during initial config
 
 Available:
 
+- [`nvim-0.10`](nvim-0.10) - for Neovim>=0.10
 - [`nvim-0.11`](nvim-0.11) - for Neovim>=0.11
+- [`nvim-0.12`](nvim-0.12) - for Neovim>=0.12 (currently under development)
 
-Planned (after some time of 'nvim-0.11' public testing):
+Differences between selected configs:
 
-- `nvim-0.9` - for Neovim>=0.9
-- `nvim-0.10` - for Neovim>=0.10
-- `nvim-0.12` - for Neovim>=0.12
+- [Between `nvim-0.10` and `nvim-0.11`](https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.10_nvim-0.11)
+- [Between `nvim-0.11` and `nvim-0.12`](https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.11_nvim-0.12)
 
 ### Structure
 
 #### `init.lua`
 
 Initial file executed first during startup.
+
+##### `nvim-pack-lock.json` (for Neovim>=0.12)
+
+Lockfile for `vim.pack` (built-in plugin manager) that contains information about all installed plugins. Provided to install necessary plugins during initial setting up at revisions that were tested to work in MiniMax.
+
+It is updated automatically whenever installed plugins change: their state on disk is updated, their tracked `version` is changed, they are deleted, etc. Do not delete and do not edit by hand.
+
+See [`:h vim.pack-lockfile`](https://neovim.io/doc/user/helptag.html?tag=vim.pack-lockfile) for more information about the lockfile and [`:h vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack) about the plugin manager in general.
 
 #### `plugin/`
 

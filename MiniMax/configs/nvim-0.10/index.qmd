@@ -1,16 +1,20 @@
 ---
-title: "MiniMax config `nvim-0.11`"
+title: "MiniMax config `nvim-0.10`"
 ---
 
 _Generated from the `main` branch of 'MiniMax'_
 
-### MiniMax config `nvim-0.11`
+### MiniMax config `nvim-0.10`
 
 #### init.lua {#init.lua}
 
 <details><summary>Code</summary>
 
 ```lua
+-- WARNING: NEOVIM 0.10 IS NOT THE LATEST STABLE RELEASE.
+-- IT MEANS THAT THERE IS A CHANCE SOME PLUGINS MIGHT DROP SUPPORTING IT.
+-- IT IS HIGHLY RECOMMENDED TO UPDATE TO THE LATEST STABLE VERSION.
+
 -- ┌────────────────────┐
 -- │ Welcome to MiniMax │
 -- └────────────────────┘
@@ -155,7 +159,6 @@ vim.o.signcolumn     = 'yes'      -- Always show signcolumn (less flicker)
 vim.o.splitbelow     = true       -- Horizontal splits will be below
 vim.o.splitkeep      = 'screen'   -- Reduce scroll during window split
 vim.o.splitright     = true       -- Vertical splits will be to the right
-vim.o.winborder      = 'single'   -- Use border in floating windows
 vim.o.wrap           = false      -- Don't visually wrap lines (toggle with \w)
 
 vim.o.cursorlineopt  = 'screenline,number' -- Show cursor line per screen line
@@ -192,8 +195,8 @@ vim.o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 
 -- Built-in completion
-vim.o.complete    = '.,w,b,kspell'                  -- Use less sources
-vim.o.completeopt = 'menuone,noselect,fuzzy,nosort' -- Use custom behavior
+vim.o.complete    = '.,w,b,kspell'     -- Use less sources
+vim.o.completeopt = 'menuone,noselect' -- Use custom behavior
 
 -- Autocommands ===============================================================
 
@@ -682,10 +685,6 @@ now_if_args(function()
     vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
   end
   Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
-
-  -- Advertise to servers that Neovim now supports certain set of completion and
-  -- signature features through 'mini.completion'.
-  vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
 end)
 
 -- Miscellaneous small but useful functions. Example usage:
@@ -1351,8 +1350,14 @@ now_if_args(function()
     source = 'nvim-treesitter/nvim-treesitter',
     -- Update tree-sitter parser after plugin is updated
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+    -- Pin to the commit just before the plugin dropped Neovim=0.10 support
+    checkout = '42fc28ba918343ebfd5565147a42a26580579482',
   })
-  add('nvim-treesitter/nvim-treesitter-textobjects')
+  add({
+    source = 'nvim-treesitter/nvim-treesitter-textobjects',
+    -- Pin to the commit corresponding to 'nvim-treesitter' commit
+    checkout = 'b0debd5c424969b4baeabdc8f54db3036c691732',
+  })
 
   -- Define languages which will have parsers installed and auto enabled
   -- After changing this, restart Neovim once to install necessary parsers. Wait
@@ -1364,25 +1369,18 @@ now_if_args(function()
     'markdown',
     -- Add here more languages with which you want to use tree-sitter
     -- To see available languages:
-    -- - Execute `:=require('nvim-treesitter').get_available()`
-    -- - Visit 'SUPPORTED_LANGUAGES.md' file at
-    --   https://github.com/nvim-treesitter/nvim-treesitter
+    -- - Execute `:=require('nvim-treesitter.parsers').available_parsers()`
   }
-  local isnt_installed = function(lang)
-    return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
-  end
-  local to_install = vim.tbl_filter(isnt_installed, languages)
-  if #to_install > 0 then require('nvim-treesitter').install(to_install) end
-
-  -- Enable tree-sitter after opening a file for a target language
-  local filetypes = {}
-  for _, lang in ipairs(languages) do
-    for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-      table.insert(filetypes, ft)
-    end
-  end
-  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-  Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
+  require('nvim-treesitter.configs').setup({
+    ensure_installed = languages,
+    highlight = { enable = true },
+    -- Disable incremental selection in favor of 'mini.ai'
+    incremental_selection = { enable = false },
+    -- Disable custom textobjects mappings in favor of 'mini.ai'
+    textobjects = { enable = false },
+    -- Disable tree-sitter based indent since it is somewhat unreliable
+    indent = { enable = false },
+  })
 end)
 
 -- Language servers ===========================================================
@@ -1397,18 +1395,36 @@ end)
 -- See note about 'mason.nvim' at the bottom of the file.
 --
 -- Neovim's team collects commonly used configurations for most language servers
--- inside 'neovim/nvim-lspconfig' plugin.
+-- inside 'neovim/nvim-lspconfig' plugin. NOTE: it got significant overhaul
+-- to use a `vim.lsp.config` approach on Neovim>=0.11. So to use this plugin it
+-- is highly recommended to update Neovim to at least 0.11 version.
 --
 -- Add it now if file (and not 'mini.starter') is shown after startup.
 now_if_args(function()
-  add('neovim/nvim-lspconfig')
+  add({
+    source = 'neovim/nvim-lspconfig',
+    -- Pin to the commit just before the plugin dropped Neovim=0.10 support
+    -- At this point it is already in the middle of migrating to the
+    -- `vim.lsp.config` approach in Neovim>=0.11, so its help is already ahead.
+    checkout = '5bfcc89fd155b4ffc02d18ab3b7d19c2d4e246a7',
+  })
 
-  -- Use `:h vim.lsp.enable()` to automatically enable language server based on
-  -- the rules provided by 'nvim-lspconfig'.
-  -- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
-  -- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
-  -- vim.lsp.enable({
-  --   -- For example, if `lua-language-server` is installed, use `'lua_ls'` entry
+  -- Per server configuration is done by explicitly setting up target servers
+  -- like `require('lspconfig').<server-name>.setup({ ... })`. Instead of `...`,
+  -- supply per-server configuration. Below is an example of setting up `lua_ls`.
+  -- Uncomment it to enable LSP server (if installed) for Lua files.
+
+  -- require('lspconfig').lua_ls.setup({
+  --   on_attach = function(client, bufnr)
+  --     -- Adjust per-client settings and capabilities. For example, trim very long
+  --     -- list of completion triggers for better 'mini.completion' experience
+  --     client.server_capabilities.completionProvider.triggerCharacters = { '.', ':' }
+  --   end,
+  --   settings = {
+  --     Lua = {
+  --       runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+  --     },
+  --   },
   -- })
 end)
 
@@ -1550,50 +1566,6 @@ vim.b.minisurround_config = {
         local link = require('mini.surround').user_input('Link: ')
         return { left = '[', right = '](' .. link .. ')' }
       end,
-    },
-  },
-}
-```
-
-</details>
-
-#### after/lsp/lua_ls.lua {#after-lsp-lua_ls.lua}
-
-<details><summary>Code</summary>
-
-```lua
--- ┌────────────────────┐
--- │ LSP config example │
--- └────────────────────┘
---
--- This file contains configuration of 'lua_ls' language server.
--- Source: https://github.com/LuaLS/lua-language-server
---
--- It is used by `:h vim.lsp.enable()` and `:h vim.lsp.config()`.
--- See `:h vim.lsp.Config` and `:h vim.lsp.ClientConfig` for all available fields.
---
--- This config is designed for Lua's activity around Neovim. It provides only
--- basic config and can be further improved.
-return {
-  on_attach = function(client, buf_id)
-    -- Reduce very long list of triggers for better 'mini.completion' experience
-    client.server_capabilities.completionProvider.triggerCharacters =
-      { '.', ':', '#', '(' }
-
-    -- Use this function to define buffer-local mappings and behavior that depend
-    -- on attached client or only makes sense if there is language server attached.
-  end,
-  -- LuaLS Structure of these settings comes from LuaLS, not Neovim
-  settings = {
-    Lua = {
-      -- Define runtime properties. Use 'LuaJIT', as it is built into Neovim.
-      runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-      workspace = {
-        -- Don't analyze code from submodules
-        ignoreSubmodules = true,
-        -- Add Neovim's methods for easier code writing
-        library = { vim.env.VIMRUNTIME },
-      },
     },
   },
 }
