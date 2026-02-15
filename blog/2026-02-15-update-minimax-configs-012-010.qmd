@@ -1,0 +1,31 @@
+---
+title: "MiniMax updates: `vim.pack` on Neovim>=0.12, config for Neovim=0.10"
+author: Evgeni Chasnovski
+date: 2026-02-15
+categories: [update]
+description: "MiniMax got two new reference configs: `nvim-0.12` for Neovim>=0.12 (uses `vim.pack`) and `nvim-0.10` for Neovim=0.10"
+---
+
+Hello, Neovim users!
+
+[MiniMax](../MiniMax/index.md) (a Neovim config generator based on 'mini.nvim') got two new reference versions:
+
+- [`nvim-0.12`](../MiniMax/configs/nvim-0.12) for Neovim=0.12. Although this Neovim version is currently under development, its release is expected soon-ish. The main theme of this config is that it will switch from using 'mini.deps' as a plugin manager to [`vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack).
+- [`nvim-0.10`](../MiniMax/configs/nvim-0.10) for Neovim=0.10. Although this is not the latest stable release, it is not yet very old so might be still used by a few people. It is fairly similar to `nvim-0.11` with the main differences in how 'nvim-treesitter' and 'nvim-lspconfig' plugins are set up.
+
+For new MiniMax users it means that [setting up](../MiniMax/index.md#setting-up) with `nvim` executable for version 0.12 (you can check your version with `nvim --version`) will generate a config that uses more up-to-date Neovim features. And for `nvim` version 0.10 it is now possible to generate a MiniMax config at all.
+
+For (hopefully) happy users of MiniMax, it means a guided opportunity to practise updating their config after Neovim 0.12 becomes a stable release. MiniMax [doesn't come](../MiniMax/index.md#updating) with full proof updating mechanism (by design, the generated config is fully owned by the user). However, I am excited to share that there are now dedicated pages that show differences when moving from one config to the next:
+
+- [`nvim-0.10` -> `nvim-0.11`](../MiniMax/configs/diffs/nvim-0.10_nvim-0.11)
+- [`nvim-0.11` -> `nvim-0.12`](../MiniMax/configs/diffs/nvim-0.11_nvim-0.12)
+
+These pages show only the parts that change which should make it easier to reference when manually updating.
+
+---
+
+The release of `nvim-0.12` is a very exciting event for MINI since it is a first step towards adapting `vim.pack` as the recommended plugin manager. The 'mini.deps' module is planned to be retired (i.e. will be present but without updates) soon-ish after Neovim=0.12 is released. There will be a separate blog post about it.
+
+Give the new configs a try and reach out with the feedback in dedicated issue: [for `nvim-0.12`](https://github.com/nvim-mini/MiniMax/issues/35) and [for `nvim-0.10`](https://github.com/nvim-mini/MiniMax/issues/36).
+
+Thank you for reading!
