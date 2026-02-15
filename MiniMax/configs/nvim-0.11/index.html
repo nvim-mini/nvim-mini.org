@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-3e1533199cf0bf1e072b6c22d59bf330.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-8fb413afc8e529ea6f0b69a7c79bd225.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-2340dc3d84c2292709c2bc9a48df96e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-a6c58798d87e8f1a74aa0ab11dab83cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1736,135 +1736,130 @@ Code
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Update tree-sitter parser after plugin is updated</span></span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span> <span class="va">post_checkout</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'TSUpdate'</span><span class="op">)</span> <span class="kw">end</span> <span class="op">},</span></span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  add<span class="op">({</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">source</span> <span class="op">=</span> <span class="st">'nvim-treesitter/nvim-treesitter-textobjects'</span><span class="op">,</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use `main` branch since `master` branch is frozen, yet still default</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- It is needed for compatibility with 'nvim-treesitter' `main` branch</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">checkout</span> <span class="op">=</span> <span class="st">'main'</span><span class="op">,</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Define languages which will have parsers installed and auto enabled</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- After changing this, restart Neovim once to install necessary parsers. Wait</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- for the installation to finish before opening a file for added language(s).</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">languages</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- These are already pre-installed with Neovim. Used as an example.</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lua'</span><span class="op">,</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">'vimdoc'</span><span class="op">,</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">'markdown'</span><span class="op">,</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Add here more languages with which you want to use tree-sitter</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- To see available languages:</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- - Execute `:=require('nvim-treesitter').get_available()`</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- - Visit 'SUPPORTED_LANGUAGES.md' file at</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="co">--   https://github.com/nvim-treesitter/nvim-treesitter/blob/main</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">isnt_installed</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lang</span><span class="op">)</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">#</span><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_get_runtime_file<span class="op">(</span><span class="st">'parser/'</span> <span class="op">..</span> <span class="va">lang</span> <span class="op">..</span> <span class="st">'.*'</span><span class="op">,</span> <span class="kw">false</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">to_install</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>tbl_filter<span class="op">(</span><span class="va">isnt_installed</span><span class="op">,</span> <span class="va">languages</span><span class="op">)</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">#</span><span class="va">to_install</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="fu">require</span><span class="op">(</span><span class="st">'nvim-treesitter'</span><span class="op">).</span>install<span class="op">(</span><span class="va">to_install</span><span class="op">)</span> <span class="cf">end</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Enable tree-sitter after opening a file for a target language</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">filetypes</span> <span class="op">=</span> <span class="op">{}</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">lang</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">languages</span><span class="op">)</span> <span class="cf">do</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">ft</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">treesitter</span><span class="op">.</span><span class="va">language</span><span class="op">.</span>get_filetypes<span class="op">(</span><span class="va">lang</span><span class="op">))</span> <span class="cf">do</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>      <span class="fu">table.insert</span><span class="op">(</span><span class="va">filetypes</span><span class="op">,</span> <span class="va">ft</span><span class="op">)</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">ts_start</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ev</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">treesitter</span><span class="op">.</span>start<span class="op">(</span><span class="va">ev</span><span class="op">.</span><span class="va">buf</span><span class="op">)</span> <span class="kw">end</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>  <span class="va">Config</span><span class="op">.</span>new_autocmd<span class="op">(</span><span class="st">'FileType'</span><span class="op">,</span> <span class="va">filetypes</span><span class="op">,</span> <span class="va">ts_start</span><span class="op">,</span> <span class="st">'Start tree-sitter'</span><span class="op">)</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">-- Language servers ===========================================================</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">-- Language Server Protocol (LSP) is a set of conventions that power creation of</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">-- language specific tools. It requires two parts:</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Server - program that performs language specific computations.</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Client - program that asks server for computations and shows results.</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co">-- Here Neovim itself is a client (see `:h vim.lsp`). Language servers need to</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co">-- be installed separately based on your OS, CLI tools, and preferences.</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="co">-- See note about 'mason.nvim' at the bottom of the file.</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co">-- Neovim's team collects commonly used configurations for most language servers</span></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">-- inside 'neovim/nvim-lspconfig' plugin.</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add it now if file (and not 'mini.starter') is shown after startup.</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>now_if_args<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  add<span class="op">(</span><span class="st">'neovim/nvim-lspconfig'</span><span class="op">)</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `:h vim.lsp.enable()` to automatically enable language server based on</span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- the rules provided by 'nvim-lspconfig'.</span></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.</span></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.</span></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- vim.lsp.enable({</span></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>  <span class="co">--   -- For example, if `lua-language-server` is installed, use `'lua_ls'` entry</span></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- })</span></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="co">-- Formatting =================================================================</span></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="co">-- Programs dedicated to text formatting (a.k.a. formatters) are very useful.</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="co">-- Neovim has built-in tools for text formatting (see `:h gq` and `:h 'formatprg'`).</span></span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="co">-- They can be used to configure external programs, but it might become tedious.</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="co">-- The 'stevearc/conform.nvim' plugin is a good and maintained solution for easier</span></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="co">-- formatting setup.</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  add<span class="op">(</span><span class="st">'stevearc/conform.nvim'</span><span class="op">)</span></span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- See also:</span></span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h Conform`</span></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h conform-options`</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h conform-formatters`</span></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'conform'</span><span class="op">).</span>setup<span class="op">({</span></span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    <span class="va">default_format_opts</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Allow formatting from LSP server if no dedicated formatter is available</span></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>      <span class="va">lsp_format</span> <span class="op">=</span> <span class="st">'fallback'</span><span class="op">,</span></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Map of filetype to formatters</span></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make sure that necessary CLI tool is available</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- formatters_by_ft = { lua = { 'stylua' } },</span></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="co">-- Snippets ===================================================================</span></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="co">-- Although 'mini.snippets' provides functionality to manage snippet files, it</span></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="co">-- deliberately doesn't come with those.</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="co">-- The 'rafamadriz/friendly-snippets' is currently the largest collection of</span></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="co">-- snippet files. They are organized in 'snippets/' directory (mostly) per language.</span></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="co">-- 'mini.snippets' is designed to work with it as seamlessly as possible.</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="co">-- See `:h MiniSnippets.gen_loader.from_lang()`.</span></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> add<span class="op">(</span><span class="st">'rafamadriz/friendly-snippets'</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="co">-- Honorable mentions =========================================================</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="co">-- 'mason-org/mason.nvim' (a.k.a. "Mason") is a great tool (package manager) for</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="co">-- installing external language servers, formatters, and linters. It provides</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="co">-- a unified interface for installing, updating, and deleting such programs.</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="co">-- The caveat is that these programs will be set up to be mostly used inside Neovim.</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="co">-- If you need them to work elsewhere, consider using other package managers.</span></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="co">-- You can use it like so:</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="co">-- now_if_args(function()</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('mason-org/mason.nvim')</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="co">--   require('mason').setup()</span></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="co">-- end)</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="co">-- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="co">-- have full support of its highlight groups. Use if you don't like 'miniwinter'</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="co">-- enabled in 'plugin/30_mini.lua' or other suggested 'mini.hues' based ones.</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="co">-- MiniDeps.now(function()</span></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="co">--   -- Install only those that you need</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('sainnhe/everforest')</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('Shatur/neovim-ayu')</span></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('ellisonleao/gruvbox.nvim')</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="co">--   -- Enable only one</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="co">--   vim.cmd('color everforest')</span></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="co">-- end)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  add<span class="op">(</span><span class="st">'nvim-treesitter/nvim-treesitter-textobjects'</span><span class="op">)</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Define languages which will have parsers installed and auto enabled</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- After changing this, restart Neovim once to install necessary parsers. Wait</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- for the installation to finish before opening a file for added language(s).</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">languages</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- These are already pre-installed with Neovim. Used as an example.</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lua'</span><span class="op">,</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">'vimdoc'</span><span class="op">,</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">'markdown'</span><span class="op">,</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Add here more languages with which you want to use tree-sitter</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- To see available languages:</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- - Execute `:=require('nvim-treesitter').get_available()`</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- - Visit 'SUPPORTED_LANGUAGES.md' file at</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="co">--   https://github.com/nvim-treesitter/nvim-treesitter</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">isnt_installed</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lang</span><span class="op">)</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">#</span><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_get_runtime_file<span class="op">(</span><span class="st">'parser/'</span> <span class="op">..</span> <span class="va">lang</span> <span class="op">..</span> <span class="st">'.*'</span><span class="op">,</span> <span class="kw">false</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">to_install</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>tbl_filter<span class="op">(</span><span class="va">isnt_installed</span><span class="op">,</span> <span class="va">languages</span><span class="op">)</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">#</span><span class="va">to_install</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="fu">require</span><span class="op">(</span><span class="st">'nvim-treesitter'</span><span class="op">).</span>install<span class="op">(</span><span class="va">to_install</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Enable tree-sitter after opening a file for a target language</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">filetypes</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">lang</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">languages</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">ft</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">treesitter</span><span class="op">.</span><span class="va">language</span><span class="op">.</span>get_filetypes<span class="op">(</span><span class="va">lang</span><span class="op">))</span> <span class="cf">do</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>      <span class="fu">table.insert</span><span class="op">(</span><span class="va">filetypes</span><span class="op">,</span> <span class="va">ft</span><span class="op">)</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">ts_start</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ev</span><span class="op">)</span> <span class="va">vim</span><span class="op">.</span><span class="va">treesitter</span><span class="op">.</span>start<span class="op">(</span><span class="va">ev</span><span class="op">.</span><span class="va">buf</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>  <span class="va">Config</span><span class="op">.</span>new_autocmd<span class="op">(</span><span class="st">'FileType'</span><span class="op">,</span> <span class="va">filetypes</span><span class="op">,</span> <span class="va">ts_start</span><span class="op">,</span> <span class="st">'Start tree-sitter'</span><span class="op">)</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">-- Language servers ===========================================================</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co">-- Language Server Protocol (LSP) is a set of conventions that power creation of</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co">-- language specific tools. It requires two parts:</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Server - program that performs language specific computations.</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Client - program that asks server for computations and shows results.</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">-- Here Neovim itself is a client (see `:h vim.lsp`). Language servers need to</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">-- be installed separately based on your OS, CLI tools, and preferences.</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">-- See note about 'mason.nvim' at the bottom of the file.</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co">-- Neovim's team collects commonly used configurations for most language servers</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co">-- inside 'neovim/nvim-lspconfig' plugin.</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add it now if file (and not 'mini.starter') is shown after startup.</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>now_if_args<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  add<span class="op">(</span><span class="st">'neovim/nvim-lspconfig'</span><span class="op">)</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `:h vim.lsp.enable()` to automatically enable language server based on</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- the rules provided by 'nvim-lspconfig'.</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- vim.lsp.enable({</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="co">--   -- For example, if `lua-language-server` is installed, use `'lua_ls'` entry</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- })</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="co">-- Formatting =================================================================</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="co">-- Programs dedicated to text formatting (a.k.a. formatters) are very useful.</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="co">-- Neovim has built-in tools for text formatting (see `:h gq` and `:h 'formatprg'`).</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="co">-- They can be used to configure external programs, but it might become tedious.</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="co">-- The 'stevearc/conform.nvim' plugin is a good and maintained solution for easier</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="co">-- formatting setup.</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>  add<span class="op">(</span><span class="st">'stevearc/conform.nvim'</span><span class="op">)</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- See also:</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h Conform`</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h conform-options`</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `:h conform-formatters`</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'conform'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    <span class="va">default_format_opts</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Allow formatting from LSP server if no dedicated formatter is available</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>      <span class="va">lsp_format</span> <span class="op">=</span> <span class="st">'fallback'</span><span class="op">,</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Map of filetype to formatters</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make sure that necessary CLI tool is available</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- formatters_by_ft = { lua = { 'stylua' } },</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="co">-- Snippets ===================================================================</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="co">-- Although 'mini.snippets' provides functionality to manage snippet files, it</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="co">-- deliberately doesn't come with those.</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="co">-- The 'rafamadriz/friendly-snippets' is currently the largest collection of</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="co">-- snippet files. They are organized in 'snippets/' directory (mostly) per language.</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="co">-- 'mini.snippets' is designed to work with it as seamlessly as possible.</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="co">-- See `:h MiniSnippets.gen_loader.from_lang()`.</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> add<span class="op">(</span><span class="st">'rafamadriz/friendly-snippets'</span><span class="op">)</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="co">-- Honorable mentions =========================================================</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="co">-- 'mason-org/mason.nvim' (a.k.a. "Mason") is a great tool (package manager) for</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="co">-- installing external language servers, formatters, and linters. It provides</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="co">-- a unified interface for installing, updating, and deleting such programs.</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="co">-- The caveat is that these programs will be set up to be mostly used inside Neovim.</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="co">-- If you need them to work elsewhere, consider using other package managers.</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="co">-- You can use it like so:</span></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="co">-- now_if_args(function()</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('mason-org/mason.nvim')</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="co">--   require('mason').setup()</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="co">-- end)</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="co">-- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="co">-- have full support of its highlight groups. Use if you don't like 'miniwinter'</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="co">-- enabled in 'plugin/30_mini.lua' or other suggested 'mini.hues' based ones.</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="co">-- MiniDeps.now(function()</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="co">--   -- Install only those that you need</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('sainnhe/everforest')</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('Shatur/neovim-ayu')</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="co">--   add('ellisonleao/gruvbox.nvim')</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="co">--   -- Enable only one</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="co">--   vim.cmd('color everforest')</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="co">-- end)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="snippets-global.json" class="level4">
