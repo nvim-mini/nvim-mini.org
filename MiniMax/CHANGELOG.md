@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-02-15 {#2026-02-15}
+
+- Update 'nvim-treesitter/nvim-treesitter-textobjects' plugin to not explicitly use `main` branch as it is now the default.
+
 ## 2026-02-10 {#2026-02-10}
 
 - Update using global variable for config as just `Config` and not `_G.Config`. This is more concise and makes it more consistent with how `MiniXxx` variables are used.
