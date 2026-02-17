@@ -1150,277 +1150,277 @@ Code
 <span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">lsp</span><span class="op">.</span>config<span class="op">(</span><span class="st">'*'</span><span class="op">,</span> <span class="op">{</span> <span class="va">capabilities</span> <span class="op">=</span> <span class="va">MiniCompletion</span><span class="op">.</span>get_lsp_capabilities<span class="op">()</span> <span class="op">})</span></span>
 <span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
 <span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="co">-- Miscellaneous small but useful functions. Example usage:</span></span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;oz` - toggle between "zoomed" and regular view of current buffer</span></span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;or` - resize window to its "editable width"</span></span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:lua put_text(vim.lsp.get_clients())` - put output of a function below</span></span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="co">--   cursor in current buffer. Useful for a detailed exploration.</span></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:lua put(MiniMisc.stat_summary(MiniMisc.bench_time(f, 100)))` - run</span></span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a><span class="co">--   function `f` 100 times and report statistical summary of execution times</span></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>now_if_args<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Makes `:h MiniMisc.put()` and `:h MiniMisc.put_text()` public</span></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Change current working directory based on the current file path. It</span></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- searches up the file tree until the first root marker ('.git' or 'Makefile')</span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- and sets their parent directory as a current directory.</span></span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This is helpful when simultaneously dealing with files from several projects.</span></span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Restore latest cursor position on file open</span></span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_restore_cursor<span class="op">()</span></span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Synchronize terminal emulator background with Neovim's background to remove</span></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- possibly different color padding around Neovim instance</span></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_termbg_sync<span class="op">()</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="co">-- Step two ===================================================================</span></span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="co">-- Extra 'mini.nvim' functionality.</span></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.pickers` - pickers. Most are mapped in `&lt;Leader&gt;f` group.</span></span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="co">--   Calling `setup()` makes 'mini.pick' respect 'mini.extra' pickers.</span></span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.gen_ai_spec` - 'mini.ai' textobject specifications</span></span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.gen_highlighter` - 'mini.hipatterns' highlighters</span></span>
-<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.extra'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a><span class="co">-- Extend and create a/i textobjects, like `:h a(`, `:h a'`, and more).</span></span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a><span class="co">-- Contains not only `a` and `i` type of textobjects, but also their "next" and</span></span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a><span class="co">-- "last" variants that will explicitly search for textobjects after and before</span></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="co">-- cursor. Example usage:</span></span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ci)` - *c*hange *i*inside parenthesis (`)`)</span></span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `di(` - *d*elete *i*inside padded parenthesis (`(`)</span></span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `yaq` - *y*ank *a*round *q*uote (any of "", '', or ``)</span></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vif` - *v*isually select *i*inside *f*unction call</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `cina` - *c*hange *i*nside *n*ext *a*rgument</span></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `valaala` - *v*isually select *a*round *l*ast (i.e. previous) *a*rgument</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a><span class="co">--   and then again reselect *a*round new *l*ast *a*rgument</span></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h text-objects` - general info about what textobjects are</span></span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAi-builtin-textobjects` - list of all supported textobjects</span></span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAi-textobject-specification` - examples of custom textobjects</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">ai</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">)</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>  <span class="va">ai</span><span class="op">.</span>setup<span class="op">({</span></span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- 'mini.ai' can be extended with custom textobjects</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>    <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Make `aB` / `iB` act on around/inside whole *b*uffer</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>      <span class="cn">B</span> <span class="op">=</span> <span class="va">MiniExtra</span><span class="op">.</span><span class="va">gen_ai_spec</span><span class="op">.</span>buffer<span class="op">(),</span></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- For more complicated textobjects that require structural awareness,</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- use tree-sitter. This example makes `aF`/`iF` mean around/inside function</span></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- definition (not call). See `:h MiniAi.gen_spec.treesitter()` for details.</span></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>      <span class="cn">F</span> <span class="op">=</span> <span class="va">ai</span><span class="op">.</span><span class="va">gen_spec</span><span class="op">.</span>treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="co">-- Navigate and manipulate file system</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="co">-- Navigation is done using column view (Miller columns) to display nested</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="co">-- directories, they are displayed in floating windows in top left corner.</span></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="co">-- Manipulate files and directories by editing text as regular buffers.</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ed` - open current working directory</span></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ef` - open directory of current file (needs to be present on disk)</span></span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a><span class="co">-- Basic navigation:</span></span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `l` - go in entry at cursor: navigate into directory or open file</span></span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `h` - go out of focused directory</span></span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Navigate window as any regular buffer</span></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `g?` inside explorer to see more mappings</span></span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a><span class="co">-- Basic manipulation:</span></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a><span class="co">-- - After any following action, press `=` in Normal mode to synchronize, read</span></span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a><span class="co">--   carefully about actions, press `y` or `&lt;CR&gt;` to confirm</span></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="co">-- - New entry: press `o` and type its name; end with `/` to create directory</span></span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Rename: press `C` and type new name</span></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Delete: type `dd`</span></span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Move/copy: type `dd`/`yy`, navigate to target directory, press `p`</span></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-navigation` - more details about how to navigate</span></span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-manipulation` - more details about how to manipulate</span></span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-examples` - examples of common setups</span></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>now_if_args<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Enable directory/file preview</span></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span> <span class="va">preview</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add common bookmarks for every explorer. Example usage inside explorer:</span></span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `'c` to navigate into your config directory</span></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `g?` to see available bookmarks</span></span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">add_marks</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'config'</span><span class="op">),</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Config'</span> <span class="op">})</span></span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">vimpack_plugins</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'data'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'/site/pack/core/opt'</span></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'p'</span><span class="op">,</span> <span class="va">vimpack_plugins</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Plugins'</span> <span class="op">})</span></span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'w'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span><span class="va">getcwd</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Working directory'</span> <span class="op">})</span></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>  <span class="va">Config</span><span class="op">.</span>new_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="st">'MiniFilesExplorerOpen'</span><span class="op">,</span> <span class="va">add_marks</span><span class="op">,</span> <span class="st">'Add bookmarks'</span><span class="op">)</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="co">-- Miscellaneous small but useful functions. Example usage:</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;oz` - toggle between "zoomed" and regular view of current buffer</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;or` - resize window to its "editable width"</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:lua put_text(vim.lsp.get_clients())` - put output of a function below</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a><span class="co">--   cursor in current buffer. Useful for a detailed exploration.</span></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:lua put(MiniMisc.stat_summary(MiniMisc.bench_time(f, 100)))` - run</span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="co">--   function `f` 100 times and report statistical summary of execution times</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>now_if_args<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Makes `:h MiniMisc.put()` and `:h MiniMisc.put_text()` public</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.misc'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Change current working directory based on the current file path. It</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- searches up the file tree until the first root marker ('.git' or 'Makefile')</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- and sets their parent directory as a current directory.</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- This is helpful when simultaneously dealing with files from several projects.</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_auto_root<span class="op">()</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Restore latest cursor position on file open</span></span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_restore_cursor<span class="op">()</span></span>
 <span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- 'mini.ai' by default mostly mimics built-in search behavior: first try</span></span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- to find textobject covering cursor, then try to find to the right.</span></span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Although this works in most cases, some are confusing. It is more robust to</span></span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- always try to search only covering textobject and explicitly ask to search</span></span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- for next (`an`/`in`) or last (`al`/`il`).</span></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Try this. If you don't like it - delete next line and this comment.</span></span>
-<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a>    <span class="va">search_method</span> <span class="op">=</span> <span class="st">'cover'</span><span class="op">,</span></span>
-<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="co">-- Align text interactively. Example usage:</span></span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gaip,` - `ga` (align operator) *i*nside *p*aragraph by comma</span></span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gAip` - start interactive alignment on the paragraph. Choose how to</span></span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a><span class="co">--   split, justify, and merge string parts. Press `&lt;CR&gt;` to make it permanent,</span></span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="co">--   press `&lt;Esc&gt;` to go back to initial state.</span></span>
-<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign-example` - hands-on list of examples to practice aligning</span></span>
-<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign.gen_step` - list of support step customizations</span></span>
-<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign-algorithm` - how alignment is done on algorithmic level</span></span>
-<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.align'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a><span class="co">-- Animate common Neovim actions. Like cursor movement, scroll, window resize,</span></span>
-<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a><span class="co">-- window open, window close. Animations are done based on Neovim events and</span></span>
-<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a><span class="co">-- don't require custom mappings.</span></span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because its effects are a matter of taste.</span></span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a><span class="co">-- Also scroll and resize have some unwanted side effects (see `:h mini.animate`).</span></span>
-<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.animate').setup() end)</span></span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a><span class="co">-- Go forward/backward with square brackets. Implements consistent sets of mappings</span></span>
-<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a><span class="co">-- for selected targets (like buffers, diagnostic, quickfix list entries, etc.).</span></span>
-<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `]b` - go to next buffer</span></span>
-<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `[j` - go to previous jump inside current buffer</span></span>
-<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `[Q` - go to first entry of quickfix list</span></span>
-<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `]X` - go to last conflict marker in a buffer</span></span>
-<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniBracketed` - overall mapping design and list of targets</span></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a><span class="co">-- Remove buffers. Opened files occupy space in tabline and buffer picker.</span></span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a><span class="co">-- When not needed, they can be removed. Example usage:</span></span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bw` - completely wipeout current buffer (see `:h :bwipeout`)</span></span>
-<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bW` - completely wipeout current buffer even if it has changes</span></span>
-<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bd` - delete current buffer (see `:h :bdelete`)</span></span>
-<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.bufremove'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a><span class="co">-- Show next key clues in a bottom right window. Requires explicit opt-in for</span></span>
-<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a><span class="co">-- keys that act as clue trigger. Example usage:</span></span>
-<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;Leader&gt;` and wait for 1 second. A window with information about</span></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a><span class="co">--   next available keys should appear.</span></span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press one of the listed keys. Window updates immediately to show information</span></span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a><span class="co">--   about new next available keys. You can press `&lt;BS&gt;` to go back in key sequence.</span></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press keys until they resolve into some mapping.</span></span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note: it is designed to work in buffers for normal files. It doesn't work in</span></span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="co">-- special buffers (like for 'mini.starter' or 'mini.files') to not conflict</span></span>
-<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a><span class="co">-- with its local mappings.</span></span>
-<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue-examples` - examples of common setups</span></span>
-<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue.ensure_buf_triggers()` - use it to enable triggers in buffer</span></span>
-<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue.set_mapping_desc()` - change mapping description not from config</span></span>
-<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">miniclue</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">)</span></span>
-<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- stylua: ignore</span></span>
-<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a>  <span class="va">miniclue</span><span class="op">.</span>setup<span class="op">({</span></span>
-<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Define which clues to show. By default shows only clues for custom mappings</span></span>
-<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- (uses `desc` field from the mapping; takes precedence over custom clue).</span></span>
-<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a>    <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- This is defined in 'plugin/20_keymaps.lua' with Leader group descriptions</span></span>
-<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a>      <span class="va">Config</span><span class="op">.</span><span class="va">leader_group_clues</span><span class="op">,</span></span>
-<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>builtin_completion<span class="op">(),</span></span>
-<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>g<span class="op">(),</span></span>
-<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>marks<span class="op">(),</span></span>
-<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>registers<span class="op">(),</span></span>
-<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>square_brackets<span class="op">(),</span></span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- This creates a submode for window resize mappings. Try the following:</span></span>
-<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Press `&lt;C-w&gt;s` to make a window split.</span></span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Press `&lt;C-w&gt;+` to increase height. Clue window still shows clues as if</span></span>
-<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a>      <span class="co">--   `&lt;C-w&gt;` is pressed again. Keep pressing just `+` to increase height.</span></span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>      <span class="co">--   Try pressing `-` to decrease height.</span></span>
-<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Stop submode either by `&lt;Esc&gt;` or by any key that is not in submode.</span></span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>windows<span class="op">({</span> <span class="va">submode_resize</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}),</span></span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>z<span class="op">(),</span></span>
-<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Explicitly opt-in for set of common keys to trigger clue window</span></span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>    <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span> <span class="co">-- Leader triggers</span></span>
-<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'n'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'</span><span class="sc">\\</span><span class="st">'</span> <span class="op">},</span>       <span class="co">-- mini.basics</span></span>
-<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span>        <span class="co">-- mini.bracketed</span></span>
-<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'i'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;'</span> <span class="op">},</span>    <span class="co">-- Built-in completion</span></span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">},</span>        <span class="co">-- `g` key</span></span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">},</span>        <span class="co">-- Marks</span></span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">},</span></span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">},</span>        <span class="co">-- Registers</span></span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'c'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">},</span></span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'n'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-w&gt;'</span> <span class="op">},</span>    <span class="co">-- Window commands</span></span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'s'</span> <span class="op">},</span>        <span class="co">-- `s` key (mini.surround, etc.)</span></span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">},</span>        <span class="co">-- `z` key</span></span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a><span class="co">-- Command line tweaks. Improves command line editing with:</span></span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autocompletion. Basically an automated `:h cmdline-completion`.</span></span>
-<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autocorrection of words as-you-type. Like `:W`-&gt;`:w`, `:lau`-&gt;`:lua`, etc.</span></span>
-<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autopeek command range (like line number at the start) as-you-type.</span></span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.cmdline'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tweak and save any color scheme. Contains utility functions to work with</span></span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a><span class="co">-- color spaces and color schemes. Example usage:</span></span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:Colorscheme default` - switch with animation to the default color scheme</span></span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.interactive()` - interactively tweak color scheme</span></span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-recipes` - common recipes to use during interactive tweaking</span></span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.convert()` - convert between color spaces</span></span>
-<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-color-spaces` - list of supported color sapces</span></span>
-<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because it is not really needed on a daily basis.</span></span>
-<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
-<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.colors').setup() end)</span></span>
-<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a><span class="co">-- Comment lines. Provides functionality to work with commented lines.</span></span>
-<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uses `:h 'commentstring'` option to infer comment structure.</span></span>
-<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gcip` - toggle comment (`gc`) *i*inside *p*aragraph</span></span>
-<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vapgc` - *v*isually select *a*round *p*aragraph and toggle comment (`gc`)</span></span>
-<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gcgc` - uncomment (`gc`, operator) comment block at cursor (`gc`, textobject)</span></span>
-<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a><span class="co">-- The built-in `:h commenting` is based on 'mini.comment'. Yet this module is</span></span>
-<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a><span class="co">-- still enabled as it provides more customization opportunities.</span></span>
-<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.comment'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a><span class="co">-- Autohighlight word under cursor with a customizable delay.</span></span>
-<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a><span class="co">-- Word boundaries are defined based on `:h 'iskeyword'` option.</span></span>
-<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because its effects are a matter of taste.</span></span>
-<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
-<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.cursorword').setup() end)</span></span>
-<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a><span class="co">-- Work with diff hunks that represent the difference between the buffer text and</span></span>
-<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a><span class="co">-- some reference text set by a source. Default source uses text from Git index.</span></span>
-<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a><span class="co">-- Also provides summary info used in developer section of 'mini.statusline'.</span></span>
-<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ghip` - apply hunks (`gh`) within *i*nside *p*aragraph</span></span>
-<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gHG` - reset hunks (`gH`) from cursor until end of buffer (`G`)</span></span>
-<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ghgh` - apply (`gh`) hunk at cursor (`gh`)</span></span>
-<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gHgh` - reset (`gH`) hunk at cursor (`gh`)</span></span>
-<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;go` - toggle overlay</span></span>
-<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff-overview` - overview of how module works</span></span>
-<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff-diff-summary` - available summary information</span></span>
-<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff.gen_source` - available built-in sources</span></span>
-<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a><span class="co">-- Navigate and manipulate file system</span></span>
-<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a><span class="co">-- Navigation is done using column view (Miller columns) to display nested</span></span>
-<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="co">-- directories, they are displayed in floating windows in top left corner.</span></span>
-<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a><span class="co">-- Manipulate files and directories by editing text as regular buffers.</span></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Synchronize terminal emulator background with Neovim's background to remove</span></span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- possibly different color padding around Neovim instance</span></span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniMisc</span><span class="op">.</span>setup_termbg_sync<span class="op">()</span></span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a><span class="co">-- Step two ===================================================================</span></span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a><span class="co">-- Extra 'mini.nvim' functionality.</span></span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.pickers` - pickers. Most are mapped in `&lt;Leader&gt;f` group.</span></span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a><span class="co">--   Calling `setup()` makes 'mini.pick' respect 'mini.extra' pickers.</span></span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.gen_ai_spec` - 'mini.ai' textobject specifications</span></span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniExtra.gen_highlighter` - 'mini.hipatterns' highlighters</span></span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.extra'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="co">-- Extend and create a/i textobjects, like `:h a(`, `:h a'`, and more).</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a><span class="co">-- Contains not only `a` and `i` type of textobjects, but also their "next" and</span></span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="co">-- "last" variants that will explicitly search for textobjects after and before</span></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a><span class="co">-- cursor. Example usage:</span></span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ci)` - *c*hange *i*inside parenthesis (`)`)</span></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `di(` - *d*elete *i*inside padded parenthesis (`(`)</span></span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `yaq` - *y*ank *a*round *q*uote (any of "", '', or ``)</span></span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vif` - *v*isually select *i*inside *f*unction call</span></span>
+<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `cina` - *c*hange *i*nside *n*ext *a*rgument</span></span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `valaala` - *v*isually select *a*round *l*ast (i.e. previous) *a*rgument</span></span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a><span class="co">--   and then again reselect *a*round new *l*ast *a*rgument</span></span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h text-objects` - general info about what textobjects are</span></span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAi-builtin-textobjects` - list of all supported textobjects</span></span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAi-textobject-specification` - examples of custom textobjects</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">ai</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">)</span></span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>  <span class="va">ai</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- 'mini.ai' can be extended with custom textobjects</span></span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>    <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Make `aB` / `iB` act on around/inside whole *b*uffer</span></span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a>      <span class="cn">B</span> <span class="op">=</span> <span class="va">MiniExtra</span><span class="op">.</span><span class="va">gen_ai_spec</span><span class="op">.</span>buffer<span class="op">(),</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- For more complicated textobjects that require structural awareness,</span></span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- use tree-sitter. This example makes `aF`/`iF` mean around/inside function</span></span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- definition (not call). See `:h MiniAi.gen_spec.treesitter()` for details.</span></span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>      <span class="cn">F</span> <span class="op">=</span> <span class="va">ai</span><span class="op">.</span><span class="va">gen_spec</span><span class="op">.</span>treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
+<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- 'mini.ai' by default mostly mimics built-in search behavior: first try</span></span>
+<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- to find textobject covering cursor, then try to find to the right.</span></span>
+<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Although this works in most cases, some are confusing. It is more robust to</span></span>
+<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- always try to search only covering textobject and explicitly ask to search</span></span>
+<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- for next (`an`/`in`) or last (`al`/`il`).</span></span>
+<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Try this. If you don't like it - delete next line and this comment.</span></span>
+<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a>    <span class="va">search_method</span> <span class="op">=</span> <span class="st">'cover'</span><span class="op">,</span></span>
+<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a><span class="co">-- Align text interactively. Example usage:</span></span>
+<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gaip,` - `ga` (align operator) *i*nside *p*aragraph by comma</span></span>
+<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gAip` - start interactive alignment on the paragraph. Choose how to</span></span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="co">--   split, justify, and merge string parts. Press `&lt;CR&gt;` to make it permanent,</span></span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="co">--   press `&lt;Esc&gt;` to go back to initial state.</span></span>
+<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign-example` - hands-on list of examples to practice aligning</span></span>
+<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign.gen_step` - list of support step customizations</span></span>
+<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniAlign-algorithm` - how alignment is done on algorithmic level</span></span>
+<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.align'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a><span class="co">-- Animate common Neovim actions. Like cursor movement, scroll, window resize,</span></span>
+<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a><span class="co">-- window open, window close. Animations are done based on Neovim events and</span></span>
+<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a><span class="co">-- don't require custom mappings.</span></span>
+<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because its effects are a matter of taste.</span></span>
+<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a><span class="co">-- Also scroll and resize have some unwanted side effects (see `:h mini.animate`).</span></span>
+<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
+<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.animate').setup() end)</span></span>
+<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a><span class="co">-- Go forward/backward with square brackets. Implements consistent sets of mappings</span></span>
+<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a><span class="co">-- for selected targets (like buffers, diagnostic, quickfix list entries, etc.).</span></span>
+<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `]b` - go to next buffer</span></span>
+<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `[j` - go to previous jump inside current buffer</span></span>
+<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `[Q` - go to first entry of quickfix list</span></span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `]X` - go to last conflict marker in a buffer</span></span>
+<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniBracketed` - overall mapping design and list of targets</span></span>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.bracketed'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a><span class="co">-- Remove buffers. Opened files occupy space in tabline and buffer picker.</span></span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a><span class="co">-- When not needed, they can be removed. Example usage:</span></span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bw` - completely wipeout current buffer (see `:h :bwipeout`)</span></span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bW` - completely wipeout current buffer even if it has changes</span></span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;bd` - delete current buffer (see `:h :bdelete`)</span></span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.bufremove'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a><span class="co">-- Show next key clues in a bottom right window. Requires explicit opt-in for</span></span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a><span class="co">-- keys that act as clue trigger. Example usage:</span></span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;Leader&gt;` and wait for 1 second. A window with information about</span></span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a><span class="co">--   next available keys should appear.</span></span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press one of the listed keys. Window updates immediately to show information</span></span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a><span class="co">--   about new next available keys. You can press `&lt;BS&gt;` to go back in key sequence.</span></span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press keys until they resolve into some mapping.</span></span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note: it is designed to work in buffers for normal files. It doesn't work in</span></span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a><span class="co">-- special buffers (like for 'mini.starter' or 'mini.files') to not conflict</span></span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a><span class="co">-- with its local mappings.</span></span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue-examples` - examples of common setups</span></span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue.ensure_buf_triggers()` - use it to enable triggers in buffer</span></span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniClue.set_mapping_desc()` - change mapping description not from config</span></span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">miniclue</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.clue'</span><span class="op">)</span></span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- stylua: ignore</span></span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a>  <span class="va">miniclue</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Define which clues to show. By default shows only clues for custom mappings</span></span>
+<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- (uses `desc` field from the mapping; takes precedence over custom clue).</span></span>
+<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>    <span class="va">clues</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- This is defined in 'plugin/20_keymaps.lua' with Leader group descriptions</span></span>
+<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>      <span class="va">Config</span><span class="op">.</span><span class="va">leader_group_clues</span><span class="op">,</span></span>
+<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>builtin_completion<span class="op">(),</span></span>
+<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>g<span class="op">(),</span></span>
+<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>marks<span class="op">(),</span></span>
+<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>registers<span class="op">(),</span></span>
+<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>square_brackets<span class="op">(),</span></span>
+<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- This creates a submode for window resize mappings. Try the following:</span></span>
+<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Press `&lt;C-w&gt;s` to make a window split.</span></span>
+<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Press `&lt;C-w&gt;+` to increase height. Clue window still shows clues as if</span></span>
+<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a>      <span class="co">--   `&lt;C-w&gt;` is pressed again. Keep pressing just `+` to increase height.</span></span>
+<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a>      <span class="co">--   Try pressing `-` to decrease height.</span></span>
+<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- - Stop submode either by `&lt;Esc&gt;` or by any key that is not in submode.</span></span>
+<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>windows<span class="op">({</span> <span class="va">submode_resize</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}),</span></span>
+<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a>      <span class="va">miniclue</span><span class="op">.</span><span class="va">gen_clues</span><span class="op">.</span>z<span class="op">(),</span></span>
+<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Explicitly opt-in for set of common keys to trigger clue window</span></span>
+<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a>    <span class="va">triggers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;Leader&gt;'</span> <span class="op">},</span> <span class="co">-- Leader triggers</span></span>
+<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'n'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'</span><span class="sc">\\</span><span class="st">'</span> <span class="op">},</span>       <span class="co">-- mini.basics</span></span>
+<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'['</span> <span class="op">},</span>        <span class="co">-- mini.bracketed</span></span>
+<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">']'</span> <span class="op">},</span></span>
+<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'i'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-x&gt;'</span> <span class="op">},</span>    <span class="co">-- Built-in completion</span></span>
+<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'g'</span> <span class="op">},</span>        <span class="co">-- `g` key</span></span>
+<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">"'"</span> <span class="op">},</span>        <span class="co">-- Marks</span></span>
+<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'`'</span> <span class="op">},</span></span>
+<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'"'</span> <span class="op">},</span>        <span class="co">-- Registers</span></span>
+<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'i'</span><span class="op">,</span> <span class="st">'c'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-r&gt;'</span> <span class="op">},</span></span>
+<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span>   <span class="st">'n'</span><span class="op">,</span>        <span class="va">keys</span> <span class="op">=</span> <span class="st">'&lt;C-w&gt;'</span> <span class="op">},</span>    <span class="co">-- Window commands</span></span>
+<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'s'</span> <span class="op">},</span>        <span class="co">-- `s` key (mini.surround, etc.)</span></span>
+<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> <span class="va">mode</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'x'</span> <span class="op">},</span> <span class="va">keys</span> <span class="op">=</span> <span class="st">'z'</span> <span class="op">},</span>        <span class="co">-- `z` key</span></span>
+<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a><span class="co">-- Command line tweaks. Improves command line editing with:</span></span>
+<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autocompletion. Basically an automated `:h cmdline-completion`.</span></span>
+<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autocorrection of words as-you-type. Like `:W`-&gt;`:w`, `:lau`-&gt;`:lua`, etc.</span></span>
+<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Autopeek command range (like line number at the start) as-you-type.</span></span>
+<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.cmdline'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tweak and save any color scheme. Contains utility functions to work with</span></span>
+<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a><span class="co">-- color spaces and color schemes. Example usage:</span></span>
+<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:Colorscheme default` - switch with animation to the default color scheme</span></span>
+<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.interactive()` - interactively tweak color scheme</span></span>
+<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-recipes` - common recipes to use during interactive tweaking</span></span>
+<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.convert()` - convert between color spaces</span></span>
+<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-color-spaces` - list of supported color sapces</span></span>
 <span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ed` - open current working directory</span></span>
-<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ef` - open directory of current file (needs to be present on disk)</span></span>
-<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a><span class="co">-- Basic navigation:</span></span>
-<span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `l` - go in entry at cursor: navigate into directory or open file</span></span>
-<span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `h` - go out of focused directory</span></span>
-<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Navigate window as any regular buffer</span></span>
-<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `g?` inside explorer to see more mappings</span></span>
-<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a><span class="co">-- Basic manipulation:</span></span>
-<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a><span class="co">-- - After any following action, press `=` in Normal mode to synchronize, read</span></span>
-<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="co">--   carefully about actions, press `y` or `&lt;CR&gt;` to confirm</span></span>
-<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a><span class="co">-- - New entry: press `o` and type its name; end with `/` to create directory</span></span>
-<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Rename: press `C` and type new name</span></span>
-<span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Delete: type `dd`</span></span>
-<span id="cb5-443"><a href="#cb5-443" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Move/copy: type `dd`/`yy`, navigate to target directory, press `p`</span></span>
+<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because it is not really needed on a daily basis.</span></span>
+<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
+<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.colors').setup() end)</span></span>
+<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a><span class="co">-- Comment lines. Provides functionality to work with commented lines.</span></span>
+<span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uses `:h 'commentstring'` option to infer comment structure.</span></span>
+<span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gcip` - toggle comment (`gc`) *i*inside *p*aragraph</span></span>
+<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vapgc` - *v*isually select *a*round *p*aragraph and toggle comment (`gc`)</span></span>
+<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gcgc` - uncomment (`gc`, operator) comment block at cursor (`gc`, textobject)</span></span>
+<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a><span class="co">-- The built-in `:h commenting` is based on 'mini.comment'. Yet this module is</span></span>
+<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="co">-- still enabled as it provides more customization opportunities.</span></span>
+<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.comment'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a><span class="co">-- Autohighlight word under cursor with a customizable delay.</span></span>
+<span id="cb5-443"><a href="#cb5-443" aria-hidden="true" tabindex="-1"></a><span class="co">-- Word boundaries are defined based on `:h 'iskeyword'` option.</span></span>
 <span id="cb5-444"><a href="#cb5-444" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-445"><a href="#cb5-445" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-446"><a href="#cb5-446" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-navigation` - more details about how to navigate</span></span>
-<span id="cb5-447"><a href="#cb5-447" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-manipulation` - more details about how to manipulate</span></span>
-<span id="cb5-448"><a href="#cb5-448" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniFiles-examples` - examples of common setups</span></span>
-<span id="cb5-449"><a href="#cb5-449" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-450"><a href="#cb5-450" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Enable directory/file preview</span></span>
-<span id="cb5-451"><a href="#cb5-451" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.files'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span> <span class="va">preview</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span> <span class="op">})</span></span>
-<span id="cb5-452"><a href="#cb5-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-453"><a href="#cb5-453" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add common bookmarks for every explorer. Example usage inside explorer:</span></span>
-<span id="cb5-454"><a href="#cb5-454" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `'c` to navigate into your config directory</span></span>
-<span id="cb5-455"><a href="#cb5-455" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - `g?` to see available bookmarks</span></span>
-<span id="cb5-456"><a href="#cb5-456" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">add_marks</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-457"><a href="#cb5-457" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'c'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'config'</span><span class="op">),</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Config'</span> <span class="op">})</span></span>
-<span id="cb5-458"><a href="#cb5-458" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">vimpack_plugins</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'data'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'/site/pack/core/opt'</span></span>
-<span id="cb5-459"><a href="#cb5-459" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'p'</span><span class="op">,</span> <span class="va">vimpack_plugins</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Plugins'</span> <span class="op">})</span></span>
-<span id="cb5-460"><a href="#cb5-460" aria-hidden="true" tabindex="-1"></a>    <span class="va">MiniFiles</span><span class="op">.</span>set_bookmark<span class="op">(</span><span class="st">'w'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span><span class="va">getcwd</span><span class="op">,</span> <span class="op">{</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Working directory'</span> <span class="op">})</span></span>
-<span id="cb5-461"><a href="#cb5-461" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
-<span id="cb5-462"><a href="#cb5-462" aria-hidden="true" tabindex="-1"></a>  <span class="va">Config</span><span class="op">.</span>new_autocmd<span class="op">(</span><span class="st">'User'</span><span class="op">,</span> <span class="st">'MiniFilesExplorerOpen'</span><span class="op">,</span> <span class="va">add_marks</span><span class="op">,</span> <span class="st">'Add bookmarks'</span><span class="op">)</span></span>
-<span id="cb5-463"><a href="#cb5-463" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-445"><a href="#cb5-445" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because its effects are a matter of taste.</span></span>
+<span id="cb5-446"><a href="#cb5-446" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
+<span id="cb5-447"><a href="#cb5-447" aria-hidden="true" tabindex="-1"></a><span class="co">-- later(function() require('mini.cursorword').setup() end)</span></span>
+<span id="cb5-448"><a href="#cb5-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-449"><a href="#cb5-449" aria-hidden="true" tabindex="-1"></a><span class="co">-- Work with diff hunks that represent the difference between the buffer text and</span></span>
+<span id="cb5-450"><a href="#cb5-450" aria-hidden="true" tabindex="-1"></a><span class="co">-- some reference text set by a source. Default source uses text from Git index.</span></span>
+<span id="cb5-451"><a href="#cb5-451" aria-hidden="true" tabindex="-1"></a><span class="co">-- Also provides summary info used in developer section of 'mini.statusline'.</span></span>
+<span id="cb5-452"><a href="#cb5-452" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-453"><a href="#cb5-453" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ghip` - apply hunks (`gh`) within *i*nside *p*aragraph</span></span>
+<span id="cb5-454"><a href="#cb5-454" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gHG` - reset hunks (`gH`) from cursor until end of buffer (`G`)</span></span>
+<span id="cb5-455"><a href="#cb5-455" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `ghgh` - apply (`gh`) hunk at cursor (`gh`)</span></span>
+<span id="cb5-456"><a href="#cb5-456" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gHgh` - reset (`gH`) hunk at cursor (`gh`)</span></span>
+<span id="cb5-457"><a href="#cb5-457" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;go` - toggle overlay</span></span>
+<span id="cb5-458"><a href="#cb5-458" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-459"><a href="#cb5-459" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-460"><a href="#cb5-460" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff-overview` - overview of how module works</span></span>
+<span id="cb5-461"><a href="#cb5-461" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff-diff-summary` - available summary information</span></span>
+<span id="cb5-462"><a href="#cb5-462" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniDiff.gen_source` - available built-in sources</span></span>
+<span id="cb5-463"><a href="#cb5-463" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.diff'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
 <span id="cb5-464"><a href="#cb5-464" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-465"><a href="#cb5-465" aria-hidden="true" tabindex="-1"></a><span class="co">-- Git integration for more straightforward Git actions based on Neovim's state.</span></span>
 <span id="cb5-466"><a href="#cb5-466" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not meant as a fully featured Git client, only to provide helpers that</span></span>

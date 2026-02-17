@@ -401,6 +401,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Lines with <code>-</code> are removed from <code>nvim-0.11</code> config file.</li>
 <li>Lines with <code>+</code> are added into <code>nvim-0.12</code> config file.</li>
 </ul>
+<p>Notes:</p>
+<ul>
+<li><p><code>nvim-0.12</code> moves from ‘mini.deps’ to <code>vim.pack</code> as its plugin manager. Make sure to remove all plugins installed the previous way to not have plugin conflicts. They are located in ‘<code>$XDG_DATA_HOME</code>/<code>$NVIM_APPNAME</code>/site/pack/deps/’ directory (<code>$NVIM_APPNAME</code> is usually <code>nvim</code> or <code>nvim-minimax</code>).</p>
+<p>For example, from the active Neovim instance run <code>:call delete(stdpath('data') . '/site/pack/deps', 'rf')</code></p></li>
+</ul>
 <section id="init.lua" class="level4">
 <h4 class="anchored" data-anchor-id="init.lua">init.lua</h4>
 <details>
@@ -578,7 +583,7 @@ Diff
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">-local now, later = MiniDeps.now, MiniDeps.later</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">-local now_if_args = Config.now_if_args</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">+local now, now_if_args, later = Config.now, Config.now_if_args, Config.later</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -459,2 +458,2 @@</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -232,2 +231,2 @@</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">-    local minideps_plugins = vim.fn.stdpath('data') .. '/site/pack/deps/opt'</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="an">-    MiniFiles.set_bookmark('p', minideps_plugins, { desc = 'Plugins' })</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">+    local vimpack_plugins = vim.fn.stdpath('data') .. '/site/pack/core/opt'</span></span>
