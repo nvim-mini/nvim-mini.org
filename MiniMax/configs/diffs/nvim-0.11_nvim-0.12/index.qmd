@@ -16,6 +16,12 @@ In short:
 - Lines with `-` are removed from `nvim-0.11` config file.
 - Lines with `+` are added into `nvim-0.12` config file.
 
+Notes:
+
+- `nvim-0.12` moves from 'mini.deps' to `vim.pack` as its plugin manager. Make sure to remove all plugins installed the previous way to not have plugin conflicts. They are located in '`$XDG_DATA_HOME`/`$NVIM_APPNAME`/site/pack/deps/' directory (`$NVIM_APPNAME` is usually `nvim` or `nvim-minimax`).
+
+    For example, from the active Neovim instance run `:call delete(stdpath('data') . '/site/pack/deps', 'rf')`
+
 #### init.lua {#init.lua}
 
 <details><summary>Diff</summary>

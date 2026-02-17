@@ -111,7 +111,7 @@ local append_diff = function(lines, from, to)
   append_diff_content(lines, from, to, 'after')
 end
 
-local make_one_config_diff = function(from, to)
+local make_one_config_diff = function(from, to, notes)
   local title = string.format('Moving from `%s` to `%s`', from, to)
 
   local from_link = string.format('[`%s`](../../%s/index.qmd)', from, from)
@@ -131,6 +131,10 @@ local make_one_config_diff = function(from, to)
     string.format('- Lines with `-` are removed from `%s` config file.', from),
     string.format('- Lines with `+` are added into `%s` config file.', to),
   }
+  if notes ~= nil then
+    vim.list_extend(lines, { '', 'Notes:', '' })
+    vim.list_extend(lines, notes)
+  end
 
   append_diff(lines, from, to)
   add_source_note(lines, 'MiniMax')
@@ -147,7 +151,16 @@ local make_config_diffs = function()
   vim.fn.mkdir(diffs_path, 'p')
 
   make_one_config_diff('nvim-0.10', 'nvim-0.11')
-  make_one_config_diff('nvim-0.11', 'nvim-0.12')
+
+  local nvim_012_notes = {
+    "- `nvim-0.12` moves from 'mini.deps' to `vim.pack` as its plugin manager."
+      .. ' Make sure to remove all plugins installed the previous way to not have plugin conflicts.'
+      .. " They are located in '`$XDG_DATA_HOME`/`$NVIM_APPNAME`/site/pack/deps/' directory"
+      .. ' (`$NVIM_APPNAME` is usually `nvim` or `nvim-minimax`).',
+    '',
+    "    For example, from the active Neovim instance run `:call delete(stdpath('data') . '/site/pack/deps', 'rf')`",
+  }
+  make_one_config_diff('nvim-0.11', 'nvim-0.12', nvim_012_notes)
 end
 
 local _, err_msg_config_diffs = pcall(make_config_diffs)
