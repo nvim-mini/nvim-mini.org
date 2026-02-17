@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-02-17 {#2026-02-17}
+
+- Update 'mini.files' setup to use `now_if_args` instead of `later`. Otherwise it doesn't override `netrw` as the default explorer when starting Neovim like `nvim .`.
+
 ## 2026-02-15 {#2026-02-15}
 
 - Update 'nvim-treesitter/nvim-treesitter-textobjects' plugin to not explicitly use `main` branch as it is now the default.
