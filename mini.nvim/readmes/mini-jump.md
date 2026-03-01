@@ -39,7 +39,7 @@ Initial idea and implementation by [Adam Blažek](https://github.com/xigoi).
 - Extend f, F, t, T to work on multiple lines.
 - Repeat jump by pressing f, F, t, T again. It is reset when cursor moved as a result of not jumping or timeout after idle time (duration customizable).
 - Highlight (after customizable delay) all possible target characters and stop it after some (customizable) idle time.
-- Normal, Visual, and Operator-pending (with full dot-repeat) modes are supported.
+- Normal, Visual, and Operator-pending (with dot-repeat as in clean Neovim) modes are supported.
 
 ## Installation
 
