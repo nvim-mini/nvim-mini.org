@@ -767,7 +767,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick-overview-implementationdetails" class="level4">
 <h4 class="anchored" data-anchor-id="minipick-overview-implementationdetails">Implementation details</h4>
 <ul>
-<li><p>Processing key typing is done via a dedicated key query process for more control over their side effects. As a result, regular mappings don’t work here and picker’s window needs to be current as long as it is shown. Changing window focus leads to automatic picker stop (after small delay).</p></li>
+<li><p>Processing key typing is done via a dedicated key query process for more control over their side effects. As a result, regular mappings don’t work here and picker’s window needs to be current as long as it is shown. Changing window focus leads to automatic picker stop (after small delay). Not picker related screen changes require explicit <a href="https://neovim.io/doc/user/helptag.html?tag=:redraw">:redraw</a>.</p></li>
 <li><p>Any picker is non-blocking but waits to return the chosen item. Example: <code>file = MiniPick.builtin.files()</code> allows other actions to be executed when picker is shown while still assigning <code>file</code> with value of the chosen item.</p></li>
 </ul>
 <hr>
@@ -1258,7 +1258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minipick.config-delays" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.config-delays">Delays</h4>
 <p><code>config.delay</code> defines plugin delays (in ms). All should be strictly positive.</p>
-<p><code>delay.async</code> is a delay between forcing asynchronous behavior. This usually means making screen redraws and utilizing <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a> (for example, to stop current matching if query has updated). Smaller values give smoother user experience at the cost of more computations.</p>
+<p><code>delay.async</code> is a delay between forcing asynchronous behavior. This usually means forcing <a href="https://neovim.io/doc/user/helptag.html?tag=:redraw">:redraw</a> in preview (several but limited number of times to ensure visible async highlighting) and using <a href="../../mini.nvim/doc/mini-pick.html#minipick.poke_is_picker_active">MiniPick.poke_is_picker_active()</a> (for example, to stop current matching if query has updated). Smaller values give smoother user experience at the cost of more computations.</p>
 <p><code>delay.busy</code> is a delay between when some computation starts and showing visual feedback about it by making window border to have <code>MiniPickBorderBusy</code> highlight group. Smaller values will give feedback faster at the cost of feeling like flicker.</p>
 </section>
 <section id="minipick.config-mappings" class="level4">
