@@ -326,6 +326,7 @@ milliseconds of idle time.
   control over their side effects. As a result, regular mappings don't work
   here and picker's window needs to be current as long as it is shown.
   Changing window focus leads to automatic picker stop (after small delay).
+  Not picker related screen changes require explicit [:redraw](https://neovim.io/doc/user/helptag.html?tag=:redraw).
 
 - Any picker is non-blocking but waits to return the chosen item. Example:
   `file = MiniPick.builtin.files()` allows other actions to be executed when
@@ -1086,7 +1087,8 @@ See [MiniPick.ui\_select()](mini-pick.qmd#minipick.ui_select).
 `config.delay` defines plugin delays (in ms). All should be strictly positive.
 
 `delay.async` is a delay between forcing asynchronous behavior. This usually
-means making screen redraws and utilizing [MiniPick.poke\_is\_picker\_active()](mini-pick.qmd#minipick.poke_is_picker_active)
+means forcing [:redraw](https://neovim.io/doc/user/helptag.html?tag=:redraw) in preview (several but limited number of times to
+ensure visible async highlighting) and using [MiniPick.poke\_is\_picker\_active()](mini-pick.qmd#minipick.poke_is_picker_active)
 (for example, to stop current matching if query has updated).
 Smaller values give smoother user experience at the cost of more computations.
 
