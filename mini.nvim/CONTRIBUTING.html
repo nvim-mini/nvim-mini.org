@@ -42,8 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2340dc3d84c2292709c2bc9a48df96e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a6c58798d87e8f1a74aa0ab11dab83cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-74ae308b9e7cc409d2b8d37deda99c02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7fc9b8534761acc3961e5f1167af06b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="commit-messages">Commit messages</h2>
 <ul>
 <li><p>Try to make commit message as concise as possible while giving enough information about nature of a change. Think about whether it will be easy to understand in one year time when browsing through commit history.</p></li>
-<li><p>Single commit should change either zero or one module, or affect all modules (i.e.&nbsp;enforcing some universal rule but not necessarily change files). Changes for two or more modules should be split in several module-specific commits.</p></li>
+<li><p>Single commit should change either one modules (usually the case), zero modules (i.e.&nbsp;changing project level documentation), or all modules (i.e.&nbsp;enforcing some universal rule). Changes for two or more modules should be split in several module-specific commits.</p></li>
 <li><p>Use <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional commits</a> style:</p>
 <ul>
 <li><p>Messages should have the following structure:</p>
@@ -389,8 +389,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p><code>[optional scope]</code>, if present, should be done in parenthesis <code>()</code>. If commit changes single module (as it usually should), using scope with module name is <strong>mandatory</strong>. If commit enforces something for all modules, use <code>ALL</code> scope.</p></li>
 <li><p>Breaking change, if present, should be expressed with <code>!</code> before <code>:</code>.</p></li>
 <li><p><code>&lt;description&gt;</code> is a change overview in imperative, present tense (“change” not “changed” nor “changes”). Should result into first line under 72 characters. Should start with not capitalized word and NOT end with sentence ending punctuation (i.e.&nbsp;one of <code>.,?!;</code>).</p></li>
-<li><p><code>[optional body]</code>, if present, should contain details and motivation about the change in plain language. Should be formatted to have maximum 80 characters in line.</p></li>
-<li><p><code>[optional footer(s)]</code>, if present, should be instruction(s) to Git or Github. Use “Resolve #xxx” on separate line if this commit resolves issue or PR.</p></li>
+<li><p><code>[optional body]</code>, if present, should contain <em>a list</em> with details and motivation about the change in plain language. Should start with mandatory <code>Details:</code> line, as it might help to parse the body better. Each line should have maximum 80 characters. List’s bullet points should be formatted with a two space indent.</p></li>
+<li><p><code>[optional footer(s)]</code>, if present, should be instruction(s) to Git or Github. Use “Resolve #xxx” or “Related to #yyy” on a separate line if this commit resolves/relates to issue/PR. Prefer GitHub instructions first (like <code>Resolve #xxx</code> and <code>Related to #yyy</code>), then Git ones (like <code>Co-authored-by: Neo McVim &lt;neo.mcvim@email.com&gt;</code>).</p></li>
 </ul></li>
 <li><p>Use module’s function and field names without module’s name. Like <code>add()</code> and not <code>MiniSurround.add()</code>.</p></li>
 </ul>
@@ -398,14 +398,21 @@ ul.task-list li input[type="checkbox"] {
 <pre><code>feat(deps): add folds in update confirmation buffer</code></pre>
 <pre><code>fix(jump): make operator not delete one character if target is not found
 
-One main goal is to do that in a dot-repeatable way, because this is very
-likely to be repeated after an unfortunate first try.
+Details:
+- One main goal is to do that in a dot-repeatable way, because this is very
+  likely to be repeated after an unfortunate first try.
 
-Resolve #688</code></pre>
+- This happens because expression mapping returns expression `v&lt;Cmd&gt;...&lt;CR&gt;`.
+  If the command does nothing, `v` is still effectively selects single cell.
+
+Resolve #688
+
+Co-authored-by: Neo McVim &lt;neo.mcvim@gmail.com&gt;</code></pre>
 <pre><code>refactor(bracketed): do not source 'vim.treesitter' on `require()`
 
-Although less explicit, this considerably reduces startup footprint of
-'mini.bracketed' in isolation.</code></pre>
+Details:
+- Although less explicit, this considerably reduces startup footprint of
+  'mini.bracketed' in isolation.</code></pre>
 <pre><code>feat(hues)!: update verbatim text to be distinctive</code></pre>
 <pre><code>test(ALL): update screenshots to work on Nightly</code></pre>
 <section id="automated-commit-linting" class="level3">

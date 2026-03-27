@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2340dc3d84c2292709c2bc9a48df96e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a6c58798d87e8f1a74aa0ab11dab83cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-74ae308b9e7cc409d2b8d37deda99c02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7fc9b8534761acc3961e5f1167af06b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -511,7 +511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from ‘runtimepath’ (“colors” inside your Neovim config directory is usually enough).</p></li>
 <li><p>Inside “myscheme.lua” call <code>require('mini.hues').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to “myscheme”.</p></li>
 </ul></li>
-<li><p>This module doesn’t define <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a> for implementation simplicity. Use <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a> module, <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes">MiniColors-colorscheme:add_cterm_attributes()</a> in particular.</p></li>
+<li><p>This module doesn’t define <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a> for implementation simplicity. It only works if <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a> is enabled (should be done automatically if the terminal emulator supporst 24-bit colors). If not possible, use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes">MiniColors-colorscheme:add_cterm_attributes()</a> from <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a> to define custom color scheme with 16-color support.</p></li>
 </ul>
 <hr>
 </section>

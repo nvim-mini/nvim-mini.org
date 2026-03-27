@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2340dc3d84c2292709c2bc9a48df96e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a6c58798d87e8f1a74aa0ab11dab83cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-74ae308b9e7cc409d2b8d37deda99c02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7fc9b8534761acc3961e5f1167af06b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -387,6 +387,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#v0.18.0-mini.pick-expand" id="toc-v0.18.0-mini.pick-expand" class="nav-link" data-scroll-target="#v0.18.0-mini.pick-expand">Expand</a></li>
   <li><a href="#v0.18.0-mini.pick-refine" id="toc-v0.18.0-mini.pick-refine" class="nav-link" data-scroll-target="#v0.18.0-mini.pick-refine">Refine</a></li>
+  </ul></li>
+  <li><a href="#v0.18.0-mini.sessions" id="toc-v0.18.0-mini.sessions" class="nav-link" data-scroll-target="#v0.18.0-mini.sessions">mini.sessions</a>
+  <ul>
+  <li><a href="#v0.18.0-mini.sessions-expand" id="toc-v0.18.0-mini.sessions-expand" class="nav-link" data-scroll-target="#v0.18.0-mini.sessions-expand">Expand</a></li>
   </ul></li>
   <li><a href="#v0.18.0-mini.surround" id="toc-v0.18.0-mini.surround" class="nav-link" data-scroll-target="#v0.18.0-mini.surround">mini.surround</a>
   <ul>
@@ -1336,7 +1340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="v0.18.0-mini.pick-expand" class="level3">
 <h3 class="anchored" data-anchor-id="v0.18.0-mini.pick-expand">Expand</h3>
 <ul>
-<li>Allow <code>source.preview</code> to directly set another buffer into picker’s main window. The recommended way is still to adjust the provided <code>buf_id</code> buffer, but there is now a workaround if this is not reasonably possible.</li>
+<li><p>Allow <code>source.preview</code> to directly set another buffer into picker’s main window. The recommended way is still to adjust the provided <code>buf_id</code> buffer, but there is now a workaround if this is not reasonably possible.</p></li>
+<li><p>Describe alternative move keys (<code>&lt;Down&gt;</code>, <code>&lt;Up&gt;</code>, <code>&lt;Home&gt;</code>) as “hard-coded but overridable” (instead of a previous not very precise “non-overridable”) and show them in the info view.</p></li>
 </ul>
 </section>
 <section id="v0.18.0-mini.pick-refine" class="level3">
@@ -1344,6 +1349,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Stop forcing redraw every <code>config.delay.async</code> milliseconds while the picker is active. It added visible CPU usage and code/test lines for its benefit (mostly to show “background” changes/notifications).</p>
 <p>One side effect of this is that previews with an asynchronous highlighting (like after <code>vim.treesitter.start()</code>) might require extra care. There are built-in several (but limited) number of explicit <code>:redraw</code> with <code>config.delay.async</code> milliseconds apart. If that is not enough, make sure to explicitly redraw when needed.</p></li>
+</ul>
+</section>
+</section>
+<section id="v0.18.0-mini.sessions" class="level2">
+<h2 class="anchored" data-anchor-id="v0.18.0-mini.sessions">mini.sessions</h2>
+<section id="v0.18.0-mini.sessions-expand" class="level3">
+<h3 class="anchored" data-anchor-id="v0.18.0-mini.sessions-expand">Expand</h3>
+<ul>
+<li>Add <code>restart()</code> function that restarts Neovim&gt;=0.12 while preserving current session.</li>
 </ul>
 </section>
 </section>
