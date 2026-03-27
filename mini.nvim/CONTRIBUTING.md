@@ -23,7 +23,7 @@ All well-intentioned, polite, and respectful contributions are always welcome! T
 
 - Try to make commit message as concise as possible while giving enough information about nature of a change. Think about whether it will be easy to understand in one year time when browsing through commit history.
 
-- Single commit should change either zero or one module, or affect all modules (i.e. enforcing some universal rule but not necessarily change files). Changes for two or more modules should be split in several module-specific commits.
+- Single commit should change either one modules (usually the case), zero modules (i.e. changing project level documentation), or all modules (i.e. enforcing some universal rule). Changes for two or more modules should be split in several module-specific commits.
 
 - Use [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) style:
     - Messages should have the following structure:
@@ -48,8 +48,8 @@ All well-intentioned, polite, and respectful contributions are always welcome! T
     - `[optional scope]`, if present, should be done in parenthesis `()`. If commit changes single module (as it usually should), using scope with module name is **mandatory**. If commit enforces something for all modules, use `ALL` scope.
     - Breaking change, if present, should be expressed with `!` before `:`.
     - `<description>` is a change overview in imperative, present tense ("change" not "changed" nor "changes"). Should result into first line under 72 characters. Should start with not capitalized word and NOT end with sentence ending punctuation (i.e. one of `.,?!;`).
-    - `[optional body]`, if present, should contain details and motivation about the change in plain language. Should be formatted to have maximum 80 characters in line.
-    - `[optional footer(s)]`, if present, should be instruction(s) to Git or Github. Use "Resolve #xxx" on separate line if this commit resolves issue or PR.
+    - `[optional body]`, if present, should contain *a list* with details and motivation about the change in plain language. Should start with mandatory `Details:` line, as it might help to parse the body better. Each line should have maximum 80 characters. List's bullet points should be formatted with a two space indent.
+    - `[optional footer(s)]`, if present, should be instruction(s) to Git or Github. Use "Resolve #xxx" or "Related to #yyy" on a separate line if this commit resolves/relates to issue/PR. Prefer GitHub instructions first (like `Resolve #xxx` and `Related to #yyy`), then Git ones (like `Co-authored-by: Neo McVim <neo.mcvim@email.com>`).
 
 - Use module's function and field names without module's name. Like `add()` and not `MiniSurround.add()`.
 
@@ -62,17 +62,24 @@ feat(deps): add folds in update confirmation buffer
 ```
 fix(jump): make operator not delete one character if target is not found
 
-One main goal is to do that in a dot-repeatable way, because this is very
-likely to be repeated after an unfortunate first try.
+Details:
+- One main goal is to do that in a dot-repeatable way, because this is very
+  likely to be repeated after an unfortunate first try.
+
+- This happens because expression mapping returns expression `v<Cmd>...<CR>`.
+  If the command does nothing, `v` is still effectively selects single cell.
 
 Resolve #688
+
+Co-authored-by: Neo McVim <neo.mcvim@gmail.com>
 ```
 
 ```
 refactor(bracketed): do not source 'vim.treesitter' on `require()`
 
-Although less explicit, this considerably reduces startup footprint of
-'mini.bracketed' in isolation.
+Details:
+- Although less explicit, this considerably reduces startup footprint of
+  'mini.bracketed' in isolation.
 ```
 
 ```

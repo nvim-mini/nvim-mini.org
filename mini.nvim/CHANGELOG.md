@@ -68,11 +68,19 @@ There are following change types:
 
 - Allow `source.preview` to directly set another buffer into picker's main window. The recommended way is still to adjust the provided `buf_id` buffer, but there is now a workaround if this is not reasonably possible.
 
+- Describe alternative move keys (`<Down>`, `<Up>`, `<Home>`) as "hard-coded but overridable" (instead of a previous not very precise "non-overridable") and show them in the info view.
+
 ### Refine {#v0.18.0-mini.pick-refine}
 
 - Stop forcing redraw every `config.delay.async` milliseconds while the picker is active. It added visible CPU usage and code/test lines for its benefit (mostly to show "background" changes/notifications).
 
     One side effect of this is that previews with an asynchronous highlighting (like after `vim.treesitter.start()`) might require extra care. There are built-in several (but limited) number of explicit `:redraw` with `config.delay.async` milliseconds apart. If that is not enough, make sure to explicitly redraw when needed.
+
+## mini.sessions {#v0.18.0-mini.sessions}
+
+### Expand {#v0.18.0-mini.sessions-expand}
+
+- Add `restart()` function that restarts Neovim>=0.12 while preserving current session.
 
 ## mini.surround {#v0.18.0-mini.surround}
 

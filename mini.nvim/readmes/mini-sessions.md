@@ -39,6 +39,7 @@ If you want to help this project grow but don't know where to start, check out [
 - No automated new session creation. Use [`MiniSessions.write()`](../doc/mini-sessions.qmd#minisessions.write) manually.
 - Autoread default session (local if detected, else latest written global) if Neovim was called without intention to show something else.
 - Autowrite currently read session before quitting Neovim.
+- Restart Neovim preserving current session (requires Neovim>=0.12).
 - Configurable severity level of all actions.
 
 ## Installation
