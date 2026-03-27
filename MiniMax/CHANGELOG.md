@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-03-27 {#2026-03-27}
+
+- Add a `<Leader>ll` mapping for running codelens.
+
 ## 2026-02-17 {#2026-02-17}
 
 - Update 'mini.files' setup to use `now_if_args` instead of `later`. Otherwise it doesn't override `netrw` as the default explorer when starting Neovim like `nvim .`.
