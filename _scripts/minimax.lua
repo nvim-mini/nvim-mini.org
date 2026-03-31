@@ -161,6 +161,8 @@ local make_config_diffs = function()
     "    For example, from the active Neovim instance run `:call delete(stdpath('data') . '/site/pack/deps', 'rf')`",
   }
   make_one_config_diff('nvim-0.11', 'nvim-0.12', nvim_012_notes)
+
+  make_one_config_diff('nvim-0.12', 'nvim-0.13')
 end
 
 local _, err_msg_config_diffs = pcall(make_config_diffs)
