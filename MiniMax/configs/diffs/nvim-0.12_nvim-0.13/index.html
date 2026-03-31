@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>changelog – MINI</title>
+<title>Moving from nvim-0.12 to nvim-0.13 – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-74ae308b9e7cc409d2b8d37deda99c02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7fc9b8534761acc3961e5f1167af06b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-74ae308b9e7cc409d2b8d37deda99c02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-7fc9b8534761acc3961e5f1167af06b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,13 +109,13 @@ ul.task-list li input[type="checkbox"] {
 <style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="MINI">
+<meta property="og:title" content="Moving from nvim-0.12 to nvim-0.13 – MINI">
 <meta property="og:description" content="Modular Independent Neovim Improvements">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="MINI">
+<meta name="twitter:title" content="Moving from nvim-0.12 to nvim-0.13 – MINI">
 <meta name="twitter:description" content="Modular Independent Neovim Improvements">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta name="twitter:image-height" content="630">
@@ -264,9 +299,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">MINI</span>
     </a>
   </div>
@@ -277,15 +312,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../mini.nvim/index.html"> 
+    <a class="nav-link" href="../../../../mini.nvim/index.html"> 
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../MiniMax/index.html"> 
+    <a class="nav-link" href="../../../../MiniMax/index.html"> 
 <span class="menu-text">MiniMax</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
+    <a class="nav-link" href="../../../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -296,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+    <a class="nav-link" href="../../../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -317,134 +352,107 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#2026-03-31" id="toc-2026-03-31" class="nav-link active" data-scroll-target="#2026-03-31">2026-03-31</a></li>
-  <li><a href="#2026-03-27" id="toc-2026-03-27" class="nav-link" data-scroll-target="#2026-03-27">2026-03-27</a></li>
-  <li><a href="#2026-02-17" id="toc-2026-02-17" class="nav-link" data-scroll-target="#2026-02-17">2026-02-17</a></li>
-  <li><a href="#2026-02-15" id="toc-2026-02-15" class="nav-link" data-scroll-target="#2026-02-15">2026-02-15</a></li>
-  <li><a href="#2026-02-10" id="toc-2026-02-10" class="nav-link" data-scroll-target="#2026-02-10">2026-02-10</a></li>
-  <li><a href="#2026-01-29" id="toc-2026-01-29" class="nav-link" data-scroll-target="#2026-01-29">2026-01-29</a></li>
-  <li><a href="#2026-01-13" id="toc-2026-01-13" class="nav-link" data-scroll-target="#2026-01-13">2026-01-13</a></li>
-  <li><a href="#2026-01-08" id="toc-2026-01-08" class="nav-link" data-scroll-target="#2026-01-08">2026-01-08</a></li>
-  <li><a href="#2026-01-03" id="toc-2026-01-03" class="nav-link" data-scroll-target="#2026-01-03">2026-01-03</a></li>
-  <li><a href="#2025-12-20" id="toc-2025-12-20" class="nav-link" data-scroll-target="#2025-12-20">2025-12-20</a></li>
-  <li><a href="#2025-12-16" id="toc-2025-12-16" class="nav-link" data-scroll-target="#2025-12-16">2025-12-16</a></li>
-  <li><a href="#2025-11-22" id="toc-2025-11-22" class="nav-link" data-scroll-target="#2025-11-22">2025-11-22</a></li>
-  <li><a href="#2025-10-16" id="toc-2025-10-16" class="nav-link" data-scroll-target="#2025-10-16">2025-10-16</a></li>
-  <li><a href="#2025-10-13" id="toc-2025-10-13" class="nav-link" data-scroll-target="#2025-10-13">2025-10-13</a></li>
+  <li><a href="#moving-from-nvim-0.12-to-nvim-0.13" id="toc-moving-from-nvim-0.12-to-nvim-0.13" class="nav-link active" data-scroll-target="#moving-from-nvim-0.12-to-nvim-0.13">Moving from <code>nvim-0.12</code> to <code>nvim-0.13</code></a>
+  <ul>
+  <li><a href="#init.lua" id="toc-init.lua" class="nav-link" data-scroll-target="#init.lua">init.lua</a></li>
+  <li><a href="#nvim-pack-lock.json" id="toc-nvim-pack-lock.json" class="nav-link" data-scroll-target="#nvim-pack-lock.json">nvim-pack-lock.json</a></li>
+  <li><a href="#plugin-10_options.lua" id="toc-plugin-10_options.lua" class="nav-link" data-scroll-target="#plugin-10_options.lua">plugin/10_options.lua</a></li>
+  <li><a href="#plugin-20_keymaps.lua" id="toc-plugin-20_keymaps.lua" class="nav-link" data-scroll-target="#plugin-20_keymaps.lua">plugin/20_keymaps.lua</a></li>
+  <li><a href="#plugin-30_mini.lua" id="toc-plugin-30_mini.lua" class="nav-link" data-scroll-target="#plugin-30_mini.lua">plugin/30_mini.lua</a></li>
+  <li><a href="#plugin-40_plugins.lua" id="toc-plugin-40_plugins.lua" class="nav-link" data-scroll-target="#plugin-40_plugins.lua">plugin/40_plugins.lua</a></li>
+  <li><a href="#snippets-global.json" id="toc-snippets-global.json" class="nav-link" data-scroll-target="#snippets-global.json">snippets/global.json</a></li>
+  <li><a href="#after-ftplugin-markdown.lua" id="toc-after-ftplugin-markdown.lua" class="nav-link" data-scroll-target="#after-ftplugin-markdown.lua">after/ftplugin/markdown.lua</a></li>
+  <li><a href="#after-lsp-lua_ls.lua" id="toc-after-lsp-lua_ls.lua" class="nav-link" data-scroll-target="#after-lsp-lua_ls.lua">after/lsp/lua_ls.lua</a></li>
+  <li><a href="#after-snippets-lua.json" id="toc-after-snippets-lua.json" class="nav-link" data-scroll-target="#after-snippets-lua.json">after/snippets/lua.json</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Moving from <code>nvim-0.12</code> to <code>nvim-0.13</code></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <p><em>Generated from the <code>main</code> branch of ‘MiniMax’</em></p>
-<section id="2026-03-31" class="level2">
-<h2 class="anchored" data-anchor-id="2026-03-31">2026-03-31</h2>
+<section id="moving-from-nvim-0.12-to-nvim-0.13" class="level3">
+<h3 class="anchored" data-anchor-id="moving-from-nvim-0.12-to-nvim-0.13">Moving from <code>nvim-0.12</code> to <code>nvim-0.13</code></h3>
+<p>This page shows changes when moving from config <a href="../../../../MiniMax/configs/nvim-0.12/index.html"><code>nvim-0.12</code></a> to config <a href="../../../../MiniMax/configs/nvim-0.13/index.html"><code>nvim-0.13</code></a>. They are broken down into per-file differences that are shown in the <a href="https://en.wikipedia.org/wiki/Diff#Unified_format">unified <code>diff</code> format</a>. The suggested usage is to consult this page when updating from <code>nvim-0.12</code> to <code>nvim-0.13</code> to see what is new.</p>
+<p>In short:</p>
 <ul>
-<li><p>Remove the note about unstable status of Neovim 0.12 from <code>nvim-0.12</code> config.</p></li>
-<li><p>Add new reference config <code>nvim-0.13</code> for Neovim&gt;=0.13 (currently under development).</p></li>
+<li>Lines with <code>@</code> show line numbers of where the change is made.</li>
+<li>Lines with <code>-</code> are removed from <code>nvim-0.12</code> config file.</li>
+<li>Lines with <code>+</code> are added into <code>nvim-0.13</code> config file.</li>
 </ul>
+<section id="init.lua" class="level4">
+<h4 class="anchored" data-anchor-id="init.lua">init.lua</h4>
+<details>
+<summary>
+Diff
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode diffhunks code-with-copy"><code class="sourceCode diffhunks"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -0,0 +1,5 @@</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">+-- WARNING: NEOVIM 0.13 IS STILL UNDER DEVELOPMENT AND NOT YET STABLE.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">+-- BE SURE YOU ARE COMFORTABLE WITH KEEPING UP TO DATE DEVELOPMENT VERSION.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">+-- THIS CONFIG IS VERIFIED FOR AT LEAST VERSION `v0.13.0-dev-29+g1bcf2d7f90`.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">+-- WHEN IN DOUBT - UPDATE TO THE LATEST DEVELOPMENT VERSION.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </section>
-<section id="2026-03-27" class="level2">
-<h2 class="anchored" data-anchor-id="2026-03-27">2026-03-27</h2>
-<ul>
-<li>Add a <code>&lt;Leader&gt;ll</code> mapping for running codelens.</li>
-</ul>
+<section id="nvim-pack-lock.json" class="level4">
+<h4 class="anchored" data-anchor-id="nvim-pack-lock.json">nvim-pack-lock.json</h4>
+<p>No difference</p>
 </section>
-<section id="2026-02-17" class="level2">
-<h2 class="anchored" data-anchor-id="2026-02-17">2026-02-17</h2>
-<ul>
-<li>Update ‘mini.files’ setup to use <code>now_if_args</code> instead of <code>later</code>. Otherwise it doesn’t override <code>netrw</code> as the default explorer when starting Neovim like <code>nvim .</code>.</li>
-</ul>
+<section id="plugin-10_options.lua" class="level4">
+<h4 class="anchored" data-anchor-id="plugin-10_options.lua">plugin/10_options.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2026-02-15" class="level2">
-<h2 class="anchored" data-anchor-id="2026-02-15">2026-02-15</h2>
-<ul>
-<li><p>Update ‘nvim-treesitter/nvim-treesitter-textobjects’ plugin to not explicitly use <code>main</code> branch as it is now the default.</p></li>
-<li><p>Add new reference configs:</p>
-<ul>
-<li><code>nvim-0.10</code> - for Neovim&gt;=0.10</li>
-<li><code>nvim-0.12</code> - for Neovim&gt;=0.12.</li>
-</ul></li>
-</ul>
+<section id="plugin-20_keymaps.lua" class="level4">
+<h4 class="anchored" data-anchor-id="plugin-20_keymaps.lua">plugin/20_keymaps.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2026-02-10" class="level2">
-<h2 class="anchored" data-anchor-id="2026-02-10">2026-02-10</h2>
-<ul>
-<li>Update using global variable for config as just <code>Config</code> and not <code>_G.Config</code>. This is more concise and makes it more consistent with how <code>MiniXxx</code> variables are used.</li>
-</ul>
+<section id="plugin-30_mini.lua" class="level4">
+<h4 class="anchored" data-anchor-id="plugin-30_mini.lua">plugin/30_mini.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2026-01-29" class="level2">
-<h2 class="anchored" data-anchor-id="2026-01-29">2026-01-29</h2>
-<ul>
-<li><p>Update ‘mini.completion’ setup to use <code>now_if_args</code> instead of <code>later</code>. Otherwise it doesn’t set proper omnifunc for files opened during startup (because necessary <code>LspAttach</code> events are already triggered).</p></li>
-<li><p>Move setting up ‘mini.nvim’ modules that need <code>now_if_args</code> in a separate “Step one or two” section.</p></li>
-</ul>
+<section id="plugin-40_plugins.lua" class="level4">
+<h4 class="anchored" data-anchor-id="plugin-40_plugins.lua">plugin/40_plugins.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2026-01-13" class="level2">
-<h2 class="anchored" data-anchor-id="2026-01-13">2026-01-13</h2>
-<ul>
-<li>Improve ‘stevearc/conform.nvim’ setup:
-<ul>
-<li>Setup plugin to allow formatting from LSP server if no dedicated formatter is available. This provides more versatile behavior. Previously it was forced in <code>&lt;Leader&gt;lf</code> mapping.</li>
-<li>Use plain <code>require('conform').format()</code> in <code>&lt;Leader&gt;lf</code> keymaps.</li>
-</ul></li>
-</ul>
+<section id="snippets-global.json" class="level4">
+<h4 class="anchored" data-anchor-id="snippets-global.json">snippets/global.json</h4>
+<p>No difference</p>
 </section>
-<section id="2026-01-08" class="level2">
-<h2 class="anchored" data-anchor-id="2026-01-08">2026-01-08</h2>
-<ul>
-<li>Improve keymaps for exploring quickfix list (make implementation shorter and more robust) and location list (add it as <code>&lt;Leader&gt;eQ</code> to compliment <code>&lt;Leader&gt;eq</code> for quickfix).</li>
-</ul>
+<section id="after-ftplugin-markdown.lua" class="level4">
+<h4 class="anchored" data-anchor-id="after-ftplugin-markdown.lua">after/ftplugin/markdown.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2026-01-03" class="level2">
-<h2 class="anchored" data-anchor-id="2026-01-03">2026-01-03</h2>
-<ul>
-<li>Improve ‘mini.clue’ setup:
-<ul>
-<li>Use array <code>mode</code> where possible for a more concise setup.</li>
-<li>Use <code>gen_clues.square_brackets()</code> to show more built-in clues.</li>
-<li>Use <code>s</code> as a trigger. Currently only for ‘mini.surround’ actions, but will be more useful in the future.</li>
-</ul></li>
-</ul>
+<section id="after-lsp-lua_ls.lua" class="level4">
+<h4 class="anchored" data-anchor-id="after-lsp-lua_ls.lua">after/lsp/lua_ls.lua</h4>
+<p>No difference</p>
 </section>
-<section id="2025-12-20" class="level2">
-<h2 class="anchored" data-anchor-id="2025-12-20">2025-12-20</h2>
-<ul>
-<li>Start using ‘mini.cmdline’.</li>
-</ul>
-</section>
-<section id="2025-12-16" class="level2">
-<h2 class="anchored" data-anchor-id="2025-12-16">2025-12-16</h2>
-<ul>
-<li><p>Update ‘nvim-treesitter/nvim-treesitter’ plugin to not explicitly use <code>main</code> branch as it is now the default.</p></li>
-<li><p>Update ‘mason-org/mason.nvim’ example to use <code>now_if_args</code> instead of <code>later</code>. Otherwise LSP server installed via Mason will not yet be available if Neovim is started as <code>nvim -- path/to/file</code>.</p></li>
-</ul>
-</section>
-<section id="2025-11-22" class="level2">
-<h2 class="anchored" data-anchor-id="2025-11-22">2025-11-22</h2>
-<ul>
-<li>Update <code>&lt;Leader&gt;fs</code> mapping to use <code>"workspace_symbol_live"</code> scope for <code>:Pick lsp</code> instead of <code>"workspace_symbol"</code></li>
-</ul>
-</section>
-<section id="2025-10-16" class="level2">
-<h2 class="anchored" data-anchor-id="2025-10-16">2025-10-16</h2>
-<ul>
-<li><p>Move <code>now_if_args</code> startup helper to ‘init.lua’ as <code>Config.now_if_args</code> to be directly usable from other config files.</p></li>
-<li><p>Enable ‘mini.misc’ behind <code>now_if_args</code> instead of <code>now</code>. Otherwise <code>setup_auto_root()</code> and <code>setup_restore_cursor()</code> don’t work on initial file(s) if Neovim is started as <code>nvim -- path/to/file</code>.</p></li>
-</ul>
-</section>
-<section id="2025-10-13" class="level2">
-<h2 class="anchored" data-anchor-id="2025-10-13">2025-10-13</h2>
-<ul>
-<li>Initial release.</li>
-</ul>
+<section id="after-snippets-lua.json" class="level4">
+<h4 class="anchored" data-anchor-id="after-snippets-lua.json">after/snippets/lua.json</h4>
+<p>No difference</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
