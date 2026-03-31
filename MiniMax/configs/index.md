@@ -12,12 +12,14 @@ Available:
 
 - [`nvim-0.10`](nvim-0.10) - for Neovim>=0.10
 - [`nvim-0.11`](nvim-0.11) - for Neovim>=0.11
-- [`nvim-0.12`](nvim-0.12) - for Neovim>=0.12 (currently under development)
+- [`nvim-0.12`](nvim-0.12) - for Neovim>=0.12
+- [`nvim-0.13`](nvim-0.13) - for Neovim>=0.13 (currently under development)
 
 Differences between selected configs:
 
 - [Between `nvim-0.10` and `nvim-0.11`](https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.10_nvim-0.11)
 - [Between `nvim-0.11` and `nvim-0.12`](https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.11_nvim-0.12)
+- [Between `nvim-0.12` and `nvim-0.13`](https://nvim-mini.org/MiniMax/configs/diffs/nvim-0.12_nvim-0.13)
 
 ### Structure
 

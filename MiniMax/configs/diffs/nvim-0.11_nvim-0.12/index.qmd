@@ -27,13 +27,7 @@ Notes:
 <details><summary>Diff</summary>
 
 ```diffhunks
-@@ -0,0 +1,5 @@
-+-- WARNING: NEOVIM 0.12 IS STILL UNDER DEVELOPMENT AND NOT YET STABLE.
-+-- BE SURE YOU ARE COMFORTABLE WITH KEEPING UP TO DATE DEVELOPMENT VERSION.
-+-- THIS CONFIG IS VERIFIED FOR AT LEAST VERSION `v0.12.0-dev-2260+g6b4ec2264e`.
-+-- WHEN IN DOUBT - UPDATE TO THE LATEST DEVELOPMENT VERSION.
-+
-@@ -45,12 +50,8 @@
+@@ -45,12 +45,8 @@
 --- Bootstrap 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
 -local mini_path = vim.fn.stdpath('data') .. '/site/pack/deps/start/mini.nvim'
 -if not vim.loop.fs_stat(mini_path) then
@@ -54,14 +48,14 @@ Notes:
 +-- point is a `vim.pack.add()` function, which acts like a "smarter `:packadd`":
 +-- load plugin after making sure it is installed from source. The state of
 +-- installed plugins is recorded in the lockfile named 'nvim-pack-lock.json'.
-@@ -58,3 +59,3 @@
+@@ -58,3 +54,3 @@
 --- - `MiniDeps.add('...')` - use inside config to add a plugin
 --- - `:DepsUpdate` - update all plugins
 --- - `:DepsSnapSave` - save a snapshot of currently active plugins
 +-- - `vim.pack.add({ ... })` - use inside config to add one or more plugins.
 +-- - `:lua vim.pack.update()` - update all plugins; execute `:write` to confirm.
 +-- - `:lua vim.pack.del({ ... })` - delete specific plugins.
-@@ -63,4 +64,4 @@
+@@ -63,4 +59,4 @@
 --- - `:h MiniDeps-overview` - how to use it
 --- - `:h MiniDeps-commands` - all available commands
 --- - 'plugin/30_mini.lua' - more details about 'mini.nvim' in general
@@ -70,7 +64,7 @@ Notes:
 +-- - `:h vim.pack-lockfile` - lockfile info
 +-- - `:h vim.pack-events` - available events and plugin hooks examples
 +-- - `:h vim.pack.update()` - more details about confirmation step
-@@ -71,0 +73,28 @@
+@@ -71,0 +68,28 @@
 +-- 'mini.nvim' - all-in-one plugin powering most MiniMax features.
 +-- See 'plugin/30_mini.lua' for how it is used.
 +-- Load now to have 'mini.misc' available for custom loading helpers.
@@ -99,7 +93,7 @@ Notes:
 +Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 +Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
 +
-@@ -86,3 +115,11 @@
+@@ -86,3 +110,11 @@
 --- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
 --- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
 -Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
