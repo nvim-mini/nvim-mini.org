@@ -1,8 +1,12 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-04-02 {#2026-04-02}
+
+- Add a note in `nvim-0.11` config about Neovim 0.11 not being the latest stable release.
+
 ## 2026-03-31 {#2026-03-31}
 
-- Remove the note about unstable status of Neovim 0.12 from `nvim-0.12` config.
+- Remove the note from `nvim-0.12` config about unstable status of Neovim 0.12.
 
 - Add new reference config `nvim-0.13` for Neovim>=0.13 (currently under development).
 

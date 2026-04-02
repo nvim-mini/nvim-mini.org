@@ -27,7 +27,12 @@ Notes:
 <details><summary>Diff</summary>
 
 ```diffhunks
-@@ -45,12 +45,8 @@
+@@ -1,4 +0,0 @@
+--- WARNING: NEOVIM 0.11 IS NOT THE LATEST STABLE RELEASE.
+--- IT MEANS THAT THERE IS A CHANCE SOME PLUGINS MIGHT DROP SUPPORTING IT.
+--- IT IS HIGHLY RECOMMENDED TO UPDATE TO THE LATEST STABLE VERSION.
+-
+@@ -49,12 +45,8 @@
 --- Bootstrap 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
 -local mini_path = vim.fn.stdpath('data') .. '/site/pack/deps/start/mini.nvim'
 -if not vim.loop.fs_stat(mini_path) then
@@ -48,14 +53,14 @@ Notes:
 +-- point is a `vim.pack.add()` function, which acts like a "smarter `:packadd`":
 +-- load plugin after making sure it is installed from source. The state of
 +-- installed plugins is recorded in the lockfile named 'nvim-pack-lock.json'.
-@@ -58,3 +54,3 @@
+@@ -62,3 +54,3 @@
 --- - `MiniDeps.add('...')` - use inside config to add a plugin
 --- - `:DepsUpdate` - update all plugins
 --- - `:DepsSnapSave` - save a snapshot of currently active plugins
 +-- - `vim.pack.add({ ... })` - use inside config to add one or more plugins.
 +-- - `:lua vim.pack.update()` - update all plugins; execute `:write` to confirm.
 +-- - `:lua vim.pack.del({ ... })` - delete specific plugins.
-@@ -63,4 +59,4 @@
+@@ -67,4 +59,4 @@
 --- - `:h MiniDeps-overview` - how to use it
 --- - `:h MiniDeps-commands` - all available commands
 --- - 'plugin/30_mini.lua' - more details about 'mini.nvim' in general
@@ -64,7 +69,7 @@ Notes:
 +-- - `:h vim.pack-lockfile` - lockfile info
 +-- - `:h vim.pack-events` - available events and plugin hooks examples
 +-- - `:h vim.pack.update()` - more details about confirmation step
-@@ -71,0 +68,28 @@
+@@ -75,0 +68,28 @@
 +-- 'mini.nvim' - all-in-one plugin powering most MiniMax features.
 +-- See 'plugin/30_mini.lua' for how it is used.
 +-- Load now to have 'mini.misc' available for custom loading helpers.
@@ -93,7 +98,7 @@ Notes:
 +Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 +Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
 +
-@@ -86,3 +110,11 @@
+@@ -90,3 +110,11 @@
 --- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
 --- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
 -Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
@@ -219,30 +224,35 @@ Notes:
 +  local ts_update = function() vim.cmd('TSUpdate') end
 +  Config.on_packchanged('nvim-treesitter', { 'update' }, ts_update, ':TSUpdate')
 +
-@@ -42,3 +46,2 @@
+@@ -42,10 +46,2 @@
 -    source = 'nvim-treesitter/nvim-treesitter',
 -    -- Update tree-sitter parser after plugin is updated
 -    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+-    -- Pin to the commit just before the plugin dropped Neovim=0.11 support
+-    checkout = '90cd6580e720caedacb91fdd587b747a6e77d61f',
+-  })
+-  add({
+-    source = 'nvim-treesitter/nvim-treesitter-textobjects',
+-    -- Pin to the commit corresponding to 'nvim-treesitter' commit
+-    checkout = '93d60a475f0b08a8eceb99255863977d3a25f310',
 +    'https://github.com/nvim-treesitter/nvim-treesitter',
 +    'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-@@ -46 +48,0 @@
--  add('nvim-treesitter/nvim-treesitter-textobjects')
-@@ -60 +62 @@
+@@ -66 +62 @@
 -    --   https://github.com/nvim-treesitter/nvim-treesitter
 +    --   https://github.com/nvim-treesitter/nvim-treesitter/blob/main
-@@ -95 +97 @@
+@@ -101 +97 @@
 -  add('neovim/nvim-lspconfig')
 +  add({ 'https://github.com/neovim/nvim-lspconfig' })
-@@ -115 +117 @@
+@@ -121 +117 @@
 -  add('stevearc/conform.nvim')
 +  add({ 'https://github.com/stevearc/conform.nvim' })
-@@ -141 +143 @@
+@@ -147 +143 @@
 -later(function() add('rafamadriz/friendly-snippets') end)
 +later(function() add({ 'https://github.com/rafamadriz/friendly-snippets' }) end)
-@@ -154 +156 @@
+@@ -160 +156 @@
 ---   add('mason-org/mason.nvim')
 +--   add({ 'https://github.com/mason-org/mason.nvim' })
-@@ -161,5 +163,7 @@
+@@ -167,5 +163,7 @@
 --- MiniDeps.now(function()
 ---   -- Install only those that you need
 ---   add('sainnhe/everforest')

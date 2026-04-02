@@ -21,11 +21,9 @@ In short:
 <details><summary>Diff</summary>
 
 ```diffhunks
-@@ -1,4 +0,0 @@
+@@ -1 +1 @@
 --- WARNING: NEOVIM 0.10 IS NOT THE LATEST STABLE RELEASE.
---- IT MEANS THAT THERE IS A CHANCE SOME PLUGINS MIGHT DROP SUPPORTING IT.
---- IT IS HIGHLY RECOMMENDED TO UPDATE TO THE LATEST STABLE VERSION.
--
++-- WARNING: NEOVIM 0.11 IS NOT THE LATEST STABLE RELEASE.
 ```
 
 </details>
@@ -69,22 +67,20 @@ No difference
 <details><summary>Diff</summary>
 
 ```diffhunks
-@@ -45,7 +44,0 @@
+@@ -45,2 +45,2 @@
 -    -- Pin to the commit just before the plugin dropped Neovim=0.10 support
 -    checkout = '42fc28ba918343ebfd5565147a42a26580579482',
--  })
--  add({
--    source = 'nvim-treesitter/nvim-treesitter-textobjects',
--    -- Pin to the commit corresponding to 'nvim-treesitter' commit
++    -- Pin to the commit just before the plugin dropped Neovim=0.11 support
++    checkout = '90cd6580e720caedacb91fdd587b747a6e77d61f',
+@@ -51 +51 @@
 -    checkout = 'b0debd5c424969b4baeabdc8f54db3036c691732',
-@@ -52,0 +46 @@
-+  add('nvim-treesitter/nvim-treesitter-textobjects')
-@@ -64 +58,3 @@
++    checkout = '93d60a475f0b08a8eceb99255863977d3a25f310',
+@@ -64 +64,3 @@
 -    -- - Execute `:=require('nvim-treesitter.parsers').available_parsers()`
 +    -- - Execute `:=require('nvim-treesitter').get_available()`
 +    -- - Visit 'SUPPORTED_LANGUAGES.md' file at
 +    --   https://github.com/nvim-treesitter/nvim-treesitter
-@@ -66,10 +62,15 @@
+@@ -66,10 +68,15 @@
 -  require('nvim-treesitter.configs').setup({
 -    ensure_installed = languages,
 -    highlight = { enable = true },
@@ -110,12 +106,12 @@ No difference
 +  end
 +  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
 +  Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
-@@ -90,3 +91 @@
+@@ -90,3 +97 @@
 --- inside 'neovim/nvim-lspconfig' plugin. NOTE: it got significant overhaul
 --- to use a `vim.lsp.config` approach on Neovim>=0.11. So to use this plugin it
 --- is highly recommended to update Neovim to at least 0.11 version.
 +-- inside 'neovim/nvim-lspconfig' plugin.
-@@ -96,7 +95 @@
+@@ -96,7 +101 @@
 -  add({
 -    source = 'neovim/nvim-lspconfig',
 -    -- Pin to the commit just before the plugin dropped Neovim=0.10 support
@@ -124,7 +120,7 @@ No difference
 -    checkout = '5bfcc89fd155b4ffc02d18ab3b7d19c2d4e246a7',
 -  })
 +  add('neovim/nvim-lspconfig')
-@@ -104,16 +97,6 @@
+@@ -104,16 +103,6 @@
 -  -- Per server configuration is done by explicitly setting up target servers
 -  -- like `require('lspconfig').<server-name>.setup({ ... })`. Instead of `...`,
 -  -- supply per-server configuration. Below is an example of setting up `lua_ls`.
