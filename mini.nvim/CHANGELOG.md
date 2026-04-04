@@ -10,6 +10,12 @@ There are following change types:
 
 # Version 0.18.0-dev {#v0.18.0}
 
+## All {#v0.18.0-all}
+
+### Refine {#v0.18.0-all-refine}
+
+- Soft deprecate support for Neovim 0.9. It will be fully deprecated in next release.
+
 ## mini.base16 {#v0.18.0-mini.base16}
 
 ### Expand {#v0.18.0-mini.base16-expand}
