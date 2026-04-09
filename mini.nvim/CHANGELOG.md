@@ -35,6 +35,12 @@ There are following change types:
 
 - Add `pickers.manpages` picker.
 
+## mini.files {#v0.18.0-mini.files}
+
+### Evolve {#v0.18.0-mini.files-evolve}
+
+- Do not treat focus as lost if it has changed from the explorer during `vim.ui.select()` or `vim.ui.input()`. These functions are useful during text editing inside the explorer and are often reimplemented via a separate floating window and dedicated buffer (like in 'mini.pick').
+
 ## mini.hues {#v0.18.0-mini.hues}
 
 ### Expand {#v0.18.0-mini.hues-expand}
@@ -75,6 +81,8 @@ There are following change types:
 - Allow `source.preview` to directly set another buffer into picker's main window. The recommended way is still to adjust the provided `buf_id` buffer, but there is now a workaround if this is not reasonably possible.
 
 - Describe alternative move keys (`<Down>`, `<Up>`, `<Home>`) as "hard-coded but overridable" (instead of a previous not very precise "non-overridable") and show them in the info view.
+
+- Update `ui_select` to wait until currently active picker is stopped before opening a new one. This behavior allows to call several `vim.ui.select()` in a row and is more aligned with how it is assumed to work.
 
 ### Refine {#v0.18.0-mini.pick-refine}
 
