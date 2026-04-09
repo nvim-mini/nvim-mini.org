@@ -98,18 +98,19 @@ Notes:
 +Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 +Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
 +
-@@ -90,3 +110,11 @@
+@@ -90,3 +110,12 @@
 --- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
 --- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
 -Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
-+-- Define custom `vim.pack.add()` hook helper. See `:h vim.pack-events`.
++-- Define custom `vim.pack.add()` hook helper. Plugin data is passed as
++-- argument to the callback. See `:h vim.pack-events`.
 +-- Example usage: see 'plugin/40_plugins.lua'.
 +Config.on_packchanged = function(plugin_name, kinds, callback, desc)
 +  local f = function(ev)
 +    local name, kind = ev.data.spec.name, ev.data.kind
 +    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
 +    if not ev.data.active then vim.cmd.packadd(plugin_name) end
-+    callback()
++    callback(ev.data)
 +  end
 +  Config.new_autocmd('PackChanged', '*', f, desc)
 +end
@@ -187,6 +188,11 @@ Notes:
 -nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 +nmap('[p', '<Cmd>exe "iput! " . v:register<CR>', 'Paste Above')
 +nmap(']p', '<Cmd>exe "iput "  . v:register<CR>', 'Paste Below')
+@@ -218 +218 @@
+--- - `<Leader>sd` - delete previously started session
++-- - `<Leader>sR` - restart Neovim preserving current session
+@@ -223,0 +224 @@
++nmap_leader('sR', '<Cmd>lua MiniSessions.restart()<CR>',        'Restart')
 ```
 
 </details>
