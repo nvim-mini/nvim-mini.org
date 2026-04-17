@@ -611,6 +611,8 @@ so all its usage notes apply here.
   - <span class="help-syntax-keys">\<inline_text\></span> `(string)` - string to be placed and highlighted with color
     to the right of match in case <span class="help-syntax-keys">\<style\></span> is "inline". Default: "█".
 
+  - <span class="help-syntax-keys">\<max_number\></span> `(number)` - as in [MiniHipatterns.compute\_hex\_color\_group()](mini-hipatterns.qmd#minihipatterns.compute_hex_color_group).
+
 #### Return {#minihipatterns.gen_highlighter.hex_color-return}
 
 
@@ -634,7 +636,7 @@ so all its usage notes apply here.
 
 ### compute_hex_color_group() {#minihipatterns.compute_hex_color_group .help-syntax-right-anchor}
 
-<p align="center">`MiniHipatterns.compute_hex_color_group`(<span class="help-syntax-special">{hex_color}</span>, <span class="help-syntax-special">{style}</span>)</p>
+<p align="center">`MiniHipatterns.compute_hex_color_group`(<span class="help-syntax-special">{hex_color}</span>, <span class="help-syntax-special">{style}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Compute and create group to highlight hex color string
 
 Notes:
@@ -661,8 +663,15 @@ Notes:
 
   - `'line'` - highlight underline with `hex_color`.
 
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<max_number\></span> `(number)` - maximum number of different highlight groups
+    this function is allowed to create. Useful to avoid [E849](https://neovim.io/doc/user/helptag.html?tag=E849).
+    Default: 10000.
+
 #### Return {#minihipatterns.compute_hex_color_group-return}
 
 
-`(string)` Name of created highlight group appropriate to show `hex_color`.
+`(string|nil)` Name of created highlight group appropriate to show `hex_color`
+  or `nil` if highlighted groups was not created.
 
