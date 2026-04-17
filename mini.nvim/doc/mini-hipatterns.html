@@ -830,6 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;priority&gt;</span> <code>(number)</code> - priority of highlighting. Default: 200.</p></li>
 <li><p><span class="help-syntax-keys">&lt;filter&gt;</span> <code>(function)</code> - callable object used to filter buffers in which highlighting will take place. It should take buffer identifier as input and return <code>false</code> or <code>nil</code> to not highlight inside this buffer.</p></li>
 <li><p><span class="help-syntax-keys">&lt;inline_text&gt;</span> <code>(string)</code> - string to be placed and highlighted with color to the right of match in case <span class="help-syntax-keys">&lt;style&gt;</span> is “inline”. Default: “█”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;max_number&gt;</span> <code>(number)</code> - as in <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.compute_hex_color_group">MiniHipatterns.compute_hex_color_group()</a>.</p></li>
 </ul>
 </section>
 <section id="minihipatterns.gen_highlighter.hex_color-return" class="level4">
@@ -850,7 +851,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minihipatterns.compute_hex_color_group" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minihipatterns.compute_hex_color_group">compute_hex_color_group()</h3>
 <p align="center">
-<code>MiniHipatterns.compute_hex_color_group</code>(<span class="help-syntax-special">{hex_color}</span>, <span class="help-syntax-special">{style}</span>)
+<code>MiniHipatterns.compute_hex_color_group</code>(<span class="help-syntax-special">{hex_color}</span>, <span class="help-syntax-special">{style}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Compute and create group to highlight hex color string</p>
 <p>Notes:</p>
@@ -867,10 +868,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>'fg'</code> - highlight foreground with <code>hex_color</code>.</p></li>
 <li><p><code>'line'</code> - highlight underline with <code>hex_color</code>.</p></li>
 </ul>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;max_number&gt;</span> <code>(number)</code> - maximum number of different highlight groups this function is allowed to create. Useful to avoid <a href="https://neovim.io/doc/user/helptag.html?tag=E849">E849</a>. Default: 10000.</li>
+</ul>
 </section>
 <section id="minihipatterns.compute_hex_color_group-return" class="level4">
 <h4 class="anchored" data-anchor-id="minihipatterns.compute_hex_color_group-return">Return</h4>
-<p><code>(string)</code> Name of created highlight group appropriate to show <code>hex_color</code>.</p>
+<p><code>(string|nil)</code> Name of created highlight group appropriate to show <code>hex_color</code> or <code>nil</code> if highlighted groups was not created.</p>
 
 
 </section>
