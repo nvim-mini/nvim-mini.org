@@ -429,7 +429,7 @@ Note
 <ul>
 <li><p>Navigate file system using column view (Miller columns) to display nested directories. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation"><code>:h MiniFiles-navigation</code></a> for overview.</p></li>
 <li><p>Opt-in preview of file or directory under cursor.</p></li>
-<li><p>Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>:h MiniFiles-manipulation</code></a> for overview.</p></li>
+<li><p>Manipulate files and directories by editing text buffers: create, delete, rename (all three are LSP aware), copy, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation"><code>:h MiniFiles-manipulation</code></a> for an overview.</p></li>
 <li><p>Use as default file explorer instead of <code>netrw</code>.</p></li>
 <li><p>Configurable:</p>
 <ul>
@@ -688,22 +688,24 @@ With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">permanent_delete</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use for editing directories</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="va">use_as_default_explorer</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Timeout for synchronous LSP integration requests</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">lsp_timeout</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="similar-plugins" class="level2">
 <h2 class="anchored" data-anchor-id="similar-plugins">Similar plugins</h2>

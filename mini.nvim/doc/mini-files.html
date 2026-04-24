@@ -372,6 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#minifiles-manipulation-supportedfilesystemactions-copy" id="toc-minifiles-manipulation-supportedfilesystemactions-copy" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-copy">Copy</a></li>
   <li><a href="#minifiles-manipulation-supportedfilesystemactions-move" id="toc-minifiles-manipulation-supportedfilesystemactions-move" class="nav-link" data-scroll-target="#minifiles-manipulation-supportedfilesystemactions-move">Move</a></li>
   </ul></li>
+  <li><a href="#minifiles-manipulation-lspintegration" id="toc-minifiles-manipulation-lspintegration" class="nav-link" data-scroll-target="#minifiles-manipulation-lspintegration">LSP integration</a></li>
   </ul></li>
   <li><a href="#minifiles-events" id="toc-minifiles-events" class="nav-link" data-scroll-target="#minifiles-events">Events</a>
   <ul>
@@ -507,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Navigate file system using column view (Miller columns) to display nested directories. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-navigation">MiniFiles-navigation</a> for overview.</p></li>
 <li><p>Opt-in preview of file or directory under cursor.</p></li>
-<li><p>Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a> for overview.</p></li>
+<li><p>Manipulate files and directories by editing text buffers: create, delete, rename (all three are LSP aware), copy, move. See <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a> for an overview.</p></li>
 <li><p>Use as default file explorer instead of <code>netrw</code>.</p></li>
 <li><p>Configurable:</p>
 <ul>
@@ -560,6 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Uses single window to show information only about currently explored directory, while this module uses column view to show whole currently explored branch.</p></li>
 <li><p>Also uses text editing to manipulate file system entries.</p></li>
 <li><p>Can work for remote file systems, while this module can not (by design).</p></li>
+<li><p>Both provide LSP integration.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/nvim-neo-tree/neo-tree.nvim">nvim-neo-tree/neo-tree.nvim</a>:</p>
 <ul>
@@ -729,8 +731,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Change of target path is allowed. Edit only entry name in target location (not icon or path index to the left of it).</p></li>
 <li><p>Moving directory inside itself is not supported.</p></li>
 </ul>
-<hr>
 </section>
+</section>
+<section id="minifiles-manipulation-lspintegration" class="level4">
+<h4 class="anchored" data-anchor-id="minifiles-manipulation-lspintegration">LSP integration</h4>
+<p>Create, delete, and rename are LSP aware (on Neovim&gt;=0.11): the information is forwarded to all active LSP servers for them to perform additional actions. This means that LSP servers can, for example, update imports after renaming a file or populate a file with a boilerplate code after creation.</p>
+<p>The actual changes depend entirely on the LSP server and whether it supports relevant methods:</p>
+<ul>
+<li><p><code>workspace/will{Create,Delete,Rename}Files</code> before a file system action.</p></li>
+<li><p><code>workspace/did{Create,Delete,Rename}Files</code> after a file system action.</p></li>
+</ul>
+<p>It can be disabled by setting <code>options.lsp_timeout = 0</code> in <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a>.</p>
+<hr>
 </section>
 </section>
 <section id="minifiles-events" class="level3 help-syntax-right-anchor">
@@ -997,22 +1009,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">permanent_delete</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use for editing directories</span></span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">use_as_default_explorer</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Timeout for synchronous LSP integration requests</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">lsp_timeout</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Customization of explorer windows</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="va">windows</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Maximum number of windows to show side by side</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">max_number</span> <span class="op">=</span> <span class="fu">math.huge</span><span class="op">,</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to show preview of file/directory under cursor</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">preview</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of focused window</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_focus</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of non-focused window</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_nofocus</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Width of preview window</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="va">width_preview</span> <span class="op">=</span> <span class="dv">25</span><span class="op">,</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minifiles.config-content" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-content">Content</h4>
@@ -1049,6 +1063,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minifiles.config-options">Options</h4>
 <p><code>options.use_as_default_explorer</code> is a boolean indicating whether this module will be used as a default file explorer to edit directory (instead of <code>netrw</code>). Note: to work with directory in <a href="https://neovim.io/doc/user/helptag.html?tag=arglist">arglist</a>, do not lazy load this module.</p>
 <p><code>options.permanent_delete</code> is a boolean indicating whether to perform permanent delete or move into special trash directory. This is a module-specific variant of “remove to trash”. Target directory is ‘mini.files/trash’ inside standard path of Neovim data directory (execute <code>:echo stdpath('data')</code> to see its path in your case).</p>
+<p><code>options.lsp_timeout</code> is a number that defines a timeout for synchronous LSP integration requests (see <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a>). Set to 0 to disable LSP integration.</p>
 </section>
 <section id="minifiles.config-windows" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-windows">Windows</h4>
