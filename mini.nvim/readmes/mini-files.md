@@ -38,7 +38,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Opt-in preview of file or directory under cursor.
 
-- Manipulate files and directories by editing text buffers: create, delete, copy, rename, move. See [`:h MiniFiles-manipulation`](../doc/mini-files.qmd#minifiles-manipulation) for overview.
+- Manipulate files and directories by editing text buffers: create, delete, rename (all three are LSP aware), copy, move. See [`:h MiniFiles-manipulation`](../doc/mini-files.qmd#minifiles-manipulation) for an overview.
 
 - Use as default file explorer instead of `netrw`.
 
@@ -212,6 +212,8 @@ Here are code snippets for some common installation methods (use only one):
     permanent_delete = true,
     -- Whether to use for editing directories
     use_as_default_explorer = true,
+    -- Timeout for synchronous LSP integration requests
+    lsp_timeout = 1000,
   },
 
   -- Customization of explorer windows
