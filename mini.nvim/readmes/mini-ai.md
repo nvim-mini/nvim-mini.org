@@ -148,8 +148,8 @@ Here are code snippets for some common installation methods (use only one):
     inside = 'i',
 
     -- Next/last variants
-    -- NOTE: These override built-in LSP selection mappings on Neovim>=0.12
-    -- Map LSP selection manually to use it (see [`:h MiniAi.config`](../doc/mini-ai.qmd#miniai.config))
+    -- NOTE: This (deliberately) overrides Neovim>=0.12 built-in incremental
+    -- selection mappings. See [`:h MiniAi-default-an-in`](../doc/mini-ai.qmd#miniai-default-an-in) for more details.
     around_next = 'an',
     inside_next = 'in',
     around_last = 'al',
