@@ -381,9 +381,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#miniai.config-defaults" id="toc-miniai.config-defaults" class="nav-link" data-scroll-target="#miniai.config-defaults">Defaults</a></li>
   <li><a href="#miniai.config-customtextobjects" id="toc-miniai.config-customtextobjects" class="nav-link" data-scroll-target="#miniai.config-customtextobjects">Custom textobjects</a></li>
   <li><a href="#miniai.config-searchmethod" id="toc-miniai.config-searchmethod" class="nav-link" data-scroll-target="#miniai.config-searchmethod">Search method</a></li>
-  <li><a href="#miniai.config-mappings" id="toc-miniai.config-mappings" class="nav-link" data-scroll-target="#miniai.config-mappings">Mappings</a></li>
+  <li><a href="#miniai.config-mappings" id="toc-miniai.config-mappings" class="nav-link" data-scroll-target="#miniai.config-mappings">Mappings</a>
+  <ul>
+  <li><a href="#miniai.config-mappings-overridingdefaultanandin" id="toc-miniai.config-mappings-overridingdefaultanandin" class="nav-link" data-scroll-target="#miniai.config-mappings-overridingdefaultanandin">Overriding default <code>an</code> and <code>in</code></a></li>
   </ul></li>
-  <li><a href="#default-an-miniai-default-in-miniai-default-anminiai-default-in-.help-syntax-right-anchor" id="toc-default-an-miniai-default-in-miniai-default-anminiai-default-in-.help-syntax-right-anchor" class="nav-link" data-scroll-target="#default-an-miniai-default-in-miniai-default-anminiai-default-in-.help-syntax-right-anchor">Default an* *MiniAi default in {#miniai-default-anminiai-default-in .help-syntax-right-anchor}</a></li>
+  </ul></li>
   <li><a href="#miniai.find_textobject" id="toc-miniai.find_textobject" class="nav-link" data-scroll-target="#miniai.find_textobject">find_textobject()</a>
   <ul>
   <li><a href="#miniai.find_textobject-parameters" id="toc-miniai.find_textobject-parameters" class="nav-link" data-scroll-target="#miniai.find_textobject-parameters">Parameters</a></li>
@@ -799,7 +801,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Next/last textobjects</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">NOTE</span><span class="co">: This (deliberately) overrides Neovim&gt;=0.12 built-in incremental</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- selection mappings. See `:h MiniAi-default-an` for more details.</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- selection mappings. See `:h MiniAi-default-an-in` for more details.</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">around_next</span> <span class="op">=</span> <span class="st">'an'</span><span class="op">,</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">inside_next</span> <span class="op">=</span> <span class="st">'in'</span><span class="op">,</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">around_last</span> <span class="op">=</span> <span class="st">'al'</span><span class="op">,</span></span>
@@ -901,10 +903,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="miniai.config-mappings" class="level4">
 <h4 class="anchored" data-anchor-id="miniai.config-mappings">Mappings</h4>
 <p>Mappings <code>around_next</code> / <code>inside_next</code> and <code>around_last</code> / <code>inside_last</code> are essentially <code>around</code> / <code>inside</code> but using search method <code>'next'</code> and <code>'prev'</code>.</p>
-</section>
-</section>
-<section id="default-an-miniai-default-in-miniai-default-anminiai-default-in-.help-syntax-right-anchor" class="level3">
-<h3 class="anchored" data-anchor-id="default-an-miniai-default-in-miniai-default-anminiai-default-in-.help-syntax-right-anchor">Default an* *MiniAi default in {#miniai-default-anminiai-default-in .help-syntax-right-anchor}</h3>
+<section id="miniai.config-mappings-overridingdefaultanandin" class="level5">
+<h5 class="anchored" data-anchor-id="miniai.config-mappings-overridingdefaultanandin">Overriding default <code>an</code> and <code>in</code></h5>
+<p><a name="miniai-default-an-in" href="../../mini.nvim/doc/mini-ai.html#miniai-default-an-in"><b>MiniAi-default-an-in</b></a></p>
 <p>Default <code>around_next</code> / <code>inside_next</code> mappings override newly added in Neovim=0.12 built-in mappings <a href="https://neovim.io/doc/user/helptag.html?tag=v_an">v_an</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v_in">v_in</a>. This is intentional for better usability and backwards compatibility. There are several ways to work around this:</p>
 <ul>
 <li><p>Remap Neovim’s <code>an</code> / <code>in</code> to something else before calling <a href="../../mini.nvim/doc/mini-ai.html#miniai.setup">MiniAi.setup()</a>:</p>
@@ -931,6 +932,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <hr>
+</section>
+</section>
 </section>
 <section id="miniai.find_textobject" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniai.find_textobject">find_textobject()</h3>
