@@ -1402,6 +1402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="v0.18.0-mini.pick-expand">Expand</h3>
 <ul>
 <li><p>Allow <code>source.preview</code> to directly set another buffer into picker’s main window. The recommended way is still to adjust the provided <code>buf_id</code> buffer, but there is now a workaround if this is not reasonably possible.</p></li>
+<li><p>Allow <code>opts.preview_item</code> in <code>ui_select</code> to also return a dedicated data about preview. This preview interface for a general <code>vim.ui.select</code> implementation is added and documented in Neovim=0.12.3.</p></li>
 <li><p>Describe alternative move keys (<code>&lt;Down&gt;</code>, <code>&lt;Up&gt;</code>, <code>&lt;Home&gt;</code>) as “hard-coded but overridable” (instead of a previous not very precise “non-overridable”) and show them in the info view.</p></li>
 <li><p>Update <code>ui_select</code> to wait until currently active picker is stopped before opening a new one. This behavior allows to call several <code>vim.ui.select()</code> in a row and is more aligned with how it is assumed to work.</p></li>
 </ul>

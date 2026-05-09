@@ -1521,7 +1521,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> to use ‘mini.pick’ for any “select” type of tasks. Set automatically in <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup">MiniPick.setup()</a>.</p>
 <p>Implements required by <code>vim.ui.select()</code> signature, with some differencies:</p>
 <ul>
-<li><p>Allows <code>opts.preview_item</code> that returns an array of lines for item preview.</p></li>
+<li><p>Allows <code>opts.preview_item</code> that returns one of:</p>
+<ul>
+<li><p>Array of lines for item preview.</p></li>
+<li><p>Preview data described in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> (on Neovim&gt;=0.12.3).</p></li>
+</ul></li>
 <li><p>Allows fourth <code>start_opts</code> argument to customize <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a> call.</p></li>
 </ul>
 <p>Notes:</p>
