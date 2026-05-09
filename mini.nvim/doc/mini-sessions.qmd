@@ -286,7 +286,14 @@ What it does:
 <p align="center">`MiniSessions.restart`()</p>
 Restart Neovim preserving current session
 
-Requires [:restart](https://neovim.io/doc/user/helptag.html?tag=:restart) command available on Neovim>=0.12.
+Write (active or new temporary) session, [:restart](https://neovim.io/doc/user/helptag.html?tag=:restart), source the session.
+
+Notes:
+
+- Requires Neovim>=0.12 for [:restart](https://neovim.io/doc/user/helptag.html?tag=:restart) command.
+
+- If there is no active session ([v:this\_session](https://neovim.io/doc/user/helptag.html?tag=v:this_session)), [argument-list](https://neovim.io/doc/user/helptag.html?tag=argument-list) is cleared
+  for temporary session to not preserve it.
 
 ---
 

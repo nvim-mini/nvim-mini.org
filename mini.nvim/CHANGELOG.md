@@ -100,6 +100,8 @@ There are following change types:
 
 - Allow `source.preview` to directly set another buffer into picker's main window. The recommended way is still to adjust the provided `buf_id` buffer, but there is now a workaround if this is not reasonably possible.
 
+- Allow `opts.preview_item` in `ui_select` to also return a dedicated data about preview. This preview interface for a general `vim.ui.select` implementation is added and documented in Neovim=0.12.3.
+
 - Describe alternative move keys (`<Down>`, `<Up>`, `<Home>`) as "hard-coded but overridable" (instead of a previous not very precise "non-overridable") and show them in the info view.
 
 - Update `ui_select` to wait until currently active picker is stopped before opening a new one. This behavior allows to call several `vim.ui.select()` in a row and is more aligned with how it is assumed to work.
