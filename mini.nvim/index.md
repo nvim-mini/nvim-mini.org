@@ -42,39 +42,55 @@ There are two branches to install from:
 
 Here are code snippets for some common installation methods:
 
+- (**Recommended**) With [vim.pack](https://neovim.io/doc/user/helptag.html?tag=vim.pack) (on Neovim 0.12 and newer):
+
+    - Main branch:
+
+        ```lua
+        vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
+        ```
+
+    - Stable branch:
+
+        ```lua
+        vim.pack.add({
+          { src = 'https://github.com/nvim-mini/mini.nvim', version = 'stable' },
+        })
+        ```
+
 - Manually with `git clone` (compatible with [mini.deps](https://nvim-mini.org/mini.nvim/readmes/mini-deps)):
 
-```lua
--- Put this at the top of 'init.lua'
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    -- Uncomment next line to use 'stable' branch
-    -- '--branch', 'stable',
-    'https://github.com/nvim-mini/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-```
+    ```lua
+    -- Put this at the top of 'init.lua'
+    local path_package = vim.fn.stdpath('data') .. '/site'
+    local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+    if not vim.loop.fs_stat(mini_path) then
+      vim.cmd('echo "Installing `mini.nvim`" | redraw')
+      local clone_cmd = {
+        'git', 'clone', '--filter=blob:none',
+        -- Uncomment next line to use 'stable' branch
+        -- '--branch', 'stable',
+        'https://github.com/nvim-mini/mini.nvim', mini_path
+      }
+      vim.fn.system(clone_cmd)
+      vim.cmd('packadd mini.nvim | helptags ALL')
+      vim.cmd('echo "Installed `mini.nvim`" | redraw')
+    end
+    ```
 
 - With [folke/lazy.nvim](https://github.com/folke/lazy.nvim):
 
-| Branch | Code snippet                                  |
-|--------|-----------------------------------------------|
-| Main   | `{ 'nvim-mini/mini.nvim', version = false },` |
-| Stable | `{ 'nvim-mini/mini.nvim', version = '*' },`   |
+    - Main branch:
 
-- With [junegunn/vim-plug](https://github.com/junegunn/vim-plug):
+        ```lua
+        { 'nvim-mini/mini.nvim', version = false },
+        ```
 
-| Branch | Code snippet                                         |
-|--------|------------------------------------------------------|
-| Main   | `Plug 'nvim-mini/mini.nvim'`                         |
-| Stable | `Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }` |
+    - Stable branch:
+
+        ```lua
+        { 'nvim-mini/mini.nvim', version = '*' },
+        ```
 
 - Every module is also distributed as a standalone Git repository. Check out module's information for more details.
 

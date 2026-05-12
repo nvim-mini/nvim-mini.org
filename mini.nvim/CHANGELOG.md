@@ -35,6 +35,12 @@ There are following change types:
 
 - Add support for executing `completionItem.command` in LSP completion.
 
+## mini.deps {#v0.18.0-mini.deps}
+
+### Evolve {#v0.18.0-mini.deps-evolve}
+
+- Development of 'mini.deps' is frozen in favor of suggesting to use [vim.pack](https://neovim.io/doc/user/helptag.html?tag=vim.pack). See ['mini.deps' README](readmes/mini-deps.md#development-freeze) for more details.
+
 ## mini.extra {#v0.18.0-mini.extra}
 
 ### Expand {#v0.18.0-mini.extra-expand}
