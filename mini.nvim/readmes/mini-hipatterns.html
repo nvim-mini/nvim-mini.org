@@ -459,142 +459,41 @@ Note
 <p>Here are code snippets for some common installation methods (use only one):</p>
 <details>
 <summary>
-With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a>
+<b>(Recommended)</b> With <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a> (on Neovim 0.12 and newer)
 </summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 89%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>add('nvim-mini/mini.hipatterns')</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>add({ source = 'nvim-mini/mini.hipatterns', checkout = 'stable' })</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
+<p><strong>Standalone plugin</strong></p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span> <span class="st">'https://github.com/nvim-mini/mini.hipatterns'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">src</span> <span class="op">=</span> <span class="st">'https://github.com/nvim-mini/mini.hipatterns'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">},</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<details>
+<summary>
+With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a> (before Neovim 0.12)
+</summary>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps#installation">recommended ‘mini.deps’ installation</a>.</p>
+<p><strong>Standalone plugin</strong>:</p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">(</span><span class="st">'nvim-mini/mini.hipatterns'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="st">'nvim-mini/mini.hipatterns'</span><span class="op">,</span> <span class="va">checkout</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <details>
 <summary>
 With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
 </summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.hipatterns', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.hipatterns', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
-</details>
-<details>
-<summary>
-With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
-</summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.nvim'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.hipatterns'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.hipatterns', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
+<p><strong>Standalone plugin</strong></p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.hipatterns'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.hipatterns'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'*'</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Important</strong>: don’t forget to call <code>require('mini.hipatterns').setup()</code> with non-empty <code>highlighters</code> to auto-enable highlighting in all normal buffers.</p>
 <p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
@@ -605,22 +504,22 @@ With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
 </section>
 <section id="default-config" class="level2">
 <h2 class="anchored" data-anchor-id="default-config">Default config</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Table with highlighters (see |MiniHipatterns.config| for more details).</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Nothing is defined by default. Add manually for visible effect.</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{},</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous highlighting process</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after every text change</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after window scroll</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">scroll</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Table with highlighters (see |MiniHipatterns.config| for more details).</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Nothing is defined by default. Add manually for visible effect.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">highlighters</span> <span class="op">=</span> <span class="op">{},</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous highlighting process</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after every text change</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait for update after window scroll</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">scroll</span> <span class="op">=</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="similar-plugins" class="level2">
 <h2 class="anchored" data-anchor-id="similar-plugins">Similar plugins</h2>

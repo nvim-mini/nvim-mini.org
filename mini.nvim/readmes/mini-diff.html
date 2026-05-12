@@ -544,142 +544,41 @@ Note
 <p>Here are code snippets for some common installation methods (use only one):</p>
 <details>
 <summary>
-With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a>
+<b>(Recommended)</b> With <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a> (on Neovim 0.12 and newer)
 </summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><em>Follow recommended ‘mini.deps’ installation</em></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 11%">
-<col style="width: 88%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>add('nvim-mini/mini.diff')</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>add({ source = 'nvim-mini/mini.diff', checkout = 'stable' })</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
+<p><strong>Standalone plugin</strong></p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span> <span class="st">'https://github.com/nvim-mini/mini.diff'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">src</span> <span class="op">=</span> <span class="st">'https://github.com/nvim-mini/mini.diff'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">},</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<details>
+<summary>
+With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a> (before Neovim 0.12)
+</summary>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps#installation">recommended ‘mini.deps’ installation</a>.</p>
+<p><strong>Standalone plugin</strong>:</p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">(</span><span class="st">'nvim-mini/mini.diff'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="st">'nvim-mini/mini.diff'</span><span class="op">,</span> <span class="va">checkout</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <details>
 <summary>
 With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
 </summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.nvim', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>{ 'nvim-mini/mini.diff', version = false },</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>{ 'nvim-mini/mini.diff', version = '*' },</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
-</details>
-<details>
-<summary>
-With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
-</summary>
-<ul>
-<li><p>‘mini.nvim’ library:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.nvim'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.nvim', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>Standalone plugin:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Branch</th>
-<th>Code snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Main</td>
-<td><code>Plug 'nvim-mini/mini.diff'</code></td>
-</tr>
-<tr class="even">
-<td>Stable</td>
-<td><code>Plug 'nvim-mini/mini.diff', { 'branch': 'stable' }</code></td>
-</tr>
-</tbody>
-</table></li>
-</ul>
+<p><strong>Full library</strong></p>
+<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
+<p><strong>Standalone plugin</strong></p>
+<p>Main branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.diff'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stable branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.diff'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'*'</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Important</strong>: don’t forget to call <code>require('mini.diff').setup()</code> to enable its functionality.</p>
 <p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
@@ -690,65 +589,65 @@ With <a href="https://github.com/junegunn/vim-plug">junegunn/vim-plug</a>
 </section>
 <section id="default-config" class="level2">
 <h2 class="anchored" data-anchor-id="default-config">Default config</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Options for how hunks are visualized</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">view</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Visualization style. Possible values are 'sign' and 'number'.</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: 'number' if line numbers are enabled, 'sign' otherwise.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">style</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">go</span><span class="op">.</span><span class="va">number</span> <span class="kw">and</span> <span class="st">'number'</span> <span class="kw">or</span> <span class="st">'sign'</span><span class="op">,</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Signs used for hunks with 'sign' view</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">signs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">change</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">delete</span> <span class="op">=</span> <span class="st">'▒'</span> <span class="op">},</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Priority of used visualization extmarks</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">priority</span> <span class="op">=</span> <span class="dv">199</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Source(s) for how reference text is computed/updated/etc</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Uses content from Git index by default</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">source</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous processes</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait before update following every text change</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Apply hunks inside a visual/operator region</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">apply</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Reset hunks inside a visual/operator region</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span> <span class="op">=</span> <span class="st">'gH'</span><span class="op">,</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Hunk range textobject to be used inside operator</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Works also in Visual mode if mapping differs from apply and reset</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">textobject</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Go to hunk range in corresponding direction</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_first</span> <span class="op">=</span> <span class="st">'[H'</span><span class="op">,</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_prev</span> <span class="op">=</span> <span class="st">'[h'</span><span class="op">,</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_next</span> <span class="op">=</span> <span class="st">']h'</span><span class="op">,</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_last</span> <span class="op">=</span> <span class="st">']H'</span><span class="op">,</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Various options</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Diff algorithm. See `:h vim.diff()`.</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="va">algorithm</span> <span class="op">=</span> <span class="st">'histogram'</span><span class="op">,</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use "indent heuristic". See `:h vim.diff()`.</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">indent_heuristic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- The amount of second-stage diff to align lines</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="va">linematch</span> <span class="op">=</span> <span class="dv">60</span><span class="op">,</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to wrap around edges during hunk navigation</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="va">wrap_goto</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Options for how hunks are visualized</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">view</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Visualization style. Possible values are 'sign' and 'number'.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: 'number' if line numbers are enabled, 'sign' otherwise.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">style</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">go</span><span class="op">.</span><span class="va">number</span> <span class="kw">and</span> <span class="st">'number'</span> <span class="kw">or</span> <span class="st">'sign'</span><span class="op">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Signs used for hunks with 'sign' view</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">signs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">add</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">change</span> <span class="op">=</span> <span class="st">'▒'</span><span class="op">,</span> <span class="va">delete</span> <span class="op">=</span> <span class="st">'▒'</span> <span class="op">},</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Priority of used visualization extmarks</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">priority</span> <span class="op">=</span> <span class="dv">199</span><span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Source(s) for how reference text is computed/updated/etc</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Uses content from Git index by default</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">source</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Delays (in ms) defining asynchronous processes</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">delay</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- How much to wait before update following every text change</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">text_change</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Module mappings. Use `''` (empty string) to disable one.</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Apply hunks inside a visual/operator region</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">apply</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Reset hunks inside a visual/operator region</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="va">reset</span> <span class="op">=</span> <span class="st">'gH'</span><span class="op">,</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Hunk range textobject to be used inside operator</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Works also in Visual mode if mapping differs from apply and reset</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">textobject</span> <span class="op">=</span> <span class="st">'gh'</span><span class="op">,</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Go to hunk range in corresponding direction</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_first</span> <span class="op">=</span> <span class="st">'[H'</span><span class="op">,</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_prev</span> <span class="op">=</span> <span class="st">'[h'</span><span class="op">,</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_next</span> <span class="op">=</span> <span class="st">']h'</span><span class="op">,</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">goto_last</span> <span class="op">=</span> <span class="st">']H'</span><span class="op">,</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Various options</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Diff algorithm. See `:h vim.diff()`.</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="va">algorithm</span> <span class="op">=</span> <span class="st">'histogram'</span><span class="op">,</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use "indent heuristic". See `:h vim.diff()`.</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">indent_heuristic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- The amount of second-stage diff to align lines</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    <span class="va">linematch</span> <span class="op">=</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to wrap around edges during hunk navigation</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="va">wrap_goto</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="similar-plugins" class="level2">
 <h2 class="anchored" data-anchor-id="similar-plugins">Similar plugins</h2>
