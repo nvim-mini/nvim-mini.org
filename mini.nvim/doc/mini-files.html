@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79c8ea14f273bcb99aaf0b8d751cd6d9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-f0e0f823144ff25fa74f5509f1a9cfa7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-aa6ca216aa14000a4d48da6d9d72aeb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-14f32f355d21b609f552c03f351415ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1073,7 +1073,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>It is always shown, even if current line is for not yet existing path.</p></li>
 <li><p>File preview is highlighted if its size is small enough (less than 1K bytes per line or 1M bytes in total).</p></li>
 </ul>
-<p><code>windows.width_focus</code> and <code>windows.width_nofocus</code> are number of columns used as <code>width</code> for focused and non-focused windows respectively.</p>
+<p><code>windows.width_focus</code>, <code>windows.width_nofocus</code> and <code>windows.width_preview</code> are number of columns used as <code>width</code> for the corresponding window type.</p>
 <hr>
 </section>
 </section>
@@ -1119,7 +1119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minifiles.refresh-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.refresh-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options to update.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Table of options overriding local options of active explorer session.</p>
 <hr>
 </section>
 </section>
@@ -1311,7 +1311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set which paths to display. Preview (if enabled) is applied afterwards.</p>
 <section id="minifiles.set_branch-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.set_branch-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{branch}</span> <code>(table)</code> Array of strings representing actually present on disk paths. Each consecutive pair should represent direct parent-child paths. Should contain at least one directory path. May end with file path (will be previwed). Relative paths are resolved using <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
+<p><span class="help-syntax-special">{branch}</span> <code>(table)</code> Array of strings representing actually present on disk paths. Each consecutive pair should represent direct parent-child paths. Should contain at least one directory path. May end with file path (will be previewed). Relative paths are resolved using <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;depth_focus&gt;</span> <code>(number)</code> - an index in <code>branch</code> for path to focus. Will be normalized to fit inside <code>branch</code>. Default: index of deepest directory.</li>
