@@ -905,8 +905,8 @@ file/directory under cursor. Notes:
 - File preview is highlighted if its size is small enough (less than 1K
   bytes per line or 1M bytes in total).
 
-`windows.width_focus` and `windows.width_nofocus` are number of columns used
-as `width` for focused and non-focused windows respectively.
+`windows.width_focus`, `windows.width_nofocus` and `windows.width_preview`
+are number of columns used as `width` for the corresponding window type.
 
 ---
 
@@ -967,7 +967,8 @@ Notes:
 
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Table of options to update.
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Table of options overriding local options of active
+  explorer session.
 
 ---
 
@@ -1190,7 +1191,7 @@ Set which paths to display. Preview (if enabled) is applied afterwards.
 <span class="help-syntax-special">{branch}</span> `(table)` Array of strings representing actually present on disk paths.
   Each consecutive pair should represent direct parent-child paths.
   Should contain at least one directory path.
-  May end with file path (will be previwed).
+  May end with file path (will be previewed).
   Relative paths are resolved using [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
