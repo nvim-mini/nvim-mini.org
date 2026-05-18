@@ -22,6 +22,7 @@ There are following change types:
 
 - Add new plugin integrations:
     - 'folke/snacks.nvim'
+    - 'saghen/blink.cmp'
 
 ## mini.clue {#v0.18.0-mini.clue}
 
@@ -73,6 +74,7 @@ There are following change types:
 
 - Add new plugin integrations:
     - 'folke/snacks.nvim'
+    - 'saghen/blink.cmp'
 
 ## mini.jump {#v0.18.0-mini.jump}
 
