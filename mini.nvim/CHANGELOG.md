@@ -114,6 +114,8 @@ There are following change types:
 
 - Update `ui_select` to wait until currently active picker is stopped before opening a new one. This behavior allows to call several `vim.ui.select()` in a row and is more aligned with how it is assumed to work.
 
+- Update `grep` and `grep_live` pickers to allow `method` local option which describes a pattern matching method (`'regex'` or `'plain'`). The `grep_live` picker also has custom `<C-e>` mapping to switch method.
+
 ### Refine {#v0.18.0-mini.pick-refine}
 
 - Stop forcing redraw every `config.delay.async` milliseconds while the picker is active. It added visible CPU usage and code/test lines for its benefit (mostly to show "background" changes/notifications).

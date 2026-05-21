@@ -179,6 +179,8 @@ See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config)
 #### Highlight groups {#module-highlightgroups}
 
 
+<a name="minipick-hl-groups" href="mini-pick.qmd#minipick-hl-groups"><b>MiniPick-hl-groups</b></a>
+
 
 - `MiniPickBorder` - window border.
 
@@ -1564,6 +1566,8 @@ flags to CLI tool (i.e. overriding tool's global config).
     specific glob syntax and effects. Default: `{}` (no restriction).
     Example: `{ '*.lua', 'lua/**' }` for Lua files and files in "lua" directory.
 
+  - <span class="help-syntax-keys">\<method\></span> `(string)` - pattern matching method: `"regex"` (default) or `"plain"`.
+
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 
 ---
@@ -1575,9 +1579,10 @@ Pick from pattern matches with live feedback
 
 Perform pattern matching treating prompt as pattern. Gives live feedback on
 which matches are found. Use [MiniPick-actions-refine](mini-pick.qmd#minipick-actions-refine) to revert to regular
-matching. Use `<C-o>` to restrict search to files matching glob patterns.
-Tries to use one of the CLI tools to create items (see [MiniPick-cli-tools](mini-pick.qmd#minipick-cli-tools)):
-`rg`, `git`. If none is present, error is thrown (for performance reasons).
+matching. Use <span class="help-syntax-keys">\<C-o\></span> to restrict search to files matching glob patterns.
+Use <span class="help-syntax-keys">\<C-e\></span> to change pattern matching method. Tries to use one of the CLI
+tools to create items (see [MiniPick-cli-tools](mini-pick.qmd#minipick-cli-tools)): `rg`, `git`. If none is
+present, error is thrown (for performance reasons).
 
 To customize search, use tool's global configuration approach.
 Options 'ignorecase' and 'smartcase' are respected via forcing appropriate
@@ -1597,7 +1602,10 @@ flags to CLI tool (i.e. overriding tool's global config).
     matching files. Supported only by "rg" and "git" tools, respects their
     specific glob syntax and effects. Default: `{}` (no restriction).
     Example: `{ '*.lua', 'lua/**' }` for Lua files and files in "lua" directory.
-    Use `<C-o>` custom mapping to add glob to the array.
+    Use <span class="help-syntax-keys">\<C-o\></span> custom mapping to add glob to the array.
+
+  - <span class="help-syntax-keys">\<method\></span> `(string)` - pattern matching method: `"regex"` (default) or `"plain"`.
+    Use <span class="help-syntax-keys">\<C-e\></span> custom mapping to add glob to the array.
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options forwarded to [MiniPick.start()](mini-pick.qmd#minipick.start).
 

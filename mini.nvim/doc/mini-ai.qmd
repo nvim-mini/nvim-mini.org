@@ -772,6 +772,34 @@ and backwards compatibility. There are several ways to work around this:
   })
   ```
 
+##### Overriding default `al` and `il` {#miniai.config-mappings-overridingdefaultalandil}
+
+
+<a name="miniai-default-al-il" href="mini-ai.qmd#miniai-default-al-il"><b>MiniAi-default-al-il</b></a>
+
+Default `around_last` / `inside_last` mappings override newly added in Neovim=0.13
+built-in mappings [al](https://neovim.io/doc/user/helptag.html?tag=al) and [il](https://neovim.io/doc/user/helptag.html?tag=il). This is intentional for better usability
+and backwards compatibility. There are several ways to work around this:
+
+
+- Use [MiniExtra.gen\_ai\_spec.buffer()](mini-extra.qmd#miniextra.gen_ai_spec.buffer) and [MiniExtra.gen\_ai\_spec.line()](mini-extra.qmd#miniextra.gen_ai_spec.line) to
+  create custom textobjects for buffer and line:
+
+    ```lua
+    require('mini.extra').setup()
+    require('mini.ai').setup({
+      custom_textobjects = {
+        -- Makes `aB` equivalent to built-in `al`
+        B = MiniExtra.gen_ai_spec.buffer(),
+        -- Makes `iL` equivalent to built-in `il`
+        L = MiniExtra.gen_ai_spec.line(),
+      },
+    })
+    ```
+
+
+- Use other values for "next" / "last" variants. See [MiniAi-default-an-in](mini-ai.qmd#miniai-default-an-in).
+
 ---
 
 ### find_textobject() {#miniai.find_textobject .help-syntax-right-anchor}
