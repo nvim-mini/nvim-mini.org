@@ -384,6 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#miniai.config-mappings" id="toc-miniai.config-mappings" class="nav-link" data-scroll-target="#miniai.config-mappings">Mappings</a>
   <ul>
   <li><a href="#miniai.config-mappings-overridingdefaultanandin" id="toc-miniai.config-mappings-overridingdefaultanandin" class="nav-link" data-scroll-target="#miniai.config-mappings-overridingdefaultanandin">Overriding default <code>an</code> and <code>in</code></a></li>
+  <li><a href="#miniai.config-mappings-overridingdefaultalandil" id="toc-miniai.config-mappings-overridingdefaultalandil" class="nav-link" data-scroll-target="#miniai.config-mappings-overridingdefaultalandil">Overriding default <code>al</code> and <code>il</code></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#miniai.find_textobject" id="toc-miniai.find_textobject" class="nav-link" data-scroll-target="#miniai.find_textobject">find_textobject()</a>
@@ -931,6 +932,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
+</section>
+<section id="miniai.config-mappings-overridingdefaultalandil" class="level5">
+<h5 class="anchored" data-anchor-id="miniai.config-mappings-overridingdefaultalandil">Overriding default <code>al</code> and <code>il</code></h5>
+<p><a name="miniai-default-al-il" href="../../mini.nvim/doc/mini-ai.html#miniai-default-al-il"><b>MiniAi-default-al-il</b></a></p>
+<p>Default <code>around_last</code> / <code>inside_last</code> mappings override newly added in Neovim=0.13 built-in mappings <a href="https://neovim.io/doc/user/helptag.html?tag=al">al</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=il">il</a>. This is intentional for better usability and backwards compatibility. There are several ways to work around this:</p>
+<ul>
+<li><p>Use <a href="../../mini.nvim/doc/mini-extra.html#miniextra.gen_ai_spec.buffer">MiniExtra.gen_ai_spec.buffer()</a> and <a href="../../mini.nvim/doc/mini-extra.html#miniextra.gen_ai_spec.line">MiniExtra.gen_ai_spec.line()</a> to create custom textobjects for buffer and line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.extra'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Makes `aB` equivalent to built-in `al`</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">B</span> <span class="op">=</span> <span class="va">MiniExtra</span><span class="op">.</span><span class="va">gen_ai_spec</span><span class="op">.</span>buffer<span class="op">(),</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Makes `iL` equivalent to built-in `il`</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">L</span> <span class="op">=</span> <span class="va">MiniExtra</span><span class="op">.</span><span class="va">gen_ai_spec</span><span class="op">.</span>line<span class="op">(),</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Use other values for “next” / “last” variants. See <a href="../../mini.nvim/doc/mini-ai.html#miniai-default-an-in">MiniAi-default-an-in</a>.</p></li>
+</ul>
 <hr>
 </section>
 </section>
@@ -982,22 +1001,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate common textobject specifications</p>
 <p>This is a table with function elements. Call to actually get specification.</p>
 <p>Example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">gen_spec</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span><span class="va">gen_spec</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak argument to be recognized only inside `()` between `;`</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">a</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>argument<span class="op">({</span> <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b()'</span> <span class="op">},</span> <span class="va">separator</span> <span class="op">=</span> <span class="st">';'</span> <span class="op">}),</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak function call to not detect dot in function name</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">f</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>function_call<span class="op">({</span> <span class="va">name_pattern</span> <span class="op">=</span> <span class="st">'[%w_]'</span> <span class="op">}),</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Function definition (needs treesitter queries with these captures)</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">F</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make `|` select both edges in non-balanced way</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'|'</span><span class="op">]</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>pair<span class="op">(</span><span class="st">'|'</span><span class="op">,</span> <span class="st">'|'</span><span class="op">,</span> <span class="op">{</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'non-balanced'</span> <span class="op">}),</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">gen_spec</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span><span class="va">gen_spec</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak argument to be recognized only inside `()` between `;`</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">a</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>argument<span class="op">({</span> <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b()'</span> <span class="op">},</span> <span class="va">separator</span> <span class="op">=</span> <span class="st">';'</span> <span class="op">}),</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tweak function call to not detect dot in function name</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">f</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>function_call<span class="op">({</span> <span class="va">name_pattern</span> <span class="op">=</span> <span class="st">'[%w_]'</span> <span class="op">}),</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Function definition (needs treesitter queries with these captures)</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">F</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Make `|` select both edges in non-balanced way</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'|'</span><span class="op">]</span> <span class="op">=</span> <span class="va">gen_spec</span><span class="op">.</span>pair<span class="op">(</span><span class="st">'|'</span><span class="op">,</span> <span class="st">'|'</span><span class="op">,</span> <span class="op">{</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'non-balanced'</span> <span class="op">}),</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 <section id="miniai.gen_spec.argument" class="level3 help-syntax-right-anchor">
@@ -1083,16 +1102,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="vim"><code>:lua print(vim.inspect(vim.treesitter.query.get_files('lua','textobjects')))</code></pre></li>
 </ul>
 <p>Example configuration for function definition textobject with ‘nvim-treesitter/nvim-treesitter-textobjects’ captures:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">spec_treesitter</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span><span class="va">gen_spec</span><span class="op">.</span><span class="va">treesitter</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">F</span> <span class="op">=</span> spec_treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">o</span> <span class="op">=</span> spec_treesitter<span class="op">({</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">a</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'@conditional.outer'</span><span class="op">,</span> <span class="st">'@loop.outer'</span> <span class="op">},</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">i</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'@conditional.inner'</span><span class="op">,</span> <span class="st">'@loop.inner'</span> <span class="op">},</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">})</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">spec_treesitter</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span><span class="va">gen_spec</span><span class="op">.</span><span class="va">treesitter</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.ai'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_textobjects</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">F</span> <span class="op">=</span> spec_treesitter<span class="op">({</span> <span class="va">a</span> <span class="op">=</span> <span class="st">'@function.outer'</span><span class="op">,</span> <span class="va">i</span> <span class="op">=</span> <span class="st">'@function.inner'</span> <span class="op">}),</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">o</span> <span class="op">=</span> spec_treesitter<span class="op">({</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">a</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'@conditional.outer'</span><span class="op">,</span> <span class="st">'@loop.outer'</span> <span class="op">},</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">i</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'@conditional.inner'</span><span class="op">,</span> <span class="st">'@loop.inner'</span> <span class="op">},</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">})</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notes:</p>
 <ul>
 <li><p>Be sure that query files don’t contain unknown <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives">treesitter-directives</a> (like <code>#make-range!</code>, for example). Otherwise textobject for such capture might not be found as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> won’t treat them as captures. Verify with <code>:=vim.treesitter.query.get('lang', 'textobjects')</code> and see if the target capture is recognized as one.</p></li>

@@ -679,6 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="module-highlightgroups" class="level4">
 <h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
+<p><a name="minipick-hl-groups" href="../../mini.nvim/doc/mini-pick.html#minipick-hl-groups"><b>MiniPick-hl-groups</b></a></p>
 <ul>
 <li><p><code>MiniPickBorder</code> - window border.</p></li>
 <li><p><code>MiniPickBorderBusy</code> - window border while picker is busy processing.</p></li>
@@ -1588,6 +1589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;tool&gt;</span> <code>(string)</code> - which tool to use. One of “rg”, “git”, “fallback”. Default: whichever tool is present, trying in that same order.</p></li>
 <li><p><span class="help-syntax-keys">&lt;pattern&gt;</span> <code>(string)</code> - string pattern to search. If not given, asks user interactively with <a href="https://neovim.io/doc/user/helptag.html?tag=input()">input()</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;globs&gt;</span> <code>(table)</code> - array of string glob patterns to restrict search to matching files. Supported only by “rg” and “git” tools, respects their specific glob syntax and effects. Default: <code>{}</code> (no restriction). Example: <code>{ '*.lua', 'lua/**' }</code> for Lua files and files in “lua” directory.</p></li>
+<li><p><span class="help-syntax-keys">&lt;method&gt;</span> <code>(string)</code> - pattern matching method: <code>"regex"</code> (default) or <code>"plain"</code>.</p></li>
 </ul>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
@@ -1599,14 +1601,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.builtin.grep_live</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Pick from pattern matches with live feedback</p>
-<p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a> to revert to regular matching. Use <code>&lt;C-o&gt;</code> to restrict search to files matching glob patterns. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
+<p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a> to revert to regular matching. Use <span class="help-syntax-keys">&lt;C-o&gt;</span> to restrict search to files matching glob patterns. Use <span class="help-syntax-keys">&lt;C-e&gt;</span> to change pattern matching method. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
 <p>To customize search, use tool’s global configuration approach. Options ‘ignorecase’ and ‘smartcase’ are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
 <section id="minipick.builtin.grep_live-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep_live-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;tool&gt;</span> <code>(string)</code> - which tool to use. One of “rg”, “git”. Default: whichever tool is present, trying in that same order.</p></li>
-<li><p><span class="help-syntax-keys">&lt;globs&gt;</span> <code>(table)</code> - array of string glob patterns to restrict search to matching files. Supported only by “rg” and “git” tools, respects their specific glob syntax and effects. Default: <code>{}</code> (no restriction). Example: <code>{ '*.lua', 'lua/**' }</code> for Lua files and files in “lua” directory. Use <code>&lt;C-o&gt;</code> custom mapping to add glob to the array.</p></li>
+<li><p><span class="help-syntax-keys">&lt;globs&gt;</span> <code>(table)</code> - array of string glob patterns to restrict search to matching files. Supported only by “rg” and “git” tools, respects their specific glob syntax and effects. Default: <code>{}</code> (no restriction). Example: <code>{ '*.lua', 'lua/**' }</code> for Lua files and files in “lua” directory. Use <span class="help-syntax-keys">&lt;C-o&gt;</span> custom mapping to add glob to the array.</p></li>
+<li><p><span class="help-syntax-keys">&lt;method&gt;</span> <code>(string)</code> - pattern matching method: <code>"regex"</code> (default) or <code>"plain"</code>. Use <span class="help-syntax-keys">&lt;C-e&gt;</span> custom mapping to add glob to the array.</p></li>
 </ul>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options forwarded to <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>.</p>
 <hr>
