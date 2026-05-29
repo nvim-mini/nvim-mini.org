@@ -617,7 +617,7 @@ Examples:
 <p align="center">`MiniExtra.pickers.git_files`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Git files picker
 
-Pick from Git files using `git ls-files`.
+Pick from Git files using `git ls-files` using standard ignore rules.
 Notes:
 
 - Requires executable `git`.
@@ -634,7 +634,7 @@ Examples:
   parent Git repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `:Pick git_files path='subdir' scope='modified'` - files from 'subdir'
-  subdirectory which are ignored by Git.
+  subdirectory which differ from Git index.
 
 #### Parameters {#miniextra.pickers.git_files-parameters}
 
@@ -647,7 +647,7 @@ Examples:
     used to find Git repository inside which to construct items.
     Default: `nil` for root of Git repository containing [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
-  - <span class="help-syntax-keys">\<scope\></span> `(string)` - files scope to show. One of
+  - <span class="help-syntax-keys">\<scope\></span> `(string)` - files scope to show. One of:
 
       - "tracked"   (`--cached`   Git flag).
 
