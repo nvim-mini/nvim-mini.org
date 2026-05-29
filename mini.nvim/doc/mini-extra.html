@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-aa6ca216aa14000a4d48da6d9d72aeb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-14f32f355d21b609f552c03f351415ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-4c2f969540d35a83fe7feb0730310765.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c06558a13fb98f07b533b4640917c92d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1000,7 +1000,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniExtra.pickers.git_files</code>(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Git files picker</p>
-<p>Pick from Git files using <code>git ls-files</code>. Notes:</p>
+<p>Pick from Git files using <code>git ls-files</code> using standard ignore rules. Notes:</p>
 <ul>
 <li><p>Requires executable <code>git</code>.</p></li>
 <li><p>Requires target path to be part of git repository.</p></li>
@@ -1009,14 +1009,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Examples:</p>
 <ul>
 <li><p><code>MiniExtra.pickers.git_files({ scope = 'ignored' })</code> - ignored files from parent Git repository of <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p></li>
-<li><p><code>:Pick git_files path='subdir' scope='modified'</code> - files from ‘subdir’ subdirectory which are ignored by Git.</p></li>
+<li><p><code>:Pick git_files path='subdir' scope='modified'</code> - files from ‘subdir’ subdirectory which differ from Git index.</p></li>
 </ul>
 <section id="miniextra.pickers.git_files-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="miniextra.pickers.git_files-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;path&gt;</span> <code>(string|nil)</code> - target path for Git operation (if required). Also used to find Git repository inside which to construct items. Default: <code>nil</code> for root of Git repository containing <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - files scope to show. One of</p>
+<li><p><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - files scope to show. One of:</p>
 <ul>
 <li><p>“tracked” (<code>--cached</code> Git flag).</p></li>
 <li><p>“modified” (<code>--modified</code> Git flag).</p></li>
