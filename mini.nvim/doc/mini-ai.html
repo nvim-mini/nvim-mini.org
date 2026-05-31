@@ -1116,6 +1116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Be sure that query files don’t contain unknown <a href="https://neovim.io/doc/user/helptag.html?tag=treesitter-directives">treesitter-directives</a> (like <code>#make-range!</code>, for example). Otherwise textobject for such capture might not be found as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> won’t treat them as captures. Verify with <code>:=vim.treesitter.query.get('lang', 'textobjects')</code> and see if the target capture is recognized as one.</p></li>
 <li><p>It uses buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag=filetype">filetype</a> to determine query language.</p></li>
+<li><p>It first searches the language under cursor for matches. If no matches are found, it falls back to searching parent languages (up to the buffer’s root language). If no matches are found again, it falls back to recursively searching all children languages (from the language under cursor). If no matches again - report no matches.</p></li>
 <li><p>On large files it is slower than pattern-based textobjects. Still very fast though (one search should be magnitude of milliseconds or tens of milliseconds on really large file).</p></li>
 </ul>
 <section id="miniai.gen_spec.treesitter-parameters" class="level4">
