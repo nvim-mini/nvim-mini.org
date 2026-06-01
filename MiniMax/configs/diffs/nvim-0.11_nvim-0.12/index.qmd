@@ -69,7 +69,25 @@ Notes:
 +-- - `:h vim.pack-lockfile` - lockfile info
 +-- - `:h vim.pack-events` - available events and plugin hooks examples
 +-- - `:h vim.pack.update()` - more details about confirmation step
-@@ -75,0 +68,28 @@
+@@ -90,3 +82,42 @@
+--- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
+--- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
+-Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
++-- Define custom `vim.pack.add()` hook helper. Plugin data is passed as
++-- argument to the callback. See `:h vim.pack-events`.
++-- Example usage: see 'plugin/40_plugins.lua'.
++-- If any plugin requires installation hooks, add them after this function
++-- and before the first `vim.pack.add()` call.
++Config.on_packchanged = function(plugin_name, kinds, callback, desc)
++  local f = function(ev)
++    local name, kind = ev.data.spec.name, ev.data.kind
++    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
++    if not ev.data.active then vim.cmd.packadd(plugin_name) end
++    callback(ev.data)
++  end
++  Config.new_autocmd('PackChanged', '*', f, desc)
++end
++
 +-- 'mini.nvim' - all-in-one plugin powering most MiniMax features.
 +-- See 'plugin/30_mini.lua' for how it is used.
 +-- Load now to have 'mini.misc' available for custom loading helpers.
@@ -97,23 +115,6 @@ Notes:
 +Config.now_if_args = vim.fn.argc(-1) > 0 and Config.now or Config.later
 +Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 +Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
-+
-@@ -90,3 +110,12 @@
---- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
---- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
--Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
-+-- Define custom `vim.pack.add()` hook helper. Plugin data is passed as
-+-- argument to the callback. See `:h vim.pack-events`.
-+-- Example usage: see 'plugin/40_plugins.lua'.
-+Config.on_packchanged = function(plugin_name, kinds, callback, desc)
-+  local f = function(ev)
-+    local name, kind = ev.data.spec.name, ev.data.kind
-+    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
-+    if not ev.data.active then vim.cmd.packadd(plugin_name) end
-+    callback(ev.data)
-+  end
-+  Config.new_autocmd('PackChanged', '*', f, desc)
-+end
 ```
 
 </details>
