@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mini.input documentation – MINI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4c2f969540d35a83fe7feb0730310765.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c06558a13fb98f07b533b4640917c92d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style> .quarto-title > h1.title { display: none } </style>
+
+
+<meta property="og:title" content="mini.input documentation – MINI">
+<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
+<meta property="og:site_name" content="MINI">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="mini.input documentation – MINI">
+<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MINI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../mini.nvim/index.html"> 
+<span class="menu-text">mini.nvim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../MiniMax/index.html"> 
+<span class="menu-text">MiniMax</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nvim-mini"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#module" id="toc-module" class="nav-link active" data-scroll-target="#module">Module</a>
+  <ul>
+  <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
+  <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
+  <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  </ul></li>
+  <li><a href="#miniinput-state" id="toc-miniinput-state" class="nav-link" data-scroll-target="#miniinput-state">State</a></li>
+  <li><a href="#miniinput-examples" id="toc-miniinput-examples" class="nav-link" data-scroll-target="#miniinput-examples">Examples</a>
+  <ul>
+  <li><a href="#miniinput-examples-general" id="toc-miniinput-examples-general" class="nav-link" data-scroll-target="#miniinput-examples-general">General</a>
+  <ul>
+  <li><a href="#miniinput-examples-general-initialinput" id="toc-miniinput-examples-general-initialinput" class="nav-link" data-scroll-target="#miniinput-examples-general-initialinput">Initial input</a></li>
+  <li><a href="#miniinput-examples-general-custommappings" id="toc-miniinput-examples-general-custommappings" class="nav-link" data-scroll-target="#miniinput-examples-general-custommappings">Custom mappings</a></li>
+  <li><a href="#miniinput-examples-general-basiccommandline" id="toc-miniinput-examples-general-basiccommandline" class="nav-link" data-scroll-target="#miniinput-examples-general-basiccommandline">Basic command line</a></li>
+  </ul></li>
+  <li><a href="#miniinput-examples-handlers" id="toc-miniinput-examples-handlers" class="nav-link" data-scroll-target="#miniinput-examples-handlers">Handlers</a>
+  <ul>
+  <li><a href="#miniinput-examples-handlers-key" id="toc-miniinput-examples-handlers-key" class="nav-link" data-scroll-target="#miniinput-examples-handlers-key">Key</a></li>
+  <li><a href="#miniinput-examples-handlers-view" id="toc-miniinput-examples-handlers-view" class="nav-link" data-scroll-target="#miniinput-examples-handlers-view">View</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#miniinput.setup" id="toc-miniinput.setup" class="nav-link" data-scroll-target="#miniinput.setup">setup()</a>
+  <ul>
+  <li><a href="#miniinput.setup-parameters" id="toc-miniinput.setup-parameters" class="nav-link" data-scroll-target="#miniinput.setup-parameters">Parameters</a></li>
+  <li><a href="#miniinput.setup-usage" id="toc-miniinput.setup-usage" class="nav-link" data-scroll-target="#miniinput.setup-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.config" id="toc-miniinput.config" class="nav-link" data-scroll-target="#miniinput.config">config</a>
+  <ul>
+  <li><a href="#miniinput.config-defaults" id="toc-miniinput.config-defaults" class="nav-link" data-scroll-target="#miniinput.config-defaults">Defaults</a></li>
+  <li><a href="#miniinput.config-handlers" id="toc-miniinput.config-handlers" class="nav-link" data-scroll-target="#miniinput.config-handlers">Handlers</a>
+  <ul>
+  <li><a href="#miniinput.config-handlers-complete" id="toc-miniinput.config-handlers-complete" class="nav-link" data-scroll-target="#miniinput.config-handlers-complete">Complete</a></li>
+  <li><a href="#miniinput.config-handlers-highlight" id="toc-miniinput.config-handlers-highlight" class="nav-link" data-scroll-target="#miniinput.config-handlers-highlight">Highlight</a></li>
+  <li><a href="#miniinput.config-handlers-view" id="toc-miniinput.config-handlers-view" class="nav-link" data-scroll-target="#miniinput.config-handlers-view">View</a></li>
+  </ul></li>
+  <li><a href="#miniinput.config-scope" id="toc-miniinput.config-scope" class="nav-link" data-scroll-target="#miniinput.config-scope">Scope</a></li>
+  </ul></li>
+  <li><a href="#miniinput.get" id="toc-miniinput.get" class="nav-link" data-scroll-target="#miniinput.get">get()</a>
+  <ul>
+  <li><a href="#miniinput.get-lifecycle" id="toc-miniinput.get-lifecycle" class="nav-link" data-scroll-target="#miniinput.get-lifecycle">Lifecycle</a></li>
+  <li><a href="#miniinput.get-parameters" id="toc-miniinput.get-parameters" class="nav-link" data-scroll-target="#miniinput.get-parameters">Parameters</a></li>
+  <li><a href="#miniinput.get-return" id="toc-miniinput.get-return" class="nav-link" data-scroll-target="#miniinput.get-return">Return</a></li>
+  <li><a href="#miniinput.get-usage" id="toc-miniinput.get-usage" class="nav-link" data-scroll-target="#miniinput.get-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.ui_input" id="toc-miniinput.ui_input" class="nav-link" data-scroll-target="#miniinput.ui_input">ui_input()</a>
+  <ul>
+  <li><a href="#miniinput.ui_input-usage" id="toc-miniinput.ui_input-usage" class="nav-link" data-scroll-target="#miniinput.ui_input-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.get_state" id="toc-miniinput.get_state" class="nav-link" data-scroll-target="#miniinput.get_state">get_state()</a>
+  <ul>
+  <li><a href="#miniinput.get_state-return" id="toc-miniinput.get_state-return" class="nav-link" data-scroll-target="#miniinput.get_state-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniinput.get_history" id="toc-miniinput.get_history" class="nav-link" data-scroll-target="#miniinput.get_history">get_history()</a>
+  <ul>
+  <li><a href="#miniinput.get_history-return" id="toc-miniinput.get_history-return" class="nav-link" data-scroll-target="#miniinput.get_history-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniinput.set_history" id="toc-miniinput.set_history" class="nav-link" data-scroll-target="#miniinput.set_history">set_history()</a>
+  <ul>
+  <li><a href="#miniinput.set_history-parameters" id="toc-miniinput.set_history-parameters" class="nav-link" data-scroll-target="#miniinput.set_history-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniinput.refresh" id="toc-miniinput.refresh" class="nav-link" data-scroll-target="#miniinput.refresh">refresh()</a></li>
+  <li><a href="#miniinput.gen_highlight" id="toc-miniinput.gen_highlight" class="nav-link" data-scroll-target="#miniinput.gen_highlight">gen_highlight</a></li>
+  <li><a href="#miniinput.gen_highlight.treesitter" id="toc-miniinput.gen_highlight.treesitter" class="nav-link" data-scroll-target="#miniinput.gen_highlight.treesitter">gen_highlight.treesitter()</a>
+  <ul>
+  <li><a href="#miniinput.gen_highlight.treesitter-parameters" id="toc-miniinput.gen_highlight.treesitter-parameters" class="nav-link" data-scroll-target="#miniinput.gen_highlight.treesitter-parameters">Parameters</a></li>
+  <li><a href="#miniinput.gen_highlight.treesitter-return" id="toc-miniinput.gen_highlight.treesitter-return" class="nav-link" data-scroll-target="#miniinput.gen_highlight.treesitter-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniinput.gen_view" id="toc-miniinput.gen_view" class="nav-link" data-scroll-target="#miniinput.gen_view">gen_view</a></li>
+  <li><a href="#miniinput.gen_view.floatwin" id="toc-miniinput.gen_view.floatwin" class="nav-link" data-scroll-target="#miniinput.gen_view.floatwin">gen_view.floatwin()</a>
+  <ul>
+  <li><a href="#miniinput.gen_view.floatwin-parameters" id="toc-miniinput.gen_view.floatwin-parameters" class="nav-link" data-scroll-target="#miniinput.gen_view.floatwin-parameters">Parameters</a></li>
+  <li><a href="#miniinput.gen_view.floatwin-usage" id="toc-miniinput.gen_view.floatwin-usage" class="nav-link" data-scroll-target="#miniinput.gen_view.floatwin-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.gen_view.uiline" id="toc-miniinput.gen_view.uiline" class="nav-link" data-scroll-target="#miniinput.gen_view.uiline">gen_view.uiline()</a>
+  <ul>
+  <li><a href="#miniinput.gen_view.uiline-parameters" id="toc-miniinput.gen_view.uiline-parameters" class="nav-link" data-scroll-target="#miniinput.gen_view.uiline-parameters">Parameters</a></li>
+  <li><a href="#miniinput.gen_view.uiline-usage" id="toc-miniinput.gen_view.uiline-usage" class="nav-link" data-scroll-target="#miniinput.gen_view.uiline-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.gen_view.virtual" id="toc-miniinput.gen_view.virtual" class="nav-link" data-scroll-target="#miniinput.gen_view.virtual">gen_view.virtual()</a>
+  <ul>
+  <li><a href="#miniinput.gen_view.virtual-parameters" id="toc-miniinput.gen_view.virtual-parameters" class="nav-link" data-scroll-target="#miniinput.gen_view.virtual-parameters">Parameters</a></li>
+  <li><a href="#miniinput.gen_view.virtual-usage" id="toc-miniinput.gen_view.virtual-usage" class="nav-link" data-scroll-target="#miniinput.gen_view.virtual-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.default_key" id="toc-miniinput.default_key" class="nav-link" data-scroll-target="#miniinput.default_key">default_key()</a>
+  <ul>
+  <li><a href="#miniinput.default_key-parameters" id="toc-miniinput.default_key-parameters" class="nav-link" data-scroll-target="#miniinput.default_key-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniinput.default_highlight" id="toc-miniinput.default_highlight" class="nav-link" data-scroll-target="#miniinput.default_highlight">default_highlight()</a>
+  <ul>
+  <li><a href="#miniinput.default_highlight-parameters" id="toc-miniinput.default_highlight-parameters" class="nav-link" data-scroll-target="#miniinput.default_highlight-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniinput.default_view" id="toc-miniinput.default_view" class="nav-link" data-scroll-target="#miniinput.default_view">default_view()</a>
+  <ul>
+  <li><a href="#miniinput.default_view-parameters" id="toc-miniinput.default_view-parameters" class="nav-link" data-scroll-target="#miniinput.default_view-parameters">Parameters</a></li>
+  </ul></li>
+  <li><a href="#miniinput.default_complete" id="toc-miniinput.default_complete" class="nav-link" data-scroll-target="#miniinput.default_complete">default_complete()</a>
+  <ul>
+  <li><a href="#miniinput.default_complete-parameters" id="toc-miniinput.default_complete-parameters" class="nav-link" data-scroll-target="#miniinput.default_complete-parameters">Parameters</a></li>
+  <li><a href="#miniinput.default_complete-usage" id="toc-miniinput.default_complete-usage" class="nav-link" data-scroll-target="#miniinput.default_complete-usage">Usage</a></li>
+  </ul></li>
+  <li><a href="#miniinput.state_to_chunks" id="toc-miniinput.state_to_chunks" class="nav-link" data-scroll-target="#miniinput.state_to_chunks">state_to_chunks()</a>
+  <ul>
+  <li><a href="#miniinput.state_to_chunks-parameters" id="toc-miniinput.state_to_chunks-parameters" class="nav-link" data-scroll-target="#miniinput.state_to_chunks-parameters">Parameters</a></li>
+  <li><a href="#miniinput.state_to_chunks-return" id="toc-miniinput.state_to_chunks-return" class="nav-link" data-scroll-target="#miniinput.state_to_chunks-return">Return</a></li>
+  </ul></li>
+  <li><a href="#miniinput.apply_handler" id="toc-miniinput.apply_handler" class="nav-link" data-scroll-target="#miniinput.apply_handler">apply_handler()</a>
+  <ul>
+  <li><a href="#miniinput.apply_handler-parameters" id="toc-miniinput.apply_handler-parameters" class="nav-link" data-scroll-target="#miniinput.apply_handler-parameters">Parameters</a></li>
+  <li><a href="#miniinput.apply_handler-return" id="toc-miniinput.apply_handler-return" class="nav-link" data-scroll-target="#miniinput.apply_handler-return">Return</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mini.input documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Generated from the <code>main</code> branch of ‘mini.nvim’</em></p>
+<p><a name="mini.input" href="../../mini.nvim/doc/mini-input.html#mini.input"><b>mini.input</b></a> Get user input</p>
+<p>MIT License Copyright (c) 2026 Evgeni Chasnovski</p>
+<hr>
+<section id="module" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="module">Module</h3>
+<p>Features:</p>
+<ul>
+<li><p>Get user input with fully customizable key and view handling.</p></li>
+<li><p>Built-in configurable views as floating window, statusline/tabline/winbar, virtual line/text.</p></li>
+<li><p>Implementation is non-blocking but waits to return the input. It also works in any mode without requiring mode change. See <a href="../../mini.nvim/doc/mini-input.html#miniinput-lifecycle">MiniInput-lifecycle</a>.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-input.html#miniinput.ui_input">MiniInput.ui_input()</a> or save-restore <code>vim.ui.input</code> manually after calling <a href="../../mini.nvim/doc/mini-input.html#miniinput.setup">MiniInput.setup()</a>.</p></li>
+</ul>
+<p>Sources with more details:</p>
+<ul>
+<li><p><a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-input.html#miniinput.default_key">MiniInput.default_key()</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-input.html#miniinput-examples">MiniInput-examples</a></p></li>
+</ul>
+<section id="module-setup" class="level4">
+<h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
+<p>This module needs a setup with <code>require('mini.input').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). It will create global Lua table <code>MiniInput</code> which you can use for scripting or manually (with <code>:lua MiniInput.*</code>).</p>
+<p>See <a href="../../mini.nvim/doc/mini-input.html#miniinput.config">MiniInput.config</a> for <code>config</code> structure and default values.</p>
+<p>You can override runtime config settings locally to buffer inside <code>vim.b.miniinput_config</code> which should have same structure as <code>MiniInput.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
+</section>
+<section id="module-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="module-comparisons">Comparisons</h4>
+<ul>
+<li><p><a href="https://github.com/folke/snacks.nvim">folke/snacks.nvim#input</a>:</p>
+<ul>
+<li><p>Both provide <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> implementation.</p></li>
+<li><p>Has asynchronous implementation (i.e.&nbsp;does not wait for user to finish input), while this module has synchronous non-blocking implementation.</p></li>
+<li><p>Uses floating window and forced Insert mode. This module allows more view customizations and can be used in any mode without interruptions.</p></li>
+</ul></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=input()">input()</a>:</p>
+<ul>
+<li><p>Both are synchronous.</p></li>
+<li><p>Both allow custom highlight and completion.</p></li>
+<li><p>This module also allows supplying input scope and visibility, customizing keys and view.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="module-highlightgroups" class="level4">
+<h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
+<p><a name="miniinput-hl-groups" href="../../mini.nvim/doc/mini-input.html#miniinput-hl-groups"><b>MiniInput-hl-groups</b></a></p>
+<ul>
+<li><p><code>MiniInputAdded</code> - added text during completion navigation.</p></li>
+<li><p><code>MiniInputBorder</code> - border of a <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view.floatwin">MiniInput.gen_view.floatwin()</a> handler.</p></li>
+<li><p><code>MiniInputCaret</code> - caret symbol shown in a prompt area.</p></li>
+<li><p><code>MiniInputHide</code> - input is hidden, usually used instead of <code>MiniInputPrompt</code>.</p></li>
+<li><p><code>MiniInputHint</code> - hints shown during completion navigation.</p></li>
+<li><p><code>MiniInputNormal</code> - basic foreground/background.</p></li>
+<li><p><code>MiniInputPrompt</code> - input prompt (intention of the input).</p></li>
+<li><p><code>MiniInputSpecial</code> - special keys (like literal <code>\t</code>, <code>\n</code>, etc.) in input.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="miniinput-state" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput-state">State</h3>
+<p>Information about the state of the input. It is used as a handler argument and can be get via <a href="../../mini.nvim/doc/mini-input.html#miniinput.get_state">MiniInput.get_state()</a>. A table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;caret&gt;</span> <code>(number)</code> - character (not byte) index at which to modify input. Should be from 1 (prepend input) to “input width plus 1” (append input).</p></li>
+<li><p><span class="help-syntax-keys">&lt;complete&gt;</span> <code>(table|nil)</code> - information about active completion navigation. If present, it means that completion navigation is in action. Its fields describe the state of navigation:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;base&gt;</span> <code>(string)</code> - reference text to the left of caret at the start of completion. Used to compute candidates. Can be empty string.</p></li>
+<li><p><span class="help-syntax-keys">&lt;id&gt;</span> <code>(number)</code> - identifier of current completion item. Can be zero to mean that the base is shown. If not zero, must mean that a <code>items[id]</code> candidate is now shown to the left of caret as the part of the input.</p></li>
+<li><p><span class="help-syntax-keys">&lt;items&gt;</span> <code>(table)</code> - string array of completion candidates. May be empty. Are intended to fully replace <span class="help-syntax-keys">&lt;base&gt;</span>, so should contain it in any sense.</p></li>
+<li><p><span class="help-syntax-keys">&lt;method&gt;</span> <code>(string)</code> - completion method. Like <code>"default"</code>, <code>"history"</code>, etc. Can be <code>""</code> (empty string) to mean “default method of complete handler”.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;data&gt;</span> <code>(table)</code> - any information to be reused within the same input session. Note: handlers should not change fields that they don’t “own”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;errmsg&gt;</span> <code>(errmsg)</code> - first error message caught during input process.</p></li>
+<li><p><span class="help-syntax-keys">&lt;highlight&gt;</span> <code>(table|nil)</code> - information about current input highlighting. If absent, the whole input is highlighted using <code>MiniInputNormal</code> group. Should be an array of highlight ranges. They might be not ordered, overlap, go outside of input width. It is up to the view handler to decide how to interpret them. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a> for a helper. Fields of a single highlight range:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;from&gt;</span> <code>(number)</code> - character index (one-indexed) of range start.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to&gt;</span> <code>(number)</code> - character index (one-indexed) of range end (inclusive). Should not be smaller than <span class="help-syntax-keys">&lt;from&gt;</span>. Can be <a href="https://neovim.io/doc/user/helptag.html?tag=math.huge">math.huge</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hl&gt;</span> <code>(string)</code> - highlight group to use for highlighting.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;input&gt;</span> <code>(string)</code> - current user input. Returned by <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;opts&gt;</span> <code>(table)</code> - input options, same as in <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;prompt&gt;</span> <code>(string)</code> - intention of the input. May be empty.</p></li>
+<li><p><span class="help-syntax-keys">&lt;status&gt;</span> <code>(string)</code> - one of <code>"start"</code>, <code>"progress"</code>, <code>"accept"</code>, <code>"cancel"</code>.</p></li>
+</ul>
+<hr>
+</section>
+<section id="miniinput-examples" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput-examples">Examples</h3>
+<section id="miniinput-examples-general" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput-examples-general">General</h4>
+<section id="miniinput-examples-general-initialinput" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput-examples-general-initialinput">Initial input</h5>
+<p>Use <code>opts.init_keys</code> to imitate the initial state of the input:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniInput</span><span class="op">.</span>get<span class="op">({</span> <span class="va">init_keys</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'Default'</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput-examples-general-custommappings" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput-examples-general-custommappings">Custom mappings</h5>
+<p>Override <code>handlers.key</code> in <a href="../../mini.nvim/doc/mini-input.html#miniinput.config">MiniInput.config</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">key_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">key</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- &lt;C-a&gt; - move caret to start of line</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">key</span> <span class="op">==</span> <span class="st">'</span><span class="sc">\1</span><span class="st">'</span> <span class="cf">then</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- &lt;S-BS&gt; - clear all input</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elseif</span> <span class="va">key</span> <span class="op">==</span> <span class="va">vim</span><span class="op">.</span>keycode<span class="op">(</span><span class="st">'&lt;S-BS&gt;'</span><span class="op">)</span> <span class="cf">then</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">,</span> <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">=</span> <span class="st">''</span><span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- IMPORTANT: Fall back to processing as usual</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>default_key<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">key</span><span class="op">)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">key</span> <span class="op">=</span> <span class="va">key_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput-examples-general-basiccommandline" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput-examples-general-basiccommandline">Basic command line</h5>
+<p>An alternative <a href="https://neovim.io/doc/user/helptag.html?tag=Command-line">Command-line</a> with highlighting and completion:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Construct reusable `MiniInput.get()` options</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">cmdline_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">prompt</span> <span class="op">=</span> <span class="st">'Command'</span><span class="op">,</span> <span class="va">scope</span> <span class="op">=</span> <span class="st">'editor'</span> <span class="op">}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Highlight using bundled Vim tree-sitter parser and default handler</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">highlight_vim</span> <span class="op">=</span> <span class="va">MiniInput</span><span class="op">.</span><span class="va">gen_highlight</span><span class="op">.</span>treesitter<span class="op">(</span><span class="st">'vim'</span><span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">highlight_cmdline</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">state</span> <span class="op">=</span> highlight_vim<span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="kw">or</span> <span class="va">state</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>default_highlight<span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="kw">or</span> <span class="va">state</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">cmdline_opts</span><span class="op">.</span><span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">highlight</span> <span class="op">=</span> <span class="va">highlight_cmdline</span> <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Complete as if it is Command line input</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">cmdline_opts</span><span class="op">.</span><span class="va">completion</span> <span class="op">=</span> <span class="st">'cmdline'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create a mapping for `:`</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input_cmdline</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">cmd</span> <span class="op">=</span> <span class="va">MiniInput</span><span class="op">.</span>get<span class="op">(</span><span class="va">cmdline_opts</span><span class="op">)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">cmd</span> <span class="op">~=</span> <span class="kw">nil</span> <span class="cf">then</span> <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="va">cmd</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">':'</span><span class="op">,</span> <span class="va">input_cmdline</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="miniinput-examples-handlers" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput-examples-handlers">Handlers</h4>
+<section id="miniinput-examples-handlers-key" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput-examples-handlers-key">Key</h5>
+<p>Perform custom actions based on arbitrary conditions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">key_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">key</span><span class="op">)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Adjust prompt</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">prompt</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">prompt</span><span class="op">:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">'[?:]%s*$'</span><span class="op">,</span> <span class="st">''</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Adjust scope</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">prompt</span> <span class="op">==</span> <span class="st">'Editor action'</span> <span class="cf">then</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">scope</span> <span class="op">=</span> <span class="st">'editor'</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Hide from view and history</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">prompt</span><span class="op">:</span><span class="fu">find</span><span class="op">(</span><span class="st">'[Pp]assword'</span><span class="op">)</span> <span class="op">~=</span> <span class="kw">nil</span> <span class="cf">then</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">hide</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- IMPORTANT: Process as usual</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">state</span> <span class="op">=</span> <span class="va">MiniInput</span><span class="op">.</span>default_key<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">key</span><span class="op">)</span> <span class="kw">or</span> <span class="va">state</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Auto fill and accept</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">state</span><span class="op">.</span><span class="va">input</span> <span class="op">==</span> <span class="st">'AF'</span> <span class="cf">then</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">,</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">=</span> <span class="st">'Autofilled input'</span><span class="op">,</span> <span class="st">'accept'</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">key</span> <span class="op">=</span> <span class="va">key_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput-examples-handlers-view" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput-examples-handlers-view">View</h5>
+<p>Show no view:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="kw">end</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Compute initial style depending on scope:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_virtline</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>virtual<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'above'</span> <span class="op">})</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_tabline</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>uiline<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'tabline'</span> <span class="op">})</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_winbar</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>uiline<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'winbar'</span> <span class="op">})</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- </span><span class="al">NOTE</span><span class="co">: does not support interactive scope change</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">scope</span><span class="op">,</span> <span class="va">view</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">scope</span><span class="op">,</span> <span class="va">view_tabline</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'buffer'</span> <span class="kw">or</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'window'</span> <span class="cf">then</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_winbar</span> <span class="cf">end</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'cursor'</span> <span class="kw">or</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'line'</span> <span class="cf">then</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_virtline</span> <span class="cf">end</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> view<span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Change symbols for caret and hidden input: see <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view">MiniInput.gen_view</a>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="miniinput.setup" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.setup">setup()</h3>
+<p align="center">
+<code>MiniInput.setup</code>(<span class="help-syntax-special">{config}</span>)
+</p>
+<p>Module setup</p>
+<section id="miniinput.setup-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.setup-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Module config table. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.config">MiniInput.config</a>.</p>
+</section>
+<section id="miniinput.setup-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.setup-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">()</span> <span class="co">-- use default config</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- OR</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({})</span> <span class="co">-- replace {} with your config table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.config" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.config">config</h3>
+<p align="center">
+<code>MiniInput.config</code>
+</p>
+<section id="miniinput.config-defaults" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.config-defaults">Defaults</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniInput</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Functions that control input lifecycle</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Compute completion candidates</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">complete</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Compute highlighting of current input</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">highlight</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Handle input start, every key press, and input end</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">key</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show current input state</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">view</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Default input scope: cursor/line/buffer/window/tabpage/editor/project</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">scope</span> <span class="op">=</span> <span class="st">'editor'</span><span class="op">,</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput.config-handlers" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.config-handlers">Handlers</h4>
+<p><a name="miniinput.config.handlers" href="../../mini.nvim/doc/mini-input.html#miniinput.config.handlers"><b>MiniInput.config.handlers</b></a></p>
+<p><code>config.handlers</code> defines functions that are applied during <a href="../../mini.nvim/doc/mini-input.html#miniinput-lifecycle">MiniInput-lifecycle</a>. Every handler takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> as the first argument and is expected to either modify it in place or return a new state table.</p>
+<p>Use <a href="../../mini.nvim/doc/mini-input.html#miniinput.apply_handler">MiniInput.apply_handler()</a> to apply a handler for a given <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>. They can be set up as part of the config (will be used as default) or passed directly as a part of <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a> call.</p>
+<section id="miniinput.config-handlers-complete" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput.config-handlers-complete">Complete</h5>
+<p><code>handlers.complete</code> is a handler intended to compute completion suggestions. Takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>method</code> as arguments and is expected to modify <span class="help-syntax-keys">&lt;complete&gt;</span> field. Default: <a href="../../mini.nvim/doc/mini-input.html#miniinput.default_complete">MiniInput.default_complete()</a>.</p>
+<p>Only <code>complete.base</code> and <code>complete.items</code> are expected to be set by a complete handler. Setting and modifying other fields (<code>complete.id</code> and <code>complete.method</code>) is done in other handlers and as part of <a href="../../mini.nvim/doc/mini-input.html#miniinput.apply_handler">MiniInput.apply_handler()</a>. Actually showing completion information is up to the view handler.</p>
+<p>This handler is usually applied manually inside a key handler via using <code>MiniInput.apply_handler(state, 'complete', method)</code>. Like, for example, in <a href="../../mini.nvim/doc/mini-input.html#miniinput.default_key">MiniInput.default_key()</a> after <span class="help-syntax-keys">&lt;Tab&gt;</span> or <span class="help-syntax-keys">&lt;Up&gt;</span>.</p>
+<p>Here is an example of a simple demo complete handler:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">complete_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">method</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">method</span> <span class="op">==</span> <span class="st">''</span> <span class="kw">or</span> <span class="va">method</span> <span class="op">==</span> <span class="st">'xy'</span> <span class="cf">then</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">text</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>strcharpart<span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">base</span> <span class="op">=</span> <span class="va">text</span><span class="op">:</span><span class="fu">match</span><span class="op">(</span><span class="st">'%S*$'</span><span class="op">)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="va">state</span><span class="op">.</span><span class="va">complete</span> <span class="op">=</span> <span class="op">{</span> <span class="va">base</span> <span class="op">=</span> <span class="va">base</span><span class="op">,</span> <span class="va">items</span> <span class="op">=</span> <span class="op">{</span> <span class="va">base</span> <span class="op">..</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">base</span> <span class="op">..</span> <span class="st">'y'</span> <span class="op">}</span> <span class="op">}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>default_complete<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">method</span><span class="op">)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">complete</span> <span class="op">=</span> <span class="va">complete_handler</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="op">##</span> <span class="va">Key</span> <span class="op">~</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>`<span class="va">handlers</span><span class="op">.</span><span class="va">key</span>` <span class="va">is</span> <span class="va">a</span> <span class="va">handler</span> <span class="va">intended</span> <span class="va">to</span> <span class="va">process</span> <span class="va">every</span> <span class="va">user</span> <span class="va">key</span> <span class="va">press</span><span class="op">.</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="va">Takes</span> <span class="op">|</span><span class="va">MiniInput</span><span class="op">-</span><span class="va">state</span><span class="op">|</span> <span class="kw">and</span> `<span class="va">key</span>` <span class="va">as</span> <span class="va">arguments</span><span class="op">.</span> <span class="va">Argument</span> `<span class="va">key</span>` <span class="va">represents</span> <span class="va">a</span> <span class="va">key</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="va">that</span> <span class="va">needs</span> <span class="va">to</span> <span class="va">be</span> <span class="va">processed</span><span class="op">:</span> <span class="va">a</span> <span class="va">string</span> <span class="cf">if</span> <span class="va">from</span> <span class="va">the</span> <span class="va">user</span> <span class="va">input</span> <span class="kw">or</span> `<span class="va">nil</span>` <span class="cf">if</span> <span class="va">input</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="va">needs</span> <span class="va">to</span> <span class="va">be</span> <span class="va">set</span> <span class="va">up</span><span class="op">,</span> <span class="va">refreshed</span><span class="op">,</span> <span class="kw">or</span> <span class="va">torn</span> <span class="va">down</span><span class="op">.</span> <span class="va">Default</span><span class="op">:</span> <span class="op">|</span><span class="va">MiniInput</span><span class="op">.</span>default_key<span class="op">()|.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="cn">A</span> <span class="va">string</span> `<span class="va">key</span>` <span class="va">can</span> <span class="va">be</span> <span class="va">two</span> <span class="va">kinds</span><span class="op">:</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="va">Forwarded</span> <span class="va">from</span> <span class="op">|</span>getcharstr<span class="op">()|</span> <span class="va">verbatim</span> <span class="va">as</span> <span class="va">a</span> <span class="va">result</span> <span class="va">of</span> <span class="va">interactive</span> <span class="va">key</span> <span class="va">press</span><span class="op">.</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">Meaning</span> <span class="va">it</span> <span class="va">will</span> <span class="va">be</span> <span class="kw">in</span> <span class="va">escaped</span> <span class="va">form</span> <span class="kw">and</span> <span class="kw">not</span> <span class="va">as</span> <span class="va">a</span> <span class="op">|</span><span class="va">key</span><span class="op">-</span><span class="va">notation</span><span class="op">|:</span> <span class="va">i</span><span class="op">.</span><span class="va">e</span><span class="op">.</span> `<span class="st">"</span><span class="sc">\r</span><span class="st">"</span>`</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> <span class="kw">not</span> `<span class="st">"&lt;CR&gt;"</span>`<span class="op">.</span> <span class="va">It</span> <span class="va">also</span> <span class="va">means</span> <span class="va">that</span> <span class="va">all</span> <span class="va">kinds</span> <span class="va">of</span> combos <span class="op">(</span>`<span class="op">&lt;</span><span class="cn">M</span><span class="op">-...&gt;</span>`<span class="op">,</span> `<span class="op">&lt;</span><span class="cn">C</span><span class="op">-</span><span class="cn">S</span><span class="op">-...&gt;</span>`<span class="op">),</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">mouse</span> <span class="va">clicks</span><span class="op">,</span> <span class="kw">and</span> <span class="va">wheel</span> <span class="va">scrolls</span> <span class="va">are</span> <span class="va">also</span> <span class="va">forwarded</span> <span class="va">to</span> <span class="va">key</span> <span class="va">handler</span><span class="op">.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="va">Any</span> <span class="va">string</span> <span class="va">as</span> <span class="va">part</span> <span class="va">of</span> `<span class="va">opts</span><span class="op">.</span><span class="va">init_keys</span>` <span class="kw">in</span> <span class="op">|</span><span class="va">MiniInput</span><span class="op">.</span>get<span class="op">()|.</span> <span class="va">If</span> <span class="va">a</span> <span class="va">string</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  doesn<span class="st">'t look like it came from |getcharstr()|, it is usually a good idea</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="er">  to insert this string at caret as is.</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="er">The suggested overall approach for custom key handler is "if `key` is special -</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="er">act on it, if can be used in the input - insert at caret, ignore otherwise".</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="er">It is also important to never change the current Neovim for |MiniInput.get()| to</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="er">work as expected.</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="er">Here is an example of a basic custom key handler: &gt;lua</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="er">  local custom_actions = {</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="er">    [vim.keycode('&lt;Left&gt;')] = function(state)</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="er">      state.caret = math.max(state.caret - 1, 1)</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="er">    end,</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="er">    [vim.keycode('&lt;Right&gt;')] = function(state)</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="er">      local input_width = vim.fn.strchars(state.input)</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="er">      state.caret = math.min(state.caret + 1, input_width + 1)</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="er">    end,</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="er">    [vim.keycode('&lt;CR&gt;')] = function(state) state.status = 'accept' end,</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="er">    [vim.keycode('&lt;Esc&gt;')] = function(state) state.status = 'cancel' end,</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="er">  }</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="er">  local key_handler = function(state, key)</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="er">    -- No need for special setup or teardown</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="er">    if key == nil then return end</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="er">    -- If key is special - act on it</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="er">    if custom_actions[key] then return custom_actions[key](state) end</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="er">    -- If key is not printable - do nothing</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="er">    if vim.fn.match(key, '^[[:print:]]\\+$') &lt; 0 then return end</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="er">    -- Insert at caret</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="er">    local caret, input = state.caret, state.input</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="er">    local before_caret = vim.fn.strcharpart(input, 0, caret - 1)</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="er">    local after_caret = vim.fn.strcharpart(input, caret - 1)</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="er">    state.input = before_caret .. key .. after_caret</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="er">    state.caret = caret + vim.fn.strchars(key)</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="er">    -- No need to return anything as `state` is modified in place</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="er">  end</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="er">  require('mini.input').setup({ handlers = { key = key_handler } })</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput.config-handlers-highlight" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput.config-handlers-highlight">Highlight</h5>
+<p><code>handlers.highlight</code> is a handler intended to compute and set highlight info about the current input. Takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> as the only argument and is expected to modify <span class="help-syntax-keys">&lt;highlight&gt;</span> field. Default: <a href="../../mini.nvim/doc/mini-input.html#miniinput.default_highlight">MiniInput.default_highlight()</a>.</p>
+<p>See <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_highlight">MiniInput.gen_highlight</a> for built-in highlight handler generators.</p>
+<p>It is usually a good idea to append to a <span class="help-syntax-keys">&lt;highlight&gt;</span> if it already exists. This makes it work more robustly when combining highlights.</p>
+<p>Here is a basic example that highlights all letters <code>a</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hl_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">highlight</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">col</span> <span class="kw">in</span> <span class="fu">string.gmatch</span><span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">,</span> <span class="st">'()a'</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">NOTE</span><span class="co">: range should use character (not byte) indexes</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">char_col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>charidx<span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">,</span> <span class="va">col</span><span class="op">)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">range</span> <span class="op">=</span> <span class="op">{</span> <span class="va">from</span> <span class="op">=</span> <span class="va">char_col</span><span class="op">,</span> <span class="va">to</span> <span class="op">=</span> <span class="va">char_col</span><span class="op">,</span> <span class="va">hl</span> <span class="op">=</span> <span class="st">'Special'</span> <span class="op">}</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.insert</span><span class="op">(</span><span class="va">highlight</span><span class="op">,</span> <span class="va">range</span><span class="op">)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">state</span><span class="op">.</span><span class="va">highlight</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span>list_extend<span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">highlight</span> <span class="kw">or</span> <span class="op">{},</span> <span class="va">highlight</span><span class="op">)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Possibly also apply default handler afterwards</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>default_highlight<span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">highlight</span> <span class="op">=</span> <span class="va">hl_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="miniinput.config-handlers-view" class="level5">
+<h5 class="anchored" data-anchor-id="miniinput.config-handlers-view">View</h5>
+<p><code>handlers.view</code> is a handler intended to show the input state on screen. Takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> as the only argument. Default: <a href="../../mini.nvim/doc/mini-input.html#miniinput.default_view">MiniInput.default_view()</a>.</p>
+<p>See <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view">MiniInput.gen_view</a> for built-in view handler generators.</p>
+<p>Example of view that uses <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_echo()">nvim_echo()</a> to show the input:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Process start and end of the input lifecycle</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">is_start</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">==</span> <span class="st">'start'</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">is_end</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">==</span> <span class="st">'accept'</span> <span class="kw">or</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">==</span> <span class="st">'cancel'</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">is_start</span> <span class="kw">or</span> <span class="va">is_end</span> <span class="cf">then</span> <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'mode'</span><span class="op">)</span> <span class="cf">end</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">is_end</span> <span class="cf">then</span> <span class="cf">return</span> <span class="cf">end</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Compute text-hl chunks that fit and show them</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">chunks</span> <span class="op">=</span> <span class="va">MiniInput</span><span class="op">.</span>state_to_chunks<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span><span class="va">v</span><span class="op">.</span><span class="va">echospace</span><span class="op">)</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_echo<span class="op">(</span><span class="va">chunks</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="op">{})</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="miniinput.config-scope" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.config-scope">Scope</h4>
+<p><code>config.scope</code> is a string that defines an input scope. It is meant as an extra information for handlers to tweak their behavior (<code>view</code> style, etc.). Possible values: <code>"cursor"</code>, <code>"line"</code>, <code>"buffer"</code>, <code>"window"</code>, <code>"tabpage"</code>, <code>"editor"</code>, <code>"project"</code>.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.get" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.get">get()</h3>
+<p align="center">
+<code>MiniInput.get</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Get input from the user</p>
+<section id="miniinput.get-lifecycle" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get-lifecycle">Lifecycle</h4>
+<p><a name="miniinput-lifecycle" href="../../mini.nvim/doc/mini-input.html#miniinput-lifecycle"><b>MiniInput-lifecycle</b></a></p>
+<p>This module implements custom lifecycle to interact with the user. It starts when calling <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a> and ends with it returning a value. Only one active input is allowed simultaneously.</p>
+<p>The basic cycle unit is a step that processes a <code>key</code> (string or <code>nil</code>). It is done by calling relevant handlers in order: key handler with <code>key</code> as a second argument, highlight handler, view handler. <a href="../../mini.nvim/doc/mini-input.html#miniinput.apply_handler">MiniInput.apply_handler()</a> is used to apply each handler and the output of one is used as the input for the next.</p>
+<p>During step some state fields are automatically removed:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;highlight&gt;</span> is removed before applying a key handler to always have the most up to date highlighting.</p></li>
+<li><p><span class="help-syntax-keys">&lt;complete&gt;</span> is removed if it was not changed after applying a key handler but something else in the state beside <span class="help-syntax-keys">&lt;highlight&gt;</span> did change. This is meant as an automatic stop of completion when it is not advancing.</p></li>
+</ul>
+<p>If step sets an ending state <span class="help-syntax-keys">&lt;status&gt;</span> (i.e.&nbsp;<code>"accept"</code> or <code>"cancel"</code>), the input is finished by extra finishing step (see below).</p>
+<p>The order of operations is as follows:</p>
+<ul>
+<li><p>Create initial <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> based on the input <code>opts</code>, with defaults inferred from <a href="../../mini.nvim/doc/mini-input.html#miniinput.config">MiniInput.config</a>, and <code>vim.b.miniinput_config</code>.</p></li>
+<li><p>Set <span class="help-syntax-keys">&lt;status&gt;</span> to <code>"start"</code>.</p></li>
+<li><p>Advance one step with <code>key=nil</code>. This is meant as a “setup” step for handlers.</p></li>
+<li><p>Set <span class="help-syntax-keys">&lt;status&gt;</span> to <code>"progress"</code>.</p></li>
+<li><p>Process <code>opts.init_keys</code> one item per step with <code>key</code> set to the string item.</p></li>
+<li><p>Wait for user to press a key (via <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()">getcharstr()</a>). The key string (in escaped form and not as a <a href="https://neovim.io/doc/user/helptag.html?tag=key-notation">key-notation</a>; i.e.&nbsp;<code>"\r"</code> and not <code>"&lt;CR&gt;"</code>) is then used to advance a step. Note: <span class="help-syntax-keys">&lt;C-c&gt;</span> is hard coded to cancel the input.</p></li>
+<li><p>Repeat previous step until the ending <span class="help-syntax-keys">&lt;status&gt;</span> (<code>"accept"</code> or <code>"cancel"</code>).</p></li>
+<li><p>Finish the input:</p>
+<ul>
+<li><p>Perform a “teardown”’ step with <code>key=nil</code>.</p></li>
+<li><p>If <span class="help-syntax-keys">&lt;errmsg&gt;</span> is set, throw an <a href="https://neovim.io/doc/user/helptag.html?tag=error()">error()</a>.</p></li>
+<li><p>If input is accepted (even if empty) and not hidden, add to <span class="help-syntax-keys">&lt;input&gt;</span> to the history. Get the whole history with <a href="../../mini.nvim/doc/mini-input.html#miniinput.get_history">MiniInput.get_history()</a>.</p></li>
+<li><p>Return <span class="help-syntax-keys">&lt;input&gt;</span> if <span class="help-syntax-keys">&lt;status&gt;</span> is <code>"accept"</code>, <code>nil</code> otherwise.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="miniinput.get-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;completion&gt;</span> <code>(string)</code> - completion method. Default: <code>''</code> to use default completion method of the <code>complete</code> handler.</p></li>
+<li><p><span class="help-syntax-keys">&lt;handlers&gt;</span> <code>(table)</code> - same as in <a href="../../mini.nvim/doc/mini-input.html#miniinput.config.handlers">MiniInput.config.handlers</a>, used only for the duration of the current input.</p></li>
+<li><p><span class="help-syntax-keys">&lt;hide&gt;</span> <code>(boolean)</code> - whether input should be hidden. Default: <code>false</code>. Note: this does not guarantee a total security of the input, only that the typed characters are expected to not be shown on screen and not added to the history. If set:</p>
+<ul>
+<li><p>The <code>view</code> handler is expected to not directly show current input. Like replace characters with pre-defined string or fully not show.</p></li>
+<li><p>The <code>complete</code> and <code>highlight</code> handlers are not called.</p></li>
+<li><p>Accepted input will not be added to the history.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;init_keys&gt;</span> <code>(table)</code> - array of string keys that are emulated before asking for the user input. Using values that can be an output of <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()">getcharstr()</a> should be preferred, but a key handler should work with any string. Default: <code>{}</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;prompt&gt;</span> <code>(string)</code> - intention of the input, same as in <a href="https://neovim.io/doc/user/helptag.html?tag=input()">input()</a>. Default: <code>"Input"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - same as in <a href="../../mini.nvim/doc/mini-input.html#miniinput.config">MiniInput.config</a>. Default: the value from <code>MiniInput.config</code> with some hard coded exceptions (on Neovim&lt;0.12.3):</p>
+<ul>
+<li><a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.rename()">vim.lsp.buf.rename()</a> will use <code>"cursor"</code> if no <code>new_name</code> is supplied.</li>
+</ul></li>
+</ul>
+</section>
+<section id="miniinput.get-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get-return">Return</h4>
+<p><code>(string|nil)</code> User input (from the <span class="help-syntax-keys">&lt;input&gt;</span> state field) if accepted, even if empty. <code>nil</code> if canceled or there was an active input.</p>
+</section>
+<section id="miniinput.get-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="va">MiniInput</span><span class="op">.</span>get<span class="op">({</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Intention of the input</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">prompt</span> <span class="op">=</span> <span class="st">'New value'</span><span class="op">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- The input is for something at cursor</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">scope</span> <span class="op">=</span> <span class="st">'cursor'</span><span class="op">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Emulate pressing `a`, `&lt;BS&gt;`, and `b`</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">init_keys</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'a'</span><span class="op">,</span> <span class="va">vim</span><span class="op">.</span>keycode<span class="op">(</span><span class="st">'&lt;BS&gt;'</span><span class="op">),</span> <span class="st">'b'</span> <span class="op">},</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.ui_input" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.ui_input">ui_input()</h3>
+<p align="center">
+<code>MiniInput.ui_input</code>(<span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{on_confirm}</span>)
+</p>
+<p>A <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> implementation</p>
+<p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> to use this module functionality. Set automatically in <a href="../../mini.nvim/doc/mini-input.html#miniinput.setup">MiniInput.setup()</a>.</p>
+<section id="miniinput.ui_input-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.ui_input-usage">Usage</h4>
+<p>To preserve original <code>vim.ui.input()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ui_input_orig</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">ui</span><span class="op">.</span><span class="va">input</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">ui</span><span class="op">.</span><span class="va">input</span> <span class="op">=</span> <span class="va">ui_input_orig</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.get_state" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.get_state">get_state()</h3>
+<p align="center">
+<code>MiniInput.get_state</code>()
+</p>
+<p>Get current input state</p>
+<section id="miniinput.get_state-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get_state-return">Return</h4>
+<p><code>(table|nil)</code> Current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> if input is active, <code>nil</code> otherwise. Notes:</p>
+<ul>
+<li>For hidden input (<code>state.opts.hide=true</code>), both <span class="help-syntax-keys">&lt;caret&gt;</span> and <span class="help-syntax-keys">&lt;input&gt;</span> are <code>nil</code> to actually hide the input.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="miniinput.get_history" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.get_history">get_history()</h3>
+<p align="center">
+<code>MiniInput.get_history</code>()
+</p>
+<p>Get input history</p>
+<section id="miniinput.get_history-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.get_history-return">Return</h4>
+<p><code>(table)</code> Array with data about all previous non-hidden inputs (from earliest to latest). Each element is a table with the following fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;cwd&gt;</span> <code>(string)</code> - <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a> at the time of input’s end.</p></li>
+<li><p><span class="help-syntax-keys">&lt;input&gt;</span> <code>(string)</code> - input result.</p></li>
+<li><p><span class="help-syntax-keys">&lt;prompt&gt;</span> <code>(string)</code> - <code>opts.prompt</code> supplied in <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;scope&gt;</span> <code>(string)</code> - <code>opts.scope</code> supplied in <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="miniinput.set_history" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.set_history">set_history()</h3>
+<p align="center">
+<code>MiniInput.set_history</code>(<span class="help-syntax-special">{history}</span>)
+</p>
+<p>Set input history</p>
+<section id="miniinput.set_history-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.set_history-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{history}</span> <code>(table)</code> Array describing all previous inputs. Same structure as <a href="../../mini.nvim/doc/mini-input.html#miniinput.get_history">MiniInput.get_history()</a> output.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.refresh" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.refresh">refresh()</h3>
+<p align="center">
+<code>MiniInput.refresh</code>()
+</p>
+<p>Refresh active input</p>
+<p>Performs one step of <a href="../../mini.nvim/doc/mini-input.html#miniinput-lifecycle">MiniInput-lifecycle</a> with <code>key=nil</code>.</p>
+<hr>
+</section>
+<section id="miniinput.gen_highlight" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_highlight">gen_highlight</h3>
+<p align="center">
+<code>MiniInput.gen_highlight</code>
+</p>
+<p>Highlight generators</p>
+<p>This is a table with function elements. Call to actually get a view function.</p>
+<hr>
+</section>
+<section id="miniinput.gen_highlight.treesitter" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_highlight.treesitter">gen_highlight.treesitter()</h3>
+<p align="center">
+<code>MiniInput.gen_highlight.treesitter</code>(<span class="help-syntax-special">{lang}</span>)
+</p>
+<p>Highlight with tree-sitter</p>
+<section id="miniinput.gen_highlight.treesitter-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_highlight.treesitter-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{lang}</span> <code>(string)</code> A language of tree-sitter parser to use.</p>
+</section>
+<section id="miniinput.gen_highlight.treesitter-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_highlight.treesitter-return">Return</h4>
+<p><code>(function)</code> A highlight handler. Seem <a href="../../mini.nvim/doc/mini-input.html#miniinput.config.handlers">MiniInput.config.handlers</a>.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.gen_view" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_view">gen_view</h3>
+<p align="center">
+<code>MiniInput.gen_view</code>
+</p>
+<p>View generators</p>
+<p>This is a table with function elements. Call to actually get a view function.</p>
+<p>Each element accepts <span class="help-syntax-keys">&lt;style&gt;</span> option which fine tunes the input view. With default key handler (<a href="../../mini.nvim/doc/mini-input.html#miniinput.default_key">MiniInput.default_key()</a>) it can be adjusted interactively by pressing <span class="help-syntax-keys">&lt;C-s&gt;</span>.</p>
+<p>Each element also accepts <span class="help-syntax-keys">&lt;to_chunks&gt;</span> option. It is a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width (as in <a href="https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth()">strdisplaywidth()</a>).</p>
+<p>This is a way to adjust how input is shown. Like caret/hide symbols, etc. By default uses <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>, which also means:</p>
+<ul>
+<li>All control characters (like literal <code>\t</code>, <code>\n</code>, etc.) will be translated via <a href="https://neovim.io/doc/user/helptag.html?tag=keytrans()">keytrans()</a>.</li>
+</ul>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Adjust how state is converted to text-hl chunks</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">to_chunks_opts</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">symbol_caret</span> <span class="op">=</span> <span class="st">'_'</span><span class="op">,</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">symbol_hide</span> <span class="op">=</span> <span class="st">'*'</span><span class="op">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Do not include prompt and hint in `floatwin` handler</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">include_prompt</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">include_hint</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">to_chunks</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">max_width</span><span class="op">)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>state_to_chunks<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">max_width</span><span class="op">,</span> <span class="va">to_chunks_opts</span><span class="op">)</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Supply custom `to_chunks` as an option</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">to_chunks</span> <span class="op">=</span> <span class="va">to_chunks</span> <span class="op">}</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>floatwin<span class="op">(</span><span class="va">view_opts</span><span class="op">)</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="miniinput.gen_view.floatwin" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_view.floatwin">gen_view.floatwin()</h3>
+<p align="center">
+<code>MiniInput.gen_view.floatwin</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Floating window view</p>
+<p>Show input inside a floating window. Prompt and completion hints are shown in title and footer.</p>
+<p>Window position and dimensions are computed based on state’s <span class="help-syntax-keys">&lt;scope&gt;</span> and <code>opts.style</code>:</p>
+<ul>
+<li><p><code>scope="cursor"</code> is shown near the cursor. For example, <code>style="BL"</code> will have bottom left corner at nearest top right cell relative to the cursor.</p></li>
+<li><p><code>scope="line"</code> is shown near the current line. For example, <code>style="BL"</code> will have bottom left corner at left side above the line.</p></li>
+<li><p><code>scope="buffer"</code> and <code>scope="window"</code> will be shown relative to the current window. For example, <code>style="BL"</code> will be shown in the bottom left corner.</p></li>
+<li><p><code>scope="tabpage"</code>, <code>scope="editor"</code>, <code>scope="project"</code> will be shown relative to the overall Neovim instance. For example, <code>style="BL"</code> will be shown in the bottom left corner.</p></li>
+</ul>
+<p>Identifiers of floating window and its buffer are stored as <code>floatwin_win_id</code> and <code>floatwin_buf_id</code> in <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> <span class="help-syntax-keys">&lt;data&gt;</span> field. Floating window is not focused and cursor position is not the same as caret position.</p>
+<section id="miniinput.gen_view.floatwin-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.floatwin-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;adjust_config&gt;</span> <code>(function)</code> - function to adjust default config. Will be called with two arguments: current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and a window config (always with <code>relative="editor"</code> and <code>anchor="NW"</code>) computed based on <code>opts.style</code>. Should return an adjusted window config. Default: <code>function(state, config) return config end</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - a two character description of how to show the window. Default: <code>"BL"</code>.</p>
+<p>First character describes vertical position:</p>
+<ul>
+<li><p><code>"T"</code> - top window border will be at scope’s reference top border.</p></li>
+<li><p><code>"M"</code> - middle between top and bottom window borders will be at the middle of scope’s reference top and bottom borders.</p></li>
+<li><p><code>"B"</code> - bottom window border will be at scope’s reference bottom border.</p></li>
+</ul>
+<p>Second character describes horizontal position:</p>
+<ul>
+<li><p><code>"L"</code> - left window border will be at scope’s reference left border.</p></li>
+<li><p><code>"M"</code> - middle between left and right window borders will be at the middle of scope’s reference left and right borders.</p></li>
+<li><p><code>"R"</code> - right window border will be at scope’s reference right border.</p></li>
+</ul></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+</ul>
+</section>
+<section id="miniinput.gen_view.floatwin-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.floatwin-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use border different from 'winborder'</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">adjust_config</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="va">config</span><span class="op">)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">config</span><span class="op">.</span><span class="va">border</span> <span class="op">=</span> <span class="st">'double'</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">config</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Choose initial style based on the scope</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">floatwin</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span><span class="va">floatwin</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_tm</span> <span class="op">=</span> floatwin<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'TM'</span><span class="op">,</span> <span class="va">adjust_config</span> <span class="op">=</span> <span class="va">adjust_config</span> <span class="op">})</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_bl</span> <span class="op">=</span> floatwin<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'BL'</span><span class="op">,</span> <span class="va">adjust_config</span> <span class="op">=</span> <span class="va">adjust_config</span> <span class="op">})</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">scope</span><span class="op">,</span> <span class="va">view</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">scope</span><span class="op">,</span> <span class="va">view_tm</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'cursor'</span> <span class="kw">or</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'line'</span> <span class="cf">then</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_bl</span> <span class="cf">end</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> view<span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.gen_view.uiline" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_view.uiline">gen_view.uiline()</h3>
+<p align="center">
+<code>MiniInput.gen_view.uiline</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>UI line (statusline, tabline, winbar) view</p>
+<section id="miniinput.gen_view.uiline-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.uiline-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - which UI line to use. One of <code>"statusline"</code>, <code>"tabline"</code>, <code>"winbar"</code>. Default: <code>"statusline"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+</ul>
+</section>
+<section id="miniinput.gen_view.uiline-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.uiline-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Choose initial style based on the scope</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_tabline</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>uiline<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'tabline'</span> <span class="op">})</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_winbar</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>uiline<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'winbar'</span> <span class="op">})</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">scope</span><span class="op">,</span> <span class="va">view</span> <span class="op">=</span> <span class="va">state</span><span class="op">.</span><span class="va">opts</span><span class="op">.</span><span class="va">scope</span><span class="op">,</span> <span class="va">view_winbar</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'tabpage'</span> <span class="kw">or</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'editor'</span> <span class="kw">or</span> <span class="va">scope</span> <span class="op">==</span> <span class="st">'project'</span> <span class="cf">then</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">view</span> <span class="op">=</span> <span class="va">view_tabline</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> view<span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.gen_view.virtual" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.gen_view.virtual">gen_view.virtual()</h3>
+<p align="center">
+<code>MiniInput.gen_view.virtual</code>(<span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Virtual (line, text) view</p>
+<section id="miniinput.gen_view.virtual-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.virtual-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - how to display virtual text. One of <code>"above"</code>, <code>"below"</code>, <code>"inline"</code>. Default: <code>"above"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+</ul>
+</section>
+<section id="miniinput.gen_view.virtual-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.gen_view.virtual-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Choose different initial style</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">view_handler</span> <span class="op">=</span> <span class="va">input</span><span class="op">.</span><span class="va">gen_view</span><span class="op">.</span>virtual<span class="op">({</span> <span class="va">style</span> <span class="op">=</span> <span class="st">'inline'</span> <span class="op">})</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.default_key" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.default_key">default_key()</h3>
+<p align="center">
+<code>MiniInput.default_key</code>(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{key}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Default key handler</p>
+<p>Emulates most of <a href="https://neovim.io/doc/user/helptag.html?tag=Command-line-mode">Command-line-mode</a> editing (<a href="https://neovim.io/doc/user/helptag.html?tag=cmdline-editing">cmdline-editing</a>):</p>
+<ul>
+<li><p>Accept: <span class="help-syntax-keys">&lt;CR&gt;</span>. To insert literal newline, type <code>&lt;C-j&gt;</code>.</p></li>
+<li><p>Cancel: <span class="help-syntax-keys">&lt;Esc&gt;</span> or <span class="help-syntax-keys">&lt;C-c&gt;</span>.</p></li>
+<li><p>Move caret:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Left&gt;</span>, <span class="help-syntax-keys">&lt;Right&gt;</span> - one character to left / right.</p></li>
+<li><p><span class="help-syntax-keys">&lt;M-h&gt;</span>, <span class="help-syntax-keys">&lt;M-l&gt;</span> - one character to left / right.</p></li>
+<li><p><span class="help-syntax-keys">&lt;S-Left&gt;</span>, <span class="help-syntax-keys">&lt;S-Right&gt;</span> - one word to left / right.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-b&gt;</span>, <span class="help-syntax-keys">&lt;C-e&gt;</span> (if no completion) - to start / end of input.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Home&gt;</span>, <span class="help-syntax-keys">&lt;End&gt;</span> - to start / end of input.</p></li>
+</ul></li>
+<li><p>Delete:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;BS&gt;</span> / <span class="help-syntax-keys">&lt;C-h&gt;</span> - to caret’s left. If <code>opts.autopair</code> is enabled, also delete a character to caret’s right if it formed a respected character pair. See “Autopair”.</p></li>
+<li><p><span class="help-syntax-keys">&lt;Del&gt;</span> - at caret.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-u&gt;</span> - from start to caret. As <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-U">c_CTRL-U</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-w&gt;</span> - contiguous keyword or non-keyword to caret’s left. As <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-W">c_CTRL-W</a>.</p></li>
+</ul></li>
+<li><p>Insert at caret:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;C-k&gt;</span> - digraph based on the next two pressed keys. As <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-K">c_CTRL-K</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-r&gt;</span> - content of a register. As <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R">c_CTRL-R</a> including support for special <span class="help-syntax-keys">&lt;C-a&gt;</span>, <span class="help-syntax-keys">&lt;C-f&gt;</span>, <span class="help-syntax-keys">&lt;C-l&gt;</span>, <span class="help-syntax-keys">&lt;C-w&gt;</span> keys for a register.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-v&gt;</span>, <span class="help-syntax-keys">&lt;C-q&gt;</span> - next key literally. As <a href="https://neovim.io/doc/user/helptag.html?tag=c_CTRL-V">c_CTRL-V</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V_digit">i_CTRL-V_digit</a> (all digits must be typed in full or stopped with <span class="help-syntax-keys">&lt;C-c&gt;</span>).</p></li>
+<li><p>Pasting from system <a href="https://neovim.io/doc/user/helptag.html?tag=clipboard">clipboard</a> is supported for “non-streaming” paste (as described in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.paste()">vim.paste()</a>).</p></li>
+</ul></li>
+<li><p>Autopair (if <code>opts.autopair</code> is set) is similar to <a href="../../mini.nvim/doc/mini-pairs.html#mini.pairs">mini.pairs</a>:</p>
+<ul>
+<li><p>Opening characters <code>(</code>, <code>[</code>, <code>{</code> always insert a <code>()</code>, <code>[]</code>, <code>{}</code> pair and places caret inside of it.</p></li>
+<li><p>Closing characters <code>)</code>, <code>]</code>, <code>}</code> move caret to the right if there is the same character to the right.</p></li>
+<li><p>Closeopen characters <code>'</code>, <code>"</code>, <span class="help-syntax-keys">&lt;`&gt;</span> perform “close” action if possible and “open” action if not.</p></li>
+<li><p>In all cases press <span class="help-syntax-keys">&lt;C-v&gt;</span> before special character to insert it verbatim.</p></li>
+</ul></li>
+<li><p>Completion:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;Tab&gt;</span>, <span class="help-syntax-keys">&lt;S-Tab&gt;</span> - start with <code>state.opts.completion</code> method if not active and advance through active completion (i.e.&nbsp;replace currently displayed at caret item with the next one). Note: type <code>&lt;C-v&gt;&lt;Tab&gt;</code> to insert literal <code>\t</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-n&gt;</span>, <span class="help-syntax-keys">&lt;C-p&gt;</span>, <span class="help-syntax-keys">&lt;Up&gt;</span>, <span class="help-syntax-keys">&lt;Down&gt;</span> - start with <code>"history"</code> method if not active and advance through active completion.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-e&gt;</span> - cancel and return to initial input and caret.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-y&gt;</span> - accept current candidate. Note: it will also be accepted after any key that doesn’t advance completion.</p></li>
+</ul></li>
+<li><p>Miscellaneous:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;C-o&gt;</span> - change scope of the input. Cycles through all available ones.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-s&gt;</span> - change view style. Works only with <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view">MiniInput.gen_view</a> view handlers. Cycles through all available ones.</p></li>
+<li><p><span class="help-syntax-keys">&lt;C-x&gt;</span> - toggle hide/unhide of the input.</p></li>
+</ul></li>
+<li><p>Special keys (combo, mouse, but not whitespace) not listed above - ignored. Anything else (even more than a single character) - inserted at caret.</p></li>
+</ul>
+<section id="miniinput.default_key-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.default_key-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> Current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<p><span class="help-syntax-special">{key}</span> <code>(string|nil)</code> A key to process. Should be escaped (<code>"\r"</code>, not <code>"&lt;CR&gt;"</code>). See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.keycode()">vim.keycode()</a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;autopair&gt;</span> <code>(boolean)</code> - whether perform add autopair. Default: <code>false</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="miniinput.default_highlight" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.default_highlight">default_highlight()</h3>
+<p align="center">
+<code>MiniInput.default_highlight</code>(<span class="help-syntax-special">{state}</span>)
+</p>
+<p>Default highlight handler</p>
+<p>During active completion highlights added (computed via <a href="https://neovim.io/doc/user/helptag.html?tag=matchfuzzy()">matchfuzzy()</a>) characters with <code>MiniInputAdded</code> group.</p>
+<section id="miniinput.default_highlight-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.default_highlight-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> Current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.default_view" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.default_view">default_view()</h3>
+<p align="center">
+<code>MiniInput.default_view</code>(<span class="help-syntax-special">{state}</span>)
+</p>
+<p>Default view handler</p>
+<p>Same as <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view.floatwin">MiniInput.gen_view.floatwin()</a> with default options.</p>
+<section id="miniinput.default_view-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.default_view-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> Current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.default_complete" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.default_complete">default_complete()</h3>
+<p align="center">
+<code>MiniInput.default_complete</code>(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{method}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Default complete handler</p>
+<p>Supported methods:</p>
+<ul>
+<li><p><code>""</code> (default) - complete with buffer keywords (<a href="https://neovim.io/doc/user/helptag.html?tag='iskeyword'">‘iskeyword’</a>) that match a keyword at caret’s left.</p></li>
+<li><p><code>"history"</code> - complete with <a href="../../mini.nvim/doc/mini-input.html#miniinput.get_history">MiniInput.get_history()</a> inputs that have current input to caret’s left as a prefix. If <code>opts.precise_history</code>, only use history entries that have all info fields same as the current state. Orders from earliest to latest. To initiate with the latest history match, press <span class="help-syntax-keys">&lt;Up&gt;</span> or <span class="help-syntax-keys">&lt;C-p&gt;</span> with default key handler.</p></li>
+<li><p><code>"cmdline"</code> - treat input as <a href="https://neovim.io/doc/user/helptag.html?tag=Command-line">Command-line</a> text and show completions at caret. Note: as there is no <a href="https://neovim.io/doc/user/helptag.html?tag=getcmdcomplpat()">getcmdcomplpat()</a> variant to use outside of Command-line mode, the base is inferred from <a href="https://neovim.io/doc/user/helptag.html?tag=getcompletion()">getcompletion()</a> output as the widest text to caret’s left that matches all candidates: fuzzily if <a href="https://neovim.io/doc/user/helptag.html?tag='wildoptions'">‘wildoptions’</a> contains <code>fuzzy</code>, as a prefix otherwise. If none - empty string is used. This approach has limitations, but it is good enough.</p></li>
+<li><p>Every method supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcompletion()">getcompletion()</a>. Base is computed as the keyword at caret’s left.</p></li>
+</ul>
+<section id="miniinput.default_complete-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.default_complete-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> Current <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<p><span class="help-syntax-special">{method}</span> <code>(string)</code> Completion method.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><span class="help-syntax-keys">&lt;precise_history&gt;</span> <code>(boolean)</code> - whether for <code>method='history'</code> try to match only entries that have <span class="help-syntax-keys">&lt;cwd&gt;</span> as <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>, same <span class="help-syntax-keys">&lt;scope&gt;</span> and <span class="help-syntax-keys">&lt;prompt&gt;</span> as in current state. Default: <code>true</code>.</li>
+</ul>
+</section>
+<section id="miniinput.default_complete-usage" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.default_complete-usage">Usage</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Do not match history precisely</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">complete_opts</span> <span class="op">=</span> <span class="op">{</span> <span class="va">precise_history</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">}</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">complete_handler</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">method</span><span class="op">)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">MiniInput</span><span class="op">.</span>default_complete<span class="op">(</span><span class="va">state</span><span class="op">,</span> <span class="va">method</span><span class="op">,</span> <span class="va">complete_opts</span><span class="op">)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">complete</span> <span class="op">=</span> <span class="va">complete_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="miniinput.state_to_chunks" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.state_to_chunks">state_to_chunks()</h3>
+<p align="center">
+<code>MiniInput.state_to_chunks</code>(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{max_width}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Convert state into text-hl chunks</p>
+<ul>
+<li><p>Treat <code>state.highlight</code> elements in increasing priority, i.e.&nbsp;later ones are placed “on top” of the previous ones if they overlap.</p></li>
+<li><p>Uses <a href="../../mini.nvim/doc/mini-input.html#miniinput-hl-groups">MiniInput-hl-groups</a>.</p></li>
+<li><p>Multiline input (i.e.&nbsp;with newline characters <code>\n</code>) is shown as a single line.</p></li>
+<li><p>Treats <code>max_width</code> as display width (<a href="https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth()">strdisplaywidth()</a>).</p></li>
+<li><p>Truncates output chunks trying to center the caret.</p></li>
+</ul>
+<section id="miniinput.state_to_chunks-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.state_to_chunks-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> A <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<p><span class="help-syntax-special">{max_width}</span> <code>(number|nil)</code> Maximum allowed display width. Can be <a href="https://neovim.io/doc/user/helptag.html?tag=math.huge">math.huge</a>.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;keytrans&gt;</span> <code>(boolean)</code> - whether to translate control characters (escaped version of <code>&lt;C-...&gt;</code>). Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;include_prompt&gt;</span> <code>(boolean)</code> - whether to start chunks with state prompt. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;include_hint&gt;</span> <code>(boolean)</code> - whether to show complete hint to caret’s right. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;symbol_caret&gt;</span> <code>(string)</code> - string to use for caret. Default: <code>"▏"</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;symbol_caret&gt;</span> <code>(string)</code> - string to use for each input character when input is hidden. Default: <code>"•"</code>.</p></li>
+</ul>
+</section>
+<section id="miniinput.state_to_chunks-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.state_to_chunks-return">Return</h4>
+<p><code>(table)</code> An array of text-hl chunks that fit <code>max_width</code> display width.</p>
+<hr>
+</section>
+</section>
+<section id="miniinput.apply_handler" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="miniinput.apply_handler">apply_handler()</h3>
+<p align="center">
+<code>MiniInput.apply_handler</code>(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{name}</span>, <span class="help-syntax-special">{arg}</span>)
+</p>
+<p>Apply state’s handler</p>
+<p>Given <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>, apply its handler (from <code>state.opts.handlers</code>) and return the modified state.</p>
+<p>Notes:</p>
+<ul>
+<li><p>Nothing is done for highlight and complete handlers when input is hidden.</p></li>
+<li><p>Applying complete handler ensures that <span class="help-syntax-keys">&lt;complete&gt;</span> state field has <span class="help-syntax-keys">&lt;id&gt;</span> set to 0 (as it assumes new completion) and <span class="help-syntax-keys">&lt;method&gt;</span> to the input argument (empty string if there was no argument).</p></li>
+<li><p>Error during handler application is stored as <span class="help-syntax-keys">&lt;errmsg&gt;</span> field of output state if there is an active input. It is propagated via <a href="https://neovim.io/doc/user/helptag.html?tag=error()">error()</a> otherwise.</p></li>
+<li><p>Handler output is validated to be a valid <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>. If not - return input <code>state</code>. Note: it still could be changed if handler modified in place.</p></li>
+</ul>
+<section id="miniinput.apply_handler-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.apply_handler-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{state}</span> <code>(table)</code> A <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
+<p><span class="help-syntax-special">{name}</span> <code>(string)</code> Valid handler name.</p>
+<p><span class="help-syntax-special">{arg}</span> <code>(any)</code> Extra handler argument: like <code>key</code> for key handler and <code>method</code> for complete handler.</p>
+</section>
+<section id="miniinput.apply_handler-return" class="level4">
+<h4 class="anchored" data-anchor-id="miniinput.apply_handler-return">Return</h4>
+<p><code>(table)</code> A <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> as a result of applied handler. If handler returned nothing, the input <code>state</code> is returned (assumes it was modified in place).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Original source: https://gc.zgo.at/count.js -->
+<!-- Inlined for security reasons (less supply chain attack possibility) -->
+<script data-goatcounter="https://nvim-mini.goatcounter.com/count">
+// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:    true,
+					path:     (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:    (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer: (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nvim-mini\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© Evgeni Chasnovski, <a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

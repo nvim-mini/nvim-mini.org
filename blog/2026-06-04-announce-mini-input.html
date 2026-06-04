@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Evgeni Chasnovski">
+<meta name="dcterms.date" content="2026-06-04">
+<meta name="description" content="Get user input with fully customizable key and view handling">
 
-<title>mini.nvim – MINI</title>
+<title>Announcing ‘mini.input’ – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -106,17 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="mini.nvim – MINI">
-<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:title" content="Announcing ‘mini.input’ – MINI">
+<meta property="og:description" content="Get user input with fully customizable key and view handling">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="mini.nvim – MINI">
-<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:title" content="Announcing ‘mini.input’ – MINI">
+<meta name="twitter:description" content="Get user input with fully customizable key and view handling">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -312,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../mini.nvim/index.html" aria-current="page"> 
+    <a class="nav-link" href="../mini.nvim/index.html"> 
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
@@ -347,39 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#all-in-one-plugin" id="toc-all-in-one-plugin" class="nav-link active" data-scroll-target="#all-in-one-plugin">All-in-one plugin</a></li>
-  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link" data-scroll-target="#table-of-contents">Table of contents</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a>
-  <ul>
-  <li><a href="#text-editing" id="toc-text-editing" class="nav-link" data-scroll-target="#text-editing">Text editing</a></li>
-  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link" data-scroll-target="#general-workflow">General workflow</a></li>
-  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance">Appearance</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
-  </ul></li>
-  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles">General principles</a>
-  <ul>
-  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
-  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
-  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#buffer-local-configuration" id="toc-buffer-local-configuration" class="nav-link" data-scroll-target="#buffer-local-configuration">Buffer local configuration</a></li>
-  <li><a href="#buffer-names" id="toc-buffer-names" class="nav-link" data-scroll-target="#buffer-names">Buffer names</a></li>
-  <li><a href="#disabling" id="toc-disabling" class="nav-link" data-scroll-target="#disabling">Disabling</a></li>
-  <li><a href="#silencing" id="toc-silencing" class="nav-link" data-scroll-target="#silencing">Silencing</a></li>
-  <li><a href="#highlighting" id="toc-highlighting" class="nav-link" data-scroll-target="#highlighting">Highlighting</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability">Stability</a></li>
-  <li><a href="#not-filetype-and-language-specific" id="toc-not-filetype-and-language-specific" class="nav-link" data-scroll-target="#not-filetype-and-language-specific">Not filetype and language specific</a></li>
-  </ul></li>
-  <li><a href="#plugin-color-schemes" id="toc-plugin-color-schemes" class="nav-link" data-scroll-target="#plugin-color-schemes">Plugin color schemes</a></li>
-  <li><a href="#planned-modules" id="toc-planned-modules" class="nav-link" data-scroll-target="#planned-modules">Planned modules</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -387,14 +323,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">mini.nvim</h1>
-</div>
+<h1 class="title">Announcing ‘mini.input’</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">announce</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Get user input with fully customizable key and view handling
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Evgeni Chasnovski </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 4, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -404,527 +360,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p align="center">
-<img src="logo.png" alt="mini.nvim" style="max-width:100%;border:solid 2px">
-</p>
-<p align="center">
-<em>Generated from the <code>main</code> branch of ‘mini.nvim’</em>
-</p>
-<section id="all-in-one-plugin" class="level3">
-<h3 class="anchored" data-anchor-id="all-in-one-plugin">All-in-one plugin</h3>
-<p>Library of 40+ independent Lua modules improving overall <a href="https://github.com/neovim/neovim">Neovim</a> (version 0.10 and higher) experience with minimal effort. They all share same configuration approaches and general design principles.</p>
-<p>Think about this project as “Swiss Army knife” among Neovim plugins: it has many different independent tools (modules) suitable for most common tasks. Each module can be used separately without any startup and usage overhead.</p>
-<p>If you want to help this project grow but don’t know where to start:</p>
+<p><video src="2026-06-04-announce-mini-input/demo.mp4" class="img-fluid" controls=""><a href="2026-06-04-announce-mini-input/demo.mp4">Video</a></video></p>
+<p>Hello, Neovim users!</p>
+<p>Let’s welcome the ‘mini.nvim’ module number 45: <a href="../mini.nvim/readmes/mini-input.html">‘mini.input’</a>. Its main purpose is to make asking for user input both more functional and visually pleasant.</p>
+<p>It’s been a while since the latest new module (almost <a href="../blog/2025-12-07-announce-mini-cmdline.html">six months</a>), so I am glad to finally make the release. This one was a long time in the works for various reasons:</p>
 <ul>
-<li>Leave a Github star for ‘mini.nvim’ and/or any other <a href="https://nvim-mini.org">MINI projects</a>.</li>
-<li>Check out <a href="../mini.nvim/CONTRIBUTING.html">contributing guides</a>.</li>
+<li><p>Somewhat important to polish the design (I’ll try to upstream important part of it, stay tuned).</p></li>
+<li><p>Fighting mental battles of how much functionality to provide here. For better or worth, I ended up including quite a lot.</p></li>
+<li><p>MINI maintenance (even on top of the valuable help from the MINI team) takes priority.</p></li>
+<li><p>Working on upstream <code>vim.pack</code>.</p></li>
 </ul>
-<p>See <a href="../mini.nvim/CHANGELOG.html">change log</a> for a history of changes, including current development version.</p>
-<p>See <a href="https://nvim-mini.org/MiniMax">MiniMax</a> for a full config example based on ‘mini.nvim’.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This was previously hosted at <code>echasnovski/mini.nvim</code>. It was transferred to a dedicated organization to improve long term project stability. See more details <a href="https://github.com/nvim-mini/mini.nvim/discussions/1970">here</a>.</p>
-</div>
-</div>
-</section>
-<section id="table-of-contents" class="level2">
-<h2 class="anchored" data-anchor-id="table-of-contents">Table of contents</h2>
+<p>On the bright side, ‘mini.nvim’ crossed a big milestone: it now has more than 5000 test cases! Not tested features are fragile features :)</p>
+<hr>
+<p>Features of ‘mini.input’:</p>
 <ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#modules">Modules</a></li>
-<li><a href="#general-principles">General principles</a></li>
-<li><a href="#plugin-color-schemes">Plugin color schemes</a></li>
-<li><a href="#planned-modules">Planned modules</a></li>
+<li><p>Get user input with fully customizable key and view handling.</p></li>
+<li><p>Built-in configurable views as floating window, statusline/tabline/winbar, virtual line/text.</p></li>
+<li><p>Implementation is non-blocking but waits to return the input. It also works in any mode without requiring mode change. See <a href="../mini.nvim/doc/mini-input.html#miniinput-lifecycle"><code>:h MiniInput-lifecycle</code></a>.</p></li>
+<li><p><code>vim.ui.input()</code> implementation. To adjust, use <a href="../mini.nvim/doc/mini-input.html#miniinput.ui_input"><code>MiniInput.ui_input()</code></a> or save-restore <code>vim.ui.input</code> manually after calling <a href="../mini.nvim/doc/mini-input.html#miniinput.setup"><code>MiniInput.setup()</code></a>.</p></li>
 </ul>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>There are two branches to install from:</p>
+<p>For more information see these parts of help:</p>
 <ul>
-<li><code>main</code> (default, <strong>recommended</strong>) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).</li>
-<li><code>stable</code> will be updated only upon releases with code tested during public beta-testing phase in <code>main</code> branch.</li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput.get"><code>:h MiniInput.get()</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput.default_key"><code>:h MiniInput.default_key()</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput-state"><code>:h MiniInput-state</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput-examples"><code>:h MiniInput-examples</code></a></li>
 </ul>
-<p>Here are code snippets for some common installation methods:</p>
-<ul>
-<li><p>(<strong>Recommended</strong>) With <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a> (on Neovim 0.12 and newer):</p>
-<ul>
-<li><p>Main branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span> <span class="st">'https://github.com/nvim-mini/mini.nvim'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Stable branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">src</span> <span class="op">=</span> <span class="st">'https://github.com/nvim-mini/mini.nvim'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">},</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ul></li>
-<li><p>Manually with <code>git clone</code> (compatible with <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Put this at the top of 'init.lua'</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">path_package</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'data'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'/site'</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">mini_path</span> <span class="op">=</span> <span class="va">path_package</span> <span class="op">..</span> <span class="st">'/pack/deps/start/mini.nvim'</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>fs_stat<span class="op">(</span><span class="va">mini_path</span><span class="op">)</span> <span class="cf">then</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'echo "Installing `mini.nvim`" | redraw'</span><span class="op">)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">clone_cmd</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'git'</span><span class="op">,</span> <span class="st">'clone'</span><span class="op">,</span> <span class="st">'--filter=blob:none'</span><span class="op">,</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Uncomment next line to use 'stable' branch</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- '--branch', 'stable',</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://github.com/nvim-mini/mini.nvim'</span><span class="op">,</span> <span class="va">mini_path</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>system<span class="op">(</span><span class="va">clone_cmd</span><span class="op">)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'packadd mini.nvim | helptags ALL'</span><span class="op">)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span>cmd<span class="op">(</span><span class="st">'echo "Installed `mini.nvim`" | redraw'</span><span class="op">)</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>:</p>
-<ul>
-<li><p>Main branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.nvim'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Stable branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.nvim'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'*'</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ul></li>
-<li><p>Every module is also distributed as a standalone Git repository. Check out module’s information for more details.</p></li>
-</ul>
-<p><strong>Important</strong>: don’t forget to call module’s <code>setup()</code> (if required) to enable its functionality.</p>
-<p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
-<ul>
-<li>Enable corresponding git global config value: <code>git config --system core.longpaths true</code>. Then try to reinstall.</li>
-<li>Install plugin in other place with shorter path.</li>
-</ul>
-</section>
-<section id="modules" class="level2">
-<h2 class="anchored" data-anchor-id="modules">Modules</h2>
-<p>‘mini.nvim’ contains many modules which is slightly daunting at first. All of them can be used independently, one at a time.</p>
-<p>For easier exploration, here they are presented in groups based on module’s primary functionality (although some modules can fit in several groups). See more detailed listing <a href="../mini.nvim/doc/mini-nvim.html">here</a>.</p>
-<section id="text-editing" class="level3">
-<h3 class="anchored" data-anchor-id="text-editing">Text editing</h3>
-<p>These modules improve your text editing experience. Start with ‘mini.ai’, ‘mini.operators’, and ‘mini.surround’.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Description</th>
-<th>Overview</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mini.ai</td>
-<td>Extend and create <code>a</code>/<code>i</code> textobjects</td>
-<td><a href="../mini.nvim/readmes/mini-ai.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-ai.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.align</td>
-<td>Align text interactively</td>
-<td><a href="../mini.nvim/readmes/mini-align.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-align.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.comment</td>
-<td>Comment lines</td>
-<td><a href="../mini.nvim/readmes/mini-comment.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-comment.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.completion</td>
-<td>Completion and signature help</td>
-<td><a href="../mini.nvim/readmes/mini-completion.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-completion.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.keymap</td>
-<td>Special key mappings</td>
-<td><a href="../mini.nvim/readmes/mini-keymap.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-keymap.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.move</td>
-<td>Move any selection in any direction</td>
-<td><a href="../mini.nvim/readmes/mini-move.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-move.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.operators</td>
-<td>Text edit operators</td>
-<td><a href="../mini.nvim/readmes/mini-operators.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-operators.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.pairs</td>
-<td>Autopairs</td>
-<td><a href="../mini.nvim/readmes/mini-pairs.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-pairs.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.snippets</td>
-<td>Manage and expand snippets</td>
-<td><a href="../mini.nvim/readmes/mini-snippets.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-snippets.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.splitjoin</td>
-<td>Split and join arguments</td>
-<td><a href="../mini.nvim/readmes/mini-splitjoin.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-splitjoin.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.surround</td>
-<td>Surround actions</td>
-<td><a href="../mini.nvim/readmes/mini-surround.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-surround.html">Documentation</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="general-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="general-workflow">General workflow</h3>
-<p>These modules improve your general workflow. Start with ‘mini.bracketed’, ‘mini.files’, and ‘mini.pick’.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Description</th>
-<th>Overview</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mini.basics</td>
-<td>Common configuration presets</td>
-<td><a href="../mini.nvim/readmes/mini-basics.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-basics.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.bracketed</td>
-<td>Go forward/backward with square brackets</td>
-<td><a href="../mini.nvim/readmes/mini-bracketed.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-bracketed.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.bufremove</td>
-<td>Remove buffers</td>
-<td><a href="../mini.nvim/readmes/mini-bufremove.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-bufremove.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.clue</td>
-<td>Show next key clues</td>
-<td><a href="../mini.nvim/readmes/mini-clue.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-clue.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.cmdline</td>
-<td>Command line tweaks</td>
-<td><a href="../mini.nvim/readmes/mini-cmdline.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-cmdline.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.deps</td>
-<td>Plugin manager</td>
-<td><a href="../mini.nvim/readmes/mini-deps.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-deps.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.diff</td>
-<td>Work with diff hunks</td>
-<td><a href="../mini.nvim/readmes/mini-diff.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-diff.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.extra</td>
-<td>Extra ‘mini.nvim’ functionality</td>
-<td><a href="../mini.nvim/readmes/mini-extra.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-extra.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.files</td>
-<td>Navigate and manipulate file system</td>
-<td><a href="../mini.nvim/readmes/mini-files.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-files.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.git</td>
-<td>Git integration</td>
-<td><a href="../mini.nvim/readmes/mini-git.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-git.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.input</td>
-<td>Get user input</td>
-<td><a href="../mini.nvim/readmes/mini-input.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-input.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.jump</td>
-<td>Jump to next/previous single character</td>
-<td><a href="../mini.nvim/readmes/mini-jump.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-jump.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.jump2d</td>
-<td>Jump within visible lines</td>
-<td><a href="../mini.nvim/readmes/mini-jump2d.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-jump2d.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.misc</td>
-<td>Miscellaneous functions</td>
-<td><a href="../mini.nvim/readmes/mini-misc.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-misc.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.pick</td>
-<td>Pick anything</td>
-<td><a href="../mini.nvim/readmes/mini-pick.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-pick.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.sessions</td>
-<td>Session management</td>
-<td><a href="../mini.nvim/readmes/mini-sessions.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-sessions.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.visits</td>
-<td>Track and reuse file system visits</td>
-<td><a href="../mini.nvim/readmes/mini-visits.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-visits.html">Documentation</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="appearance" class="level3">
-<h3 class="anchored" data-anchor-id="appearance">Appearance</h3>
-<p>These modules improve your Neovim appearance. Start with ‘mini.hues’, ‘mini.icons’, and ‘mini.statusline’.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Description</th>
-<th>Overview</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mini.animate</td>
-<td>Animate common Neovim actions</td>
-<td><a href="../mini.nvim/readmes/mini-animate.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-animate.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.base16</td>
-<td>Base16 colorscheme creation</td>
-<td><a href="../mini.nvim/readmes/mini-base16.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-base16.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.colors</td>
-<td>Tweak and save any color scheme</td>
-<td><a href="../mini.nvim/readmes/mini-colors.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-colors.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.cursorword</td>
-<td>Autohighlight word under cursor</td>
-<td><a href="../mini.nvim/readmes/mini-cursorword.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-cursorword.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.hipatterns</td>
-<td>Highlight patterns in text</td>
-<td><a href="../mini.nvim/readmes/mini-hipatterns.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-hipatterns.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.hues</td>
-<td>Generate configurable color scheme</td>
-<td><a href="../mini.nvim/readmes/mini-hues.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-hues.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.icons</td>
-<td>Icon provider</td>
-<td><a href="../mini.nvim/readmes/mini-icons.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-icons.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.indentscope</td>
-<td>Visualize and work with indent scope</td>
-<td><a href="../mini.nvim/readmes/mini-indentscope.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-indentscope.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.map</td>
-<td>Window with buffer text overview</td>
-<td><a href="../mini.nvim/readmes/mini-map.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-map.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.notify</td>
-<td>Show notifications</td>
-<td><a href="../mini.nvim/readmes/mini-notify.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-notify.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.starter</td>
-<td>Start screen</td>
-<td><a href="../mini.nvim/readmes/mini-starter.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-starter.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.statusline</td>
-<td>Statusline</td>
-<td><a href="../mini.nvim/readmes/mini-statusline.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-statusline.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.tabline</td>
-<td>Tabline</td>
-<td><a href="../mini.nvim/readmes/mini-tabline.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-tabline.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.trailspace</td>
-<td>Trailspace (highlight and remove)</td>
-<td><a href="../mini.nvim/readmes/mini-trailspace.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-trailspace.html">Documentation</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="other" class="level3">
-<h3 class="anchored" data-anchor-id="other">Other</h3>
-<p>These modules don’t quite fit in any of the previous categories.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Description</th>
-<th>Overview</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mini.doc</td>
-<td>Generate Neovim help files</td>
-<td><a href="../mini.nvim/readmes/mini-doc.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-doc.html">Documentation</a></td>
-</tr>
-<tr class="even">
-<td>mini.fuzzy</td>
-<td>Fuzzy matching</td>
-<td><a href="../mini.nvim/readmes/mini-fuzzy.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-fuzzy.html">Documentation</a></td>
-</tr>
-<tr class="odd">
-<td>mini.test</td>
-<td>Test Neovim plugins</td>
-<td><a href="../mini.nvim/readmes/mini-test.html">README</a></td>
-<td><a href="../mini.nvim/doc/mini-test.html">Documentation</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="general-principles" class="level2">
-<h2 class="anchored" data-anchor-id="general-principles">General principles</h2>
-<section id="design" class="level3">
-<h3 class="anchored" data-anchor-id="design">Design</h3>
-<p>Each module is designed to solve a particular problem targeting balance between feature-richness (handling as many edge-cases as possible) and simplicity of implementation/support. Granted, not all of them ended up with the same balance, but it is the goal nevertheless.</p>
-</section>
-<section id="independence" class="level3">
-<h3 class="anchored" data-anchor-id="independence">Independence</h3>
-<p>Modules are independent of each other and can be run without external dependencies. Although some of them may need dependencies for full experience.</p>
-</section>
-<section id="structure" class="level3">
-<h3 class="anchored" data-anchor-id="structure">Structure</h3>
-<p>Each module is a submodule for a placeholder “mini” module. So, for example, “surround” module should be referred to as “mini.surround”. As later will be explained, this plugin can also be referred to as “MiniSurround”.</p>
-</section>
-<section id="setup" class="level3">
-<h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<ul>
-<li><p>Each module you want to use should be enabled separately with <code>require(&lt;name of module&gt;).setup({})</code>. Possibly replace <code>{}</code> with your config table or omit altogether to use defaults. You can supply only parts of config, the rest will be inferred from defaults.</p></li>
-<li><p>Call to module’s <code>setup()</code> always creates a global Lua object with coherent camel-case name: <code>require('mini.surround').setup()</code> creates <code>_G.MiniSurround</code>. This allows for a simpler usage of plugin functionality: instead of <code>require('mini.surround')</code> use <code>MiniSurround</code> (or manually <code>:lua MiniSurround.*</code> in command line); available from <code>v:lua</code> like <code>v:lua.MiniSurround</code>. Considering this, “module” and “Lua object” names can be used interchangeably: ‘mini.surround’ and ‘MiniSurround’ will mean the same thing.</p></li>
-<li><p>Each supplied <code>config</code> table is stored in <code>config</code> field of global object. Like <code>MiniSurround.config</code>.</p></li>
-<li><p>Values of <code>config</code> which affect runtime activity can be changed on the fly to have effect. For example, <code>MiniSurround.config.n_lines</code> can be changed during runtime; but changing <code>MiniSurround.config.mappings</code> won’t have any effect (as mappings are created once during <code>setup()</code>).</p></li>
-<li><p>If module works best with some specific non-default option value, it is set during <code>setup()</code>. If the value is not essential to module’s functionality, it is done only if user or another plugin hasn’t set it beforehand (no matter the value).</p></li>
-</ul>
-</section>
-<section id="buffer-local-configuration" class="level3">
-<h3 class="anchored" data-anchor-id="buffer-local-configuration">Buffer local configuration</h3>
-<p>Each module can be additionally configured to use certain runtime config settings locally to buffer. See <code>mini.nvim-buffer-local-config</code> section in help file for more information.</p>
-</section>
-<section id="buffer-names" class="level3">
-<h3 class="anchored" data-anchor-id="buffer-names">Buffer names</h3>
-<p>All module-related buffers are named according to the following format: <code>mini&lt;module-name&gt;://&lt;buffer-number&gt;/&lt;useful-info&gt;</code> (forward slashes are used on any platform; <code>&lt;useful-info&gt;</code> may be empty). This structure allows creating identifiable, reasonably unique, and useful buffer names. For example, ‘mini.files’ buffers are created per displayed directory/file with names like <code>minifiles://10/path/to/displayed/directory</code>.</p>
-</section>
-<section id="disabling" class="level3">
-<h3 class="anchored" data-anchor-id="disabling">Disabling</h3>
-<p>Each module’s core functionality can be disabled globally or locally to buffer. See “Disabling” section in module’s help page for more details. See <code>mini.nvim-disabling-recipes</code> section in main help file for common recipes.</p>
-</section>
-<section id="silencing" class="level3">
-<h3 class="anchored" data-anchor-id="silencing">Silencing</h3>
-<p>Each module providing non-error feedback (like a reminder to press a key after some idle time in ‘mini.ai’, ‘mini.jump2d’, ‘mini.surround’) can be configured to not do that by setting <code>config.silent = true</code> (either inside <code>setup()</code> call or on the fly).</p>
-</section>
-<section id="highlighting" class="level3">
-<h3 class="anchored" data-anchor-id="highlighting">Highlighting</h3>
-<p>Appearance of module’s output is controlled by certain set of highlight groups (see <code>:h highlight-groups</code>). By default they usually link to some semantically close built-in highlight group and are ensured to be defined after any color scheme takes effect. Use <code>:highlight</code> command or <code>vim.api.nvim_set_hl()</code> Lua function to customize highlighting. To see a more calibrated look, use ‘mini.hues’, ‘mini.base16’, or plugin’s color scheme.</p>
-</section>
-<section id="stability" class="level3">
-<h3 class="anchored" data-anchor-id="stability">Stability</h3>
-<p>Each module upon release is considered to be relatively stable: both in terms of setup and functionality. Any non-bugfix backward-incompatible change will be released gradually as much as possible.</p>
-</section>
-<section id="not-filetype-and-language-specific" class="level3">
-<h3 class="anchored" data-anchor-id="not-filetype-and-language-specific">Not filetype and language specific</h3>
-<p>Including functionality which needs several filetype/language specific implementations is an explicit no-goal of this project. This is mostly due to the potential increase in maintenance to keep implementation up to date. However, any part which might need filetype/language specific tuning should be designed to allow it by letting user set proper buffer options and/or local configuration.</p>
-</section>
-</section>
-<section id="plugin-color-schemes" class="level2">
-<h2 class="anchored" data-anchor-id="plugin-color-schemes">Plugin color schemes</h2>
-<p>This plugin comes with several color schemes (all have both dark and light variants). Activate any of them as a regular <code>colorscheme</code> (like <code>:colorscheme miniwinter</code> or <code>vim.cmd.colorscheme('miniwinter')</code>).</p>
-<ul>
-<li><p>Based on <a href="../mini.nvim/readmes/mini-hues.html">‘mini.hues’</a> (recommended):</p>
-<ul>
-<li><code>miniwinter</code>: “icy winter” palette with azure background.</li>
-<li><code>minispring</code>: “blooming spring” palette with green background.</li>
-<li><code>minisummer</code>: “hot summer” palette with brown/yellow background.</li>
-<li><code>miniautumn</code>: “cooling autumn” palette with purple background.</li>
-<li><code>randomhue</code>: random background and foreground of the same hue with medium saturation.</li>
-</ul>
-<p>You can see how they look in <a href="../mini.nvim/readmes/mini-hues.html#bundled-color-schemes">‘mini.hues’ README</a>.</p></li>
-<li><p>Based on <a href="../mini.nvim/readmes/mini-base16.html">‘mini.base16’</a>:</p>
-<ul>
-<li><code>minicyan</code>: cyan and grey main colors with medium contrast and saturation palette.</li>
-<li><code>minischeme</code>: blue and yellow main colors with high contrast and saturation palette.</li>
-</ul>
-<p>You can see how they look in <a href="../mini.nvim/readmes/mini-base16.html#demo">‘mini.base16’ README</a>.</p></li>
-</ul>
-</section>
-<section id="planned-modules" class="level2">
-<h2 class="anchored" data-anchor-id="planned-modules">Planned modules</h2>
-<p>This is the list of modules I currently intend to implement eventually (as my free time and dedication will allow), in alphabetical order:</p>
-<ul>
-<li>‘mini.abbrev’ - helper to manage/setup Insert mode abbreviations.</li>
-<li>‘mini.cycle’ - cycle through alternatives with pre-defined rules. Something like <a href="https://github.com/monaqa/dial.nvim">monaqa/dial.nvim</a> and <a href="https://github.com/AndrewRadev/switch.vim">AndrewRadev/switch.vim</a></li>
-<li>‘mini.folds’ - more capable and user-friendly folds.</li>
-<li>‘mini.repl’ - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.</li>
-<li>‘mini.sendtext’ - send text between buffers. In particular between regular and built-in terminal buffers.</li>
-<li>‘mini.statuscolumn’ - customizable ‘statuscolumn’.</li>
-<li>‘mini.terminals’ - coherently manage interactive terminal buffers. Something like <a href="https://github.com/kassio/neoterm">kassio/neoterm</a>. Might also incorporate functionality to asynchronously run code in shell with post-processed results.</li>
-<li>‘mini.quickfix’ - more capable and user-friendly quickfix list. Possibly with preview and inline editing for search-and-replace workflow.</li>
-<li>‘mini.windows’ - window manager. Interactive picker, layout organizer, and maybe more.</li>
-</ul>
+<hr>
+<p>It is also worth noting that ‘mini.input’ has special integrations across ‘mini.nvim’ modules that require synchronously getting user input. Like several surroundings of <a href="../mini.nvim/readmes/mini-surround.html">‘mini.surround’</a> (function, tag), interactive glob pattern input in <a href="../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live"><code>:Pick grep_live</code></a>, and more.</p>
+<hr>
+<p>Please, check it out and tell me what you think! Leave a comment in a dedicated <a href="https://github.com/nvim-mini/mini.nvim/issues/2445">beta-testing issue</a>.</p>
+<p>The 0.18 release is planned somewhat soon, so I’d be grateful if you’d take a look and help with beta-testing!</p>
+<p>Thanks for reading! Let’s hope that the next module will not take this long.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <!-- Original source: https://gc.zgo.at/count.js -->

@@ -10,7 +10,57 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Sun, 15 Feb 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 04 Jun 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Announcing ‘mini.input’</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2026-06-04-announce-mini-input.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><video src="2026-06-04-announce-mini-input/demo.mp4" class="img-fluid" controls=""><a href="2026-06-04-announce-mini-input/demo.mp4">Video</a></video></p>
+<p>Hello, Neovim users!</p>
+<p>Let’s welcome the ‘mini.nvim’ module number 45: <a href="../mini.nvim/readmes/mini-input.html">‘mini.input’</a>. Its main purpose is to make asking for user input both more functional and visually pleasant.</p>
+<p>It’s been a while since the latest new module (almost <a href="../blog/2025-12-07-announce-mini-cmdline.html">six months</a>), so I am glad to finally make the release. This one was a long time in the works for various reasons:</p>
+<ul>
+<li><p>Somewhat important to polish the design (I’ll try to upstream important part of it, stay tuned).</p></li>
+<li><p>Fighting mental battles of how much functionality to provide here. For better or worth, I ended up including quite a lot.</p></li>
+<li><p>MINI maintenance (even on top of the valuable help from the MINI team) takes priority.</p></li>
+<li><p>Working on upstream <code>vim.pack</code>.</p></li>
+</ul>
+<p>On the bright side, ‘mini.nvim’ crossed a big milestone: it now has more than 5000 test cases! Not tested features are fragile features :)</p>
+<hr>
+<p>Features of ‘mini.input’:</p>
+<ul>
+<li><p>Get user input with fully customizable key and view handling.</p></li>
+<li><p>Built-in configurable views as floating window, statusline/tabline/winbar, virtual line/text.</p></li>
+<li><p>Implementation is non-blocking but waits to return the input. It also works in any mode without requiring mode change. See <a href="../mini.nvim/doc/mini-input.html#miniinput-lifecycle"><code>:h MiniInput-lifecycle</code></a>.</p></li>
+<li><p><code>vim.ui.input()</code> implementation. To adjust, use <a href="../mini.nvim/doc/mini-input.html#miniinput.ui_input"><code>MiniInput.ui_input()</code></a> or save-restore <code>vim.ui.input</code> manually after calling <a href="../mini.nvim/doc/mini-input.html#miniinput.setup"><code>MiniInput.setup()</code></a>.</p></li>
+</ul>
+<p>For more information see these parts of help:</p>
+<ul>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput.get"><code>:h MiniInput.get()</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput.default_key"><code>:h MiniInput.default_key()</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput-state"><code>:h MiniInput-state</code></a></li>
+<li><a href="../mini.nvim/doc/mini-input.html#miniinput-examples"><code>:h MiniInput-examples</code></a></li>
+</ul>
+<hr>
+<p>It is also worth noting that ‘mini.input’ has special integrations across ‘mini.nvim’ modules that require synchronously getting user input. Like several surroundings of <a href="../mini.nvim/readmes/mini-surround.html">‘mini.surround’</a> (function, tag), interactive glob pattern input in <a href="../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live"><code>:Pick grep_live</code></a>, and more.</p>
+<hr>
+<p>Please, check it out and tell me what you think! Leave a comment in a dedicated <a href="https://github.com/nvim-mini/mini.nvim/issues/2445">beta-testing issue</a>.</p>
+<p>The 0.18 release is planned somewhat soon, so I’d be grateful if you’d take a look and help with beta-testing!</p>
+<p>Thanks for reading! Let’s hope that the next module will not take this long.</p>
+
+
+
+ ]]></description>
+  <category>announce</category>
+  <guid>https://nvim-mini.org/blog/2026-06-04-announce-mini-input.html</guid>
+  <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>MiniMax updates: vim.pack on Neovim&gt;=0.12, config for Neovim=0.10</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -978,44 +1028,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2024-02-11-announce-mini-deps.html</guid>
   <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Announcing ‘mini.notify’</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2024-01-04-announce-mini-notify.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/18ye17d/mininotify_show_notifications_a_vimnotify_maker/">posted on Reddit</a></em></p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2024-01-04-announce-mini-notify/demo.mp4"></video></div>
-<p>Hello, Neovim users!</p>
-<p>Please join me in welcoming 2024 with announce of <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-notify.md">mini.notify</a> - new module of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> with functionality to show one or more highlighted notifications in a floating window. It can also be installed using <a href="https://github.com/nvim-mini/mini.notify">separate GitHub repository</a>.</p>
-<hr>
-<p>I personally didn’t use fancy notifications before ‘mini.notify’ but it was on my TODO list. Recently it occurred to me that a demo of at least one upcoming module will look more interesting if several notifications can be shown at once. Thus I decided to move this new functionality up in list and here we are.</p>
-<hr>
-<p>Features:</p>
-<ul>
-<li><p>Show one or more highlighted notifications in a single floating window.</p></li>
-<li><p>Manage notifications (add, update, remove, clear).</p></li>
-<li><p><code>vim.notify()</code> wrapper generator (see <a href="https://github.com/nvim-mini/mini.nvim/blob/a118a964c94543c06d8b1f2f7542535dd2e19d36/doc/mini-notify.txt#L204">MiniNotify.make_notify()</a>).</p></li>
-<li><p>Automated show of LSP progress report.</p></li>
-<li><p>Track history which can be accessed with <code>MiniNotify.get_all()</code> and shown with <code>MiniNotify.show_history()</code>.</p></li>
-</ul>
-<p>For full documentation see <a href="https://github.com/nvim-mini/mini.nvim/blob/main/doc/mini-notify.txt">help file</a>.</p>
-<hr>
-<p>Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in <a href="https://github.com/nvim-mini/mini.nvim/issues/640">dedicated beta-testing issue</a>.</p>
-<p>Thanks!</p>
-
-
-
- ]]></description>
-  <category>announce</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2024-01-04-announce-mini-notify.html</guid>
-  <pubDate>Thu, 04 Jan 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
