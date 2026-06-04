@@ -1,0 +1,57 @@
+---
+title: "Announcing 'mini.input'"
+author: Evgeni Chasnovski
+date: 2026-06-04
+categories: [announce]
+description: "Get user input with fully customizable key and view handling"
+---
+
+![](2026-06-04-announce-mini-input/demo.mp4)
+
+Hello, Neovim users!
+
+Let's welcome the 'mini.nvim' module number 45: ['mini.input'](/mini.nvim/readmes/mini-input.md). Its main purpose is to make asking for user input both more functional and visually pleasant.
+
+It's been a while since the latest new module (almost [six months](2025-12-07-announce-mini-cmdline.qmd)), so I am glad to finally make the release. This one was a long time in the works for various reasons:
+
+- Somewhat important to polish the design (I'll try to upstream important part of it, stay tuned).
+
+- Fighting mental battles of how much functionality to provide here. For better or worse, I ended up including quite a lot.
+
+- MINI maintenance (even on top of the valuable help from the MINI team) takes priority.
+
+- Working on upstream `vim.pack`.
+
+On the bright side, 'mini.nvim' crossed a big milestone: it now has more than 5000 test cases! Not tested features are fragile features :)
+
+------
+
+Features of 'mini.input':
+
+- Get user input with fully customizable key and view handling.
+
+- Built-in configurable views as floating window, statusline/tabline/winbar, virtual line/text.
+
+- Implementation is non-blocking but waits to return the input. It also works in any mode without requiring mode change. See [`:h MiniInput-lifecycle`](/mini.nvim/doc/mini-input.html#miniinput-lifecycle).
+
+- `vim.ui.input()` implementation. To adjust, use [`MiniInput.ui_input()`](/mini.nvim/doc/mini-input.html#miniinput.ui_input) or save-restore `vim.ui.input` manually after calling [`MiniInput.setup()`](/mini.nvim/doc/mini-input.html#miniinput.setup).
+
+
+For more information see these parts of help:
+
+- [`:h MiniInput.get()`](/mini.nvim/doc/mini-input.html#miniinput.get)
+- [`:h MiniInput.default_key()`](/mini.nvim/doc/mini-input.html#miniinput.default_key)
+- [`:h MiniInput-state`](/mini.nvim/doc/mini-input.html#miniinput-state)
+- [`:h MiniInput-examples`](/mini.nvim/doc/mini-input.html#miniinput-examples)
+
+------
+
+It is also worth noting that 'mini.input' has special integrations across 'mini.nvim' modules that require synchronously getting user input. Like several surroundings of ['mini.surround'](/mini.nvim/readmes/mini-surround.md) (function, tag), interactive glob pattern input in [`:Pick grep_live`](/mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live), and more.
+
+------
+
+Please, check it out and tell me what you think! Leave a comment in a dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/2445).
+
+The 0.18 release is planned somewhat soon, so I'd be grateful if you'd take a look and help with beta-testing!
+
+Thanks for reading! Let's hope that the next module will not take this long.
