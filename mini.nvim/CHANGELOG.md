@@ -12,6 +12,16 @@ There are following change types:
 
 ## All {#v0.18.0-all}
 
+### Evolve {#v0.18.0-all-evolve}
+
+- Prefer using 'mini.input' functionality (if module is enabled) to get user input asynchronously. Affected modules:
+
+    - mini.ai
+    - mini.align
+    - mini.jump2d
+    - mini.pick
+    - mini.surround
+
 ### Refine {#v0.18.0-all-refine}
 
 - Soft deprecate support for Neovim 0.9. It will be fully deprecated in next release.
@@ -75,6 +85,10 @@ There are following change types:
 - Add new plugin integrations:
     - 'folke/snacks.nvim'
     - 'saghen/blink.cmp'
+
+## mini.input {#v0.18.0-mini.input}
+
+- Introduction of a new module.
 
 ## mini.jump {#v0.18.0-mini.jump}
 

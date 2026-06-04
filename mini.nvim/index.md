@@ -141,6 +141,7 @@ These modules improve your general workflow. Start with 'mini.bracketed', 'mini.
 | mini.extra     | Extra 'mini.nvim' functionality          | [README](readmes/mini-extra.md)     | [Documentation](doc/mini-extra.qmd)     |
 | mini.files     | Navigate and manipulate file system      | [README](readmes/mini-files.md)     | [Documentation](doc/mini-files.qmd)     |
 | mini.git       | Git integration                          | [README](readmes/mini-git.md)       | [Documentation](doc/mini-git.qmd)       |
+| mini.input     | Get user input                           | [README](readmes/mini-input.md)     | [Documentation](doc/mini-input.qmd)     |
 | mini.jump      | Jump to next/previous single character   | [README](readmes/mini-jump.md)      | [Documentation](doc/mini-jump.qmd)      |
 | mini.jump2d    | Jump within visible lines                | [README](readmes/mini-jump2d.md)    | [Documentation](doc/mini-jump2d.qmd)    |
 | mini.misc      | Miscellaneous functions                  | [README](readmes/mini-misc.md)      | [Documentation](doc/mini-misc.qmd)      |

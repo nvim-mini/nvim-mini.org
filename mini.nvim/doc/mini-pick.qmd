@@ -1559,7 +1559,7 @@ flags to CLI tool (i.e. overriding tool's global config).
     Default: whichever tool is present, trying in that same order.
 
   - <span class="help-syntax-keys">\<pattern\></span> `(string)` - string pattern to search. If not given, asks user
-    interactively with [input()](https://neovim.io/doc/user/helptag.html?tag=input\(\)).
+    interactively with [MiniInput.get()](mini-input.qmd#miniinput.get) (if enabled) or [input()](https://neovim.io/doc/user/helptag.html?tag=input\(\)).
 
   - <span class="help-syntax-keys">\<globs\></span> `(table)` - array of string glob patterns to restrict search to
     matching files. Supported only by "rg" and "git" tools, respects their
@@ -1602,7 +1602,9 @@ flags to CLI tool (i.e. overriding tool's global config).
     matching files. Supported only by "rg" and "git" tools, respects their
     specific glob syntax and effects. Default: `{}` (no restriction).
     Example: `{ '*.lua', 'lua/**' }` for Lua files and files in "lua" directory.
-    Use <span class="help-syntax-keys">\<C-o\></span> custom mapping to add glob to the array.
+    Use <span class="help-syntax-keys">\<C-o\></span> custom mapping to add glob to the array. It uses [MiniInput.get()](mini-input.qmd#miniinput.get)
+    (if enabled) to show input in ['winbar'](https://neovim.io/doc/user/helptag.html?tag='winbar') or ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') (depending of
+    whether content is from bottom).
 
   - <span class="help-syntax-keys">\<method\></span> `(string)` - pattern matching method: `"regex"` (default) or `"plain"`.
     Use <span class="help-syntax-keys">\<C-e\></span> custom mapping to add glob to the array.

@@ -1,0 +1,1241 @@
+---
+title: "mini.input documentation"
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.input" href="mini-input.qmd#mini.input"><b>mini.input</b></a> Get user input
+
+MIT License Copyright (c) 2026 Evgeni Chasnovski
+
+---
+
+### Module {#module .help-syntax-right-anchor}
+
+Features:
+
+
+- Get user input with fully customizable key and view handling.
+
+
+- Built-in configurable views as floating window, statusline/tabline/winbar,
+  virtual line/text.
+
+
+- Implementation is non-blocking but waits to return the input. It also works
+  in any mode without requiring mode change. See [MiniInput-lifecycle](mini-input.qmd#miniinput-lifecycle).
+
+
+- [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) implementation. To adjust, use [MiniInput.ui\_input()](mini-input.qmd#miniinput.ui_input) or
+  save-restore `vim.ui.input` manually after calling [MiniInput.setup()](mini-input.qmd#miniinput.setup).
+
+Sources with more details:
+
+- [MiniInput.get()](mini-input.qmd#miniinput.get)
+
+- [MiniInput.default\_key()](mini-input.qmd#miniinput.default_key)
+
+- [MiniInput-state](mini-input.qmd#miniinput-state)
+
+- [MiniInput-examples](mini-input.qmd#miniinput-examples)
+
+#### Setup {#module-setup}
+
+
+This module needs a setup with `require('mini.input').setup({})` (replace `{}`
+with your `config` table). It will create global Lua table `MiniInput` which
+you can use for scripting or manually (with `:lua MiniInput.*`).
+
+See [MiniInput.config](mini-input.qmd#miniinput.config) for `config` structure and default values.
+
+You can override runtime config settings locally to buffer inside
+`vim.b.miniinput_config` which should have same structure as
+`MiniInput.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config) for more details.
+
+#### Comparisons {#module-comparisons}
+
+
+
+- [folke/snacks.nvim#input](https://github.com/folke/snacks.nvim):
+
+    - Both provide [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) implementation.
+
+    - Has asynchronous implementation (i.e. does not wait for user to finish
+      input), while this module has synchronous non-blocking implementation.
+
+    - Uses floating window and forced Insert mode. This module allows more
+      view customizations and can be used in any mode without interruptions.
+
+
+- [input()](https://neovim.io/doc/user/helptag.html?tag=input\(\)):
+
+    - Both are synchronous.
+
+    - Both allow custom highlight and completion.
+
+    - This module also allows supplying input scope and visibility,
+      customizing keys and view.
+
+#### Highlight groups {#module-highlightgroups}
+
+
+<a name="miniinput-hl-groups" href="mini-input.qmd#miniinput-hl-groups"><b>MiniInput-hl-groups</b></a>
+
+
+- `MiniInputAdded`   - added text during completion navigation.
+
+- `MiniInputBorder`  - border of a [MiniInput.gen\_view.floatwin()](mini-input.qmd#miniinput.gen_view.floatwin) handler.
+
+- `MiniInputCaret`   - caret symbol shown in a prompt area.
+
+- `MiniInputHide`    - input is hidden, usually used instead of `MiniInputPrompt`.
+
+- `MiniInputHint`    - hints shown during completion navigation.
+
+- `MiniInputNormal`  - basic foreground/background.
+
+- `MiniInputPrompt`  - input prompt (intention of the input).
+
+- `MiniInputSpecial` - special keys (like literal `\t`, `\n`, etc.) in input.
+
+---
+
+### State {#miniinput-state .help-syntax-right-anchor}
+
+Information about the state of the input. It is used as a handler argument and
+can be get via [MiniInput.get\_state()](mini-input.qmd#miniinput.get_state). A table with the following fields:
+
+
+- <span class="help-syntax-keys">\<caret\></span> `(number)` - character (not byte) index at which to modify input.
+  Should be from 1 (prepend input) to "input width plus 1" (append input).
+
+
+- <span class="help-syntax-keys">\<complete\></span> `(table|nil)` - information about active completion navigation.
+  If present, it means that completion navigation is in action.
+  Its fields describe the state of navigation:
+
+    - <span class="help-syntax-keys">\<base\></span> `(string)` - reference text to the left of caret at the start
+      of completion. Used to compute candidates. Can be empty string.
+
+    - <span class="help-syntax-keys">\<id\></span> `(number)` - identifier of current completion item. Can be zero to
+      mean that the base is shown. If not zero, must mean that a `items[id]`
+      candidate is now shown to the left of caret as the part of the input.
+
+    - <span class="help-syntax-keys">\<items\></span> `(table)` - string array of completion candidates. May be empty.
+      Are intended to fully replace <span class="help-syntax-keys">\<base\></span>, so should contain it in any sense.
+
+    - <span class="help-syntax-keys">\<method\></span> `(string)` - completion method. Like `"default"`, `"history"`, etc.
+      Can be `""` (empty string) to mean "default method of complete handler".
+
+
+- <span class="help-syntax-keys">\<data\></span> `(table)` - any information to be reused within the same input session.
+  Note: handlers should not change fields that they don't "own".
+
+
+- <span class="help-syntax-keys">\<errmsg\></span> `(errmsg)` - first error message caught during input process.
+
+
+- <span class="help-syntax-keys">\<highlight\></span> `(table|nil)` - information about current input highlighting.
+  If absent, the whole input is highlighted using `MiniInputNormal` group.
+  Should be an array of highlight ranges. They might be not ordered, overlap,
+  go outside of input width. It is up to the view handler to decide how to
+  interpret them. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks) for a helper.
+  Fields of a single highlight range:
+
+    - <span class="help-syntax-keys">\<from\></span> `(number)` - character index (one-indexed) of range start.
+
+    - <span class="help-syntax-keys">\<to\></span> `(number)` - character index (one-indexed) of range end (inclusive).
+      Should not be smaller than <span class="help-syntax-keys">\<from\></span>. Can be [math.huge](https://neovim.io/doc/user/helptag.html?tag=math.huge).
+
+    - <span class="help-syntax-keys">\<hl\></span> `(string)` - highlight group to use for highlighting.
+
+
+- <span class="help-syntax-keys">\<input\></span> `(string)` - current user input. Returned by [MiniInput.get()](mini-input.qmd#miniinput.get).
+
+
+- <span class="help-syntax-keys">\<opts\></span> `(table)` - input options, same as in [MiniInput.get()](mini-input.qmd#miniinput.get).
+
+
+- <span class="help-syntax-keys">\<prompt\></span> `(string)` - intention of the input. May be empty.
+
+
+- <span class="help-syntax-keys">\<status\></span> `(string)` - one of `"start"`, `"progress"`, `"accept"`, `"cancel"`.
+
+---
+
+### Examples {#miniinput-examples .help-syntax-right-anchor}
+
+#### General {#miniinput-examples-general}
+
+
+##### Initial input {#miniinput-examples-general-initialinput}
+
+
+Use `opts.init_keys` to imitate the initial state of the input:
+
+  ```lua
+  MiniInput.get({ init_keys = { 'Default' } })
+  ```
+
+##### Custom mappings {#miniinput-examples-general-custommappings}
+
+
+Override `handlers.key` in [MiniInput.config](mini-input.qmd#miniinput.config):
+
+  ```lua
+  local key_handler = function(state, key)
+    -- <C-a> - move caret to start of line
+    if key == '\1' then
+      state.caret = 1
+    -- <S-BS> - clear all input
+    elseif key == vim.keycode('<S-BS>') then
+      state.input, state.caret = '', 1
+    else
+      -- IMPORTANT: Fall back to processing as usual
+      return MiniInput.default_key(state, key)
+    end
+  end
+
+  require('mini.input').setup({ handlers = { key = key_handler } })
+  ```
+
+##### Basic command line {#miniinput-examples-general-basiccommandline}
+
+
+An alternative [Command-line](https://neovim.io/doc/user/helptag.html?tag=Command-line) with highlighting and completion:
+
+  ```lua
+  -- Construct reusable `MiniInput.get()` options
+  local cmdline_opts = { prompt = 'Command', scope = 'editor' }
+  -- - Highlight using bundled Vim tree-sitter parser and default handler
+  local highlight_vim = MiniInput.gen_highlight.treesitter('vim')
+  local highlight_cmdline = function(state)
+    state = highlight_vim(state) or state
+    return MiniInput.default_highlight(state) or state
+  end
+  cmdline_opts.handlers = { highlight = highlight_cmdline }
+  -- - Complete as if it is Command line input
+  cmdline_opts.completion = 'cmdline'
+
+  -- Create a mapping for `:`
+  local input_cmdline = function()
+    local cmd = MiniInput.get(cmdline_opts)
+    if cmd ~= nil then vim.cmd(cmd) end
+  end
+  vim.keymap.set('n', ':', input_cmdline)
+  ```
+
+#### Handlers {#miniinput-examples-handlers}
+
+
+##### Key {#miniinput-examples-handlers-key}
+
+
+Perform custom actions based on arbitrary conditions:
+
+  ```lua
+  local key_handler = function(state, key)
+    -- Adjust prompt
+    state.opts.prompt = state.opts.prompt:gsub('[?:]%s*$', '')
+
+    -- Adjust scope
+    if state.opts.prompt == 'Editor action' then
+      state.opts.scope = 'editor'
+    end
+
+    -- Hide from view and history
+    if state.opts.prompt:find('[Pp]assword') ~= nil then
+      state.opts.hide = true
+    end
+
+    -- IMPORTANT: Process as usual
+    state = MiniInput.default_key(state, key) or state
+
+    -- Auto fill and accept
+    if state.input == 'AF' then
+      state.input, state.status = 'Autofilled input', 'accept'
+    end
+  end
+  require('mini.input').setup({ handlers = { key = key_handler } })
+  ```
+
+##### View {#miniinput-examples-handlers-view}
+
+
+Show no view:
+
+  ```lua
+  require('mini.input').setup({ handlers = { view = function() end } })
+  ```
+
+Compute initial style depending on scope:
+
+  ```lua
+  local input = require('mini.input')
+  local view_virtline = input.gen_view.virtual({ style = 'above' })
+  local view_tabline = input.gen_view.uiline({ style = 'tabline' })
+  local view_winbar = input.gen_view.uiline({ style = 'winbar' })
+  local view_handler = function(state)
+    -- NOTE: does not support interactive scope change
+    local scope, view = state.opts.scope, view_tabline
+    if scope == 'buffer' or scope == 'window' then view = view_winbar end
+    if scope == 'cursor' or scope == 'line' then view = view_virtline end
+    return view(state)
+  end
+
+  input.setup({ handlers = { view = view_handler } })
+  ```
+
+Change symbols for caret and hidden input: see [MiniInput.gen\_view](mini-input.qmd#miniinput.gen_view).
+
+---
+
+### setup() {#miniinput.setup .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#miniinput.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniInput.config](mini-input.qmd#miniinput.config).
+
+#### Usage {#miniinput.setup-usage}
+
+
+
+  ```lua
+  require('mini.input').setup() -- use default config
+  -- OR
+  require('mini.input').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#miniinput.config .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.config`</p>
+#### Defaults {#miniinput.config-defaults}
+
+
+
+  ```lua
+  MiniInput.config = {
+    -- Functions that control input lifecycle
+    handlers = {
+      -- Compute completion candidates
+      complete = nil,
+
+      -- Compute highlighting of current input
+      highlight = nil,
+
+      -- Handle input start, every key press, and input end
+      key = nil,
+
+      -- Show current input state
+      view = nil,
+    },
+
+    -- Default input scope: cursor/line/buffer/window/tabpage/editor/project
+    scope = 'editor',
+  }
+  ```
+
+#### Handlers {#miniinput.config-handlers}
+
+
+<a name="miniinput.config.handlers" href="mini-input.qmd#miniinput.config.handlers"><b>MiniInput.config.handlers</b></a>
+
+`config.handlers` defines functions that are applied during [MiniInput-lifecycle](mini-input.qmd#miniinput-lifecycle).
+Every handler takes [MiniInput-state](mini-input.qmd#miniinput-state) as the first argument and is expected to
+either modify it in place or return a new state table.
+
+Use [MiniInput.apply\_handler()](mini-input.qmd#miniinput.apply_handler) to apply a handler for a given [MiniInput-state](mini-input.qmd#miniinput-state).
+They can be set up as part of the config (will be used as default) or passed
+directly as a part of [MiniInput.get()](mini-input.qmd#miniinput.get) call.
+
+##### Complete {#miniinput.config-handlers-complete}
+
+
+`handlers.complete` is a handler intended to compute completion suggestions.
+Takes [MiniInput-state](mini-input.qmd#miniinput-state) and `method` as arguments and is expected to modify
+<span class="help-syntax-keys">\<complete\></span> field. Default: [MiniInput.default\_complete()](mini-input.qmd#miniinput.default_complete).
+
+Only `complete.base` and `complete.items` are expected to be set by a complete
+handler. Setting and modifying other fields (`complete.id` and `complete.method`)
+is done in other handlers and as part of [MiniInput.apply\_handler()](mini-input.qmd#miniinput.apply_handler). Actually
+showing completion information is up to the view handler.
+
+This handler is usually applied manually inside a key handler via using
+`MiniInput.apply_handler(state, 'complete', method)`. Like, for example,
+in [MiniInput.default\_key()](mini-input.qmd#miniinput.default_key) after <span class="help-syntax-keys">\<Tab\></span> or <span class="help-syntax-keys">\<Up\></span>.
+
+Here is an example of a simple demo complete handler:
+
+```lua
+  local complete_handler = function(state, method)
+    if method == '' or method == 'xy' then
+      local text = vim.fn.strcharpart(state.input, 0, state.caret - 1)
+      local base = text:match('%S*$')
+      state.complete = { base = base, items = { base .. 'x', base .. 'y' } }
+      return
+    end
+    return MiniInput.default_complete(state, method)
+  end
+
+  require('mini.input').setup({ handlers = { complete = complete_handler } })
+
+## Key ~
+
+`handlers.key` is a handler intended to process every user key press.
+Takes |MiniInput-state| and `key` as arguments. Argument `key` represents a key
+that needs to be processed: a string if from the user input or `nil` if input
+needs to be set up, refreshed, or torn down. Default: |MiniInput.default_key()|.
+
+A string `key` can be two kinds:
+- Forwarded from |getcharstr()| verbatim as a result of interactive key press.
+  Meaning it will be in escaped form and not as a |key-notation|: i.e. `"\r"`
+  and not `"<CR>"`. It also means that all kinds of combos (`<M-...>`, `<C-S-...>`),
+  mouse clicks, and wheel scrolls are also forwarded to key handler.
+- Any string as part of `opts.init_keys` in |MiniInput.get()|. If a string
+  doesn't look like it came from |getcharstr()|, it is usually a good idea
+  to insert this string at caret as is.
+
+The suggested overall approach for custom key handler is "if `key` is special -
+act on it, if can be used in the input - insert at caret, ignore otherwise".
+It is also important to never change the current Neovim for |MiniInput.get()| to
+work as expected.
+
+Here is an example of a basic custom key handler: >lua
+
+  local custom_actions = {
+    [vim.keycode('<Left>')] = function(state)
+      state.caret = math.max(state.caret - 1, 1)
+    end,
+    [vim.keycode('<Right>')] = function(state)
+      local input_width = vim.fn.strchars(state.input)
+      state.caret = math.min(state.caret + 1, input_width + 1)
+    end,
+    [vim.keycode('<CR>')] = function(state) state.status = 'accept' end,
+    [vim.keycode('<Esc>')] = function(state) state.status = 'cancel' end,
+  }
+
+  local key_handler = function(state, key)
+    -- No need for special setup or teardown
+    if key == nil then return end
+
+    -- If key is special - act on it
+    if custom_actions[key] then return custom_actions[key](state) end
+
+    -- If key is not printable - do nothing
+    if vim.fn.match(key, '^[[:print:]]\\+$') < 0 then return end
+
+    -- Insert at caret
+    local caret, input = state.caret, state.input
+    local before_caret = vim.fn.strcharpart(input, 0, caret - 1)
+    local after_caret = vim.fn.strcharpart(input, caret - 1)
+    state.input = before_caret .. key .. after_caret
+    state.caret = caret + vim.fn.strchars(key)
+
+    -- No need to return anything as `state` is modified in place
+  end
+
+  require('mini.input').setup({ handlers = { key = key_handler } })
+```
+
+##### Highlight {#miniinput.config-handlers-highlight}
+
+
+`handlers.highlight` is a handler intended to compute and set highlight info
+about the current input. Takes [MiniInput-state](mini-input.qmd#miniinput-state) as the only argument and is
+expected to modify <span class="help-syntax-keys">\<highlight\></span> field. Default: [MiniInput.default\_highlight()](mini-input.qmd#miniinput.default_highlight).
+
+See [MiniInput.gen\_highlight](mini-input.qmd#miniinput.gen_highlight) for built-in highlight handler generators.
+
+It is usually a good idea to append to a <span class="help-syntax-keys">\<highlight\></span> if it already exists.
+This makes it work more robustly when combining highlights.
+
+Here is a basic example that highlights all letters `a`:
+
+  ```lua
+  local hl_handler = function(state)
+    local highlight = {}
+    for col in string.gmatch(state.input, '()a') do
+      -- NOTE: range should use character (not byte) indexes
+      local char_col = vim.fn.charidx(state.input, col)
+      local range = { from = char_col, to = char_col, hl = 'Special' }
+      table.insert(highlight, range)
+    end
+
+    state.highlight = vim.list_extend(state.highlight or {}, highlight)
+
+    -- Possibly also apply default handler afterwards
+    return MiniInput.default_highlight(state)
+  end
+
+  require('mini.input').setup({ handlers = { highlight = hl_handler } })
+  ```
+
+##### View {#miniinput.config-handlers-view}
+
+
+`handlers.view` is a handler intended to show the input state on screen.
+Takes [MiniInput-state](mini-input.qmd#miniinput-state) as the only argument. Default: [MiniInput.default\_view()](mini-input.qmd#miniinput.default_view).
+
+See [MiniInput.gen\_view](mini-input.qmd#miniinput.gen_view) for built-in view handler generators.
+
+Example of view that uses [nvim\_echo()](https://neovim.io/doc/user/helptag.html?tag=nvim_echo\(\)) to show the input:
+
+  ```lua
+  local view_handler = function(state)
+    -- Process start and end of the input lifecycle
+    local is_start = state.status == 'start'
+    local is_end = state.status == 'accept' or state.status == 'cancel'
+    if is_start or is_end then vim.cmd('mode') end
+    if is_end then return end
+
+    -- Compute text-hl chunks that fit and show them
+    local chunks = MiniInput.state_to_chunks(state, vim.v.echospace)
+    vim.api.nvim_echo(chunks, false, {})
+  end
+
+  require('mini.input').setup({ handlers = { view = view_handler } })
+  ```
+
+#### Scope {#miniinput.config-scope}
+
+
+`config.scope` is a string that defines an input scope. It is meant as an extra
+information for handlers to tweak their behavior (`view` style, etc.). Possible
+values: `"cursor"`, `"line"`, `"buffer"`, `"window"`, `"tabpage"`, `"editor"`, `"project"`.
+
+---
+
+### get() {#miniinput.get .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.get`(<span class="help-syntax-special">{opts}</span>)</p>
+Get input from the user
+
+#### Lifecycle {#miniinput.get-lifecycle}
+
+
+<a name="miniinput-lifecycle" href="mini-input.qmd#miniinput-lifecycle"><b>MiniInput-lifecycle</b></a>
+
+This module implements custom lifecycle to interact with the user. It starts
+when calling [MiniInput.get()](mini-input.qmd#miniinput.get) and ends with it returning a value.
+Only one active input is allowed simultaneously.
+
+The basic cycle unit is a step that processes a `key` (string or `nil`). It is
+done by calling relevant handlers in order: key handler with `key` as a second
+argument, highlight handler, view handler. [MiniInput.apply\_handler()](mini-input.qmd#miniinput.apply_handler) is used
+to apply each handler and the output of one is used as the input for the next.
+
+During step some state fields are automatically removed:
+
+- <span class="help-syntax-keys">\<highlight\></span> is removed before applying a key handler to always have the most
+  up to date highlighting.
+
+- <span class="help-syntax-keys">\<complete\></span> is removed if it was not changed after applying a key handler but
+  something else in the state beside <span class="help-syntax-keys">\<highlight\></span> did change. This is meant as
+  an automatic stop of completion when it is not advancing.
+
+If step sets an ending state <span class="help-syntax-keys">\<status\></span> (i.e. `"accept"` or `"cancel"`), the input
+is finished by extra finishing step (see below).
+
+The order of operations is as follows:
+
+- Create initial [MiniInput-state](mini-input.qmd#miniinput-state) based on the input `opts`, with defaults
+  inferred from [MiniInput.config](mini-input.qmd#miniinput.config), and `vim.b.miniinput_config`.
+
+- Set <span class="help-syntax-keys">\<status\></span> to `"start"`.
+
+- Advance one step with `key=nil`. This is meant as a "setup" step for handlers.
+
+- Set <span class="help-syntax-keys">\<status\></span> to `"progress"`.
+
+- Process `opts.init_keys` one item per step with `key` set to the string item.
+
+- Wait for user to press a key (via [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))). The key string (in escaped
+  form and not as a [key-notation](https://neovim.io/doc/user/helptag.html?tag=key-notation); i.e. `"\r"` and not `"<CR>"`) is then used
+  to advance a step. Note: <span class="help-syntax-keys">\<C-c\></span> is hard coded to cancel the input.
+
+- Repeat previous step until the ending <span class="help-syntax-keys">\<status\></span> (`"accept"` or `"cancel"`).
+
+- Finish the input:
+
+    - Perform a "teardown"' step with `key=nil`.
+
+    - If <span class="help-syntax-keys">\<errmsg\></span> is set, throw an [error()](https://neovim.io/doc/user/helptag.html?tag=error\(\)).
+
+    - If input is accepted (even if empty) and not hidden, add to <span class="help-syntax-keys">\<input\></span> to
+      the history. Get the whole history with [MiniInput.get\_history()](mini-input.qmd#miniinput.get_history).
+
+    - Return <span class="help-syntax-keys">\<input\></span> if <span class="help-syntax-keys">\<status\></span> is `"accept"`, `nil` otherwise.
+
+#### Parameters {#miniinput.get-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<completion\></span> `(string)` - completion method. Default: `''` to use default
+    completion method of the `complete` handler.
+
+  - <span class="help-syntax-keys">\<handlers\></span> `(table)` - same as in [MiniInput.config.handlers](mini-input.qmd#miniinput.config.handlers), used only for
+    the duration of the current input.
+
+  - <span class="help-syntax-keys">\<hide\></span> `(boolean)` - whether input should be hidden. Default: `false`.
+    Note: this does not guarantee a total security of the input, only that
+    the typed characters are expected to not be shown on screen and not added
+    to the history. If set:
+
+      - The `view` handler is expected to not directly show current input.
+        Like replace characters with pre-defined string or fully not show.
+
+      - The `complete` and `highlight` handlers are not called.
+
+      - Accepted input will not be added to the history.
+
+  - <span class="help-syntax-keys">\<init_keys\></span> `(table)` - array of string keys that are emulated before asking
+    for the user input. Using values that can be an output of [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\))
+    should be preferred, but a key handler should work with any string.
+    Default: `{}`.
+
+  - <span class="help-syntax-keys">\<prompt\></span> `(string)` - intention of the input, same as in [input()](https://neovim.io/doc/user/helptag.html?tag=input\(\)).
+    Default: `"Input"`.
+
+  - <span class="help-syntax-keys">\<scope\></span> `(string)` - same as in [MiniInput.config](mini-input.qmd#miniinput.config). Default: the value from
+    `MiniInput.config` with some hard coded exceptions (on Neovim<0.12.3):
+
+      - [vim.lsp.buf.rename()](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.buf.rename\(\)) will use `"cursor"` if no `new_name` is supplied.
+
+#### Return {#miniinput.get-return}
+
+
+`(string|nil)` User input (from the <span class="help-syntax-keys">\<input\></span> state field) if accepted, even if
+  empty. `nil` if canceled or there was an active input.
+
+#### Usage {#miniinput.get-usage}
+
+
+
+  ```lua
+  local input = MiniInput.get({
+    -- Intention of the input
+    prompt = 'New value',
+    -- The input is for something at cursor
+    scope = 'cursor',
+    -- Emulate pressing `a`, `<BS>`, and `b`
+    init_keys = { 'a', vim.keycode('<BS>'), 'b' },
+  })
+  ```
+
+---
+
+### ui_input() {#miniinput.ui_input .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.ui_input`(<span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{on_confirm}</span>)</p>
+A [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) implementation
+
+Function which can be used to directly override [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) to use this
+module functionality. Set automatically in [MiniInput.setup()](mini-input.qmd#miniinput.setup).
+
+#### Usage {#miniinput.ui_input-usage}
+
+
+To preserve original `vim.ui.input()`:
+
+  ```lua
+  local ui_input_orig = vim.ui.input
+  require('mini.input').setup()
+  vim.ui.input = ui_input_orig
+  ```
+
+---
+
+### get_state() {#miniinput.get_state .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.get_state`()</p>
+Get current input state
+
+#### Return {#miniinput.get_state-return}
+
+
+`(table|nil)` Current [MiniInput-state](mini-input.qmd#miniinput-state) if input is active, `nil` otherwise. Notes:
+
+  - For hidden input (`state.opts.hide=true`), both <span class="help-syntax-keys">\<caret\></span> and <span class="help-syntax-keys">\<input\></span> are `nil`
+    to actually hide the input.
+
+---
+
+### get_history() {#miniinput.get_history .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.get_history`()</p>
+Get input history
+
+#### Return {#miniinput.get_history-return}
+
+
+`(table)` Array with data about all previous non-hidden inputs (from earliest
+  to latest). Each element is a table with the following fields:
+
+  - <span class="help-syntax-keys">\<cwd\></span> `(string)` - [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory) at the time of input's end.
+
+  - <span class="help-syntax-keys">\<input\></span> `(string)` - input result.
+
+  - <span class="help-syntax-keys">\<prompt\></span> `(string)` - `opts.prompt` supplied in [MiniInput.get()](mini-input.qmd#miniinput.get).
+
+  - <span class="help-syntax-keys">\<scope\></span> `(string)` - `opts.scope` supplied in [MiniInput.get()](mini-input.qmd#miniinput.get).
+
+---
+
+### set_history() {#miniinput.set_history .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.set_history`(<span class="help-syntax-special">{history}</span>)</p>
+Set input history
+
+#### Parameters {#miniinput.set_history-parameters}
+
+
+
+<span class="help-syntax-special">{history}</span> `(table)` Array describing all previous inputs. Same structure
+  as [MiniInput.get\_history()](mini-input.qmd#miniinput.get_history) output.
+
+---
+
+### refresh() {#miniinput.refresh .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.refresh`()</p>
+Refresh active input
+
+Performs one step of [MiniInput-lifecycle](mini-input.qmd#miniinput-lifecycle) with `key=nil`.
+
+---
+
+### gen_highlight {#miniinput.gen_highlight .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_highlight`</p>
+Highlight generators
+
+This is a table with function elements. Call to actually get a view function.
+
+---
+
+### gen_highlight.treesitter() {#miniinput.gen_highlight.treesitter .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_highlight.treesitter`(<span class="help-syntax-special">{lang}</span>)</p>
+Highlight with tree-sitter
+
+#### Parameters {#miniinput.gen_highlight.treesitter-parameters}
+
+
+
+<span class="help-syntax-special">{lang}</span> `(string)` A language of tree-sitter parser to use.
+
+#### Return {#miniinput.gen_highlight.treesitter-return}
+
+
+`(function)` A highlight handler. Seem [MiniInput.config.handlers](mini-input.qmd#miniinput.config.handlers).
+
+---
+
+### gen_view {#miniinput.gen_view .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_view`</p>
+View generators
+
+This is a table with function elements. Call to actually get a view function.
+
+Each element accepts <span class="help-syntax-keys">\<style\></span> option which fine tunes the input view.
+With default key handler ([MiniInput.default\_key()](mini-input.qmd#miniinput.default_key)) it can be adjusted
+interactively by pressing <span class="help-syntax-keys">\<C-s\></span>.
+
+Each element also accepts <span class="help-syntax-keys">\<to_chunks\></span> option. It is a function that takes
+a [MiniInput-state](mini-input.qmd#miniinput-state) and `max_width` arguments and returns an array of `{ text, hl }`
+chunks that fit into `max_width` display width (as in [strdisplaywidth()](https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth\(\))).
+
+This is a way to adjust how input is shown. Like caret/hide symbols, etc.
+By default uses [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks), which also means:
+
+- All control characters (like literal `\t`, `\n`, etc.) will be translated
+  via [keytrans()](https://neovim.io/doc/user/helptag.html?tag=keytrans\(\)).
+
+Example:
+
+  ```lua
+  local input = require('mini.input')
+
+  -- Adjust how state is converted to text-hl chunks
+  local to_chunks_opts = {
+    symbol_caret = '_',
+    symbol_hide = '*',
+    -- Do not include prompt and hint in `floatwin` handler
+    include_prompt = false,
+    include_hint = false,
+  }
+  local to_chunks = function(state, max_width)
+    return MiniInput.state_to_chunks(state, max_width, to_chunks_opts)
+  end
+
+  -- Supply custom `to_chunks` as an option
+  local view_opts = { to_chunks = to_chunks }
+  input.setup({ handlers = { view = input.gen_view.floatwin(view_opts) } })
+  ```
+
+---
+
+### gen_view.floatwin() {#miniinput.gen_view.floatwin .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_view.floatwin`(<span class="help-syntax-special">{opts}</span>)</p>
+Floating window view
+
+Show input inside a floating window. Prompt and completion hints are shown
+in title and footer.
+
+Window position and dimensions are computed based on state's <span class="help-syntax-keys">\<scope\></span> and
+`opts.style`:
+
+- `scope="cursor"` is shown near the cursor. For example, `style="BL"` will
+  have bottom left corner at nearest top right cell relative to the cursor.
+
+- `scope="line"` is shown near the current line. For example, `style="BL"` will
+  have bottom left corner at left side above the line.
+
+- `scope="buffer"` and `scope="window"` will be shown relative to the current
+  window. For example, `style="BL"` will be shown in the bottom left corner.
+
+- `scope="tabpage"`, `scope="editor"`, `scope="project"` will be shown relative to
+  the overall Neovim instance. For example, `style="BL"` will be shown in the
+  bottom left corner.
+
+Identifiers of floating window and its buffer are stored as `floatwin_win_id`
+and `floatwin_buf_id` in [MiniInput-state](mini-input.qmd#miniinput-state) <span class="help-syntax-keys">\<data\></span> field. Floating window is
+not focused and cursor position is not the same as caret position.
+
+#### Parameters {#miniinput.gen_view.floatwin-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<adjust_config\></span> `(function)` - function to adjust default config. Will be
+    called with two arguments: current [MiniInput-state](mini-input.qmd#miniinput-state) and a window config
+    (always with `relative="editor"` and `anchor="NW"`) computed based
+    on `opts.style`. Should return an adjusted window config.
+    Default: `function(state, config) return config end`.
+
+
+  - <span class="help-syntax-keys">\<style\></span> `(string)` - a two character description of how to show the window.
+    Default: `"BL"`.
+
+      First character describes vertical position:
+
+      - `"T"` - top window border will be at scope's reference top border.
+
+      - `"M"` - middle between top and bottom window borders will be at the
+        middle of scope's reference top and bottom borders.
+
+      - `"B"` - bottom window border will be at scope's reference bottom border.
+
+      Second character describes horizontal position:
+
+      - `"L"` - left window border will be at scope's reference left border.
+
+      - `"M"` - middle between left and right window borders will be at the
+        middle of scope's reference left and right borders.
+
+      - `"R"` - right window border will be at scope's reference right border.
+
+
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+    `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
+    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+
+#### Usage {#miniinput.gen_view.floatwin-usage}
+
+
+
+  ```lua
+  local input = require('mini.input')
+
+  -- Use border different from 'winborder'
+  local adjust_config = function(_, config)
+    config.border = 'double'
+    return config
+  end
+
+  -- Choose initial style based on the scope
+  local floatwin = input.gen_view.floatwin
+  local view_tm = floatwin({ style = 'TM', adjust_config = adjust_config })
+  local view_bl = floatwin({ style = 'BL', adjust_config = adjust_config })
+  local view_handler = function(state)
+    local scope, view = state.opts.scope, view_tm
+    if scope == 'cursor' or scope == 'line' then view = view_bl end
+    return view(state)
+  end
+
+  input.setup({ handlers = { view = view_handler } })
+  ```
+
+---
+
+### gen_view.uiline() {#miniinput.gen_view.uiline .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_view.uiline`(<span class="help-syntax-special">{opts}</span>)</p>
+UI line (statusline, tabline, winbar) view
+
+#### Parameters {#miniinput.gen_view.uiline-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<style\></span> `(string)` - which UI line to use. One of `"statusline"`,
+    `"tabline"`, `"winbar"`. Default: `"statusline"`.
+
+
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+    `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
+    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+
+#### Usage {#miniinput.gen_view.uiline-usage}
+
+
+
+  ```lua
+  local input = require('mini.input')
+
+  -- Choose initial style based on the scope
+  local view_tabline = input.gen_view.uiline({ style = 'tabline' })
+  local view_winbar = input.gen_view.uiline({ style = 'winbar' })
+  local view_handler = function(state)
+    local scope, view = state.opts.scope, view_winbar
+    if scope == 'tabpage' or scope == 'editor' or scope == 'project' then
+      view = view_tabline
+    end
+    return view(state)
+  end
+
+  input.setup({ handlers = { view = view_handler } })
+  ```
+
+---
+
+### gen_view.virtual() {#miniinput.gen_view.virtual .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.gen_view.virtual`(<span class="help-syntax-special">{opts}</span>)</p>
+Virtual (line, text) view
+
+#### Parameters {#miniinput.gen_view.virtual-parameters}
+
+
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<style\></span> `(string)` - how to display virtual text. One of `"above"`, `"below"`,
+    `"inline"`. Default: `"above"`.
+
+
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+    `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
+    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+
+#### Usage {#miniinput.gen_view.virtual-usage}
+
+
+
+  ```lua
+  -- Choose different initial style
+  local input = require('mini.input')
+  local view_handler = input.gen_view.virtual({ style = 'inline' })
+  input.setup({ handlers = { view = view_handler } })
+  ```
+
+---
+
+### default_key() {#miniinput.default_key .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.default_key`(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{key}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Default key handler
+
+Emulates most of [Command-line-mode](https://neovim.io/doc/user/helptag.html?tag=Command-line-mode) editing ([cmdline-editing](https://neovim.io/doc/user/helptag.html?tag=cmdline-editing)):
+
+
+- Accept: <span class="help-syntax-keys">\<CR\></span>. To insert literal newline, type `<C-j>`.
+
+
+- Cancel: <span class="help-syntax-keys">\<Esc\></span> or <span class="help-syntax-keys">\<C-c\></span>.
+
+
+- Move caret:
+
+    - <span class="help-syntax-keys">\<Left\></span>, <span class="help-syntax-keys">\<Right\></span> - one character to left / right.
+
+    - <span class="help-syntax-keys">\<M-h\></span>, <span class="help-syntax-keys">\<M-l\></span> - one character to left / right.
+
+    - <span class="help-syntax-keys">\<S-Left\></span>, <span class="help-syntax-keys">\<S-Right\></span> - one word to left / right.
+
+    - <span class="help-syntax-keys">\<C-b\></span>, <span class="help-syntax-keys">\<C-e\></span> (if no completion) - to start / end of input.
+
+    - <span class="help-syntax-keys">\<Home\></span>, <span class="help-syntax-keys">\<End\></span> - to start / end of input.
+
+
+- Delete:
+
+    - <span class="help-syntax-keys">\<BS\></span> / <span class="help-syntax-keys">\<C-h\></span> - to caret's left. If `opts.autopair` is enabled, also delete
+      a character to caret's right if it formed a respected character pair.
+      See "Autopair".
+
+    - <span class="help-syntax-keys">\<Del\></span> - at caret.
+
+    - <span class="help-syntax-keys">\<C-u\></span> - from start to caret. As [c\_CTRL-U](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-U).
+
+    - <span class="help-syntax-keys">\<C-w\></span> - contiguous keyword or non-keyword to caret's left. As [c\_CTRL-W](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-W).
+
+
+- Insert at caret:
+
+    - <span class="help-syntax-keys">\<C-k\></span> - digraph based on the next two pressed keys. As [c\_CTRL-K](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-K).
+
+    - <span class="help-syntax-keys">\<C-r\></span> - content of a register. As [c\_CTRL-R](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-R) including support for
+      special <span class="help-syntax-keys">\<C-a\></span>, <span class="help-syntax-keys">\<C-f\></span>, <span class="help-syntax-keys">\<C-l\></span>, <span class="help-syntax-keys">\<C-w\></span> keys for a register.
+
+    - <span class="help-syntax-keys">\<C-v\></span>, <span class="help-syntax-keys">\<C-q\></span> - next key literally. As [c\_CTRL-V](https://neovim.io/doc/user/helptag.html?tag=c_CTRL-V) and [i\_CTRL-V\_digit](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V_digit)
+      (all digits must be typed in full or stopped with <span class="help-syntax-keys">\<C-c\></span>).
+
+    - Pasting from system [clipboard](https://neovim.io/doc/user/helptag.html?tag=clipboard) is supported for "non-streaming" paste (as
+      described in [vim.paste()](https://neovim.io/doc/user/helptag.html?tag=vim.paste\(\))).
+
+
+- Autopair (if `opts.autopair` is set) is similar to [mini.pairs](mini-pairs.qmd#mini.pairs):
+
+    - Opening characters `(`, `[`, `{` always insert a `()`, `[]`, `{}` pair and places
+      caret inside of it.
+
+    - Closing characters `)`, `]`, `}` move caret to the right if there is the same
+      character to the right.
+
+    - Closeopen characters `'`, `"`, <span class="help-syntax-keys">\<`\></span> perform "close" action if possible and
+      "open" action if not.
+
+    - In all cases press <span class="help-syntax-keys">\<C-v\></span> before special character to insert it verbatim.
+
+
+- Completion:
+
+    - <span class="help-syntax-keys">\<Tab\></span>, <span class="help-syntax-keys">\<S-Tab\></span> - start with `state.opts.completion` method if not active
+      and advance through active completion (i.e. replace currently displayed
+      at caret item with the next one).
+      Note: type `<C-v><Tab>` to insert literal `\t`.
+
+    - <span class="help-syntax-keys">\<C-n\></span>, <span class="help-syntax-keys">\<C-p\></span>, <span class="help-syntax-keys">\<Up\></span>, <span class="help-syntax-keys">\<Down\></span> - start with `"history"` method if not active
+      and advance through active completion.
+
+    - <span class="help-syntax-keys">\<C-e\></span> - cancel and return to initial input and caret.
+
+    - <span class="help-syntax-keys">\<C-y\></span> - accept current candidate. Note: it will also be accepted after
+      any key that doesn't advance completion.
+
+
+- Miscellaneous:
+
+    - <span class="help-syntax-keys">\<C-o\></span> - change scope of the input. Cycles through all available ones.
+
+    - <span class="help-syntax-keys">\<C-s\></span> - change view style. Works only with [MiniInput.gen\_view](mini-input.qmd#miniinput.gen_view) view
+      handlers. Cycles through all available ones.
+
+    - <span class="help-syntax-keys">\<C-x\></span> - toggle hide/unhide of the input.
+
+
+- Special keys (combo, mouse, but not whitespace) not listed above - ignored.
+  Anything else (even more than a single character) - inserted at caret.
+
+#### Parameters {#miniinput.default_key-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` Current [MiniInput-state](mini-input.qmd#miniinput-state).
+
+<span class="help-syntax-special">{key}</span> `(string|nil)` A key to process. Should be escaped (`"\r"`, not `"<CR>"`).
+  See [vim.keycode()](https://neovim.io/doc/user/helptag.html?tag=vim.keycode\(\)).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<autopair\></span> `(boolean)` - whether perform add autopair. Default: `false`.
+
+---
+
+### default_highlight() {#miniinput.default_highlight .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.default_highlight`(<span class="help-syntax-special">{state}</span>)</p>
+Default highlight handler
+
+During active completion highlights added (computed via [matchfuzzy()](https://neovim.io/doc/user/helptag.html?tag=matchfuzzy\(\)))
+characters with `MiniInputAdded` group.
+
+#### Parameters {#miniinput.default_highlight-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` Current [MiniInput-state](mini-input.qmd#miniinput-state).
+
+---
+
+### default_view() {#miniinput.default_view .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.default_view`(<span class="help-syntax-special">{state}</span>)</p>
+Default view handler
+
+Same as [MiniInput.gen\_view.floatwin()](mini-input.qmd#miniinput.gen_view.floatwin) with default options.
+
+#### Parameters {#miniinput.default_view-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` Current [MiniInput-state](mini-input.qmd#miniinput-state).
+
+---
+
+### default_complete() {#miniinput.default_complete .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.default_complete`(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{method}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Default complete handler
+
+Supported methods:
+
+- `""` (default) - complete with buffer keywords (['iskeyword'](https://neovim.io/doc/user/helptag.html?tag='iskeyword')) that match
+  a keyword at caret's left.
+
+- `"history"` - complete with [MiniInput.get\_history()](mini-input.qmd#miniinput.get_history) inputs that have current
+  input to caret's left as a prefix. If `opts.precise_history`, only use history
+  entries that have all info fields same as the current state. Orders from
+  earliest to latest. To initiate with the latest history match, press
+  <span class="help-syntax-keys">\<Up\></span> or <span class="help-syntax-keys">\<C-p\></span> with default key handler.
+
+- `"cmdline"` - treat input as [Command-line](https://neovim.io/doc/user/helptag.html?tag=Command-line) text and show completions at caret.
+  Note: as there is no [getcmdcomplpat()](https://neovim.io/doc/user/helptag.html?tag=getcmdcomplpat\(\)) variant to use outside of Command-line
+  mode, the base is inferred from [getcompletion()](https://neovim.io/doc/user/helptag.html?tag=getcompletion\(\)) output as the widest text to
+  caret's left that matches all candidates: fuzzily if ['wildoptions'](https://neovim.io/doc/user/helptag.html?tag='wildoptions') contains
+  `fuzzy`, as a prefix otherwise. If none - empty string is used. This approach
+  has limitations, but it is good enough.
+
+- Every method supported by [getcompletion()](https://neovim.io/doc/user/helptag.html?tag=getcompletion\(\)). Base is computed as the keyword
+  at caret's left.
+
+#### Parameters {#miniinput.default_complete-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` Current [MiniInput-state](mini-input.qmd#miniinput-state).
+
+<span class="help-syntax-special">{method}</span> `(string)` Completion method.
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<precise_history\></span> `(boolean)` - whether for `method='history'` try to match
+    only entries that have <span class="help-syntax-keys">\<cwd\></span> as [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory), same <span class="help-syntax-keys">\<scope\></span> and
+    <span class="help-syntax-keys">\<prompt\></span> as in current state. Default: `true`.
+
+#### Usage {#miniinput.default_complete-usage}
+
+
+
+  ```lua
+  -- Do not match history precisely
+  local complete_opts = { precise_history = false }
+  local complete_handler = function(state, method)
+    return MiniInput.default_complete(state, method, complete_opts)
+  end
+  require('mini.input').setup({ handlers = { complete = complete_handler } })
+  ```
+
+---
+
+### state_to_chunks() {#miniinput.state_to_chunks .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.state_to_chunks`(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{max_width}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Convert state into text-hl chunks
+
+
+- Treat `state.highlight` elements in increasing priority, i.e. later ones
+  are placed "on top" of the previous ones if they overlap.
+
+- Uses [MiniInput-hl-groups](mini-input.qmd#miniinput-hl-groups).
+
+- Multiline input (i.e. with newline characters `\n`) is shown as a single line.
+
+- Treats `max_width` as display width ([strdisplaywidth()](https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth\(\))).
+
+- Truncates output chunks trying to center the caret.
+
+#### Parameters {#miniinput.state_to_chunks-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` A [MiniInput-state](mini-input.qmd#miniinput-state).
+
+<span class="help-syntax-special">{max_width}</span> `(number|nil)` Maximum allowed display width. Can be [math.huge](https://neovim.io/doc/user/helptag.html?tag=math.huge).
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<keytrans\></span> `(boolean)` - whether to translate control characters (escaped
+    version of `<C-...>`). Default: `true`.
+
+  - <span class="help-syntax-keys">\<include_prompt\></span> `(boolean)` - whether to start chunks with state prompt.
+    Default: `true`.
+
+  - <span class="help-syntax-keys">\<include_hint\></span> `(boolean)` - whether to show complete hint to caret's right.
+    Default: `true`.
+
+  - <span class="help-syntax-keys">\<symbol_caret\></span> `(string)` - string to use for caret. Default: `"▏"`.
+
+  - <span class="help-syntax-keys">\<symbol_caret\></span> `(string)` - string to use for each input character when
+    input is hidden. Default: `"•"`.
+
+#### Return {#miniinput.state_to_chunks-return}
+
+
+`(table)` An array of text-hl chunks that fit `max_width` display width.
+
+---
+
+### apply_handler() {#miniinput.apply_handler .help-syntax-right-anchor}
+
+<p align="center">`MiniInput.apply_handler`(<span class="help-syntax-special">{state}</span>, <span class="help-syntax-special">{name}</span>, <span class="help-syntax-special">{arg}</span>)</p>
+Apply state's handler
+
+Given [MiniInput-state](mini-input.qmd#miniinput-state), apply its handler (from `state.opts.handlers`) and
+return the modified state.
+
+Notes:
+
+- Nothing is done for highlight and complete handlers when input is hidden.
+
+- Applying complete handler ensures that <span class="help-syntax-keys">\<complete\></span> state field has <span class="help-syntax-keys">\<id\></span> set
+  to 0 (as it assumes new completion) and <span class="help-syntax-keys">\<method\></span> to the input argument
+  (empty string if there was no argument).
+
+- Error during handler application is stored as <span class="help-syntax-keys">\<errmsg\></span> field of output state
+  if there is an active input. It is propagated via [error()](https://neovim.io/doc/user/helptag.html?tag=error\(\)) otherwise.
+
+- Handler output is validated to be a valid [MiniInput-state](mini-input.qmd#miniinput-state). If not - return
+  input `state`. Note: it still could be changed if handler modified in place.
+
+#### Parameters {#miniinput.apply_handler-parameters}
+
+
+
+<span class="help-syntax-special">{state}</span> `(table)` A [MiniInput-state](mini-input.qmd#miniinput-state).
+
+<span class="help-syntax-special">{name}</span> `(string)` Valid handler name.
+
+<span class="help-syntax-special">{arg}</span> `(any)` Extra handler argument: like `key` for key handler and `method`
+  for complete handler.
+
+#### Return {#miniinput.apply_handler-return}
+
+
+`(table)` A [MiniInput-state](mini-input.qmd#miniinput-state) as a result of applied handler. If handler returned
+  nothing, the input `state` is returned (assumes it was modified in place).
+
