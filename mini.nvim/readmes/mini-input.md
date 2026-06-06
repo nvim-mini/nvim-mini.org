@@ -46,6 +46,7 @@ For more information see these parts of help:
 - [`:h MiniInput.default_key()`](../doc/mini-input.qmd#miniinput.default_key)
 - [`:h MiniInput-state`](../doc/mini-input.qmd#miniinput-state)
 - [`:h MiniInput-examples`](../doc/mini-input.qmd#miniinput-examples)
+- [`:h MiniInput-in-other-plugins`](../doc/mini-input.qmd#miniinput-in-other-plugins)
 
 ## Installation
 

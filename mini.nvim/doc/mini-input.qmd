@@ -39,6 +39,8 @@ Sources with more details:
 
 - [MiniInput-examples](mini-input.qmd#miniinput-examples)
 
+- [MiniInput-in-other-plugins](mini-input.qmd#miniinput-in-other-plugins) (for plugin authors)
+
 #### Setup {#module-setup}
 
 
@@ -287,6 +289,19 @@ Compute initial style depending on scope:
   ```
 
 Change symbols for caret and hidden input: see [MiniInput.gen\_view](mini-input.qmd#miniinput.gen_view).
+
+#### Using 'mini.input' in other plugins {#miniinput-examples-usingmini.inputinotherplugins}
+
+
+<a name="miniinput-in-other-plugins" href="mini-input.qmd#miniinput-in-other-plugins"><b>MiniInput-in-other-plugins</b></a>
+
+
+- Prefer using [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)) for more user coverage. Use [MiniInput.get()](mini-input.qmd#miniinput.get)
+  only when getting input synchronously is absolutely necessary.
+
+
+- Perform a `_G.MiniInput ~= nil` check before using any feature. This ensures
+  that user explicitly set up 'mini.input'.
 
 ---
 
