@@ -104,8 +104,9 @@ You can override runtime config settings locally to buffer inside
 
 ### State {#miniinput-state .help-syntax-right-anchor}
 
-Information about the state of the input. It is used as a handler argument and
-can be get via [MiniInput.get\_state()](mini-input.qmd#miniinput.get_state). A table with the following fields:
+Information about the state of the input. It is passed as a handler argument.
+Use [MiniInput.get\_state()](mini-input.qmd#miniinput.get_state) to get information about the current state (if any).
+A table with the following fields:
 
 
 - <span class="help-syntax-keys">\<caret\></span> `(number)` - character (not byte) index at which to modify input.
@@ -388,7 +389,7 @@ in [MiniInput.default\_key()](mini-input.qmd#miniinput.default_key) after <span 
 
 Here is an example of a simple demo complete handler:
 
-```lua
+  ```lua
   local complete_handler = function(state, method)
     if method == '' or method == 'xy' then
       local text = vim.fn.strcharpart(state.input, 0, state.caret - 1)
@@ -400,30 +401,35 @@ Here is an example of a simple demo complete handler:
   end
 
   require('mini.input').setup({ handlers = { complete = complete_handler } })
+  ```
 
-## Key ~
+##### Key {#miniinput.config-handlers-key}
+
 
 `handlers.key` is a handler intended to process every user key press.
-Takes |MiniInput-state| and `key` as arguments. Argument `key` represents a key
+Takes [MiniInput-state](mini-input.qmd#miniinput-state) and `key` as arguments. Argument `key` represents a key
 that needs to be processed: a string if from the user input or `nil` if input
-needs to be set up, refreshed, or torn down. Default: |MiniInput.default_key()|.
+needs to be set up, refreshed, or torn down. Default: [MiniInput.default\_key()](mini-input.qmd#miniinput.default_key).
 
 A string `key` can be two kinds:
-- Forwarded from |getcharstr()| verbatim as a result of interactive key press.
-  Meaning it will be in escaped form and not as a |key-notation|: i.e. `"\r"`
+
+- Forwarded from [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\)) verbatim as a result of interactive key press.
+  Meaning it will be in escaped form and not as a [key-notation](https://neovim.io/doc/user/helptag.html?tag=key-notation): i.e. `"\r"`
   and not `"<CR>"`. It also means that all kinds of combos (`<M-...>`, `<C-S-...>`),
   mouse clicks, and wheel scrolls are also forwarded to key handler.
-- Any string as part of `opts.init_keys` in |MiniInput.get()|. If a string
-  doesn't look like it came from |getcharstr()|, it is usually a good idea
+
+- Any string as part of `opts.init_keys` in [MiniInput.get()](mini-input.qmd#miniinput.get). If a string
+  doesn't look like it came from [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\)), it is usually a good idea
   to insert this string at caret as is.
 
 The suggested overall approach for custom key handler is "if `key` is special -
 act on it, if can be used in the input - insert at caret, ignore otherwise".
-It is also important to never change the current Neovim for |MiniInput.get()| to
-work as expected.
+It is also important to never change the current mode (as in [vim-modes](https://neovim.io/doc/user/helptag.html?tag=vim-modes))
+for [MiniInput.get()](mini-input.qmd#miniinput.get) to work as expected.
 
-Here is an example of a basic custom key handler: >lua
+Here is an example of a basic custom key handler:
 
+  ```lua
   local custom_actions = {
     [vim.keycode('<Left>')] = function(state)
       state.caret = math.max(state.caret - 1, 1)
@@ -457,7 +463,7 @@ Here is an example of a basic custom key handler: >lua
   end
 
   require('mini.input').setup({ handlers = { key = key_handler } })
-```
+  ```
 
 ##### Highlight {#miniinput.config-handlers-highlight}
 
@@ -538,7 +544,7 @@ Get input from the user
 <a name="miniinput-lifecycle" href="mini-input.qmd#miniinput-lifecycle"><b>MiniInput-lifecycle</b></a>
 
 This module implements custom lifecycle to interact with the user. It starts
-when calling [MiniInput.get()](mini-input.qmd#miniinput.get) and ends with it returning a value.
+when calling [MiniInput.get()](mini-input.qmd#miniinput.get) and ends when a value is returned.
 Only one active input is allowed simultaneously.
 
 The basic cycle unit is a step that processes a `key` (string or `nil`). It is
@@ -546,16 +552,16 @@ done by calling relevant handlers in order: key handler with `key` as a second
 argument, highlight handler, view handler. [MiniInput.apply\_handler()](mini-input.qmd#miniinput.apply_handler) is used
 to apply each handler and the output of one is used as the input for the next.
 
-During step some state fields are automatically removed:
+During a step some state fields are automatically removed:
 
 - <span class="help-syntax-keys">\<highlight\></span> is removed before applying a key handler to always have the most
   up to date highlighting.
 
 - <span class="help-syntax-keys">\<complete\></span> is removed if it was not changed after applying a key handler but
-  something else in the state beside <span class="help-syntax-keys">\<highlight\></span> did change. This is meant as
+  something else in the state besides <span class="help-syntax-keys">\<highlight\></span> did change. This is meant as
   an automatic stop of completion when it is not advancing.
 
-If step sets an ending state <span class="help-syntax-keys">\<status\></span> (i.e. `"accept"` or `"cancel"`), the input
+If a step sets an ending state <span class="help-syntax-keys">\<status\></span> (i.e. `"accept"` or `"cancel"`), the input
 is finished by extra finishing step (see below).
 
 The order of operations is as follows:
@@ -583,7 +589,7 @@ The order of operations is as follows:
 
     - If <span class="help-syntax-keys">\<errmsg\></span> is set, throw an [error()](https://neovim.io/doc/user/helptag.html?tag=error\(\)).
 
-    - If input is accepted (even if empty) and not hidden, add to <span class="help-syntax-keys">\<input\></span> to
+    - If input is accepted (even if empty) and not hidden, add <span class="help-syntax-keys">\<input\></span> to
       the history. Get the whole history with [MiniInput.get\_history()](mini-input.qmd#miniinput.get_history).
 
     - Return <span class="help-syntax-keys">\<input\></span> if <span class="help-syntax-keys">\<status\></span> is `"accept"`, `nil` otherwise.
@@ -863,7 +869,7 @@ not focused and cursor position is not the same as caret position.
       - `"R"` - right window border will be at scope's reference right border.
 
 
-  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
     into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
@@ -910,7 +916,7 @@ UI line (statusline, tabline, winbar) view
     `"tabline"`, `"winbar"`. Default: `"statusline"`.
 
 
-  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
     into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
@@ -952,7 +958,7 @@ Virtual (line, text) view
     `"inline"`. Default: `"above"`.
 
 
-  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes a [MiniInput-state](mini-input.qmd#miniinput-state) and
+  - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
     into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
@@ -1205,7 +1211,7 @@ Convert state into text-hl chunks
 
   - <span class="help-syntax-keys">\<symbol_caret\></span> `(string)` - string to use for caret. Default: `"▏"`.
 
-  - <span class="help-syntax-keys">\<symbol_caret\></span> `(string)` - string to use for each input character when
+  - <span class="help-syntax-keys">\<symbol_hide\></span> `(string)` - string to use for each input character when
     input is hidden. Default: `"•"`.
 
 #### Return {#miniinput.state_to_chunks-return}

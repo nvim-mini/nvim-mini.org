@@ -58,6 +58,10 @@ There are following change types:
 
 - Add `pickers.manpages` picker.
 
+### Refine {#v0.18.0-mini.extra-refine}
+
+- Update `pickers.lsp` to highlight (if 'mini.icons' is enabled) workspace symbols after prepended position. This makes easier to quickly locate the symbol data.
+
 ## mini.files {#v0.18.0-mini.files}
 
 ### Evolve {#v0.18.0-mini.files-evolve}
