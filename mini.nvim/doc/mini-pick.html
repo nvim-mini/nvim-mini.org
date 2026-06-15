@@ -358,6 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
   <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-usinginotherplugins" id="toc-module-usinginotherplugins" class="nav-link" data-scroll-target="#module-usinginotherplugins">Using in other plugins</a></li>
   </ul></li>
   <li><a href="#minipick-events" id="toc-minipick-events" class="nav-link" data-scroll-target="#minipick-events">Events</a></li>
   <li><a href="#minipick-overview" id="toc-minipick-overview" class="nav-link" data-scroll-target="#minipick-overview">Overview</a>
@@ -634,6 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-actions">MiniPick-actions</a></p></li>
 <li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-examples">MiniPick-examples</a></p></li>
 <li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin">MiniPick.builtin</a></p></li>
+<li><p><a href="../../mini.nvim/doc/mini-pick.html#minipick-in-other-plugins">MiniPick-in-other-plugins</a> (for plugin authors)</p></li>
 </ul>
 <section id="module-dependencies" class="level4">
 <h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
@@ -699,6 +701,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniPickPromptPrefix</code> - prefix of the prompt.</p></li>
 </ul>
 <p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
+</section>
+<section id="module-usinginotherplugins" class="level4">
+<h4 class="anchored" data-anchor-id="module-usinginotherplugins">Using in other plugins</h4>
+<p><a name="minipick-in-other-plugins" href="../../mini.nvim/doc/mini-pick.html#minipick-in-other-plugins"><b>MiniPick-in-other-plugins</b></a></p>
+<ul>
+<li><p>Prefer using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> for more user coverage. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a> when synchronous select or its extra capabilities is absolutely necessary.</p></li>
+<li><p>Perform a <code>_G.MiniPick ~= nil</code> check before using any feature. This ensures that user explicitly set up the module.</p></li>
+</ul>
 <hr>
 </section>
 </section>

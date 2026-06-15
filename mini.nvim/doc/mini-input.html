@@ -357,6 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
   <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-usinginotherplugins" id="toc-module-usinginotherplugins" class="nav-link" data-scroll-target="#module-usinginotherplugins">Using in other plugins</a></li>
   </ul></li>
   <li><a href="#miniinput-state" id="toc-miniinput-state" class="nav-link" data-scroll-target="#miniinput-state">State</a></li>
   <li><a href="#miniinput-examples" id="toc-miniinput-examples" class="nav-link" data-scroll-target="#miniinput-examples">Examples</a>
@@ -372,7 +373,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#miniinput-examples-handlers-key" id="toc-miniinput-examples-handlers-key" class="nav-link" data-scroll-target="#miniinput-examples-handlers-key">Key</a></li>
   <li><a href="#miniinput-examples-handlers-view" id="toc-miniinput-examples-handlers-view" class="nav-link" data-scroll-target="#miniinput-examples-handlers-view">View</a></li>
   </ul></li>
-  <li><a href="#miniinput-examples-usingmini.inputinotherplugins" id="toc-miniinput-examples-usingmini.inputinotherplugins" class="nav-link" data-scroll-target="#miniinput-examples-usingmini.inputinotherplugins">Using ‘mini.input’ in other plugins</a></li>
   </ul></li>
   <li><a href="#miniinput.setup" id="toc-miniinput.setup" class="nav-link" data-scroll-target="#miniinput.setup">setup()</a>
   <ul>
@@ -547,6 +547,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniInputPrompt</code> - input prompt (intention of the input).</p></li>
 <li><p><code>MiniInputSpecial</code> - special keys (like literal <code>\t</code>, <code>\n</code>, etc.) in input.</p></li>
 </ul>
+</section>
+<section id="module-usinginotherplugins" class="level4">
+<h4 class="anchored" data-anchor-id="module-usinginotherplugins">Using in other plugins</h4>
+<p><a name="miniinput-in-other-plugins" href="../../mini.nvim/doc/mini-input.html#miniinput-in-other-plugins"><b>MiniInput-in-other-plugins</b></a></p>
+<ul>
+<li><p>Prefer using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> for more user coverage. Use <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a> only when getting input synchronously is absolutely necessary.</p></li>
+<li><p>Perform a <code>_G.MiniInput ~= nil</code> check before using any feature. This ensures that user explicitly set up the module.</p></li>
+</ul>
 <hr>
 </section>
 </section>
@@ -675,16 +683,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">.</span>setup<span class="op">({</span> <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span> <span class="va">view</span> <span class="op">=</span> <span class="va">view_handler</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Change symbols for caret and hidden input: see <a href="../../mini.nvim/doc/mini-input.html#miniinput.gen_view">MiniInput.gen_view</a>.</p>
-</section>
-</section>
-<section id="miniinput-examples-usingmini.inputinotherplugins" class="level4">
-<h4 class="anchored" data-anchor-id="miniinput-examples-usingmini.inputinotherplugins">Using ‘mini.input’ in other plugins</h4>
-<p><a name="miniinput-in-other-plugins" href="../../mini.nvim/doc/mini-input.html#miniinput-in-other-plugins"><b>MiniInput-in-other-plugins</b></a></p>
-<ul>
-<li><p>Prefer using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a> for more user coverage. Use <a href="../../mini.nvim/doc/mini-input.html#miniinput.get">MiniInput.get()</a> only when getting input synchronously is absolutely necessary.</p></li>
-<li><p>Perform a <code>_G.MiniInput ~= nil</code> check before using any feature. This ensures that user explicitly set up ‘mini.input’.</p></li>
-</ul>
 <hr>
+</section>
 </section>
 </section>
 <section id="miniinput.setup" class="level3 help-syntax-right-anchor">

@@ -358,6 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#module-setup" id="toc-module-setup" class="nav-link" data-scroll-target="#module-setup">Setup</a></li>
   <li><a href="#module-comparisons" id="toc-module-comparisons" class="nav-link" data-scroll-target="#module-comparisons">Comparisons</a></li>
   <li><a href="#module-highlightgroups" id="toc-module-highlightgroups" class="nav-link" data-scroll-target="#module-highlightgroups">Highlight groups</a></li>
+  <li><a href="#module-usinginotherplugins" id="toc-module-usinginotherplugins" class="nav-link" data-scroll-target="#module-usinginotherplugins">Using in other plugins</a></li>
   </ul></li>
   <li><a href="#miniicons.setup" id="toc-miniicons.setup" class="nav-link" data-scroll-target="#miniicons.setup">setup()</a>
   <ul>
@@ -432,11 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>It is not a goal to become a collection of icons for as much use cases as possible. There are specific criteria for icon data to be included as built-in in each category (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>). The main supported category is “filetype”.</li>
 </ul>
-<p>Recommendations for plugin authors using ‘mini.icons’ as a dependency:</p>
+<p>Sources with more details:</p>
 <ul>
-<li><p>Check if <code>_G.MiniIcons</code> table is present (which means that user explicitly enabled ‘mini.icons’) and provide icons only if it is.</p></li>
-<li><p>Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> function to get icon string and more data about it.</p></li>
-<li><p>For file icons prefer using full path instead of relative or only basename. It makes a difference if path matches pattern that uses parent directories. The <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a> has an example of that.</p></li>
+<li><a href="../../mini.nvim/doc/mini-icons.html#miniicons-in-other-plugins">MiniIcons-in-other-plugins</a> (for plugin authors)</li>
 </ul>
 <section id="module-dependencies" class="level4">
 <h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
@@ -505,6 +504,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniIconsYellow</code> - yellow.</p></li>
 </ul>
 <p>To change any highlight group, set it directly with <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl()">nvim_set_hl()</a>.</p>
+</section>
+<section id="module-usinginotherplugins" class="level4">
+<h4 class="anchored" data-anchor-id="module-usinginotherplugins">Using in other plugins</h4>
+<p><a name="miniicons-in-other-plugins" href="../../mini.nvim/doc/mini-icons.html#miniicons-in-other-plugins"><b>MiniIcons-in-other-plugins</b></a></p>
+<ul>
+<li><p>Perform a <code>_G.MiniIcons ~= nil</code> check before using any feature. This ensures that user explicitly set up the module.</p></li>
+<li><p>Use <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> function to get icon string and more data about it.</p></li>
+<li><p>For file icons prefer using full path instead of relative or only basename. It makes a difference if path matches pattern that uses parent directories. The <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a> has an example of that.</p></li>
+</ul>
 <hr>
 </section>
 </section>

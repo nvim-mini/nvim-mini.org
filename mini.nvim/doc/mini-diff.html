@@ -712,10 +712,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Various options</span></span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Diff algorithm. See `:h vim.diff()`.</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Diff algorithm (see `:h vim.text.diff()`)</span></span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">algorithm</span> <span class="op">=</span> <span class="st">'histogram'</span><span class="op">,</span></span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use "indent heuristic". See `:h vim.diff()`.</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Whether to use "indent heuristic" (see `:h vim.text.diff()`)</span></span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">indent_heuristic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- The amount of second-stage diff to align lines</span></span>
@@ -775,9 +775,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minidiff.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.config-options">Options</h4>
 <p><code>config.options</code> contains various customization options.</p>
-<p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> for possible values.</p>
+<p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.text.diff()">vim.text.diff()</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> on Neovim&lt;=0.11) for possible values.</p>
 <p><code>options.indent_heuristic</code> is a boolean defining whether to use indent heuristic for a (possibly) more naturally aligned hunks. Default: <code>true</code>.</p>
-<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> and ‘diffopt’ for more details.</p>
+<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.text.diff()">vim.text.diff()</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> on Neovim&lt;=0.11) and ‘diffopt’ for more details.</p>
 <p><code>options.wrap_goto</code> is a boolean indicating whether to wrap around edges during hunk navigation (with <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk">MiniDiff.goto_hunk()</a> or <code>goto_*</code> mappings). Like if cursor is after the last hunk, going “next” will put cursor on the first hunk. Default: <code>false</code>.</p>
 <hr>
 </section>
