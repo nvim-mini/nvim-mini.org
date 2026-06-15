@@ -108,6 +108,8 @@ Sources with more details:
 
 - [MiniPick.builtin](mini-pick.qmd#minipick.builtin)
 
+- [MiniPick-in-other-plugins](mini-pick.qmd#minipick-in-other-plugins) (for plugin authors)
+
 #### Dependencies {#module-dependencies}
 
 
@@ -215,6 +217,19 @@ See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.nvim-buffer-local-config)
 - `MiniPickPromptPrefix` - prefix of the prompt.
 
 To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+
+#### Using in other plugins {#module-usinginotherplugins}
+
+
+<a name="minipick-in-other-plugins" href="mini-pick.qmd#minipick-in-other-plugins"><b>MiniPick-in-other-plugins</b></a>
+
+
+- Prefer using [vim.ui.select()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select\(\)) for more user coverage. Use [MiniPick.start()](mini-pick.qmd#minipick.start)
+  when synchronous select or its extra capabilities is absolutely necessary.
+
+
+- Perform a `_G.MiniPick ~= nil` check before using any feature. This ensures
+  that user explicitly set up the module.
 
 ---
 

@@ -48,19 +48,9 @@ Notes:
   built-in in each category (see [MiniIcons.get()](mini-icons.qmd#miniicons.get)).
   The main supported category is "filetype".
 
-Recommendations for plugin authors using 'mini.icons' as a dependency:
+Sources with more details:
 
-
-- Check if `_G.MiniIcons` table is present (which means that user explicitly
-  enabled 'mini.icons') and provide icons only if it is.
-
-
-- Use [MiniIcons.get()](mini-icons.qmd#miniicons.get) function to get icon string and more data about it.
-
-
-- For file icons prefer using full path instead of relative or only basename.
-  It makes a difference if path matches pattern that uses parent directories.
-  The [MiniIcons.config](mini-icons.qmd#miniicons.config) has an example of that.
+- [MiniIcons-in-other-plugins](mini-icons.qmd#miniicons-in-other-plugins) (for plugin authors)
 
 #### Dependencies {#module-dependencies}
 
@@ -220,6 +210,23 @@ It is recommended that they all only define colored foreground:
 - `MiniIconsYellow` - yellow.
 
 To change any highlight group, set it directly with [nvim\_set\_hl()](https://neovim.io/doc/user/helptag.html?tag=nvim_set_hl\(\)).
+
+#### Using in other plugins {#module-usinginotherplugins}
+
+
+<a name="miniicons-in-other-plugins" href="mini-icons.qmd#miniicons-in-other-plugins"><b>MiniIcons-in-other-plugins</b></a>
+
+
+- Perform a `_G.MiniIcons ~= nil` check before using any feature. This ensures
+  that user explicitly set up the module.
+
+
+- Use [MiniIcons.get()](mini-icons.qmd#miniicons.get) function to get icon string and more data about it.
+
+
+- For file icons prefer using full path instead of relative or only basename.
+  It makes a difference if path matches pattern that uses parent directories.
+  The [MiniIcons.config](mini-icons.qmd#miniicons.config) has an example of that.
 
 ---
 

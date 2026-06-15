@@ -93,6 +93,7 @@ For more information see these parts of help:
 - [`:h MiniPick-actions`](../doc/mini-pick.qmd#minipick-actions)
 - [`:h MiniPick-examples`](../doc/mini-pick.qmd#minipick-examples)
 - [`:h MiniPick.builtin`](../doc/mini-pick.qmd#minipick.builtin)
+- [`:h MiniPick-in-other-plugins`](../doc/mini-pick.qmd#minipick-in-other-plugins) (for plugin authors)
 
 ## Dependencies
 
