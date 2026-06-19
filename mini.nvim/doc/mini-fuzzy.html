@@ -450,13 +450,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>General design uses only width of found match and index of first letter match. No special characters or positions (like in fzy and fzf) are used.</p>
 <p>Given non-empty input <code>word</code> and target <code>candidate</code>:</p>
 <ul>
-<li><p>The goal is to find matching between <code>word</code>’s letters and letters in <code>candidate</code> which minimizes certain score. It is assumed that order of letters in <code>word</code> and those matched in <code>candidate</code> should be the same.</p></li>
-<li><p>Matching is represented by matched positions: an array <code>positions</code> of integers with length equal to number of letters in <code>word</code>. The following should be always true in case of a match: <code>candidate</code>’s letter at index <code>positions[i]</code> is letters[i]<code>for all valid</code>i`.</p></li>
+<li><p>The goal is to find matching between letters in <code>word</code> and letters in <code>candidate</code> which minimizes certain score. It is assumed that order of letters in <code>word</code> and those matched in <code>candidate</code> should be the same.</p></li>
+<li><p>Matching is represented by matched positions: an array <code>positions</code> of integers with length equal to number of letters in <code>word</code>. The following should be always true in case of a match: <code>candidate</code> letter at index <code>positions[i]</code> is <code>letters[i]</code> for all valid <code>i</code>.</p></li>
 <li><p>Matched positions are evaluated based only on two features: their width (number of indexes between first and last positions) and first match (index of first letter match). There is a global setting <code>cutoff</code> for which all feature values greater than it can be considered “equally bad”.</p></li>
 <li><p>Score of matched positions is computed with following explicit formula: <code>cutoff * min(width, cutoff) + min(first, cutoff)</code>. It is designed to be equivalent to first comparing widths (lower is better) and then comparing first match (lower is better). For example, if <code>word = 'time'</code>:</p>
 <ul>
-<li><p>’_time’ (width 4) will have a better match than ‘t_ime’ (width 5).</p></li>
-<li><p>‘time_a’ (width 4, first 1) will have a better match than ‘a_time’ (width 4, first 3).</p></li>
+<li><p><code>_time</code> (width 4) will have a better match than <code>t_ime</code> (width 5).</p></li>
+<li><p><code>time_a</code> (width 4, first 1) will have a better match than <code>a_time</code> (width 4, first 3).</p></li>
 </ul></li>
 <li><p>Final matched positions are those which minimize score among all possible matched positions of <code>word</code> and <code>candidate</code>.</p></li>
 </ul>
@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Fuzzy matching for <code>lsp_completion.process_items</code> of <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.config">MiniCompletion.config</a></p>
 <section id="minifuzzy.process_lsp_items-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifuzzy.process_lsp_items-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{items}</span> <code>(table)</code> Array with LSP ‘textDocument/completion’ response items.</p>
+<p><span class="help-syntax-special">{items}</span> <code>(table)</code> Array with LSP <code>'textDocument/completion'</code> response items.</p>
 <p><span class="help-syntax-special">{base}</span> <code>(string)</code> Word to complete.</p>
 </section>
 <section id="minifuzzy.process_lsp_items-return" class="level4">
@@ -560,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniFuzzy.get_telescope_sorter</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Custom getter for <code>telescope.nvim</code> sorter</p>
-<p>Designed as a value for file and generic sorter of ‘telescope.nvim’.</p>
+<p>Designed as a value for file and generic sorter of <code>telescope.nvim</code>.</p>
 <section id="minifuzzy.get_telescope_sorter-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minifuzzy.get_telescope_sorter-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options (currently not used).</p>

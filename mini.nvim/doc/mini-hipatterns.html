@@ -460,14 +460,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Execute <code>:edit</code> (if you enabled highlighting with <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.setup">MiniHipatterns.setup()</a>).</p></li>
 <li><p>Manually call <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.update">MiniHipatterns.update()</a>.</p></li>
 </ul></li>
-<li><p>If you experience flicker when typing near highlighted pattern in Insert mode, it might be due to <code>delay</code> configuration of <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> or using built-in completion. For better experience with ‘mini.completion’, make sure that its <code>delay.completion</code> is less than this module’s <code>delay.text_change</code> (which it is by default). The reason for this is (currently unresolvable) limitations of Neovim’s built-in completion implementation.</p></li>
+<li><p>If you experience flicker when typing near highlighted pattern in Insert mode, it might be due to <code>delay</code> configuration of <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> or using built-in completion. For better experience with <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a>, make sure that its <code>delay.completion</code> is less than this module’s <code>delay.text_change</code> (which it is by default). The reason for this is (currently unresolvable) limitations of Neovim’s built-in completion implementation.</p></li>
 </ul>
 <section id="module-setup" class="level4">
 <h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
 <p>Setting up highlights can be done in two ways:</p>
 <ul>
 <li><p>Manually for every buffer with <code>require('mini.hipatterns').enable()</code>. This will enable highlighting only in one particular buffer until it is unloaded (which also includes calling <code>:edit</code> on current file).</p></li>
-<li><p>Globally with <code>require('mini.hipatterns').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). This will auto-enable highlighting in “normal” buffers (see ‘buftype’). Use <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable">MiniHipatterns.enable()</a> to manually enable in other buffers. It will also create global Lua table <code>MiniHipatterns</code> which you can use for scripting or manually (with <code>:lua MiniHipatterns.*</code>).</p></li>
+<li><p>Globally with <code>require('mini.hipatterns').setup({})</code> (replace <code>{}</code> with your <code>config</code> table). This will auto-enable highlighting in “normal” buffers (see <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'">‘buftype’</a>). Use <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.enable">MiniHipatterns.enable()</a> to manually enable in other buffers. It will also create global Lua table <code>MiniHipatterns</code> which you can use for scripting or manually (with <code>:lua MiniHipatterns.*</code>).</p></li>
 </ul>
 <p>See <a href="../../mini.nvim/doc/mini-hipatterns.html#minihipatterns.config">MiniHipatterns.config</a> for <code>config</code> structure and default values.</p>
 <p>You can override runtime config settings (like highlighters and delays) locally to buffer inside <code>vim.b.minihipatterns_config</code> which should have same structure as <code>MiniHipatterns.config</code>. See <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim-buffer-local-config">mini.nvim-buffer-local-config</a> for more details.</p>
@@ -491,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/uga-rosa/ccc.nvim">uga-rosa/ccc.nvim</a>:</p>
 <ul>
-<li>Has more than color highlighting functionality, which is compared to this module in the same way as ‘NvChad/nvim-colorizer.lua’.</li>
+<li>Has more than color highlighting functionality, which is compared to this module in the same way as <code>NvChad/nvim-colorizer.lua</code>.</li>
 </ul></li>
 </ul>
 </section>
@@ -532,7 +532,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">note</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">pattern</span> <span class="op">=</span> <span class="st">'NOTE'</span><span class="op">,</span>  <span class="va">group</span> <span class="op">=</span> <span class="st">'MiniHipatternsNote'</span>  <span class="op">},</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>To match only when pattern appears as a standalone word, use frontier patterns <code>%f</code>. For example, instead of <code>'TODO'</code> pattern use <code>'%f[%w]()TODO()%f[%W]'</code>. In this case, for example, ‘TODOING’ or ‘MYTODO’ won’t match, but ‘TODO’ and ‘TODO:’ will.</p></li>
+<li><p>To match only when pattern appears as a standalone word, use frontier patterns <code>%f</code>. For example, instead of <code>'TODO'</code> pattern use</p>
+<p align="center">
+</p><p><code>'%f[%w]()TODO()%f[%W]'</code>. In this case, for example, <code>TODOING</code> or <code>MYTODO</code></p>
+<p></p>
+<p>won’t match, but <code>TODO</code> and <code>TODO:</code> will.</p></li>
 <li><p>Color hex (like <code>#rrggbb</code>) highlighting:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hipatterns</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.hipatterns'</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">hipatterns</span><span class="op">.</span>setup<span class="op">({</span></span>

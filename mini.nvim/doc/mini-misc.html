@@ -690,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minimisc.resize_window-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.resize_window-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{win_id}</span> <code>(number|nil)</code> Window identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=win_getid()">win_getid()</a>) to be resized. Default: 0 for current.</p>
-<p><span class="help-syntax-special">{text_width}</span> <code>(number|nil)</code> Number of editable columns resized window will display. Default: first element of ‘colorcolumn’ or otherwise ‘textwidth’ (using screen width as its default but not more than 79).</p>
+<p><span class="help-syntax-special">{text_width}</span> <code>(number|nil)</code> Number of editable columns resized window will display. Default: first element of <a href="https://neovim.io/doc/user/helptag.html?tag='colorcolumn'">‘colorcolumn’</a> or otherwise <a href="https://neovim.io/doc/user/helptag.html?tag='textwidth'">‘textwidth’</a> (using screen width as its default but not more than 79).</p>
 <hr>
 </section>
 </section>
@@ -808,14 +808,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniMisc.setup_restore_cursor</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Restore cursor position on file open</p>
-<p>When reopening a file this will make sure the cursor is placed back to the position where you left before. This implements <a href="https://neovim.io/doc/user/helptag.html?tag=restore-cursor">restore-cursor</a> in a nicer way. File should have a recognized file type (see ‘filetype’) and be opened in a normal buffer (see ‘buftype’).</p>
-<p>Note: it relies on file mark data stored in ‘shadafile’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=shada-f">shada-f</a>). Be sure to enable it.</p>
+<p>When reopening a file this will make sure the cursor is placed back to the position where you left before. This implements <a href="https://neovim.io/doc/user/helptag.html?tag=restore-cursor">restore-cursor</a> in a nicer way. File should have a recognized file type (see <a href="https://neovim.io/doc/user/helptag.html?tag='filetype'">‘filetype’</a>) and be opened in a normal buffer (see <a href="https://neovim.io/doc/user/helptag.html?tag='buftype'">‘buftype’</a>).</p>
+<p>Note: it relies on file mark data stored in <a href="https://neovim.io/doc/user/helptag.html?tag='shadafile'">‘shadafile’</a> (see <a href="https://neovim.io/doc/user/helptag.html?tag=shada-f">shada-f</a>). Be sure to enable it.</p>
 <section id="minimisc.setup_restore_cursor-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.setup_restore_cursor-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;center&gt;</span> - (boolean) Center the window after we restored the cursor. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;ignore_filetype&gt;</span> - Array with file types to be ignored (see ‘filetype’). Default: <code>{ "gitcommit", "gitrebase" }</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;ignore_filetype&gt;</span> - Array with file types to be ignored (see <a href="https://neovim.io/doc/user/helptag.html?tag='filetype'">‘filetype’</a>). Default: <code>{ "gitcommit", "gitrebase" }</code>.</p></li>
 </ul>
 </section>
 <section id="minimisc.setup_restore_cursor-usage" class="level4">
@@ -888,12 +888,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniMisc.use_nested_comments</code>(<span class="help-syntax-special">{buf_id}</span>)
 </p>
 <p>Add possibility of nested comment leader</p>
-<p>This works by parsing ‘commentstring’ buffer option, extracting non-whitespace comment leader (symbols on the left of commented line), and locally modifying ‘comments’ option (by prepending <code>n:&lt;leader&gt;</code>). Does nothing if ‘commentstring’ is empty or has comment symbols both in front and back (like “/%s/”).</p>
-<p>Nested comment leader added with this function is useful for formatting nested comments. For example, have in Lua “first-level” comments with ‘–’ and “second-level” comments with ‘—-’. With nested comment leader second type can be formatted with <code>gq</code> in the same way as first one.</p>
+<p>This works by parsing <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> buffer option, extracting non-whitespace comment leader (symbols on the left of commented line), and locally modifying <a href="https://neovim.io/doc/user/helptag.html?tag='comments'">‘comments’</a> option (by prepending <code>n:&lt;leader&gt;</code>). Does nothing if <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> is empty or has comment symbols both in front and back (like <code>/*%s*/</code>).</p>
+<p>Nested comment leader added with this function is useful for formatting nested comments. For example, have in Lua “first-level” comments with <code>--</code> and “second-level” comments with <code>----</code>. With nested comment leader second type can be formatted with <code>gq</code> in the same way as first one.</p>
 <p>Recommended usage is with <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd">autocmd</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">use_nested_comments</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="va">MiniMisc</span><span class="op">.</span>use_nested_comments<span class="op">()</span> <span class="kw">end</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'BufEnter'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">use_nested_comments</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note: for most filetypes ‘commentstring’ option is added only when buffer with this filetype is entered, so using non-current <code>buf_id</code> can not lead to desired effect.</p>
+<p>Note: for most filetypes <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> option is added only when buffer with this filetype is entered, so using non-current <code>buf_id</code> can not lead to desired effect.</p>
 <section id="minimisc.use_nested_comments-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimisc.use_nested_comments-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number|nil)</code> Buffer identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>) in which function will operate. Default: 0 for current.</p>

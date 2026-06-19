@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/nvim-neo-tree/neo-tree.nvim">nvim-neo-tree/neo-tree.nvim</a>:</p>
 <ul>
-<li>Compares to this module mostly the same as ‘nvim-tree/nvim-tree.lua’.</li>
+<li>Compares to this module mostly the same as <code>nvim-tree/nvim-tree.lua</code>.</li>
 </ul></li>
 </ul>
 </section>
@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>“Go in plus” is regular “Go in” but closes explorer after opening a file.</p></li>
 <li><p>“Go out plus” is regular “Go out” but trims right part of branch.</p></li>
-<li><p>“Set mark” and “Go to mark” both wait for user to press a single character of a bookmark id. Example: <code>ma</code> sets directory path of focused window as bookmark “a”; <code>'a</code> jumps (sets as whole branch) to bookmark “a”. Special bookmark “’” always points to path before the latest bookmark jump.</p></li>
+<li><p>“Set mark” and “Go to mark” both wait for user to press a single character of a bookmark id. Example: <code>ma</code> sets directory path of focused window as bookmark “a”; <code>'a</code> jumps (sets as whole branch) to bookmark “a”. Special bookmark <code>'</code> always points to path before the latest bookmark jump.</p></li>
 <li><p>“Reset” focuses only on “anchor” directory (the one used to open current explorer) and resets all stored directory cursor positions.</p></li>
 <li><p>“Reveal cwd” extends branch to include <a href="https://neovim.io/doc/user/helptag.html?tag=current-directory">current-directory</a>. If it is not an ancestor of the current branch, nothing is done.</p></li>
 <li><p>“Show help” results into new window with helpful information about current explorer (like buffer mappings and bookmarks). Press <code>q</code> to close it.</p></li>
@@ -691,13 +691,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Create file by creating new line with file name (including extension).</p></li>
 <li><p>Create directory by creating new line with directory name followed by <code>/</code>.</p></li>
-<li><p>Create file or directory inside nested directories by creating new line with text like ‘dir/nested-dir/’ or ‘dir/nested-dir/file’. Always use <code>/</code> on any OS.</p></li>
+<li><p>Create file or directory inside nested directories by creating new line with text like <code>dir/nested-dir/</code> or <code>dir/nested-dir/file</code>. Always use <code>/</code> on any OS.</p></li>
 </ul>
 </section>
 <section id="minifiles-manipulation-supportedfilesystemactions-delete" class="level5">
 <h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-delete">Delete</h5>
 <ul>
-<li><p>Delete file or directory by deleting whole line describing it.</p></li>
+<li><p>Delete file or directory by deleting WHOLE LINE describing it.</p></li>
 <li><p>If <code>options.permanent_delete</code> is <code>true</code>, delete is permanent. Otherwise file system entry is moved to a module-specific trash directory (see <a href="../../mini.nvim/doc/mini-files.html#minifiles.config">MiniFiles.config</a> for more details).</p></li>
 </ul>
 </section>
@@ -719,7 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minifiles-manipulation-supportedfilesystemactions-copy" class="level5">
 <h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-copy">Copy</h5>
 <ul>
-<li><p>Copy file or directory by copying whole line describing it and pasting it inside buffer of target directory.</p></li>
+<li><p>Copy file or directory by copying WHOLE LINE describing it and pasting it inside buffer of target directory.</p></li>
 <li><p>Change of target path is allowed. Edit only entry name in target location (not icon or path index to the left of it).</p></li>
 <li><p>Copying inside same parent directory is supported only if target path has different name.</p></li>
 <li><p>Copying inside child directory is supported.</p></li>
@@ -728,7 +728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minifiles-manipulation-supportedfilesystemactions-move" class="level5">
 <h5 class="anchored" data-anchor-id="minifiles-manipulation-supportedfilesystemactions-move">Move</h5>
 <ul>
-<li><p>Move file or directory by cutting whole line describing it and then pasting it inside target directory.</p></li>
+<li><p>Move file or directory by cutting WHOLE LINE describing it and then pasting it inside target directory.</p></li>
 <li><p>Change of target path is allowed. Edit only entry name in target location (not icon or path index to the left of it).</p></li>
 <li><p>Moving directory inside itself is not supported.</p></li>
 </ul>
@@ -756,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>MiniFilesExplorerClose</code> - just before explorer starts closing.</p></li>
 <li><p><code>MiniFilesBufferCreate</code> - when buffer is created to show a particular directory/file. Triggered once per path during explorer session. Can be used to create buffer-local mappings.</p></li>
 <li><p><code>MiniFilesBufferUpdate</code> - when path buffer is updated with new content. Can be used for integrations to set useful <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a>.</p></li>
-<li><p><code>MiniFilesWindowOpen</code> - when new window is opened. Can be used to set window-local settings (like border, ‘winblend’, etc.)</p></li>
+<li><p><code>MiniFilesWindowOpen</code> - when new window is opened. Can be used to set window-local settings (like border, <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a>, etc.)</p></li>
 <li><p><code>MiniFilesWindowUpdate</code> - when a window is updated. Triggers VERY frequently. At least after every cursor movement and “go in” / “go out” action.</p></li>
 </ul>
 <p>Callback for each buffer/window UI event will receive <span class="help-syntax-keys">&lt;data&gt;</span> field (see <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_create_autocmd()">nvim_create_autocmd()</a>) with the following information:</p>
@@ -1063,7 +1063,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minifiles.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minifiles.config-options">Options</h4>
 <p><code>options.use_as_default_explorer</code> is a boolean indicating whether this module will be used as a default file explorer to edit directory (instead of <code>netrw</code>). Note: to work with directory in <a href="https://neovim.io/doc/user/helptag.html?tag=arglist">arglist</a>, do not lazy load this module.</p>
-<p><code>options.permanent_delete</code> is a boolean indicating whether to perform permanent delete or move into special trash directory. This is a module-specific variant of “remove to trash”. Target directory is ‘mini.files/trash’ inside standard path of Neovim data directory (execute <code>:echo stdpath('data')</code> to see its path in your case).</p>
+<p><code>options.permanent_delete</code> is a boolean indicating whether to perform permanent delete or move into special trash directory. This is a module-specific variant of “remove to trash”. Target directory is <code>mini.files/trash</code> inside standard path of Neovim data directory (execute <code>:echo stdpath('data')</code> to see its path in your case).</p>
 <p><code>options.lsp_timeout</code> is a number that defines a timeout for synchronous LSP integration requests (see <a href="../../mini.nvim/doc/mini-files.html#minifiles-manipulation">MiniFiles-manipulation</a>). Set to 0 to disable LSP integration.</p>
 </section>
 <section id="minifiles.config-windows" class="level4">
@@ -1383,7 +1383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Otherwise:</p>
 <ul>
 <li><p>For directory return fixed icon and “MiniFilesDirectory” group name.</p></li>
-<li><p>For file try to use <code>get_icon()</code> from ‘nvim-tree/nvim-web-devicons’. If missing, return fixed icon and ‘MiniFilesFile’ group name.</p></li>
+<li><p>For file try to use <code>get_icon()</code> from <code>nvim-tree/nvim-web-devicons</code>. If missing, return fixed icon and <code>MiniFilesFile</code> group name.</p></li>
 </ul></li>
 </ul>
 <section id="minifiles.default_prefix-parameters" class="level4">

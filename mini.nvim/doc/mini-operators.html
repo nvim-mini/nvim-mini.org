@@ -835,7 +835,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Sort is done with <a href="https://neovim.io/doc/user/helptag.html?tag=table.sort()">table.sort()</a> on an array of lines, which doesn’t treat whitespace or digits specially. Use <a href="https://neovim.io/doc/user/helptag.html?tag=:sort">:sort</a> for more complicated tasks.</p></li>
 <li><p>Pattern is allowed to be an empty string in which case split results into all characters as parts.</p></li>
-<li><p>Pad pattern in <code>split_patterns</code> with <code>%s*</code> to include whitespace into separator. Example: line “b _ a” with “<em>” pattern will be sorted as ” a_b ” (because it is split as ”b ”, ”</em>”, ” a” ) while with “%s_%s” pattern it results into “a _ b” (split as “b”, ” _ “,”a”).</p></li>
+<li><p>Pad pattern in <code>split_patterns</code> with <code>%s*</code> to include whitespace into separator. Example: line “b _ a” with “<em>” pattern will be sorted as ” a_b ” (because it is split as ”b ”, ”</em>”, ” a” ) while with <code>%s*_%s*</code> pattern it results into “a _ b” (split as “b”, ” _ “,”a”).</p></li>
 </ul>
 <section id="minioperators.default_sort_func-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minioperators.default_sort_func-parameters">Parameters</h4>

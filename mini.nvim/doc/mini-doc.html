@@ -440,9 +440,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Some settings tips that might make writing annotation comments easier:</p>
 <ul>
-<li><p>Set up appropriate ‘comments’ for <code>lua</code> file type to respect EmmyLua-like’s <code>---</code> comment leader. Value <code>:---,:--</code> seems to work.</p></li>
-<li><p>Set up appropriate ‘formatoptions’ (see also <a href="https://neovim.io/doc/user/helptag.html?tag=fo-table">fo-table</a>). Consider adding <code>j</code>, <code>n</code>, <code>q</code>, and <code>r</code> flags.</p></li>
-<li><p>Set up appropriate ‘formatlistpat’ to help auto-formatting lists (if <code>n</code> flag is added to ‘formatoptions’). One suggestion (not entirely ideal) is a value <code>^\s*[0-9\-\+\*]\+[\.\)]*\s\+</code>. This reads as ‘at least one special character (digit, <code>-</code>, <code>+</code>, <code>*</code>) possibly followed by some punctuation (<code>.</code> or <code>)</code>) followed by at least one space is a start of list item’.</p></li>
+<li><p>Set up appropriate <a href="https://neovim.io/doc/user/helptag.html?tag='comments'">‘comments’</a> for <code>lua</code> file type to respect EmmyLua-like’s <code>---</code> comment leader. Value <code>:---,:--</code> seems to work.</p></li>
+<li><p>Set up appropriate <a href="https://neovim.io/doc/user/helptag.html?tag='formatoptions'">‘formatoptions’</a> (see also <a href="https://neovim.io/doc/user/helptag.html?tag=fo-table">fo-table</a>). Consider adding <code>j</code>, <code>n</code>, <code>q</code>, and <code>r</code> flags.</p></li>
+<li><p>Set up appropriate <a href="https://neovim.io/doc/user/helptag.html?tag='formatlistpat'">‘formatlistpat’</a> to help auto-formatting lists (if <code>n</code> flag is added to <a href="https://neovim.io/doc/user/helptag.html?tag='formatoptions'">‘formatoptions’</a>). One suggestion (not entirely ideal) is a value <code>^\s*[0-9\-\+\*]\+[\.\)]*\s\+</code>. This reads as “at least one special character (digit, <code>-</code>, <code>+</code>, <code>*</code>) possibly followed by some punctuation (<code>.</code> or <code>)</code>) followed by at least one space is a start of list item”.</p></li>
 </ul></li>
 <li><p>Probably one of the most reliable resources for what is considered to be best practice when using this module is this whole plugin. Look at source code for the reference.</p></li>
 </ul>
@@ -464,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Data structures</p>
 <p>Data structures are basically arrays of other structures accompanied with some fields (keys with data values) and methods (keys with function values):</p>
 <ul>
-<li><p><code>Section structure</code> is an array of string lines describing one aspect (determined by section id like ‘<span class="citation" data-cites="param">@param</span>’, ‘<span class="citation" data-cites="return">@return</span>’, ‘<span class="citation" data-cites="text">@text</span>’) of an annotation subject. All lines will be used directly in help file.</p></li>
+<li><p><code>Section structure</code> is an array of string lines describing one aspect (determined by section id like <code>@param</code>, <code>@return</code>, <code>@text</code>) of an annotation subject. All lines will be used directly in help file.</p></li>
 <li><p><code>Block structure</code> is an array of sections describing one annotation subject like function, table, concept.</p></li>
 <li><p><code>File structure</code> is an array of blocks describing certain file on disk. Basically, file is split into consecutive blocks: annotation lines go inside block, non-annotation - inside <code>block_afterlines</code> element of info.</p></li>
 <li><p><code>Doc structure</code> is an array of files describing a final help file. Each string line from section (when traversed in depth-first fashion) goes directly into output file.</p></li>
@@ -644,8 +644,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Some more insight about their behavior:</p>
 <ul>
 <li><p>Default inference of documented object metadata (tag and object signature at the moment) is done in <code>block_pre</code>. Inference is based on string pattern matching, so can lead to false results, although works in most cases. It intentionally works only if first line after block has no indentation and contains all necessary information to determine if inference should happen.</p></li>
-<li><p>Hooks for sections describing some “variable-like” object (‘<span class="citation" data-cites="class">@class</span>’, ‘<span class="citation" data-cites="field">@field</span>’, ‘<span class="citation" data-cites="param">@param</span>’) automatically enclose first word in ‘<span class="help-syntax-special">{}</span>’.</p></li>
-<li><p>Hooks for sections which supposed to have “type-like” data (‘<span class="citation" data-cites="field">@field</span>’, ‘<span class="citation" data-cites="param">@param</span>’, ‘<span class="citation" data-cites="return">@return</span>’, ‘<span class="citation" data-cites="type">@type</span>’) automatically enclose <em>first found</em> “type-like” word and its neighbor characters in ‘<code>(&lt;type&gt;)</code>’ (expect false positives). Algorithm is far from being 100% correct, but seems to work with present allowed type annotation. For allowed types see https://github.com/sumneko/lua-language-server/wiki/EmmyLua-Annotations#types-and-type or, better yet, look in source code of this module.</p></li>
+<li><p>Hooks for sections describing some “variable-like” object (<code>@class</code>, <code>@field</code>, <code>@param</code>) automatically enclose first word in <code>{}</code>.</p></li>
+<li><p>Hooks for sections which supposed to have “type-like” data (<code>@field</code>, <code>@param</code>, <code>@return</code>, <code>@type</code>) automatically enclose FIRST FOUND type-like word and its neighbor characters in <code>(&lt;type&gt;)</code> (expect false positives). Algorithm is far from being 100% correct, but seems to work with present allowed type annotation. For allowed types see https://github.com/sumneko/lua-language-server/wiki/EmmyLua-Annotations#types-and-type or, better yet, look in source code of this module.</p></li>
 <li><p>Automated creation of table of contents (TOC) is done in the following way:</p>
 <ul>
 <li><p>Put section with <code>@toc_entry</code> id in the annotation block. Section’s lines will be registered as TOC entry.</p></li>
@@ -675,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>For each file, lines are processed top to bottom in order to create an array of documentation blocks. Each line is tested whether it is an annotation by applying <code>MiniDoc.config.annotation_extractor</code>: if anything is extracted, it is considered to be an annotation. Annotation line goes to “current block” after removing extracted annotation indicator, otherwise - to afterlines of “current block”.</p></li>
 <li><p>Each block’s annotation lines are processed top to bottom. If line had captured section id, it is a first line of “current section” (first block lines are allowed to not specify section id; by default it is <code>@text</code>). All subsequent lines without captured section id go into “current section”.</p></li>
 </ul></li>
-<li><p>Apply structure hooks (they should modify its input in place, which is possible due to ‘table nature’ of all inputs):</p>
+<li><p>Apply structure hooks (they should modify its input in place, which is possible due to “table nature” of all inputs):</p>
 <ul>
 <li><p>Each block is processed by <code>MiniDoc.config.hooks.block_pre</code>. This is a designated step for auto-generation of sections from described annotation subject (like sections with id <code>@tag</code>, <code>@type</code>).</p></li>
 <li><p>Each section is processed by <code>MiniDoc.config.hooks.section_pre</code>.</p></li>
@@ -698,8 +698,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minidoc.generate-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidoc.generate-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{input}</span> <code>(table|nil)</code> Array of file paths which will be processed in supplied order. Default: all ‘.lua’ files from current directory following by all such files in these subdirectories: ‘lua/’, ‘after/’, ‘colors/’. Note: any ‘init.lua’ file is placed before other files from the same directory.</p>
-<p><span class="help-syntax-special">{output}</span> <code>(string|nil)</code> Path for output help file. Default: <code>doc/&lt;current_directory&gt;.txt</code> (designed to be used for generating help file for plugin).</p>
+<p><span class="help-syntax-special">{input}</span> <code>(table|nil)</code> Array of file paths which will be processed in supplied order. Default: all <code>.lua</code> files from current directory following by all such files in these subdirectories: <code>lua/</code>, <code>after/</code>, <code>colors/</code>. Note: any <code>init.lua</code> file is placed before other files from the same directory.</p>
+<p><span class="help-syntax-special">{output}</span> <code>(string|nil)</code> Path for output help file. Default: <code>doc/&lt;current-directory&gt;.txt</code> (designed to be used for generating help file for plugin).</p>
 <p><span class="help-syntax-special">{config}</span> <code>(table|nil)</code> Configuration overriding parts of <a href="../../mini.nvim/doc/mini-doc.html#minidoc.config">MiniDoc.config</a>.</p>
 </section>
 <section id="minidoc.generate-return" class="level4">

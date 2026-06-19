@@ -470,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/rcarriga/nvim-notify">rcarriga/nvim-notify</a>:</p>
 <ul>
-<li>Similar to ‘j-hui/fidget.nvim’.</li>
+<li>Similar to <code>j-hui/fidget.nvim</code>.</li>
 </ul></li>
 </ul>
 </section>
@@ -607,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mininotify.config-lspprogress" class="level4">
 <h4 class="anchored" data-anchor-id="mininotify.config-lspprogress">LSP progress</h4>
-<p><code>config.lsp_progress</code> defines automated notifications for LSP progress. It is implemented as a single updating notification per progress with all information about it. Setting up is done inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a> via <a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>’ed setting of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler">lsp-handler</a> for “$/progress” method.</p>
+<p><code>config.lsp_progress</code> defines automated notifications for LSP progress. It is implemented as a single updating notification per progress with all information about it. Setting up is done inside <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a> via shceduled (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.schedule()">vim.schedule()</a>) setting of <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-handler">lsp-handler</a> for “$/progress” method.</p>
 <p><code>lsp_progress.enable</code> is a boolean indicating whether LSP progress should be shown in notifications. Can be disabled in current session. Default: <code>true</code>. Note: Should be <code>true</code> during <a href="../../mini.nvim/doc/mini-notify.html#mininotify.setup">MiniNotify.setup()</a> call to be able to enable it in current session.</p>
 <p><code>lsp_progress.level</code> is a level to be used in <a href="../../mini.nvim/doc/mini-notify.html#mininotify.add">MiniNotify.add()</a>. Default: <code>'INFO'</code>.</p>
 <p><code>lsp_progress.duration_last</code> is a number of milliseconds for the last progress report to be shown on screen before removing it. Default: 1000.</p>
@@ -629,13 +629,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>config.window</code> defines behavior of notification window.</p>
 <p><code>window.config</code> is a table defining floating window characteristics or a callable returning such table (will be called with identifier of window’s buffer already showing notifications). It should have the same structure as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_open_win()">nvim_open_win()</a>. It has the following default values which show notifications in the upper right corner with upper limit on width:</p>
 <ul>
-<li><p><code>width</code> is chosen to fit buffer content but at most <code>window.max_width_share</code> share of ‘columns’. To have higher maximum width, use function in <code>config.window</code> which computes dimensions inside of it (based on buffer content).</p></li>
-<li><p><code>height</code> is chosen to fit buffer content with enabled ‘wrap’ (assuming default value of <code>width</code>).</p></li>
-<li><p><code>anchor</code>, <code>col</code>, and <code>row</code> are “NE”, ‘columns’, and 0 or 1 (depending on tabline).</p></li>
+<li><p><code>width</code> is chosen to fit buffer content but at most <code>window.max_width_share</code> share of <a href="https://neovim.io/doc/user/helptag.html?tag='columns'">‘columns’</a>. To have higher maximum width, use function in <code>config.window</code> which computes dimensions inside of it (based on buffer content).</p></li>
+<li><p><code>height</code> is chosen to fit buffer content with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'">‘wrap’</a> (assuming default value of <code>width</code>).</p></li>
+<li><p><code>anchor</code>, <code>col</code>, and <code>row</code> are “NE”, <a href="https://neovim.io/doc/user/helptag.html?tag='columns'">‘columns’</a>, and 0 or 1 (depending on tabline).</p></li>
 <li><p><code>border</code> is “single”.</p></li>
 <li><p><code>zindex</code> is 999 to be as much on top as reasonably possible.</p></li>
 </ul>
-<p><code>window.max_width_share</code> defines maximum window width as a share of ‘columns’. Should be a number between 0 (not included) and 1. Default: 0.382.</p>
+<p><code>window.max_width_share</code> defines maximum window width as a share of <a href="https://neovim.io/doc/user/helptag.html?tag='columns'">‘columns’</a>. Should be a number between 0 (not included) and 1. Default: 0.382.</p>
 <p>Example for showing notifications in bottom right corner:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">win_config</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">has_statusline</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">laststatus</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
@@ -643,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">{</span> <span class="va">anchor</span> <span class="op">=</span> <span class="st">'SE'</span><span class="op">,</span> <span class="va">col</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span><span class="op">,</span> <span class="va">row</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span> <span class="op">-</span> <span class="va">pad</span> <span class="op">}</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.notify'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">window</span> <span class="op">=</span> <span class="op">{</span> <span class="va">config</span> <span class="op">=</span> <span class="va">win_config</span> <span class="op">}</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>window.winblend</code> defines ‘winblend’ value for notification window. Default: 25.</p>
+<p><code>window.winblend</code> defines <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a> value for notification window. Default: 25.</p>
 <hr>
 </section>
 </section>

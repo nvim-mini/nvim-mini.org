@@ -595,7 +595,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope">mini.indentscope</a>:</p>
 <ul>
 <li><p>Target <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.indent">MiniBracketed.indent()</a> target can go to “first” and “last” indent change. It also can go not only to line with smaller indent, but also bigger or different one.</p></li>
-<li><p>Mappings from ‘mini.indentscope’ have more flexibility in computation of indent scope, like how to treat empty lines near border or whether to compute indent at cursor.</p></li>
+<li><p>Mappings from <a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope">mini.indentscope</a> have more flexibility in computation of indent scope, like how to treat empty lines near border or whether to compute indent at cursor.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -727,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniBracketed.comment</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Comment block</p>
-<p>Go to next/previous comment block. Only linewise comments using ‘commentsring’ are recognized.</p>
+<p>Go to next/previous comment block. Only linewise comments using <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> are recognized.</p>
 <p>Direction “forward” increases line number, “backward” - decreases.</p>
 <section id="minibracketed.comment-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.comment-parameters">Parameters</h4>
@@ -963,11 +963,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In a nutshell:</p>
 <ul>
 <li><p>Keys <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> (although remapped) can be used as usual, but every their execution new state is recorded in this module’s linear undo history.</p></li>
-<li><p>Advancing this target goes along linear undo history revealing undo states in order they actually appeared.</p></li>
+<li><p>Advancing this target goes along linear undo history revealing undo states IN ORDER THEY ACTUALLY APPEARED.</p></li>
 <li><p>One big difference with built-in methods is that tracked linear history can repeat undo states (not consecutively, though).</p></li>
 </ul>
-<p>Neovim’s default way of managing undo history is through branches (see <a href="https://neovim.io/doc/user/helptag.html?tag=undo-branches">undo-branches</a>). Basically it means that if you undo several changes and then make new ones, it creates new undo branch while usually (see <a href="https://neovim.io/doc/user/helptag.html?tag='undolevels'">‘undolevels’</a>) saving previous buffer states in another branch. While there are commands to navigate by time of undo state creation (like <a href="https://neovim.io/doc/user/helptag.html?tag=:earlier">:earlier</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:later">:later</a>), there is no intuitive way to cycle through them. Existing <a href="https://neovim.io/doc/user/helptag.html?tag=g-">g-</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=g+">g+</a> cycle through undo states based on their creation time, which often gets confusing really guickly in extensively edited buffer.</p>
-<p>This <code>undo()</code> target provides a way to cycle through linear undo history in order states actually appeared. It does so by registering any new undo states plus every time <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state">MiniBracketed.register_undo_state()</a> is called. To have more “out of the box” experience, <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> are remapped to call it after they perform their undo/redo.</p>
+<p>Neovim’s default way of managing undo history is through branches (see <a href="https://neovim.io/doc/user/helptag.html?tag=undo-branches">undo-branches</a>). Basically it means that if you undo several changes and then make new ones, it creates new undo branch while usually (see <a href="https://neovim.io/doc/user/helptag.html?tag='undolevels'">‘undolevels’</a>) saving previous buffer states in another branch. While there are commands to navigate by time of undo state creation (like <a href="https://neovim.io/doc/user/helptag.html?tag=:earlier">:earlier</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=:later">:later</a>), there is no intuitive way to cycle through them. Existing <a href="https://neovim.io/doc/user/helptag.html?tag=g-">g-</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=g+">g+</a> cycle through undo states BASED ON THEIR CREATION TIME, which often gets confusing really guickly in extensively edited buffer.</p>
+<p>This <code>undo()</code> target provides a way to cycle through linear undo history IN ORDER STATES ACTUALLY APPEARED. It does so by registering any new undo states plus every time <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_undo_state">MiniBracketed.register_undo_state()</a> is called. To have more “out of the box” experience, <a href="https://neovim.io/doc/user/helptag.html?tag=u">u</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-R">CTRL-R</a> are remapped to call it after they perform their undo/redo.</p>
 <p>Example:</p>
 <p>To show more clearly the difference between advancing this target and using built-in functionality, here is an example:</p>
 <ul>
@@ -981,8 +981,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Now try one of the following (each one after performing previous steps in separate new buffer):</p>
 <ul>
 <li><p>Press <code>u</code>. It goes back to empty buffer. Press <code>&lt;C-R&gt;</code> twice and it goes to the latest change (<code>one two</code>). No way to get to other states (like <code>two three</code> or <code>one three</code>) with these two keys.</p></li>
-<li><p>Press <code>g-</code>. It goes to an empty buffer. Press <code>g+</code> 4 times. It cycles through all available undo states in order they were created.</p></li>
-<li><p>Finally, press <code>[u</code>. It goes back to <code>one two</code> - state which was previously visited by the user. Another <code>[u</code> restores <code>one two three</code>. Use <code>]U</code> to go to latest visited undo state.</p></li>
+<li><p>Press <code>g-</code>. It goes to an empty buffer. Press <code>g+</code> 4 times. It cycles through all available undo states IN ORDER THEY WERE CREATED.</p></li>
+<li><p>Finally, press <code>[u</code>. It goes back to <code>one two</code> - state which was PREVIOUSLY VISITED by the user. Another <code>[u</code> restores <code>one two three</code>. Use <code>]U</code> to go to latest visited undo state.</p></li>
 </ul></li>
 </ul>
 <section id="minibracketed.undo-parameters" class="level4">
@@ -1032,7 +1032,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Replace “latest put region” with yank history entry</p>
 <p>After <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.setup">MiniBracketed.setup()</a> is called, on every yank/delete/change operation (technically, every trigger of <a href="https://neovim.io/doc/user/helptag.html?tag=TextYankPost">TextYankPost</a> event) the object of operation is added to yank history. Advancing this target will replace the region of latest put operation with entry from yank history.</p>
-<p>By default works best if called right after text paste (like with <a href="https://neovim.io/doc/user/helptag.html?tag=p">p</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=P">P</a>).</p>
+<p>By default works best if called RIGHT AFTER text paste (like with <a href="https://neovim.io/doc/user/helptag.html?tag=p">p</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=P">P</a>).</p>
 <p>To better detect “latest put region”, use <a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.register_put_region">MiniBracketed.register_put_region()</a> as described later.</p>
 <p>Direction “forward” goes to newer yank history entry, “backward” - to older.</p>
 <p>Example:</p>

@@ -577,7 +577,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=:edit">:edit</a> to reset (disable and re-enable) current buffer.</p></li>
-<li><p>To work with BOM bytes, set ‘bomb’ and have <code>ucs-bom</code> in ‘fileencodings’.</p></li>
+<li><p>To work with BOM bytes, set <a href="https://neovim.io/doc/user/helptag.html?tag='bomb'">‘bomb’</a> and have <code>ucs-bom</code> in <a href="https://neovim.io/doc/user/helptag.html?tag='fileencodings'">‘fileencodings’</a>.</p></li>
 </ul>
 </section>
 <section id="minidiff-overview-overlay" class="level4">
@@ -777,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>config.options</code> contains various customization options.</p>
 <p><code>options.algorithm</code> is a string defining which diff algorithm to use. Default: “histogram”. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.text.diff()">vim.text.diff()</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> on Neovim&lt;=0.11) for possible values.</p>
 <p><code>options.indent_heuristic</code> is a boolean defining whether to use indent heuristic for a (possibly) more naturally aligned hunks. Default: <code>true</code>.</p>
-<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.text.diff()">vim.text.diff()</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> on Neovim&lt;=0.11) and ‘diffopt’ for more details.</p>
+<p><code>options.linematch</code> is a number defining hunk size for which a second stage diff is executed for a better aligned and more granular hunks. Default: 60. See <a href="https://neovim.io/doc/user/helptag.html?tag=vim.text.diff()">vim.text.diff()</a> (<a href="https://neovim.io/doc/user/helptag.html?tag=vim.diff()">vim.diff()</a> on Neovim&lt;=0.11) and <a href="https://neovim.io/doc/user/helptag.html?tag='diffopt'">‘diffopt’</a> for more details.</p>
 <p><code>options.wrap_goto</code> is a boolean indicating whether to wrap around edges during hunk navigation (with <a href="../../mini.nvim/doc/mini-diff.html#minidiff.goto_hunk">MiniDiff.goto_hunk()</a> or <code>goto_*</code> mappings). Like if cursor is after the last hunk, going “next” will put cursor on the first hunk. Default: <code>false</code>.</p>
 <hr>
 </section>
@@ -1011,7 +1011,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Perform action over region</p>
 <p>Perform action over region defined by marks. Used in mappings.</p>
-<p>Example of a mapping to yank reference lines of hunk range under cursor (assuming default ‘config.mappings.textobject’):</p>
+<p>Example of a mapping to yank reference lines of hunk range under cursor (assuming default <code>config.mappings.textobject</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="va">MiniDiff</span><span class="op">.</span>operator<span class="op">(</span><span class="st">'yank'</span><span class="op">)</span> <span class="op">..</span> <span class="st">'gh'</span> <span class="kw">end</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'ghy'</span><span class="op">,</span> <span class="va">rhs</span><span class="op">,</span> <span class="op">{</span> <span class="va">expr</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minidiff.operator-parameters" class="level4">

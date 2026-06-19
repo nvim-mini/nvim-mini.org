@@ -392,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#minisurround.config-respectselectiontype" id="toc-minisurround.config-respectselectiontype" class="nav-link" data-scroll-target="#minisurround.config-respectselectiontype">Respect selection type</a></li>
   <li><a href="#minisurround.config-searchmethod" id="toc-minisurround.config-searchmethod" class="nav-link" data-scroll-target="#minisurround.config-searchmethod">Search method</a></li>
   <li><a href="#minisurround.config-searchsuffixes" id="toc-minisurround.config-searchsuffixes" class="nav-link" data-scroll-target="#minisurround.config-searchsuffixes">Search suffixes</a></li>
-  <li><a href="#minisurround.config-setupsimilartotpopevim-surround" id="toc-minisurround.config-setupsimilartotpopevim-surround" class="nav-link" data-scroll-target="#minisurround.config-setupsimilartotpopevim-surround">Setup similar to ‘tpope/vim-surround’</a></li>
+  <li><a href="#minisurround.config-setupsimilartotpopevim-surround" id="toc-minisurround.config-setupsimilartotpopevim-surround" class="nav-link" data-scroll-target="#minisurround.config-setupsimilartotpopevim-surround">Setup similar to <code>tpope/vim-surround</code></a></li>
   </ul></li>
   <li><a href="#minisurround.add" id="toc-minisurround.add" class="nav-link" data-scroll-target="#minisurround.add">add()</a>
   <ul>
@@ -459,10 +459,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Surrounding is identified by a single character as both “input” (in <code>delete</code> and <code>replace</code> start, <code>find</code>, and <code>highlight</code>) and “output” (in <code>add</code> and <code>replace</code> end):</p>
 <ul>
-<li><p>‘f’ - function call (string of alphanumeric symbols or ’_’ or ‘.’ followed by balanced ‘()’). In “input” finds function call, in “output” prompts user to enter function name.</p></li>
-<li><p>‘t’ - tag. In “input” finds tag with same identifier, in “output” prompts user to enter tag name with possible attributes.</p></li>
-<li><p>All symbols in brackets ‘()’, ‘[]’, ‘<span class="help-syntax-special">{}</span>’, ‘<span class="help-syntax-keys">&lt;&gt;</span>“. In”input’ represents balanced brackets (open - with whitespace pad, close - without), in “output” - left and right parts of brackets.</p></li>
-<li><p>‘?’ - interactive. Prompts user to enter left and right parts.</p></li>
+<li><p><code>f</code> - function call (string of alphanumeric symbols or <code>_</code> or <code>.</code> followed by balanced <code>()</code>). In “input” finds function call, in “output” prompts user to enter function name.</p></li>
+<li><p><code>t</code> - tag. In “input” finds tag with same identifier, in “output” prompts user to enter tag name with possible attributes.</p></li>
+<li><p>All symbols in brackets <code>()</code>, <code>[]</code>, <code>{}</code>, <code>&lt;&gt;</code>. In “input” represents balanced brackets (open - with whitespace pad, close - without), in “output” - left and right parts of brackets.</p></li>
+<li><p><code>?</code> - interactive. Prompts user to enter left and right parts.</p></li>
 <li><p>All other single character identifiers (supported by <a href="https://neovim.io/doc/user/helptag.html?tag=getcharstr()">getcharstr()</a>) represent surrounding with identical left and right parts.</p></li>
 </ul></li>
 <li><p>Configurable search methods to find not only covering but possibly next, previous, or nearest surrounding. See more in <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config">MiniSurround.config</a>.</p></li>
@@ -471,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Known issues which won’t be resolved:</p>
 <ul>
 <li><p>Search for surrounding is done using Lua patterns (regex-like approach). So certain amount of false positives should be expected.</p></li>
-<li><p>When searching for “input” surrounding, there is no distinction if it is inside string or comment. So in this case there will be not proper match for a function call: ‘f(a = “)”, b = 1)’.</p></li>
-<li><p>Tags are searched using regex-like methods, so issues are inevitable. Overall it is pretty good, but certain cases won’t work. Like self-nested tags won’t match correctly on both ends: ‘<span class="help-syntax-keys">&lt;a&gt;</span><span class="help-syntax-keys">&lt;a&gt;</span><span class="help-syntax-keys">&lt;/a&gt;</span><span class="help-syntax-keys">&lt;/a&gt;</span>’.</p></li>
+<li><p>When searching for “input” surrounding, there is no distinction if it is inside string or comment. So in this case there will be not proper match for a function call: <code>f(a = ")", b = 1)</code>.</p></li>
+<li><p>Tags are searched using regex-like methods, so issues are inevitable. Overall it is pretty good, but certain cases won’t work. Like self-nested tags won’t match correctly on both ends: <code>&lt;a&gt;&lt;a&gt;&lt;/a&gt;&lt;/a&gt;</code>.</p></li>
 </ul>
 <section id="module-setup" class="level4">
 <h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
@@ -488,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>saiw)</code> - add (<code>sa</code>) for inner word (<code>iw</code>) parenthesis (<code>)</code>).</p></li>
 <li><p><code>saiw?[[&lt;CR&gt;]]&lt;CR&gt;</code> - add (<code>sa</code>) for inner word (<code>iw</code>) interactive surrounding (<code>?</code>): <code>[[</code> for left and <code>]]</code> for right.</p></li>
 <li><p><code>2sdf</code> - delete (<code>sd</code>) second (<code>2</code>) surrounding function call (<code>f</code>).</p></li>
-<li><p><code>sr)tdiv&lt;CR&gt;</code> - replace (<code>sr</code>) surrounding parenthesis (<code>)</code>) with tag (<code>t</code>) with identifier ‘div’ (<code>div&lt;CR&gt;</code> in command line prompt).</p></li>
+<li><p><code>sr)tdiv&lt;CR&gt;</code> - replace (<code>sr</code>) surrounding parenthesis (<code>)</code>) with tag (<code>t</code>) with identifier <code>div</code> (<code>div&lt;CR&gt;</code> in command line prompt).</p></li>
 <li><p><code>sff</code> - find right (<code>sf</code>) part of surrounding function call (<code>f</code>).</p></li>
 <li><p><code>sh}</code> - highlight (<code>sh</code>) for a brief period of time surrounding curly brackets (<code>}</code>).</p></li>
 </ul>
@@ -505,29 +505,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://github.com/tpope/vim-surround">tpope/vim-surround</a>:</p>
 <ul>
-<li><p>‘vim-surround’ has completely different, with other focus set of default mappings, while ‘mini.surround’ has a more coherent set.</p></li>
-<li><p>‘mini.surround’ supports dot-repeat, customized search path (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config">MiniSurround.config</a>), customized specifications (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification">MiniSurround-surrounding-specification</a>) allowing usage of tree-sitter queries (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec.input.treesitter">MiniSurround.gen_spec.input.treesitter()</a>), highlighting and finding surrounding, “last”/“next” extended mappings. While ‘vim-surround’ does not.</p></li>
+<li><p><code>vim-surround</code> has completely different, with other focus set of default mappings, while <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> has a more coherent set.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> supports dot-repeat, customized search path (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.config">MiniSurround.config</a>), customized specifications (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification">MiniSurround-surrounding-specification</a>) allowing usage of tree-sitter queries (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround.gen_spec.input.treesitter">MiniSurround.gen_spec.input.treesitter()</a>), highlighting and finding surrounding, “last”/“next” extended mappings. While <code>vim-surround</code> does not.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/machakann/vim-sandwich">machakann/vim-sandwich</a>:</p>
 <ul>
 <li><p>Both have same keybindings for common actions (add, delete, replace).</p></li>
-<li><p>Otherwise same differences as with ‘tpope/vim-surround’ (except dot-repeat because ‘vim-sandwich’ supports it).</p></li>
+<li><p>Otherwise same differences as with <code>tpope/vim-surround</code> (except dot-repeat because <code>vim-sandwich</code> supports it).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/kylechui/nvim-surround">kylechui/nvim-surround</a>:</p>
 <ul>
-<li><p>‘nvim-surround’ is designed after ‘tpope/vim-surround’ with same default mappings and logic, while ‘mini.surround’ has mappings similar to ‘machakann/vim-sandwich’.</p></li>
-<li><p>‘mini.surround’ has more flexible customization of input surrounding (with composed patterns, region pair(s), search methods).</p></li>
-<li><p>‘mini.surround’ supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> in both input and output surrounding (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-count-with-actions">MiniSurround-count-with-actions</a>) while ‘nvim-surround’ doesn’t.</p></li>
-<li><p>‘mini.surround’ supports “last”/“next” extended mappings.</p></li>
+<li><p><code>nvim-surround</code> is designed after <code>tpope/vim-surround</code> with same default mappings and logic, while <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> has mappings similar to <code>machakann/vim-sandwich</code>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> has more flexible customization of input surrounding (with composed patterns, region pair(s), search methods).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> in both input and output surrounding (see <a href="../../mini.nvim/doc/mini-surround.html#minisurround-count-with-actions">MiniSurround-count-with-actions</a>) while <code>nvim-surround</code> doesn’t.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> supports “last”/“next” extended mappings.</p></li>
 </ul></li>
 <li><p><a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a>:</p>
 <ul>
-<li><p>Both use similar logic for finding target: textobject in ‘mini.ai’ and surrounding pair in ‘mini.surround’. While ‘mini.ai’ uses extraction pattern for separate <code>a</code> and <code>i</code> textobjects, ‘mini.surround’ uses it to select left and right surroundings (basically a difference between <code>a</code> and <code>i</code> textobjects).</p></li>
+<li><p>Both use similar logic for finding target: textobject in <a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a> and surrounding pair in <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a>. While <a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a> uses extraction pattern for separate <code>a</code> and <code>i</code> textobjects, <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> uses it to select left and right surroundings (basically a difference between <code>a</code> and <code>i</code> textobjects).</p></li>
 <li><p>Some builtin specifications are slightly different:</p>
 <ul>
-<li><p>Quotes in ‘mini.ai’ are balanced, in ‘mini.surround’ they are not.</p></li>
-<li><p>The ‘mini.surround’ doesn’t have argument surrounding.</p></li>
-<li><p>Default behavior in ‘mini.ai’ selects one of the edges into <code>a</code> textobject, while ‘mini.surround’ - both.</p></li>
+<li><p>Quotes in <a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a> are balanced, in <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> they are not.</p></li>
+<li><p>The <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> doesn’t have argument surrounding.</p></li>
+<li><p>Default behavior in <a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a> selects one of the edges into <code>a</code> textobject, while <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> - both.</p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -688,8 +688,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Last pattern(s) should have two or four empty capture groups denoting how the last string should be processed to extract surrounding parts:</p>
 <ul>
-<li><p>Two captures represent left part from start of string to first capture and right part - from second capture to end of string. Example: <code>a()b()c</code> defines left surrounding as ‘a’, right - ‘c’.</p></li>
-<li><p>Four captures define left part inside captures 1 and 2, right part - inside captures 3 and 4. Example: <code>a()()b()c()</code> defines left part as empty, right part as ‘c’.</p></li>
+<li><p>Two captures represent left part from start of string to first capture and right part - from second capture to end of string. Example: <code>a()b()c</code> defines left surrounding as <code>a</code>, right - <code>c</code>.</p></li>
+<li><p>Four captures define left part inside captures 1 and 2, right part - inside captures 3 and 4. Example: <code>a()()b()c()</code> defines left part as empty, right part as <code>c</code>.</p></li>
 </ul></li>
 <li><p>Allows callable objects (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.is_callable()">vim.is_callable()</a>) in certain places (enables more complex surroundings in exchange of increase in configuration complexity and computations):</p>
 <ul>
@@ -958,7 +958,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minisurround.config-searchsuffixes" class="level4">
 <h4 class="anchored" data-anchor-id="minisurround.config-searchsuffixes">Search suffixes</h4>
-<p>To provide more searching possibilities, ‘mini.surround’ creates extended mappings force “prev” and “next” methods for particular search. It does so by appending mapping with certain suffix: <code>config.mappings.suffix_last</code> for mappings which will use “prev” search method, <code>config.mappings.suffix_next</code></p>
+<p>To provide more searching possibilities, <a href="../../mini.nvim/doc/mini-surround.html#mini.surround">mini.surround</a> creates extended mappings force “prev” and “next” methods for particular search. It does so by appending mapping with certain suffix: <code>config.mappings.suffix_last</code> for mappings which will use “prev” search method, <code>config.mappings.suffix_next</code></p>
 <ul>
 <li>“next” search method.</li>
 </ul>
@@ -976,9 +976,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="minisurround.config-setupsimilartotpopevim-surround" class="level4">
-<h4 class="anchored" data-anchor-id="minisurround.config-setupsimilartotpopevim-surround">Setup similar to ‘tpope/vim-surround’</h4>
+<h4 class="anchored" data-anchor-id="minisurround.config-setupsimilartotpopevim-surround">Setup similar to <code>tpope/vim-surround</code></h4>
 <p><a name="minisurround-vim-surround-config" href="../../mini.nvim/doc/mini-surround.html#minisurround-vim-surround-config"><b>MiniSurround-vim-surround-config</b></a></p>
-<p>This module is primarily designed after ‘machakann/vim-sandwich’. To get behavior closest to ‘tpope/vim-surround’ (but not identical), use this setup:</p>
+<p>This module is primarily designed after <code>machakann/vim-sandwich</code>. To get behavior closest to <code>tpope/vim-surround</code> (but not identical), use this setup:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">mappings</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">add</span> <span class="op">=</span> <span class="st">'ys'</span><span class="op">,</span></span>
@@ -1092,14 +1092,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Treesitter specification for input surrounding</p>
 <p>This is a specification in function form. When called with a pair of treesitter captures, it returns a specification function outputting an array of region pairs derived from <span class="help-syntax-keys">&lt;outer&gt;</span> and <span class="help-syntax-keys">&lt;inner&gt;</span> captures. It first searches for all matched nodes of outer capture and then completes each one with the biggest match of inner capture inside that node (if any). The result region pair is a difference between regions of outer and inner captures.</p>
-<p>In order for this to work, apart from working treesitter parser for desired language, user should have a reachable language-specific ‘textobjects’ query (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()">vim.treesitter.query.get()</a>). The most straightforward way for this is to have ‘textobjects.scm’ query file with treesitter captures stored in some recognized path. This is primarily designed to be compatible with plugin ‘nvim-treesitter/nvim-treesitter-textobjects’, but can be used without it.</p>
+<p>In order for this to work, apart from working treesitter parser for desired language, user should have a reachable language-specific <code>'textobjects'</code> query (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()">vim.treesitter.query.get()</a>). The most straightforward way for this is to have <code>textobjects.scm</code> query file with treesitter captures stored in some recognized path. This is primarily designed to be compatible with plugin <code>nvim-treesitter/nvim-treesitter-textobjects</code>, but can be used without it.</p>
 <p>Two most common approaches for having a query file:</p>
 <ul>
-<li><p>Install ‘nvim-treesitter/nvim-treesitter-textobjects’. It has curated and well maintained builtin query files for many languages with a standardized capture names, like <code>call.outer</code>, <code>call.inner</code>, etc.</p></li>
-<li><p>Manually create file ‘after/queries/<language name="">/textobjects.scm’ in your <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME">$XDG_CONFIG_HOME</a> directory. It should contain queries with captures (later used to define surrounding parts). See <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query">lua-treesitter-query</a>. To verify that query file is reachable, run (example for “lua” language, output should have at least an intended file):</language></p>
+<li><p>Install <code>nvim-treesitter/nvim-treesitter-textobjects</code>. It has curated and well maintained builtin query files for many languages with a standardized capture names, like <code>call.outer</code>, <code>call.inner</code>, etc.</p></li>
+<li><p>Manually create file <code>after/queries/&lt;language-name&gt;/textobjects.scm</code> in your <a href="https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME">$XDG_CONFIG_HOME</a> directory. It should contain queries with captures (later used to define surrounding parts). See <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query">lua-treesitter-query</a>. To verify that query file is reachable, run (example for “lua” language, output should have at least an intended file):</p>
 <pre class="vim"><code>:lua print(vim.inspect(vim.treesitter.query.get_files('lua','textobjects')))</code></pre></li>
 </ul>
-<p>Example configuration for function definition textobject with ‘nvim-treesitter/nvim-treesitter-textobjects’ captures:</p>
+<p>Example configuration for function definition textobject with <code>nvim-treesitter/nvim-treesitter-textobjects</code> captures:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ts_input</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span><span class="va">gen_spec</span><span class="op">.</span><span class="va">input</span><span class="op">.</span><span class="va">treesitter</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">custom_surroundings</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -1121,7 +1121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{captures}</span> <code>(table)</code> Captures for outer and inner parts of region pair: table with <span class="help-syntax-keys">&lt;outer&gt;</span> and <span class="help-syntax-keys">&lt;inner&gt;</span> fields with captures for outer (<code>[left.form; right.to]</code>) and inner (<code>(left.to; right.from)</code> both edges exclusive, i.e.&nbsp;they won’t be a part of surrounding) regions. Each value should be a string capture starting with <code>'@'</code>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;use_nvim_treesitter&gt;</span> - whether to try to use ‘nvim-treesitter’ plugin (if present) to do the query. It used to implement more advanced behavior and more coherent experience if ‘nvim-treesitter-textobjects’ queries are used. However, as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> methods are more capable now, the option will soon be removed. Only present for backward compatibility. Default: <code>false</code>.</li>
+<li><span class="help-syntax-keys">&lt;use_nvim_treesitter&gt;</span> - whether to try to use <code>nvim-treesitter</code> plugin (if present) to do the query. It used to implement more advanced behavior and more coherent experience if <code>nvim-treesitter-textobjects</code> queries are used. However, as <a href="https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core">lua-treesitter-core</a> methods are more capable now, the option will soon be removed. Only present for backward compatibility. Default: <code>false</code>.</li>
 </ul>
 </section>
 <section id="minisurround.gen_spec.input.treesitter-return" class="level4">
@@ -1133,8 +1133,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="../../mini.nvim/doc/mini-surround.html#minisurround-surrounding-specification">MiniSurround-surrounding-specification</a> for how this type of surrounding specification is processed.</p></li>
 <li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get()">vim.treesitter.query.get()</a> for how query is fetched.</p></li>
-<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures()">Query:iter_captures()</a> for how all query captures are iterated in case of no ‘nvim-treesitter’.</p></li>
-<li><p><a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter">MiniAi.gen_spec.treesitter()</a> for similar ‘mini.ai’ generator.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures()">Query:iter_captures()</a> for how all query captures are iterated in case of no <code>nvim-treesitter</code>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-ai.html#miniai.gen_spec.treesitter">MiniAi.gen_spec.treesitter()</a> for similar <a href="../../mini.nvim/doc/mini-ai.html#mini.ai">mini.ai</a> generator.</p></li>
 </ul>
 
 

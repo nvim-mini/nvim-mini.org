@@ -451,11 +451,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Provide smart behavior, like based on bracket balance. The default behavior is to almost always perform an action (insert pair, jump over). Manually press <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V">i_CTRL-V</a> before a character to explicitly insert it (and only it).</p></li>
 <li><p>It doesn’t support multiple characters as “open” and “close” symbols. Use snippets for that.</p></li>
-<li><p>It doesn’t support dependency on filetype. Use <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V">i_CTRL-V</a> to insert single symbol or <code>autocmd</code> command or ‘after/ftplugin’ approach to:</p>
+<li><p>It doesn’t support dependency on filetype. Use <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-V">i_CTRL-V</a> to insert single symbol or <code>autocmd</code> command or <code>after/ftplugin</code> approach to:</p>
 <ul>
-<li><p><code>:lua MiniPairs.map_buf(0, 'i', &lt;*&gt;, &lt;pair_info&gt;)</code> - make new mapping for ’<span class="help-syntax-keys">&lt;*&gt;</span>’ in current buffer.</p></li>
+<li><p><code>:lua MiniPairs.map_buf(0, 'i', &lt;*&gt;, &lt;pair_info&gt;)</code> - make new mapping for <code>&lt;*&gt;</code> in current buffer.</p></li>
 <li><p><code>:lua MiniPairs.unmap_buf(0, 'i', &lt;*&gt;, &lt;pair&gt;)</code> - unmap key <code>&lt;*&gt;</code> while unregistering <code>&lt;pair&gt;</code> pair in current buffer. Note: this reverts mapping done by <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a>. If mapping was done with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a>, unmap for buffer in usual Neovim manner: <code>inoremap &lt;buffer&gt; &lt;*&gt; &lt;*&gt;</code> (this maps <code>&lt;*&gt;</code> key to do the same it does by default).</p></li>
-<li><p>Disable module for buffer (see ‘Disabling’ section).</p></li>
+<li><p>Disable module for buffer (see <code># Disabling</code> section).</p></li>
 </ul></li>
 </ul>
 <section id="module-setup" class="level4">
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Make sure to make proper mapping of <span class="help-syntax-keys">&lt;CR&gt;</span> in order to support completion plugin of your choice:</p>
 <ul>
-<li><p>For <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> see ‘Helpful key mappings’ section.</p></li>
+<li><p>For <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> see its <code># Helpful mappings</code> section.</p></li>
 <li><p>For current implementation of “hrsh7th/nvim-cmp” there is no need to make custom mapping. You can use default setup, which will confirm completion selection if popup is visible and expand pair otherwise.</p></li>
 </ul></li>
 <li><p>Having mapping in terminal mode can conflict with:</p>
@@ -649,7 +649,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.open</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “open” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “open” symbols in asymmetric pair (‘(’, ‘[’, etc.). If neighborhood doesn’t match supplied pattern, function results into “open” symbol. Otherwise, it pastes whole pair and moves inside pair with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeft%3E"><span class="help-syntax-keys">&lt;Left&gt;</span></a>.</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “open” symbols in asymmetric pair (<code>(</code>, <code>[</code>, etc.). If neighborhood doesn’t match supplied pattern, function results into “open” symbol. Otherwise, it pastes whole pair and moves inside pair with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CLeft%3E"><span class="help-syntax-keys">&lt;Left&gt;</span></a>.</p>
 <p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.open-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.open-parameters">Parameters</h4>
@@ -668,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.close</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “close” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “close” symbols in asymmetric pair (‘)’, ‘]’, etc.). If neighborhood doesn’t match supplied pattern, function results into “close” symbol. Otherwise it jumps over symbol to the right of cursor (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to “close” one and inserts it otherwise.</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “close” symbols in asymmetric pair (<code>)</code>, <code>]</code>, etc.). If neighborhood doesn’t match supplied pattern, function results into “close” symbol. Otherwise it jumps over symbol to the right of cursor (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to “close” one and inserts it otherwise.</p>
 <p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.close-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.close-parameters">Parameters</h4>
@@ -687,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPairs.closeopen</code>(<span class="help-syntax-special">{pair}</span>, <span class="help-syntax-special">{neigh_pattern}</span>)
 </p>
 <p>Process “closeopen” symbols</p>
-<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for ‘symmetrical’ symbols (like ” and ‘) It tries to perform ’closeopen action’: move over right character (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to second character from pair or conditionally paste pair otherwise (with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open">MiniPairs.open()</a>).</p>
+<p>Used as <a href="https://neovim.io/doc/user/helptag.html?tag=:map-%3Cexpr%3E">:map-<span class="help-syntax-keys">&lt;expr&gt;</span></a> mapping for “symmetrical” symbols (like <code>"</code> and <code>'</code>) It tries to perform “closeopen action”: move over right character (with <a href="https://neovim.io/doc/user/helptag.html?tag=%3CRight%3E"><span class="help-syntax-keys">&lt;Right&gt;</span></a>) if it is equal to second character from pair or conditionally paste pair otherwise (with <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.open">MiniPairs.open()</a>).</p>
 <p>Used inside <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map">MiniPairs.map()</a> and <a href="../../mini.nvim/doc/mini-pairs.html#minipairs.map_buf">MiniPairs.map_buf()</a> for an actual mapping.</p>
 <section id="minipairs.closeopen-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipairs.closeopen-parameters">Parameters</h4>

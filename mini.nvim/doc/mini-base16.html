@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-base16.html#minibase16-color-schemes">MiniBase16-color-schemes</a>).</p></li>
 <li><p>Using <code>setup()</code> doesn’t actually create a <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a>. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups">highlight-groups</a>. To create your own theme:</p>
 <ul>
-<li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from ‘runtimepath’ (“colors” inside your Neovim config directory is usually enough).</p></li>
+<li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> (“colors” inside your Neovim config directory is usually enough).</p></li>
 <li><p>Inside “myscheme.lua” call <code>require('mini.base16').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to “myscheme”.</p></li>
 </ul></li>
 </ol>
@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Module setup</p>
 <p>Setup is done by applying base16 palette to enable colorscheme. Highlight groups make an extended set from original <a href="https://github.com/chriskempson/base16-vim/">base16-vim</a> plugin. It is a good idea to have <code>config.palette</code> respect the original <a href="https://github.com/chriskempson/base16/blob/master/styling.md">styling principles</a>.</p>
-<p>By default only ‘gui highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-gui">highlight-gui</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a>) is supported. To support ‘cterm highlighting’ (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm">highlight-cterm</a>) supply <code>config.use_cterm</code> argument in one of the formats:</p>
+<p>By default only “gui highlighting” (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-gui">highlight-gui</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a>) is supported. To support “cterm highlighting” (see <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-cterm">highlight-cterm</a>) supply <code>config.use_cterm</code> argument in one of the formats:</p>
 <ul>
 <li><p><code>true</code> to auto-generate from <code>palette</code> (as closest colors).</p></li>
 <li><p>Table with similar structure to <code>palette</code> but having terminal colors (integers from 0 to 255) instead of hex strings.</p></li>
@@ -614,18 +614,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniBase16.mini_palette</code>(<span class="help-syntax-special">{background}</span>, <span class="help-syntax-special">{foreground}</span>, <span class="help-syntax-special">{accent_chroma}</span>)
 </p>
-<p>Create ‘mini’ palette</p>
-<p>Create base16 palette based on the HEX (string ‘#RRGGBB’) colors of main background and foreground with optional setting of accent chroma (see details).</p>
+<p>Create MINI Base16 palette</p>
+<p>Create base16 palette based on the HEX (string <code>'#RRGGBB'</code>) colors of main background and foreground with optional setting of accent chroma (see details).</p>
 <section id="minibase16.mini_palette-algorithmdesign" class="level4">
 <h4 class="anchored" data-anchor-id="minibase16.mini_palette-algorithmdesign">Algorithm design</h4>
 <ul>
 <li><p>Main operating color space is <a href="https://en.wikipedia.org/wiki/CIELUV#Cylindrical_representation_(CIELCh)">CIELCh(uv)</a> which is a cylindrical representation of a perceptually uniform CIELUV color space. It defines color by three values: lightness L (values from 0 to 100), chroma (positive values), and hue (circular values from 0 to 360 degrees). Useful converting tool: https://www.easyrgb.com/en/convert.php</p></li>
 <li><p>There are four important lightness values: background, foreground, focus (around the middle of background and foreground, leaning towards foreground), and edge (extreme lightness closest to foreground).</p></li>
 <li><p>First four colors have the same chroma and hue as <code>background</code> but lightness progresses from background towards focus.</p></li>
-<li><p>Second four colors have the same chroma and hue as <code>foreground</code> but lightness progresses from foreground towards edge in such a way that ‘base05’ color is main foreground color.</p></li>
+<li><p>Second four colors have the same chroma and hue as <code>foreground</code> but lightness progresses from foreground towards edge in such a way that <code>base05</code> color is main foreground color.</p></li>
 <li><p>The rest eight colors are accent colors which are created in pairs</p>
 <ul>
-<li><p>Each pair has same hue from set of hues ‘most different’ to background and foreground hues (if respective chorma is positive).</p></li>
+<li><p>Each pair has same hue from set of hues “most different” to background and foreground hues (if respective chorma is positive).</p></li>
 <li><p>All colors have the same chroma equal to <code>accent_chroma</code> (if not provided, chroma of foreground is used, as they will appear next to each other). Note: this means that in case of low foreground chroma, it is a good idea to set <code>accent_chroma</code> manually. Values from 30 (low chorma) to 80 (high chroma) are common.</p></li>
 <li><p>Within pair there is base lightness (equal to foreground lightness) and alternative (equal to focus lightness). Base lightness goes to colors which will be used more frequently in code: base08 (variables), base0B (strings), base0D (functions), base0E (keywords). How exactly accent colors are mapped to base16 palette is a result of trial and error. One rule of thumb was: colors within one hue pair should be more often seen next to each other. This is because it is easier to distinguish them and seems to be more visually appealing. That is why <code>base0D</code> and <code>base0F</code> have same hues because they usually represent functions and delimiter (brackets included).</p></li>
 </ul></li>

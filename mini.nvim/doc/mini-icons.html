@@ -426,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Fixed set of highlight groups (linked to built-in groups by default) for better blend with color scheme.</p></li>
 <li><p>Caching for maximum performance.</p></li>
 <li><p>Integration with <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.add()">vim.filetype.add()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a>.</p></li>
-<li><p>Mocking methods of ‘nvim-tree/nvim-web-devicons’ for better integrations with plugins outside ‘mini.nvim’. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a>.</p></li>
+<li><p>Mocking methods of <code>nvim-tree/nvim-web-devicons</code> for better integrations with plugins outside <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim">mini.nvim</a>. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a>.</p></li>
 <li><p>Tweaking built-in maps for “LSP kind” to include icons. In particular, this makes <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> use icons in LSP step. See <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind">MiniIcons.tweak_lsp_kind()</a>.</p></li>
 </ul>
 <p>Notes:</p>
@@ -457,34 +457,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for users):</p>
 <ul>
 <li><p>Sets individual colors to each icon with separate specific highlight groups, while this modules uses fixed set of highlight groups. This makes it easier to customize in bulk and actually blend with any color scheme.</p></li>
-<li><p>This module prefers richer set of <code>nf-md-*</code> (from “Material design” set) Nerd Fonts icons while ‘nvim-web-devicons’ mostly prefers <code>nf-dev-*</code> (from “devicons” set).</p></li>
+<li><p>This module prefers richer set of <code>nf-md-*</code> (from “Material design” set) Nerd Fonts icons while <code>nvim-web-devicons</code> mostly prefers <code>nf-dev-*</code> (from “devicons” set).</p></li>
 <li><p>Supported categories are slightly different (with much overlap).</p></li>
 <li><p>Both support customization of any icon. Only this module supports customization of default ones per supported category.</p></li>
 <li><p>Using this module can occasionally result in small delays when used synchronously for many times to get icons for not typical files (like in <a href="../../mini.nvim/doc/mini-files.html#mini.files">mini.files</a>). This is due to using <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> fallback and is present only during first call, as value is cached for later uses.</p></li>
-<li><p>This module supports different icon styles (like “ascii” for when using glyphs is not possible), while ‘nvim-web-devicons’ does not.</p></li>
-<li><p>This module provides <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a> function which when called imitates installed ‘nvim-web-devicons’ plugin to support other plugins which do not provide ‘mini.icons’ yet.</p></li>
+<li><p>This module supports different icon styles (like “ascii” for when using glyphs is not possible), while <code>nvim-web-devicons</code> does not.</p></li>
+<li><p>This module provides <a href="../../mini.nvim/doc/mini-icons.html#miniicons.mock_nvim_web_devicons">MiniIcons.mock_nvim_web_devicons()</a> function which when called imitates installed <code>nvim-web-devicons</code> plugin to support other plugins which do not provide <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> yet.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/nvim-tree/nvim-web-devicons">nvim-tree/nvim-web-devicons</a> (for plugin developers):</p>
 <ul>
 <li><p>Both have main “get icon” type of function:</p>
 <ul>
 <li><p>Both return tuple of icon and highlight group strings.</p></li>
-<li><p>This module always returns icon data possibly falling back to user’s configured default, while ‘nvim-web-devicons’ is able to return <code>nil</code>. This module’s approach is more aligned with the most common use case of always showing an icon instead or near some data. There is a third returned value indicating if output is a result of a fallback (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>).</p></li>
-<li><p>This module uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> as a fallback for “file” and “extension” categories, while ‘nvim-web-devicons’ completely relies on the manually maintained tables of supported filenames and extensions. Using fallback results in a wider support and deeper integration with Neovim’s filetype detection at the cost of occasional slower first call. The difference is reduced as much as is reasonable by preferring faster file extension resolution over filetype matching.</p></li>
-<li><p>This module caches all its return values resulting in really fast next same argument calls, while ‘nvim-web-devicons’ doesn’t do that.</p></li>
+<li><p>This module always returns icon data possibly falling back to user’s configured default, while <code>nvim-web-devicons</code> is able to return <code>nil</code>. This module’s approach is more aligned with the most common use case of always showing an icon instead or near some data. There is a third returned value indicating if output is a result of a fallback (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a>).</p></li>
+<li><p>This module uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.filetype.match()">vim.filetype.match()</a> as a fallback for “file” and “extension” categories, while <code>nvim-web-devicons</code> completely relies on the manually maintained tables of supported filenames and extensions. Using fallback results in a wider support and deeper integration with Neovim’s filetype detection at the cost of occasional slower first call. The difference is reduced as much as is reasonable by preferring faster file extension resolution over filetype matching.</p></li>
+<li><p>This module caches all its return values resulting in really fast next same argument calls, while <code>nvim-web-devicons</code> doesn’t do that.</p></li>
 <li><p>This module works with full file/directory paths as input.</p></li>
 </ul></li>
 <li><p>Different sets of supported categories (see <a href="../../mini.nvim/doc/mini-icons.html#miniicons.config">MiniIcons.config</a>):</p>
 <ul>
-<li><p>Both support “file”, “extension”, “filetype”, “operating system”. Albeit in different volumes: ‘nvim-web-devicons’ covers more cases for “operating system”, while this module has better eventual coverage for other cases.</p></li>
+<li><p>Both support “file”, “extension”, “filetype”, “operating system”. Albeit in different volumes: <code>nvim-web-devicons</code> covers more cases for “operating system”, while this module has better eventual coverage for other cases.</p></li>
 <li><p>This module supports “directory” and “lsp” categories.</p></li>
-<li><p>‘nvim-web-devicons’ covers “desktop environment” and “window management” categories. This modules does not include them due to relatively low demand.</p></li>
+<li><p><code>nvim-web-devicons</code> covers “desktop environment” and “window management” categories. This modules does not include them due to relatively low demand.</p></li>
 </ul></li>
 </ul></li>
 <li><p><a href="https://github.com/onsails/lspkind.nvim">onsails/lspkind.nvim</a>:</p>
 <ul>
 <li><p>Provides icons only for <code>CompletionItemKind</code>, while this module also has icons for <code>SymbolKind</code> and other non-LSP categories.</p></li>
-<li><p>Provides dedicated formatting function for ‘hrsh7th/nvim-cmp’ while this module intentionally does not (adding icons should be straightforward to manually implement while anything else is out of scope).</p></li>
+<li><p>Provides dedicated formatting function for <code>hrsh7th/nvim-cmp</code> while this module intentionally does not (adding icons should be straightforward to manually implement while anything else is out of scope).</p></li>
 </ul></li>
 </ul>
 </section>
@@ -708,7 +708,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Respects full path input in `vim.filetype.match()`</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>get<span class="op">(</span><span class="st">'file'</span><span class="op">,</span> <span class="st">'.git/info/attributes'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><code>'filetype'</code> - icon data for ‘filetype’ values. Icon names:</p>
+<li><p><code>'filetype'</code> - icon data for <a href="https://neovim.io/doc/user/helptag.html?tag='filetype'">‘filetype’</a> values. Icon names:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;Input&gt;</span>: any string.</p></li>
 <li><p><span class="help-syntax-keys">&lt;Built-in&gt;</span>: any filetype that is reasonably used in Neovim ecosystem. This category is intended as a widest net for supporting use cases. Users are encouraged to have a specific filetype detection set up.</p></li>
@@ -769,13 +769,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniIcons.mock_nvim_web_devicons</code>()
 </p>
-<p>Mock ‘nvim-web-devicons’ module</p>
-<p>Call this function to mock exported functions of ‘nvim-tree/nvim-web-devicons’ plugin. It will mock all its functions which return icon data by using <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> equivalent.</p>
-<p>This function is useful if any plugins relevant to you depend solely on ‘nvim-web-devicons’ and have not yet added an integration with ‘mini.icons’.</p>
+<p>Mock <code>nvim-web-devicons</code> module</p>
+<p>Call this function to mock exported functions of <code>nvim-tree/nvim-web-devicons</code> plugin. It will mock all its functions which return icon data by using <a href="../../mini.nvim/doc/mini-icons.html#miniicons.get">MiniIcons.get()</a> equivalent.</p>
+<p>This function is useful if any plugins relevant to you depend solely on <code>nvim-web-devicons</code> and have not yet added an integration with <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a>.</p>
 <p>Full example of usage:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.icons'</span><span class="op">).</span>setup<span class="op">()</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="va">MiniIcons</span><span class="op">.</span>mock_nvim_web_devicons<span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Works without installed ‘nvim-web-devicons’ and even with it installed (needs to be called after ‘nvim-web-devicons’ is set up).</p>
+<p>Works without installed <code>nvim-web-devicons</code> and even with it installed (needs to be called after <code>nvim-web-devicons</code> is set up).</p>
 <hr>
 </section>
 <section id="miniicons.tweak_lsp_kind" class="level3 help-syntax-right-anchor">

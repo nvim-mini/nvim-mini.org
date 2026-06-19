@@ -876,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Repeat previous step until the ending <span class="help-syntax-keys">&lt;status&gt;</span> (<code>"accept"</code> or <code>"cancel"</code>).</p></li>
 <li><p>Finish the input:</p>
 <ul>
-<li><p>Perform a “teardown”’ step with <code>key=nil</code>.</p></li>
+<li><p>Perform a “teardown” step with <code>key=nil</code>.</p></li>
 <li><p>If <span class="help-syntax-keys">&lt;errmsg&gt;</span> is set, throw an <a href="https://neovim.io/doc/user/helptag.html?tag=error()">error()</a>.</p></li>
 <li><p>If input is accepted (even if empty) and not hidden, add <span class="help-syntax-keys">&lt;input&gt;</span> to the history. Get the whole history with <a href="../../mini.nvim/doc/mini-input.html#miniinput.get_history">MiniInput.get_history()</a>.</p></li>
 <li><p>Return <span class="help-syntax-keys">&lt;input&gt;</span> if <span class="help-syntax-keys">&lt;status&gt;</span> is <code>"accept"</code>, <code>nil</code> otherwise.</p></li>
@@ -1200,7 +1200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Opening characters <code>(</code>, <code>[</code>, <code>{</code> always insert a <code>()</code>, <code>[]</code>, <code>{}</code> pair and places caret inside of it.</p></li>
 <li><p>Closing characters <code>)</code>, <code>]</code>, <code>}</code> move caret to the right if there is the same character to the right.</p></li>
-<li><p>Closeopen characters <code>'</code>, <code>"</code>, <span class="help-syntax-keys">&lt;`&gt;</span> perform “close” action if possible and “open” action if not.</p></li>
+<li><p>Closeopen characters single+double quotes and backtick perform “close” action if possible and “open” action if not.</p></li>
 <li><p>In all cases press <span class="help-syntax-keys">&lt;C-v&gt;</span> before special character to insert it verbatim.</p></li>
 </ul></li>
 <li><p>Completion:</p>

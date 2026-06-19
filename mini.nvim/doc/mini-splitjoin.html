@@ -512,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/Wansmer/treesj">Wansmer/treesj</a>:</p>
 <ul>
-<li><p>Operates based on tree-sitter nodes. This is more accurate in some edge cases, but requires tree-sitter parser.</p></li>
+<li><p>Operates based on tree-sitter nodes. This is more accurate in some edge cases, but REQUIRES tree-sitter parser.</p></li>
 <li><p>Doesn’t work inside comments or strings.</p></li>
 </ul></li>
 </ul>
@@ -632,7 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minisplitjoin.config-detection-excludedregions" class="level5">
 <h5 class="anchored" data-anchor-id="minisplitjoin.config-detection-excludedregions">Excluded regions</h5>
 <p><code>detect.exclude_regions</code> is an array of Lua patterns for sub-regions from which to exclude separators. Enables correct detection in case of nested brackets and quotes.</p>
-<p>Default: <code>nil</code>; inferred as <code>{ '%b()', '%b[]', '%b{}', '%b""', "%b''" }</code>. So a separator can not be inside a balanced <code>()</code>, <code>[]</code>, <code>{}</code> (representing nested argument regions) or <code>""</code>, <code>''</code> (representing strings).</p>
+<p>Default: <code>nil</code>; inferred as <code>{ '%b()', '%b[]', '%b{}', '%b""', "%b''" }</code>. So a separator CAN NOT be inside a balanced <code>()</code>, <code>[]</code>, <code>{}</code> (representing nested argument regions) or <code>""</code>, <code>''</code> (representing strings).</p>
 <p>Example: <code>exclude_regions = {}</code> will not exclude any regions. So in case of <code>f(a, { b, c })</code> it will detect both commas as argument separators.</p>
 </section>
 </section>
@@ -693,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Note:</p>
 <ul>
-<li>By design, it doesn’t detect if argument should be split, so application on arguments spanning multiple lines can lead to undesirable result.</li>
+<li>By design, it doesn’t detect if argument SHOULD be split, so application on arguments spanning multiple lines can lead to undesirable result.</li>
 </ul>
 <section id="minisplitjoin.split-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisplitjoin.split-parameters">Parameters</h4>
@@ -747,7 +747,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate common hooks</p>
 <p>This is a table with function elements. Call to actually get hook.</p>
 <p>All generated post-hooks return updated versions of their input reflecting changes done inside hook.</p>
-<p>Example for <code>lua</code> filetype (place it in ‘lua.lua’ filetype plugin, <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin">ftplugin</a>):</p>
+<p>Example for <code>lua</code> filetype (place it in <code>lua.lua</code> filetype plugin, <a href="https://neovim.io/doc/user/helptag.html?tag=ftplugin">ftplugin</a>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">gen_hook</span> <span class="op">=</span> <span class="va">MiniSplitjoin</span><span class="op">.</span><span class="va">gen_hook</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">curly</span> <span class="op">=</span> <span class="op">{</span> <span class="va">brackets</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'%b{}'</span> <span class="op">}</span> <span class="op">}</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -620,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>“On choice” action for current and marked items.</p></li>
 </ul></li>
 <li><p>Custom actions/keys can be configured globally, per buffer, or per picker.</p></li>
-<li><p>Out of the box support for ‘ignorecase’ and ‘smartcase’.</p></li>
+<li><p>Out of the box support for <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a>.</p></li>
 <li><p>Match caching to increase responsiveness on repeated prompts.</p></li>
 </ul>
 <p>Notes:</p>
@@ -641,7 +641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to show icons near the items for actual paths. Falls back to ‘nvim-tree/nvim-web-devicons’ plugin or no icons will be used.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to show icons near the items for actual paths. Falls back to <code>nvim-tree/nvim-web-devicons</code> plugin or no icons will be used.</p></li>
 <li><p><a name="minipick-cli-tools" href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools"><b>MiniPick-cli-tools</b></a> CLI tool(s) to power <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.files">MiniPick.builtin.files()</a>, <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep">MiniPick.builtin.grep()</a>, and <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live">MiniPick.builtin.grep_live()</a> built-in pickers:</p>
 <ul>
 <li><p><code>rg</code> (github.com/BurntSushi/ripgrep; enough for all three; recommended).</p></li>
@@ -670,11 +670,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The main inspiration for this module, so there is significant overlap.</p></li>
 <li><p>Has three (or two) window UI (prompt, matches, preview), while this module combines everything in one window. It allows more straightforward customization for unusual scenarios.</p></li>
 <li><p>Default match algorithm is somewhat slow, while this module should match relatively lag-free for at least 100K+ items.</p></li>
-<li><p>Has many built-in pickers, while this module has handful at its core relying on other ‘mini.nvim’ modules to provide more (see <a href="../../mini.nvim/doc/mini-extra.html#mini.extra">mini.extra</a>).</p></li>
+<li><p>Has many built-in pickers, while this module has handful at its core relying on other <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim">mini.nvim</a> modules to provide more (see <a href="../../mini.nvim/doc/mini-extra.html#mini.extra">mini.extra</a>).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/ibhagwan/fzf-lua">ibhagwan/fzf-lua</a>:</p>
 <ul>
-<li><p>Mostly same comparison as with ‘nvim-telescope/telescope.nvim’.</p></li>
+<li><p>Mostly same comparison as with <code>nvim-telescope/telescope.nvim</code>.</p></li>
 <li><p>Requires <a href="https://github.com/junegunn/fzf">junegunn/fzf</a> installed to power fuzzy matching, while this module provides built-in Lua matching.</p></li>
 </ul></li>
 </ul>
@@ -857,7 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notes:</p>
 <ul>
 <li><p>The result can be any array of <code>stritems</code> indexes, i.e.&nbsp;not necessarily a subset of input <code>inds</code>.</p></li>
-<li><p>Both <code>stritems</code> and <code>query</code> depend on values of ‘ignorecase’ and ‘smartcase’. If query shows “ignore case” properties (only ‘ignorecase’ is set or both ‘ignorecase’ / ‘smartcase’ are set and query has only lowercase characters), then <code>stritems</code> and <code>query</code> will have only lowercase characters. This allows automatic support for case insensitive matching while being faster and having simpler match function implementation.</p></li>
+<li><p>Both <code>stritems</code> and <code>query</code> depend on values of <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a>. If query shows “ignore case” properties (only <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> is set or both <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> / <a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a> are set and query has only lowercase characters), then <code>stritems</code> and <code>query</code> will have only lowercase characters. This allows automatic support for case insensitive matching while being faster and having simpler match function implementation.</p></li>
 <li><p>Writing custom <code>source.match</code> usually means also changing <a href="../../mini.nvim/doc/mini-pick.html#minipick-source.show">MiniPick-source.show</a> because it is used to highlight stritems parts actually matching the query.</p></li>
 </ul>
 <p>Example of simple “exact” <code>match()</code> preserving initial order:</p>
@@ -1049,7 +1049,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>This action is useful in at least two cases:</p>
 <ul>
-<li><p>Perform consecutive “narrowing” queries. Example: to get items that contain both “hello” and “world” exact matches (in no particular order) with default matching, type “’hello” (notice “’” at the start) followed by <code>&lt;C-Space&gt;</code> and another “’world”.</p></li>
+<li><p>Perform consecutive “narrowing” queries. Example: to get items that contain both <code>hello</code> and <code>world</code> exact matches (in no particular order) with default matching, type <code>'hello</code> (notice <code>'</code> at the start) followed by <span class="help-syntax-keys">&lt;C-Space&gt;</span> and another <code>'world</code>.</p></li>
 <li><p>Reset <code>match</code> to default. Particularly useful in <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.grep_live">MiniPick.builtin.grep_live()</a> and <a href="../../mini.nvim/doc/mini-extra.html#miniextra.pickers.lsp">MiniExtra.pickers.lsp()</a> with “workspace_symbol_live” scope.</p></li>
 </ul>
 </section>
@@ -1291,8 +1291,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minipick.config-window">Window</h4>
 <p><code>config.window</code> contains window specific configurations.</p>
 <p><code>window.config</code> defines a (parts of) default floating window config for the main picker window. This can be either a table overriding some parts or a callable returning such table. See <a href="../../mini.nvim/doc/mini-pick.html#minipick-examples">MiniPick-examples</a> for some examples.</p>
-<p><code>window.prompt_caret</code> defines how caret is displayed in window’s prompt. Default: ‘▏’.</p>
-<p><code>window.prompt_prefix</code> defines what prefix is used in window’s prompt. Default: ‘&gt;’.</p>
+<p><code>window.prompt_caret</code> defines how caret is displayed in window’s prompt. Default: <code>'▏'</code>.</p>
+<p><code>window.prompt_prefix</code> defines what prefix is used in window’s prompt. Default: <code>'&gt; '</code>.</p>
 <hr>
 </section>
 </section>
@@ -1360,13 +1360,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Forced modes:</p>
 <ul>
-<li><p>Query starts with “*“: match the rest fuzzy (without other modes).</p></li>
-<li><p>Query starts with “’”: match the rest exactly (without gaps).</p></li>
+<li><p>Query starts with <code>*</code>: match the rest fuzzy (without other modes).</p></li>
+<li><p>Query starts with <code>'</code>: match the rest exactly (without gaps).</p></li>
 </ul></li>
 <li><p>Place modes:</p>
 <ul>
-<li><p>Query starts with ‘^’: match the rest exactly at start.</p></li>
-<li><p>Query ends with ‘$’: match the rest exactly at end.</p></li>
+<li><p>Query starts with <code>^</code>: match the rest exactly at start.</p></li>
+<li><p>Query ends with <code>$</code>: match the rest exactly at end.</p></li>
 <li><p>Both modes can be used simultaneously.</p></li>
 </ul></li>
 <li><p>Grouped: query contains at least one whitespace element. Output is computed as if query is split at whitespace indexes with concatenation between them.</p></li>
@@ -1476,7 +1476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{item}</span> <code>(any)</code> Item to preview.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible values:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;n_context_lines&gt;</span> <code>(number)</code> - number of lines to load past target position when reading from disk. Useful to explore context. Default: ‘lines’ twice.</p></li>
+<li><p><span class="help-syntax-keys">&lt;n_context_lines&gt;</span> <code>(number)</code> - number of lines to load past target position when reading from disk. Useful to explore context. Default: <a href="https://neovim.io/doc/user/helptag.html?tag='lines'">‘lines’</a> twice.</p></li>
 <li><p><span class="help-syntax-keys">&lt;line_position&gt;</span> <code>(string)</code> - where in the window to show item position. One of “top”, “center”, “bottom”. Default: “top”.</p></li>
 </ul>
 <hr>
@@ -1530,7 +1530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniPick.ui_select</code>(<span class="help-syntax-special">{items}</span>, <span class="help-syntax-special">{opts}</span>, <span class="help-syntax-special">{on_choice}</span>, <span class="help-syntax-special">{start_opts}</span>)
 </p>
 <p>Select rewrite</p>
-<p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> to use ‘mini.pick’ for any “select” type of tasks. Set automatically in <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup">MiniPick.setup()</a>.</p>
+<p>Function which can be used to directly override <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">vim.ui.select()</a> to use <a href="../../mini.nvim/doc/mini-pick.html#mini.pick">mini.pick</a> for any “select” type of tasks. Set automatically in <a href="../../mini.nvim/doc/mini-pick.html#minipick.setup">MiniPick.setup()</a>.</p>
 <p>Implements required by <code>vim.ui.select()</code> signature, with some differences:</p>
 <ul>
 <li><p>Allows <code>opts.preview_item</code> that returns one of:</p>
@@ -1592,7 +1592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Pick from pattern matches</p>
 <p>Lists all pattern matches recursively in all subdirectories. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, uses fallback which utilizes <a href="https://neovim.io/doc/user/helptag.html?tag=vim.fs.dir()">vim.fs.dir()</a> and Lua pattern matches (NOT recommended in large directories).</p>
-<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command. Options ‘ignorecase’ and ‘smartcase’ are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
+<p>To customize CLI tool search, either use tool’s global configuration approach or directly <a href="../../mini.nvim/doc/mini-pick.html#minipick.builtin.cli">MiniPick.builtin.cli()</a> with specific command. Options <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a> are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
 <section id="minipick.builtin.grep-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
@@ -1613,7 +1613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Pick from pattern matches with live feedback</p>
 <p>Perform pattern matching treating prompt as pattern. Gives live feedback on which matches are found. Use <a href="../../mini.nvim/doc/mini-pick.html#minipick-actions-refine">MiniPick-actions-refine</a> to revert to regular matching. Use <span class="help-syntax-keys">&lt;C-o&gt;</span> to restrict search to files matching glob patterns. Use <span class="help-syntax-keys">&lt;C-e&gt;</span> to change pattern matching method. Tries to use one of the CLI tools to create items (see <a href="../../mini.nvim/doc/mini-pick.html#minipick-cli-tools">MiniPick-cli-tools</a>): <code>rg</code>, <code>git</code>. If none is present, error is thrown (for performance reasons).</p>
-<p>To customize search, use tool’s global configuration approach. Options ‘ignorecase’ and ‘smartcase’ are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
+<p>To customize search, use tool’s global configuration approach. Options <a href="https://neovim.io/doc/user/helptag.html?tag='ignorecase'">‘ignorecase’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='smartcase'">‘smartcase’</a> are respected via forcing appropriate flags to CLI tool (i.e.&nbsp;overriding tool’s global config).</p>
 <section id="minipick.builtin.grep_live-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.builtin.grep_live-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{local_opts}</span> <code>(table|nil)</code> Options defining behavior of this particular picker. Possible fields:</p>
@@ -1793,7 +1793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Get config of active picker</p>
 <section id="minipick.get_picker_opts-return" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_opts-return">Return</h4>
-<p><code>(table|nil)</code> Picker config (<code>start()</code>’s input <code>opts</code> table) or <code>nil</code> if no active picker.</p>
+<p><code>(table|nil)</code> Picker config (<code>opts</code> table of <a href="../../mini.nvim/doc/mini-pick.html#minipick.start">MiniPick.start()</a>) or <code>nil</code> if no active picker.</p>
 </section>
 <section id="minipick.get_picker_opts-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minipick.get_picker_opts-seealso">See also</h4>

@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Visual effects: how many steps ahead to show; dim lines with spots.</p></li>
 <li><p>Action hooks to be executed at certain events during jump.</p></li>
 <li><p>Allowed windows: current and/or not current.</p></li>
-<li><p>Allowed lines: whether to process blank or folded lines, lines before/at/after cursor line, etc. Example: user can configure to look for spots only inside current window at or after cursor line. Example: user can configure to look for word starts only inside current window at or after cursor line with ‘j’ and ‘k’ labels performing some action after jump.</p></li>
+<li><p>Allowed lines: whether to process blank or folded lines, lines before/at/after cursor line, etc. Example: user can configure to look for spots only inside current window at or after cursor line. Example: user can configure to look for word starts only inside current window at or after cursor line with <code>j</code> and <code>k</code> labels performing some action after jump.</p></li>
 </ul></li>
 <li><p>Works in Visual and Operator-pending (with dot-repeat) modes.</p></li>
 <li><p>Preconfigured ways of computing jump spots (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>):</p>
@@ -502,10 +502,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://github.com/phaazon/hop.nvim">phaazon/hop.nvim</a>:</p>
 <ul>
 <li><p>Both are fast, customizable, and extensible (user can write their own ways to define jump spots).</p></li>
-<li><p>‘hop.nvim’ visualizes all steps at once. While this module can show configurable number of steps ahead.</p></li>
-<li><p>Both have several builtin ways to specify type of jump (word start, line start, one character or query based on user input). ‘hop.nvim’ does that by exporting many targeted Neovim commands, while this module has preconfigured basic options leaving others to customization with Lua code (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>).</p></li>
-<li><p>‘hop.nvim’ computes labels (called “hints”) differently. Contrary to this module deliberately not having preference of one jump spot over another, ‘hop.nvim’ uses specialized algorithm that produces sequence of keys in a slightly biased manner: some sequences are intentionally shorter than the others (leading to fewer average keystrokes). They are put near cursor (by default) and highlighted differently. Final order of sequences is based on distance to the cursor.</p></li>
-<li><p>‘mini.jump2d’ has opinionated default algorithm of computing jump spots. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter">MiniJump2d.default_spotter()</a>.</p></li>
+<li><p><code>hop.nvim</code> visualizes all steps at once. While this module can show configurable number of steps ahead.</p></li>
+<li><p>Both have several builtin ways to specify type of jump (word start, line start, one character or query based on user input). <code>hop.nvim</code> does that by exporting many targeted Neovim commands, while this module has preconfigured basic options leaving others to customization with Lua code (see <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.builtin_opts">MiniJump2d.builtin_opts</a>).</p></li>
+<li><p><code>hop.nvim</code> computes labels (called “hints”) differently. Contrary to this module deliberately not having preference of one jump spot over another, <code>hop.nvim</code> uses specialized algorithm that produces sequence of keys in a slightly biased manner: some sequences are intentionally shorter than the others (leading to fewer average keystrokes). They are put near cursor (by default) and highlighted differently. Final order of sequences is based on distance to the cursor.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-jump2d.html#mini.jump2d">mini.jump2d</a> has opinionated default algorithm of computing jump spots. See <a href="../../mini.nvim/doc/mini-jump2d.html#minijump2d.default_spotter">MiniJump2d.default_spotter()</a>.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="module-highlightgroups">Highlight groups</h4>
 <p><a name="minijump2d-hl-groups" href="../../mini.nvim/doc/mini-jump2d.html#minijump2d-hl-groups"><b>MiniJump2d-hl-groups</b></a></p>
 <ul>
-<li><p><code>MiniJump2dSpot</code> - highlighting of jump spot’s next step. By default it uses label with highest contrast while not being too visually demanding: white on black for dark ‘background’, black on white for light. If it doesn’t suit your liking, try couple of these alternatives (or choose your own, of course):</p>
+<li><p><code>MiniJump2dSpot</code> - highlighting of jump spot’s next step. By default it uses label with highest contrast while not being too visually demanding: white on black for dark <a href="https://neovim.io/doc/user/helptag.html?tag='background'">‘background’</a>, black on white for light. If it doesn’t suit your liking, try couple of these alternatives (or choose your own, of course):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Reverse underlying colors (mostly *very* visible in any colorscheme)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_hl<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">'MiniJump2dSpot'</span><span class="op">,</span> <span class="op">{</span> <span class="fu">reverse</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -739,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minijump2d.gen_spotter.pattern-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Lua pattern. Default: <code>'[^%s%p]+'</code> which matches group of “non-whitespace non-punctuation characters” (basically a way of saying “group of alphanumeric characters” that works with multibyte characters).</p>
-<p><span class="help-syntax-special">{side}</span> <code>(string|nil)</code> Which side of pattern match should be considered as jumping spot. Should be one of ‘start’ (start of match, default), ‘end’ (inclusive end of match), or ‘none’ (match for spot is done manually inside pattern with plain <code>()</code> matching group).</p>
+<p><span class="help-syntax-special">{side}</span> <code>(string|nil)</code> Which side of pattern match should be considered as jumping spot. Should be one of <code>'start'</code> (start of match, default), <code>'end'</code> (inclusive end of match), or <code>'none'</code> (match for spot is done manually inside pattern with plain <code>()</code> matching group).</p>
 </section>
 <section id="minijump2d.gen_spotter.pattern-return" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.pattern-return">Return</h4>
@@ -770,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generate spotter for Vimscript pattern</p>
 <section id="minijump2d.gen_spotter.vimpattern-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Vimscript <a href="https://neovim.io/doc/user/helptag.html?tag=pattern">pattern</a>. Default: <code>\k\+</code> to match group of “keyword characters” (see ‘iskeyword’).</p>
+<p><span class="help-syntax-special">{pattern}</span> <code>(string|nil)</code> Vimscript <a href="https://neovim.io/doc/user/helptag.html?tag=pattern">pattern</a>. Default: <code>\k\+</code> to match group of “keyword characters” (see <a href="https://neovim.io/doc/user/helptag.html?tag='iskeyword'">‘iskeyword’</a>).</p>
 </section>
 <section id="minijump2d.gen_spotter.vimpattern-return" class="level4">
 <h4 class="anchored" data-anchor-id="minijump2d.gen_spotter.vimpattern-return">Return</h4>
@@ -882,7 +882,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniJump2d.builtin_opts.word_start</code>
 </p>
 <p>Jump to word start</p>
-<p>Respects ‘iskeyword’ when computing word start.</p>
+<p>Respects <a href="https://neovim.io/doc/user/helptag.html?tag='iskeyword'">‘iskeyword’</a> when computing word start.</p>
 <p>Defines <code>spotter</code>.</p>
 <hr>
 </section>

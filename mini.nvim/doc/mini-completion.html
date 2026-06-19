@@ -446,10 +446,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Two-stage chain completion:</p>
 <ul>
-<li><p>First stage is an LSP completion implemented via <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.completefunc_lsp">MiniCompletion.completefunc_lsp()</a>. It should be set up as either <a href="https://neovim.io/doc/user/helptag.html?tag='completefunc'">‘completefunc’</a> or <a href="https://neovim.io/doc/user/helptag.html?tag='omnifunc'">‘omnifunc’</a>. It tries to get completion items from LSP client (via ‘textDocument/completion’ request). Custom preprocessing of response items is possible (with <code>MiniCompletion.config.lsp_completion.process_items</code>), for example with fuzzy matching. By default items directly starting with completed word are kept and are sorted according to LSP specification. Supports <code>additionalTextEdits</code>, like auto-import and others (see ‘Notes’), and snippet items (best results require <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> dependency).</p></li>
+<li><p>First stage is an LSP completion implemented via <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.completefunc_lsp">MiniCompletion.completefunc_lsp()</a>. It should be set up as either <a href="https://neovim.io/doc/user/helptag.html?tag='completefunc'">‘completefunc’</a> or <a href="https://neovim.io/doc/user/helptag.html?tag='omnifunc'">‘omnifunc’</a>. It tries to get completion items from LSP client (via <code>textDocument/completion</code> request). Custom preprocessing of response items is possible (with <code>MiniCompletion.config.lsp_completion.process_items</code>), for example with fuzzy matching. By default items directly starting with completed word are kept and are sorted according to LSP specification. Supports <code>additionalTextEdits</code>, like auto-import and others (see <code># Notes</code>), and snippet items (best results require <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> dependency).</p></li>
 <li><p>If first stage is not set up or resulted into no candidates, fallback action is executed. The most tested actions are Neovim’s built-in insert completion (see <a href="https://neovim.io/doc/user/helptag.html?tag=ins-completion">ins-completion</a>).</p></li>
 </ul></li>
-<li><p>Automatic display in floating window of completion item info (via ‘completionItem/resolve’ request) and signature help (with highlighting of active parameter if LSP server provides such information). Signature help is shown if character to cursor’s left is a dedicated trigger character (configured in <code>signatureHelpProvider.triggerCharacters</code> of LSP server capabilities) and updated without delay if is currently opened. Already shown window for signature help is fixed and is closed when there is nothing to show, its text is different, or when leaving Insert mode. Scroll in either info/signature window with <code>&lt;C-f&gt;</code> / <code>&lt;C-b&gt;</code> (by default).</p></li>
+<li><p>Automatic display in floating window of completion item info (via <code>completionItem/resolve</code> request) and signature help (with highlighting of active parameter if LSP server provides such information). Signature help is shown if character to cursor’s left is a dedicated trigger character (configured in <code>signatureHelpProvider.triggerCharacters</code> of LSP server capabilities) and updated without delay if is currently opened. Already shown window for signature help is fixed and is closed when there is nothing to show, its text is different, or when leaving Insert mode. Scroll in either info/signature window with <code>&lt;C-f&gt;</code> / <code>&lt;C-b&gt;</code> (by default).</p></li>
 <li><p>Automatic actions are done after some configurable amount of delay. This reduces computational load and allows fast typing (completion and signature help) and item selection (item info)</p></li>
 <li><p>Force two-stage/fallback completion (<code>&lt;C-Space&gt;</code> / <code>&lt;A-Space&gt;</code> by default).</p></li>
 <li><p>Customizable highlighting of LSP items. Requires Neovim&gt;=0.11. Use <code>config.lsp_completion.process_items</code> to set dedicated highlight group in supported fields:</p>
@@ -461,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What it doesn’t do:</p>
 <ul>
 <li><p>Many configurable sources.</p></li>
-<li><p>Automatic mapping of <code>&lt;CR&gt;</code>, <code>&lt;Tab&gt;</code>, etc. Those tend to have highly variable user expectations. See ‘Helpful mappings’ for suggestions or use <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a> with <code>"pmenu_*"</code> built-in steps.</p></li>
+<li><p>Automatic mapping of <code>&lt;CR&gt;</code>, <code>&lt;Tab&gt;</code>, etc. Those tend to have highly variable user expectations. See <code># Helpful mappings</code> for suggestions or use <a href="../../mini.nvim/doc/mini-keymap.html#minikeymap.map_multistep">MiniKeymap.map_multistep()</a> with <code>"pmenu_*"</code> built-in steps.</p></li>
 </ul>
 <section id="module-dependencies" class="level4">
 <h4 class="anchored" data-anchor-id="module-dependencies">Dependencies</h4>
@@ -481,15 +481,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="module-suggestedoptionvalues">Suggested option values</h4>
 <p>Some options are set automatically (if not set before <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.setup">MiniCompletion.setup()</a>):</p>
 <ul>
-<li><p>‘completeopt’ is set to “menuone,noselect” for less intrusive popup. To enable fuzzy matching, manually set to “menuone,noselect,fuzzy”. Consider also adding “nosort” flag to preserve initial order when filtering.</p></li>
-<li><p>‘shortmess’ is appended with “c” flag for silent <span class="help-syntax-keys">&lt;C-n&gt;</span> fallback.</p></li>
-<li><p>‘complete’ gets removed “t” flag (if fallback action is default), as it leads to visible lags.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'">‘completeopt’</a> is set to “menuone,noselect” for less intrusive popup. To enable fuzzy matching, manually set to “menuone,noselect,fuzzy”. Consider also adding “nosort” flag to preserve initial order when filtering.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='shortmess'">‘shortmess’</a> is appended with “c” flag for silent <span class="help-syntax-keys">&lt;C-n&gt;</span> fallback.</p></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='complete'">‘complete’</a> gets removed “t” flag (if fallback action is default), as it leads to visible lags.</p></li>
 </ul>
 </section>
 <section id="module-snippets" class="level4">
 <h4 class="anchored" data-anchor-id="module-snippets">Snippets</h4>
 <p>As per LSP specification, some completion items can be supplied in the form of snippet - a template with both pre-defined text and places (called “tabstops”) for user to interactively change/add text during snippet session.</p>
-<p>In ‘mini.completion’ items that will insert snippet have “S” symbol shown in the popup (as part of <code>menu</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=complete-items">complete-items</a>). To actually insert a snippet:</p>
+<p>In <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> items that will insert snippet have “S” symbol shown in the popup (as part of <code>menu</code> in <a href="https://neovim.io/doc/user/helptag.html?tag=complete-items">complete-items</a>). To actually insert a snippet:</p>
 <ul>
 <li><p>Select an item via <span class="help-syntax-keys">&lt;C-n&gt;</span> / <span class="help-syntax-keys">&lt;C-p&gt;</span>. This will insert item’s label (usually not full snippet) first to reduce visual flicker. The full snippet text will be shown in info window if LSP server doesn’t provide its own info for an item.</p></li>
 <li><p>Press <span class="help-syntax-keys">&lt;C-y&gt;</span> (<a href="https://neovim.io/doc/user/helptag.html?tag=complete_CTRL-Y">complete_CTRL-Y</a>) or attempt inserting a non-keyword character (like <span class="help-syntax-keys">&lt;CR&gt;</span>; new character will be removed). It will clear text from previous step, set cursor, and call <code>lsp_completion.snippet_insert</code> with snippet text.</p></li>
@@ -509,16 +509,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Use in <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.setup">MiniCompletion.setup()</a> config:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">lsp_completion</span> <span class="op">=</span> <span class="op">{</span> <span class="va">source_func</span> <span class="op">=</span> <span class="st">'omnifunc'</span><span class="op">,</span> <span class="va">auto_setup</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Set ‘omnifunc’ option to exactly <code>v:lua.MiniCompletion.completefunc_lsp</code> for every client attach in an <a href="https://neovim.io/doc/user/helptag.html?tag=LspAttach">LspAttach</a> event. Like this:</p>
+<li><p>Set <a href="https://neovim.io/doc/user/helptag.html?tag='omnifunc'">‘omnifunc’</a> option to exactly <code>v:lua.MiniCompletion.completefunc_lsp</code> for every client attach in an <a href="https://neovim.io/doc/user/helptag.html?tag=LspAttach">LspAttach</a> event. Like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">on_attach</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">[</span><span class="va">args</span><span class="op">.</span><span class="va">buf</span><span class="op">].</span><span class="va">omnifunc</span> <span class="op">=</span> <span class="st">'v:lua.MiniCompletion.completefunc_lsp'</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_create_autocmd<span class="op">(</span><span class="st">'LspAttach'</span><span class="op">,</span> <span class="op">{</span> <span class="va">callback</span> <span class="op">=</span> <span class="va">on_attach</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<p>This setup is not default to allow simultaneous usage of filetype-specific ‘omnifunc’ (with manual <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-X_CTRL-O">i_CTRL-X_CTRL-O</a>) and automated LSP completion.</p></li>
+<p>This setup is not default to allow simultaneous usage of filetype-specific <a href="https://neovim.io/doc/user/helptag.html?tag='omnifunc'">‘omnifunc’</a> (with manual <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-X_CTRL-O">i_CTRL-X_CTRL-O</a>) and automated LSP completion.</p></li>
 <li><p>Use <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.get_lsp_capabilities">MiniCompletion.get_lsp_capabilities()</a> to get/set information about part of LSP specification supported by module. See its help for usability notes.</p></li>
 <li><p>Uses <code>vim.lsp.protocol.CompletionItemKind</code> map in LSP step to show a readable version of item’s kind. Modify it directly to change what is displayed. If you have <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> enabled, take a look at <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind">MiniIcons.tweak_lsp_kind()</a>.</p></li>
-<li><p>If you have trouble using custom (overridden) <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a>, disable ‘mini.completion’ for input buffer (usually based on its ‘filetype’).</p></li>
+<li><p>If you have trouble using custom (overridden) <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()">vim.ui.input()</a>, disable <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> for input buffer (usually based on its <a href="https://neovim.io/doc/user/helptag.html?tag='filetype'">‘filetype’</a>).</p></li>
 </ul>
 </section>
 <section id="module-comparisons" class="level4">
@@ -533,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><a href="https://github.com/Saghen/blink.cmp">Saghen/blink.cmp</a>:</p>
 <ul>
-<li><p>Mostly similar to ‘nvim-cmp’ comparison: provides more features at the cost of more code and config complexity, while this module is designed to provide only a handful of “enough” features while relying on Neovim’s built-in capabilities as much as possible.</p></li>
+<li><p>Mostly similar to <code>nvim-cmp</code> comparison: provides more features at the cost of more code and config complexity, while this module is designed to provide only a handful of “enough” features while relying on Neovim’s built-in capabilities as much as possible.</p></li>
 <li><p>Both provide automated signature help out of the box.</p></li>
 </ul></li>
 </ul>
@@ -547,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>imap_expr<span class="op">(</span><span class="st">'&lt;Tab&gt;'</span><span class="op">,</span>   <span class="vs">[[pumvisible() ? "\&lt;C-n&gt;" : "\&lt;Tab&gt;"]]</span><span class="op">)</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>imap_expr<span class="op">(</span><span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="vs">[[pumvisible() ? "\&lt;C-p&gt;" : "\&lt;S-Tab&gt;"]]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To get more consistent behavior of <code>&lt;CR&gt;</code>, you can use this template in your ‘init.lua’ to make customized mapping:</p>
+<p>To get more consistent behavior of <code>&lt;CR&gt;</code>, you can use this template in your <code>init.lua</code> to make customized mapping:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cn">_G</span><span class="op">.</span><span class="va">cr_action</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- If there is selected item in popup, accept it with &lt;C-y&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>complete_info<span class="op">()[</span><span class="st">'selected'</span><span class="op">]</span> <span class="op">~=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">then</span> <span class="cf">return</span> <span class="st">'</span><span class="sc">\25</span><span class="st">'</span> <span class="cf">end</span></span>
@@ -718,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Designed to be used with <a href="https://neovim.io/doc/user/helptag.html?tag=autocmd">autocmd</a>. No need to use it directly, everything is setup in <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.setup">MiniCompletion.setup()</a>.</p>
 <section id="minicompletion.stop-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicompletion.stop-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{actions}</span> <code>(table|nil)</code> Array containing any of ‘completion’, ‘info’, or ‘signature’ string. Default: array containing all of them.</p>
+<p><span class="help-syntax-special">{actions}</span> <code>(table|nil)</code> Array containing any of <code>'completion'</code>, <code>'info'</code>, or <code>'signature'</code> strings. Default: array containing all of them.</p>
 <hr>
 </section>
 </section>
@@ -764,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>'prefix'</code> - filter out items not starting with <code>base</code>, sort according to LSP specification. Use <code>filterText</code> and <code>sortText</code> respectively with fallback to <code>label</code>.</p></li>
 <li><p><code>'fuzzy'</code> - filter and sort with <a href="https://neovim.io/doc/user/helptag.html?tag=matchfuzzy()">matchfuzzy()</a> using <code>filterText</code>.</p></li>
-<li><p><code>'none'</code> - no filter and no sort. If callable, should take <code>items</code> and <code>base</code> arguments and return items array. Default: <code>'fuzzy'</code> if ‘completeopt’ contains “fuzzy”, <code>'prefix'</code> otherwise.</p></li>
+<li><p><code>'none'</code> - no filter and no sort. If callable, should take <code>items</code> and <code>base</code> arguments and return items array. Default: <code>'fuzzy'</code> if <a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'">‘completeopt’</a> contains “fuzzy”, <code>'prefix'</code> otherwise.</p></li>
 </ul></li>
 <li><p><span class="help-syntax-keys">&lt;kind_priority&gt;</span> <code>(table)</code> - map of completion item kinds (like <code>Variable</code>, <code>Snippet</code>; see string keys of <code>vim.lsp.protocol.CompletionItemKind</code>) to their numerical priority. It will be used after applying <span class="help-syntax-keys">&lt;filtersort&gt;</span> to arrange by completion item kind: items with negative priority kinds will be filtered out, the rest are sorted by decreasing priority (preserving order in case of same priority). Priorities can be any number, only matters how they compare to each other. Value 100 is used for missing kinds (i.e.&nbsp;not all can be supplied). Default: <code>{}</code> (all equal priority).</p></li>
 </ul>
@@ -792,7 +792,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> by default uses <span class="help-syntax-keys">&lt;C-l&gt;</span> / <span class="help-syntax-keys">&lt;C-h&gt;</span> to jump to next/previous tabstop. Can be adjusted in <code>mappings</code> of <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.config">MiniSnippets.config</a>.</p></li>
 <li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet">vim.snippet</a> on Neovim=0.10 requires manually created mappings for jumping between tabstops (see <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet.jump()">vim.snippet.jump()</a>). Neovim&gt;=0.11 sets them up automatically to <span class="help-syntax-keys">&lt;Tab&gt;</span> / <span class="help-syntax-keys">&lt;S-Tab&gt;</span> (if not overridden by user).</p></li>
 </ul>
-<p>End session by navigating all the way to the last tabstop. In ‘mini.snippets’:</p>
+<p>End session by navigating all the way to the last tabstop. In <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a>:</p>
 <ul>
 <li><p>Also make any text edit or exit Insert mode to end the session. This allows smoother navigation to previous tabstops in case of a lately spotted typo.</p></li>
 <li><p>Press <code>&lt;C-c&gt;</code> to force session stop.</p></li>
@@ -804,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicompletion.default_snippet_insert-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minicompletion.default_snippet_insert-seealso">See also</h4>
 <ul>
-<li><p><a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-session">MiniSnippets-session</a> if ‘mini.snippets’ is set up.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-session">MiniSnippets-session</a> if <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> is set up.</p></li>
 <li><p><a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet">vim.snippet</a> for Neovim’s built-in snippet engine.</p></li>
 </ul>
 <hr>
@@ -840,7 +840,7 @@ request. See above “Notes” section. Default: <code>true</code>.</li>
 </section>
 <section id="minicompletion.get_lsp_capabilities-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicompletion.get_lsp_capabilities-return">Return</h4>
-<p><code>(table)</code> Data about LSP capabilities supported by ‘mini.completion’. Has same structure as relevant parts of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol.make_client_capabilities()">vim.lsp.protocol.make_client_capabilities()</a>.</p>
+<p><code>(table)</code> Data about LSP capabilities supported by <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a>. Has same structure as relevant parts of <a href="https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol.make_client_capabilities()">vim.lsp.protocol.make_client_capabilities()</a>.</p>
 </section>
 <section id="minicompletion.get_lsp_capabilities-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minicompletion.get_lsp_capabilities-seealso">See also</h4>

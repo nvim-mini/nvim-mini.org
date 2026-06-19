@@ -531,22 +531,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://neovide.dev/">Neovide</a>:</p>
 <ul>
-<li><p>Neovide is a standalone GUI which has more control over its animations. While ‘mini.animate’ works inside terminal emulator (with all its limitations, like lack of pixel-size control over animations).</p></li>
-<li><p>Neovide animates cursor movement across screen, while ‘mini.animate’ - as it moves across same buffer.</p></li>
-<li><p>Neovide has fixed number of animation effects per action, while ‘mini.animate’ is fully customizable.</p></li>
-<li><p>‘mini.animate’ implements animations for window open/close, while Neovide does not.</p></li>
+<li><p>Neovide is a standalone GUI which has more control over its animations. While <a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> works inside terminal emulator (with all its limitations, like lack of pixel-size control over animations).</p></li>
+<li><p>Neovide animates cursor movement across screen, while <a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> - as it moves across same buffer.</p></li>
+<li><p>Neovide has fixed number of animation effects per action, while <a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> is fully customizable.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> implements animations for window open/close, while Neovide does not.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/edluffy/specs.nvim">edluffy/specs.nvim</a>:</p>
 <ul>
-<li>‘mini.animate’ approaches cursor movement visualization via customizable path function (uses extmarks), while ‘specs.nvim’ can customize within its own visual effects (shading and floating window resizing).</li>
+<li><a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> approaches cursor movement visualization via customizable path function (uses extmarks), while <code>specs.nvim</code> can customize within its own visual effects (shading and floating window resizing).</li>
 </ul></li>
 <li><p><a href="https://github.com/karb94/neoscroll.nvim">karb94/neoscroll.nvim</a>:</p>
 <ul>
-<li>Scroll animation is triggered only inside dedicated mappings. ‘mini.animate’ animates scroll resulting from any window view change.</li>
+<li>Scroll animation is triggered only inside dedicated mappings. <a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> animates scroll resulting from any window view change.</li>
 </ul></li>
 <li><p><a href="https://github.com/anuvyklack/windows.nvim">anuvyklack/windows.nvim</a>:</p>
 <ul>
-<li>Resize animation is done only within custom commands and mappings, while ‘mini.animate’ animates any resize with appropriate values of ‘winheight’ / ‘winwidth’ and ‘winminheight’ / ‘winminwidth’).</li>
+<li>Resize animation is done only within custom commands and mappings, while <a href="../../mini.nvim/doc/mini-animate.html#mini.animate">mini.animate</a> animates any resize with appropriate values of <a href="https://neovim.io/doc/user/helptag.html?tag='winheight'">‘winheight’</a> / <a href="https://neovim.io/doc/user/helptag.html?tag='winwidth'">‘winwidth’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='winminheight'">‘winminheight’</a> / <a href="https://neovim.io/doc/user/helptag.html?tag='winminwidth'">‘winminwidth’</a>).</li>
 </ul></li>
 </ul>
 </section>
@@ -712,12 +712,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Input value of <code>total_scroll</code> is computed taking folds into account.</p></li>
 <li><p>As scroll animation is essentially a precisely scheduled non-blocking subscrolls, this has two important interconnected consequences:</p>
 <ul>
-<li><p>If another scroll is attempted during the animation, it is done based on the currently visible window view. Example: if user presses <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-D">CTRL-D</a> and then <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-U">CTRL-U</a> when animation is half done, window will not display the previous view half of ‘scroll’ above it. This especially affects mouse wheel scrolling, as each its turn results in a new scroll for number of lines defined by ‘mousescroll’. Tweak it to your liking.</p></li>
+<li><p>If another scroll is attempted during the animation, it is done based on the CURRENTLY VISIBLE window view. Example: if user presses <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-D">CTRL-D</a> and then <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-U">CTRL-U</a> when animation is half done, window will not display the previous view half of <a href="https://neovim.io/doc/user/helptag.html?tag='scroll'">‘scroll’</a> above it. This especially affects mouse wheel scrolling, as each its turn results in a new scroll for number of lines defined by <a href="https://neovim.io/doc/user/helptag.html?tag='mousescroll'">‘mousescroll’</a>. Tweak it to your liking.</p></li>
 <li><p>It breaks the use of several relative scrolling commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after">MiniAnimate.execute_after()</a> to schedule action after reaching target window view. Example: a useful <code>nnoremap n nzvzz</code> mapping (consecutive application of <a href="https://neovim.io/doc/user/helptag.html?tag=n">n</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=zv">zv</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=zz">zz</a>) should be expressed in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">'&lt;Cmd&gt;lua vim.cmd("normal! n"); '</span> <span class="op">..</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'MiniAnimate.execute_after("scroll", "normal! zvzz")&lt;CR&gt;'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul></li>
-<li><p>Default timing might conflict with scrolling via holding a key (like <code>j</code> or <code>k</code> with ‘wrap’ enabled) due to high key repeat rate: next scroll is done before first step of current one finishes. Resolve this by not scrolling like that or by ensuring maximum value of step duration to be lower than between repeated keys: set timing like <code>function(_, n) return math.min(250/n, 10) end</code> or use timing with constant step duration.</p></li>
+<li><p>Default timing might conflict with scrolling via holding a key (like <code>j</code> or <code>k</code> with <a href="https://neovim.io/doc/user/helptag.html?tag='wrap'">‘wrap’</a> enabled) due to high key repeat rate: next scroll is done before first step of current one finishes. Resolve this by not scrolling like that or by ensuring maximum value of step duration to be lower than between repeated keys: set timing like <code>function(_, n) return math.min(250/n, 10) end</code> or use timing with constant step duration.</p></li>
 </ul>
 <p>Configuration example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">animate</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.animate'</span><span class="op">)</span></span>
@@ -755,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>As resize animation is essentially a precisely scheduled non-blocking subresizes, this has two important interconnected consequences:</p>
 <ul>
-<li><p>If another resize is attempted during the animation, it is done based on the currently visible window sizes. This might affect relative resizing.</p></li>
+<li><p>If another resize is attempted during the animation, it is done based on the CURRENTLY VISIBLE window sizes. This might affect relative resizing.</p></li>
 <li><p>It breaks the use of several relative resizing commands in the same command. Use <a href="../../mini.nvim/doc/mini-animate.html#minianimate.execute_after">MiniAnimate.execute_after()</a> to schedule action after reaching target window sizes.</p></li>
 </ul></li>
 </ul>
@@ -798,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<p>The <code>winblend</code> option is similar to <code>timing</code> option: it is a callable which, given current and total step numbers, returns value of floating window’s ‘winblend’ option. Note, that it is called for current step (so starts from 0), as opposed to <code>timing</code> which is called before step. Example:</p>
+<p>The <code>winblend</code> option is similar to <code>timing</code> option: it is a callable which, given current and total step numbers, returns value of floating window’s <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a> option. Note, that it is called for current step (so starts from 0), as opposed to <code>timing</code> which is called before step. Example:</p>
 <ul>
 <li>Function <code>function(s, n) return 80 + 20 * s / n end</code> results in linear transition from <code>winblend</code> value of 80 to 100.</li>
 </ul>
@@ -919,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="minianimate.gen_timing-seealso" class="level4">
 <h4 class="anchored" data-anchor-id="minianimate.gen_timing-seealso">See also</h4>
-<p><a href="../../mini.nvim/doc/mini-indentscope.html#miniindentscope.gen_animation">MiniIndentscope.gen_animation</a> for similar concept in ‘mini.indentscope’.</p>
+<p><a href="../../mini.nvim/doc/mini-indentscope.html#miniindentscope.gen_animation">MiniIndentscope.gen_animation</a> for similar concept in <a href="../../mini.nvim/doc/mini-indentscope.html#mini.indentscope">mini.indentscope</a>.</p>
 <hr>
 </section>
 </section>
@@ -1343,8 +1343,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minianimate.gen_winblend.linear-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options that control generator. Possible keys:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;from&gt;</span> <code>(number)</code> - initial value of ‘winblend’.</p></li>
-<li><p><span class="help-syntax-keys">&lt;to&gt;</span> <code>(number)</code> - final value of ‘winblend’.</p></li>
+<li><p><span class="help-syntax-keys">&lt;from&gt;</span> <code>(number)</code> - initial value of <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to&gt;</span> <code>(number)</code> - final value of <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a>.</p></li>
 </ul>
 </section>
 <section id="minianimate.gen_winblend.linear-return" class="level4">

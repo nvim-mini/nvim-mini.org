@@ -478,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Builtin search (as result of <a href="https://neovim.io/doc/user/helptag.html?tag=/">/</a> and similar).</p></li>
 <li><p>Builtin diagnostic (taken from <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get()">vim.diagnostic.get()</a>).</p></li>
 <li><p>General diff hunks provided by <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a>.</p></li>
-<li><p>Hunks computed provided by ‘lewis6991/gitsigns.nvim’. For more details see <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration">MiniMap.gen_integration</a>.</p></li>
+<li><p>Hunks computed provided by <code>lewis6991/gitsigns.nvim</code>. For more details see <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_integration">MiniMap.gen_integration</a>.</p></li>
 </ul></li>
 <li><p>Focus on map window to quickly browse current (source) buffer. Moving inside map window updates cursor position in source window enabling fast and targeted buffer exploration. To focus back, hit <code>&lt;CR&gt;</code> to accept current explored position or <code>&lt;Esc&gt;</code> to go back to original position. See <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a>.</p></li>
 <li><p>Customizable via <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a> and/or <code>opts</code> argument of <a href="../../mini.nvim/doc/mini-map.html#minimap.open">MiniMap.open()</a> or <a href="../../mini.nvim/doc/mini-map.html#minimap.refresh">MiniMap.refresh()</a>:</p>
@@ -486,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Encoding symbols used to display binary information of different resolution (default is 3x2). There are pre-built generators for different basic character families and resolutions. See <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols">MiniMap.gen_encode_symbols</a>.</p></li>
 <li><p>Scrollbar symbols, separate for line and view. Can have any width (even zero, which virtually disables scrollbar).</p></li>
 <li><p>Integrations producing map line highlights.</p></li>
-<li><p>Window options: side (left/right), width, ‘winblend’, and more.</p></li>
+<li><p>Window options: side (left/right), width, <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a>, and more.</p></li>
 </ul></li>
 </ul>
 <p>What it doesn’t do:</p>
@@ -523,31 +523,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://github.com/wfxr/minimap.vim">wfxr/minimap.vim</a>:</p>
 <ul>
-<li><p>‘mini.map’ doesn’t have dependencies while being as fast as written in Rust dependency of ‘minimap.vim’.</p></li>
-<li><p>‘mini.map’ uses floating window, while ‘minimap.vim’ uses regular one.</p></li>
-<li><p>‘mini.map’ provides slightly different visual interface with scrollbar and integration counts.</p></li>
-<li><p>‘mini.map’ allows encode symbols customization, ‘minimap.vim’ does not.</p></li>
-<li><p>‘mini.map’ allows extending highlight integrations, while only builtin search and git status are supported in ‘minimap.vim’.</p></li>
-<li><p>‘mini.map’ updates in asynchronous (non-blocking) fashion, ‘minimap.vim’ does not.</p></li>
-<li><p>‘mini.map’ can be used as a pure scrollbar, ‘minimap.vim’ can not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> doesn’t have dependencies while being as fast as written in Rust dependency of <code>minimap.vim</code>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> uses floating window, while <code>minimap.vim</code> uses regular one.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> provides slightly different visual interface with scrollbar and integration counts.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> allows encode symbols customization, <code>minimap.vim</code> does not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> allows extending highlight integrations, while only builtin search and git status are supported in <code>minimap.vim</code>.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> updates in asynchronous (non-blocking) fashion, <code>minimap.vim</code> does not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> can be used as a pure scrollbar, <code>minimap.vim</code> can not.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/dstein64/nvim-scrollview">dstein64/nvim-scrollview</a>:</p>
 <ul>
-<li><p>‘mini.map’ has two-part scrollbar showing current line and view (with variable height), while ‘nvim-scrollview’ shows only current view (with fixed height).</p></li>
-<li><p>‘nvim-scrollview’ respects folds, i.e.&nbsp;shows view of visible lines, while ‘mini.map’ by design always shows view based on actual lines.</p></li>
-<li><p>‘nvim-scrollview’ creates scrollbar which can be dragged with mouse, while ‘mini.nvim’ does not, by design (use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a>).</p></li>
-<li><p>‘mini.map’ can show buffer outline, while ‘nvim-scrollview’ can not.</p></li>
-<li><p>‘mini.map’ can show highlight integrations, while ‘nvim-scrollview’ can not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> has two-part scrollbar showing current line and view (with variable height), while <code>nvim-scrollview</code> shows only current view (with fixed height).</p></li>
+<li><p><code>nvim-scrollview</code> respects folds, i.e.&nbsp;shows view of visible lines, while <a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> by design always shows view based on actual lines.</p></li>
+<li><p><code>nvim-scrollview</code> creates scrollbar which can be dragged with mouse, while <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim">mini.nvim</a> does not, by design (use <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a>).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> can show buffer outline, while <code>nvim-scrollview</code> can not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> can show highlight integrations, while <code>nvim-scrollview</code> can not.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/petertriho/nvim-scrollbar">petertriho/nvim-scrollbar</a>:</p>
 <ul>
-<li><p>‘mini.map’ has two-part scrollbar showing current line and view (with variable height), while ‘nvim-scrollbar’ shows only current view.</p></li>
-<li><p>‘mini.map’ can show buffer outline, while ‘nvim-scrollbar’ can not.</p></li>
-<li><p>‘mini.map’ has fully extendable highlight integrations, while ‘nvim-scrollbar’ only supports diagnostic and search (with dependency).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> has two-part scrollbar showing current line and view (with variable height), while <code>nvim-scrollbar</code> shows only current view.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> can show buffer outline, while <code>nvim-scrollbar</code> can not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a> has fully extendable highlight integrations, while <code>nvim-scrollbar</code> only supports diagnostic and search (with dependency).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/lewis6991/satellite.nvim">lewis6991/satellite.nvim</a>:</p>
 <ul>
-<li>Almost the same differences as with ‘dstein64/nvim-scrollview’, except ‘satellite.nvim’ can display some set of integration highlights.</li>
+<li>Almost the same differences as with <code>dstein64/nvim-scrollview</code>, except <code>satellite.nvim</code> can display some set of integration highlights.</li>
 </ul></li>
 </ul>
 </section>
@@ -668,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Numerical fields 1, 2, …, 2^(row_resolution * col_resolution). Each symbol represents a <code>(row_resolution, col_resolution)</code> boolean mask (<code>true</code> for non-whitespace, <code>false</code> for whitespace), created as (reversed) binary digit: <code>true</code> as 1; <code>false</code> as 0. Traversing left-right, top-bottom (top-left is lowest bit, bottom-right - highest). So first symbol encodes a complete whitespace, last - complete non-whitespace.</p></li>
 </ul>
 <p>If <code>nil</code> (default), output of <a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block">MiniMap.gen_encode_symbols.block()</a> with <code>'3x2'</code> identifier is used.</p>
-<p>Example: { ‘1’, ‘2’, ‘3’, ‘4’, resolution = { row = 1, col = 2 } }. This will encode two characters in each input row. So a string <code>'  a  aaa'</code> will be encoded as <code>'1234'</code>.</p>
+<p>Example: <code>{ '1', '2', '3', '4', resolution = { row = 1, col = 2 } }</code>. This will encode two characters in each input row. So a string <code>'  a  aaa'</code> will be encoded as <code>'1234'</code>.</p>
 <p>There are pre-built generators of encode symbols:</p>
 <ul>
 <li><p><a href="../../mini.nvim/doc/mini-map.html#minimap.gen_encode_symbols.block">MiniMap.gen_encode_symbols.block()</a></p></li>
@@ -682,16 +682,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If supplied window width is small enough so that only (part of) of scrollbar can be shown, it is called a “pure scrollbar”. The behavior differs slightly from normal map window. See “Pure scrollbar config” later section.</p>
 <p>Some suggestions for scrollbar symbols:</p>
 <ul>
-<li><p>View-line pairs: ‘▒’ and ‘█’.</p></li>
-<li><p>Line - ‘🮚’, ‘▶’.</p></li>
-<li><p>View - ‘╎’, ‘┋’, ‘┋’.</p></li>
+<li><p>View-line pairs: <code>'▒'</code> and <code>'█'</code>.</p></li>
+<li><p>Line - <code>'🮚'</code>, <code>'▶'</code>.</p></li>
+<li><p>View - <code>'╎'</code>, <code>'┋'</code>, <code>'┋'</code>.</p></li>
 </ul>
 </section>
 </section>
 <section id="minimap.config-integrations" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.config-integrations">Integrations</h4>
 <p>Option <code>config.integrations</code> is an array of integrations. Each one is used to define map line highlights representing some important lines in source buffer. If <code>nil</code> (default), no integrations are used.</p>
-<p>Each integration should be a callable returning an array with data about source buffer lines it wants to highlight. Each array element should be a table with <span class="help-syntax-keys">&lt;line&gt;</span> (source buffer line number) and <span class="help-syntax-keys">&lt;hl_group&gt;</span> (string with highlight group name) keys. Note: line number outside of source buffer count will be converted to a nearest appropriate one.</p>
+<p>Each integration should be a callable returning an array with data about SOURCE BUFFER lines it wants to highlight. Each array element should be a table with <span class="help-syntax-keys">&lt;line&gt;</span> (source buffer line number) and <span class="help-syntax-keys">&lt;hl_group&gt;</span> (string with highlight group name) keys. Note: line number outside of source buffer count will be converted to a nearest appropriate one.</p>
 <p>Example output of single integration:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">line</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">hl_group</span> <span class="op">=</span> <span class="st">'Search'</span> <span class="op">},</span></span>
@@ -716,9 +716,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Option <code>config.window</code> defines some properties of map window.</p>
 <p><code>window.focusable</code> - whether to allow focusing on map window with other methods beside <a href="../../mini.nvim/doc/mini-map.html#minimap.toggle_focus">MiniMap.toggle_focus()</a> (like <a href="https://neovim.io/doc/user/helptag.html?tag=:wincmd">:wincmd</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W">CTRL-W</a>, or mouse). Default: <code>false</code>.</p>
 <p><code>window.side</code> - which side to stick map window: <code>'left'</code> or <code>'right'</code> (default).</p>
-<p><code>window.show_integration_count</code> - whether to show integration count between scrollbar and encoded lines. Integration count is a number of integration outputs which were converted to same map line. When <code>true</code>, adds single cell column with numbers from 2 to 9 and character ‘+’ indicating count greater than 9. Count 1 is not shown, because it is redundant to highlighted map line. Default: <code>true</code>.</p>
+<p><code>window.show_integration_count</code> - whether to show integration count between scrollbar and encoded lines. Integration count is a number of integration outputs which were converted to same map line. When <code>true</code>, adds single cell column with numbers from 2 to 9 and character <code>+</code> indicating count greater than 9. Count 1 is not shown, because it is redundant to highlighted map line. Default: <code>true</code>.</p>
 <p><code>window.width</code> - width of floating window, including scrollbar and integration count column. Default: 10.</p>
-<p><code>window.winblend</code> - value of ‘winblend’ of floating window. Value 0 makes it completely non-transparent, 100 - completely transparent (content is still visible, but with slightly different highlights).</p>
+<p><code>window.winblend</code> - value of <a href="https://neovim.io/doc/user/helptag.html?tag='winblend'">‘winblend’</a> of floating window. Value 0 makes it completely non-transparent, 100 - completely transparent (content is still visible, but with slightly different highlights).</p>
 <p><code>window.zindex</code> - z-index of floating window. Default: 10.</p>
 </section>
 <section id="minimap.config-purescrollbarconfig" class="level4">
@@ -770,11 +770,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each encode symbol is assumed to have resolution within which it can convey binary information. For example, resolution <code>3x2</code> (row resolution 3, column - 2) means that each symbol can encode 3 rows and 2 columns of binary data. Here it is used to encode non-whitespace mask. See more in “Encode symbols” section of <a href="../../mini.nvim/doc/mini-map.html#minimap.config">MiniMap.config</a>.</p>
 <p>Encoding has the following steps:</p>
 <ul>
-<li><p>Convert strings to boolean mask: 2d boolean array with each row representing a string. Element in every row subarray is <code>true</code> if respective (possibly multibyte) character in a string is not a whitespace, <code>false</code> otherwise. Note: tabs are expanded into ‘tabstop’ spaces.</p></li>
+<li><p>Convert strings to boolean mask: 2d boolean array with each row representing a string. Element in every row subarray is <code>true</code> if respective (possibly multibyte) character in a string is not a whitespace, <code>false</code> otherwise. Note: tabs are expanded into <a href="https://neovim.io/doc/user/helptag.html?tag='tabstop'">‘tabstop’</a> spaces.</p></li>
 <li><p>Rescale to appropriate dimensions:</p>
 <ul>
 <li><p>Each output dimension is just enough to encode all input strings, but not more than supplied dimensions (<code>opts.n_rows * resolution.row</code> and <code>opts.n_cols * resolution.col</code> respectively).</p></li>
-<li><p>If input dimensions are too big to fit inside output, perform grid downscaling with loss of information. Input boolean mask is divided into 2d-bins with as equal as possible dimensions. Each bin then converted into single boolean value: <code>true</code> if bin contains at least one <code>true</code> element, <code>false</code> otherwise. This leads to a whitespace output meaning that all entries in a bin are whitespace, while non-whitespace output means that some entry is non-whitespace.</p></li>
+<li><p>If input dimensions are too big to fit inside output, perform grid downscaling with loss of information. Input boolean mask is divided into 2d-bins with as equal as possible dimensions. Each bin then converted into single boolean value: <code>true</code> if bin contains at least one <code>true</code> element, <code>false</code> otherwise. This leads to a whitespace output meaning that ALL entries in a bin are whitespace, while non-whitespace output means that SOME entry is non-whitespace.</p></li>
 </ul></li>
 <li><p>Convert boolean mask to symbol strings:</p>
 <ul>
@@ -783,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Example:</p>
-<p>Assume the output should have 3 rows of symbols each with width 2. Encode symbols are ’ ‘,’▌‘,’▐‘,’█’ with <code>1x2</code> resolution.</p>
+<p>Assume the output should have 3 rows of symbols each with width 2. Encode symbols are <code>' '</code>, <code>'▌'</code>, <code>'▐'</code>, <code>'█'</code> with <code>1x2</code> resolution.</p>
 <p>Assume input strings:</p>
 <pre><code>aaaaa
  b b
@@ -939,10 +939,10 @@ ttff</code></pre></li>
 <code>MiniMap.gen_encode_symbols.block</code>(<span class="help-syntax-special">{id}</span>)
 </p>
 <p>Generate block encode symbols</p>
-<p>Outputs use solid block to encode binary data. Example: ‘🬗’, ‘▟’, ‘█’.</p>
+<p>Outputs use solid block to encode binary data. Example: <code>'🬗'</code>, <code>'▟'</code>, <code>'█'</code>.</p>
 <section id="minimap.gen_encode_symbols.block-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_encode_symbols.block-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{id}</span> <code>(string)</code> Resolution identifier. Available values: <code>'1x2'</code>, <code>'2x1'</code>, <code>'2x2'</code>, <code>'3x2'</code> (default in ‘mini.map’).</p>
+<p><span class="help-syntax-special">{id}</span> <code>(string)</code> Resolution identifier. Available values: <code>'1x2'</code>, <code>'2x1'</code>, <code>'2x2'</code>, <code>'3x2'</code> (default in <a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a>).</p>
 <hr>
 </section>
 </section>
@@ -952,7 +952,7 @@ ttff</code></pre></li>
 <code>MiniMap.gen_encode_symbols.dot</code>(<span class="help-syntax-special">{id}</span>)
 </p>
 <p>Generate dot encode symbols</p>
-<p>Outputs use dots to encode binary data. Example: ‘⡪’, ‘⣼’, ‘⣿’.</p>
+<p>Outputs use dots to encode binary data. Example: <code>'⡪'</code>, <code>'⣼'</code>, <code>'⣿'</code>.</p>
 <section id="minimap.gen_encode_symbols.dot-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_encode_symbols.dot-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{id}</span> <code>(string)</code> Resolution identifier. Available values: <code>'4x2'</code>, <code>'3x2'</code>.</p>
@@ -965,7 +965,7 @@ ttff</code></pre></li>
 <code>MiniMap.gen_encode_symbols.shade</code>(<span class="help-syntax-special">{id}</span>)
 </p>
 <p>Generate shade encode symbols</p>
-<p>Outputs use whole cell shades to encode binary data. They use same set of characters (‘░’, ‘▒’, ‘▒’, ’▓), but with different resolution.</p>
+<p>Outputs use whole cell shades to encode binary data. They use same set of characters (<code>'░'</code>, <code>'▒'</code>, <code>'▒'</code>, <code>'▓'</code>), but with different resolution.</p>
 <section id="minimap.gen_encode_symbols.shade-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_encode_symbols.shade-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{id}</span> <code>(string)</code> Resolution identifier. Available values: <code>'1x2'</code>, <code>'2x1'</code>.</p>
@@ -1045,7 +1045,7 @@ ttff</code></pre></li>
 <code>MiniMap.gen_integration.diff</code>(<span class="help-syntax-special">{hl_groups}</span>)
 </p>
 <p>General diff hunks from <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a></p>
-<p>Highlight lines which are part of current diff. Requires ‘mini.diff’ as dependency.</p>
+<p>Highlight lines which are part of current diff. Requires <a href="../../mini.nvim/doc/mini-diff.html#mini.diff">mini.diff</a> as dependency.</p>
 <section id="minimap.gen_integration.diff-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_integration.diff-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{hl_groups}</span> <code>(table|nil)</code> Table defining highlight groups. If <code>nil</code> (not supplied), this status is not highlighted. Can have the following fields:</p>
@@ -1062,7 +1062,7 @@ ttff</code></pre></li>
 <p align="center">
 <code>MiniMap.gen_integration.gitsigns</code>(<span class="help-syntax-special">{hl_groups}</span>)
 </p>
-<p>Hunks from ‘lewis6991/gitsigns.nvim’</p>
+<p>Hunks from <code>lewis6991/gitsigns.nvim</code></p>
 <p>Highlight lines which have non-trivial Git status. Requires <a href="https://github.com/lewis6991/gitsigns.nvim">lewis6991/gitsigns.nvim</a>.</p>
 <section id="minimap.gen_integration.gitsigns-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minimap.gen_integration.gitsigns-parameters">Parameters</h4>

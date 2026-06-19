@@ -562,30 +562,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://github.com/L3MON4D3/LuaSnip">L3MON4D3/LuaSnip</a>:</p>
 <ul>
-<li><p>Both contain functionality to load snippets from file system. This module provides several common loader generators while ‘LuaSnip’ contains a more elaborate loading setup. Also both require explicit opt-in for which snippets to load.</p></li>
-<li><p>Both support LSP snippet format. ‘LuaSnip’ also provides own more elaborate snippet format which is out of scope for this module.</p></li>
-<li><p>‘LuaSnip’ can autoexpand snippets, while this module always requires an explicit user action to expand (by design).</p></li>
+<li><p>Both contain functionality to load snippets from file system. This module provides several common loader generators while <code>LuaSnip</code> contains a more elaborate loading setup. Also both require explicit opt-in for which snippets to load.</p></li>
+<li><p>Both support LSP snippet format. <code>LuaSnip</code> also provides own more elaborate snippet format which is out of scope for this module.</p></li>
+<li><p><code>LuaSnip</code> can autoexpand snippets, while this module always requires an explicit user action to expand (by design).</p></li>
 <li><p>Both contain snippet expand functionality which differs in some aspects:</p>
 <ul>
-<li><p>‘LuaSnip’ has an elaborate dynamic tabstop visualization config. This module provides a handful of dedicated highlight groups.</p></li>
+<li><p><code>LuaSnip</code> has an elaborate dynamic tabstop visualization config. This module provides a handful of dedicated highlight groups.</p></li>
 <li><p>This module provides configurable visualization of empty tabstops.</p></li>
-<li><p>‘LusSnip’ implements nested sessions by essentially merging them into one. This module treats each nested session separately (to not visually overload) while storing them in stack (first in last out).</p></li>
-<li><p>‘LuaSnip’ uses <a href="https://neovim.io/doc/user/helptag.html?tag=Select-mode">Select-mode</a> to power replacing current tabstop, while this module always stays in <a href="https://neovim.io/doc/user/helptag.html?tag=Insert-mode">Insert-mode</a>. This enables easier mapping understanding and more targeted highlighting.</p></li>
-<li><p>This module implements jumping which wraps after final tabstop for more flexible navigation (enhanced with by a more flexible autostopping rules), while ‘LuaSnip’ autostops session once jumping reached the final tabstop.</p></li>
+<li><p><code>LuaSnip</code> implements nested sessions by essentially merging them into one. This module treats each nested session separately (to not visually overload) while storing them in stack (first in last out).</p></li>
+<li><p><code>LuaSnip</code> uses <a href="https://neovim.io/doc/user/helptag.html?tag=Select-mode">Select-mode</a> to power replacing current tabstop, while this module always stays in <a href="https://neovim.io/doc/user/helptag.html?tag=Insert-mode">Insert-mode</a>. This enables easier mapping understanding and more targeted highlighting.</p></li>
+<li><p>This module implements jumping which wraps after final tabstop for more flexible navigation (enhanced with by a more flexible autostopping rules), while <code>LuaSnip</code> autostops session once jumping reached the final tabstop.</p></li>
 </ul></li>
 </ul></li>
 <li><p>Built-in <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet">vim.snippet</a> (on Neovim&gt;=0.10):</p>
 <ul>
 <li><p>Does not contain functionality to load or match snippets (by design), while this module does.</p></li>
-<li><p>Both contain expand functionality based on LSP snippet format. Differences in how snippet sessions are handled are similar to comparison with ‘LuaSnip’.</p></li>
+<li><p>Both contain expand functionality based on LSP snippet format. Differences in how snippet sessions are handled are similar to comparison with <code>LuaSnip</code>.</p></li>
 </ul></li>
 <li><p><a href="https://github.com/rafamadriz/friendly-snippets">rafamadriz/friendly-snippets</a>:</p>
 <ul>
-<li>A snippet collection plugin without features to manage or expand them. This module is designed with ‘friendly-snippets’ compatibility in mind.</li>
+<li>A snippet collection plugin without features to manage or expand them. This module is designed with <code>friendly-snippets</code> compatibility in mind.</li>
 </ul></li>
 <li><p><a href="https://github.com/abeldekat/cmp-mini-snippets">abeldekat/cmp-mini-snippets</a>:</p>
 <ul>
-<li>A source for <a href="https://github.com/hrsh7th/nvim-cmp">hrsh7th/nvim-cmp</a> that integrates ‘mini.snippets’.</li>
+<li>A source for <a href="https://github.com/hrsh7th/nvim-cmp">hrsh7th/nvim-cmp</a> that integrates <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a>.</li>
 </ul></li>
 </ul>
 </section>
@@ -758,11 +758,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Stop session manually by pressing <span class="help-syntax-keys">&lt;C-c&gt;</span> or make it stop automatically: if final tabstop is current either make a text edit or exit to Normal mode. If snippet doesn’t explicitly define final tabstop, it is added at the end of the snippet.</p></li>
 </ul>
 <p>For more details about snippet session see <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-session">MiniSnippets-session</a>.</p>
-<p>To select and insert snippets via completion engine (that supports LSP completion; like <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-autocompletion">lsp-autocompletion</a>), call <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.start_lsp_server">MiniSnippets.start_lsp_server()</a> after <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.setup">MiniSnippets.setup()</a>. This sets up an LSP server that matches and provides snippets loaded with ‘mini.snippets’. To match with completion engine, use <code>start_lsp_server({ match = false })</code>.</p>
+<p>To select and insert snippets via completion engine (that supports LSP completion; like <a href="../../mini.nvim/doc/mini-completion.html#mini.completion">mini.completion</a> or <a href="https://neovim.io/doc/user/helptag.html?tag=lsp-autocompletion">lsp-autocompletion</a>), call <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.start_lsp_server">MiniSnippets.start_lsp_server()</a> after <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.setup">MiniSnippets.setup()</a>. This sets up an LSP server that matches and provides snippets loaded with <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a>. To match with completion engine, use <code>start_lsp_server({ match = false })</code>.</p>
 </section>
 <section id="minisnippets-overview-management" class="level4">
 <h4 class="anchored" data-anchor-id="minisnippets-overview-management">Management</h4>
-<p>Out of the box ‘mini.snippets’ doesn’t load any snippets, it should be done explicitly inside <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.setup">MiniSnippets.setup()</a> following <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.config">MiniSnippets.config</a>.</p>
+<p>Out of the box <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> doesn’t load any snippets, it should be done explicitly inside <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.setup">MiniSnippets.setup()</a> following <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.config">MiniSnippets.config</a>.</p>
 <p>The suggested approach to snippet management is to create dedicated files with snippet data and load them through function loaders in <code>config.snippets</code>. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a> for basic (yet capable) snippet management config.</p>
 <section id="minisnippets-overview-management-filespecification" class="level5">
 <h5 class="anchored" data-anchor-id="minisnippets-overview-management-filespecification">File specification</h5>
@@ -797,7 +797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minisnippets-overview-management-generaladvice" class="level5">
 <h5 class="anchored" data-anchor-id="minisnippets-overview-management-generaladvice">General advice</h5>
 <ul>
-<li><p>Put files in “snippets” subdirectory of any path in ‘runtimepath’ (like ‘<code>$XDG_CONFIG_HOME</code>/nvim/snippets/global.json’). This is compatible with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> and example from <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
+<li><p>Put files in “snippets” subdirectory of any path in <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> (like <code>$XDG_CONFIG_HOME/nvim/snippets/global.json</code>). This is compatible with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> and example from <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
 <li><p>Prefer <code>*.json</code> files with dict-like content if you want more cross platform setup. Otherwise use <code>*.lua</code> files with array-like content.</p></li>
 <li><p>To implement “dynamic snippet” that changes data (usually <span class="help-syntax-keys">&lt;body&gt;</span>) depending on the context, use <code>*.lua</code> file with function returning snippet data. It should be an element in the output table (dict or array like).</p></li>
 </ul>
@@ -807,7 +807,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minisnippets-overview-demo">Demo</h4>
 <p>The best way to grasp the design of snippet management and expansion is to try them out yourself. Here are steps for a basic demo:</p>
 <ul>
-<li><p>Create ‘snippets/global.json’ file in the config directory with the content:</p>
+<li><p>Create <code>snippets/global.json</code> file in the config directory with the content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Basic"</span><span class="fu">:</span>        <span class="fu">{</span> <span class="dt">"prefix"</span><span class="fu">:</span> <span class="st">"ba"</span><span class="fu">,</span> <span class="dt">"body"</span><span class="fu">:</span> <span class="st">"T1=$1 T2=$2 T0=$0"</span>         <span class="fu">},</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Placeholders"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"prefix"</span><span class="fu">:</span> <span class="st">"pl"</span><span class="fu">,</span> <span class="dt">"body"</span><span class="fu">:</span> <span class="st">"T1=${1:aa}</span><span class="ch">\n</span><span class="st">T2=${2:&lt;$1&gt;}"</span>  <span class="fu">},</span></span>
@@ -819,7 +819,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"body"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"T1=${1:$RANDOM}"</span><span class="ot">,</span> <span class="st">"T3=${3:$1_${2:$1}}"</span><span class="ot">,</span> <span class="st">"T2=$2"</span> <span class="ot">]</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Set up ‘mini.snippets’ as recommended in <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
+<li><p>Set up <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> as recommended in <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets-examples">MiniSnippets-examples</a>.</p></li>
 <li><p>Open Neovim. Type each snippet prefix and press <span class="help-syntax-keys">&lt;C-j&gt;</span> (even if there is still active session). Explore from there.</p></li>
 </ul>
 <hr>
@@ -838,12 +838,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">gen_loader</span><span class="op">.</span>from_file<span class="op">(</span><span class="st">'~/.config/nvim/snippets/global.json'</span><span class="op">),</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Load snippets based on current language by reading files from</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- "snippets/" subdirectories from 'runtimepath' directories.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- `snippets/` subdirectories from 'runtimepath' directories.</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">gen_loader</span><span class="op">.</span>from_lang<span class="op">(),</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This setup allows having single file with custom “global” snippets (will be present in every buffer) and snippets which will be loaded based on the local language (see <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_lang">MiniSnippets.gen_loader.from_lang()</a>).</p>
-<p>Create language snippets manually (by creating and populating ‘<code>$XDG_CONFIG_HOME</code>/nvim/snippets/lua.json’ file) or by installing dedicated snippet collection plugin (like ‘rafamadriz/friendly-snippets’).</p>
+<p>Create language snippets manually (by creating and populating <code>$XDG_CONFIG_HOME/nvim/snippets/lua.json</code> file) or by installing dedicated snippet collection plugin (like <code>rafamadriz/friendly-snippets</code>).</p>
 <p>Note: all built-in loaders and <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.read_file">MiniSnippets.read_file()</a> cache their output by default. It means that after a file is first read, changing it won’t have effect during current Neovim session. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader">MiniSnippets.gen_loader</a> about how to reset cache if necessary.</p>
 </section>
 <section id="minisnippets-examples-selectfromallavailablesnippetsincurrentcontext" class="level4">
@@ -1017,7 +1017,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> <span class="va">prefix</span><span class="op">=</span><span class="st">'cdate'</span><span class="op">,</span> <span class="va">body</span><span class="op">=</span><span class="st">'$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE'</span> <span class="op">},</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Load snippets based on current language by reading files from</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- "snippets/" subdirectories from 'runtimepath' directories.</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- `snippets/` subdirectories from 'runtimepath' directories.</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">gen_loader</span><span class="op">.</span>from_lang<span class="op">(),</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Load project-local snippets with `gen_loader.from_file()`</span></span>
@@ -1142,7 +1142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSnippets.gen_loader.from_lang</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Generate language loader</p>
-<p>Output loads files from “snippets/” subdirectories of ‘runtimepath’ matching configured language patterns. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> for runtime loading details.</p>
+<p>Output loads files from <code>snippets/</code> subdirectories of <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> matching configured language patterns. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a> for runtime loading details.</p>
 <p>Language is taken from <span class="help-syntax-keys">&lt;lang&gt;</span> field (if present with string value) of <code>context</code> argument used in loader calls during “prepare” stage. This is compatible with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.default_prepare">MiniSnippets.default_prepare()</a> and most snippet collection plugins.</p>
 <section id="minisnippets.gen_loader.from_lang-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minisnippets.gen_loader.from_lang-parameters">Parameters</h4>
@@ -1151,8 +1151,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;lang_patterns&gt;</span> <code>(table)</code> - map from language to array of runtime patterns used to find snippet files, as in <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.gen_loader.from_runtime">MiniSnippets.gen_loader.from_runtime()</a>. Patterns will be processed in order. With <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.default_prepare">MiniSnippets.default_prepare()</a> it means if snippets have same prefix, data from later patterns is used. To interactively check the current language with default context, execute <code>:=MiniSnippets.default_prepare({})</code> and see data in the second table.</p>
 <p>Default pattern array (for non-empty language) is constructed as to read <code>*.json</code> and <code>*.lua</code> files that are:</p>
 <ul>
-<li><p>Inside “snippets/” subdirectory named as language (files can be however deeply nested).</p></li>
-<li><p>Named as language and is in “snippets/” directory (however deep). Example for “lua” language:</p>
+<li><p>Inside <code>snippets/</code> subdirectory named as language (files can be however deeply nested).</p></li>
+<li><p>Named as language and is in <code>snippets/</code> directory (however deep). Example for “lua” language:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'lua/**/*.json'</span><span class="op">,</span> <span class="st">'lua/**/*.lua'</span><span class="op">,</span> <span class="st">'**/lua.json'</span><span class="op">,</span> <span class="st">'**/lua.lua'</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <p>Add entry for <code>""</code> (empty string) as language to be sourced when <code>lang</code> context is empty string (which is usually temporary scratch buffers).</p></li>
@@ -1188,8 +1188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniSnippets.gen_loader.from_runtime</code>(<span class="help-syntax-special">{pattern}</span>, <span class="help-syntax-special">{opts}</span>)
 </p>
 <p>Generate runtime loader</p>
-<p>Output loads files which match <code>pattern</code> inside “snippets/” directories from ‘runtimepath’. This is useful to simultaneously read several similarly named files from different sources. Order from ‘runtimepath’ is preserved.</p>
-<p>Typical case is loading snippets for a language from files like <code>xxx.{json,lua}</code> but located in different “snippets/” directories inside ‘runtimepath’.</p>
+<p>Output loads files which match <code>pattern</code> inside <code>snippets/</code> directories from <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a>. This is useful to simultaneously read several similarly named files from different sources. Order from <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> is preserved.</p>
+<p>Typical case is loading snippets for a language from files like <code>xxx.{json,lua}</code> but located in different <code>snippets/</code> directories inside <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a>.</p>
 <ul>
 <li><p><code>&lt;config&gt;</code>/snippets/lua.json - manually curated snippets in user config.</p></li>
 <li><p><code>&lt;path/to/installed/plugin&gt;</code>/snippets/lua.json - from installed plugin.</p></li>
@@ -1201,7 +1201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;all&gt;</span> <code>(boolean)</code> - whether to load from all matching runtime files. Default: <code>true</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;cache&gt;</span> <code>(boolean)</code> - whether to use cached output. Default: <code>true</code>. Note: caching is done per <code>pattern</code> value, which assumes that both ‘runtimepath’ value and snippet files do not change during Neovim session. Caching this way gives significant speed improvement by reducing the need to traverse file system on every snippet expand.</p></li>
+<li><p><span class="help-syntax-keys">&lt;cache&gt;</span> <code>(boolean)</code> - whether to use cached output. Default: <code>true</code>. Note: caching is done per <code>pattern</code> value, which assumes that both <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> value and snippet files do not change during Neovim session. Caching this way gives significant speed improvement by reducing the need to traverse file system on every snippet expand.</p></li>
 <li><p><span class="help-syntax-keys">&lt;silent&gt;</span> <code>(boolean)</code> - whether to hide non-error messages. Default: <code>false</code>.</p></li>
 </ul>
 </section>
@@ -1283,7 +1283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{raw_snippets}</span> <code>(table)</code> Array of snippet data as from <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.config">MiniSnippets.config</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;context&gt;</span> <code>(any)</code> - Context used as an argument for callable snippet data. Default: table with <span class="help-syntax-keys">&lt;buf_id&gt;</span> (current buffer identifier) and <span class="help-syntax-keys">&lt;lang&gt;</span> (local language) fields. Language is computed from tree-sitter parser at cursor (allows different snippets in injected languages), ‘filetype’ otherwise.</li>
+<li><span class="help-syntax-keys">&lt;context&gt;</span> <code>(any)</code> - Context used as an argument for callable snippet data. Default: table with <span class="help-syntax-keys">&lt;buf_id&gt;</span> (current buffer identifier) and <span class="help-syntax-keys">&lt;lang&gt;</span> (local language) fields. Language is computed from tree-sitter parser at cursor (allows different snippets in injected languages), <a href="https://neovim.io/doc/user/helptag.html?tag='filetype'">‘filetype’</a> otherwise.</li>
 </ul>
 </section>
 <section id="minisnippets.default_prepare-return" class="level4">
@@ -1358,7 +1358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Parse snippet body with <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.parse">MiniSnippets.parse()</a> and enabled <code>normalize</code>. In particular, evaluate variables, ensure final node presence and same text for nodes with same tabstops. Stop if not able to.</p></li>
 <li><p>Insert snippet at cursor:</p>
 <ul>
-<li><p>Add snippet’s text. Lines are split at “”. Indent and left comment leaders (inferred from ‘commentstring’ and ‘comments’) of current line are repeated on the next. Tabs (“) are expanded according to ‘expandtab’ and ‘shiftwidth’.</p></li>
+<li><p>Add snippet’s text. Lines are split at “”. Indent and left comment leaders (inferred from <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='comments'">‘comments’</a>) of current line are repeated on the next. Tabs (“) are expanded according to <a href="https://neovim.io/doc/user/helptag.html?tag='expandtab'">‘expandtab’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='shiftwidth'">‘shiftwidth’</a>.</p></li>
 <li><p>If there is an actionable tabstop (not final), start snippet session.</p></li>
 </ul></li>
 </ul>
@@ -1373,7 +1373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Text in all tabstop nodes is synchronized with the reference one. Relative indent of reference tabstop’s text is preserved: all but first lines in linked tabstops are reindented based on the first line indent. Note: text sync is forced only for current tabstop (for performance).</p></li>
 </ul></li>
 <li><p>Jump with <span class="help-syntax-keys">&lt;C-l&gt;</span> / <span class="help-syntax-keys">&lt;C-h&gt;</span> to next / previous tabstop. Exact keys can be adjusted in <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.config">MiniSnippets.config</a> <code>mappings</code>. See <a href="../../mini.nvim/doc/mini-snippets.html#minisnippets.session.jump">MiniSnippets.session.jump()</a> for jumping details.</p></li>
-<li><p>If tabstop has choices, all of them are shown after each jump and deleting tabstop text. It is done with <a href="https://neovim.io/doc/user/helptag.html?tag=complete()">complete()</a>, so use <span class="help-syntax-keys">&lt;C-n&gt;</span> / <span class="help-syntax-keys">&lt;C-p&gt;</span> to select next / previous choice. Type text to narrow down the list. Works best when ‘completeopt’ option contains <code>menuone</code> and <code>noselect</code> flags. Note: deleting character hides the list due to how <a href="https://neovim.io/doc/user/helptag.html?tag=complete()">complete()</a> works; delete whole tabstop text (for example with one or more <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-W">i_CTRL-W</a>) for full list to reappear.</p></li>
+<li><p>If tabstop has choices, all of them are shown after each jump and deleting tabstop text. It is done with <a href="https://neovim.io/doc/user/helptag.html?tag=complete()">complete()</a>, so use <span class="help-syntax-keys">&lt;C-n&gt;</span> / <span class="help-syntax-keys">&lt;C-p&gt;</span> to select next / previous choice. Type text to narrow down the list. Works best when <a href="https://neovim.io/doc/user/helptag.html?tag='completeopt'">‘completeopt’</a> option contains <code>menuone</code> and <code>noselect</code> flags. Note: deleting character hides the list due to how <a href="https://neovim.io/doc/user/helptag.html?tag=complete()">complete()</a> works; delete whole tabstop text (for example with one or more <a href="https://neovim.io/doc/user/helptag.html?tag=i_CTRL-W">i_CTRL-W</a>) for full list to reappear.</p></li>
 <li><p>Nest another session by expanding snippet in the same way as without active session (can be even done in another buffer). If snippet has no actionable tabstop, text is just inserted. Otherwise start nested session:</p>
 <ul>
 <li><p>Suspend current session: hide highlights, keep text change tracking.</p></li>

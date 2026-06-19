@@ -544,8 +544,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>For more information see:</p>
 <ul>
-<li><p>‘TESTING.md’ file for a hands-on introduction based on examples.</p></li>
-<li><p>Code of this plugin’s tests. Consider it to be an example of intended way to use ‘mini.test’ for test organization and creation.</p></li>
+<li><p><code>TESTING.md</code> file for a hands-on introduction based on examples.</p></li>
+<li><p>Code of this plugin’s tests. Consider it to be an example of intended way to use <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> for test organization and creation.</p></li>
 </ul>
 <section id="module-workflow" class="level4">
 <h4 class="anchored" data-anchor-id="module-workflow">Workflow</h4>
@@ -571,22 +571,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Testing infrastructure from <a href="https://github.com/nvim-lua/plenary.nvim">nvim-lua/plenary.nvim</a>:</p>
 <ul>
-<li><p>Executes each file in separate headless Neovim process with customizable ‘init.vim’ file. While ‘mini.test’ executes everything in current Neovim process encouraging writing tests with help of manually managed child Neovim process (see <a href="../../mini.nvim/doc/mini-test.html#minitest.new_child_neovim">MiniTest.new_child_neovim()</a>).</p></li>
-<li><p>Tests are expected to be written with embedded simplified versions of ‘lunarmodules/busted’ and ‘lunarmodules/luassert’. While ‘mini.test’ uses concepts of test set (see <a href="../../mini.nvim/doc/mini-test.html#minitest.new_set">MiniTest.new_set()</a>) and test case (see <a href="../../mini.nvim/doc/mini-test.html#minitest-test-case">MiniTest-test-case</a>). It also can emulate bigger part of “busted” framework.</p></li>
-<li><p>Has single way of reporting progress (shows result after every case without summary). While ‘mini.test’ can have customized reporters with defaults for interactive and headless usage (provide more compact and user-friendly summaries).</p></li>
-<li><p>Allows parallel execution, while ‘mini.test’ does not.</p></li>
-<li><p>Allows making mocks, stubs, and spies, while ‘mini.test’ does not in favor of manually overwriting functionality in child Neovim process.</p></li>
+<li><p>Executes each file in separate headless Neovim process with customizable <code>init.vim</code> file. While <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> executes everything in current Neovim process encouraging writing tests with help of manually managed child Neovim process (see <a href="../../mini.nvim/doc/mini-test.html#minitest.new_child_neovim">MiniTest.new_child_neovim()</a>).</p></li>
+<li><p>Tests are expected to be written with embedded simplified versions of <code>lunarmodules/busted</code> and <code>lunarmodules/luassert</code>. While <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> uses concepts of test set (see <a href="../../mini.nvim/doc/mini-test.html#minitest.new_set">MiniTest.new_set()</a>) and test case (see <a href="../../mini.nvim/doc/mini-test.html#minitest-test-case">MiniTest-test-case</a>). It also can emulate bigger part of “busted” framework.</p></li>
+<li><p>Has single way of reporting progress (shows result after every case without summary). While <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> can have customized reporters with defaults for interactive and headless usage (provide more compact and user-friendly summaries).</p></li>
+<li><p>Allows parallel execution, while <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> does not.</p></li>
+<li><p>Allows making mocks, stubs, and spies, while <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> does not in favor of manually overwriting functionality in child Neovim process.</p></li>
 </ul></li>
 </ul>
-<p>Although ‘mini.test’ supports emulation of “busted style” testing, it will be more stable to use its designed approach of defining tests (with <code>MiniTest.new_set()</code> and explicit table fields). Couple of reasons:</p>
+<p>Although <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> supports emulation of “busted style” testing, it will be more stable to use its designed approach of defining tests (with <code>MiniTest.new_set()</code> and explicit table fields). Couple of reasons:</p>
 <ul>
-<li><p>“Busted” syntax doesn’t support full capabilities offered by ‘mini.test’. Mainly it is about parametrization and supplying user data to test sets.</p></li>
+<li><p>“Busted” syntax doesn’t support full capabilities offered by <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a>. Mainly it is about parametrization and supplying user data to test sets.</p></li>
 <li><p>It is an emulation, not full support. So some subtle things might not work the way you expect.</p></li>
 </ul>
-<p>Some hints for converting from ‘plenary.nvim’ tests to ‘mini.test’:</p>
+<p>Some hints for converting from <code>plenary.nvim</code> tests to <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a>:</p>
 <ul>
-<li><p>Rename files from “<em><em>spec.lua” to ”test</em></em>.lua” and put them in “tests” directory.</p></li>
-<li><p>Replace <code>assert</code> calls with ‘mini.test’ expectations. See <a href="../../mini.nvim/doc/mini-test.html#minitest.expect">MiniTest.expect</a>.</p></li>
+<li><p>Rename files from <code>***_spec.lua</code> to <code>test_***.lua</code> and put them in “tests” directory.</p></li>
+<li><p>Replace <code>assert</code> calls with <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> expectations. See <a href="../../mini.nvim/doc/mini-test.html#minitest.expect">MiniTest.expect</a>.</p></li>
 <li><p>Create main test set <code>T = MiniTest.new_set()</code> and eventually return it.</p></li>
 <li><p>Make new sets (<a href="../../mini.nvim/doc/mini-test.html#minitest.new_set">MiniTest.new_set()</a>) from <code>describe</code> blocks. Convert <code>before_each()</code> and <code>after_each</code> to <code>pre_case</code> and <code>post_case</code> hooks.</p></li>
 <li><p>Make test cases from <code>it</code> blocks.</p></li>
@@ -776,11 +776,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;notes&gt;</span> - array of strings with non-failing information.</p></li>
 <li><p><span class="help-syntax-keys">&lt;state&gt;</span> - state of test execution. One of:</p>
 <ul>
-<li><p>‘Executing <name of="" what="" is="" being="" executed="">’ (during execution).</name></p></li>
-<li><p>‘Pass’ (no fails, no notes).</p></li>
-<li><p>‘Pass with notes’ (no fails, some notes).</p></li>
-<li><p>‘Fail’ (some fails, no notes).</p></li>
-<li><p>‘Fail with notes’ (some fails, some notes).</p></li>
+<li><p><code>'Executing &lt;name of what is being executed&gt;'</code> (during execution).</p></li>
+<li><p><code>'Pass'</code> (no fails, no notes).</p></li>
+<li><p><code>'Pass with notes'</code> (no fails, some notes).</p></li>
+<li><p><code>'Fail'</code> (some fails, no notes).</p></li>
+<li><p><code>'Fail with notes'</code> (some fails, some notes).</p></li>
 </ul></li>
 </ul>
 <p><span class="help-syntax-special">{hooks}</span> <code>(table)</code> Hooks to be executed as part of test case. Has fields:</p>
@@ -911,7 +911,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minitest.collect-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options controlling case collection. Possible fields:</p>
 <ul>
-<li><p><span class="help-syntax-keys">&lt;emulate_busted&gt;</span> - whether to emulate ‘lunarmodules/busted’ interface. It emulates these global functions: <code>describe</code>, <code>it</code>, <code>setup</code>, <code>teardown</code>,</p>
+<li><p><span class="help-syntax-keys">&lt;emulate_busted&gt;</span> - whether to emulate <code>lunarmodules/busted</code> interface. It emulates these global functions: <code>describe</code>, <code>it</code>, <code>setup</code>, <code>teardown</code>,</p>
 <p align="center">
 </p><p><code>before_each</code>, <code>after_each</code>. Use <a href="../../mini.nvim/doc/mini-test.html#minitest.skip">MiniTest.skip()</a> instead of <code>pending()</code></p>
 <p></p>
@@ -993,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Silently returns <code>true</code> if expectation is fulfilled.</p></li>
 <li><p>Throws an informative error with information helpful for debugging. Allows customizable fail reason to provide more context.</p></li>
 </ul>
-<p>Mostly designed to be used within ‘mini.test’ framework.</p>
+<p>Mostly designed to be used within <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> framework.</p>
 <section id="minitest.expect-usage" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.expect-usage">Usage</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
@@ -1205,7 +1205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>MiniTest.new_child_neovim</code>()
 </p>
 <p>Create child Neovim process</p>
-<p>This creates an object designed to be a fundamental piece of ‘mini.test’ methodology. It can start/stop/restart a separate (child) Neovim process (headless, but fully functioning) together with convenience helpers to interact with it through <a href="https://neovim.io/doc/user/helptag.html?tag=RPC">RPC</a> messages.</p>
+<p>This creates an object designed to be a fundamental piece of <a href="../../mini.nvim/doc/mini-test.html#mini.test">mini.test</a> methodology. It can start/stop/restart a separate (child) Neovim process (headless, but fully functioning) together with convenience helpers to interact with it through <a href="https://neovim.io/doc/user/helptag.html?tag=RPC">RPC</a> messages.</p>
 <p>For more information see <a href="../../mini.nvim/doc/mini-test.html#minitest-child-neovim">MiniTest-child-neovim</a>.</p>
 <section id="minitest.new_child_neovim-return" class="level4">
 <h4 class="anchored" data-anchor-id="minitest.new_child_neovim-return">Return</h4>
@@ -1341,7 +1341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Can wait after each group of characters.</p></li>
 <li><p>Raises error if typing keys resulted into error in child process (i.e.&nbsp;its <a href="https://neovim.io/doc/user/helptag.html?tag=v:errmsg">v:errmsg</a> was updated).</p></li>
-<li><p>Key ‘&lt;’ as separate entry may not be escaped as ‘<span class="help-syntax-keys">&lt;LT&gt;</span>’.</p></li>
+<li><p>Key <code>&lt;</code> as a separate entry may not be escaped as <code>&lt;LT&gt;</code>.</p></li>
 </ul>
 <section id="minitest-child-neovim-type_keys-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-type_keys-parameters">Parameters</h4>
@@ -1368,7 +1368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>child.get_screenshot</code>(<span class="help-syntax-special">{opts}</span>)
 </p>
-<p>Compute what is displayed on (default TUI) screen and how it is displayed. This basically calls <a href="https://neovim.io/doc/user/helptag.html?tag=screenstring()">screenstring()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=screenattr()">screenattr()</a> for every visible cell (row from 1 to ‘lines’, column from 1 to ‘columns’).</p>
+<p>Compute what is displayed on (default TUI) screen and how it is displayed. This basically calls <a href="https://neovim.io/doc/user/helptag.html?tag=screenstring()">screenstring()</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=screenattr()">screenattr()</a> for every visible cell (row from 1 to <a href="https://neovim.io/doc/user/helptag.html?tag='lines'">‘lines’</a>, column from 1 to <a href="https://neovim.io/doc/user/helptag.html?tag='columns'">‘columns’</a>).</p>
 <p>Notes:</p>
 <ul>
 <li>To make output more portable and visually useful, outputs of <code>screenattr()</code> are coded with single character symbols. Those are taken from 94 characters (ASCII codes between 33 and 126), so there will be duplicates in case of more than 94 different ways text is displayed on screen.</li>

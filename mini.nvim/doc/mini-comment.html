@@ -422,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Features:</p>
 <ul>
 <li><p>Commenting in Normal mode respects <a href="https://neovim.io/doc/user/helptag.html?tag=count">count</a> and is dot-repeatable.</p></li>
-<li><p>Comment structure by default is inferred from ‘commentstring’: either from current buffer or from locally active tree-sitter language. It can be customized via <code>options.custom_commentstring</code> (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a> for details).</p></li>
+<li><p>Comment structure by default is inferred from <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a>: either from current buffer or from locally active tree-sitter language. It can be customized via <code>options.custom_commentstring</code> (see <a href="../../mini.nvim/doc/mini-comment.html#minicomment.config">MiniComment.config</a> for details).</p></li>
 <li><p>Allows custom hooks before and after successful commenting.</p></li>
 <li><p>Configurable options for some nuanced behavior.</p></li>
 </ul>
@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li>To use tree-sitter aware commenting, global value of ‘commentstring’ should be <code>''</code> (empty string). This is the default value, so make sure to not set it manually to a different value.</li>
+<li>To use tree-sitter aware commenting, global value of <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> should be <code>''</code> (empty string). This is the default value, so make sure to not set it manually to a different value.</li>
 </ul>
 <section id="module-setup" class="level4">
 <h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
@@ -519,13 +519,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="minicomment.config-options">Options</h4>
 <section id="minicomment.config-options-customcommentstring" class="level5">
 <h5 class="anchored" data-anchor-id="minicomment.config-options-customcommentstring">Custom commentstring</h5>
-<p><code>options.custom_commentstring</code> can be a function customizing ‘commentstring’ option used to infer comment structure. It is called once before every commenting action with the following arguments:</p>
+<p><code>options.custom_commentstring</code> can be a function customizing <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> option used to infer comment structure. It is called once before every commenting action with the following arguments:</p>
 <ul>
-<li><code>ref_position</code> - position at which to compute ‘commentstring’ (might be relevant for a text with locally different commenting rules). Its structure is the same as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</li>
+<li><code>ref_position</code> - position at which to compute <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> (might be relevant for a text with locally different commenting rules). Its structure is the same as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</li>
 </ul>
-<p>Its output should be a valid ‘commentstring’ (string containing <code>%s</code>).</p>
+<p>Its output should be a valid <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> (string containing <code>%s</code>).</p>
 <p>If not set or the output is <code>nil</code>, <a href="../../mini.nvim/doc/mini-comment.html#minicomment.get_commentstring">MiniComment.get_commentstring()</a> is used.</p>
-<p>For example, this option can be used to always use buffer ‘commentstring’ even in case of present active tree-sitter parser:</p>
+<p>For example, this option can be used to always use buffer <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> even in case of present active tree-sitter parser:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.comment'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">options</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">custom_commentstring</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">.</span><span class="va">commentstring</span> <span class="kw">end</span><span class="op">,</span></span>
@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Changing ‘commentstring’ in <code>hooks.pre</code> is allowed and will take effect.</p></li>
+<li><p>Changing <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> in <code>hooks.pre</code> is allowed and will take effect.</p></li>
 <li><p>If hook returns <code>false</code>, any further action is terminated.</p></li>
 </ul>
 <hr>
@@ -560,11 +560,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It has a somewhat unintuitive logic (because of how expression mapping with dot-repeatability works): it should be called without arguments inside expression mapping and with argument when action should be performed.</p>
 <section id="minicomment.operator-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.operator-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> Optional string with ‘operatorfunc’ mode (see <a href="https://neovim.io/doc/user/helptag.html?tag=g@">g@</a>).</p>
+<p><span class="help-syntax-special">{mode}</span> <code>(string|nil)</code> Optional string with <a href="https://neovim.io/doc/user/helptag.html?tag='operatorfunc'">‘operatorfunc’</a> mode (see <a href="https://neovim.io/doc/user/helptag.html?tag=g@">g@</a>).</p>
 </section>
 <section id="minicomment.operator-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.operator-return">Return</h4>
-<p><code>(string|nil)</code> ‘g@’ if called without argument, ’’ otherwise (but after performing action).</p>
+<p><code>(string|nil)</code> <code>'g@'</code> if called without argument, <code>''</code> otherwise (but after performing action).</p>
 <hr>
 </section>
 </section>
@@ -578,7 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minicomment.toggle_lines-notes" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.toggle_lines-notes">Notes</h4>
 <ul>
-<li><p>Comment structure is inferred from buffer’s ‘commentstring’ option or local language of tree-sitter parser (if active).</p></li>
+<li><p>Comment structure is inferred from buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> option or local language of tree-sitter parser (if active).</p></li>
 <li><p>Call to this function will remove all <a href="https://neovim.io/doc/user/helptag.html?tag=extmarks">extmarks</a> from target range.</p></li>
 </ul>
 </section>
@@ -588,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{line_end}</span> <code>(number)</code> End line number (inclusive from 1 to number of lines).</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
-<li><span class="help-syntax-keys">&lt;ref_position&gt;</span> <code>(table)</code> - A two-value array with <code>{ row, col }</code> (both starting at 1) of reference position at which ‘commentstring’ value will be computed. Default: <code>{ line_start, 1 }</code>.</li>
+<li><span class="help-syntax-keys">&lt;ref_position&gt;</span> <code>(table)</code> - A two-value array with <code>{ row, col }</code> (both starting at 1) of reference position at which <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> value will be computed. Default: <code>{ line_start, 1 }</code>.</li>
 </ul>
 <hr>
 </section>
@@ -607,20 +607,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <code>MiniComment.get_commentstring</code>(<span class="help-syntax-special">{ref_position}</span>)
 </p>
-<p>Get ‘commentstring’</p>
-<p>This function represents default approach of computing relevant ‘commentstring’ option in current buffer. Used to infer comment structure.</p>
+<p>Get <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a></p>
+<p>This represents default approach of computing relevant <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> option in current buffer. Used to infer comment structure.</p>
 <p>It has the following logic:</p>
 <ul>
-<li><p>If there is an active tree-sitter parser, try to get ‘commentstring’ from the local language at <code>ref_position</code>.</p></li>
-<li><p>If first step is not successful, use buffer’s ‘commentstring’ directly.</p></li>
+<li><p>If there is an active tree-sitter parser, try to get <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> from the local language at <code>ref_position</code>.</p></li>
+<li><p>If first step is not successful, use buffer’s <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> directly.</p></li>
 </ul>
 <section id="minicomment.get_commentstring-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.get_commentstring-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{ref_position}</span> <code>(table)</code> Reference position inside current buffer at which to compute ‘commentstring’. Same structure as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</p>
+<p><span class="help-syntax-special">{ref_position}</span> <code>(table)</code> Reference position inside current buffer at which to compute <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a>. Same structure as <code>opts.ref_position</code> in <a href="../../mini.nvim/doc/mini-comment.html#minicomment.toggle_lines">MiniComment.toggle_lines()</a>.</p>
 </section>
 <section id="minicomment.get_commentstring-return" class="level4">
 <h4 class="anchored" data-anchor-id="minicomment.get_commentstring-return">Return</h4>
-<p><code>(string)</code> Relevant value of ‘commentstring’.</p>
+<p><code>(string)</code> Relevant value of <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a>.</p>
 
 
 </section>

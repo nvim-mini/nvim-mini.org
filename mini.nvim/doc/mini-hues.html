@@ -490,18 +490,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="module-setup" class="level4">
 <h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
-<p>This module needs a setup with <code>require('mini.hues').setup({})</code> and mandatory <code>background</code> and <code>foreground</code> fields (add more fields to fit your taste). It will create global Lua table <code>MiniHues</code> which you can use for scripting or manually (with <code>:lua MiniHues.*</code>).</p>
+<p>This module needs a setup with <code>require('mini.hues').setup({})</code> and MANDATORY <code>background</code> AND <code>foreground</code> FIELDS (add more fields to fit your taste). It will create global Lua table <code>MiniHues</code> which you can use for scripting or manually (with <code>:lua MiniHues.*</code>).</p>
 <p>See <a href="../../mini.nvim/doc/mini-hues.html#minihues.config">MiniHues.config</a> for <code>config</code> structure and default values.</p>
 <p>This module doesn’t have runtime options, so using <code>vim.b.minihues_config</code> will have no effect here.</p>
 <p>Example:</p>
-<pre><code>require('mini.hues').setup({
-  background = '#11262d',
-  foreground = '#c0c8cc',
-  plugins = {
-    default = false,
-    ['nvim-mini/mini.nvim'] = true,
-  },
-})</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.hues'</span><span class="op">).</span>setup<span class="op">({</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">background</span> <span class="op">=</span> <span class="st">'#11262d'</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">foreground</span> <span class="op">=</span> <span class="st">'#c0c8cc'</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">plugins</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">default</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="st">'nvim-mini/mini.nvim'</span><span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="module-notes" class="level4">
 <h4 class="anchored" data-anchor-id="module-notes">Notes</h4>
@@ -509,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>This is used to create some of plugin’s color schemes (see <a href="../../mini.nvim/doc/mini-hues.html#minihues-color-schemes">MiniHues-color-schemes</a>).</p></li>
 <li><p>Using <code>setup()</code> doesn’t actually create a colorscheme. It basically creates a coordinated set of <a href="https://neovim.io/doc/user/helptag.html?tag=highlight-groups">highlight-groups</a>. To create your own scheme:</p>
 <ul>
-<li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from ‘runtimepath’ (“colors” inside your Neovim config directory is usually enough).</p></li>
+<li><p>Put “myscheme.lua” file (name after your chosen theme name) inside any “colors” directory reachable from <a href="https://neovim.io/doc/user/helptag.html?tag='runtimepath'">‘runtimepath’</a> (“colors” inside your Neovim config directory is usually enough).</p></li>
 <li><p>Inside “myscheme.lua” call <code>require('mini.hues').setup()</code> with your palette and only after that set <a href="https://neovim.io/doc/user/helptag.html?tag=g:colors_name">g:colors_name</a> to “myscheme”.</p></li>
 </ul></li>
 <li><p>This module doesn’t define <a href="https://neovim.io/doc/user/helptag.html?tag=cterm-colors">cterm-colors</a> for implementation simplicity. It only works if <a href="https://neovim.io/doc/user/helptag.html?tag='termguicolors'">‘termguicolors’</a> is enabled (should be done automatically if the terminal emulator supporst 24-bit colors). If not possible, use <a href="../../mini.nvim/doc/mini-colors.html#minicolors-colorschemeadd_cterm_attributes">MiniColors-colorscheme:add_cterm_attributes()</a> from <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a> to define custom color scheme with 16-color support.</p></li>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a name="minisummer" href="../../mini.nvim/doc/mini-hues.html#minisummer"><b>minisummer</b></a> : “hot summer” palette with brown/yellow background.</p></li>
 <li><p><a name="miniautumn" href="../../mini.nvim/doc/mini-hues.html#miniautumn"><b>miniautumn</b></a> : “cooling autumn” palette with purple background.</p></li>
 <li><p><a name="randomhue" href="../../mini.nvim/doc/mini-hues.html#randomhue"><b>randomhue</b></a> : uses randomly generated same hue background and foreground. Every <code>:colorscheme randomhue</code> call results in a different (randomly yet carefully selected) colors.</p>
-<p>It is essentially a combination of calls to <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup">MiniHues.setup()</a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors">MiniHues.gen_random_base_colors()</a> with a slight adjustments for ‘background’ value.</p>
+<p>It is essentially a combination of calls to <a href="../../mini.nvim/doc/mini-hues.html#minihues.setup">MiniHues.setup()</a> and <a href="../../mini.nvim/doc/mini-hues.html#minihues.gen_random_base_colors">MiniHues.gen_random_base_colors()</a> with slight adjustments for <a href="https://neovim.io/doc/user/helptag.html?tag='background'">‘background’</a>.</p>
 <p>Activate it as regular <a href="https://neovim.io/doc/user/helptag.html?tag=:colorscheme">:colorscheme</a>. Get currently active config with <code>:lua print(vim.inspect(MiniHues.config))</code>.</p></li>
 </ul>
 <hr>
@@ -557,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minihues.config-defaults" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.config-defaults">Defaults</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MiniHues</span><span class="op">.</span><span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- **Required** base colors as '#rrggbb' hex strings</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- REQUIRED base colors as '#rrggbb' hex strings</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">background</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">foreground</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -680,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Some output colors can have not exact values of generated Oklch channels. This is due to actually computed colors being impossible to represent via ‘#rrggbb’ hex string. In this case a process called gamut clipping is done to reduce lightness and chroma in optimal way while maintaining same hue. For more information see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>.</p></li>
+<li><p>Some output colors can have not exact values of generated Oklch channels. This is due to actually computed colors being impossible to represent via <code>'#rrggbb'</code> hex string. In this case a process called gamut clipping is done to reduce lightness and chroma in optimal way while maintaining same hue. For more information see <a href="../../mini.nvim/doc/mini-colors.html#minicolors-gamut-clip">MiniColors-gamut-clip</a>.</p></li>
 <li><p>Not all colors are actually used in highlight groups and are present for the sake of completeness.</p></li>
 </ul>
 </section>
@@ -757,12 +757,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p>Generate random base colors</p>
 <p>Compute background and foreground colors based on randomly generated hue and heuristically picked lightness-chroma values.</p>
-<p>You can recreate a similar functionality but tweaked to your taste using <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a>: &gt; local convert = require(‘mini.colors’).convert local hue = math.random(0, 359) return { background = convert({ l = 15, c = 3, h = hue }, ‘hex’), foreground = convert({ l = 80, c = 1, h = hue }, ‘hex’), }</p>
+<p>You can recreate a similar functionality but tweaked to your taste using <a href="../../mini.nvim/doc/mini-colors.html#mini.colors">mini.colors</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">convert</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.colors'</span><span class="op">).</span><span class="va">convert</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hue</span> <span class="op">=</span> <span class="fu">math.random</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">359</span><span class="op">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">background</span> <span class="op">=</span> convert<span class="op">({</span> <span class="va">l</span> <span class="op">=</span> <span class="dv">15</span><span class="op">,</span> <span class="va">c</span> <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="va">h</span> <span class="op">=</span> <span class="va">hue</span> <span class="op">},</span> <span class="st">'hex'</span><span class="op">),</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">foreground</span> <span class="op">=</span> convert<span class="op">({</span> <span class="va">l</span> <span class="op">=</span> <span class="dv">80</span><span class="op">,</span> <span class="va">c</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">h</span> <span class="op">=</span> <span class="va">hue</span> <span class="op">},</span> <span class="st">'hex'</span><span class="op">),</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notes:</p>
 <ul>
-<li><p>Respects ‘background’ (uses different lightness and chroma values for “dark” and “light” backgrounds).</p></li>
-<li><p>When used during startup, might require usage of <code>math.randomseed()</code> for proper random generation. For example: &gt;</p>
-<p>local hues = require(‘mini.hues’) math.randomseed(vim.loop.hrtime()) hues.setup(hues.gen_random_base_colors())</p></li>
+<li><p>Respects <a href="https://neovim.io/doc/user/helptag.html?tag='background'">‘background’</a> (uses different lightness and chroma values for “dark” and “light” backgrounds).</p></li>
+<li><p>When used during startup, might require usage of <code>math.randomseed()</code> for proper random generation. For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">hues</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.hues'</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">math.randomseed</span><span class="op">(</span><span class="va">vim</span><span class="op">.</span><span class="va">loop</span><span class="op">.</span>hrtime<span class="op">())</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">hues</span><span class="op">.</span>setup<span class="op">(</span><span class="va">hues</span><span class="op">.</span>gen_random_base_colors<span class="op">())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <section id="minihues.gen_random_base_colors-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minihues.gen_random_base_colors-parameters">Parameters</h4>

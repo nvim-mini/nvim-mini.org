@@ -524,18 +524,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://github.com/junegunn/vim-easy-align">junegunn/vim-easy-align</a>:</p>
 <ul>
-<li><p>‘mini.align’ is mostly designed after ‘junegunn/vim-easy-align’, so there are a lot of similarities.</p></li>
-<li><p>Both plugins allow users to change alignment options interactively by pressing modifier keys (albeit completely different default ones). ‘junegunn/vim-easy-align’ has those modifiers fixed, while ‘mini.align’ allows their full customization. See <a href="../../mini.nvim/doc/mini-align.html#minialign.config">MiniAlign.config</a> for examples.</p></li>
-<li><p>‘junegunn/vim-easy-align’ is designed to treat delimiters differently than other parts of strings. ‘mini.align’ doesn’t distinguish split parts from one another by design: splitting is allowed to be done based on some other logic than by splitting on delimiters.</p></li>
-<li><p>‘junegunn/vim-easy-align’ initially aligns by only first delimiter. ‘mini.align’ initially aligns by all delimiter.</p></li>
-<li><p>‘junegunn/vim-easy-align’ implements special filtering by delimiter row number. ‘mini.align’ has builtin filtering based on Lua code supplied by user in modifier phase. See <a href="../../mini.nvim/doc/mini-align.html#minialign.gen_step.filter">MiniAlign.gen_step.filter()</a> and ‘f’ builtin modifier.</p></li>
-<li><p>‘mini.align’ treats any non-registered modifier as a plain delimiter pattern, while ‘junegunn/vim-easy-align’ does not.</p></li>
-<li><p>‘mini.align’ exports core Lua function used for aligning strings (<a href="../../mini.nvim/doc/mini-align.html#minialign.align_strings">MiniAlign.align_strings()</a>).</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> is mostly designed after <code>junegunn/vim-easy-align</code>, so there are a lot of similarities.</p></li>
+<li><p>Both plugins allow users to change alignment options interactively by pressing modifier keys (albeit completely different default ones). <code>junegunn/vim-easy-align</code> has those modifiers fixed, while <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> allows their full customization. See <a href="../../mini.nvim/doc/mini-align.html#minialign.config">MiniAlign.config</a> for examples.</p></li>
+<li><p><code>junegunn/vim-easy-align</code> is designed to treat delimiters differently than other parts of strings. <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> doesn’t distinguish split parts from one another by design: splitting is allowed to be done based on some other logic than by splitting on delimiters.</p></li>
+<li><p><code>junegunn/vim-easy-align</code> initially aligns by only first delimiter. <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> initially aligns by all delimiter.</p></li>
+<li><p><code>junegunn/vim-easy-align</code> implements special filtering by delimiter row number. <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> has builtin filtering based on Lua code supplied by user in modifier phase. See <a href="../../mini.nvim/doc/mini-align.html#minialign.gen_step.filter">MiniAlign.gen_step.filter()</a> and <code>f</code> builtin modifier.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> treats any non-registered modifier as a plain delimiter pattern, while <code>junegunn/vim-easy-align</code> does not.</p></li>
+<li><p><a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> exports core Lua function used for aligning strings (<a href="../../mini.nvim/doc/mini-align.html#minialign.align_strings">MiniAlign.align_strings()</a>).</p></li>
 </ul></li>
 <li><p><a href="https://github.com/godlygeek/tabular">godlygeek/tabular</a>:</p>
 <ul>
-<li><p>‘godlygeek/tabular’ is mostly designed around single command which is customized by printing its parameters. ‘mini.align’ implements different concept of interactive alignment through pressing customizable single character modifiers.</p></li>
-<li><p>‘godlygeek/tabular’ can detect region upon which alignment can be desirable. ‘mini.align’ does not by design: use Visual selection or textobject/motion to explicitly define region to align.</p></li>
+<li><p><code>godlygeek/tabular</code> is mostly designed around single command which is customized by printing its parameters. <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> implements different concept of interactive alignment through pressing customizable single character modifiers.</p></li>
+<li><p><code>godlygeek/tabular</code> can detect region upon which alignment can be desirable. <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a> does not by design: use Visual selection or textobject/motion to explicitly define region to align.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -587,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minialign-algorithm" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minialign-algorithm">Algorithm</h3>
-<p>There are two main processes implemented in ‘mini.align’: strings alignment and interactive region alignment. See <a href="../../mini.nvim/doc/mini-align.html#minialign-glossary">MiniAlign-glossary</a> for more information about used terms.</p>
+<p>There are two main processes implemented in <a href="../../mini.nvim/doc/mini-align.html#mini.align">mini.align</a>: strings alignment and interactive region alignment. See <a href="../../mini.nvim/doc/mini-align.html#minialign-glossary">MiniAlign-glossary</a> for more information about used terms.</p>
 <section id="minialign-algorithm-stringsalignment" class="level4">
 <h4 class="anchored" data-anchor-id="minialign-algorithm-stringsalignment">Strings alignment</h4>
 <p>Main implementation is in <a href="../../mini.nvim/doc/mini-align.html#minialign.align_strings">MiniAlign.align_strings()</a>. Its input is array of strings and output - array of aligned strings. The process consists from three main steps (split, justify, merge) which can be preceded by any number of preliminary steps (pre-split, pre-justify, pre-merge).</p>
@@ -631,8 +631,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>See more in <a href="../../mini.nvim/doc/mini-align.html#minialign-modifiers-builtin">MiniAlign-modifiers-builtin</a> and <a href="../../mini.nvim/doc/mini-align.html#minialign-examples">MiniAlign-examples</a>.</p>
 <p>Notes:</p>
 <ul>
-<li><p>Visual blockwise selection works best with ‘virtualedit’ equal to “block” or “all”.</p></li>
-<li><p>Alignment with preview works best with ‘showmode’ disabled.</p></li>
+<li><p>Visual blockwise selection works best with <a href="https://neovim.io/doc/user/helptag.html?tag='virtualedit'">‘virtualedit’</a> equal to “block” or “all”.</p></li>
+<li><p>Alignment with preview works best with <a href="https://neovim.io/doc/user/helptag.html?tag='showmode'">‘showmode’</a> disabled.</p></li>
 </ul>
 <hr>
 </section>
@@ -757,7 +757,7 @@ aa bb cc
 </section>
 <section id="minialign-examples" class="level3 help-syntax-right-anchor">
 <h3 class="help-syntax-right-anchor anchored" data-anchor-id="minialign-examples">Examples</h3>
-<p>Copy lines in modifiable buffer, initiate alignment with preview (<code>gAip</code>) and try typing suggested key sequences. These are modified examples taken from ‘junegunn/vim-easy-align’.</p>
+<p>Copy lines in modifiable buffer, initiate alignment with preview (<code>gAip</code>) and try typing suggested key sequences. These are modified examples taken from <code>junegunn/vim-easy-align</code>.</p>
 <section id="minialign-examples-equalsign" class="level4">
 <h4 class="anchored" data-anchor-id="minialign-examples-equalsign">Equal sign</h4>
 <p>Lines:</p>
@@ -892,11 +892,11 @@ gg &lt;=&gt; ee</code></pre>
 </ul>
 <p>Examples:</p>
 <ul>
-<li><p>Modifier function used for default ‘i’ modifier:</p>
+<li><p>Modifier function used for default <code>i</code> modifier:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">(</span><span class="va">steps</span><span class="op">,</span> <span class="cn">_</span><span class="op">)</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">steps</span><span class="op">.</span><span class="va">pre_split</span><span class="op">,</span> <span class="va">MiniAlign</span><span class="op">.</span><span class="va">gen_step</span><span class="op">.</span>ignore_split<span class="op">())</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Tweak ‘t’ modifier to use highest indentation instead of keeping it:</p>
+<li><p>Tweak <code>t</code> modifier to use highest indentation instead of keeping it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.align'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">modifiers</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">t</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">steps</span><span class="op">,</span> <span class="cn">_</span><span class="op">)</span></span>
@@ -905,7 +905,7 @@ gg &lt;=&gt; ee</code></pre>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Tweak <code>j</code> modifier to cycle through available “justify_side” option values (like in ‘junegunn/vim-easy-align’):</p>
+<li><p>Tweak <code>j</code> modifier to cycle through available “justify_side” option values (like in <code>junegunn/vim-easy-align</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">'mini.align'</span><span class="op">).</span>setup<span class="op">({</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">modifiers</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">j</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="cn">_</span><span class="op">,</span> <span class="va">opts</span><span class="op">)</span></span>
@@ -1220,7 +1220,7 @@ gg &lt;=&gt; ee</code></pre>
 <section id="minialign.gen_step.ignore_split-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minialign.gen_step.ignore_split-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{patterns}</span> <code>(table)</code> Array of patterns to be added to <code>split_exclude_patterns</code> as is. Default: <code>{ [[".-"]] }</code> (excludes strings for most cases).</p>
-<p><span class="help-syntax-special">{exclude_comment}</span> <code>(boolean|nil)</code> Whether to add comment pattern to <code>split_exclude_patterns</code>. Comment pattern is derived from ‘commentstring’ option. Default: <code>true</code>.</p>
+<p><span class="help-syntax-special">{exclude_comment}</span> <code>(boolean|nil)</code> Whether to add comment pattern to <code>split_exclude_patterns</code>. Comment pattern is derived from <a href="https://neovim.io/doc/user/helptag.html?tag='commentstring'">‘commentstring’</a> option. Default: <code>true</code>.</p>
 </section>
 <section id="minialign.gen_step.ignore_split-return" class="level4">
 <h4 class="anchored" data-anchor-id="minialign.gen_step.ignore_split-return">Return</h4>

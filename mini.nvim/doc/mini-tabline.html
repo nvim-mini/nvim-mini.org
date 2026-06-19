@@ -412,12 +412,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Features:</p>
 <ul>
 <li><p>Buffers are listed in the order of their identifier (see <a href="https://neovim.io/doc/user/helptag.html?tag=bufnr()">bufnr()</a>).</p></li>
-<li><p>Different highlight groups for “states” of buffer affecting ‘buffer tabs’.</p></li>
+<li><p>Different highlight groups for “states” of buffer affecting “buffer tabs”.</p></li>
 <li><p>Buffer names are made unique by extending paths to files or appending unique identifier to buffers without name.</p></li>
 <li><p>Current buffer is displayed “optimally centered” (in center of screen while maximizing the total number of buffers shown) when there are many buffers open.</p></li>
-<li><p>‘Buffer tabs’ are clickable if Neovim allows it.</p></li>
+<li><p>“Buffer tabs” are clickable if Neovim allows it.</p></li>
 <li><p>Extra information section in case of multiple Neovim tabpages.</p></li>
-<li><p>Truncation symbols which show if there are tabs to the left and/or right. Exact characters are taken from ‘listchars’ global value (<code>precedes</code> and <code>extends</code> fields) and are shown only if ‘list’ option is enabled.</p></li>
+<li><p>Truncation symbols which show if there are tabs to the left and/or right. Exact characters are taken from <a href="https://neovim.io/doc/user/helptag.html?tag='listchars'">‘listchars’</a> global value (<code>precedes</code> and <code>extends</code> fields) and are shown only if <a href="https://neovim.io/doc/user/helptag.html?tag='list'">‘list’</a> option is enabled.</p></li>
 </ul>
 <p>What it doesn’t do:</p>
 <ul>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="module-suggestedoptionvalues">Suggested option values</h4>
 <p>Some options are set automatically by <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.setup">MiniTabline.setup()</a>:</p>
 <ul>
-<li>‘showtabline’ is set to 2 to always show tabline.</li>
+<li><a href="https://neovim.io/doc/user/helptag.html?tag='showtabline'">‘showtabline’</a> is set to 2 to always show tabline.</li>
 </ul>
 </section>
 <section id="module-highlightgroups" class="level4">
@@ -505,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="minitabline.config-format" class="level4">
 <h4 class="anchored" data-anchor-id="minitabline.config-format">Format</h4>
-<p><code>config.format</code> is a callable that takes buffer identifier and pre-computed label as arguments and returns a string with formatted label. Output will be treated strictly as text (i.e.&nbsp;no ‘statusline’ like constructs is allowed). This function will be called for all displayable in tabline buffers. Default: <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.default_format">MiniTabline.default_format()</a>.</p>
+<p><code>config.format</code> is a callable that takes buffer identifier and pre-computed label as arguments and returns a string with formatted label. Output will be treated strictly as text (i.e.&nbsp;no <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a> like constructs is allowed). This function will be called for all displayable in tabline buffers. Default: <a href="../../mini.nvim/doc/mini-tabline.html#minitabline.default_format">MiniTabline.default_format()</a>.</p>
 <p>Example of adding “+” suffix for modified buffers:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="op">(</span><span class="va">buf_id</span><span class="op">,</span> <span class="va">label</span><span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">suffix</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">bo</span><span class="op">[</span><span class="va">buf_id</span><span class="op">].</span><span class="va">modified</span> <span class="kw">and</span> <span class="st">'+ '</span> <span class="kw">or</span> <span class="st">''</span></span>
