@@ -64,18 +64,18 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 - Some settings tips that might make writing annotation comments easier:
 
-    - Set up appropriate 'comments' for `lua` file type to respect
+    - Set up appropriate ['comments'](https://neovim.io/doc/user/helptag.html?tag='comments') for `lua` file type to respect
       EmmyLua-like's `---` comment leader. Value `:---,:--` seems to work.
 
-    - Set up appropriate 'formatoptions' (see also [fo-table](https://neovim.io/doc/user/helptag.html?tag=fo-table)). Consider
+    - Set up appropriate ['formatoptions'](https://neovim.io/doc/user/helptag.html?tag='formatoptions') (see also [fo-table](https://neovim.io/doc/user/helptag.html?tag=fo-table)). Consider
       adding `j`, `n`, `q`, and `r` flags.
 
-    - Set up appropriate 'formatlistpat' to help auto-formatting lists (if
-      `n` flag is added to 'formatoptions'). One suggestion (not entirely
-      ideal) is a value `^\s*[0-9\-\+\*]\+[\.\)]*\s\+`. This reads as 'at
+    - Set up appropriate ['formatlistpat'](https://neovim.io/doc/user/helptag.html?tag='formatlistpat') to help auto-formatting lists (if
+      `n` flag is added to ['formatoptions'](https://neovim.io/doc/user/helptag.html?tag='formatoptions')). One suggestion (not entirely
+      ideal) is a value `^\s*[0-9\-\+\*]\+[\.\)]*\s\+`. This reads as "at
       least one special character (digit, `-`, `+`, `*`) possibly followed
       by some punctuation (`.` or `)`) followed by at least one space is a
-      start of list item'.
+      start of list item".
 
 - Probably one of the most reliable resources for what is considered to be
   best practice when using this module is this whole plugin. Look at source
@@ -106,7 +106,7 @@ some fields (keys with data values) and methods (keys with function
 values):
 
 - `Section structure` is an array of string lines describing one aspect
-  (determined by section id like '@param', '@return', '@text') of an
+  (determined by section id like `@param`, `@return`, `@text`) of an
   annotation subject. All lines will be used directly in help file.
 
 - `Block structure` is an array of sections describing one annotation
@@ -355,14 +355,14 @@ Some more insight about their behavior:
   indentation and contains all necessary information to determine if
   inference should happen.
 
-- Hooks for sections describing some "variable-like" object ('@class',
-  '@field', '@param') automatically enclose first word in '<span class="help-syntax-special">{}</span>'.
+- Hooks for sections describing some "variable-like" object (`@class`,
+  `@field`, `@param`) automatically enclose first word in `{}`.
 
-- Hooks for sections which supposed to have "type-like" data ('@field',
-  '@param', '@return', '@type') automatically enclose *first found*
-  "type-like" word and its neighbor characters in '`(<type>)`' (expect
-  false positives). Algorithm is far from being 100% correct, but seems to
-  work with present allowed type annotation. For allowed types see
+- Hooks for sections which supposed to have "type-like" data (`@field`,
+  `@param`, `@return`, `@type`) automatically enclose FIRST FOUND type-like
+  word and its neighbor characters in `(<type>)` (expect false positives).
+  Algorithm is far from being 100% correct, but seems to work with present
+  allowed type annotation. For allowed types see
   https://github.com/sumneko/lua-language-server/wiki/EmmyLua-Annotations#types-and-type
   or, better yet, look in source code of this module.
 
@@ -416,7 +416,7 @@ Generate help file
     "current section".
 
 - Apply structure hooks (they should modify its input in place, which is
-  possible due to 'table nature' of all inputs):
+  possible due to "table nature" of all inputs):
 
     - Each block is processed by `MiniDoc.config.hooks.block_pre`. This is a
       designated step for auto-generation of sections from described
@@ -476,12 +476,12 @@ or without arguments).
 
 
 <span class="help-syntax-special">{input}</span> `(table|nil)` Array of file paths which will be processed in supplied
-  order. Default: all '.lua' files from current directory following by all
-  such files in these subdirectories: 'lua/', 'after/', 'colors/'. Note:
-  any 'init.lua' file is placed before other files from the same directory.
+  order. Default: all `.lua` files from current directory following by all
+  such files in these subdirectories: `lua/`, `after/`, `colors/`. Note:
+  any `init.lua` file is placed before other files from the same directory.
 
 <span class="help-syntax-special">{output}</span> `(string|nil)` Path for output help file. Default:
-  `doc/<current_directory>.txt` (designed to be used for generating help
+  `doc/<current-directory>.txt` (designed to be used for generating help
   file for plugin).
 
 <span class="help-syntax-special">{config}</span> `(table|nil)` Configuration overriding parts of [MiniDoc.config](mini-doc.qmd#minidoc.config).

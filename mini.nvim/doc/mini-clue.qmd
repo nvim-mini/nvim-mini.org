@@ -22,7 +22,7 @@ Features:
     - Each key press narrows down set of possible targets.
       Pressing `<BS>` removes previous user entry.
       Pressing `<Esc>` or `<C-c>` leads to an early stop.
-      Doesn't depend on 'timeoutlen' and has basic support for 'langmap'.
+      Doesn't depend on ['timeoutlen'](https://neovim.io/doc/user/helptag.html?tag='timeoutlen') and has basic support for ['langmap'](https://neovim.io/doc/user/helptag.html?tag='langmap').
 
 
     - Ends when there is at most one target left or user pressed `<CR>`.
@@ -134,7 +134,7 @@ This module needs a setup with `require('mini.clue').setup({})` (replace
 `{}` with your `config` table). It will create global Lua table `MiniClue`
 which you can use for scripting or manually (with `:lua MiniClue.*`).
 
-Config table needs to have triggers configured, none is set up by default.
+Config table NEEDS TO HAVE TRIGGERS CONFIGURED, none is set up by default.
 
 See [MiniClue.config](mini-clue.qmd#miniclue.config) for available config settings.
 
@@ -213,12 +213,12 @@ is the same: narrow down key combinations until the target is reached.
 Main goals of its existence are:
 
 
-- Allow reaching certain mappings be independent of 'timeoutlen'. That is,
+- Allow reaching certain mappings be independent of ['timeoutlen'](https://neovim.io/doc/user/helptag.html?tag='timeoutlen'). That is,
   there is no fixed timeout after which currently typed keys are executed.
 
 
 - Enable automated showing of next key clues after user-supplied delay
-  (also independent of 'timeoutlen').
+  (also independent of ['timeoutlen'](https://neovim.io/doc/user/helptag.html?tag='timeoutlen')).
 
 
 - Allow emulating configurable key presses after certain key combination is
@@ -238,7 +238,7 @@ mode but works in all other main modes: Visual, Insert, Operator-pending
   mode key combinations are filtered to ones starting with the trigger keys.
 
   Note: trigger is implemented as a regular mapping, so if it has at least
-  two keys, they should be pressed within 'timeoutlen' milliseconds.
+  two keys, they should be pressed within ['timeoutlen'](https://neovim.io/doc/user/helptag.html?tag='timeoutlen') milliseconds.
 
 
 - Wait (indefinitely) for user to press a key. Advance depending on the key:
@@ -433,7 +433,7 @@ to generate clues for all available completion sources):
 #### Triggers in special buffers {#miniclue-examples-triggersinspecialbuffers}
 
 
-By default triggers are automatically created in listed ('buflisted') and some
+By default triggers are automatically created in listed (['buflisted'](https://neovim.io/doc/user/helptag.html?tag='buflisted')) and some
 special non-listed buffers. Use [MiniClue.ensure\_buf\_triggers()](mini-clue.qmd#miniclue.ensure_buf_triggers) to manually
 enable in when you need them. For example:
 
@@ -669,7 +669,7 @@ Each element can be one of:
 A clue table is a table with the following fields:
 
 - <span class="help-syntax-keys">\<mode\></span> `(string|table)` - single character describing mode short-name of
-  key combination as in `nvim_set_keymap()` ('n', 'x', 'i', 'o', 'c', etc.),
+  key combination as in `nvim_set_keymap()` (`'n'`, `'x'`, `'i'`, `'o'`, `'c'`, etc.),
   or a array thereof.
 
 - <span class="help-syntax-keys">\<keys\></span> `(string)` - key combination for which clue will be shown.
@@ -900,8 +900,8 @@ Contains clues for the following triggers:
   { mode = { 'n', 'x' }, keys = 'g`' }
   ```
 
-Note: if you use "g" as trigger (like to enable [MiniClue.gen\_clues.g()](mini-clue.qmd#miniclue.gen_clues.g)),
-don't add "g'" and "g`" as triggers: they already will be taken into account.
+Note: if you use `g` as trigger (like to enable [MiniClue.gen\_clues.g()](mini-clue.qmd#miniclue.gen_clues.g)),
+don't add [g'](https://neovim.io/doc/user/helptag.html?tag=g') and [g`](https://neovim.io/doc/user/helptag.html?tag=g`) as triggers: they already will be taken into account.
 
 #### Return {#miniclue.gen_clues.marks-return}
 

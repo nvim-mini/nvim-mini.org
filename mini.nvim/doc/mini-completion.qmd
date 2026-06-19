@@ -29,12 +29,12 @@ Features:
     - First stage is an LSP completion implemented via
       [MiniCompletion.completefunc\_lsp()](mini-completion.qmd#minicompletion.completefunc_lsp). It should be set up as either
       ['completefunc'](https://neovim.io/doc/user/helptag.html?tag='completefunc') or ['omnifunc'](https://neovim.io/doc/user/helptag.html?tag='omnifunc'). It tries to get completion items from
-      LSP client (via 'textDocument/completion' request). Custom
+      LSP client (via `textDocument/completion` request). Custom
       preprocessing of response items is possible (with
       `MiniCompletion.config.lsp_completion.process_items`), for example
       with fuzzy matching. By default items directly starting with completed
       word are kept and are sorted according to LSP specification.
-      Supports `additionalTextEdits`, like auto-import and others (see 'Notes'),
+      Supports `additionalTextEdits`, like auto-import and others (see `# Notes`),
       and snippet items (best results require [mini.snippets](mini-snippets.qmd#mini.snippets) dependency).
 
     - If first stage is not set up or resulted into no candidates, fallback
@@ -43,7 +43,7 @@ Features:
 
 
 - Automatic display in floating window of completion item info (via
-  'completionItem/resolve' request) and signature help (with highlighting
+  `completionItem/resolve` request) and signature help (with highlighting
   of active parameter if LSP server provides such information).
   Signature help is shown if character to cursor's left is a dedicated trigger
   character (configured in `signatureHelpProvider.triggerCharacters` of LSP
@@ -77,7 +77,7 @@ What it doesn't do:
 - Many configurable sources.
 
 - Automatic mapping of `<CR>`, `<Tab>`, etc. Those tend to have highly
-  variable user expectations. See 'Helpful mappings' for suggestions or
+  variable user expectations. See `# Helpful mappings` for suggestions or
   use [MiniKeymap.map\_multistep()](mini-keymap.qmd#minikeymap.map_multistep) with `"pmenu_*"` built-in steps.
 
 #### Dependencies {#module-dependencies}
@@ -114,13 +114,13 @@ You can override runtime config settings locally to buffer inside
 
 Some options are set automatically (if not set before [MiniCompletion.setup()](mini-completion.qmd#minicompletion.setup)):
 
-- 'completeopt' is set to "menuone,noselect" for less intrusive popup.
+- ['completeopt'](https://neovim.io/doc/user/helptag.html?tag='completeopt') is set to "menuone,noselect" for less intrusive popup.
   To enable fuzzy matching, manually set to "menuone,noselect,fuzzy". Consider
   also adding "nosort" flag to preserve initial order when filtering.
 
-- 'shortmess' is appended with "c" flag for silent <span class="help-syntax-keys">\<C-n\></span> fallback.
+- ['shortmess'](https://neovim.io/doc/user/helptag.html?tag='shortmess') is appended with "c" flag for silent <span class="help-syntax-keys">\<C-n\></span> fallback.
 
-- 'complete' gets removed "t" flag (if fallback action is default), as it
+- ['complete'](https://neovim.io/doc/user/helptag.html?tag='complete') gets removed "t" flag (if fallback action is default), as it
   leads to visible lags.
 
 #### Snippets {#module-snippets}
@@ -130,7 +130,7 @@ As per LSP specification, some completion items can be supplied in the form of
 snippet - a template with both pre-defined text and places (called "tabstops")
 for user to interactively change/add text during snippet session.
 
-In 'mini.completion' items that will insert snippet have "S" symbol shown in
+In [mini.completion](mini-completion.qmd#mini.completion) items that will insert snippet have "S" symbol shown in
 the popup (as part of `menu` in [complete-items](https://neovim.io/doc/user/helptag.html?tag=complete-items)). To actually insert a snippet:
 
 - Select an item via <span class="help-syntax-keys">\<C-n\></span> / <span class="help-syntax-keys">\<C-p\></span>. This will insert item's label (usually not
@@ -171,7 +171,7 @@ Notes:
       ```
 
 
-    - Set 'omnifunc' option to exactly `v:lua.MiniCompletion.completefunc_lsp`
+    - Set ['omnifunc'](https://neovim.io/doc/user/helptag.html?tag='omnifunc') option to exactly `v:lua.MiniCompletion.completefunc_lsp`
       for every client attach in an [LspAttach](https://neovim.io/doc/user/helptag.html?tag=LspAttach) event. Like this:
 
       ```lua
@@ -182,7 +182,7 @@ Notes:
       ```
 
   This setup is not default to allow simultaneous usage of filetype-specific
-  'omnifunc' (with manual [i\_CTRL-X\_CTRL-O](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-X_CTRL-O)) and automated LSP completion.
+  ['omnifunc'](https://neovim.io/doc/user/helptag.html?tag='omnifunc') (with manual [i\_CTRL-X\_CTRL-O](https://neovim.io/doc/user/helptag.html?tag=i_CTRL-X_CTRL-O)) and automated LSP completion.
 
 
 - Use [MiniCompletion.get\_lsp\_capabilities()](mini-completion.qmd#minicompletion.get_lsp_capabilities) to get/set information about part
@@ -195,7 +195,7 @@ Notes:
 
 
 - If you have trouble using custom (overridden) [vim.ui.input()](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input\(\)), disable
-  'mini.completion' for input buffer (usually based on its 'filetype').
+  [mini.completion](mini-completion.qmd#mini.completion) for input buffer (usually based on its ['filetype'](https://neovim.io/doc/user/helptag.html?tag='filetype')).
 
 #### Comparisons {#module-comparisons}
 
@@ -216,7 +216,7 @@ Notes:
 
 - [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp):
 
-    - Mostly similar to 'nvim-cmp' comparison: provides more features at the
+    - Mostly similar to `nvim-cmp` comparison: provides more features at the
       cost of more code and config complexity, while this module is designed
       to provide only a handful of "enough" features while relying on Neovim's
       built-in capabilities as much as possible.
@@ -241,7 +241,7 @@ these mappings:
   ```
 
 To get more consistent behavior of `<CR>`, you can use this template in
-your 'init.lua' to make customized mapping:
+your `init.lua` to make customized mapping:
 
   ```lua
   _G.cr_action = function()
@@ -448,8 +448,8 @@ is setup in [MiniCompletion.setup()](mini-completion.qmd#minicompletion.setup).
 
 
 
-<span class="help-syntax-special">{actions}</span> `(table|nil)` Array containing any of 'completion', 'info', or
-  'signature' string. Default: array containing all of them.
+<span class="help-syntax-special">{actions}</span> `(table|nil)` Array containing any of `'completion'`, `'info'`, or
+  `'signature'` strings. Default: array containing all of them.
 
 ---
 
@@ -515,7 +515,7 @@ Example of forcing fuzzy matching, filtering out `Text` items, and putting
 
       - `'none'` - no filter and no sort.
     If callable, should take `items` and `base` arguments and return items array.
-    Default: `'fuzzy'` if 'completeopt' contains "fuzzy", `'prefix'` otherwise.
+    Default: `'fuzzy'` if ['completeopt'](https://neovim.io/doc/user/helptag.html?tag='completeopt') contains "fuzzy", `'prefix'` otherwise.
 
   - <span class="help-syntax-keys">\<kind_priority\></span> `(table)` - map of completion item kinds (like `Variable`,
     `Snippet`; see string keys of `vim.lsp.protocol.CompletionItemKind`) to
@@ -557,7 +557,7 @@ places (tabstops) to adjust inserted text as needed:
   between tabstops (see [vim.snippet.jump()](https://neovim.io/doc/user/helptag.html?tag=vim.snippet.jump\(\))). Neovim>=0.11 sets them up
   automatically to <span class="help-syntax-keys">\<Tab\></span> / <span class="help-syntax-keys">\<S-Tab\></span> (if not overridden by user).
 
-End session by navigating all the way to the last tabstop. In 'mini.snippets':
+End session by navigating all the way to the last tabstop. In [mini.snippets](mini-snippets.qmd#mini.snippets):
 
 - Also make any text edit or exit Insert mode to end the session. This allows
   smoother navigation to previous tabstops in case of a lately spotted typo.
@@ -574,7 +574,7 @@ End session by navigating all the way to the last tabstop. In 'mini.snippets':
 
 
 
-- [MiniSnippets-session](mini-snippets.qmd#minisnippets-session) if 'mini.snippets' is set up.
+- [MiniSnippets-session](mini-snippets.qmd#minisnippets-session) if [mini.snippets](mini-snippets.qmd#mini.snippets) is set up.
 
 - [vim.snippet](https://neovim.io/doc/user/helptag.html?tag=vim.snippet) for Neovim's built-in snippet engine.
 
@@ -624,7 +624,7 @@ Notes:
 #### Return {#minicompletion.get_lsp_capabilities-return}
 
 
-`(table)` Data about LSP capabilities supported by 'mini.completion'. Has same
+`(table)` Data about LSP capabilities supported by [mini.completion](mini-completion.qmd#mini.completion). Has same
   structure as relevant parts of [vim.lsp.protocol.make\_client\_capabilities()](https://neovim.io/doc/user/helptag.html?tag=vim.lsp.protocol.make_client_capabilities\(\)).
 
 #### See also {#minicompletion.get_lsp_capabilities-seealso}

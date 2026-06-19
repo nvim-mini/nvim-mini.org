@@ -70,11 +70,11 @@ What it doesn't support:
 
 For more information see:
 
-- 'TESTING.md' file for a hands-on introduction based on examples.
+- `TESTING.md` file for a hands-on introduction based on examples.
 
 
 - Code of this plugin's tests. Consider it to be an example of intended
-  way to use 'mini.test' for test organization and creation.
+  way to use [mini.test](mini-test.qmd#mini.test) for test organization and creation.
 
 #### Workflow {#module-workflow}
 
@@ -122,42 +122,42 @@ To stop module from showing non-error feedback, set `config.silent = true`.
   [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim):
 
     - Executes each file in separate headless Neovim process with customizable
-      'init.vim' file. While 'mini.test' executes everything in current
+      `init.vim` file. While [mini.test](mini-test.qmd#mini.test) executes everything in current
       Neovim process encouraging writing tests with help of manually
       managed child Neovim process (see [MiniTest.new\_child\_neovim()](mini-test.qmd#minitest.new_child_neovim)).
 
     - Tests are expected to be written with embedded simplified versions of
-      'lunarmodules/busted' and 'lunarmodules/luassert'. While 'mini.test'
+      `lunarmodules/busted` and `lunarmodules/luassert`. While [mini.test](mini-test.qmd#mini.test)
       uses concepts of test set (see [MiniTest.new\_set()](mini-test.qmd#minitest.new_set)) and test case
       (see [MiniTest-test-case](mini-test.qmd#minitest-test-case)). It also can emulate bigger part of
       "busted" framework.
 
     - Has single way of reporting progress (shows result after every case
-      without summary). While 'mini.test' can have customized reporters
+      without summary). While [mini.test](mini-test.qmd#mini.test) can have customized reporters
       with defaults for interactive and headless usage (provide more
       compact and user-friendly summaries).
 
-    - Allows parallel execution, while 'mini.test' does not.
+    - Allows parallel execution, while [mini.test](mini-test.qmd#mini.test) does not.
 
-    - Allows making mocks, stubs, and spies, while 'mini.test' does not in
+    - Allows making mocks, stubs, and spies, while [mini.test](mini-test.qmd#mini.test) does not in
       favor of manually overwriting functionality in child Neovim process.
 
-Although 'mini.test' supports emulation of "busted style" testing, it will
+Although [mini.test](mini-test.qmd#mini.test) supports emulation of "busted style" testing, it will
 be more stable to use its designed approach of defining tests (with
 `MiniTest.new_set()` and explicit table fields). Couple of reasons:
 
-- "Busted" syntax doesn't support full capabilities offered by 'mini.test'.
+- "Busted" syntax doesn't support full capabilities offered by [mini.test](mini-test.qmd#mini.test).
   Mainly it is about parametrization and supplying user data to test sets.
 
 - It is an emulation, not full support. So some subtle things might not
   work the way you expect.
 
-Some hints for converting from 'plenary.nvim' tests to 'mini.test':
+Some hints for converting from `plenary.nvim` tests to [mini.test](mini-test.qmd#mini.test):
 
-- Rename files from "*_spec.lua" to "test_*.lua" and put them in
+- Rename files from `***_spec.lua` to `test_***.lua` and put them in
   "tests" directory.
 
-- Replace `assert` calls with 'mini.test' expectations. See [MiniTest.expect](mini-test.qmd#minitest.expect).
+- Replace `assert` calls with [mini.test](mini-test.qmd#mini.test) expectations. See [MiniTest.expect](mini-test.qmd#minitest.expect).
 
 - Create main test set `T = MiniTest.new_set()` and eventually return it.
 
@@ -436,15 +436,15 @@ Execution of test case goes by the following rules:
 
   - <span class="help-syntax-keys">\<state\></span> - state of test execution. One of:
 
-      - 'Executing <name of what is being executed>' (during execution).
+      - `'Executing <name of what is being executed>'` (during execution).
 
-      - 'Pass' (no fails, no notes).
+      - `'Pass'` (no fails, no notes).
 
-      - 'Pass with notes' (no fails, some notes).
+      - `'Pass with notes'` (no fails, some notes).
 
-      - 'Fail' (some fails, no notes).
+      - `'Fail'` (some fails, no notes).
 
-      - 'Fail with notes' (some fails, some notes).
+      - `'Fail with notes'` (some fails, some notes).
 
 <span class="help-syntax-special">{hooks}</span> `(table)` Hooks to be executed as part of test case. Has fields:
 
@@ -627,7 +627,7 @@ Overview of collection process:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options controlling case collection. Possible fields:
 
-  - <span class="help-syntax-keys">\<emulate_busted\></span> - whether to emulate 'lunarmodules/busted' interface.
+  - <span class="help-syntax-keys">\<emulate_busted\></span> - whether to emulate `lunarmodules/busted` interface.
     It emulates these global functions: `describe`, `it`, `setup`, `teardown`,
 <p align="center">`before_each`, `after_each`. Use [MiniTest.skip()](mini-test.qmd#minitest.skip) instead of `pending()`</p>
     and [MiniTest.finally()](mini-test.qmd#minitest.finally) instead of `finally`.
@@ -732,7 +732,7 @@ Each function has the following behavior:
 - Throws an informative error with information helpful for debugging.
   Allows customizable fail reason to provide more context.
 
-Mostly designed to be used within 'mini.test' framework.
+Mostly designed to be used within [mini.test](mini-test.qmd#mini.test) framework.
 
 #### Usage {#minitest.expect-usage}
 
@@ -1039,7 +1039,7 @@ terminal limitations.
 <p align="center">`MiniTest.new_child_neovim`()</p>
 Create child Neovim process
 
-This creates an object designed to be a fundamental piece of 'mini.test'
+This creates an object designed to be a fundamental piece of [mini.test](mini-test.qmd#mini.test)
 methodology. It can start/stop/restart a separate (child) Neovim process
 (headless, but fully functioning) together with convenience helpers to
 interact with it through [RPC](https://neovim.io/doc/user/helptag.html?tag=RPC) messages.
@@ -1289,7 +1289,7 @@ Differences:
 - Raises error if typing keys resulted into error in child process (i.e. its
   [v:errmsg](https://neovim.io/doc/user/helptag.html?tag=v:errmsg) was updated).
 
-- Key '<' as separate entry may not be escaped as '<span class="help-syntax-keys">\<LT\></span>'.
+- Key `<` as a separate entry may not be escaped as `<LT>`.
 
 #### Parameters {#minitest-child-neovim-type_keys-parameters}
 
@@ -1326,7 +1326,7 @@ Differences:
 
 Compute what is displayed on (default TUI) screen and how it is displayed.
 This basically calls [screenstring()](https://neovim.io/doc/user/helptag.html?tag=screenstring\(\)) and [screenattr()](https://neovim.io/doc/user/helptag.html?tag=screenattr\(\)) for every visible
-cell (row from 1 to 'lines', column from 1 to 'columns').
+cell (row from 1 to ['lines'](https://neovim.io/doc/user/helptag.html?tag='lines'), column from 1 to ['columns'](https://neovim.io/doc/user/helptag.html?tag='columns')).
 
 Notes:
 

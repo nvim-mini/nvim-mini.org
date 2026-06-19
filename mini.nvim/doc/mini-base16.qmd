@@ -159,7 +159,7 @@ Example:
    creates a coordinated set of [highlight-groups](https://neovim.io/doc/user/helptag.html?tag=highlight-groups). To create your own theme:
 
     - Put "myscheme.lua" file (name after your chosen theme name) inside
-      any "colors" directory reachable from 'runtimepath' ("colors" inside
+      any "colors" directory reachable from ['runtimepath'](https://neovim.io/doc/user/helptag.html?tag='runtimepath') ("colors" inside
       your Neovim config directory is usually enough).
 
     - Inside "myscheme.lua" call `require('mini.base16').setup()` with your
@@ -226,8 +226,8 @@ groups make an extended set from original
 good idea to have `config.palette` respect the original [styling
 principles](https://github.com/chriskempson/base16/blob/master/styling.md).
 
-By default only 'gui highlighting' (see [highlight-gui](https://neovim.io/doc/user/helptag.html?tag=highlight-gui) and
-['termguicolors'](https://neovim.io/doc/user/helptag.html?tag='termguicolors')) is supported. To support 'cterm highlighting' (see
+By default only "gui highlighting" (see [highlight-gui](https://neovim.io/doc/user/helptag.html?tag=highlight-gui) and
+['termguicolors'](https://neovim.io/doc/user/helptag.html?tag='termguicolors')) is supported. To support "cterm highlighting" (see
 [highlight-cterm](https://neovim.io/doc/user/helptag.html?tag=highlight-cterm)) supply `config.use_cterm` argument in one of the formats:
 
 - `true` to auto-generate from `palette` (as closest colors).
@@ -305,9 +305,9 @@ Example which will load only "mini.nvim" integration:
 ### mini_palette() {#minibase16.mini_palette .help-syntax-right-anchor}
 
 <p align="center">`MiniBase16.mini_palette`(<span class="help-syntax-special">{background}</span>, <span class="help-syntax-special">{foreground}</span>, <span class="help-syntax-special">{accent_chroma}</span>)</p>
-Create 'mini' palette
+Create MINI Base16 palette
 
-Create base16 palette based on the HEX (string '#RRGGBB') colors of main
+Create base16 palette based on the HEX (string `'#RRGGBB'`) colors of main
 background and foreground with optional setting of accent chroma (see
 details).
 
@@ -331,11 +331,11 @@ details).
 
 - Second four colors have the same chroma and hue as `foreground` but
   lightness progresses from foreground towards edge in such a way that
-  'base05' color is main foreground color.
+  `base05` color is main foreground color.
 
 - The rest eight colors are accent colors which are created in pairs
 
-    - Each pair has same hue from set of hues 'most different' to
+    - Each pair has same hue from set of hues "most different" to
       background and foreground hues (if respective chorma is positive).
 
     - All colors have the same chroma equal to `accent_chroma` (if not

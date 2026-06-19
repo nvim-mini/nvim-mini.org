@@ -36,18 +36,18 @@ Features:
   `delete` and `replace` start, `find`, and `highlight`) and "output" (in
   `add` and `replace` end):
 
-    - 'f' - function call (string of alphanumeric symbols or '_' or '.'
-      followed by balanced '()'). In "input" finds function call, in
+    - `f` - function call (string of alphanumeric symbols or `_` or `.`
+      followed by balanced `()`). In "input" finds function call, in
       "output" prompts user to enter function name.
 
-    - 't' - tag. In "input" finds tag with same identifier, in "output"
+    - `t` - tag. In "input" finds tag with same identifier, in "output"
       prompts user to enter tag name with possible attributes.
 
-    - All symbols in brackets '()', '[]', '<span class="help-syntax-special">{}</span>', '<span class="help-syntax-keys">\<\></span>". In "input' represents
+    - All symbols in brackets `()`, `[]`, `{}`, `<>`. In "input" represents
       balanced brackets (open - with whitespace pad, close - without), in
       "output" - left and right parts of brackets.
 
-    - '?' - interactive. Prompts user to enter left and right parts.
+    - `?` - interactive. Prompts user to enter left and right parts.
 
     - All other single character identifiers (supported by [getcharstr()](https://neovim.io/doc/user/helptag.html?tag=getcharstr\(\)))
       represent surrounding with identical left and right parts.
@@ -69,12 +69,12 @@ Known issues which won't be resolved:
 
 - When searching for "input" surrounding, there is no distinction if it is
   inside string or comment. So in this case there will be not proper match
-  for a function call: 'f(a = ")", b = 1)'.
+  for a function call: `f(a = ")", b = 1)`.
 
 
 - Tags are searched using regex-like methods, so issues are inevitable.
   Overall it is pretty good, but certain cases won't work. Like self-nested
-  tags won't match correctly on both ends: '<span class="help-syntax-keys">\<a\></span><span class="help-syntax-keys">\<a\></span><span class="help-syntax-keys">\</a\></span><span class="help-syntax-keys">\</a\></span>'.
+  tags won't match correctly on both ends: `<a><a></a></a>`.
 
 #### Setup {#module-setup}
 
@@ -105,7 +105,7 @@ Regular mappings:
 - `2sdf` - delete (`sd`) second (`2`) surrounding function call (`f`).
 
 - `sr)tdiv<CR>` - replace (`sr`) surrounding parenthesis (`)`) with tag
-  (`t`) with identifier 'div' (`div<CR>` in command line prompt).
+  (`t`) with identifier `div` (`div<CR>` in command line prompt).
 
 - `sff` - find right (`sf`) part of surrounding function call (`f`).
 
@@ -129,54 +129,54 @@ Extended mappings (temporary force "prev"/"next" search methods):
 
 - [tpope/vim-surround](https://github.com/tpope/vim-surround):
 
-    - 'vim-surround' has completely different, with other focus set of
-      default mappings, while 'mini.surround' has a more coherent set.
+    - `vim-surround` has completely different, with other focus set of
+      default mappings, while [mini.surround](mini-surround.qmd#mini.surround) has a more coherent set.
 
-    - 'mini.surround' supports dot-repeat, customized search path (see
+    - [mini.surround](mini-surround.qmd#mini.surround) supports dot-repeat, customized search path (see
       [MiniSurround.config](mini-surround.qmd#minisurround.config)), customized specifications (see
       [MiniSurround-surrounding-specification](mini-surround.qmd#minisurround-surrounding-specification)) allowing usage of tree-sitter
       queries (see [MiniSurround.gen\_spec.input.treesitter()](mini-surround.qmd#minisurround.gen_spec.input.treesitter)),
       highlighting and finding surrounding, "last"/"next" extended
-      mappings. While 'vim-surround' does not.
+      mappings. While `vim-surround` does not.
 
 - [machakann/vim-sandwich](https://github.com/machakann/vim-sandwich):
 
     - Both have same keybindings for common actions (add, delete, replace).
 
-    - Otherwise same differences as with 'tpope/vim-surround' (except
-      dot-repeat because 'vim-sandwich' supports it).
+    - Otherwise same differences as with `tpope/vim-surround` (except
+      dot-repeat because `vim-sandwich` supports it).
 
 - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround):
 
-    - 'nvim-surround' is designed after 'tpope/vim-surround' with same
-      default mappings and logic, while 'mini.surround' has mappings
-      similar to 'machakann/vim-sandwich'.
+    - `nvim-surround` is designed after `tpope/vim-surround` with same
+      default mappings and logic, while [mini.surround](mini-surround.qmd#mini.surround) has mappings
+      similar to `machakann/vim-sandwich`.
 
-    - 'mini.surround' has more flexible customization of input surrounding
+    - [mini.surround](mini-surround.qmd#mini.surround) has more flexible customization of input surrounding
       (with composed patterns, region pair(s), search methods).
 
-    - 'mini.surround' supports [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) in both input and output
+    - [mini.surround](mini-surround.qmd#mini.surround) supports [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) in both input and output
       surrounding (see [MiniSurround-count-with-actions](mini-surround.qmd#minisurround-count-with-actions)) while
-      'nvim-surround' doesn't.
+      `nvim-surround` doesn't.
 
-    - 'mini.surround' supports "last"/"next" extended mappings.
+    - [mini.surround](mini-surround.qmd#mini.surround) supports "last"/"next" extended mappings.
 
 - [mini.ai](mini-ai.qmd#mini.ai):
 
-    - Both use similar logic for finding target: textobject in 'mini.ai'
-      and surrounding pair in 'mini.surround'. While 'mini.ai' uses
+    - Both use similar logic for finding target: textobject in [mini.ai](mini-ai.qmd#mini.ai)
+      and surrounding pair in [mini.surround](mini-surround.qmd#mini.surround). While [mini.ai](mini-ai.qmd#mini.ai) uses
       extraction pattern for separate `a` and `i` textobjects,
-      'mini.surround' uses it to select left and right surroundings
+      [mini.surround](mini-surround.qmd#mini.surround) uses it to select left and right surroundings
       (basically a difference between `a` and `i` textobjects).
 
     - Some builtin specifications are slightly different:
 
-        - Quotes in 'mini.ai' are balanced, in 'mini.surround' they are not.
+        - Quotes in [mini.ai](mini-ai.qmd#mini.ai) are balanced, in [mini.surround](mini-surround.qmd#mini.surround) they are not.
 
-        - The 'mini.surround' doesn't have argument surrounding.
+        - The [mini.surround](mini-surround.qmd#mini.surround) doesn't have argument surrounding.
 
-        - Default behavior in 'mini.ai' selects one of the edges into `a`
-          textobject, while 'mini.surround' - both.
+        - Default behavior in [mini.ai](mini-ai.qmd#mini.ai) selects one of the edges into `a`
+          textobject, while [mini.surround](mini-surround.qmd#mini.surround) - both.
 
 #### Highlight groups {#module-highlightgroups}
 
@@ -421,11 +421,11 @@ Specification for input surrounding has a structure of composed pattern
 
     - Two captures represent left part from start of string to first
       capture and right part - from second capture to end of string.
-      Example: `a()b()c` defines left surrounding as 'a', right - 'c'.
+      Example: `a()b()c` defines left surrounding as `a`, right - `c`.
 
     - Four captures define left part inside captures 1 and 2, right part -
       inside captures 3 and 4. Example: `a()()b()c()` defines left part as
-      empty, right part as 'c'.
+      empty, right part as `c`.
 
 - Allows callable objects (see [vim.is\_callable()](https://neovim.io/doc/user/helptag.html?tag=vim.is_callable\(\))) in certain places
   (enables more complex surroundings in exchange of increase in configuration
@@ -850,7 +850,7 @@ on a value of `'config.search_method'` when cursor is inside `bbb` word:
 #### Search suffixes {#minisurround.config-searchsuffixes}
 
 
-To provide more searching possibilities, 'mini.surround' creates extended
+To provide more searching possibilities, [mini.surround](mini-surround.qmd#mini.surround) creates extended
 mappings force "prev" and "next" methods for particular search. It does so
 by appending mapping with certain suffix: `config.mappings.suffix_last` for
 mappings which will use "prev" search method, `config.mappings.suffix_next`
@@ -876,13 +876,13 @@ and initial line `(aa) (bb) (cc)`.
 
 - Typing `2srn)]` with cursor inside `(aa)` results into `(aa) (bb) [cc]`.
 
-#### Setup similar to 'tpope/vim-surround' {#minisurround.config-setupsimilartotpopevim-surround}
+#### Setup similar to `tpope/vim-surround` {#minisurround.config-setupsimilartotpopevim-surround}
 
 
 <a name="minisurround-vim-surround-config" href="mini-surround.qmd#minisurround-vim-surround-config"><b>MiniSurround-vim-surround-config</b></a>
 
-This module is primarily designed after 'machakann/vim-sandwich'. To get
-behavior closest to 'tpope/vim-surround' (but not identical), use this setup:
+This module is primarily designed after `machakann/vim-sandwich`. To get
+behavior closest to `tpope/vim-surround` (but not identical), use this setup:
 
   ```lua
   require('mini.surround').setup({
@@ -1015,20 +1015,20 @@ with the biggest match of inner capture inside that node (if any). The result
 region pair is a difference between regions of outer and inner captures.
 
 In order for this to work, apart from working treesitter parser for desired
-language, user should have a reachable language-specific 'textobjects'
+language, user should have a reachable language-specific `'textobjects'`
 query (see [vim.treesitter.query.get()](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\))).
-The most straightforward way for this is to have 'textobjects.scm' query
+The most straightforward way for this is to have `textobjects.scm` query
 file with treesitter captures stored in some recognized path. This is
 primarily designed to be compatible with plugin
-'nvim-treesitter/nvim-treesitter-textobjects', but can be used without it.
+`nvim-treesitter/nvim-treesitter-textobjects`, but can be used without it.
 
 Two most common approaches for having a query file:
 
-- Install 'nvim-treesitter/nvim-treesitter-textobjects'. It has curated and
+- Install `nvim-treesitter/nvim-treesitter-textobjects`. It has curated and
   well maintained builtin query files for many languages with a standardized
   capture names, like `call.outer`, `call.inner`, etc.
 
-- Manually create file 'after/queries/<language name>/textobjects.scm' in
+- Manually create file `after/queries/<language-name>/textobjects.scm` in
   your [\$XDG\_CONFIG\_HOME](https://neovim.io/doc/user/helptag.html?tag=$XDG_CONFIG_HOME) directory. It should contain queries with
   captures (later used to define surrounding parts). See [lua-treesitter-query](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-query).
 To verify that query file is reachable, run (example for "lua" language,
@@ -1039,7 +1039,7 @@ output should have at least an intended file):
   ```
 
 Example configuration for function definition textobject with
-'nvim-treesitter/nvim-treesitter-textobjects' captures:
+`nvim-treesitter/nvim-treesitter-textobjects` captures:
 
   ```lua
   local ts_input = require('mini.surround').gen_spec.input.treesitter
@@ -1085,9 +1085,9 @@ Notes:
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible values:
 
-  - <span class="help-syntax-keys">\<use_nvim_treesitter\></span> - whether to try to use 'nvim-treesitter' plugin
+  - <span class="help-syntax-keys">\<use_nvim_treesitter\></span> - whether to try to use `nvim-treesitter` plugin
     (if present) to do the query. It used to implement more advanced behavior
-    and more coherent experience if 'nvim-treesitter-textobjects' queries are
+    and more coherent experience if `nvim-treesitter-textobjects` queries are
     used. However, as [lua-treesitter-core](https://neovim.io/doc/user/helptag.html?tag=lua-treesitter-core) methods are more capable now,
     the option will soon be removed. Only present for backward compatibility.
     Default: `false`.
@@ -1108,7 +1108,7 @@ Notes:
 - [vim.treesitter.query.get()](https://neovim.io/doc/user/helptag.html?tag=vim.treesitter.query.get\(\)) for how query is fetched.
 
 - [Query:iter\_captures()](https://neovim.io/doc/user/helptag.html?tag=Query:iter_captures\(\)) for how all query captures are iterated in case of
-  no 'nvim-treesitter'.
+  no `nvim-treesitter`.
 
-- [MiniAi.gen\_spec.treesitter()](mini-ai.qmd#miniai.gen_spec.treesitter) for similar 'mini.ai' generator.
+- [MiniAi.gen\_spec.treesitter()](mini-ai.qmd#miniai.gen_spec.treesitter) for similar [mini.ai](mini-ai.qmd#mini.ai) generator.
 

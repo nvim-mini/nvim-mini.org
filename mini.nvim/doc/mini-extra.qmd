@@ -4,7 +4,7 @@ title: "mini.extra documentation"
 
 _Generated from the `main` branch of 'mini.nvim'_
 
-<a name="mini.extra" href="mini-extra.qmd#mini.extra"><b>mini.extra</b></a> Extra 'mini.nvim' functionality
+<a name="mini.extra" href="mini-extra.qmd#mini.extra"><b>mini.extra</b></a> Extra mini.nvim functionality
 
 MIT License Copyright (c) 2023 Evgeni Chasnovski
 
@@ -12,7 +12,7 @@ MIT License Copyright (c) 2023 Evgeni Chasnovski
 
 ### Module {#module .help-syntax-right-anchor}
 
-Extra useful functionality which is not essential enough for other 'mini.nvim'
+Extra useful functionality which is not essential enough for other [mini.nvim](mini-nvim.qmd#mini.nvim)
 modules to include directly.
 
 Features:
@@ -43,8 +43,8 @@ Features:
 
 Notes:
 
-- This module requires only those 'mini.nvim' modules which are needed for
-  a particular functionality: 'mini.pick' for pickers, etc.
+- This module requires only those [mini.nvim](mini-nvim.qmd#mini.nvim) modules which are needed for
+  a particular functionality: [mini.pick](mini-pick.qmd#mini.pick) for pickers, etc.
 
 #### Setup {#module-setup}
 
@@ -64,13 +64,13 @@ will have no effect here.
 
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim):
 
-    - With [MiniExtra.pickers](mini-extra.qmd#miniextra.pickers), 'mini.pick' is reasonably on par when it comes
+    - With [MiniExtra.pickers](mini-extra.qmd#miniextra.pickers), [mini.pick](mini-pick.qmd#mini.pick) is reasonably on par when it comes
       to built-in pickers.
 
 
 - [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua):
 
-    - Same as 'nvim-telescope/telescope.nvim'.
+    - Same as `nvim-telescope/telescope.nvim`.
 
 ---
 
@@ -199,13 +199,13 @@ Notes:
 - Differences with [MiniIndentscope.textobject()](mini-indentscope.qmd#miniindentscope.textobject):
 
     - This textobject always treats blank lines on top and bottom of `i`
-      textobject as part of it, while 'mini.indentscope' can configure that.
+      textobject as part of it, while [mini.indentscope](mini-indentscope.qmd#mini.indentscope) can configure that.
 
-    - This textobject can select non-covering scopes, while 'mini.indentscope'
+    - This textobject can select non-covering scopes, while [mini.indentscope](mini-indentscope.qmd#mini.indentscope)
       can not (by design).
 
     - In this textobject scope computation is done only by "casting rays" from
-      top to bottom and not in both ways as in 'mini.indentscope'.
+      top to bottom and not in both ways as in [mini.indentscope](mini-indentscope.qmd#mini.indentscope).
       This works in most common scenarios and doesn't work only if indent of
       of the bottom border is expected to be larger than the top.
 
@@ -307,7 +307,7 @@ Notes:
 <p align="center">`MiniExtra.pickers`</p>
 [mini.pick](mini-pick.qmd#mini.pick) pickers
 
-A table with 'mini.pick' pickers (which is a hard dependency).
+A table with [mini.pick](mini-pick.qmd#mini.pick) pickers (which is a hard dependency).
 Notes:
 
 - All have the same signature:
@@ -404,7 +404,7 @@ Canceling reverts to color scheme before picker start:
 <p align="center">`MiniExtra.pickers.commands`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
 Neovim commands picker
 
-Pick from Neovim built-in ([Ex-commands](https://neovim.io/doc/user/helptag.html?tag=Ex-commands)) and [user-commands](https://neovim.io/doc/user/helptag.html?tag=user-commands).
+Pick from Neovim built-in ([Ex-command](https://neovim.io/doc/user/helptag.html?tag=Ex-command)) and [user-commands](https://neovim.io/doc/user/helptag.html?tag=user-commands).
 Notes:
 
 - Preview shows information about the command (if available).
@@ -588,7 +588,7 @@ Examples:
   repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
 - `MiniExtra.pickers.git_commits({ path = 'subdir' })` - commits affecting
-  files from 'subdir' subdirectory.
+  files from `subdir` subdirectory.
 
 - `:Pick git_commits path='%'` commits affecting current file.
 
@@ -633,7 +633,7 @@ Examples:
 - `MiniExtra.pickers.git_files({ scope = 'ignored' })` - ignored files from
   parent Git repository of [current-directory](https://neovim.io/doc/user/helptag.html?tag=current-directory).
 
-- `:Pick git_files path='subdir' scope='modified'` - files from 'subdir'
+- `:Pick git_files path='subdir' scope='modified'` - files from `subdir`
   subdirectory which differ from Git index.
 
 #### Parameters {#miniextra.pickers.git_files-parameters}
@@ -724,12 +724,12 @@ Examples:
 ### pickers.hipatterns() {#miniextra.pickers.hipatterns .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.hipatterns`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
-Matches from 'mini.hipatterns' picker
+Matches from [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns) picker
 
 Pick from [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns) matches using [MiniHipatterns.get\_matches()](mini-hipatterns.qmd#minihipatterns.get_matches).
 Notes:
 
-- Requires 'mini.hipatterns'.
+- Requires [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns).
 
 - Highlighter identifier is highlighted with its highlight group.
 
@@ -740,7 +740,7 @@ Notes:
 <span class="help-syntax-special">{local_opts}</span> `(table|nil)` Options defining behavior of this particular picker.
   Possible fields:
 
-  - <span class="help-syntax-keys">\<scope\></span> `(string)` - one of "all" (buffers with enabled 'mini.hipatterns')
+  - <span class="help-syntax-keys">\<scope\></span> `(string)` - one of "all" (buffers with enabled [mini.hipatterns](mini-hipatterns.qmd#mini.hipatterns))
     or "current" (buffer). Default: "all".
 
   - <span class="help-syntax-keys">\<highlighters\></span> `(table|nil)` - highlighters for which to find matches.
@@ -1187,12 +1187,12 @@ Notes:
 ### pickers.visit_paths() {#miniextra.pickers.visit_paths .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.visit_paths`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
-Visit paths from 'mini.visits' picker
+Visit paths from [mini.visits](mini-visits.qmd#mini.visits) picker
 
 Pick paths from [mini.visits](mini-visits.qmd#mini.visits) using [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 Notes:
 
-- Requires 'mini.visits'.
+- Requires [mini.visits](mini-visits.qmd#mini.visits).
 
 Examples:
 
@@ -1238,13 +1238,13 @@ Examples:
 ### pickers.visit_labels() {#miniextra.pickers.visit_labels .help-syntax-right-anchor}
 
 <p align="center">`MiniExtra.pickers.visit_labels`(<span class="help-syntax-special">{local_opts}</span>, <span class="help-syntax-special">{opts}</span>)</p>
-Visit labels from 'mini.visits' picker
+Visit labels from [mini.visits](mini-visits.qmd#mini.visits) picker
 
 Pick labels from [mini.visits](mini-visits.qmd#mini.visits) using [MiniVisits.list\_labels()](mini-visits.qmd#minivisits.list_labels)
 and [MiniVisits.list\_paths()](mini-visits.qmd#minivisits.list_paths).
 Notes:
 
-- Requires 'mini.visits'.
+- Requires [mini.visits](mini-visits.qmd#mini.visits).
 
 - Preview shows target visit paths filtered to those having previewed label.
 

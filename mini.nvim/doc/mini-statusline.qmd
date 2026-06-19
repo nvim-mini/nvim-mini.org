@@ -39,15 +39,15 @@ Suggested dependencies (provide extra functionality, will work without them):
 
 
 - Enabled [mini.icons](mini-icons.qmd#mini.icons) module for [MiniStatusline.section\_fileinfo()](mini-statusline.qmd#ministatusline.section_fileinfo).
-  Falls back to using 'nvim-tree/nvim-web-devicons' plugin or shows nothing.
+  Falls back to using `nvim-tree/nvim-web-devicons` plugin or shows nothing.
 
 
 - Enabled [mini.git](mini-git.qmd#mini.git) module for [MiniStatusline.section\_git()](mini-statusline.qmd#ministatusline.section_git).
-  Falls back to using 'lewis6991/gitsigns.nvim' plugin or shows nothing.
+  Falls back to using `lewis6991/gitsigns.nvim` plugin or shows nothing.
 
 
 - Enabled [mini.diff](mini-diff.qmd#mini.diff) module for [MiniStatusline.section\_diff()](mini-statusline.qmd#ministatusline.section_diff).
-  Falls back to using 'lewis6991/gitsigns.nvim' plugin or shows nothing.
+  Falls back to using `lewis6991/gitsigns.nvim` plugin or shows nothing.
 
 #### Setup {#module-setup}
 
@@ -246,7 +246,7 @@ General idea of this function is as follows;
 #### Return {#ministatusline.combine_groups-return}
 
 
-`(string)` String suitable for 'statusline'.
+`(string)` String suitable for ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline').
 
 ---
 
@@ -303,7 +303,7 @@ Shows Git summary from [mini.git](mini-git.qmd#mini.git) (should be set up; reco
 formatting of what data is shown, modify buffer-local summary string directly
 as described in [MiniGit-examples](mini-git.qmd#minigit-examples).
 
-If 'mini.git' is not set up, section falls back on 'lewis6991/gitsigns' data
+If [mini.git](mini-git.qmd#mini.git) is not set up, section falls back on `lewis6991/gitsigns.nvim` data
 or showing empty string.
 
 Empty string is returned if window width is lower than `args.trunc_width`.
@@ -330,7 +330,7 @@ Shows diff summary from [mini.diff](mini-diff.qmd#mini.diff) (should be set up; 
 formatting of what data is shown, modify buffer-local summary string directly
 as described in [MiniDiff-diff-summary](mini-diff.qmd#minidiff-diff-summary).
 
-If 'mini.diff' is not set up, section falls back on 'lewis6991/gitsigns' data
+If [mini.diff](mini-diff.qmd#mini.diff) is not set up, section falls back on `lewis6991/gitsigns.nvim` data
 or showing empty string.
 
 Empty string is returned if window width is lower than `args.trunc_width`.
@@ -355,7 +355,7 @@ Section for Neovim's builtin diagnostics
 
 Shows nothing if diagnostics is disabled, no diagnostic is set, or for short
 output. Otherwise uses [vim.diagnostic.get()](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.get\(\)) to compute and show number of
-errors ('E'), warnings ('W'), information ('I'), and hints ('H').
+errors (`E`), warnings (`W`), information (`I`), and hints (`H`).
 
 Short output is returned if window width is lower than `args.trunc_width`.
 
@@ -426,9 +426,9 @@ Short output is returned if window width is lower than `args.trunc_width`.
 <p align="center">`MiniStatusline.section_fileinfo`(<span class="help-syntax-special">{args}</span>)</p>
 Section for file information
 
-Shows 'filetype', 'fileencoding' / 'encoding', 'fileformat', and buffer size.
-Short output has only non-empty 'filetype' and is returned if window width is
-lower than `args.trunc_width` or buffer is not normal (as per 'buftype').
+Shows ['filetype'](https://neovim.io/doc/user/helptag.html?tag='filetype'), ['fileencoding'](https://neovim.io/doc/user/helptag.html?tag='fileencoding') / ['encoding'](https://neovim.io/doc/user/helptag.html?tag='encoding'), ['fileformat'](https://neovim.io/doc/user/helptag.html?tag='fileformat'), and buffer size.
+Short output has only non-empty ['filetype'](https://neovim.io/doc/user/helptag.html?tag='filetype') and is returned if window width is
+lower than `args.trunc_width` or buffer is not normal (as per ['buftype'](https://neovim.io/doc/user/helptag.html?tag='buftype')).
 
 Buffer size is computed based on current text, not file's saved version.
 

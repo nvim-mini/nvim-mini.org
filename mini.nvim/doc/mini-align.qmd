@@ -85,42 +85,42 @@ To stop module from showing non-error feedback, set `config.silent = true`.
 
 - [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align):
 
-    - 'mini.align' is mostly designed after 'junegunn/vim-easy-align', so
+    - [mini.align](mini-align.qmd#mini.align) is mostly designed after `junegunn/vim-easy-align`, so
       there are a lot of similarities.
 
     - Both plugins allow users to change alignment options interactively by
       pressing modifier keys (albeit completely different default ones).
-      'junegunn/vim-easy-align' has those modifiers fixed, while 'mini.align'
+      `junegunn/vim-easy-align` has those modifiers fixed, while [mini.align](mini-align.qmd#mini.align)
       allows their full customization. See [MiniAlign.config](mini-align.qmd#minialign.config) for examples.
 
-    - 'junegunn/vim-easy-align' is designed to treat delimiters differently
-      than other parts of strings. 'mini.align' doesn't distinguish split
+    - `junegunn/vim-easy-align` is designed to treat delimiters differently
+      than other parts of strings. [mini.align](mini-align.qmd#mini.align) doesn't distinguish split
       parts from one another by design: splitting is allowed to be done
       based on some other logic than by splitting on delimiters.
 
-    - 'junegunn/vim-easy-align' initially aligns by only first delimiter.
-      'mini.align' initially aligns by all delimiter.
+    - `junegunn/vim-easy-align` initially aligns by only first delimiter.
+      [mini.align](mini-align.qmd#mini.align) initially aligns by all delimiter.
 
-    - 'junegunn/vim-easy-align' implements special filtering by delimiter
-      row number. 'mini.align' has builtin filtering based on Lua code
+    - `junegunn/vim-easy-align` implements special filtering by delimiter
+      row number. [mini.align](mini-align.qmd#mini.align) has builtin filtering based on Lua code
       supplied by user in modifier phase. See [MiniAlign.gen\_step.filter()](mini-align.qmd#minialign.gen_step.filter)
-      and 'f' builtin modifier.
+      and `f` builtin modifier.
 
-    - 'mini.align' treats any non-registered modifier as a plain delimiter
-      pattern, while 'junegunn/vim-easy-align' does not.
+    - [mini.align](mini-align.qmd#mini.align) treats any non-registered modifier as a plain delimiter
+      pattern, while `junegunn/vim-easy-align` does not.
 
-    - 'mini.align' exports core Lua function used for aligning strings
+    - [mini.align](mini-align.qmd#mini.align) exports core Lua function used for aligning strings
       ([MiniAlign.align\_strings()](mini-align.qmd#minialign.align_strings)).
 
 - [godlygeek/tabular](https://github.com/godlygeek/tabular):
 
-    - 'godlygeek/tabular' is mostly designed around single command which is
-      customized by printing its parameters. 'mini.align' implements
+    - `godlygeek/tabular` is mostly designed around single command which is
+      customized by printing its parameters. [mini.align](mini-align.qmd#mini.align) implements
       different concept of interactive alignment through pressing
       customizable single character modifiers.
 
-    - 'godlygeek/tabular' can detect region upon which alignment can be
-      desirable. 'mini.align' does not by design: use Visual selection or
+    - `godlygeek/tabular` can detect region upon which alignment can be
+      desirable. [mini.align](mini-align.qmd#mini.align) does not by design: use Visual selection or
       textobject/motion to explicitly define region to align.
 
 #### Disabling {#module-disabling}
@@ -194,7 +194,7 @@ or blockwise ("block", `<C-v>`, [blockwise-visual](https://neovim.io/doc/user/he
 
 ### Algorithm {#minialign-algorithm .help-syntax-right-anchor}
 
-There are two main processes implemented in 'mini.align': strings alignment
+There are two main processes implemented in [mini.align](mini-align.qmd#mini.align): strings alignment
 and interactive region alignment. See [MiniAlign-glossary](mini-align.qmd#minialign-glossary) for more information
 about used terms.
 
@@ -289,10 +289,10 @@ See more in [MiniAlign-modifiers-builtin](mini-align.qmd#minialign-modifiers-bui
 
 Notes:
 
-- Visual blockwise selection works best with 'virtualedit' equal to "block"
+- Visual blockwise selection works best with ['virtualedit'](https://neovim.io/doc/user/helptag.html?tag='virtualedit') equal to "block"
   or "all".
 
-- Alignment with preview works best with 'showmode' disabled.
+- Alignment with preview works best with ['showmode'](https://neovim.io/doc/user/helptag.html?tag='showmode') disabled.
 
 ---
 
@@ -535,7 +535,7 @@ Notes:
 
 Copy lines in modifiable buffer, initiate alignment with preview (`gAip`)
 and try typing suggested key sequences.
-These are modified examples taken from 'junegunn/vim-easy-align'.
+These are modified examples taken from `junegunn/vim-easy-align`.
 
 #### Equal sign {#minialign-examples-equalsign}
 
@@ -697,7 +697,7 @@ Each modifier function:
 
 Examples:
 
-- Modifier function used for default 'i' modifier:
+- Modifier function used for default `i` modifier:
 
   ```lua
   function(steps, _)
@@ -706,7 +706,7 @@ Examples:
   ```
 
 
-- Tweak 't' modifier to use highest indentation instead of keeping it:
+- Tweak `t` modifier to use highest indentation instead of keeping it:
 
   ```lua
   require('mini.align').setup({
@@ -721,7 +721,7 @@ Examples:
 
 
 - Tweak `j` modifier to cycle through available "justify_side" option
-  values (like in 'junegunn/vim-easy-align'):
+  values (like in `junegunn/vim-easy-align`):
 
   ```lua
   require('mini.align').setup({
@@ -1205,7 +1205,7 @@ used as pre-split step.
   for most cases).
 
 <span class="help-syntax-special">{exclude_comment}</span> `(boolean|nil)` Whether to add comment pattern to
-  `split_exclude_patterns`. Comment pattern is derived from 'commentstring'
+  `split_exclude_patterns`. Comment pattern is derived from ['commentstring'](https://neovim.io/doc/user/helptag.html?tag='commentstring')
   option. Default: `true`.
 
 #### Return {#minialign.gen_step.ignore_split-return}

@@ -61,15 +61,15 @@ match. No special characters or positions (like in fzy and fzf) are used.
 
 Given non-empty input `word` and target `candidate`:
 
-- The goal is to find matching between `word`'s letters and letters in
+- The goal is to find matching between letters in `word` and letters in
   `candidate` which minimizes certain score. It is assumed that order of
   letters in `word` and those matched in `candidate` should be the same.
 
 
 - Matching is represented by matched positions: an array `positions` of
   integers with length equal to number of letters in `word`. The following
-  should be always true in case of a match: `candidate`'s letter at index
-  `positions[i]` is letters[i]` for all valid `i`.
+  should be always true in case of a match: `candidate` letter at index
+  `positions[i]` is `letters[i]` for all valid `i`.
 
 
 - Matched positions are evaluated based only on two features: their width
@@ -83,9 +83,9 @@ Given non-empty input `word` and target `candidate`:
   equivalent to first comparing widths (lower is better) and then comparing
   first match (lower is better). For example, if `word = 'time'`:
 
-    - '_time' (width 4) will have a better match than 't_ime' (width 5).
+    - `_time` (width 4) will have a better match than `t_ime` (width 5).
 
-    - 'time_a' (width 4, first 1) will have a better match than 'a_time'
+    - `time_a` (width 4, first 1) will have a better match than `a_time`
       (width 4, first 3).
 
 
@@ -197,7 +197,7 @@ Fuzzy matching for `lsp_completion.process_items` of [MiniCompletion.config](min
 
 
 
-<span class="help-syntax-special">{items}</span> `(table)` Array with LSP 'textDocument/completion' response items.
+<span class="help-syntax-special">{items}</span> `(table)` Array with LSP `'textDocument/completion'` response items.
 
 <span class="help-syntax-special">{base}</span> `(string)` Word to complete.
 
@@ -213,7 +213,7 @@ Fuzzy matching for `lsp_completion.process_items` of [MiniCompletion.config](min
 <p align="center">`MiniFuzzy.get_telescope_sorter`(<span class="help-syntax-special">{opts}</span>)</p>
 Custom getter for `telescope.nvim` sorter
 
-Designed as a value for file and generic sorter of 'telescope.nvim'.
+Designed as a value for file and generic sorter of `telescope.nvim`.
 
 #### Parameters {#minifuzzy.get_telescope_sorter-parameters}
 

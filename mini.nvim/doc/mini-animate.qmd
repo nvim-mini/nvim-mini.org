@@ -80,35 +80,35 @@ as `MiniAnimate.config`. See [mini.nvim-buffer-local-config](mini-nvim.qmd#mini.
 - [Neovide](https://neovide.dev/):
 
     - Neovide is a standalone GUI which has more control over its animations.
-      While 'mini.animate' works inside terminal emulator (with all its
+      While [mini.animate](mini-animate.qmd#mini.animate) works inside terminal emulator (with all its
       limitations, like lack of pixel-size control over animations).
 
-    - Neovide animates cursor movement across screen, while 'mini.animate' -
+    - Neovide animates cursor movement across screen, while [mini.animate](mini-animate.qmd#mini.animate) -
       as it moves across same buffer.
 
     - Neovide has fixed number of animation effects per action, while
-      'mini.animate' is fully customizable.
+      [mini.animate](mini-animate.qmd#mini.animate) is fully customizable.
 
-    - 'mini.animate' implements animations for window open/close, while
+    - [mini.animate](mini-animate.qmd#mini.animate) implements animations for window open/close, while
       Neovide does not.
 
 - [edluffy/specs.nvim](https://github.com/edluffy/specs.nvim):
 
-    - 'mini.animate' approaches cursor movement visualization via
-      customizable path function (uses extmarks), while 'specs.nvim' can
+    - [mini.animate](mini-animate.qmd#mini.animate) approaches cursor movement visualization via
+      customizable path function (uses extmarks), while `specs.nvim` can
       customize within its own visual effects (shading and floating
       window resizing).
 
 - [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim):
 
     - Scroll animation is triggered only inside dedicated mappings.
-      'mini.animate' animates scroll resulting from any window view change.
+      [mini.animate](mini-animate.qmd#mini.animate) animates scroll resulting from any window view change.
 
 - [anuvyklack/windows.nvim](https://github.com/anuvyklack/windows.nvim):
 
     - Resize animation is done only within custom commands and mappings,
-      while 'mini.animate' animates any resize with appropriate values of
-      'winheight' / 'winwidth' and 'winminheight' / 'winminwidth').
+      while [mini.animate](mini-animate.qmd#mini.animate) animates any resize with appropriate values of
+      ['winheight'](https://neovim.io/doc/user/helptag.html?tag='winheight') / ['winwidth'](https://neovim.io/doc/user/helptag.html?tag='winwidth') and ['winminheight'](https://neovim.io/doc/user/helptag.html?tag='winminheight') / ['winminwidth'](https://neovim.io/doc/user/helptag.html?tag='winminwidth')).
 
 #### Highlight groups {#module-highlightgroups}
 
@@ -344,11 +344,11 @@ Notes:
   subscrolls, this has two important interconnected consequences:
 
     - If another scroll is attempted during the animation, it is done based
-      on the currently visible window view. Example: if user presses
-      [CTRL-D](https://neovim.io/doc/user/helptag.html?tag=CTRL-D) and then [CTRL-U](https://neovim.io/doc/user/helptag.html?tag=CTRL-U) when animation is half done, window will not
-      display the previous view half of 'scroll' above it. This especially
-      affects mouse wheel scrolling, as each its turn results in a new scroll
-      for number of lines defined by 'mousescroll'. Tweak it to your liking.
+      on the CURRENTLY VISIBLE window view. Example: if user presses [CTRL-D](https://neovim.io/doc/user/helptag.html?tag=CTRL-D)
+      and then [CTRL-U](https://neovim.io/doc/user/helptag.html?tag=CTRL-U) when animation is half done, window will not display
+      the previous view half of ['scroll'](https://neovim.io/doc/user/helptag.html?tag='scroll') above it. This especially affects
+      mouse wheel scrolling, as each its turn results in a new scroll for
+      number of lines defined by ['mousescroll'](https://neovim.io/doc/user/helptag.html?tag='mousescroll'). Tweak it to your liking.
 
     - It breaks the use of several relative scrolling commands in the same
       command. Use [MiniAnimate.execute\_after()](mini-animate.qmd#minianimate.execute_after) to schedule action after
@@ -363,7 +363,7 @@ Notes:
 
 
 - Default timing might conflict with scrolling via holding a key (like `j` or `k`
-  with 'wrap' enabled) due to high key repeat rate: next scroll is done before
+  with ['wrap'](https://neovim.io/doc/user/helptag.html?tag='wrap') enabled) due to high key repeat rate: next scroll is done before
   first step of current one finishes. Resolve this by not scrolling like that
   or by ensuring maximum value of step duration to be lower than between
   repeated keys: set timing like `function(_, n) return math.min(250/n, 10) end`
@@ -431,7 +431,7 @@ Notes:
   subresizes, this has two important interconnected consequences:
 
     - If another resize is attempted during the animation, it is done based
-      on the currently visible window sizes. This might affect relative
+      on the CURRENTLY VISIBLE window sizes. This might affect relative
       resizing.
 
     - It breaks the use of several relative resizing commands in the same
@@ -498,7 +498,7 @@ Example:
 
 The `winblend` option is similar to `timing` option: it is a callable
 which, given current and total step numbers, returns value of floating
-window's 'winblend' option. Note, that it is called for current step (so
+window's ['winblend'](https://neovim.io/doc/user/helptag.html?tag='winblend') option. Note, that it is called for current step (so
 starts from 0), as opposed to `timing` which is called before step.
 Example:
 
@@ -672,7 +672,7 @@ Example:
 #### See also {#minianimate.gen_timing-seealso}
 
 
-[MiniIndentscope.gen\_animation](mini-indentscope.qmd#miniindentscope.gen_animation) for similar concept in 'mini.indentscope'.
+[MiniIndentscope.gen\_animation](mini-indentscope.qmd#miniindentscope.gen_animation) for similar concept in [mini.indentscope](mini-indentscope.qmd#mini.indentscope).
 
 ---
 
@@ -1223,9 +1223,9 @@ Generate linear `winblend` progression
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options that control generator. Possible keys:
 
-  - <span class="help-syntax-keys">\<from\></span> `(number)` - initial value of 'winblend'.
+  - <span class="help-syntax-keys">\<from\></span> `(number)` - initial value of ['winblend'](https://neovim.io/doc/user/helptag.html?tag='winblend').
 
-  - <span class="help-syntax-keys">\<to\></span> `(number)` - final value of 'winblend'.
+  - <span class="help-syntax-keys">\<to\></span> `(number)` - final value of ['winblend'](https://neovim.io/doc/user/helptag.html?tag='winblend').
 
 #### Return {#minianimate.gen_winblend.linear-return}
 

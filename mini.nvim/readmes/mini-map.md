@@ -34,7 +34,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 ## Features
 
-- Show and manage special floating window displaying automatically updated overview of current buffer text. Window takes up whole height of Neovim instance and is fixed to a left/right side. Map content is computed by taking all current lines, converting it to binary whitespace/non-whitespace mask, rescaling to appropriate dimensions, and converting back to strings consisting from special encoding symbols. All this is done **very fast** and **asynchronously**.
+- Show and manage special floating window displaying automatically updated overview of current buffer text. Window takes up whole height of Neovim instance and is fixed to a left/right side. Map content is computed by taking all current lines, converting it to binary whitespace/non-whitespace mask, rescaling to appropriate dimensions, and converting back to strings consisting from special encoding symbols. All this is done very fast and asynchronously.
 
     See [`:h MiniMap.open()`](../doc/mini-map.qmd#minimap.open), [`:h MiniMap.refresh()`](../doc/mini-map.qmd#minimap.refresh), [`:h MiniMap.close()`](../doc/mini-map.qmd#minimap.close), [`:h MiniMap.toggle()`](../doc/mini-map.qmd#minimap.toggle), [`:h MiniMap.toggle_side()`](../doc/mini-map.qmd#minimap.toggle_side).
 
