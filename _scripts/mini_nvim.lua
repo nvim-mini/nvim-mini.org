@@ -82,9 +82,9 @@ local add_help_syntax = function(lines, tags)
   local bad_ranges = {}
 
   local replace_not_in_ranges = function(s, pat, repl)
-    local res = s:gsub(pat, function(col, text)
+    local res = s:gsub(pat, function(from, text, to)
       for _, range in ipairs(bad_ranges) do
-        if range[1] <= col and col < range[2] then return end
+        if range[1] <= from and (to - 1) <= range[2] then return end
       end
       return type(repl) == 'string' and string.format(repl, text) or repl(text)
     end)
@@ -96,12 +96,13 @@ local add_help_syntax = function(lines, tags)
     -- Inline code
     s:gsub('`().-()`', function(from, to) table.insert(bad_ranges, { from, to }) end)
     -- Actual link (but not visible part!) of markdown link
-    s:gsub('%b[]()%b()()', function(from, to) table.insert(bad_ranges, { from, to }) end)
+    -- Account for visible part possible `\]` (like in `['\]]` for |']|)
+    s:gsub('%[.-[^\\]%]()%b()()', function(from, to) table.insert(bad_ranges, { from + 1, to - 1 }) end)
   end
 
   local repl_link = function(m)
     -- Escape special markdown characters to be shown as is
-    local link_name = m:gsub('[_*~$]', '\\%1')
+    local link_name = m:gsub('[_*~$`%[%]]', '\\%1')
     if tags[m] == nil then
       -- Escpe special characters to be usable inside markdown link
       local link_anchor = m:gsub('[)(]', '\\%1')
@@ -150,21 +151,21 @@ local add_help_syntax = function(lines, tags)
     populate_bad_ranges(lines[i])
 
     -- `|xxx|` is used to add a a link to a tag anchor
-    lines[i] = replace_not_in_ranges(lines[i], '()|(%S-)|', repl_link)
+    lines[i] = replace_not_in_ranges(lines[i], '()|(%S-)|()', repl_link)
     -- - Recompute code ranges because adding links adds one
     populate_bad_ranges(lines[i])
 
     -- `<xxx>` is used to show keys and (often) table fields. Escape to not be
     -- treated as HTML tags. Do so before adding any custom HTML tags.
-    lines[i] = replace_not_in_ranges(lines[i], '()<(%S-)>', '<span class="help-syntax-keys">\\<%s\\></span>')
+    lines[i] = replace_not_in_ranges(lines[i], '()<(%S-)>()', '<span class="help-syntax-keys">\\<%s\\></span>')
 
     -- `{xxx}` is used to add special highlighting. Usually arguments.
-    lines[i] = replace_not_in_ranges(lines[i], '(){(%S-)}', '<span class="help-syntax-special">{%s}</span>')
+    lines[i] = replace_not_in_ranges(lines[i], '(){(%S-)}()', '<span class="help-syntax-special">{%s}</span>')
 
     -- `*xxx*` is used to add an anchor to a tag. Treat right aligned anchors
     -- as start of the section (adds to table of contents).
     lines[i] = lines[i]:gsub('^ +%*(.-)%*$', repl_right_anchor)
-    lines[i] = replace_not_in_ranges(lines[i], '()%*(%S-)%*', repl_anchor)
+    lines[i] = replace_not_in_ranges(lines[i], '()%*(%S-)%*()', repl_anchor)
 
     -- `Xxx ~` is used to add subsections within section denoted by ruler
     lines[i] = lines[i]:gsub('^(.+) ~$', repl_section_header)

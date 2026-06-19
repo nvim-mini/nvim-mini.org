@@ -31,7 +31,7 @@ Features:
   Can be disabled in favor of more control with [MiniOperators.make\_mappings()](mini-operators.qmd#minioperators.make_mappings).
 
 
-- All operators support [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) and dot-repeat.
+- All operators support [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]) and dot-repeat.
 
 See [MiniOperators-overview](mini-operators.qmd#minioperators-overview) and [MiniOperators.config](mini-operators.qmd#minioperators.config) for more details.
 
@@ -132,10 +132,10 @@ takes `mode` as argument and acts depending on it:
 
 
 - If `mode` is "char", "line", or "block", it acts as `operatorfunc` and performs
-  action for region between [`[](https://neovim.io/doc/user/helptag.html?tag=`[) and |`]| marks.
+  action for region between [\`\[](https://neovim.io/doc/user/helptag.html?tag=`[) and [\`\]](https://neovim.io/doc/user/helptag.html?tag=`]) marks.
 
 
-- If `mode` is "visual", it performs action for region between [`<](https://neovim.io/doc/user/helptag.html?tag=`<) and |`>| marks.
+- If `mode` is "visual", it performs action for region between [\`<](https://neovim.io/doc/user/helptag.html?tag=`<) and [\`>](https://neovim.io/doc/user/helptag.html?tag=`>) marks.
 
 For more details about specific operator, see help for its function:
 
@@ -431,12 +431,12 @@ Copies a region (without affecting registers) and puts it directly after.
 
 Notes:
 
-- Supports two types of [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]): `[count1]gm[count2][textobject]` with default
+- Supports two types of [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]): `[count1]gm[count2][textobject]` with default
   `config.multiply.prefix` makes `[count1]` copies of region defined by
   `[count2][textobject]`. Example: `2gm3aw` - 2 copies of `3aw`.
 
 
-- [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) for "line" mapping (`gmm` by default) is treated as `[count1]` from
+- [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]) for "line" mapping (`gmm` by default) is treated as `[count1]` from
   previous note.
 
 
@@ -463,12 +463,12 @@ Replace text with register
 
 Notes:
 
-- Supports two types of [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]): `[count1]gr[count2][textobject]` with default
+- Supports two types of [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]): `[count1]gr[count2][textobject]` with default
   `config.replace.prefix` puts `[count1]` contents of register over region defined
   by `[count2][textobject]`. Example: `2gr3aw` - 2 register contents over `3aw`.
 
 
-- [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) for "line" mapping (`grr` by default) is treated as `[count1]` from
+- [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]) for "line" mapping (`grr` by default) is treated as `[count1]` from
   previous note.
 
 
@@ -499,7 +499,7 @@ depending on submode.
 Notes:
 
 - "line" mapping is charwise (as there is not much sense in sorting
-  linewise a single line). This also results into no [[count]](https://neovim.io/doc/user/helptag.html?tag=[count]) support.
+  linewise a single line). This also results into no [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]) support.
 
 #### Parameters {#minioperators.sort-parameters}
 
