@@ -179,7 +179,7 @@ There are following change types:
 - Update `add_label` and `remove_label` to use `vim.ui.input` to ask user for not supplied label instead of previous non-customizable `vim.fn.input()`.
 
 
-# Version 0.17.0 {#v0.17.0}
+# Version 0.17.0 (2025-12-18) {#v0.17.0}
 
 ## All {#v0.17.0-all}
 
@@ -399,7 +399,7 @@ There are following change types:
 - Update `expect.reference_screenshot()` to support separate ignoring of text and attribute screenshot data via new `ignore_text` and `ignore_attr` options.
 
 
-# Version 0.16.0 {#v0.16.0}
+# Version 0.16.0 (2025-05-20) {#v0.16.0}
 
 ## All {#v0.16.0-all}
 
@@ -633,7 +633,7 @@ There are following change types:
 - Labels for quickfix and location lists are now different.
 
 
-# Version 0.15.0 {#v0.15.0}
+# Version 0.15.0 (2025-01-30) {#v0.15.0}
 
 ## mini.align {#v0.15.0-mini.align}
 
@@ -737,7 +737,7 @@ There are following change types:
 - Update `expect.reference_screenshot()` to allow `directory` option pointing to a directory where automatically constructed reference path is located.
 
 
-# Version 0.14.0 {#v0.14.0}
+# Version 0.14.0 (2024-09-26) {#v0.14.0}
 
 ## All {#v0.14.0-all}
 
@@ -917,7 +917,7 @@ There are following change types:
 - Make it work on Windows. By @cameronr, PR #1101.
 
 
-# Version 0.13.0 {#v0.13.0}
+# Version 0.13.0 (2024-06-13) {#v0.13.0}
 
 ## mini.comment {#v0.13.0-mini.comment}
 
@@ -1038,7 +1038,7 @@ There are following change types:
 - Child process is now created with extra `--headless --cmd "set lines=24 columns=80"` arguments making it headless but still reasonably similar to fully functioning Neovim during interactive usage. This change should generally not break a lot of things, while enabling a faster and more robust test execution.
 
 
-# Version 0.12.0 {#v0.12.0}
+# Version 0.12.0 (2024-02-29) {#v0.12.0}
 
 ## mini.basics {#v0.12.0-mini.basics}
 
@@ -1142,7 +1142,7 @@ There are following change types:
 - Introduction of a new module.
 
 
-# Version 0.11.0 {#v0.11.0}
+# Version 0.11.0 (2023-11-17) {#v0.11.0}
 
 ## mini.base16 {#v0.11.0-mini.base16}
 
@@ -1259,7 +1259,7 @@ There are following change types:
 - Update `expect.reference_screenshot()` to now have `ignore_lines` option allowing to ignore specified lines during screenshot compare.
 
 
-# Version 0.10.0 {#v0.10.0}
+# Version 0.10.0 (2023-09-05) {#v0.10.0}
 
 ## mini.ai {#v0.10.0-mini.ai}
 
@@ -1340,7 +1340,7 @@ There are following change types:
 - Update `add` (`sa`) with ability to replicate left and right parts by respecting `[count]`. In Normal mode two kinds of `[count]` is respected: one for operator (replicates left and right parts) and one for textobject/motion. In Visual mode `[count]` replicates parts.
 
 
-# Version 0.9.0 {#v0.9.0}
+# Version 0.9.0 (2023-06-08) {#v0.9.0}
 
 ## All {#v0.9.0-all}
 
@@ -1407,7 +1407,7 @@ There are following change types:
 - Introduction of a new module.
 
 
-# Version 0.8.0 {#v0.8.0}
+# Version 0.8.0 (2023-04-02) {#v0.8.0}
 
 ## All {#v0.8.0-all}
 
@@ -1495,7 +1495,7 @@ There are following change types:
     - Blockwise adding places surrounding parts on whole edges, not only start and end of selection.
 
 
-# Version 0.7.0 {#v0.7.0}
+# Version 0.7.0 (2023-02-12) {#v0.7.0}
 
 ## All {#v0.7.0-all}
 
@@ -1554,7 +1554,7 @@ There are following change types:
 - Introduction of a new module.
 
 
-# Version 0.6.0 {#v0.6.0}
+# Version 0.6.0 (2022-10-25) {#v0.6.0}
 
 ## All {#v0.6.0-all}
 
@@ -1631,7 +1631,7 @@ There are following change types:
 - Implement `MiniSurround.gen_spec` with generators of common surrounding specifications (like `MiniSurround.gen_spec.input.treesitter` for tree-sitter based input surrounding).
 
 
-# Version 0.5.0 {#v0.5.0}
+# Version 0.5.0 (2022-08-19) {#v0.5.0}
 
 ## All {#v0.5.0-all}
 
@@ -1698,7 +1698,7 @@ There are following change types:
 - Implement `MiniTrailspace.trim_last_lines()`.
 
 
-# Version 0.4.0 {#v0.4.0}
+# Version 0.4.0 (2022-05-26) {#v0.4.0}
 
 ## All {#v0.4.0-all}
 
@@ -1805,7 +1805,7 @@ There are following change types:
 - Show quickfix/loclist buffers with special `*quickfix*` label.
 
 
-# Version 0.3.0 {#v0.3.0}
+# Version 0.3.0 (2022-03-08) {#v0.3.0}
 
 ## All {#v0.3.0-all}
 
@@ -1838,7 +1838,7 @@ There are following change types:
 - Implement `MiniStarter.set_query()` and make `<Esc>` mapping for resetting query.
 
 
-# Version 0.2.0 {#v0.2.0}
+# Version 0.2.0 (2021-12-19) {#v0.2.0}
 
 ## mini.base16 {#v0.2.0-mini.base16}
 
@@ -1887,7 +1887,7 @@ There are following change types:
 - Update `section_diagnostics` to use `vim.diagnostic` in Neovim 0.6.0.
 
 
-# Version 0.1.0 {#v0.1.0}
+# Version 0.1.0 (2021-10-31) {#v0.1.0}
 
 ## All {#v0.1.0-all}
 
