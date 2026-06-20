@@ -1,0 +1,47 @@
+---
+title: "Release 0.18.0"
+author: Evgeni Chasnovski
+date: 2026-06-21
+categories: [release]
+description: Featureful user input, 'mini.deps' freeze, 'mini.files' LSP integration, and a heap of module tweaks
+---
+
+Hello, Neovim users!
+
+Today is the release day of 'mini.nvim' version 0.18.0. Almost [half a year](2025-12-18-release-0170.qmd) after the previous release. Arguably, it is a bit too much: I prefer to have around three months between releases, but with at least one new module (this was the bottleneck).
+
+Here is a [full version changelog](/mini.nvim/CHANGELOG.html#v0.18.0) if you are curious.
+
+---
+
+There is one new module:
+
+- ['mini.input'](/mini.nvim/readmes/mini-input.md) - Get user input with fully customizable key and view handling. Can show as floating window, statusline/tabline/winbar, virtual line/text. Provides a [`vim.ui.input()`](https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()) implementation. You can read more in [its release post](2026-06-04-announce-mini-input.qmd).
+
+    This was a module number 45. Its tests also pushed total 'mini.nvim' test case count to be over 5000!
+
+---
+
+Notable changes include:
+
+- Update all relevant modules to prefer using 'mini.input' functionality (if module is enabled). Like when asking for function/tag name in 'mini.ai' + 'mini.surround' or interactive glob filtering in `grep_live` 'mini.pick' picker.
+
+- Neovim 0.9 is soft deprecated. Its support will be soon fully removed on the `main` branch.
+
+- Development of 'mini.deps' is frozen in favor of suggesting to use [vim.pack](https://neovim.io/doc/user/helptag.html?tag=vim.pack). See ['mini.deps' README](/mini.nvim/readmes/mini-deps.md#development-freeze) for more details.
+
+- 'mini.files' now has LSP integration, i.e. make some files system actions (create, delete, rename) LSP aware.
+
+- 'mini.misc' got a new `safely()` function to act as a replacement for `MiniDeps.now()` and `MiniDeps.later()`.
+
+- 'mini.pick' had several notable improvements:
+
+    - It now supports [upstream `vim.ui.select()` preview interface](https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()). This means that plugins that want to provide custom picker now can define custom preview with it.
+
+    - Non-streaming paste from system clipboard (i.e. what is usually a `Cmd+Shift+C`) is now supported when a picker is active.
+
+    - Update `grep` and `grep_live` pickers to allow new `method` local option to control pattern matching method (`regex` or `plain`).
+
+---
+
+Thank you all for using and supporting the MINI project! There is an ambitious plan for its improvement, so let's hope it is not too ambitious :)
