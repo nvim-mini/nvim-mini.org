@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Evgeni Chasnovski">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="Featureful user input, ‘mini.deps’ freeze, ‘mini.files’ LSP integration, and a heap of module tweaks">
 
-<title>mini.input – MINI</title>
+<title>Release 0.18.0 – MINI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,65 +23,30 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-fe4ae391977ded5acbd2dac8638e5d30.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-91ab2dbb5ae40a161070bb36fa9e4e5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//assets/logo-mini_180x180.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0ed1a58f1961f20e100ea025a42ebf64.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fe4ae391977ded5acbd2dac8638e5d30.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-91ab2dbb5ae40a161070bb36fa9e4e5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,17 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<style> .quarto-title > h1.title { display: none } </style>
 
 
-<meta property="og:title" content="mini.input – MINI">
-<meta property="og:description" content="Modular Independent Neovim Improvements">
+<meta property="og:title" content="Release 0.18.0 – MINI">
+<meta property="og:description" content="Featureful user input, ‘mini.deps’ freeze, ‘mini.files’ LSP integration, and a heap of module tweaks">
 <meta property="og:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta property="og:site_name" content="MINI">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="mini.input – MINI">
-<meta name="twitter:description" content="Modular Independent Neovim Improvements">
+<meta name="twitter:title" content="Release 0.18.0 – MINI">
+<meta name="twitter:description" content="Featureful user input, ‘mini.deps’ freeze, ‘mini.files’ LSP integration, and a heap of module tweaks">
 <meta name="twitter:image" content="https://nvim-mini.org/assets/logo-mini_social.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -299,9 +266,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MINI</span>
     </a>
   </div>
@@ -312,15 +279,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../mini.nvim/index.html"> 
+    <a class="nav-link" href="../mini.nvim/index.html"> 
 <span class="menu-text">mini.nvim</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../MiniMax/index.html"> 
+    <a class="nav-link" href="../MiniMax/index.html"> 
 <span class="menu-text">MiniMax</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog/index.html"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -331,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
+    <a class="nav-link" href="../blog/index.xml"> <i class="bi bi-rss-fill" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -347,19 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#get-user-input" id="toc-get-user-input" class="nav-link active" data-scroll-target="#get-user-input">Get user input</a></li>
-  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
-  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#default-config" id="toc-default-config" class="nav-link" data-scroll-target="#default-config">Default config</a></li>
-  <li><a href="#similar-plugins" id="toc-similar-plugins" class="nav-link" data-scroll-target="#similar-plugins">Similar plugins</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -367,14 +323,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">mini.input</h1>
-</div>
+<h1 class="title">Release 0.18.0</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">release</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Featureful user input, ‘mini.deps’ freeze, ‘mini.files’ LSP integration, and a heap of module tweaks
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Evgeni Chasnovski </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 21, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -384,131 +360,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p align="center">
-<img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-input_readme.png?raw=true" alt="mini.input" style="max-width:100%;border:solid 2px">
-</p>
-<p align="center">
-<em>Generated from the <code>main</code> branch of ‘mini.nvim’</em>
-</p>
-<section id="get-user-input" class="level3">
-<h3 class="anchored" data-anchor-id="get-user-input">Get user input</h3>
-<p>See more details in <a href="#features">Features</a> and <a href="../../mini.nvim/doc/mini-input.html">Documentation</a>.</p>
+<p>Hello, Neovim users!</p>
+<p>Today is the release day of ‘mini.nvim’ version 0.18.0. Almost <a href="../blog/2025-12-18-release-0170.html">half a year</a> and 188 commits after the previous release. Arguably, the wait is a bit too much: I prefer to have around three months between releases, but with at least one new module (this was the bottleneck in this release).</p>
+<p>Here is a <a href="../mini.nvim/CHANGELOG.html#v0.18.0">full version changelog</a> if you are curious.</p>
 <hr>
-<p>⦿ This is a part of <a href="https://nvim-mini.org/mini.nvim">mini.nvim</a> library. Please use <a href="https://nvim-mini.org/mini.nvim/readmes/mini-input">this link</a> if you want to mention this module.</p>
-<p>⦿ All contributions (issues, pull requests, discussions, etc.) are done inside of ‘mini.nvim’.</p>
-<p>⦿ See <a href="https://nvim-mini.org/mini.nvim/doc/mini-nvim">whole library documentation</a> to learn about general design principles, disable/configuration recipes, and more.</p>
-<p>⦿ See <a href="https://nvim-mini.org/MiniMax">MiniMax</a> for a full config example that uses this module.</p>
+<p>There is one new module:</p>
+<ul>
+<li><p><a href="../mini.nvim/readmes/mini-input.html">‘mini.input’</a> - Get user input with fully customizable key and view handling. Can show as floating window, statusline/tabline/winbar, virtual line/text. Provides a <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()"><code>vim.ui.input()</code></a> implementation. You can read more in <a href="../blog/2026-06-04-announce-mini-input.html">its release post</a>.</p>
+<p>This was a module number 45. Its tests also pushed total ‘mini.nvim’ test case count to be over 5000!</p></li>
+</ul>
 <hr>
-<p>If you want to help this project grow but don’t know where to start, check out <a href="https://nvim-mini.org/mini.nvim/CONTRIBUTING">contributing guides of ‘mini.nvim’</a> or leave a Github star for ‘mini.nvim’ project and/or any its standalone Git repositories.</p>
-</section>
-<section id="demo" class="level2">
-<h2 class="anchored" data-anchor-id="demo">Demo</h2>
-<p><video src="https://github.com/nvim-mini/assets/blob/main/demo/demo-input.mp4?raw=true" class="img-fluid" controls=""><a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-input.mp4?raw=true">Video</a></video></p>
-<p><strong>Note</strong>: This demo uses custom <code>vim.notify</code> from <a href="https://nvim-mini.org/mini.nvim/readmes/mini-notify">mini.notify</a>.</p>
-</section>
-<section id="features" class="level2">
-<h2 class="anchored" data-anchor-id="features">Features</h2>
+<p>Notable changes include:</p>
 <ul>
-<li><p>Get user input with fully customizable key and view handling.</p></li>
-<li><p>Built-in configurable views as floating window, statusline/tabline/winbar, virtual line/text.</p></li>
-<li><p>Implementation is non-blocking but waits to return the input. It also works in any mode without requiring mode change. See <a href="../../mini.nvim/doc/mini-input.html#miniinput-lifecycle"><code>:h MiniInput-lifecycle</code></a>.</p></li>
-<li><p><code>vim.ui.input()</code> implementation. To adjust, use <a href="../../mini.nvim/doc/mini-input.html#miniinput.ui_input"><code>MiniInput.ui_input()</code></a> or save-restore <code>vim.ui.input</code> manually after calling <a href="../../mini.nvim/doc/mini-input.html#miniinput.setup"><code>MiniInput.setup()</code></a>.</p></li>
-</ul>
-<p>For more information see these parts of help:</p>
+<li><p>Update all relevant modules to prefer using ‘mini.input’ functionality (if module is enabled). Like when asking for function/tag name in ‘mini.ai’ + ‘mini.surround’ or interactive glob filtering in <code>grep_live</code> ‘mini.pick’ picker.</p></li>
+<li><p>Neovim 0.9 is soft deprecated. Its support will be soon fully removed on the <code>main</code> branch.</p></li>
+<li><p>Development of ‘mini.deps’ is frozen in favor of suggesting to use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a>. See <a href="../mini.nvim/readmes/mini-deps.html#development-freeze">‘mini.deps’ README</a> for more details.</p></li>
+<li><p>‘mini.files’ now has LSP integration, i.e.&nbsp;this makes some file system actions (create, delete, rename) LSP aware.</p></li>
+<li><p>‘mini.misc’ got a new <code>safely()</code> function to act as a replacement for <code>MiniDeps.now()</code> and <code>MiniDeps.later()</code>.</p></li>
+<li><p>‘mini.sessions’ got a new <code>restart()</code> function that enhances <a href="https://neovim.io/doc/user/helptag.html?tag=:restart"><code>:restart</code></a> command added in Neovim 0.12. It allows restarting while preserving current session. This is meant as a temporary solution until <a href="https://github.com/neovim/neovim/issues/38940">upstream adjusts the behavior</a>, which will hopefully be relatively soon.</p></li>
+<li><p>‘mini.pick’ had several notable improvements:</p>
 <ul>
-<li><a href="../../mini.nvim/doc/mini-input.html#miniinput.get"><code>:h MiniInput.get()</code></a></li>
-<li><a href="../../mini.nvim/doc/mini-input.html#miniinput.default_key"><code>:h MiniInput.default_key()</code></a></li>
-<li><a href="../../mini.nvim/doc/mini-input.html#miniinput-state"><code>:h MiniInput-state</code></a></li>
-<li><a href="../../mini.nvim/doc/mini-input.html#miniinput-examples"><code>:h MiniInput-examples</code></a></li>
-<li><a href="../../mini.nvim/doc/mini-input.html#miniinput-in-other-plugins"><code>:h MiniInput-in-other-plugins</code></a> (for plugin authors)</li>
+<li><p>It now supports <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">upstream <code>vim.ui.select()</code> preview interface</a>. This means that plugins that want to provide custom picker with preview now can use <code>vim.ui.select()</code> + <code>opts.preview_item</code> and preview will work with ‘mini.pick’ implementation of <code>vim.ui.select()</code>.</p></li>
+<li><p>Non-streaming paste from the system clipboard (i.e.&nbsp;what is usually a <code>Cmd+Shift+C</code>) is now supported when a picker is active.</p></li>
+<li><p>Update <code>grep</code> and <code>grep_live</code> pickers to allow new <code>method</code> local option to control pattern matching method (<code>regex</code> or <code>plain</code>).</p></li>
+</ul></li>
 </ul>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>This plugin can be installed as part of ‘mini.nvim’ library (<strong>recommended</strong>) or as a standalone Git repository.</p>
-<p>There are two branches to install from:</p>
-<ul>
-<li><code>main</code> (default, <strong>recommended</strong>) will have latest development version of plugin. All changes since last stable release should be perceived as being in beta testing phase (meaning they already passed alpha-testing and are moderately settled).</li>
-<li><code>stable</code> will be updated only upon releases with code tested during public beta-testing phase in <code>main</code> branch.</li>
-</ul>
-<p>Here are code snippets for some common installation methods (use only one):</p>
-<details>
-<summary>
-<b>(Recommended)</b> With <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a> (on Neovim 0.12 and newer)
-</summary>
-<p><strong>Full library</strong></p>
-<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
-<p><strong>Standalone plugin</strong></p>
-<p>Main branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span> <span class="st">'https://github.com/nvim-mini/mini.input'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Stable branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">pack</span><span class="op">.</span>add<span class="op">({</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">src</span> <span class="op">=</span> <span class="st">'https://github.com/nvim-mini/mini.input'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">},</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<details>
-<summary>
-With <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps">mini.deps</a> (before Neovim 0.12)
-</summary>
-<p><strong>Full library</strong></p>
-<p>Follow <a href="https://nvim-mini.org/mini.nvim/readmes/mini-deps#installation">recommended ‘mini.deps’ installation</a>.</p>
-<p><strong>Standalone plugin</strong>:</p>
-<p>Main branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">(</span><span class="st">'nvim-mini/mini.input'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Stable branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>add<span class="op">({</span> <span class="va">source</span> <span class="op">=</span> <span class="st">'nvim-mini/mini.input'</span><span class="op">,</span> <span class="va">checkout</span> <span class="op">=</span> <span class="st">'stable'</span> <span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<details>
-<summary>
-With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
-</summary>
-<p><strong>Full library</strong></p>
-<p>Follow <a href="https://nvim-mini.org/mini.nvim#installation">‘mini.nvim’ installation</a>.</p>
-<p><strong>Standalone plugin</strong></p>
-<p>Main branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.input'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="kw">false</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Stable branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="st">'nvim-mini/mini.input'</span><span class="op">,</span> <span class="va">version</span> <span class="op">=</span> <span class="st">'*'</span> <span class="op">},</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><strong>Important</strong>: don’t forget to call <code>require('mini.input').setup()</code> to enable its functionality.</p>
-<p><strong>Note</strong>: if you are on Windows, there might be problems with too long file paths (like <code>error: unable to create file &lt;some file name&gt;: Filename too long</code>). Try doing one of the following:</p>
-<ul>
-<li>Enable corresponding git global config value: <code>git config --system core.longpaths true</code>. Then try to reinstall.</li>
-<li>Install plugin in other place with shorter path.</li>
-</ul>
-</section>
-<section id="default-config" class="level2">
-<h2 class="anchored" data-anchor-id="default-config">Default config</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Functions that control input lifecycle</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">handlers</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Compute completion candidates</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">complete</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Compute highlighting of current input</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">highlight</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Handle input start, every key press, and input end</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">key</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show current input state</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">view</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Default input scope: cursor/line/buffer/window/tabpage/editor/project</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">scope</span> <span class="op">=</span> <span class="st">'editor'</span><span class="op">,</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="similar-plugins" class="level2">
-<h2 class="anchored" data-anchor-id="similar-plugins">Similar plugins</h2>
-<ul>
-<li><a href="https://github.com/folke/snacks.nvim/blob/main/docs/input.md">folke/snacks.nvim#input</a></li>
-<li>Built-in <a href="https://neovim.io/doc/user/helptag.html?tag=input()">input()</a></li>
-</ul>
+<hr>
+<p>Thank you all for using and supporting the MINI project! There is an ambitious plan for its evolution, but let’s hope it is not <em>too</em> ambitious :)</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <!-- Original source: https://gc.zgo.at/count.js -->

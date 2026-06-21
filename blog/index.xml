@@ -10,7 +10,52 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Thu, 04 Jun 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 21 Jun 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Release 0.18.0</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2026-06-21-release-0180.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello, Neovim users!</p>
+<p>Today is the release day of ‘mini.nvim’ version 0.18.0. Almost <a href="../blog/2025-12-18-release-0170.html">half a year</a> and 188 commits after the previous release. Arguably, the wait is a bit too much: I prefer to have around three months between releases, but with at least one new module (this was the bottleneck in this release).</p>
+<p>Here is a <a href="../mini.nvim/CHANGELOG.html#v0.18.0">full version changelog</a> if you are curious.</p>
+<hr>
+<p>There is one new module:</p>
+<ul>
+<li><p><a href="../mini.nvim/readmes/mini-input.html">‘mini.input’</a> - Get user input with fully customizable key and view handling. Can show as floating window, statusline/tabline/winbar, virtual line/text. Provides a <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.input()"><code>vim.ui.input()</code></a> implementation. You can read more in <a href="../blog/2026-06-04-announce-mini-input.html">its release post</a>.</p>
+<p>This was a module number 45. Its tests also pushed total ‘mini.nvim’ test case count to be over 5000!</p></li>
+</ul>
+<hr>
+<p>Notable changes include:</p>
+<ul>
+<li><p>Update all relevant modules to prefer using ‘mini.input’ functionality (if module is enabled). Like when asking for function/tag name in ‘mini.ai’ + ‘mini.surround’ or interactive glob filtering in <code>grep_live</code> ‘mini.pick’ picker.</p></li>
+<li><p>Neovim 0.9 is soft deprecated. Its support will be soon fully removed on the <code>main</code> branch.</p></li>
+<li><p>Development of ‘mini.deps’ is frozen in favor of suggesting to use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.pack">vim.pack</a>. See <a href="../mini.nvim/readmes/mini-deps.html#development-freeze">‘mini.deps’ README</a> for more details.</p></li>
+<li><p>‘mini.files’ now has LSP integration, i.e.&nbsp;this makes some file system actions (create, delete, rename) LSP aware.</p></li>
+<li><p>‘mini.misc’ got a new <code>safely()</code> function to act as a replacement for <code>MiniDeps.now()</code> and <code>MiniDeps.later()</code>.</p></li>
+<li><p>‘mini.sessions’ got a new <code>restart()</code> function that enhances <a href="https://neovim.io/doc/user/helptag.html?tag=:restart"><code>:restart</code></a> command added in Neovim 0.12. It allows restarting while preserving current session. This is meant as a temporary solution until <a href="https://github.com/neovim/neovim/issues/38940">upstream adjusts the behavior</a>, which will hopefully be relatively soon.</p></li>
+<li><p>‘mini.pick’ had several notable improvements:</p>
+<ul>
+<li><p>It now supports <a href="https://neovim.io/doc/user/helptag.html?tag=vim.ui.select()">upstream <code>vim.ui.select()</code> preview interface</a>. This means that plugins that want to provide custom picker with preview now can use <code>vim.ui.select()</code> + <code>opts.preview_item</code> and preview will work with ‘mini.pick’ implementation of <code>vim.ui.select()</code>.</p></li>
+<li><p>Non-streaming paste from the system clipboard (i.e.&nbsp;what is usually a <code>Cmd+Shift+C</code>) is now supported when a picker is active.</p></li>
+<li><p>Update <code>grep</code> and <code>grep_live</code> pickers to allow new <code>method</code> local option to control pattern matching method (<code>regex</code> or <code>plain</code>).</p></li>
+</ul></li>
+</ul>
+<hr>
+<p>Thank you all for using and supporting the MINI project! There is an ambitious plan for its evolution, but let’s hope it is not <em>too</em> ambitious :)</p>
+
+
+
+ ]]></description>
+  <category>release</category>
+  <guid>https://nvim-mini.org/blog/2026-06-21-release-0180.html</guid>
+  <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Announcing ‘mini.input’</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -975,59 +1020,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2024-02-29-release-0120.html</guid>
   <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Announcing ‘mini.deps’</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2024-02-11-announce-mini-deps.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/1aodopi/minideps_a_plugin_manager_with_minimal_yet/">posted on Reddit</a></em></p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="2024-02-11-announce-mini-deps/demo.mp4"></video></div>
-<p>Hello, Neovim users!</p>
-<p>I am happy to share with you a release of <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md">mini.deps</a> - new module of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a> which acts as a plugin manager to install and manage other plugins. It can also be installed using <a href="https://github.com/nvim-mini/mini.deps">separate GitHub repository</a>.</p>
-<hr>
-<p>This was one of the toughest modules to write as of yet. Although overall goal of managing plugins seems more or less straightforward, actually designing the balance between simplicity and usability has proved to be not as trivial. I ended up redesigning the overall approach three times. Combined with slow iteration process of simulating plugin updates, not trivial testing, and some real life issues, this took waaaay longer than I would’ve liked. Despite all this, it is now fully designed, implemented, tested, and documented.</p>
-<p>Overall, it uses Git and built-in packages to install, update, clean, and snapshot plugins. It is far less feature-rich than <a href="https://github.com/folke/lazy.nvim">‘folke/lazy.nvim’</a> and slightly more user-friendly than <a href="https://github.com/savq/paq-nvim">‘savq/paq-nvim’</a>. In my opinion it ended up somewhere near <a href="https://github.com/junegunn/vim-plug">‘junegunn/vim-plug’</a> when talking about user experience.</p>
-<hr>
-<p>Features:</p>
-<ul>
-<li>Manage plugins utilizing Git and built-in packages with these actions:
-<ul>
-<li>Add plugin to current session, download if absent.</li>
-<li>Update with/without confirm, with/without parallel download of new data.</li>
-<li>Delete unused plugins with/without confirm.</li>
-<li>Get / set / save / load snapshot.</li>
-</ul></li>
-<li>Minimal yet flexible plugin specification:
-<ul>
-<li>Plugin source.</li>
-<li>Name of target plugin directory.</li>
-<li>Checkout target: branch, commit, tag, etc.</li>
-<li>Monitor branch to track updates without checking out.</li>
-<li>Dependencies to be set up prior to the target plugin.</li>
-<li>Hooks to call before/after plugin is created/changed.</li>
-</ul></li>
-<li>Helpers implementing two-stage startup: <code>now()</code> and <code>later()</code>.</li>
-</ul>
-<p>For slightly more details, see <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md#overview">overview in README</a>.</p>
-<p>For even more information, see these tags in help file: - <a href="https://github.com/nvim-mini/mini.nvim/blob/490dd84b69008f75bcd5e593b7a92b06832d5b16/doc/mini-deps.txt#L240"><code>*MiniDeps-plugin-specification*</code></a> - <a href="https://github.com/nvim-mini/mini.nvim/blob/490dd84b69008f75bcd5e593b7a92b06832d5b16/doc/mini-deps.txt#L286"><code>*MiniDeps-commands*</code></a></p>
-<hr>
-<p>Please, check it out and tell me what you think! You can leave your suggestions either here in comments or in <a href="https://github.com/nvim-mini/mini.nvim/issues/689">dedicated beta-testing issue</a>.</p>
-<p>I do want to point out that it is a good idea to first try this without affecting your main config. Here is one example with <a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md#overview">two quick steps of how to do this</a>.</p>
-<p>Thanks!</p>
-
-
-
- ]]></description>
-  <category>announce</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2024-02-11-announce-mini-deps.html</guid>
-  <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
