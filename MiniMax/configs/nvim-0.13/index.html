@@ -1390,7 +1390,7 @@ Code
 <span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.interactive()` - interactively tweak color scheme</span></span>
 <span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-recipes` - common recipes to use during interactive tweaking</span></span>
 <span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors.convert()` - convert between color spaces</span></span>
-<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-color-spaces` - list of supported color sapces</span></span>
+<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniColors-color-spaces` - list of supported color spaces</span></span>
 <span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
 <span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a><span class="co">-- It is not enabled by default because it is not really needed on a daily basis.</span></span>
 <span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a><span class="co">-- Uncomment next line (use `gcc`) to enable.</span></span>
@@ -1480,294 +1480,319 @@ Code
 <span id="cb5-512"><a href="#cb5-512" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniIndentscope.gen_animation` - available animation rules</span></span>
 <span id="cb5-513"><a href="#cb5-513" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.indentscope'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
 <span id="cb5-514"><a href="#cb5-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-515"><a href="#cb5-515" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump to next/previous single character. It implements "smarter `fFtT` keys"</span></span>
-<span id="cb5-516"><a href="#cb5-516" aria-hidden="true" tabindex="-1"></a><span class="co">-- (see `:h f`) that work across multiple lines, start "jumping mode", and</span></span>
-<span id="cb5-517"><a href="#cb5-517" aria-hidden="true" tabindex="-1"></a><span class="co">-- highlight all target matches. Example usage:</span></span>
-<span id="cb5-518"><a href="#cb5-518" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `fxff` - move *f*orward onto next character "x", then next, and next again</span></span>
-<span id="cb5-519"><a href="#cb5-519" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `dt)` - *d*elete *t*ill next closing parenthesis (`)`)</span></span>
-<span id="cb5-520"><a href="#cb5-520" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-521"><a href="#cb5-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-522"><a href="#cb5-522" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump within visible lines to pre-defined spots via iterative label filtering.</span></span>
-<span id="cb5-523"><a href="#cb5-523" aria-hidden="true" tabindex="-1"></a><span class="co">-- Spots are computed by a configurable spotter function. Example usage:</span></span>
-<span id="cb5-524"><a href="#cb5-524" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Lock eyes on desired location to jump</span></span>
-<span id="cb5-525"><a href="#cb5-525" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;CR&gt;` - start jumping; this shows character labels over target spots</span></span>
-<span id="cb5-526"><a href="#cb5-526" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type character that appears over desired location; number of target spots</span></span>
-<span id="cb5-527"><a href="#cb5-527" aria-hidden="true" tabindex="-1"></a><span class="co">--   should be reduced</span></span>
-<span id="cb5-528"><a href="#cb5-528" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Keep typing labels until target spot is unique to perform the jump</span></span>
-<span id="cb5-529"><a href="#cb5-529" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-530"><a href="#cb5-530" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-531"><a href="#cb5-531" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniJump2d.gen_spotter` - list of available spotters</span></span>
-<span id="cb5-532"><a href="#cb5-532" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-533"><a href="#cb5-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-534"><a href="#cb5-534" aria-hidden="true" tabindex="-1"></a><span class="co">-- Special key mappings. Provides helpers to map:</span></span>
-<span id="cb5-535"><a href="#cb5-535" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Multi-step actions. Apply action 1 if condition is met; else apply</span></span>
-<span id="cb5-536"><a href="#cb5-536" aria-hidden="true" tabindex="-1"></a><span class="co">--   action 2 if condition is met; etc.</span></span>
-<span id="cb5-537"><a href="#cb5-537" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Combos. Sequence of keys where each acts immediately plus execute extra</span></span>
-<span id="cb5-538"><a href="#cb5-538" aria-hidden="true" tabindex="-1"></a><span class="co">--   action if all are typed fast enough. Useful for Insert mode mappings to not</span></span>
-<span id="cb5-539"><a href="#cb5-539" aria-hidden="true" tabindex="-1"></a><span class="co">--   introduce delay when typing mapping keys without intention to execute action.</span></span>
-<span id="cb5-540"><a href="#cb5-540" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-541"><a href="#cb5-541" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-542"><a href="#cb5-542" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap-examples` - examples of common setups</span></span>
-<span id="cb5-543"><a href="#cb5-543" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap.map_multistep()` - map multi-step action</span></span>
-<span id="cb5-544"><a href="#cb5-544" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap.map_combo()` - map combo</span></span>
-<span id="cb5-545"><a href="#cb5-545" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-546"><a href="#cb5-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span>setup<span class="op">()</span></span>
-<span id="cb5-547"><a href="#cb5-547" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Navigate 'mini.completion' menu with `&lt;Tab&gt;` /  `&lt;S-Tab&gt;`</span></span>
-<span id="cb5-548"><a href="#cb5-548" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_next'</span> <span class="op">})</span></span>
-<span id="cb5-549"><a href="#cb5-549" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_prev'</span> <span class="op">})</span></span>
-<span id="cb5-550"><a href="#cb5-550" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- On `&lt;CR&gt;` try to accept current completion item, fall back to accounting</span></span>
-<span id="cb5-551"><a href="#cb5-551" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- for pairs from 'mini.pairs'</span></span>
-<span id="cb5-552"><a href="#cb5-552" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;CR&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_accept'</span><span class="op">,</span> <span class="st">'minipairs_cr'</span> <span class="op">})</span></span>
-<span id="cb5-553"><a href="#cb5-553" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- On `&lt;BS&gt;` just try to account for pairs from 'mini.pairs'</span></span>
-<span id="cb5-554"><a href="#cb5-554" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'minipairs_bs'</span> <span class="op">})</span></span>
-<span id="cb5-555"><a href="#cb5-555" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-556"><a href="#cb5-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-557"><a href="#cb5-557" aria-hidden="true" tabindex="-1"></a><span class="co">-- Window with text overview. It is displayed on the right hand side. Can be used</span></span>
-<span id="cb5-558"><a href="#cb5-558" aria-hidden="true" tabindex="-1"></a><span class="co">-- for quick overview and navigation. Hidden by default. Example usage:</span></span>
-<span id="cb5-559"><a href="#cb5-559" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;mt` - toggle map window</span></span>
-<span id="cb5-560"><a href="#cb5-560" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;mf` - focus on the map for fast navigation</span></span>
-<span id="cb5-561"><a href="#cb5-561" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ms` - change map's side (if it covers something underneath)</span></span>
-<span id="cb5-562"><a href="#cb5-562" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-563"><a href="#cb5-563" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-564"><a href="#cb5-564" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniMap.gen_encode_symbols` - list of symbols to use for text encoding</span></span>
-<span id="cb5-565"><a href="#cb5-565" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniMap.gen_integration` - list of integrations to show in the map</span></span>
-<span id="cb5-566"><a href="#cb5-566" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-567"><a href="#cb5-567" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span><span class="al">NOTE</span><span class="co">: Might introduce lag on very big buffers (10000+ lines)</span></span>
-<span id="cb5-568"><a href="#cb5-568" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-569"><a href="#cb5-569" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">map</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.map'</span><span class="op">)</span></span>
-<span id="cb5-570"><a href="#cb5-570" aria-hidden="true" tabindex="-1"></a>  <span class="va">map</span><span class="op">.</span>setup<span class="op">({</span></span>
-<span id="cb5-571"><a href="#cb5-571" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use Braille dots to encode text</span></span>
-<span id="cb5-572"><a href="#cb5-572" aria-hidden="true" tabindex="-1"></a>    <span class="va">symbols</span> <span class="op">=</span> <span class="op">{</span> <span class="va">encode</span> <span class="op">=</span> <span class="va">map</span><span class="op">.</span><span class="va">gen_encode_symbols</span><span class="op">.</span>dot<span class="op">(</span><span class="st">'4x2'</span><span class="op">)</span> <span class="op">},</span></span>
-<span id="cb5-573"><a href="#cb5-573" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show built-in search matches, 'mini.diff' hunks, and diagnostic entries</span></span>
-<span id="cb5-574"><a href="#cb5-574" aria-hidden="true" tabindex="-1"></a>    <span class="va">integrations</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-575"><a href="#cb5-575" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>builtin_search<span class="op">(),</span></span>
-<span id="cb5-576"><a href="#cb5-576" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>diff<span class="op">(),</span></span>
-<span id="cb5-577"><a href="#cb5-577" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>diagnostic<span class="op">(),</span></span>
-<span id="cb5-578"><a href="#cb5-578" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb5-579"><a href="#cb5-579" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-580"><a href="#cb5-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-581"><a href="#cb5-581" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Map built-in navigation characters to force map refresh</span></span>
-<span id="cb5-582"><a href="#cb5-582" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">key</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">({</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'N'</span><span class="op">,</span> <span class="st">'*'</span><span class="op">,</span> <span class="st">'#'</span> <span class="op">})</span> <span class="cf">do</span></span>
-<span id="cb5-583"><a href="#cb5-583" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="va">key</span></span>
-<span id="cb5-584"><a href="#cb5-584" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Also open enough folds when jumping to the next match</span></span>
-<span id="cb5-585"><a href="#cb5-585" aria-hidden="true" tabindex="-1"></a>      <span class="op">..</span> <span class="st">'zv'</span></span>
-<span id="cb5-586"><a href="#cb5-586" aria-hidden="true" tabindex="-1"></a>      <span class="op">..</span> <span class="st">'&lt;Cmd&gt;lua MiniMap.refresh({}, { lines = false, scrollbar = false })&lt;CR&gt;'</span></span>
-<span id="cb5-587"><a href="#cb5-587" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="va">key</span><span class="op">,</span> <span class="va">rhs</span><span class="op">)</span></span>
-<span id="cb5-588"><a href="#cb5-588" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb5-589"><a href="#cb5-589" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-590"><a href="#cb5-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-591"><a href="#cb5-591" aria-hidden="true" tabindex="-1"></a><span class="co">-- Move any selection in any direction. Example usage in Normal mode:</span></span>
-<span id="cb5-592"><a href="#cb5-592" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-j&gt;`/`&lt;M-k&gt;` - move current line down / up</span></span>
-<span id="cb5-593"><a href="#cb5-593" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-h&gt;`/`&lt;M-l&gt;` - decrease / increase indent of current line</span></span>
-<span id="cb5-594"><a href="#cb5-594" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-595"><a href="#cb5-595" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage in Visual mode:</span></span>
-<span id="cb5-596"><a href="#cb5-596" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-h&gt;`/`&lt;M-j&gt;`/`&lt;M-k&gt;`/`&lt;M-l&gt;` - move selection left/down/up/right</span></span>
-<span id="cb5-597"><a href="#cb5-597" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.move'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-598"><a href="#cb5-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-599"><a href="#cb5-599" aria-hidden="true" tabindex="-1"></a><span class="co">-- Text edit operators. All operators have mappings for:</span></span>
-<span id="cb5-600"><a href="#cb5-600" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Regular operator (waits for motion/textobject to use)</span></span>
-<span id="cb5-601"><a href="#cb5-601" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Current line action (repeat second character of operator to activate)</span></span>
-<span id="cb5-602"><a href="#cb5-602" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Act on visual selection (type operator in Visual mode)</span></span>
-<span id="cb5-603"><a href="#cb5-603" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-604"><a href="#cb5-604" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-605"><a href="#cb5-605" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `griw` - replace (`gr`) *i*inside *w*ord</span></span>
-<span id="cb5-606"><a href="#cb5-606" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gmm` - multiple/duplicate (`gm`) current line (extra `m`)</span></span>
-<span id="cb5-607"><a href="#cb5-607" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vipgs` - *v*isually select *i*nside *p*aragraph and sort it (`gs`)</span></span>
-<span id="cb5-608"><a href="#cb5-608" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gxiww.` - exchange (`gx`) *i*nside *w*ord with next word (`w` to navigate</span></span>
-<span id="cb5-609"><a href="#cb5-609" aria-hidden="true" tabindex="-1"></a><span class="co">--   to it and `.` to repeat exchange operator)</span></span>
-<span id="cb5-610"><a href="#cb5-610" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `g==` - execute current line as Lua code and replace with its output.</span></span>
-<span id="cb5-611"><a href="#cb5-611" aria-hidden="true" tabindex="-1"></a><span class="co">--   For example, typing `g==` over line `vim.lsp.get_clients()` shows</span></span>
-<span id="cb5-612"><a href="#cb5-612" aria-hidden="true" tabindex="-1"></a><span class="co">--   information about all available LSP clients.</span></span>
-<span id="cb5-613"><a href="#cb5-613" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-614"><a href="#cb5-614" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-615"><a href="#cb5-615" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniOperators-mappings` - overview of how mappings are created</span></span>
-<span id="cb5-616"><a href="#cb5-616" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniOperators-overview` - overview of present operators</span></span>
-<span id="cb5-617"><a href="#cb5-617" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-618"><a href="#cb5-618" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.operators'</span><span class="op">).</span>setup<span class="op">()</span></span>
-<span id="cb5-619"><a href="#cb5-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-620"><a href="#cb5-620" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create mappings for swapping adjacent arguments. Notes:</span></span>
-<span id="cb5-621"><a href="#cb5-621" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Relies on `a` argument textobject from 'mini.ai'.</span></span>
-<span id="cb5-622"><a href="#cb5-622" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - It is not 100% reliable, but mostly works.</span></span>
-<span id="cb5-623"><a href="#cb5-623" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - It overrides `:h (` and `:h )`.</span></span>
-<span id="cb5-624"><a href="#cb5-624" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Explanation: `gx`-`ia`-`gx`-`ila` &lt;=&gt; exchange current and last argument</span></span>
-<span id="cb5-625"><a href="#cb5-625" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Usage: when on `a` in `(aa, bb)` press `)` followed by `(`.</span></span>
-<span id="cb5-626"><a href="#cb5-626" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'('</span><span class="op">,</span> <span class="st">'gxiagxila'</span><span class="op">,</span> <span class="op">{</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Swap arg left'</span> <span class="op">})</span></span>
-<span id="cb5-627"><a href="#cb5-627" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">')'</span><span class="op">,</span> <span class="st">'gxiagxina'</span><span class="op">,</span> <span class="op">{</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Swap arg right'</span> <span class="op">})</span></span>
-<span id="cb5-628"><a href="#cb5-628" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-629"><a href="#cb5-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-630"><a href="#cb5-630" aria-hidden="true" tabindex="-1"></a><span class="co">-- Autopairs functionality. Insert pair when typing opening character and go over</span></span>
-<span id="cb5-631"><a href="#cb5-631" aria-hidden="true" tabindex="-1"></a><span class="co">-- right character if it is already to cursor's right. Also provides mappings for</span></span>
-<span id="cb5-632"><a href="#cb5-632" aria-hidden="true" tabindex="-1"></a><span class="co">-- `&lt;CR&gt;` and `&lt;BS&gt;` to perform extra actions when inside pair.</span></span>
-<span id="cb5-633"><a href="#cb5-633" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage in Insert mode:</span></span>
-<span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `(` - insert "()" and put cursor between them</span></span>
-<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `)` when there is ")" to the right - jump over ")" without inserting new one</span></span>
-<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;C-v&gt;(` - always insert a single "(" literally. This is useful since</span></span>
-<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a><span class="co">--   'mini.pairs' doesn't provide particularly smart behavior, like auto balancing</span></span>
-<span id="cb5-638"><a href="#cb5-638" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-639"><a href="#cb5-639" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create pairs not only in Insert, but also in Command line mode</span></span>
-<span id="cb5-640"><a href="#cb5-640" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.pairs'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">modes</span> <span class="op">=</span> <span class="op">{</span> <span class="va">command</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span> <span class="op">})</span></span>
-<span id="cb5-641"><a href="#cb5-641" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-642"><a href="#cb5-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-643"><a href="#cb5-643" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pick anything with single window layout and fast matching. This is one of</span></span>
-<span id="cb5-644"><a href="#cb5-644" aria-hidden="true" tabindex="-1"></a><span class="co">-- the main usability improvements as it powers a lot of "find things quickly"</span></span>
-<span id="cb5-645"><a href="#cb5-645" aria-hidden="true" tabindex="-1"></a><span class="co">-- workflows. How to use a picker:</span></span>
-<span id="cb5-646"><a href="#cb5-646" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Start picker, usually with `:Pick &lt;picker-name&gt;` command. Like `:Pick files`.</span></span>
-<span id="cb5-647"><a href="#cb5-647" aria-hidden="true" tabindex="-1"></a><span class="co">--   It shows a single window in the bottom left corner filled with possible items</span></span>
-<span id="cb5-648"><a href="#cb5-648" aria-hidden="true" tabindex="-1"></a><span class="co">--   to choose from. Current item has special full line highlighting.</span></span>
-<span id="cb5-649"><a href="#cb5-649" aria-hidden="true" tabindex="-1"></a><span class="co">--   At the top there is a current query used to filter+sort items.</span></span>
-<span id="cb5-650"><a href="#cb5-650" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type characters (appear at top) to narrow down items. There is fuzzy matching:</span></span>
-<span id="cb5-651"><a href="#cb5-651" aria-hidden="true" tabindex="-1"></a><span class="co">--   characters may not match one-by-one, but they should be in correct order.</span></span>
-<span id="cb5-652"><a href="#cb5-652" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Navigate down/up with `&lt;C-n&gt;`/`&lt;C-p&gt;`.</span></span>
-<span id="cb5-653"><a href="#cb5-653" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;Tab&gt;` to show item's preview. `&lt;Tab&gt;` again goes back to items.</span></span>
-<span id="cb5-654"><a href="#cb5-654" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;S-Tab&gt;` to show picker's info. `&lt;S-Tab&gt;` again goes back to items.</span></span>
-<span id="cb5-655"><a href="#cb5-655" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;CR&gt;` to choose an item. The exact action depends on the picker: `files`</span></span>
-<span id="cb5-656"><a href="#cb5-656" aria-hidden="true" tabindex="-1"></a><span class="co">--   picker opens a selected file, `help` picker opens help page on selected tag.</span></span>
-<span id="cb5-657"><a href="#cb5-657" aria-hidden="true" tabindex="-1"></a><span class="co">--   To close picker without choosing an item, press `&lt;Esc&gt;`.</span></span>
-<span id="cb5-658"><a href="#cb5-658" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-659"><a href="#cb5-659" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-660"><a href="#cb5-660" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ff` - *f*ind *f*iles; for best performance requires `ripgrep`</span></span>
-<span id="cb5-661"><a href="#cb5-661" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fg` - *f*ind inside files (a.k.a. "to *g*rep"); requires `ripgrep`</span></span>
-<span id="cb5-662"><a href="#cb5-662" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fh` - *f*ind *h*elp tag</span></span>
-<span id="cb5-663"><a href="#cb5-663" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fr` - *r*esume latest picker</span></span>
-<span id="cb5-664"><a href="#cb5-664" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h vim.ui.select()` - implemented with 'mini.pick'</span></span>
-<span id="cb5-665"><a href="#cb5-665" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-666"><a href="#cb5-666" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-667"><a href="#cb5-667" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick-overview` - overview of picker functionality</span></span>
-<span id="cb5-668"><a href="#cb5-668" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick-examples` - examples of common setups</span></span>
-<span id="cb5-669"><a href="#cb5-669" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick.builtin` and `:h MiniExtra.pickers` - available pickers;</span></span>
-<span id="cb5-670"><a href="#cb5-670" aria-hidden="true" tabindex="-1"></a><span class="co">--   Execute one either with Lua function, `:Pick &lt;picker-name&gt;` command, or</span></span>
-<span id="cb5-671"><a href="#cb5-671" aria-hidden="true" tabindex="-1"></a><span class="co">--   one of `&lt;Leader&gt;f` mappings defined in 'plugin/20_keymaps.lua'</span></span>
-<span id="cb5-672"><a href="#cb5-672" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.pick'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-673"><a href="#cb5-673" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-674"><a href="#cb5-674" aria-hidden="true" tabindex="-1"></a><span class="co">-- Manage and expand snippets (templates for a frequently used text).</span></span>
-<span id="cb5-675"><a href="#cb5-675" aria-hidden="true" tabindex="-1"></a><span class="co">-- Typical workflow is to type snippet's (configurable) prefix and expand it</span></span>
-<span id="cb5-676"><a href="#cb5-676" aria-hidden="true" tabindex="-1"></a><span class="co">-- into a snippet session.</span></span>
-<span id="cb5-677"><a href="#cb5-677" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-678"><a href="#cb5-678" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to manage snippets:</span></span>
-<span id="cb5-679"><a href="#cb5-679" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.snippets' itself doesn't come with preconfigured snippets. Instead there</span></span>
-<span id="cb5-680"><a href="#cb5-680" aria-hidden="true" tabindex="-1"></a><span class="co">--   is a flexible system of how snippets are prepared before expanding.</span></span>
-<span id="cb5-681"><a href="#cb5-681" aria-hidden="true" tabindex="-1"></a><span class="co">--   They can come from pre-defined path on disk, 'snippets/' directories inside</span></span>
-<span id="cb5-682"><a href="#cb5-682" aria-hidden="true" tabindex="-1"></a><span class="co">--   config or plugins, defined inside `setup()` call directly.</span></span>
-<span id="cb5-683"><a href="#cb5-683" aria-hidden="true" tabindex="-1"></a><span class="co">-- - This config, however, does come with snippet configuration:</span></span>
-<span id="cb5-684"><a href="#cb5-684" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'snippets/global.json' is a file with global snippets that will be</span></span>
-<span id="cb5-685"><a href="#cb5-685" aria-hidden="true" tabindex="-1"></a><span class="co">--       available in any buffer</span></span>
-<span id="cb5-686"><a href="#cb5-686" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'after/snippets/lua.json' defines personal snippets for Lua language</span></span>
-<span id="cb5-687"><a href="#cb5-687" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'friendly-snippets' plugin configured in 'plugin/40_plugins.lua' provides</span></span>
-<span id="cb5-688"><a href="#cb5-688" aria-hidden="true" tabindex="-1"></a><span class="co">--       a collection of language snippets</span></span>
-<span id="cb5-689"><a href="#cb5-689" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-690"><a href="#cb5-690" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to expand a snippet in Insert mode:</span></span>
-<span id="cb5-691"><a href="#cb5-691" aria-hidden="true" tabindex="-1"></a><span class="co">-- - If you know snippet's prefix, type it as a word and press `&lt;C-j&gt;`. Snippet's</span></span>
-<span id="cb5-692"><a href="#cb5-692" aria-hidden="true" tabindex="-1"></a><span class="co">--   body should be inserted instead of the prefix.</span></span>
-<span id="cb5-693"><a href="#cb5-693" aria-hidden="true" tabindex="-1"></a><span class="co">-- - If you don't remember snippet's prefix, type only part of it (or none at all)</span></span>
-<span id="cb5-694"><a href="#cb5-694" aria-hidden="true" tabindex="-1"></a><span class="co">--   and press `&lt;C-j&gt;`. It should show picker with all snippets that have prefixes</span></span>
-<span id="cb5-695"><a href="#cb5-695" aria-hidden="true" tabindex="-1"></a><span class="co">--   matching typed characters (or all snippets if none was typed).</span></span>
-<span id="cb5-696"><a href="#cb5-696" aria-hidden="true" tabindex="-1"></a><span class="co">--   Choose one and its body should be inserted instead of previously typed text.</span></span>
-<span id="cb5-697"><a href="#cb5-697" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-698"><a href="#cb5-698" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to navigate during snippet session:</span></span>
-<span id="cb5-699"><a href="#cb5-699" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Snippets can contain tabstops - places for user to interactively adjust text.</span></span>
-<span id="cb5-700"><a href="#cb5-700" aria-hidden="true" tabindex="-1"></a><span class="co">--   Each tabstop is highlighted depending on session progression - whether tabstop</span></span>
-<span id="cb5-701"><a href="#cb5-701" aria-hidden="true" tabindex="-1"></a><span class="co">--   is current, was or was not visited. If tabstop doesn't yet have text, it is</span></span>
-<span id="cb5-702"><a href="#cb5-702" aria-hidden="true" tabindex="-1"></a><span class="co">--   visualized with special "ghost" inline text: • and ∎ by default.</span></span>
-<span id="cb5-703"><a href="#cb5-703" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type necessary text at current tabstop and navigate to next/previous one</span></span>
-<span id="cb5-704"><a href="#cb5-704" aria-hidden="true" tabindex="-1"></a><span class="co">--   by pressing `&lt;C-l&gt;` / `&lt;C-h&gt;`.</span></span>
-<span id="cb5-705"><a href="#cb5-705" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Repeat previous step until you reach special final tabstop, usually denoted</span></span>
-<span id="cb5-706"><a href="#cb5-706" aria-hidden="true" tabindex="-1"></a><span class="co">--   by ∎ symbol. If you spotted a mistake in an earlier tabstop, navigate to it</span></span>
-<span id="cb5-707"><a href="#cb5-707" aria-hidden="true" tabindex="-1"></a><span class="co">--   and return back to the final tabstop.</span></span>
-<span id="cb5-708"><a href="#cb5-708" aria-hidden="true" tabindex="-1"></a><span class="co">-- - To end a snippet session when at final tabstop, keep typing or go into</span></span>
-<span id="cb5-709"><a href="#cb5-709" aria-hidden="true" tabindex="-1"></a><span class="co">--   Normal mode. To force end snippet session, press `&lt;C-c&gt;`.</span></span>
-<span id="cb5-710"><a href="#cb5-710" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-711"><a href="#cb5-711" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-712"><a href="#cb5-712" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-overview` - overview of how module works</span></span>
-<span id="cb5-713"><a href="#cb5-713" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-examples` - examples of common setups</span></span>
-<span id="cb5-714"><a href="#cb5-714" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-session` - details about snippet session</span></span>
-<span id="cb5-715"><a href="#cb5-715" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets.gen_loader` - list of available loaders</span></span>
-<span id="cb5-716"><a href="#cb5-716" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
-<span id="cb5-717"><a href="#cb5-717" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Define language patterns to work better with 'friendly-snippets'</span></span>
-<span id="cb5-718"><a href="#cb5-718" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">latex_patterns</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'latex/**/*.json'</span><span class="op">,</span> <span class="st">'**/latex.json'</span> <span class="op">}</span></span>
-<span id="cb5-719"><a href="#cb5-719" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">lang_patterns</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-720"><a href="#cb5-720" aria-hidden="true" tabindex="-1"></a>    <span class="va">tex</span> <span class="op">=</span> <span class="va">latex_patterns</span><span class="op">,</span></span>
-<span id="cb5-721"><a href="#cb5-721" aria-hidden="true" tabindex="-1"></a>    <span class="va">plaintex</span> <span class="op">=</span> <span class="va">latex_patterns</span><span class="op">,</span></span>
-<span id="cb5-722"><a href="#cb5-722" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Recognize special injected language of markdown tree-sitter parser</span></span>
-<span id="cb5-723"><a href="#cb5-723" aria-hidden="true" tabindex="-1"></a>    <span class="va">markdown_inline</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'markdown.json'</span> <span class="op">},</span></span>
-<span id="cb5-724"><a href="#cb5-724" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-725"><a href="#cb5-725" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-726"><a href="#cb5-726" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">snippets</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.snippets'</span><span class="op">)</span></span>
-<span id="cb5-727"><a href="#cb5-727" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">config_path</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'config'</span><span class="op">)</span></span>
-<span id="cb5-728"><a href="#cb5-728" aria-hidden="true" tabindex="-1"></a>  <span class="va">snippets</span><span class="op">.</span>setup<span class="op">({</span></span>
-<span id="cb5-729"><a href="#cb5-729" aria-hidden="true" tabindex="-1"></a>    <span class="va">snippets</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-730"><a href="#cb5-730" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Always load 'snippets/global.json' from config directory</span></span>
-<span id="cb5-731"><a href="#cb5-731" aria-hidden="true" tabindex="-1"></a>      <span class="va">snippets</span><span class="op">.</span><span class="va">gen_loader</span><span class="op">.</span>from_file<span class="op">(</span><span class="va">config_path</span> <span class="op">..</span> <span class="st">'/snippets/global.json'</span><span class="op">),</span></span>
-<span id="cb5-732"><a href="#cb5-732" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Load from 'snippets/' directory of plugins, like 'friendly-snippets'</span></span>
-<span id="cb5-733"><a href="#cb5-733" aria-hidden="true" tabindex="-1"></a>      <span class="va">snippets</span><span class="op">.</span><span class="va">gen_loader</span><span class="op">.</span>from_lang<span class="op">({</span> <span class="va">lang_patterns</span> <span class="op">=</span> <span class="va">lang_patterns</span> <span class="op">}),</span></span>
-<span id="cb5-734"><a href="#cb5-734" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
-<span id="cb5-735"><a href="#cb5-735" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb5-736"><a href="#cb5-736" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-737"><a href="#cb5-737" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- By default snippets available at cursor are not shown as candidates in</span></span>
-<span id="cb5-738"><a href="#cb5-738" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- 'mini.completion' menu. This requires a dedicated in-process LSP server</span></span>
-<span id="cb5-739"><a href="#cb5-739" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- that will provide them. To have that, uncomment next line (use `gcc`).</span></span>
-<span id="cb5-740"><a href="#cb5-740" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- MiniSnippets.start_lsp_server()</span></span>
-<span id="cb5-741"><a href="#cb5-741" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-742"><a href="#cb5-742" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-743"><a href="#cb5-743" aria-hidden="true" tabindex="-1"></a><span class="co">-- Split and join arguments (regions inside brackets between allowed separators).</span></span>
-<span id="cb5-744"><a href="#cb5-744" aria-hidden="true" tabindex="-1"></a><span class="co">-- It uses Lua patterns to find arguments, which means it works in comments and</span></span>
-<span id="cb5-745"><a href="#cb5-745" aria-hidden="true" tabindex="-1"></a><span class="co">-- strings but can be not as accurate as tree-sitter based solutions.</span></span>
-<span id="cb5-746"><a href="#cb5-746" aria-hidden="true" tabindex="-1"></a><span class="co">-- Each action can be configured with hooks (like add/remove trailing comma).</span></span>
-<span id="cb5-747"><a href="#cb5-747" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-748"><a href="#cb5-748" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gS` - toggle between joined (all in one line) and split (each on a separate</span></span>
-<span id="cb5-749"><a href="#cb5-749" aria-hidden="true" tabindex="-1"></a><span class="co">--   line and indented) arguments. It is dot-repeatable (see `:h .`).</span></span>
-<span id="cb5-750"><a href="#cb5-750" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-751"><a href="#cb5-751" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-752"><a href="#cb5-752" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSplitjoin.gen_hook` - list of available hooks</span></span>
-<span id="cb5-753"><a href="#cb5-753" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.splitjoin'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-754"><a href="#cb5-754" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-755"><a href="#cb5-755" aria-hidden="true" tabindex="-1"></a><span class="co">-- Surround actions: add/delete/replace/find/highlight. Working with surroundings</span></span>
-<span id="cb5-756"><a href="#cb5-756" aria-hidden="true" tabindex="-1"></a><span class="co">-- is surprisingly common: surround word with quotes, replace `)` with `]`, etc.</span></span>
-<span id="cb5-757"><a href="#cb5-757" aria-hidden="true" tabindex="-1"></a><span class="co">-- This module comes with many built-in surroundings, each identified by a single</span></span>
-<span id="cb5-758"><a href="#cb5-758" aria-hidden="true" tabindex="-1"></a><span class="co">-- character. It searches only for surrounding that covers cursor and comes with</span></span>
-<span id="cb5-759"><a href="#cb5-759" aria-hidden="true" tabindex="-1"></a><span class="co">-- a special "next" / "last" versions of actions to search forward or backward</span></span>
-<span id="cb5-760"><a href="#cb5-760" aria-hidden="true" tabindex="-1"></a><span class="co">-- (just like 'mini.ai'). All text editing actions are dot-repeatable (see `:h .`).</span></span>
-<span id="cb5-761"><a href="#cb5-761" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-762"><a href="#cb5-762" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage (this may feel intimidating at first, but after practice it</span></span>
-<span id="cb5-763"><a href="#cb5-763" aria-hidden="true" tabindex="-1"></a><span class="co">-- becomes second nature during text editing):</span></span>
-<span id="cb5-764"><a href="#cb5-764" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `saiw)` - *s*urround *a*dd for *i*nside *w*ord parenthesis (`)`)</span></span>
-<span id="cb5-765"><a href="#cb5-765" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sdf`   - *s*urround *d*elete *f*unction call (like `f(var)` -&gt; `var`)</span></span>
-<span id="cb5-766"><a href="#cb5-766" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `srb[`  - *s*urround *r*eplace *b*racket (any of [], (), {}) with padded `[`</span></span>
-<span id="cb5-767"><a href="#cb5-767" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sf*`   - *s*urround *f*ind right part of `*` pair (like bold in markdown)</span></span>
-<span id="cb5-768"><a href="#cb5-768" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `shf`   - *s*urround *h*ighlight current *f*unction call</span></span>
-<span id="cb5-769"><a href="#cb5-769" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `srn{{` - *s*urround *r*eplace *n*ext curly bracket `{` with padded `{`</span></span>
-<span id="cb5-770"><a href="#cb5-770" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sdl'`  - *s*urround *d*elete *l*ast quote pair (`'`)</span></span>
-<span id="cb5-771"><a href="#cb5-771" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vaWsa&lt;Space&gt;` - *v*isually select *a*round *W*ORD and *s*urround *a*dd</span></span>
-<span id="cb5-772"><a href="#cb5-772" aria-hidden="true" tabindex="-1"></a><span class="co">--                    spaces (`&lt;Space&gt;`)</span></span>
-<span id="cb5-773"><a href="#cb5-773" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-774"><a href="#cb5-774" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-775"><a href="#cb5-775" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-builtin-surroundings` - list of all supported surroundings</span></span>
-<span id="cb5-776"><a href="#cb5-776" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-surrounding-specification` - examples of custom surroundings</span></span>
-<span id="cb5-777"><a href="#cb5-777" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-vim-surround-config` - alternative set of action mappings</span></span>
-<span id="cb5-778"><a href="#cb5-778" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-515"><a href="#cb5-515" aria-hidden="true" tabindex="-1"></a><span class="co">-- Customizable user input. Improves how Neovim and plugins ask for input.</span></span>
+<span id="cb5-516"><a href="#cb5-516" aria-hidden="true" tabindex="-1"></a><span class="co">-- By default shows a floating window with the input prompt as title. Window</span></span>
+<span id="cb5-517"><a href="#cb5-517" aria-hidden="true" tabindex="-1"></a><span class="co">-- position depends on the input scope: at cursor, window or editor bottom left.</span></span>
+<span id="cb5-518"><a href="#cb5-518" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-519"><a href="#cb5-519" aria-hidden="true" tabindex="-1"></a><span class="co">-- When asked for input:</span></span>
+<span id="cb5-520"><a href="#cb5-520" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type it. Note: this is not a regular Insert mode, but rather a customizable</span></span>
+<span id="cb5-521"><a href="#cb5-521" aria-hidden="true" tabindex="-1"></a><span class="co">--   and comprehensive Command-line mode emulation (it allows returning a value).</span></span>
+<span id="cb5-522"><a href="#cb5-522" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;Tab&gt;` to show completion, `&lt;C-p&gt;` - previous history entry.</span></span>
+<span id="cb5-523"><a href="#cb5-523" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;CR&gt;` to accept or `&lt;Esc&gt;` to cancel.</span></span>
+<span id="cb5-524"><a href="#cb5-524" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-525"><a href="#cb5-525" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage (usually works together with other plugins and modules):</span></span>
+<span id="cb5-526"><a href="#cb5-526" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `saiwf` and type a function name to wrap a word with 'mini.surround'</span></span>
+<span id="cb5-527"><a href="#cb5-527" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;lr` and type a new value to use with LSP rename</span></span>
+<span id="cb5-528"><a href="#cb5-528" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fg` + `&lt;C-o&gt;` and type a custom filter glob for `grep_live` picker</span></span>
+<span id="cb5-529"><a href="#cb5-529" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h vim.ui.input()` - implemented with 'mini.input'.</span></span>
+<span id="cb5-530"><a href="#cb5-530" aria-hidden="true" tabindex="-1"></a><span class="co">--   Like after typing `&lt;Leader&gt;sn` to create a session asks for its name.</span></span>
+<span id="cb5-531"><a href="#cb5-531" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-532"><a href="#cb5-532" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-533"><a href="#cb5-533" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniInput.default_key()` - default special keys available when typing</span></span>
+<span id="cb5-534"><a href="#cb5-534" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniInput-examples` - general customization examples</span></span>
+<span id="cb5-535"><a href="#cb5-535" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniInput.gen_view` - bundled view customizations (adjust how floating</span></span>
+<span id="cb5-536"><a href="#cb5-536" aria-hidden="true" tabindex="-1"></a><span class="co">--   window is shown or use statusline/tabline/winbar/virtual text)</span></span>
+<span id="cb5-537"><a href="#cb5-537" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniInput-lifecycle` - details about how a custom mode emulation works</span></span>
+<span id="cb5-538"><a href="#cb5-538" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.input'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-539"><a href="#cb5-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-540"><a href="#cb5-540" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump to next/previous single character. It implements "smarter `fFtT` keys"</span></span>
+<span id="cb5-541"><a href="#cb5-541" aria-hidden="true" tabindex="-1"></a><span class="co">-- (see `:h f`) that work across multiple lines, start "jumping mode", and</span></span>
+<span id="cb5-542"><a href="#cb5-542" aria-hidden="true" tabindex="-1"></a><span class="co">-- highlight all target matches. Example usage:</span></span>
+<span id="cb5-543"><a href="#cb5-543" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `fxff` - move *f*orward onto next character "x", then next, and next again</span></span>
+<span id="cb5-544"><a href="#cb5-544" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `dt)` - *d*elete *t*ill next closing parenthesis (`)`)</span></span>
+<span id="cb5-545"><a href="#cb5-545" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-546"><a href="#cb5-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-547"><a href="#cb5-547" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jump within visible lines to pre-defined spots via iterative label filtering.</span></span>
+<span id="cb5-548"><a href="#cb5-548" aria-hidden="true" tabindex="-1"></a><span class="co">-- Spots are computed by a configurable spotter function. Example usage:</span></span>
+<span id="cb5-549"><a href="#cb5-549" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Lock eyes on desired location to jump</span></span>
+<span id="cb5-550"><a href="#cb5-550" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;CR&gt;` - start jumping; this shows character labels over target spots</span></span>
+<span id="cb5-551"><a href="#cb5-551" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type character that appears over desired location; number of target spots</span></span>
+<span id="cb5-552"><a href="#cb5-552" aria-hidden="true" tabindex="-1"></a><span class="co">--   should be reduced</span></span>
+<span id="cb5-553"><a href="#cb5-553" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Keep typing labels until target spot is unique to perform the jump</span></span>
+<span id="cb5-554"><a href="#cb5-554" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-555"><a href="#cb5-555" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-556"><a href="#cb5-556" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniJump2d.gen_spotter` - list of available spotters</span></span>
+<span id="cb5-557"><a href="#cb5-557" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.jump2d'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-558"><a href="#cb5-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-559"><a href="#cb5-559" aria-hidden="true" tabindex="-1"></a><span class="co">-- Special key mappings. Provides helpers to map:</span></span>
+<span id="cb5-560"><a href="#cb5-560" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Multi-step actions. Apply action 1 if condition is met; else apply</span></span>
+<span id="cb5-561"><a href="#cb5-561" aria-hidden="true" tabindex="-1"></a><span class="co">--   action 2 if condition is met; etc.</span></span>
+<span id="cb5-562"><a href="#cb5-562" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Combos. Sequence of keys where each acts immediately plus execute extra</span></span>
+<span id="cb5-563"><a href="#cb5-563" aria-hidden="true" tabindex="-1"></a><span class="co">--   action if all are typed fast enough. Useful for Insert mode mappings to not</span></span>
+<span id="cb5-564"><a href="#cb5-564" aria-hidden="true" tabindex="-1"></a><span class="co">--   introduce delay when typing mapping keys without intention to execute action.</span></span>
+<span id="cb5-565"><a href="#cb5-565" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-566"><a href="#cb5-566" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-567"><a href="#cb5-567" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap-examples` - examples of common setups</span></span>
+<span id="cb5-568"><a href="#cb5-568" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap.map_multistep()` - map multi-step action</span></span>
+<span id="cb5-569"><a href="#cb5-569" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniKeymap.map_combo()` - map combo</span></span>
+<span id="cb5-570"><a href="#cb5-570" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-571"><a href="#cb5-571" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.keymap'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb5-572"><a href="#cb5-572" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Navigate 'mini.completion' menu with `&lt;Tab&gt;` /  `&lt;S-Tab&gt;`</span></span>
+<span id="cb5-573"><a href="#cb5-573" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_next'</span> <span class="op">})</span></span>
+<span id="cb5-574"><a href="#cb5-574" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;S-Tab&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_prev'</span> <span class="op">})</span></span>
+<span id="cb5-575"><a href="#cb5-575" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- On `&lt;CR&gt;` try to accept current completion item, fall back to accounting</span></span>
+<span id="cb5-576"><a href="#cb5-576" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- for pairs from 'mini.pairs'</span></span>
+<span id="cb5-577"><a href="#cb5-577" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;CR&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'pmenu_accept'</span><span class="op">,</span> <span class="st">'minipairs_cr'</span> <span class="op">})</span></span>
+<span id="cb5-578"><a href="#cb5-578" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- On `&lt;BS&gt;` just try to account for pairs from 'mini.pairs'</span></span>
+<span id="cb5-579"><a href="#cb5-579" aria-hidden="true" tabindex="-1"></a>  <span class="va">MiniKeymap</span><span class="op">.</span>map_multistep<span class="op">(</span><span class="st">'i'</span><span class="op">,</span> <span class="st">'&lt;BS&gt;'</span><span class="op">,</span> <span class="op">{</span> <span class="st">'minipairs_bs'</span> <span class="op">})</span></span>
+<span id="cb5-580"><a href="#cb5-580" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-581"><a href="#cb5-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-582"><a href="#cb5-582" aria-hidden="true" tabindex="-1"></a><span class="co">-- Window with text overview. It is displayed on the right hand side. Can be used</span></span>
+<span id="cb5-583"><a href="#cb5-583" aria-hidden="true" tabindex="-1"></a><span class="co">-- for quick overview and navigation. Hidden by default. Example usage:</span></span>
+<span id="cb5-584"><a href="#cb5-584" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;mt` - toggle map window</span></span>
+<span id="cb5-585"><a href="#cb5-585" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;mf` - focus on the map for fast navigation</span></span>
+<span id="cb5-586"><a href="#cb5-586" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ms` - change map's side (if it covers something underneath)</span></span>
+<span id="cb5-587"><a href="#cb5-587" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-588"><a href="#cb5-588" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-589"><a href="#cb5-589" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniMap.gen_encode_symbols` - list of symbols to use for text encoding</span></span>
+<span id="cb5-590"><a href="#cb5-590" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniMap.gen_integration` - list of integrations to show in the map</span></span>
+<span id="cb5-591"><a href="#cb5-591" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-592"><a href="#cb5-592" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span><span class="al">NOTE</span><span class="co">: Might introduce lag on very big buffers (10000+ lines)</span></span>
+<span id="cb5-593"><a href="#cb5-593" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-594"><a href="#cb5-594" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">map</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.map'</span><span class="op">)</span></span>
+<span id="cb5-595"><a href="#cb5-595" aria-hidden="true" tabindex="-1"></a>  <span class="va">map</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb5-596"><a href="#cb5-596" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Use Braille dots to encode text</span></span>
+<span id="cb5-597"><a href="#cb5-597" aria-hidden="true" tabindex="-1"></a>    <span class="va">symbols</span> <span class="op">=</span> <span class="op">{</span> <span class="va">encode</span> <span class="op">=</span> <span class="va">map</span><span class="op">.</span><span class="va">gen_encode_symbols</span><span class="op">.</span>dot<span class="op">(</span><span class="st">'4x2'</span><span class="op">)</span> <span class="op">},</span></span>
+<span id="cb5-598"><a href="#cb5-598" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Show built-in search matches, 'mini.diff' hunks, and diagnostic entries</span></span>
+<span id="cb5-599"><a href="#cb5-599" aria-hidden="true" tabindex="-1"></a>    <span class="va">integrations</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-600"><a href="#cb5-600" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>builtin_search<span class="op">(),</span></span>
+<span id="cb5-601"><a href="#cb5-601" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>diff<span class="op">(),</span></span>
+<span id="cb5-602"><a href="#cb5-602" aria-hidden="true" tabindex="-1"></a>      <span class="va">map</span><span class="op">.</span><span class="va">gen_integration</span><span class="op">.</span>diagnostic<span class="op">(),</span></span>
+<span id="cb5-603"><a href="#cb5-603" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-604"><a href="#cb5-604" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb5-605"><a href="#cb5-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-606"><a href="#cb5-606" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Map built-in navigation characters to force map refresh</span></span>
+<span id="cb5-607"><a href="#cb5-607" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="cn">_</span><span class="op">,</span> <span class="va">key</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">({</span> <span class="st">'n'</span><span class="op">,</span> <span class="st">'N'</span><span class="op">,</span> <span class="st">'*'</span><span class="op">,</span> <span class="st">'#'</span> <span class="op">})</span> <span class="cf">do</span></span>
+<span id="cb5-608"><a href="#cb5-608" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">rhs</span> <span class="op">=</span> <span class="va">key</span></span>
+<span id="cb5-609"><a href="#cb5-609" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Also open enough folds when jumping to the next match</span></span>
+<span id="cb5-610"><a href="#cb5-610" aria-hidden="true" tabindex="-1"></a>      <span class="op">..</span> <span class="st">'zv'</span></span>
+<span id="cb5-611"><a href="#cb5-611" aria-hidden="true" tabindex="-1"></a>      <span class="op">..</span> <span class="st">'&lt;Cmd&gt;lua MiniMap.refresh({}, { lines = false, scrollbar = false })&lt;CR&gt;'</span></span>
+<span id="cb5-612"><a href="#cb5-612" aria-hidden="true" tabindex="-1"></a>    <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="va">key</span><span class="op">,</span> <span class="va">rhs</span><span class="op">)</span></span>
+<span id="cb5-613"><a href="#cb5-613" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb5-614"><a href="#cb5-614" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-615"><a href="#cb5-615" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-616"><a href="#cb5-616" aria-hidden="true" tabindex="-1"></a><span class="co">-- Move any selection in any direction. Example usage in Normal mode:</span></span>
+<span id="cb5-617"><a href="#cb5-617" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-j&gt;`/`&lt;M-k&gt;` - move current line down / up</span></span>
+<span id="cb5-618"><a href="#cb5-618" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-h&gt;`/`&lt;M-l&gt;` - decrease / increase indent of current line</span></span>
+<span id="cb5-619"><a href="#cb5-619" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-620"><a href="#cb5-620" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage in Visual mode:</span></span>
+<span id="cb5-621"><a href="#cb5-621" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;M-h&gt;`/`&lt;M-j&gt;`/`&lt;M-k&gt;`/`&lt;M-l&gt;` - move selection left/down/up/right</span></span>
+<span id="cb5-622"><a href="#cb5-622" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.move'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-623"><a href="#cb5-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-624"><a href="#cb5-624" aria-hidden="true" tabindex="-1"></a><span class="co">-- Text edit operators. All operators have mappings for:</span></span>
+<span id="cb5-625"><a href="#cb5-625" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Regular operator (waits for motion/textobject to use)</span></span>
+<span id="cb5-626"><a href="#cb5-626" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Current line action (repeat second character of operator to activate)</span></span>
+<span id="cb5-627"><a href="#cb5-627" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Act on visual selection (type operator in Visual mode)</span></span>
+<span id="cb5-628"><a href="#cb5-628" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-629"><a href="#cb5-629" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-630"><a href="#cb5-630" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `griw` - replace (`gr`) *i*inside *w*ord</span></span>
+<span id="cb5-631"><a href="#cb5-631" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gmm` - multiple/duplicate (`gm`) current line (extra `m`)</span></span>
+<span id="cb5-632"><a href="#cb5-632" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vipgs` - *v*isually select *i*nside *p*aragraph and sort it (`gs`)</span></span>
+<span id="cb5-633"><a href="#cb5-633" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gxiww.` - exchange (`gx`) *i*nside *w*ord with next word (`w` to navigate</span></span>
+<span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a><span class="co">--   to it and `.` to repeat exchange operator)</span></span>
+<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `g==` - execute current line as Lua code and replace with its output.</span></span>
+<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a><span class="co">--   For example, typing `g==` over line `vim.lsp.get_clients()` shows</span></span>
+<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a><span class="co">--   information about all available LSP clients.</span></span>
+<span id="cb5-638"><a href="#cb5-638" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-639"><a href="#cb5-639" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-640"><a href="#cb5-640" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniOperators-mappings` - overview of how mappings are created</span></span>
+<span id="cb5-641"><a href="#cb5-641" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniOperators-overview` - overview of present operators</span></span>
+<span id="cb5-642"><a href="#cb5-642" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-643"><a href="#cb5-643" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.operators'</span><span class="op">).</span>setup<span class="op">()</span></span>
+<span id="cb5-644"><a href="#cb5-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-645"><a href="#cb5-645" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create mappings for swapping adjacent arguments. Notes:</span></span>
+<span id="cb5-646"><a href="#cb5-646" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Relies on `a` argument textobject from 'mini.ai'.</span></span>
+<span id="cb5-647"><a href="#cb5-647" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - It is not 100% reliable, but mostly works.</span></span>
+<span id="cb5-648"><a href="#cb5-648" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - It overrides `:h (` and `:h )`.</span></span>
+<span id="cb5-649"><a href="#cb5-649" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Explanation: `gx`-`ia`-`gx`-`ila` &lt;=&gt; exchange current and last argument</span></span>
+<span id="cb5-650"><a href="#cb5-650" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Usage: when on `a` in `(aa, bb)` press `)` followed by `(`.</span></span>
+<span id="cb5-651"><a href="#cb5-651" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">'('</span><span class="op">,</span> <span class="st">'gxiagxila'</span><span class="op">,</span> <span class="op">{</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Swap arg left'</span> <span class="op">})</span></span>
+<span id="cb5-652"><a href="#cb5-652" aria-hidden="true" tabindex="-1"></a>  <span class="va">vim</span><span class="op">.</span><span class="va">keymap</span><span class="op">.</span>set<span class="op">(</span><span class="st">'n'</span><span class="op">,</span> <span class="st">')'</span><span class="op">,</span> <span class="st">'gxiagxina'</span><span class="op">,</span> <span class="op">{</span> <span class="va">remap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">desc</span> <span class="op">=</span> <span class="st">'Swap arg right'</span> <span class="op">})</span></span>
+<span id="cb5-653"><a href="#cb5-653" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-654"><a href="#cb5-654" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-655"><a href="#cb5-655" aria-hidden="true" tabindex="-1"></a><span class="co">-- Autopairs functionality. Insert pair when typing opening character and go over</span></span>
+<span id="cb5-656"><a href="#cb5-656" aria-hidden="true" tabindex="-1"></a><span class="co">-- right character if it is already to cursor's right. Also provides mappings for</span></span>
+<span id="cb5-657"><a href="#cb5-657" aria-hidden="true" tabindex="-1"></a><span class="co">-- `&lt;CR&gt;` and `&lt;BS&gt;` to perform extra actions when inside pair.</span></span>
+<span id="cb5-658"><a href="#cb5-658" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage in Insert mode:</span></span>
+<span id="cb5-659"><a href="#cb5-659" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `(` - insert "()" and put cursor between them</span></span>
+<span id="cb5-660"><a href="#cb5-660" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `)` when there is ")" to the right - jump over ")" without inserting new one</span></span>
+<span id="cb5-661"><a href="#cb5-661" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;C-v&gt;(` - always insert a single "(" literally. This is useful since</span></span>
+<span id="cb5-662"><a href="#cb5-662" aria-hidden="true" tabindex="-1"></a><span class="co">--   'mini.pairs' doesn't provide particularly smart behavior, like auto balancing</span></span>
+<span id="cb5-663"><a href="#cb5-663" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-664"><a href="#cb5-664" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create pairs not only in Insert, but also in Command line mode</span></span>
+<span id="cb5-665"><a href="#cb5-665" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span><span class="op">(</span><span class="st">'mini.pairs'</span><span class="op">).</span>setup<span class="op">({</span> <span class="va">modes</span> <span class="op">=</span> <span class="op">{</span> <span class="va">command</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">}</span> <span class="op">})</span></span>
+<span id="cb5-666"><a href="#cb5-666" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-667"><a href="#cb5-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-668"><a href="#cb5-668" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pick anything with single window layout and fast matching. This is one of</span></span>
+<span id="cb5-669"><a href="#cb5-669" aria-hidden="true" tabindex="-1"></a><span class="co">-- the main usability improvements as it powers a lot of "find things quickly"</span></span>
+<span id="cb5-670"><a href="#cb5-670" aria-hidden="true" tabindex="-1"></a><span class="co">-- workflows. How to use a picker:</span></span>
+<span id="cb5-671"><a href="#cb5-671" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Start picker, usually with `:Pick &lt;picker-name&gt;` command. Like `:Pick files`.</span></span>
+<span id="cb5-672"><a href="#cb5-672" aria-hidden="true" tabindex="-1"></a><span class="co">--   It shows a single window in the bottom left corner filled with possible items</span></span>
+<span id="cb5-673"><a href="#cb5-673" aria-hidden="true" tabindex="-1"></a><span class="co">--   to choose from. Current item has special full line highlighting.</span></span>
+<span id="cb5-674"><a href="#cb5-674" aria-hidden="true" tabindex="-1"></a><span class="co">--   At the top there is a current query used to filter+sort items.</span></span>
+<span id="cb5-675"><a href="#cb5-675" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type characters (appear at top) to narrow down items. There is fuzzy matching:</span></span>
+<span id="cb5-676"><a href="#cb5-676" aria-hidden="true" tabindex="-1"></a><span class="co">--   characters may not match one-by-one, but they should be in correct order.</span></span>
+<span id="cb5-677"><a href="#cb5-677" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Navigate down/up with `&lt;C-n&gt;`/`&lt;C-p&gt;`.</span></span>
+<span id="cb5-678"><a href="#cb5-678" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;Tab&gt;` to show item's preview. `&lt;Tab&gt;` again goes back to items.</span></span>
+<span id="cb5-679"><a href="#cb5-679" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;S-Tab&gt;` to show picker's info. `&lt;S-Tab&gt;` again goes back to items.</span></span>
+<span id="cb5-680"><a href="#cb5-680" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Press `&lt;CR&gt;` to choose an item. The exact action depends on the picker: `files`</span></span>
+<span id="cb5-681"><a href="#cb5-681" aria-hidden="true" tabindex="-1"></a><span class="co">--   picker opens a selected file, `help` picker opens help page on selected tag.</span></span>
+<span id="cb5-682"><a href="#cb5-682" aria-hidden="true" tabindex="-1"></a><span class="co">--   To close picker without choosing an item, press `&lt;Esc&gt;`.</span></span>
+<span id="cb5-683"><a href="#cb5-683" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-684"><a href="#cb5-684" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-685"><a href="#cb5-685" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ff` - *f*ind *f*iles; for best performance requires `ripgrep`</span></span>
+<span id="cb5-686"><a href="#cb5-686" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fg` - *f*ind inside files (a.k.a. "to *g*rep"); requires `ripgrep`</span></span>
+<span id="cb5-687"><a href="#cb5-687" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fh` - *f*ind *h*elp tag</span></span>
+<span id="cb5-688"><a href="#cb5-688" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fr` - *r*esume latest picker</span></span>
+<span id="cb5-689"><a href="#cb5-689" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h vim.ui.select()` - implemented with 'mini.pick'</span></span>
+<span id="cb5-690"><a href="#cb5-690" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-691"><a href="#cb5-691" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-692"><a href="#cb5-692" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick-overview` - overview of picker functionality</span></span>
+<span id="cb5-693"><a href="#cb5-693" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick-examples` - examples of common setups</span></span>
+<span id="cb5-694"><a href="#cb5-694" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniPick.builtin` and `:h MiniExtra.pickers` - available pickers;</span></span>
+<span id="cb5-695"><a href="#cb5-695" aria-hidden="true" tabindex="-1"></a><span class="co">--   Execute one either with Lua function, `:Pick &lt;picker-name&gt;` command, or</span></span>
+<span id="cb5-696"><a href="#cb5-696" aria-hidden="true" tabindex="-1"></a><span class="co">--   one of `&lt;Leader&gt;f` mappings defined in 'plugin/20_keymaps.lua'</span></span>
+<span id="cb5-697"><a href="#cb5-697" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.pick'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-698"><a href="#cb5-698" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-699"><a href="#cb5-699" aria-hidden="true" tabindex="-1"></a><span class="co">-- Manage and expand snippets (templates for a frequently used text).</span></span>
+<span id="cb5-700"><a href="#cb5-700" aria-hidden="true" tabindex="-1"></a><span class="co">-- Typical workflow is to type snippet's (configurable) prefix and expand it</span></span>
+<span id="cb5-701"><a href="#cb5-701" aria-hidden="true" tabindex="-1"></a><span class="co">-- into a snippet session.</span></span>
+<span id="cb5-702"><a href="#cb5-702" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-703"><a href="#cb5-703" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to manage snippets:</span></span>
+<span id="cb5-704"><a href="#cb5-704" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.snippets' itself doesn't come with preconfigured snippets. Instead there</span></span>
+<span id="cb5-705"><a href="#cb5-705" aria-hidden="true" tabindex="-1"></a><span class="co">--   is a flexible system of how snippets are prepared before expanding.</span></span>
+<span id="cb5-706"><a href="#cb5-706" aria-hidden="true" tabindex="-1"></a><span class="co">--   They can come from pre-defined path on disk, 'snippets/' directories inside</span></span>
+<span id="cb5-707"><a href="#cb5-707" aria-hidden="true" tabindex="-1"></a><span class="co">--   config or plugins, defined inside `setup()` call directly.</span></span>
+<span id="cb5-708"><a href="#cb5-708" aria-hidden="true" tabindex="-1"></a><span class="co">-- - This config, however, does come with snippet configuration:</span></span>
+<span id="cb5-709"><a href="#cb5-709" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'snippets/global.json' is a file with global snippets that will be</span></span>
+<span id="cb5-710"><a href="#cb5-710" aria-hidden="true" tabindex="-1"></a><span class="co">--       available in any buffer</span></span>
+<span id="cb5-711"><a href="#cb5-711" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'after/snippets/lua.json' defines personal snippets for Lua language</span></span>
+<span id="cb5-712"><a href="#cb5-712" aria-hidden="true" tabindex="-1"></a><span class="co">--     - 'friendly-snippets' plugin configured in 'plugin/40_plugins.lua' provides</span></span>
+<span id="cb5-713"><a href="#cb5-713" aria-hidden="true" tabindex="-1"></a><span class="co">--       a collection of language snippets</span></span>
+<span id="cb5-714"><a href="#cb5-714" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-715"><a href="#cb5-715" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to expand a snippet in Insert mode:</span></span>
+<span id="cb5-716"><a href="#cb5-716" aria-hidden="true" tabindex="-1"></a><span class="co">-- - If you know snippet's prefix, type it as a word and press `&lt;C-j&gt;`. Snippet's</span></span>
+<span id="cb5-717"><a href="#cb5-717" aria-hidden="true" tabindex="-1"></a><span class="co">--   body should be inserted instead of the prefix.</span></span>
+<span id="cb5-718"><a href="#cb5-718" aria-hidden="true" tabindex="-1"></a><span class="co">-- - If you don't remember snippet's prefix, type only part of it (or none at all)</span></span>
+<span id="cb5-719"><a href="#cb5-719" aria-hidden="true" tabindex="-1"></a><span class="co">--   and press `&lt;C-j&gt;`. It should show picker with all snippets that have prefixes</span></span>
+<span id="cb5-720"><a href="#cb5-720" aria-hidden="true" tabindex="-1"></a><span class="co">--   matching typed characters (or all snippets if none was typed).</span></span>
+<span id="cb5-721"><a href="#cb5-721" aria-hidden="true" tabindex="-1"></a><span class="co">--   Choose one and its body should be inserted instead of previously typed text.</span></span>
+<span id="cb5-722"><a href="#cb5-722" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-723"><a href="#cb5-723" aria-hidden="true" tabindex="-1"></a><span class="co">-- How to navigate during snippet session:</span></span>
+<span id="cb5-724"><a href="#cb5-724" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Snippets can contain tabstops - places for user to interactively adjust text.</span></span>
+<span id="cb5-725"><a href="#cb5-725" aria-hidden="true" tabindex="-1"></a><span class="co">--   Each tabstop is highlighted depending on session progression - whether tabstop</span></span>
+<span id="cb5-726"><a href="#cb5-726" aria-hidden="true" tabindex="-1"></a><span class="co">--   is current, was or was not visited. If tabstop doesn't yet have text, it is</span></span>
+<span id="cb5-727"><a href="#cb5-727" aria-hidden="true" tabindex="-1"></a><span class="co">--   visualized with special "ghost" inline text: • and ∎ by default.</span></span>
+<span id="cb5-728"><a href="#cb5-728" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Type necessary text at current tabstop and navigate to next/previous one</span></span>
+<span id="cb5-729"><a href="#cb5-729" aria-hidden="true" tabindex="-1"></a><span class="co">--   by pressing `&lt;C-l&gt;` / `&lt;C-h&gt;`.</span></span>
+<span id="cb5-730"><a href="#cb5-730" aria-hidden="true" tabindex="-1"></a><span class="co">-- - Repeat previous step until you reach special final tabstop, usually denoted</span></span>
+<span id="cb5-731"><a href="#cb5-731" aria-hidden="true" tabindex="-1"></a><span class="co">--   by ∎ symbol. If you spotted a mistake in an earlier tabstop, navigate to it</span></span>
+<span id="cb5-732"><a href="#cb5-732" aria-hidden="true" tabindex="-1"></a><span class="co">--   and return back to the final tabstop.</span></span>
+<span id="cb5-733"><a href="#cb5-733" aria-hidden="true" tabindex="-1"></a><span class="co">-- - To end a snippet session when at final tabstop, keep typing or go into</span></span>
+<span id="cb5-734"><a href="#cb5-734" aria-hidden="true" tabindex="-1"></a><span class="co">--   Normal mode. To force end snippet session, press `&lt;C-c&gt;`.</span></span>
+<span id="cb5-735"><a href="#cb5-735" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-736"><a href="#cb5-736" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-737"><a href="#cb5-737" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-overview` - overview of how module works</span></span>
+<span id="cb5-738"><a href="#cb5-738" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-examples` - examples of common setups</span></span>
+<span id="cb5-739"><a href="#cb5-739" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets-session` - details about snippet session</span></span>
+<span id="cb5-740"><a href="#cb5-740" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSnippets.gen_loader` - list of available loaders</span></span>
+<span id="cb5-741"><a href="#cb5-741" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span></span>
+<span id="cb5-742"><a href="#cb5-742" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Define language patterns to work better with 'friendly-snippets'</span></span>
+<span id="cb5-743"><a href="#cb5-743" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">latex_patterns</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'latex/**/*.json'</span><span class="op">,</span> <span class="st">'**/latex.json'</span> <span class="op">}</span></span>
+<span id="cb5-744"><a href="#cb5-744" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">lang_patterns</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-745"><a href="#cb5-745" aria-hidden="true" tabindex="-1"></a>    <span class="va">tex</span> <span class="op">=</span> <span class="va">latex_patterns</span><span class="op">,</span></span>
+<span id="cb5-746"><a href="#cb5-746" aria-hidden="true" tabindex="-1"></a>    <span class="va">plaintex</span> <span class="op">=</span> <span class="va">latex_patterns</span><span class="op">,</span></span>
+<span id="cb5-747"><a href="#cb5-747" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Recognize special injected language of markdown tree-sitter parser</span></span>
+<span id="cb5-748"><a href="#cb5-748" aria-hidden="true" tabindex="-1"></a>    <span class="va">markdown_inline</span> <span class="op">=</span> <span class="op">{</span> <span class="st">'markdown.json'</span> <span class="op">},</span></span>
+<span id="cb5-749"><a href="#cb5-749" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-750"><a href="#cb5-750" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-751"><a href="#cb5-751" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">snippets</span> <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.snippets'</span><span class="op">)</span></span>
+<span id="cb5-752"><a href="#cb5-752" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">config_path</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>stdpath<span class="op">(</span><span class="st">'config'</span><span class="op">)</span></span>
+<span id="cb5-753"><a href="#cb5-753" aria-hidden="true" tabindex="-1"></a>  <span class="va">snippets</span><span class="op">.</span>setup<span class="op">({</span></span>
+<span id="cb5-754"><a href="#cb5-754" aria-hidden="true" tabindex="-1"></a>    <span class="va">snippets</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-755"><a href="#cb5-755" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Always load 'snippets/global.json' from config directory</span></span>
+<span id="cb5-756"><a href="#cb5-756" aria-hidden="true" tabindex="-1"></a>      <span class="va">snippets</span><span class="op">.</span><span class="va">gen_loader</span><span class="op">.</span>from_file<span class="op">(</span><span class="va">config_path</span> <span class="op">..</span> <span class="st">'/snippets/global.json'</span><span class="op">),</span></span>
+<span id="cb5-757"><a href="#cb5-757" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Load from 'snippets/' directory of plugins, like 'friendly-snippets'</span></span>
+<span id="cb5-758"><a href="#cb5-758" aria-hidden="true" tabindex="-1"></a>      <span class="va">snippets</span><span class="op">.</span><span class="va">gen_loader</span><span class="op">.</span>from_lang<span class="op">({</span> <span class="va">lang_patterns</span> <span class="op">=</span> <span class="va">lang_patterns</span> <span class="op">}),</span></span>
+<span id="cb5-759"><a href="#cb5-759" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
+<span id="cb5-760"><a href="#cb5-760" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb5-761"><a href="#cb5-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-762"><a href="#cb5-762" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- By default snippets available at cursor are not shown as candidates in</span></span>
+<span id="cb5-763"><a href="#cb5-763" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- 'mini.completion' menu. This requires a dedicated in-process LSP server</span></span>
+<span id="cb5-764"><a href="#cb5-764" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- that will provide them. To have that, uncomment next line (use `gcc`).</span></span>
+<span id="cb5-765"><a href="#cb5-765" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- MiniSnippets.start_lsp_server()</span></span>
+<span id="cb5-766"><a href="#cb5-766" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-767"><a href="#cb5-767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-768"><a href="#cb5-768" aria-hidden="true" tabindex="-1"></a><span class="co">-- Split and join arguments (regions inside brackets between allowed separators).</span></span>
+<span id="cb5-769"><a href="#cb5-769" aria-hidden="true" tabindex="-1"></a><span class="co">-- It uses Lua patterns to find arguments, which means it works in comments and</span></span>
+<span id="cb5-770"><a href="#cb5-770" aria-hidden="true" tabindex="-1"></a><span class="co">-- strings but can be not as accurate as tree-sitter based solutions.</span></span>
+<span id="cb5-771"><a href="#cb5-771" aria-hidden="true" tabindex="-1"></a><span class="co">-- Each action can be configured with hooks (like add/remove trailing comma).</span></span>
+<span id="cb5-772"><a href="#cb5-772" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-773"><a href="#cb5-773" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `gS` - toggle between joined (all in one line) and split (each on a separate</span></span>
+<span id="cb5-774"><a href="#cb5-774" aria-hidden="true" tabindex="-1"></a><span class="co">--   line and indented) arguments. It is dot-repeatable (see `:h .`).</span></span>
+<span id="cb5-775"><a href="#cb5-775" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-776"><a href="#cb5-776" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-777"><a href="#cb5-777" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSplitjoin.gen_hook` - list of available hooks</span></span>
+<span id="cb5-778"><a href="#cb5-778" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.splitjoin'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
 <span id="cb5-779"><a href="#cb5-779" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-780"><a href="#cb5-780" aria-hidden="true" tabindex="-1"></a><span class="co">-- Highlight and remove trailspace. Temporarily stops highlighting in Insert mode</span></span>
-<span id="cb5-781"><a href="#cb5-781" aria-hidden="true" tabindex="-1"></a><span class="co">-- to reduce noise when typing. Example usage:</span></span>
-<span id="cb5-782"><a href="#cb5-782" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ot` - trim all trailing whitespace in a buffer</span></span>
-<span id="cb5-783"><a href="#cb5-783" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.trailspace'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-784"><a href="#cb5-784" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-785"><a href="#cb5-785" aria-hidden="true" tabindex="-1"></a><span class="co">-- Track and reuse file system visits. Every file/directory visit is persistently</span></span>
-<span id="cb5-786"><a href="#cb5-786" aria-hidden="true" tabindex="-1"></a><span class="co">-- tracked on disk to later reuse: show in special frecency order, etc. It also</span></span>
-<span id="cb5-787"><a href="#cb5-787" aria-hidden="true" tabindex="-1"></a><span class="co">-- supports adding labels to visited paths to quickly navigate between them.</span></span>
-<span id="cb5-788"><a href="#cb5-788" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
-<span id="cb5-789"><a href="#cb5-789" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fv` - find across all visits</span></span>
-<span id="cb5-790"><a href="#cb5-790" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;vv` / `&lt;Leader&gt;vV` - add/remove special "core" label to current file</span></span>
-<span id="cb5-791"><a href="#cb5-791" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;vc` / `&lt;Leader&gt;vC` - show files with "core" label; all or added within</span></span>
-<span id="cb5-792"><a href="#cb5-792" aria-hidden="true" tabindex="-1"></a><span class="co">--   current working directory</span></span>
-<span id="cb5-793"><a href="#cb5-793" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
-<span id="cb5-794"><a href="#cb5-794" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
-<span id="cb5-795"><a href="#cb5-795" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniVisits-overview` - overview of how module works</span></span>
-<span id="cb5-796"><a href="#cb5-796" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniVisits-examples` - examples of common setups</span></span>
-<span id="cb5-797"><a href="#cb5-797" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
-<span id="cb5-798"><a href="#cb5-798" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-799"><a href="#cb5-799" aria-hidden="true" tabindex="-1"></a><span class="co">-- Not mentioned here, but can be useful:</span></span>
-<span id="cb5-800"><a href="#cb5-800" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.doc' - needed only for plugin developers.</span></span>
-<span id="cb5-801"><a href="#cb5-801" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.fuzzy' - not really needed on a daily basis.</span></span>
-<span id="cb5-802"><a href="#cb5-802" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.test' - needed only for plugin developers.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-780"><a href="#cb5-780" aria-hidden="true" tabindex="-1"></a><span class="co">-- Surround actions: add/delete/replace/find/highlight. Working with surroundings</span></span>
+<span id="cb5-781"><a href="#cb5-781" aria-hidden="true" tabindex="-1"></a><span class="co">-- is surprisingly common: surround word with quotes, replace `)` with `]`, etc.</span></span>
+<span id="cb5-782"><a href="#cb5-782" aria-hidden="true" tabindex="-1"></a><span class="co">-- This module comes with many built-in surroundings, each identified by a single</span></span>
+<span id="cb5-783"><a href="#cb5-783" aria-hidden="true" tabindex="-1"></a><span class="co">-- character. It searches only for surrounding that covers cursor and comes with</span></span>
+<span id="cb5-784"><a href="#cb5-784" aria-hidden="true" tabindex="-1"></a><span class="co">-- a special "next" / "last" versions of actions to search forward or backward</span></span>
+<span id="cb5-785"><a href="#cb5-785" aria-hidden="true" tabindex="-1"></a><span class="co">-- (just like 'mini.ai'). All text editing actions are dot-repeatable (see `:h .`).</span></span>
+<span id="cb5-786"><a href="#cb5-786" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-787"><a href="#cb5-787" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage (this may feel intimidating at first, but after practice it</span></span>
+<span id="cb5-788"><a href="#cb5-788" aria-hidden="true" tabindex="-1"></a><span class="co">-- becomes second nature during text editing):</span></span>
+<span id="cb5-789"><a href="#cb5-789" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `saiw)` - *s*urround *a*dd for *i*nside *w*ord parenthesis (`)`)</span></span>
+<span id="cb5-790"><a href="#cb5-790" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sdf`   - *s*urround *d*elete *f*unction call (like `f(var)` -&gt; `var`)</span></span>
+<span id="cb5-791"><a href="#cb5-791" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `srb[`  - *s*urround *r*eplace *b*racket (any of [], (), {}) with padded `[`</span></span>
+<span id="cb5-792"><a href="#cb5-792" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sf*`   - *s*urround *f*ind right part of `*` pair (like bold in markdown)</span></span>
+<span id="cb5-793"><a href="#cb5-793" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `shf`   - *s*urround *h*ighlight current *f*unction call</span></span>
+<span id="cb5-794"><a href="#cb5-794" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `srn{{` - *s*urround *r*eplace *n*ext curly bracket `{` with padded `{`</span></span>
+<span id="cb5-795"><a href="#cb5-795" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `sdl'`  - *s*urround *d*elete *l*ast quote pair (`'`)</span></span>
+<span id="cb5-796"><a href="#cb5-796" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `vaWsa&lt;Space&gt;` - *v*isually select *a*round *W*ORD and *s*urround *a*dd</span></span>
+<span id="cb5-797"><a href="#cb5-797" aria-hidden="true" tabindex="-1"></a><span class="co">--                    spaces (`&lt;Space&gt;`)</span></span>
+<span id="cb5-798"><a href="#cb5-798" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-799"><a href="#cb5-799" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-800"><a href="#cb5-800" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-builtin-surroundings` - list of all supported surroundings</span></span>
+<span id="cb5-801"><a href="#cb5-801" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-surrounding-specification` - examples of custom surroundings</span></span>
+<span id="cb5-802"><a href="#cb5-802" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniSurround-vim-surround-config` - alternative set of action mappings</span></span>
+<span id="cb5-803"><a href="#cb5-803" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.surround'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-804"><a href="#cb5-804" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-805"><a href="#cb5-805" aria-hidden="true" tabindex="-1"></a><span class="co">-- Highlight and remove trailspace. Temporarily stops highlighting in Insert mode</span></span>
+<span id="cb5-806"><a href="#cb5-806" aria-hidden="true" tabindex="-1"></a><span class="co">-- to reduce noise when typing. Example usage:</span></span>
+<span id="cb5-807"><a href="#cb5-807" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;ot` - trim all trailing whitespace in a buffer</span></span>
+<span id="cb5-808"><a href="#cb5-808" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.trailspace'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-809"><a href="#cb5-809" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-810"><a href="#cb5-810" aria-hidden="true" tabindex="-1"></a><span class="co">-- Track and reuse file system visits. Every file/directory visit is persistently</span></span>
+<span id="cb5-811"><a href="#cb5-811" aria-hidden="true" tabindex="-1"></a><span class="co">-- tracked on disk to later reuse: show in special frecency order, etc. It also</span></span>
+<span id="cb5-812"><a href="#cb5-812" aria-hidden="true" tabindex="-1"></a><span class="co">-- supports adding labels to visited paths to quickly navigate between them.</span></span>
+<span id="cb5-813"><a href="#cb5-813" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example usage:</span></span>
+<span id="cb5-814"><a href="#cb5-814" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;fv` - find across all visits</span></span>
+<span id="cb5-815"><a href="#cb5-815" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;vv` / `&lt;Leader&gt;vV` - add/remove special "core" label to current file</span></span>
+<span id="cb5-816"><a href="#cb5-816" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `&lt;Leader&gt;vc` / `&lt;Leader&gt;vC` - show files with "core" label; all or added within</span></span>
+<span id="cb5-817"><a href="#cb5-817" aria-hidden="true" tabindex="-1"></a><span class="co">--   current working directory</span></span>
+<span id="cb5-818"><a href="#cb5-818" aria-hidden="true" tabindex="-1"></a><span class="co">--</span></span>
+<span id="cb5-819"><a href="#cb5-819" aria-hidden="true" tabindex="-1"></a><span class="co">-- See also:</span></span>
+<span id="cb5-820"><a href="#cb5-820" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniVisits-overview` - overview of how module works</span></span>
+<span id="cb5-821"><a href="#cb5-821" aria-hidden="true" tabindex="-1"></a><span class="co">-- - `:h MiniVisits-examples` - examples of common setups</span></span>
+<span id="cb5-822"><a href="#cb5-822" aria-hidden="true" tabindex="-1"></a>later<span class="op">(</span><span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">'mini.visits'</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">)</span></span>
+<span id="cb5-823"><a href="#cb5-823" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-824"><a href="#cb5-824" aria-hidden="true" tabindex="-1"></a><span class="co">-- Not mentioned here, but can be useful:</span></span>
+<span id="cb5-825"><a href="#cb5-825" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.doc' - needed only for plugin developers.</span></span>
+<span id="cb5-826"><a href="#cb5-826" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.fuzzy' - not really needed on a daily basis.</span></span>
+<span id="cb5-827"><a href="#cb5-827" aria-hidden="true" tabindex="-1"></a><span class="co">-- - 'mini.test' - needed only for plugin developers.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="plugin-40_plugins.lua" class="level4">
