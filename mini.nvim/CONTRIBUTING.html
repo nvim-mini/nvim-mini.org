@@ -470,6 +470,12 @@ Details:
 <li>Install <a href="https://pre-commit.com/#install"><code>pre-commit</code></a> and enable it with <code>pre-commit install</code> (from the root directory). This will auto-format relevant code before making commits.</li>
 </ul></li>
 </ul>
+<p>Notes:</p>
+<ul>
+<li><p>To ignore certain part of the code, add <code>--stylua: ignore</code> line about the target statement. For example, adding this line above <code>local x = {...}</code> will ignore formatting for the whole (possibly multiline) <code>{...}</code> content.</p></li>
+<li><p>Prefer using <code>--stylua: ignore</code> over <code>--stylua: ignore start</code> + <code>--stylua: ignore end</code> blocks. The former is usually enough and is easier to locate where this takes effect.</p>
+<p>Only use <code>start</code>+<code>end</code> if there is a need to ignore several consecutive statements which is a <em>small</em> portion of outer statement (like several <code>local x = ...</code> inside a large function) or if there is no outer statement. If the portion is sufficiently large, prefer a single <code>--stylua: ignore</code> above a parent statement.</p></li>
+</ul>
 </section>
 <section id="list-of-highlight-groups" class="level2">
 <h2 class="anchored" data-anchor-id="list-of-highlight-groups">List of highlight groups</h2>
