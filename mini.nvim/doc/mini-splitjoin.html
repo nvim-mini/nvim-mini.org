@@ -685,10 +685,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Overview:</p>
 <ul>
 <li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details.</p></li>
-<li><p>Find separator positions using <code>separator</code> and <code>exclude_regions</code> from <code>opts</code>. Both brackets are treated as separators. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details. Note: stop if no separator positions are found.</p></li>
+<li><p>Find separator positions using <code>separator</code> and <code>exclude_regions</code> from <code>opts</code>. Both brackets are treated as separators. See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details. Stop if no separator positions are found.</p></li>
 <li><p>Modify separator positions to represent split positions. Last split position (which is inferred from right bracket) is moved one column to left so that right bracket would move on new line.</p></li>
 <li><p>Apply all hooks from <code>opts.split.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step. Output of last one is used as split positions in next step.</p></li>
-<li><p>Split and update split positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at">MiniSplitjoin.split_at()</a>.</p></li>
+<li><p>Split and update split positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.split_at">MiniSplitjoin.split_at()</a>. Stop if updated positions are empty (like if hooks decided to not split).</p></li>
 <li><p>Apply all hooks from <code>opts.split.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is split positions from previous step plus region’s right end (for easier hook code). Output of last one is used as function return value.</p></li>
 </ul>
 <p>Note:</p>
@@ -719,9 +719,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Overview:</p>
 <ul>
 <li><p>Detect region: either by using supplied <code>opts.region</code> or by finding smallest bracketed region surrounding input position (cursor position by default). See <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.config.detect">MiniSplitjoin.config.detect</a> for more details.</p></li>
-<li><p>Compute join positions to be line ends of all but last region lines. Note: stop if no join positions are found.</p></li>
+<li><p>Compute join positions to be line ends of all but last region lines. Stop if no join positions are found.</p></li>
 <li><p>Apply all hooks from <code>opts.join.hooks_pre</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step. Output of last one is used as join positions in next step.</p></li>
-<li><p>Join and update join positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at">MiniSplitjoin.join_at()</a>.</p></li>
+<li><p>Join and update join positions with <a href="../../mini.nvim/doc/mini-splitjoin.html#minisplitjoin.join_at">MiniSplitjoin.join_at()</a>. Stop if updated positions are empty (like if hooks decided to not join).</p></li>
 <li><p>Apply all hooks from <code>opts.join.hooks_post</code>. Each is applied on the output of previous one. Input of first hook is join positions from previous step plus region’s right end for easier hook code. Output of last one is used as function return value.</p></li>
 </ul>
 <section id="minisplitjoin.join-parameters" class="level4">
