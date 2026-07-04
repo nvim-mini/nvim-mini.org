@@ -326,6 +326,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#generating-help-file" id="toc-generating-help-file" class="nav-link" data-scroll-target="#generating-help-file">Generating help file</a></li>
   <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
   <li><a href="#formatting" id="toc-formatting" class="nav-link" data-scroll-target="#formatting">Formatting</a></li>
+  <li><a href="#spell-checking" id="toc-spell-checking" class="nav-link" data-scroll-target="#spell-checking">Spell checking</a></li>
   <li><a href="#list-of-highlight-groups" id="toc-list-of-highlight-groups" class="nav-link" data-scroll-target="#list-of-highlight-groups">List of highlight groups</a></li>
   </ul></li>
   </ul>
@@ -419,7 +420,7 @@ Details:
 <h3 class="anchored" data-anchor-id="automated-commit-linting">Automated commit linting</h3>
 <ul>
 <li>To lint messages of already done commits, execute <code>scripts/lintcommit-ci.sh &lt;git-log-range&gt;</code>. For example, to lint currently latest commit use <code>scripts/lintcommit-ci.sh HEAD~..HEAD</code>.</li>
-<li>To lint commit message before doing commit, install <a href="https://pre-commit.com/#install"><code>pre-commit</code></a> and enable it with <code>pre-commit install --hook-type commit-msg</code> (from the root directory). NOTE: requires <code>nvim</code> executable. If it throws (usually descriptive) error - recommit with proper message.</li>
+<li>To lint commit message before <code>git commit</code>, run <code>make init-git-hooks</code> from the root directory and commit with message. NOTE: requires <code>nvim</code> executable. If it throws (usually descriptive) error - recommit with proper message.</li>
 </ul>
 </section>
 </section>
@@ -467,7 +468,7 @@ Details:
 <li>Format with it. Currently there are two ways to do this:
 <ul>
 <li>Manually run <code>stylua .</code> from the root directory of this project.</li>
-<li>Install <a href="https://pre-commit.com/#install"><code>pre-commit</code></a> and enable it with <code>pre-commit install</code> (from the root directory). This will auto-format relevant code before making commits.</li>
+<li>Run <code>make init-git-hooks</code> from the root directory and try to commit. This will auto-format relevant code before making commits.</li>
 </ul></li>
 </ul>
 <p>Notes:</p>
@@ -476,6 +477,13 @@ Details:
 <li><p>Prefer using <code>--stylua: ignore</code> over <code>--stylua: ignore start</code> + <code>--stylua: ignore end</code> blocks. The former is usually enough and is easier to locate where this takes effect.</p>
 <p>Only use <code>start</code>+<code>end</code> if there is a need to ignore several consecutive statements which is a <em>small</em> portion of outer statement (like several <code>local x = ...</code> inside a large function) or if there is no outer statement. If the portion is sufficiently large, prefer a single <code>--stylua: ignore</code> above a parent statement.</p></li>
 </ul>
+</section>
+<section id="spell-checking" class="level2">
+<h2 class="anchored" data-anchor-id="spell-checking">Spell checking</h2>
+<p>This project uses <a href="https://github.com/crate-ci/typos"><code>typos</code></a> for an automated spell checking (as constant <code>docs(xxx): fix typo</code> commits add noise to <code>git log</code>, which is bad for users that read it before updating the plugin). It is designed to check common spelling errors (with a low false positive rate) in regular text and code comments+strings.</p>
+<p>There is a <a href="./.typos.toml">project specific config</a>. Among other things, it adds a way to locally ignore known false positive spelling problems in Lua code: - Add line <code>--typos: ignore</code> above the target line. - Append <code>--typos: ignore-line</code> to the target line.</p>
+<p>Prefer using <code>--typos: ignore</code> as it aligns better with <code>--stylua: ignore</code>. Use <code>--typos: ignore-line</code> to preserve pretty code block aligning or ability to alphabetically sort lines. If there are a lot of instances of the same spelling problem, add it globally in <code>.typos.toml</code>: either per language or file (follow already present examples).</p>
+<p>To check for typos locally, <a href="https://github.com/crate-ci/typos/releases">install <code>typos</code></a> and run <code>make lintspell</code>.</p>
 </section>
 <section id="list-of-highlight-groups" class="level2">
 <h2 class="anchored" data-anchor-id="list-of-highlight-groups">List of highlight groups</h2>
