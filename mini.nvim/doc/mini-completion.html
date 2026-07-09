@@ -468,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Suggested dependencies (provide extra functionality, will work without them):</p>
 <ul>
 <li><p>Enabled <a href="../../mini.nvim/doc/mini-icons.html#mini.icons">mini.icons</a> module to highlight LSP kind (requires Neovim&gt;=0.11). If absent, <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_process_items">MiniCompletion.default_process_items()</a> does not add highlighting. Also take a look at <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind">MiniIcons.tweak_lsp_kind()</a>.</p></li>
-<li><p>Enabled <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> module for better snippet handling (much recommended). If absent and custom snippet insert is not configured, <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand()">vim.snippet.expand()</a> is used on Neovim&gt;=0.10 (nothing extra is done on earlier versions). See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert">MiniCompletion.default_snippet_insert()</a>.</p></li>
+<li><p>Enabled <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> module for better snippet handling (much recommended). If absent and custom snippet insert is not configured, falls back to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand()">vim.snippet.expand()</a>. See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert">MiniCompletion.default_snippet_insert()</a>.</p></li>
 </ul>
 </section>
 <section id="module-setup" class="level4">
@@ -644,7 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- A function which takes a snippet as string and inserts it at cursor.</span></span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: `default_snippet_insert` which tries to use 'mini.snippets'</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- and falls back to `vim.snippet.expand` (on Neovim&gt;=0.10).</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- and falls back to `vim.snippet.expand`.</span></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">snippet_insert</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
@@ -784,8 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Order of preference:</p>
 <ul>
 <li><p>Use <a href="../../mini.nvim/doc/mini-snippets.html#mini.snippets">mini.snippets</a> if set up (i.e.&nbsp;after <code>require('mini.snippets').setup()</code>).</p></li>
-<li><p>Use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand()">vim.snippet.expand()</a> on Neovim&gt;=0.10</p></li>
-<li><p>Add snippet text at cursor as is.</p></li>
+<li><p>Fall back to <a href="https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand()">vim.snippet.expand()</a>.</p></li>
 </ul>
 <p>After snippet is inserted, user is expected to navigate/jump between dedicated places (tabstops) to adjust inserted text as needed:</p>
 <ul>

@@ -447,7 +447,7 @@ Note
 <p>For full experience needs (still works without any of suggestions):</p>
 <ul>
 <li>Enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-icons">‘mini.icons’</a> module to highlight LSP kind (requires Neovim&gt;=0.11). If absent, <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_process_items"><code>MiniCompletion.default_process_items()</code></a> does not add highlighting. Also take a look at <a href="../../mini.nvim/doc/mini-icons.html#miniicons.tweak_lsp_kind"><code>MiniIcons.tweak_lsp_kind()</code></a>.</li>
-<li>Enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-snippets">‘mini.snippets’</a> module for better snippet handling (<strong>much recommended</strong>). If absent and custom snippet insert is not configured, <code>vim.snippet.expand()</code> is used on Neovim&gt;=0.10 (nothing extra is done on earlier versions). See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert"><code>:h MiniCompletion.default_snippet_insert()</code></a>.</li>
+<li>Enabled <a href="https://nvim-mini.org/mini.nvim/readmes/mini-snippets">‘mini.snippets’</a> module for better snippet handling (<strong>much recommended</strong>). If absent and custom snippet insert is not configured, falls back to <code>vim.snippet.expand()</code>. See <a href="../../mini.nvim/doc/mini-completion.html#minicompletion.default_snippet_insert"><code>:h MiniCompletion.default_snippet_insert()</code></a>.</li>
 </ul>
 </section>
 <section id="snippets" class="level2">
@@ -549,7 +549,7 @@ With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- A function which takes a snippet as string and inserts it at cursor.</span></span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Default: `default_snippet_insert` which tries to use 'mini.snippets'</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- and falls back to `vim.snippet.expand` (on Neovim&gt;=0.10).</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- and falls back to `vim.snippet.expand`.</span></span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">snippet_insert</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
