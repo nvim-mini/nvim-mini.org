@@ -91,9 +91,8 @@ Suggested dependencies (provide extra functionality, will work without them):
   Also take a look at [MiniIcons.tweak\_lsp\_kind()](mini-icons.qmd#miniicons.tweak_lsp_kind).
 
 - Enabled [mini.snippets](mini-snippets.qmd#mini.snippets) module for better snippet handling (much recommended).
-  If absent and custom snippet insert is not configured, [vim.snippet.expand()](https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand\(\))
-  is used on Neovim>=0.10 (nothing extra is done on earlier versions).
-  See [MiniCompletion.default\_snippet\_insert()](mini-completion.qmd#minicompletion.default_snippet_insert).
+  If absent and custom snippet insert is not configured, falls back
+  to [vim.snippet.expand()](https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand\(\)). See [MiniCompletion.default\_snippet\_insert()](mini-completion.qmd#minicompletion.default_snippet_insert).
 
 #### Setup {#module-setup}
 
@@ -361,7 +360,7 @@ Module setup
 
       -- A function which takes a snippet as string and inserts it at cursor.
       -- Default: `default_snippet_insert` which tries to use 'mini.snippets'
-      -- and falls back to `vim.snippet.expand` (on Neovim>=0.10).
+      -- and falls back to `vim.snippet.expand`.
       snippet_insert = nil,
     },
 
@@ -543,9 +542,7 @@ Order of preference:
 
 - Use [mini.snippets](mini-snippets.qmd#mini.snippets) if set up (i.e. after `require('mini.snippets').setup()`).
 
-- Use [vim.snippet.expand()](https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand\(\)) on Neovim>=0.10
-
-- Add snippet text at cursor as is.
+- Fall back to [vim.snippet.expand()](https://neovim.io/doc/user/helptag.html?tag=vim.snippet.expand\(\)).
 
 After snippet is inserted, user is expected to navigate/jump between dedicated
 places (tabstops) to adjust inserted text as needed:

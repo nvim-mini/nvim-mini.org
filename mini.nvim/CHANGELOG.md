@@ -10,6 +10,12 @@ There are following change types:
 
 # Version 0.19.0-dev {#v0.19.0}
 
+## All {#v0.19.0-all}
+
+### Refine {#v0.19.0-all-refine}
+
+- Stop official support of Neovim 0.9.
+
 
 # Version 0.18.0 (2026-06-21) {#v0.18.0}
 
