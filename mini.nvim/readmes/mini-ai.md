@@ -151,9 +151,9 @@ Stable branch:
 ```lua
 -- No need to copy this inside `setup()`. Will be used automatically.
 {
-  -- Table with textobject id as fields, textobject specification as values.
-  -- Also use this to disable builtin textobjects. See |MiniAi.config|.
-  custom_textobjects = nil,
+  -- Custom textobjects to be used on top of builtin ones.
+  -- For more information with examples see, [`:h MiniAi.config`](../doc/mini-ai.qmd#miniai.config).
+  custom_textobjects = {},
 
   -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {

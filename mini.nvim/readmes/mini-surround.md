@@ -148,9 +148,9 @@ Stable branch:
 ```lua
 -- No need to copy this inside `setup()`. Will be used automatically.
 {
-  -- Add custom surroundings to be used on top of builtin ones. For more
-  -- information with examples, see [`:h MiniSurround.config`](../doc/mini-surround.qmd#minisurround.config).
-  custom_surroundings = nil,
+  -- Custom surroundings to be used on top of builtin ones.
+  -- For more information with examples, see [`:h MiniSurround.config`](../doc/mini-surround.qmd#minisurround.config).
+  custom_surroundings = {},
 
   -- Duration (in ms) of highlight when calling [`MiniSurround.highlight()`](../doc/mini-surround.qmd#minisurround.highlight)
   highlight_duration = 500,
