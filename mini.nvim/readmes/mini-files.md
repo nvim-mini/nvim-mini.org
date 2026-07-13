@@ -40,7 +40,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Manipulate files and directories by editing text buffers: create, delete, rename (all three are LSP aware), copy, move. See [`:h MiniFiles-manipulation`](../doc/mini-files.qmd#minifiles-manipulation) for an overview.
 
-- Use as default file explorer instead of `netrw`.
+- Use as default file explorer instead of built-in one.
 
 - Configurable:
     - Filter/prefix/sort of file system entries.
