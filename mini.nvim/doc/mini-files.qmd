@@ -531,7 +531,7 @@ Use a combination of [MiniFiles.open()](mini-files.qmd#minifiles.open) and [Mini
 
   ```lua
   local minifiles_toggle = function(...)
-    if not MiniFiles.close() then MiniFiles.open(...) end
+    if MiniFiles.close() == nil then MiniFiles.open(...) end
   end
   ```
 
