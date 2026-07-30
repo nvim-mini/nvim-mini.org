@@ -890,7 +890,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minidiff.set_ref_text-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minidiff.set_ref_text-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{buf_id}</span> <code>(number)</code> Target buffer identifier. Default: 0 for current buffer.</p>
-<p><span class="help-syntax-special">{text}</span> <code>(string|table)</code> New reference text. Either a string with <code>\n</code> used to separate lines or array of lines. Use empty table to unset current reference text (results into no hunks shown). Default: <code>{}</code>. Note: newline character is appended at the end (if it is not there already) for better diffs.</p>
+<p><span class="help-syntax-special">{text}</span> <code>(string|table|nil)</code> New reference text. Default: <code>nil</code>. Can be:</p>
+<ul>
+<li><p>String with <code>\n</code> separating lines.</p></li>
+<li><p>Array of strings representing lines.</p></li>
+<li><p><code>nil</code> to unset current reference text (results in no hunks shown).</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Empty string <code>''</code> and empty array <code>{}</code> set empty reference text (whole buffer text is a single “add” hunk). Use <code>'\n'</code> or <code>{ '' }</code> to set a single empty line as a reference text.</p></li>
+<li><p>Newline character is appended (if not already there) at the end of the non-empty reference text for better diffs.</p></li>
+</ul>
 <hr>
 </section>
 </section>

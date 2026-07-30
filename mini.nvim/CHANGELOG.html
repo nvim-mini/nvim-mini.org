@@ -362,6 +362,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#v0.19.0-mini.ai-evolve" id="toc-v0.19.0-mini.ai-evolve" class="nav-link" data-scroll-target="#v0.19.0-mini.ai-evolve">Evolve</a></li>
   </ul></li>
+  <li><a href="#v0.19.0-mini.diff" id="toc-v0.19.0-mini.diff" class="nav-link" data-scroll-target="#v0.19.0-mini.diff">mini.diff</a>
+  <ul>
+  <li><a href="#v0.19.0-mini.diff-refine" id="toc-v0.19.0-mini.diff-refine" class="nav-link" data-scroll-target="#v0.19.0-mini.diff-refine">Refine</a></li>
+  </ul></li>
   <li><a href="#v0.19.0-mini.surround" id="toc-v0.19.0-mini.surround" class="nav-link" data-scroll-target="#v0.19.0-mini.surround">mini.surround</a>
   <ul>
   <li><a href="#v0.19.0-mini.surround-evolve" id="toc-v0.19.0-mini.surround-evolve" class="nav-link" data-scroll-target="#v0.19.0-mini.surround-evolve">Evolve</a></li>
@@ -1316,6 +1320,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="v0.19.0-mini.ai-evolve">Evolve</h3>
 <ul>
 <li>Set <code>{}</code> as <code>config.custom_textobjects</code> default (instead of <code>nil</code>). This is more consistent with other modules and should not have visible side effects.</li>
+</ul>
+</section>
+</section>
+<section id="v0.19.0-mini.diff" class="level2">
+<h2 class="anchored" data-anchor-id="v0.19.0-mini.diff">mini.diff</h2>
+<section id="v0.19.0-mini.diff-refine" class="level3">
+<h3 class="anchored" data-anchor-id="v0.19.0-mini.diff-refine">Refine</h3>
+<ul>
+<li><p>Update the behavior of <code>set_ref_text()</code> to be able to set truly empty reference text (to indicate that the whole buffer is a single “add” hunk):</p>
+<ul>
+<li><p>Allow <code>nil</code> reference text to unset reference text. This was and is the default.</p></li>
+<li><p>Empty string <code>''</code> and empty array <code>{}</code> set empty reference text. The latter previously unset the reference text, but now it doesn’t.</p>
+<p>Use <code>'\n'</code> or <code>{ '' }</code> to set a single empty line as a reference text.</p></li>
+</ul></li>
 </ul>
 </section>
 </section>
