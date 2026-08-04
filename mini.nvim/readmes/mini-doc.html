@@ -485,40 +485,40 @@ With <a href="https://github.com/folke/lazy.nvim">folke/lazy.nvim</a>
 <h2 class="anchored" data-anchor-id="default-config">Default config</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- No need to copy this inside `setup()`. Will be used automatically.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Lua string pattern to determine if line has documentation annotation.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- First capture group should describe possible section id. Default value</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- means that annotation line should:</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Start with `---` at first column.</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Any non-whitespace after `---` will be treated as new section id.</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- - Single whitespace at the start of main text will be ignored.</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">annotation_pattern</span> <span class="op">=</span> <span class="st">'^%-%-%-(%S*) ?'</span><span class="op">,</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Identifier of block annotation lines until first captured identifier</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">default_section_id</span> <span class="op">=</span> <span class="st">'@text'</span><span class="op">,</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Hooks to be applied at certain stage of document life cycle. Should</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- modify its input in place (and not return new one).</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied to block before anything else</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">block_pre</span> <span class="op">=</span> <span class="co">--&lt;function: infers header sections (tag and/or signature)&gt;,</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied to section before anything else</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">section_pre</span> <span class="op">=</span> <span class="co">--&lt;function: replaces current aliases&gt;,</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied if section has specified captured id</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">sections</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@alias'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: registers alias in MiniDoc.current.aliases&gt;,</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@class'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- For most typical usage see |MiniDoc.afterlines_to_code|</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@eval'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: evaluates lines; replaces with their return&gt;,</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@field'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@param'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@private'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: registers block for removal&gt;,</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@return'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@seealso'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@signature'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: formats signature of documented object&gt;,</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@tag'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: turns its line in proper tag lines&gt;,</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@text'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: purposefully does nothing&gt;,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Function which extracts part of line used to denote annotation.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- For more information see 'Notes' in |MiniDoc.config|.</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">annotation_extractor</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">l</span><span class="op">)</span> <span class="cf">return</span> <span class="fu">string.find</span><span class="op">(</span><span class="va">l</span><span class="op">,</span> <span class="st">'^%-%-%-(%S*) ?'</span><span class="op">)</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Identifier of block annotation lines until first captured identifier</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">default_section_id</span> <span class="op">=</span> <span class="st">'@text'</span><span class="op">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Hooks to be applied at certain stage of document life cycle. Should</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- modify its input in place (and not return new one).</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">hooks</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied to block before anything else</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">block_pre</span> <span class="op">=</span> <span class="co">--&lt;function: infers header sections (tag and/or signature)&gt;,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied to section before anything else</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">section_pre</span> <span class="op">=</span> <span class="co">--&lt;function: replaces current aliases&gt;,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Applied if section has specified captured id</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">sections</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@alias'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: registers alias in MiniDoc.current.aliases&gt;,</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@class'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@diagnostic'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: ignores any section content&gt;,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- For most typical usage see |MiniDoc.afterlines_to_code|</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@eval'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: evaluates lines; replaces with their return&gt;,</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@field'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@overload'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@param'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@private'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: registers block for removal&gt;,</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@return'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@seealso'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@signature'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: formats signature of documented object&gt;,</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@tag'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: turns its line in proper tag lines&gt;,</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@text'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: purposefully does nothing&gt;,</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@toc'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: clears all section lines&gt;,</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@toc_entry'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function: registers lines for table of contents&gt;,</span></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@type'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>      <span class="op">[</span><span class="st">'@usage'</span><span class="op">]</span> <span class="op">=</span> <span class="co">--&lt;function&gt;,</span></span>
 <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span></span>
