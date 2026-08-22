@@ -40,6 +40,12 @@ There are following change types:
 
 - Set `{}` as `config.custom_surroundings` default (instead of `nil`). This is more consistent with other modules and should not have visible side effects.
 
+## mini.test {#v0.19.0-mini.test}
+
+### Evolve {#v0.19.0-mini.test-evolve}
+
+- Executing `run()` with zero test cases now goes through the reporter instead of early return with a `No cases to execute` message.
+
 
 # Version 0.18.0 (2026-06-21) {#v0.18.0}
 
