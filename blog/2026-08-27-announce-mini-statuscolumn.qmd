@@ -1,0 +1,45 @@
+---
+title: "Announcing 'mini.statuscolumn'"
+author: Evgeni Chasnovski
+date: 2026-08-27
+categories: [announce]
+description: "Fast statuscolumn with improved defaults and dimming inactive windows"
+---
+
+![](2026-08-27-announce-mini-statuscolumn/demo.mp4)
+
+Hello, Neovim users!
+
+To close out the summer, there is a new 'mini.nvim' module: ['mini.statuscolumn'](/mini.nvim/readmes/mini-statuscolumn.md). It is a fast 'statuscolumn' (the area with line numbers, signs, and fold indicators) implementation that also improves its default look.
+
+The module, for once, ended up being indeed rather "mini". Although its design and implementation wasn't easy. It required balancing:
+
+- Performance: doing as little as possible in 'statuscolumn' callback, precomputing relevant things, etc.
+
+- Complexity: how much flexibility to provide and which edge cases are useful enough to cover.
+
+- Defaults: not too flashy.
+
+I think the result looks rather nice and provides positive value for the everyday Neovim usage.
+
+------
+
+Features of 'mini.statuscolumn':
+
+- Fast [`'statuscolumn'`](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') with improved defaults.
+
+- Fully customizable content via functions that take precomputed useful data.
+
+- [`MiniStatuscolumn.gen_content.main()`](/mini.nvim/doc/mini-statuscolumn.html#ministatuscolumn.gen_content.main) for simplified customization.
+
+- Automatic dimming inside inactive windows content.
+
+Notes:
+
+- Works best on Neovim>=0.11 (due to several improvements in `'statuscolumn'` implementation in that version).
+
+------
+
+Please, check it out and tell me what you think! Leave a comment in a dedicated [beta-testing issue](https://github.com/nvim-mini/mini.nvim/issues/!!!!!!).
+
+Thank you for your time reading this!
