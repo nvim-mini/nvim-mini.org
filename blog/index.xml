@@ -10,7 +10,50 @@
 <atom:link href="https://nvim-mini.org/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Modular Independent Neovim Improvements</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Sun, 21 Jun 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 27 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Announcing ‘mini.statuscolumn’</title>
+  <dc:creator>Evgeni Chasnovski</dc:creator>
+  <link>https://nvim-mini.org/blog/2026-08-27-announce-mini-statuscolumn.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><video src="2026-08-27-announce-mini-statuscolumn/demo.mp4" class="img-fluid" controls=""><a href="2026-08-27-announce-mini-statuscolumn/demo.mp4">Video</a></video></p>
+<p>Hello, Neovim users!</p>
+<p>To close out the summer, there is a new ‘mini.nvim’ module for you: <a href="../mini.nvim/readmes/mini-statuscolumn.html">‘mini.statuscolumn’</a>. It is a fast implementation of a ‘statuscolumn’ (the left area with line numbers, signs, and fold indicators) that also improves its default look.</p>
+<p>The module, for once, ended up being indeed rather “mini”. Although its design and implementation were not easy. It required balancing:</p>
+<ul>
+<li><p>Performance: doing as little as possible in ‘statuscolumn’ callback, precomputing relevant things at right time, etc.</p></li>
+<li><p>Complexity: how much flexibility to provide and which edge cases are useful enough to cover.</p></li>
+<li><p>Defaults: not too flashy, but should be an improvement over default (which at least doesn’t specially indicate wrapped and virtual lines).</p></li>
+</ul>
+<p>I think the result looks rather nice and adds a positive value for the everyday Neovim usage.</p>
+<hr>
+<p>Features of ‘mini.statuscolumn’:</p>
+<ul>
+<li><p>Fast <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'"><code>'statuscolumn'</code></a> with improved defaults.</p></li>
+<li><p>Fully customizable content via functions that take precomputed useful data.</p></li>
+<li><p><a href="../mini.nvim/doc/mini-statuscolumn.html#ministatuscolumn.gen_content.main"><code>MiniStatuscolumn.gen_content.main()</code></a> for simplified customization.</p></li>
+<li><p>Automatic dimming inside inactive windows content.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Works best on Neovim&gt;=0.11 (due to several improvements in <code>'statuscolumn'</code> implementation in that version).</li>
+</ul>
+<hr>
+<p>Please, check it out and tell me what you think! Leave a comment in a dedicated <a href="https://github.com/nvim-mini/mini.nvim/issues/2542">beta-testing issue</a>.</p>
+<p>Thank you for your time reading this!</p>
+
+
+
+ ]]></description>
+  <category>announce</category>
+  <guid>https://nvim-mini.org/blog/2026-08-27-announce-mini-statuscolumn.html</guid>
+  <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Release 0.18.0</title>
   <dc:creator>Evgeni Chasnovski</dc:creator>
@@ -980,46 +1023,6 @@
   <category>reddit</category>
   <guid>https://nvim-mini.org/blog/2024-03-28-announce-mini-diff.html</guid>
   <pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Release 0.12.0</title>
-  <dc:creator>Evgeni Chasnovski</dc:creator>
-  <link>https://nvim-mini.org/blog/2024-02-29-release-0120.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><em>Originally <a href="https://www.reddit.com/r/neovim/comments/1b342yx/mininvim_release_0120_three_new_modules_a_few/">posted on Reddit</a></em></p>
-<p>Hello, Neovim users!</p>
-<p>Let’s celebrate the leap year day by making a long overdue 0.12.0 release of <a href="https://github.com/nvim-mini/mini.nvim">mini.nvim</a>. It includes three major plugins coming out of beta-testing and quite a few small updates to other modules.</p>
-<p>Here is a <a href="https://github.com/nvim-mini/mini.nvim/releases/tag/v0.12.0">full release description</a> if you are curious.</p>
-<hr>
-<p>Three new modules coming out of beta-testing:</p>
-<ul>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-visits.md">mini.visits</a> - module to track and reuse file system visits. This is a ‘mini.nvim’ version of ‘nvim-telescope/telescope-frecency.nvim’ (persistently track file visits and select from them) partially combined with ‘ThePrimeagen/harpoon’ (persistently add/remove labels to paths and select based on them).</p></li>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-notify.md">mini.notify</a> - module to show notifications. It provides custom ‘vim.notify’ maker so that users can have pretty and less intrusive plugin notifications. Also by default it sets up notifications for LSP progress updates (feature I didn’t know I needed until I tried it).</p></li>
-<li><p><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md">mini.deps</a> - plugin manager module. Although ‘mini.nvim’ already includes most of the necessary editor functionality, there are other great plugins out there. ‘mini.deps’ helps installing/updating/cleaning/snapshotting other plugins with minimal yet sufficient user experience (in my opinion it ended up somewhere near ‘junegunn/vim-plug’ in that regard).</p></li>
-</ul>
-<hr>
-<p>Already present modules got their fair share of updates:</p>
-<ul>
-<li>‘mini.comment’ now calls hooks with data about commenting action.</li>
-<li>‘mini.hues’ now implements support for the new tree-sitter captures introduced in ‘nvim-treesitter’ and Neovim&gt;=0.10.</li>
-<li>‘mini.statusline’ now has <code>search_count</code> section in default content.</li>
-<li>And more…</li>
-</ul>
-<hr>
-<p>Thanks for reading! Hope to see you soon in the next module release!</p>
-
-
-
- ]]></description>
-  <category>release</category>
-  <category>reddit</category>
-  <guid>https://nvim-mini.org/blog/2024-02-29-release-0120.html</guid>
-  <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
