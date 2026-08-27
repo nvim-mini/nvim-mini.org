@@ -34,6 +34,10 @@ There are following change types:
 
         Use `'\n'` or `{ '' }` to set a single empty line as a reference text.
 
+## mini.statuscolumn {#v0.19.0-mini.statuscolumn}
+
+- Introduction of a new module.
+
 ## mini.surround {#v0.19.0-mini.surround}
 
 ### Evolve {#v0.19.0-mini.surround-evolve}

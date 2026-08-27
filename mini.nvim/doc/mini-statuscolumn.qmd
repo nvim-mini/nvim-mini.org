@@ -1,0 +1,394 @@
+---
+title: "mini.statuscolumn documentation"
+---
+
+_Generated from the `main` branch of 'mini.nvim'_
+
+<a name="mini.statuscolumn" href="mini-statuscolumn.qmd#mini.statuscolumn"><b>mini.statuscolumn</b></a> Statuscolumn
+
+MIT License Copyright (c) 2026 Evgeni Chasnovski
+
+---
+
+### Module {#module .help-syntax-right-anchor}
+
+Features:
+
+
+- Fast ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') with improved defaults.
+
+- Fully customizable content via functions that take precomputed useful data.
+
+- [MiniStatuscolumn.gen\_content.main()](mini-statuscolumn.qmd#ministatuscolumn.gen_content.main) for simplified customization.
+
+- Automatic dimming inside inactive windows content.
+
+Notes:
+
+- Works best on Neovim>=0.11.
+
+#### Setup {#module-setup}
+
+
+This module needs a setup with `require('mini.statuscolumn').setup({})`
+(replace `{}` with your `config` table). It will create global Lua table
+`MiniStatuscolumn` which you can use for scripting or manually (with
+`:lua MiniStatuscolumn.*`).
+
+See [MiniStatuscolumn.config](mini-statuscolumn.qmd#ministatuscolumn.config) for `config` structure and default values.
+
+#### Suggested option values {#module-suggestedoptionvalues}
+
+
+
+- Default content works best with enabled ['number'](https://neovim.io/doc/user/helptag.html?tag='number').
+
+
+- Depending on how distinctive [hl-FoldColumn](https://neovim.io/doc/user/helptag.html?tag=hl-FoldColumn) is from [hl-LineNr](https://neovim.io/doc/user/helptag.html?tag=hl-LineNr), it might
+  be a good idea to use minimal fold column characters in ['fillchars'](https://neovim.io/doc/user/helptag.html?tag='fillchars').
+  Like `foldopen:🯘` and `foldclose:🮥`, while `foldsep` and `foldinner` (on
+  Neovim>=0.12) set to a single space.
+
+#### Comparisons {#module-comparisons}
+
+
+
+- [luukvball/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim):
+
+    - A framework with building blocks and configuration: custom sections,
+      sign filters, fold functions.
+      While this module aims to provide a performant ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') with
+      a sensible default with a limited (yet enough) customization and an
+      entry point to building own ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn').
+
+
+- [folke/snacks.nvim#statuscolumn](https://github.com/folke/snacks.nvim):
+
+    - An opinionated ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') implementation with a limited
+      customization.
+      While this module provides more opportunities for building custom
+      implementation and more customization.
+
+#### Highlight groups {#module-highlightgroups}
+
+
+<a name="ministatuscolumn-hl-groups" href="mini-statuscolumn.qmd#ministatuscolumn-hl-groups"><b>MiniStatuscolumn-hl-groups</b></a>
+
+
+- `MiniStatuscolumnDim` - dimmed column. By default is a dimmed [hl-LineNr](https://neovim.io/doc/user/helptag.html?tag=hl-LineNr).
+
+- `MiniStatuscolumnDimCursor` - dimmed column at cursor line.
+
+- `MiniStatuscolumnSep` - separator of column and text.
+
+- `MiniStatuscolumnSepCursor` - separator of column and text at cursor line.
+
+---
+
+### setup() {#ministatuscolumn.setup .help-syntax-right-anchor}
+
+<p align="center">`MiniStatuscolumn.setup`(<span class="help-syntax-special">{config}</span>)</p>
+Module setup
+
+#### Parameters {#ministatuscolumn.setup-parameters}
+
+
+
+<span class="help-syntax-special">{config}</span> `(table|nil)` Module config table. See [MiniStatuscolumn.config](mini-statuscolumn.qmd#ministatuscolumn.config).
+
+#### Usage {#ministatuscolumn.setup-usage}
+
+
+
+  ```lua
+  require('mini.statuscolumn').setup() -- use default config
+  -- OR
+  require('mini.statuscolumn').setup({}) -- replace {} with your config table
+  ```
+
+---
+
+### config {#ministatuscolumn.config .help-syntax-right-anchor}
+
+<p align="center">`MiniStatuscolumn.config`</p>
+#### Defaults {#ministatuscolumn.config-defaults}
+
+
+
+  ```lua
+  MiniStatuscolumn.config = {
+    -- Statuscolumn content as functions that return statusline-like string
+    content = {
+      -- Content of an active window
+      active = nil,
+      -- Content of an inactive window
+      inactive = nil,
+    },
+
+    -- Whether to dim column content in inactive windows
+    dim_inactive = true,
+  }
+  ```
+
+#### Content {#ministatuscolumn.config-content}
+
+
+`config.content` is a table that defines ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') content for active
+(`content.active`) and inactive (`content.inactive`) windows. Each content is
+a function that takes a single `data` argument with a useful info about the
+current Neovim state (precomputed only when needed to improve performance) and
+should return a ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') like string.
+
+An input `data` argument is a table with the following fields:
+
+- <span class="help-syntax-keys">\<buf_id\></span> `(number)` - identifier of a drawn buffer.
+
+- <span class="help-syntax-keys">\<is_cursorlinenr\></span> `(boolean)` - whether [hl-CursorLineNr](https://neovim.io/doc/user/helptag.html?tag=hl-CursorLineNr) conditions are met.
+
+- <span class="help-syntax-keys">\<is_foldcolumn_fixed\></span> `(boolean)` - whether ['foldcolumn'](https://neovim.io/doc/user/helptag.html?tag='foldcolumn') has fixed width.
+
+- <span class="help-syntax-keys">\<is_signcolumn_fixed\></span> `(boolean)` - whether ['signcolumn'](https://neovim.io/doc/user/helptag.html?tag='signcolumn') has fixed width.
+
+- <span class="help-syntax-keys">\<is_statuscolumn_empty\></span> `(boolean)` - whether ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') default content
+  is empty. Useful to determine if anything should be drawn.
+
+- <span class="help-syntax-keys">\<opt_cursorline\></span> `(boolean)` - current value of ['cursorline'](https://neovim.io/doc/user/helptag.html?tag='cursorline').
+
+- <span class="help-syntax-keys">\<opt_cursorlineopt\></span> `(string)` - current value of ['cursorlineopt'](https://neovim.io/doc/user/helptag.html?tag='cursorlineopt').
+
+- <span class="help-syntax-keys">\<opt_foldcolumn\></span> `(string)` - current value of ['foldcolumn'](https://neovim.io/doc/user/helptag.html?tag='foldcolumn').
+
+- <span class="help-syntax-keys">\<opt_number\></span> `(boolean)` - current value of ['number'](https://neovim.io/doc/user/helptag.html?tag='number').
+
+- <span class="help-syntax-keys">\<opt_relativenumber\></span> `(boolean)` - current value of ['relativenumber'](https://neovim.io/doc/user/helptag.html?tag='relativenumber').
+
+- <span class="help-syntax-keys">\<opt_signcolumn\></span> `(string)` - current value of ['signcolumn'](https://neovim.io/doc/user/helptag.html?tag='signcolumn').
+
+- <span class="help-syntax-keys">\<win_id\></span> `(number)` - identifier of a drawn window.
+
+Example custom content:
+
+  ```lua
+  -- Show sign and separator if statuscolumn is not empty
+  local active = function(data)
+    return data.is_statuscolumn_empty and '' or '%s│'
+  end
+  -- Show nothing in inactive windows
+  local inactive = function(_) return '' end
+  local content = { active = active, inactive = inactive }
+  require('mini.statuscolumn').setup({ content = content })
+  ```
+
+If one content function is missing, the other is used in its place.
+If both content functions are missing, the default content is used: the output
+of [MiniStatuscolumn.gen\_content.main()](mini-statuscolumn.qmd#ministatuscolumn.gen_content.main) with the following specification:
+
+  ```lua
+  { fold = '%C', lnum = '%l', sign = '%s' }, -- Default sections
+  { format = '=lfs', sep = '▏' },  -- Line-fold-sign-separator format
+  { ltype = 'virt', lnum = '•' },  -- Dot in virtual lines
+  { ltype = 'wrap', lnum = '↳' },  -- Arrow in wrapped lines
+  { win = 'inactive', sep = ' ' }, -- No separator in inactive windows
+  ```
+
+Default content works best with enabled ['number'](https://neovim.io/doc/user/helptag.html?tag='number'), otherwise statuscolumn width
+might fluctuate if there are wrapped or virtual lines due to special symbols.
+
+Notes:
+
+- Make sure that custom content functions are as fast as possible since they
+  will be called VERY frequently: at least every non-pure-cursor-move redraw
+  (during typing, window scroll, etc.) for every visible line in every visible
+  window. A rough estimate: about 100 times per redraw and about 1 million
+  times per hour of text editing.
+
+- For performance reasons there are several ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') optimizations
+  that affect any implementation. Like pre-computed width and when it changes.
+  Make sure to read ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') to be aware of them.
+
+#### Dim inactive windows {#ministatuscolumn.config-diminactivewindows}
+
+
+`config.dim` is a boolean that defines whether to dim statuscolumn content
+in inactive windows. It means that all ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') relevant highlight
+groups are overridden to be `MiniStatuscolumnDimCursor` at cursor line and
+`MiniStatuscolumnDim` everywhere else. Default: `true`.
+
+Default values of dimming highlight groups are computed as a dimmed variant
+of [hl-LineNr](https://neovim.io/doc/user/helptag.html?tag=hl-LineNr) group, meaning its foreground is computed to be closer to its
+background. The used approach is good enough, if not - define groups manually.
+
+---
+
+### gen_content {#ministatuscolumn.gen_content .help-syntax-right-anchor}
+
+<p align="center">`MiniStatuscolumn.gen_content`</p>
+Content generators
+
+This is a table with function elements. Call to actually get a content table.
+
+---
+
+### gen_content.main() {#ministatuscolumn.gen_content.main .help-syntax-right-anchor}
+
+<p align="center">`MiniStatuscolumn.gen_content.main`(<span class="help-syntax-special">{spec}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Main content generator
+
+Generates a content that can be customized via selected "info" fields applied
+at selected drawn line "coordinates".
+
+"Info" string fields (as ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') like text):
+
+- <span class="help-syntax-keys">\<fold\></span> - fold section. Default: `'%C'`.
+
+- <span class="help-syntax-keys">\<sign\></span> - sign section. Default: `'%s'`.
+
+- <span class="help-syntax-keys">\<lnum\></span> - line number section. Default: `'%l'`.
+
+- <span class="help-syntax-keys">\<sep\></span> - separator between column and in-buffer text. Default: `' '`.
+  Highlighted with groups `MiniStatuscolumnSep` and `MiniStatuscolumnSepCursor`
+  The latter is used under the conditions described in [hl-CursorLineNr](https://neovim.io/doc/user/helptag.html?tag=hl-CursorLineNr).
+
+- <span class="help-syntax-keys">\<format\></span> - order of sections (excluding <span class="help-syntax-keys">\<sep\></span>) as a string containing only
+  `f` (fold), `s` (sign), `l` (lnum), and `=` (as `%=` in ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') syntax).
+  Default: `'fs=l'`.
+
+"Coordinate" fields:
+
+- <span class="help-syntax-keys">\<win\></span> - type of drawn window. One of `'active'`, `'inactive'`.
+
+- <span class="help-syntax-keys">\<pos\></span> - position of drawn line relative to the cursor. One of `'cursor'`,
+  `'above'`, `'below'`. Note: value does not depend on the ['relativenumber'](https://neovim.io/doc/user/helptag.html?tag='relativenumber'),
+  unlike [hl-LineNrAbove](https://neovim.io/doc/user/helptag.html?tag=hl-LineNrAbove) and [hl-LineNrBelow](https://neovim.io/doc/user/helptag.html?tag=hl-LineNrBelow).
+
+- <span class="help-syntax-keys">\<ltype\></span> - type of drawn line. One of `'text'` (next to the regular buffer
+  text), `'virt'` (next to the virtual line), `'wrap'` (next to the wrapped part
+  of buffer text).
+
+Customization is done via an array specification that acts as a sequence of
+rules applied on top of the previous ones. Each rule/item should define at
+least one "info" field and may filter by one or more "coordinate" field.
+It is recommended to start with wider rules and go towards narrower ones.
+If an "info" field is not defined after all rules are processed, its
+default value is used.
+
+Each section is clickable with mouse. Clicks will be processed with an
+`opts.click` function and can be customized per section-coordinate.
+
+Examples of content specification:
+
+
+- Specification for default `content` in [MiniStatuscolumn.config](mini-statuscolumn.qmd#ministatuscolumn.config).
+  Use as a template to adjust/remove added behavior:
+
+  ```lua
+  local statuscolumn = require('mini.statuscolumn')
+  local spec = {
+    -- Prefer visible separator with a more efficient order to use
+    -- usually present whitespace to the right of signs
+    { format = '=lfs', sep = '▏' },
+    -- Use custom symbol for virtual lines
+    { ltype = 'virt', lnum = '•' },
+    -- Use custom symbol for wrapped lines
+    { ltype = 'wrap', lnum = '↳' },
+    -- Hide separator to better indicate inactive windows
+    { win = 'inactive', sep = ' ' },
+  }
+  statuscolumn.setup({ content = statuscolumn.gen_content.main(spec) })
+  ```
+
+
+- Ways to configure separator:
+
+
+  - Thicker separator at cursor: `{ pos = 'cursor', sep = '▍' }`.
+
+
+  - More cell-centered separator: `{ format='=fsl', sep='│' }`
+
+
+- Ways to indicate inactive windows:
+
+
+  - Hide regular non-cursor line: define `MiniStatuscolumnDim` highlight group
+    to have the same foreground and background. It will still show cursor line
+    and lines which have signs or line number with special highlighting (like
+    diagnostics, diff status, etc.).
+
+
+  - Show nothing: `{ win='inactive', fold='', lnum='', sign='' }`
+
+
+  - Hide separator: `{ win='inactive', sep='' }`
+
+
+- Force highlighting: `{ pos='cursor', ltype='virt', lnum='%#CursorLineNr#•' }`.
+  Has problems that it overrides highlighting from extmarks.
+
+Notes:
+
+- Implementation of ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') has some performance trade-offs when it
+  comes to computing which areas are clickable. Suggested usage:
+
+    - Use one <span class="help-syntax-keys">\<format\></span> per window type, as section order is better to persist
+      across lines of the same window.
+
+    - Clicking the cell that contains text should work. Clicking an empty cell
+      of known section might not always work.
+
+    - On Neovim<0.13 the `ltype` is always the one that is used in the top
+      window line.
+
+#### Parameters {#ministatuscolumn.gen_content.main-parameters}
+
+
+
+<span class="help-syntax-special">{spec}</span> `(table[]|nil)` Specification array. Default: `{}`, which imitates
+  default ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn').
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
+
+  - <span class="help-syntax-keys">\<click\></span> `(function)` - action to perform on mouse click in statuscolumn.
+    Default: [MiniStatuscolumn.default\_click()](mini-statuscolumn.qmd#ministatuscolumn.default_click).
+
+    Called with a single table `data` argument with the following fields:
+
+    - <span class="help-syntax-keys">\<button\></span> `(string)` - mouse button, as described in `@` ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') flag.
+
+    - <span class="help-syntax-keys">\<modifiers\></span> `(string)` - modifiers, as described in `@` ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') flag.
+
+    - <span class="help-syntax-keys">\<n_clicks\></span> `(number)` - number of clicks.
+
+    - <span class="help-syntax-keys">\<ltype\></span> `(string)` - line type "coordinate" field.
+
+    - <span class="help-syntax-keys">\<section\></span> `(string)` - section name. One of `'fold'`, `'sign'`, `'lnum'`, `'sep'`.
+
+    - <span class="help-syntax-keys">\<mousepos\></span> `(table)` - output of [getmousepos()](https://neovim.io/doc/user/helptag.html?tag=getmousepos\(\)). Can be used to determine
+      line number, window identifier/type, etc.
+
+    Notes:
+
+   - On Neovim<0.13 it is only possible to split statuscolumn line into
+     "clicking ranges" once per window. This is why `data.ltype` might have
+     not correct values. Should work as expected on Neovim>=0.13.
+
+   - A best available (but somewhat limiting) pattern to identify what was
+     clicked is to use [screenstring()](https://neovim.io/doc/user/helptag.html?tag=screenstring\(\)) with <span class="help-syntax-keys">\<screenrow\></span> and <span class="help-syntax-keys">\<screencol\></span>
+     fields of <span class="help-syntax-keys">\<mousepos\></span>. For example, if wrapped and virtual lines are
+     identified by known symbols, it helps known that click was done on them.
+
+---
+
+### default_click() {#ministatuscolumn.default_click .help-syntax-right-anchor}
+
+<p align="center">`MiniStatuscolumn.default_click`(<span class="help-syntax-special">{data}</span>)</p>
+Default mouse click handler
+
+Makes clicked window and line current. Centers the line on double click.
+
+#### Parameters {#ministatuscolumn.default_click-parameters}
+
+
+
+<span class="help-syntax-special">{data}</span> `(table)` As described in [MiniStatuscolumn.gen\_content.main()](mini-statuscolumn.qmd#ministatuscolumn.gen_content.main).
+

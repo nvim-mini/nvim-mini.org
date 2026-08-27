@@ -153,22 +153,23 @@ These modules improve your general workflow. Start with 'mini.bracketed', 'mini.
 
 These modules improve your Neovim appearance. Start with 'mini.hues', 'mini.icons', and 'mini.statusline'.
 
-| Module           | Description                          | Overview                              | Details                                   |
-|------------------|--------------------------------------|---------------------------------------|-------------------------------------------|
-| mini.animate     | Animate common Neovim actions        | [README](readmes/mini-animate.md)     | [Documentation](doc/mini-animate.qmd)     |
-| mini.base16      | Base16 colorscheme creation          | [README](readmes/mini-base16.md)      | [Documentation](doc/mini-base16.qmd)      |
-| mini.colors      | Tweak and save any color scheme      | [README](readmes/mini-colors.md)      | [Documentation](doc/mini-colors.qmd)      |
-| mini.cursorword  | Autohighlight word under cursor      | [README](readmes/mini-cursorword.md)  | [Documentation](doc/mini-cursorword.qmd)  |
-| mini.hipatterns  | Highlight patterns in text           | [README](readmes/mini-hipatterns.md)  | [Documentation](doc/mini-hipatterns.qmd)  |
-| mini.hues        | Generate configurable color scheme   | [README](readmes/mini-hues.md)        | [Documentation](doc/mini-hues.qmd)        |
-| mini.icons       | Icon provider                        | [README](readmes/mini-icons.md)       | [Documentation](doc/mini-icons.qmd)       |
-| mini.indentscope | Visualize and work with indent scope | [README](readmes/mini-indentscope.md) | [Documentation](doc/mini-indentscope.qmd) |
-| mini.map         | Window with buffer text overview     | [README](readmes/mini-map.md)         | [Documentation](doc/mini-map.qmd)         |
-| mini.notify      | Show notifications                   | [README](readmes/mini-notify.md)      | [Documentation](doc/mini-notify.qmd)      |
-| mini.starter     | Start screen                         | [README](readmes/mini-starter.md)     | [Documentation](doc/mini-starter.qmd)     |
-| mini.statusline  | Statusline                           | [README](readmes/mini-statusline.md)  | [Documentation](doc/mini-statusline.qmd)  |
-| mini.tabline     | Tabline                              | [README](readmes/mini-tabline.md)     | [Documentation](doc/mini-tabline.qmd)     |
-| mini.trailspace  | Trailspace (highlight and remove)    | [README](readmes/mini-trailspace.md)  | [Documentation](doc/mini-trailspace.qmd)  |
+| Module             | Description                            | Overview                                | Details                                     |
+|--------------------|----------------------------------------|-----------------------------------------|---------------------------------------------|
+| mini.animate       | Animate common Neovim actions          | [README](readmes/mini-animate.md)       | [Documentation](doc/mini-animate.qmd)       |
+| mini.base16        | Base16 colorscheme creation            | [README](readmes/mini-base16.md)        | [Documentation](doc/mini-base16.qmd)        |
+| mini.colors        | Tweak and save any color scheme        | [README](readmes/mini-colors.md)        | [Documentation](doc/mini-colors.qmd)        |
+| mini.cursorword    | Autohighlight word under cursor        | [README](readmes/mini-cursorword.md)    | [Documentation](doc/mini-cursorword.qmd)    |
+| mini.hipatterns    | Highlight patterns in text             | [README](readmes/mini-hipatterns.md)    | [Documentation](doc/mini-hipatterns.qmd)    |
+| mini.hues          | Generate configurable color scheme     | [README](readmes/mini-hues.md)          | [Documentation](doc/mini-hues.qmd)          |
+| mini.icons         | Icon provider                          | [README](readmes/mini-icons.md)         | [Documentation](doc/mini-icons.qmd)         |
+| mini.indentscope   | Visualize and work with indent scope   | [README](readmes/mini-indentscope.md)   | [Documentation](doc/mini-indentscope.qmd)   |
+| mini.map           | Window with buffer text overview       | [README](readmes/mini-map.md)           | [Documentation](doc/mini-map.qmd)           |
+| mini.notify        | Show notifications                     | [README](readmes/mini-notify.md)        | [Documentation](doc/mini-notify.qmd)        |
+| mini.starter       | Start screen                           | [README](readmes/mini-starter.md)       | [Documentation](doc/mini-starter.qmd)       |
+| mini.statuscolumn  | Statuscolumn                           | [README](readmes/mini-statuscolumn.md)  | [Documentation](doc/mini-statuscolumn.qmd)  |
+| mini.statusline    | Statusline                             | [README](readmes/mini-statusline.md)    | [Documentation](doc/mini-statusline.qmd)    |
+| mini.tabline       | Tabline                                | [README](readmes/mini-tabline.md)       | [Documentation](doc/mini-tabline.qmd)       |
+| mini.trailspace    | Trailspace (highlight and remove)      | [README](readmes/mini-trailspace.md)    | [Documentation](doc/mini-trailspace.qmd)    |
 
 ### Other
 
@@ -262,7 +263,6 @@ This is the list of modules I currently intend to implement eventually (as my fr
 - 'mini.folds' - more capable and user-friendly folds.
 - 'mini.repl' - extendable wrapper for REPLs with built-in support for R, Python, Julia, and maybe (just maybe) some AI tools.
 - 'mini.sendtext' - send text between buffers. In particular between regular and built-in terminal buffers.
-- 'mini.statuscolumn' - customizable 'statuscolumn'.
 - 'mini.terminals' - coherently manage interactive terminal buffers. Something like [kassio/neoterm](https://github.com/kassio/neoterm). Might also incorporate functionality to asynchronously run code in shell with post-processed results.
 - 'mini.quickfix' - more capable and user-friendly quickfix list. Possibly with preview and inline editing for search-and-replace workflow.
 - 'mini.windows' - window manager. Interactive picker, layout organizer, and maybe more.
