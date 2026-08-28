@@ -420,7 +420,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li>Works best on Neovim&gt;=0.11.</li>
+<li><p>Works best on Neovim&gt;=0.11.</p></li>
+<li><p>Default content follows the behavior defined by options for the built-in statuscolumn sections. Like <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a>, <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'">‘signcolumn’</a>, <a href="https://neovim.io/doc/user/helptag.html?tag='foldcolumn'">‘foldcolumn’</a>, etc.</p></li>
 </ul>
 <section id="module-setup" class="level4">
 <h4 class="anchored" data-anchor-id="module-setup">Setup</h4>
@@ -430,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="module-suggestedoptionvalues" class="level4">
 <h4 class="anchored" data-anchor-id="module-suggestedoptionvalues">Suggested option values</h4>
 <ul>
-<li><p>Default content works best with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a>.</p></li>
+<li><p>Default content works best with enabled <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a> and <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'">‘signcolumn’</a>.</p></li>
 <li><p>Depending on how distinctive <a href="https://neovim.io/doc/user/helptag.html?tag=hl-FoldColumn">hl-FoldColumn</a> is from <a href="https://neovim.io/doc/user/helptag.html?tag=hl-LineNr">hl-LineNr</a>, it might be a good idea to use minimal fold column characters in <a href="https://neovim.io/doc/user/helptag.html?tag='fillchars'">‘fillchars’</a>. Like <code>foldopen:🯘</code> and <code>foldclose:🮥</code>, while <code>foldsep</code> and <code>foldinner</code> (on Neovim&gt;=0.12) set to a single space.</p></li>
 </ul>
 </section>
@@ -515,6 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;opt_signcolumn&gt;</span> <code>(string)</code> - current value of <a href="https://neovim.io/doc/user/helptag.html?tag='signcolumn'">‘signcolumn’</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;win_id&gt;</span> <code>(number)</code> - identifier of a drawn window.</p></li>
 </ul>
+<p>The data about target line (for which content is evaluated) can be accessed as described in <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'">‘statuscolumn’</a> via the dedicated <a href="https://neovim.io/doc/user/helptag.html?tag=v:">v:</a> variables. Like <a href="https://neovim.io/doc/user/helptag.html?tag=v:lnum">v:lnum</a>, <a href="https://neovim.io/doc/user/helptag.html?tag=v:relnum">v:relnum</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=v:virtnum">v:virtnum</a>.</p>
 <p>Example custom content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Show sign and separator if statuscolumn is not empty</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">active</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
@@ -568,6 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="help-syntax-keys">&lt;sep&gt;</span> - separator between column and in-buffer text. Default: <code>' '</code>. Highlighted with groups <code>MiniStatuscolumnSep</code> and <code>MiniStatuscolumnSepCursor</code> The latter is used under the conditions described in <a href="https://neovim.io/doc/user/helptag.html?tag=hl-CursorLineNr">hl-CursorLineNr</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;format&gt;</span> - order of sections (excluding <span class="help-syntax-keys">&lt;sep&gt;</span>) as a string containing only <code>f</code> (fold), <code>s</code> (sign), <code>l</code> (lnum), and <code>=</code> (as <code>%=</code> in <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a> syntax). Default: <code>'fs=l'</code>.</p></li>
 </ul>
+<p>NOTE: using dedicated <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a> syntax, as in default values, makes section content follow their respective options. Like using <code>%l</code> will show nothing if <a href="https://neovim.io/doc/user/helptag.html?tag='number'">‘number’</a> is disabled.</p>
 <p>“Coordinate” fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;win&gt;</span> - type of drawn window. One of <code>'active'</code>, <code>'inactive'</code>.</p></li>
