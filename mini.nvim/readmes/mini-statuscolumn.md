@@ -37,6 +37,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 Notes:
 - Works best on Neovim>=0.11.
+- Default content follows the behavior defined by options for the built-in statuscolumn sections. Like `'number'`, `'signcolumn'`, `'foldcolumn'`, etc.
 
 ## Installation
 

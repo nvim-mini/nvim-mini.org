@@ -27,6 +27,9 @@ Notes:
 
 - Works best on Neovim>=0.11.
 
+- Default content follows the behavior defined by options for the built-in
+  statuscolumn sections. Like ['number'](https://neovim.io/doc/user/helptag.html?tag='number'), ['signcolumn'](https://neovim.io/doc/user/helptag.html?tag='signcolumn'), ['foldcolumn'](https://neovim.io/doc/user/helptag.html?tag='foldcolumn'), etc.
+
 #### Setup {#module-setup}
 
 
@@ -41,7 +44,7 @@ See [MiniStatuscolumn.config](mini-statuscolumn.qmd#ministatuscolumn.config) for
 
 
 
-- Default content works best with enabled ['number'](https://neovim.io/doc/user/helptag.html?tag='number').
+- Default content works best with enabled ['number'](https://neovim.io/doc/user/helptag.html?tag='number') and ['signcolumn'](https://neovim.io/doc/user/helptag.html?tag='signcolumn').
 
 
 - Depending on how distinctive [hl-FoldColumn](https://neovim.io/doc/user/helptag.html?tag=hl-FoldColumn) is from [hl-LineNr](https://neovim.io/doc/user/helptag.html?tag=hl-LineNr), it might
@@ -166,6 +169,10 @@ An input `data` argument is a table with the following fields:
 
 - <span class="help-syntax-keys">\<win_id\></span> `(number)` - identifier of a drawn window.
 
+The data about target line (for which content is evaluated) can be accessed
+as described in ['statuscolumn'](https://neovim.io/doc/user/helptag.html?tag='statuscolumn') via the dedicated [v:](https://neovim.io/doc/user/helptag.html?tag=v:) variables.
+Like [v:lnum](https://neovim.io/doc/user/helptag.html?tag=v:lnum), [v:relnum](https://neovim.io/doc/user/helptag.html?tag=v:relnum), and [v:virtnum](https://neovim.io/doc/user/helptag.html?tag=v:virtnum).
+
 Example custom content:
 
   ```lua
@@ -252,6 +259,10 @@ at selected drawn line "coordinates".
 - <span class="help-syntax-keys">\<format\></span> - order of sections (excluding <span class="help-syntax-keys">\<sep\></span>) as a string containing only
   `f` (fold), `s` (sign), `l` (lnum), and `=` (as `%=` in ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') syntax).
   Default: `'fs=l'`.
+
+NOTE: using dedicated ['statusline'](https://neovim.io/doc/user/helptag.html?tag='statusline') syntax, as in default values, makes
+section content follow their respective options. Like using `%l` will show
+nothing if ['number'](https://neovim.io/doc/user/helptag.html?tag='number') is disabled.
 
 "Coordinate" fields:
 
