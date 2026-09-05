@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-fdc1b2fd0a2d1e1fd2f41bfe1f0ec5c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0857afa96b5c1eb0c5c9e71acf2da91e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-00d8560c9f70c5b678f27edea97682a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-12e8df240fe5fb8ceb81bc443e405d0b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5624e814d480138b3a88a3da26f7d62f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ministatuscolumn.config-content" class="level4">
 <h4 class="anchored" data-anchor-id="ministatuscolumn.config-content">Content</h4>
-<p><code>config.content</code> is a table that defines <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'">‘statuscolumn’</a> content for active (<code>content.active</code>) and inactive (<code>content.inactive</code>) windows. Each content is a function that takes a single <code>data</code> argument with a useful info about the current Neovim state (precomputed only when needed to improve performance) and should return a <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a> like string.</p>
+<p><code>config.content</code> is a table that defines <a href="https://neovim.io/doc/user/helptag.html?tag='statuscolumn'">‘statuscolumn’</a> content for active (<code>content.active</code>) and inactive (<code>content.inactive</code>) windows. Each content is a function that takes a single <code>data</code> argument with useful info about the current Neovim state (precomputed only when needed to improve performance) and should return a <a href="https://neovim.io/doc/user/helptag.html?tag='statusline'">‘statusline’</a> like string.</p>
 <p>An input <code>data</code> argument is a table with the following fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;buf_id&gt;</span> <code>(number)</code> - identifier of a drawn buffer.</p></li>
@@ -634,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p></li>
 <li><p>On Neovim&lt;0.13 it is only possible to split statuscolumn line into “clicking ranges” once per window. This is why <code>data.ltype</code> might have not correct values. Should work as expected on Neovim&gt;=0.13.</p></li>
-<li><p>A best available (but somewhat limiting) pattern to identify what was clicked is to use <a href="https://neovim.io/doc/user/helptag.html?tag=screenstring()">screenstring()</a> with <span class="help-syntax-keys">&lt;screenrow&gt;</span> and <span class="help-syntax-keys">&lt;screencol&gt;</span> fields of <span class="help-syntax-keys">&lt;mousepos&gt;</span>. For example, if wrapped and virtual lines are identified by known symbols, it helps known that click was done on them.</p></li>
+<li><p>A best available (but somewhat limiting) pattern to identify what was clicked is to use <a href="https://neovim.io/doc/user/helptag.html?tag=screenstring()">screenstring()</a> with <span class="help-syntax-keys">&lt;screenrow&gt;</span> and <span class="help-syntax-keys">&lt;screencol&gt;</span> fields of <span class="help-syntax-keys">&lt;mousepos&gt;</span>. For example, fixed distinctive symbols for wrapped and virtual lines can help identifying that click was done on them.</p></li>
 </ul>
 <hr>
 </section>
