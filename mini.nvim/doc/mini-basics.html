@@ -634,11 +634,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 | g/    | Visual          | Search inside current visual selection        |
 | *     | Visual          | Search forward for current visual selection   |
 | #     | Visual          | Search backward for current visual selection  |
+| &lt;C-c&gt; | Normal          | Stop, clear, redraw                           |
 | &lt;C-s&gt; | Normal, Visual, | Save and go to Normal mode                    |
 |       |     Insert      |                                               |</code></pre>
 <p>Notes:</p>
 <ul>
 <li><p>See <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for its meaning.</p></li>
+<li><p>The <span class="help-syntax-keys">&lt;C-c&gt;</span> mapping is basically a combination of <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-C">CTRL-C</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a>. This combines related actions under one mapping. Particularly useful with enabled <code>mappings.windows</code> as it overrides <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a>.</p></li>
 <li><p>On Neovim&gt;=0.11 there are <a href="https://neovim.io/doc/user/helptag.html?tag=%5B%3CSpace%3E">[<span class="help-syntax-keys">&lt;Space&gt;</span></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%5D%3CSpace%3E">]<span class="help-syntax-keys">&lt;Space&gt;</span></a> for adding empty lines. The <code>gO</code> and <code>go</code> mappings are still created as they are more aligned with similarly purposed <a href="https://neovim.io/doc/user/helptag.html?tag=O">O</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=o">o</a> keys (although sometimes conflict with <a href="https://neovim.io/doc/user/helptag.html?tag=gO">gO</a>).</p></li>
 </ul>
 </section>
@@ -680,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>&lt;C-h&gt;</code> - focus on left window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_H">CTRL-W_H</a>).</p></li>
 <li><p><code>&lt;C-j&gt;</code> - focus on below window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_J">CTRL-W_J</a>).</p></li>
 <li><p><code>&lt;C-k&gt;</code> - focus on above window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_K">CTRL-W_K</a>).</p></li>
-<li><p><code>&lt;C-l&gt;</code> - focus on right window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_L">CTRL-W_L</a>).</p></li>
+<li><p><code>&lt;C-l&gt;</code> - focus on right window (see <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-W_L">CTRL-W_L</a>). Note: this overrides <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a>. Use <span class="help-syntax-keys">&lt;C-c&gt;</span> set up in <code>mappings.basic</code>.</p></li>
 </ul></li>
 <li><p>Window resize (all use arrow keys; variants of <a href="https://neovim.io/doc/user/helptag.html?tag=:resize">:resize</a>; respect <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>):</p>
 <ul>
