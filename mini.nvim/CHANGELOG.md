@@ -22,6 +22,12 @@ There are following change types:
 
 - Set `{}` as `config.custom_textobjects` default (instead of `nil`). This is more consistent with other modules and should not have visible side effects.
 
+## mini.basics {#v0.19.0-mini.basics}
+
+### Expand {#v0.19.0-mini.basics-expand}
+
+- Add `<C-c>` basic mapping that acts as "Stop, clear, redraw" (a combination of `:h CTRL-C` and `:h CTRL-L-default`).
+
 ## mini.clue {#v0.19.0-mini.clue}
 
 ### Evolve {#v0.19.0-mini.clue-evolve}
