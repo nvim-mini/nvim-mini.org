@@ -607,6 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Module setup</p>
 <p>Besides general side effects (see <a href="../../mini.nvim/doc/mini-nvim.html#mini.nvim">mini.nvim</a>), it also:</p>
 <ul>
+<li><p>Resolves <code>job.git_executable</code> in <a href="../../mini.nvim/doc/mini-git.html#minigit.config">MiniGit.config</a> with <a href="https://neovim.io/doc/user/helptag.html?tag=exepath()">exepath()</a>.</p></li>
 <li><p>Sets up auto enabling in every normal buffer for an actual file on disk.</p></li>
 <li><p>Creates <a href="../../mini.nvim/doc/mini-git.html#git">:Git</a> command.</p></li>
 </ul>
@@ -649,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minigit.config-job" class="level4">
 <h4 class="anchored" data-anchor-id="minigit.config-job">Job</h4>
 <p><code>config.job</code> contains options for customizing CLI executions.</p>
-<p><code>job.git_executable</code> defines a full path to Git executable. Default: “git”.</p>
+<p><code>job.git_executable</code> defines a full path to Git executable, as defined by <a href="https://neovim.io/doc/user/helptag.html?tag=exepath()">exepath()</a>. Its full value is resolved once when calling <a href="../../mini.nvim/doc/mini-git.html#minigit.setup">MiniGit.setup()</a>. Default: “git”.</p>
 <p><code>job.timeout</code> is a duration (in ms) from job start until it is forced to stop. Default: 30000.</p>
 </section>
 <section id="minigit.config-command" class="level4">
