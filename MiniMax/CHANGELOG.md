@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-09-29 {#2026-09-29}
+
+- Start using 'mini.statuscolumn'.
+
 ## 2026-07-24 {#2026-07-24}
 
 - Stop explicitly enabling filetype plugins and syntax support because they are enabled by default on all supported Neovim versions.
