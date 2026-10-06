@@ -2,7 +2,7 @@
 title: "mini.cmdline"
 ---
 
-<p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-cmdline_readme.png?raw=true" alt="mini.cmdline" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-2/logo-cmdline_readme.png" alt="mini.cmdline" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -26,7 +26,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 ## Demo
 
-![](https://github.com/nvim-mini/assets/blob/main/demo/demo-cmdline.mp4?raw=true)
+![](/assets/demo/demo-cmdline.mp4)
 
 ## Features
 

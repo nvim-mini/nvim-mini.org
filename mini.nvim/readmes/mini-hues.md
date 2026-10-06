@@ -2,7 +2,7 @@
 title: "mini.hues"
 ---
 
-<p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-hues_readme.png?raw=true" alt="mini.hues" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-2/logo-hues_readme.png" alt="mini.hues" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -30,7 +30,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 ## Demo
 
-![](https://github.com/nvim-mini/assets/blob/main/demo/demo-hues.mp4?raw=true)
+![](/assets/demo/demo-hues.mp4)
 
 ### Bundled color schemes
 
@@ -38,39 +38,39 @@ If you want to help this project grow but don't know where to start, check out [
 
 - [`miniwinter`](../doc/mini-hues.qmd#miniwinter): "icy winter" palette with azure background
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniwinter-dark.png?raw=true"> <img alt="miniwinter dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniwinter-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniwinter-light.png?raw=true"> <img alt="miniwinter light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniwinter-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-miniwinter-dark.png"> <img alt="miniwinter dark" src="/assets/demo/demo-miniwinter-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-miniwinter-light.png"> <img alt="miniwinter light" src="/assets/demo/demo-miniwinter-light.png" style="width: 45%"/> </a>
 
 - [`minispring`](../doc/mini-hues.qmd#minispring): "blooming spring" palette with green background
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minispring-dark.png?raw=true"> <img alt="minispring dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minispring-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minispring-light.png?raw=true"> <img alt="minispring light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minispring-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minispring-dark.png"> <img alt="minispring dark" src="/assets/demo/demo-minispring-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minispring-light.png"> <img alt="minispring light" src="/assets/demo/demo-minispring-light.png" style="width: 45%"/> </a>
 
 - [`minisummer`](../doc/mini-hues.qmd#minisummer): "hot summer" palette with brown/yellow background
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minisummer-dark.png?raw=true"> <img alt="minisummer dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minisummer-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-minisummer-light.png?raw=true"> <img alt="minisummer light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-minisummer-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minisummer-dark.png"> <img alt="minisummer dark" src="/assets/demo/demo-minisummer-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minisummer-light.png"> <img alt="minisummer light" src="/assets/demo/demo-minisummer-light.png" style="width: 45%"/> </a>
 
 - [`miniautumn`](../doc/mini-hues.qmd#miniautumn): "cooling autumn" palette with purple background
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniautumn-dark.png?raw=true"> <img alt="miniautumn dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniautumn-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniautumn-light.png?raw=true"> <img alt="miniautumn light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-miniautumn-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-miniautumn-dark.png"> <img alt="miniautumn dark" src="/assets/demo/demo-miniautumn-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-miniautumn-light.png"> <img alt="miniautumn light" src="/assets/demo/demo-miniautumn-light.png" style="width: 45%"/> </a>
 
 #### [`randomhue`](../doc/mini-hues.qmd#randomhue)
 
 [`randomhue`](../doc/mini-hues.qmd#randomhue) uses **randomly generated** background and foreground of same hue (color will change on every `:colorscheme randomhue` call):
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-purple.png?raw=true"> <img alt="Dark purple" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-purple.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-purple.png?raw=true"> <img alt="Light purple" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-purple.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_dark-purple.png"> <img alt="Dark purple" src="/assets/demo/demo-randomhue_dark-purple.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_light-purple.png"> <img alt="Light purple" src="/assets/demo/demo-randomhue_light-purple.png" style="width: 45%"/> </a>
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-azure.png?raw=true"> <img alt="Dark azure" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-azure.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-azure.png?raw=true"> <img alt="Light azure" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-azure.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_dark-azure.png"> <img alt="Dark azure" src="/assets/demo/demo-randomhue_dark-azure.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_light-azure.png"> <img alt="Light azure" src="/assets/demo/demo-randomhue_light-azure.png" style="width: 45%"/> </a>
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-green.png?raw=true"> <img alt="Dark green" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-green.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-green.png?raw=true"> <img alt="Light green" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-green.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_dark-green.png"> <img alt="Dark green" src="/assets/demo/demo-randomhue_dark-green.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_light-green.png"> <img alt="Light green" src="/assets/demo/demo-randomhue_light-green.png" style="width: 45%"/> </a>
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-orange.png?raw=true"> <img alt="Dark orange" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_dark-orange.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-orange.png?raw=true"> <img alt="Light orange" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-randomhue_light-orange.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_dark-orange.png"> <img alt="Dark orange" src="/assets/demo/demo-randomhue_dark-orange.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-randomhue_light-orange.png"> <img alt="Light orange" src="/assets/demo/demo-randomhue_light-orange.png" style="width: 45%"/> </a>
 
 ## Example configurations
 

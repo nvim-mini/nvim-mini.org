@@ -2,7 +2,7 @@
 title: "mini.jump"
 ---
 
-<p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-jump_readme.png?raw=true" alt="mini.jump"  style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-2/logo-jump_readme.png" alt="mini.jump"  style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -32,7 +32,7 @@ Initial idea and implementation by [Adam Blažek](https://github.com/xigoi).
 
 ## Demo
 
-![](https://github.com/nvim-mini/assets/blob/main/demo/demo-jump.mp4?raw=true)
+![](/assets/demo/demo-jump.mp4)
 
 ## Features
 

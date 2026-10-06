@@ -151,4 +151,16 @@ M.replace_quote_alerts = function(lines)
   M.reflow(lines)
 end
 
+M.repoint_assets = function(lines)
+  local assets_from = 'https://github%.com/nvim%-mini/assets/blob/main/'
+  local assets_to = '/assets/'
+  local n_repl
+  for i = 1, #lines do
+    lines[i], n_repl = lines[i]:gsub(assets_from, assets_to)
+    -- Don't use `?raw=true` to display images. It is needed when using from
+    -- GitHub, but from local 'assets/'
+    if n_repl > 0 then lines[i] = lines[i]:gsub('%?raw=true', '') end
+  end
+end
+
 return M

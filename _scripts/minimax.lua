@@ -5,6 +5,7 @@ local add_hierarchical_heading_anchors = util.add_hierarchical_heading_anchors
 local add_source_note = util.add_source_note
 local adjust_header_footer = util.adjust_header_footer
 local replace_quote_alerts = util.replace_quote_alerts
+local repoint_assets = util.repoint_assets
 
 -- Metadata ===================================================================
 local metadata_lines = {
@@ -23,6 +24,7 @@ local adjust_readmes = function()
     local path = vim.fs.joinpath('MiniMax', rel_path)
     local lines = vim.fn.readfile(path)
 
+    repoint_assets(lines)
     replace_quote_alerts(lines)
     add_source_note(lines, 'MiniMax')
     local title = 'MiniMax' .. (vim.startswith(rel_path, 'configs/') and ' configs' or '')

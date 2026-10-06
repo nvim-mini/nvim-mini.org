@@ -1,0 +1,17 @@
+
+
+
+
+Demo of 'mini.statuscolumn' with:
+- 'number' and 'cursorline' enabled
+- 'signcolumn=yes'
+- 'foldcolumn=0'
+
+This is a regular buffer text.      This is a wrapped part of the text, as indicated by the `↳` symbol.
+This is a line with `S` sign.
+
+Content in inactive windows is dimmed by default.
+-- Extra lines (delete for demo) of extra setup Lua code
+-- lua ns_id = vim.api.nvim_create_namespace('demo')
+-- lua vim.api.nvim_buf_set_extmark(0, ns_id, 9, 0, { virt_lines = { { { 'This is a virtual line,', 'Normal' } }, { {'as indicated by the `•` symbol'} } } })
+-- lua vim.api.nvim_buf_set_extmark(0, ns_id, 10, 0, { sign_text = 'W', sign_hl_group = 'DiagnosticWarn' })

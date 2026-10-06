@@ -2,6 +2,13 @@
 # change; if yes - add+commit them (separately for each target) with helpful
 # commit messages
 
+# 'assets'
+if [[ `git status --porcelain -- assets/*` ]]; then
+  commit=$(git -C _deps/assets rev-list -1 --abbrev-commit HEAD)
+  git add assets/*
+  git commit -m "feat(assets): sync to $commit"
+fi
+
 # 'mini.nvim'
 if [[ `git status --porcelain -- mini.nvim/*` ]]; then
   commit=$(git -C _deps/mini.nvim rev-list -1 --abbrev-commit HEAD)

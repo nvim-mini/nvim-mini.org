@@ -10,6 +10,7 @@ local add_hierarchical_heading_anchors = util.add_hierarchical_heading_anchors
 local add_source_note = util.add_source_note
 local adjust_header_footer = util.adjust_header_footer
 local replace_quote_alerts = util.replace_quote_alerts
+local repoint_assets = util.repoint_assets
 
 -- Metadata ===================================================================
 local metadata_lines = {
@@ -247,7 +248,8 @@ local replace_demo_link = function(lines)
     -- Make video demos point to original source in a way that work with Quarto
     local link = l:match('^<%!%-%- Demo source: (%S+) %-%->')
     if link then
-      lines[i] = string.format('![](%s?raw=true)', link)
+      -- NOTE: This is intended to be run after replacing `assets` links
+      lines[i] = string.format('![](%s)', link)
       table.remove(lines, i + 1)
       return
     end
@@ -280,6 +282,7 @@ local adjust_readmes = function()
       local path = vim.fs.joinpath(readmes_path, file)
       local lines = vim.fn.readfile(path)
 
+      repoint_assets(lines)
       replace_demo_link(lines)
       replace_quote_alerts(lines)
       replace_help_links(lines)

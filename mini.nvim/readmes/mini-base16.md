@@ -2,7 +2,7 @@
 title: "mini.base16"
 ---
 
-<p align="center"> <img src="https://github.com/nvim-mini/assets/blob/main/logo-2/logo-base16_readme.png?raw=true" alt="mini.base16" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-2/logo-base16_readme.png" alt="mini.base16" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -36,13 +36,13 @@ If you want to help this project grow but don't know where to start, check out [
 
 Using [`minischeme`](../doc/mini-base16.qmd#minischeme) color scheme:
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minischeme-dark.png?raw=true"> <img alt="minischeme dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minischeme-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minischeme-light.png?raw=true"> <img alt="minischeme light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minischeme-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_minischeme-dark.png"> <img alt="minischeme dark" src="/assets/demo/demo-base16_minischeme-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_minischeme-light.png"> <img alt="minischeme light" src="/assets/demo/demo-base16_minischeme-light.png" style="width: 45%"/> </a>
 
 Using [`minicyan`](../doc/mini-base16.qmd#minicyan) color scheme:
 
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minicyan-dark.png?raw=true"> <img alt="minicyan dark" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minicyan-dark.png?raw=true" style="width: 45%"/> </a>
-<a href="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minicyan-light.png?raw=true"> <img alt="minicyan light" src="https://github.com/nvim-mini/assets/blob/main/demo/demo-base16_minicyan-light.png?raw=true" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_minicyan-dark.png"> <img alt="minicyan dark" src="/assets/demo/demo-base16_minicyan-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_minicyan-light.png"> <img alt="minicyan light" src="/assets/demo/demo-base16_minicyan-light.png" style="width: 45%"/> </a>
 
 ## Features
 
