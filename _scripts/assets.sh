@@ -4,7 +4,8 @@ git -C _deps/assets pull
 
 # Clean copy necessary files with proper routing
 rm -rf assets/demo
-rm -rf assets/logo-2
+rm -rf assets/logo-3
 
 cp -r _deps/assets/demo assets/demo
-cp -r _deps/assets/logo-2 assets/logo-2
+cp -r _deps/assets/logo-3 assets/logo-3
+rm -rf assets/logo-3/experiments
