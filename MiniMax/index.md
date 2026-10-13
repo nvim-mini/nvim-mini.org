@@ -2,7 +2,7 @@
 title: "MiniMax"
 ---
 
-<p align="center"> <img src="logo.png" alt="mini.nvim" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="logo.svg" alt="mini.nvim" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'MiniMax'_</p>
 
 
