@@ -12,6 +12,10 @@ There are following change types:
 
 ## All {#v0.19.0-all}
 
+### Evolve {#v0.19.0-all-evolve}
+
+- Update `minischeme` color scheme to use 'mini.hues' and use it in examples as the suggested color scheme instead of `miniwinter`. The previous 'mini.base16' variant is now provided as `miniblue`.
+
 ### Refine {#v0.19.0-all-refine}
 
 - Stop official support of Neovim 0.9.

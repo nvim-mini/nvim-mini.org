@@ -2,7 +2,7 @@
 title: "mini.base16"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-base16_readme.png" alt="mini.base16" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-base16.svg" alt="mini.base16" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -34,10 +34,10 @@ If you want to help this project grow but don't know where to start, check out [
 
 ## Demo
 
-Using [`minischeme`](../doc/mini-base16.qmd#minischeme) color scheme:
+Using [`miniblue`](../doc/mini-base16.qmd#miniblue) color scheme:
 
-<a href="/assets/demo/demo-base16_minischeme-dark.png"> <img alt="minischeme dark" src="/assets/demo/demo-base16_minischeme-dark.png" style="width: 45%"/> </a>
-<a href="/assets/demo/demo-base16_minischeme-light.png"> <img alt="minischeme light" src="/assets/demo/demo-base16_minischeme-light.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_miniblue-dark.png"> <img alt="miniblue dark" src="/assets/demo/demo-base16_miniblue-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-base16_miniblue-light.png"> <img alt="miniblue light" src="/assets/demo/demo-base16_miniblue-light.png" style="width: 45%"/> </a>
 
 Using [`minicyan`](../doc/mini-base16.qmd#minicyan) color scheme:
 

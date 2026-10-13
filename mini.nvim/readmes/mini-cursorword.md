@@ -2,7 +2,7 @@
 title: "mini.cursorword"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-cursorword_readme.png" alt="mini.cursorword" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-cursorword.svg" alt="mini.cursorword" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

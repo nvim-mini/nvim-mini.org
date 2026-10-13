@@ -2,7 +2,7 @@
 title: "mini.hues"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-hues_readme.png" alt="mini.hues" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-hues.svg" alt="mini.hues" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
@@ -33,6 +33,13 @@ If you want to help this project grow but don't know where to start, check out [
 ![](/assets/demo/demo-hues.mp4)
 
 ### Bundled color schemes
+
+#### [`minischeme`](../doc/mini-hues.qmd#minischeme)
+
+[`minischeme`](../doc/mini-hues.qmd#minischeme) is the main color scheme that uses blue and yellow base colors:
+
+<a href="/assets/demo/demo-minischeme-dark.png"> <img alt="minischeme dark" src="/assets/demo/demo-minischeme-dark.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minischeme-light.png"> <img alt="minischeme light" src="/assets/demo/demo-minischeme-light.png" style="width: 45%"/> </a>
 
 #### Four seasons
 

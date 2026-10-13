@@ -2,7 +2,7 @@
 title: "mini.colors"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-colors_readme.png" alt="mini.colors" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-colors.svg" alt="mini.colors" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

@@ -2,7 +2,7 @@
 title: "mini.map"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-map_readme.png" alt="mini.map" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-map.svg" alt="mini.map" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

@@ -2,7 +2,7 @@
 title: "mini.cmdline"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-cmdline_readme.png" alt="mini.cmdline" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-cmdline.svg" alt="mini.cmdline" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

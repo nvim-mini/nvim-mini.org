@@ -2,7 +2,7 @@
 title: "mini.surround"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-surround_readme.png" alt="mini.surround" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-surround.svg" alt="mini.surround" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

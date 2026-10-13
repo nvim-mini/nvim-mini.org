@@ -2,7 +2,7 @@
 title: "mini.snippets"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-snippets_readme.png" alt="mini.snippets" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-snippets.svg" alt="mini.snippets" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

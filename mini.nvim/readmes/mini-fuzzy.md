@@ -2,7 +2,7 @@
 title: "mini.fuzzy"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-fuzzy_readme.png" alt="mini.fuzzy" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-fuzzy.svg" alt="mini.fuzzy" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 

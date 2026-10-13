@@ -2,7 +2,7 @@
 title: "mini.test"
 ---
 
-<p align="center"> <img src="/assets/logo-2/logo-test_readme.png" alt="mini.test" style="max-width:100%;border:solid 2px"/> </p>
+<p align="center"> <img src="/assets/logo-3/logo-mini-module-test.svg" alt="mini.test" style="max-width:100%;border:solid 2px"/> </p>
 <p align="center">_Generated from the `main` branch of 'mini.nvim'_</p>
 
 
