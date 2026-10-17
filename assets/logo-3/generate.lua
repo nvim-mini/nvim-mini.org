@@ -165,7 +165,10 @@ local with_azure_prefix = function(prefix_lines, suffix_lines)
 end
 
 local make_social_png = function(path, opts)
-  local default_opts = { resize = '1280x^1', extent = '1280x640', output = path:gsub('%.svg$', '_github.png') }
+  -- NOTE: Use 1200x630 even for GitHub (although it recommends 1280x640) as
+  -- otherwise social preview on other site crops left and right. Often to
+  -- the point of cutting parts of letters away.
+  local default_opts = { resize = '1200x^1', extent = '1200x630', output = path:gsub('%.svg$', '_github.png') }
   opts = vim.tbl_extend('force', default_opts, opts or {})
   -- Convert `basename.svg` to `basename.png`
   --stylua: ignore
@@ -279,7 +282,7 @@ _G.logo_mini = function()
   local out_mini = 'logo-3/logo-mini.svg'
   local out_mini_social = 'logo-3/logo-mini_social.png'
   vim.fn.writefile(lines, out_mini)
-  make_social_png(out_mini, { resize = '1200x630', extent = '1200x630', output = out_mini_social })
+  make_social_png(out_mini, { output = out_mini_social })
 
   local lines_circle = vim.deepcopy(lines)
   local cx = 0.5 * height - offset_hor
