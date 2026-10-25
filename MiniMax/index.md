@@ -23,11 +23,11 @@ If you find this project useful, please consider leaving a Github star.
 
 ### How it looks
 
-<a href="/assets/demo/demo-minimax_1.png"> <img alt="During setup" src="/assets/demo/demo-minimax_1.png" style="width: 45%"/> </a>
-<a href="/assets/demo/demo-minimax_2.png"> <img alt="Picker" src="/assets/demo/demo-minimax_2.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minimax_1.png"> <img alt="After setup" src="/assets/demo/demo-minimax_1.png" style="width: 45%; border:solid 2px"/> </a>
+<a href="/assets/demo/demo-minimax_2.png"> <img alt="Picker" src="/assets/demo/demo-minimax_2.png" style="width: 45%; border:solid 2px"/> </a>
 
-<a href="/assets/demo/demo-minimax_3.png"> <img alt="Clues" src="/assets/demo/demo-minimax_3.png" style="width: 45%"/> </a>
-<a href="/assets/demo/demo-minimax_4.png"> <img alt="File explorer" src="/assets/demo/demo-minimax_4.png" style="width: 45%"/> </a>
+<a href="/assets/demo/demo-minimax_3.png"> <img alt="Clues" src="/assets/demo/demo-minimax_3.png" style="width: 45%; border:solid 2px"/> </a>
+<a href="/assets/demo/demo-minimax_4.png"> <img alt="File explorer" src="/assets/demo/demo-minimax_4.png" style="width: 45%; border:solid 2px"/> </a>
 
 ### What it is not
 
