@@ -43,7 +43,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Automated configurable mappings to operate on textobject, line, selection. Can be disabled in favor of more control with [`MiniOperators.make_mappings()`](../doc/mini-operators.qmd#minioperators.make_mappings).
 
-- All operators support `[count]` and dot-repeat.
+- All operators support dot-repeat, multicursor, and `[count]`.
 
 For more information see theses parts of help:
 - [`:h MiniOperators-overview`](../doc/mini-operators.qmd#minioperators-overview)

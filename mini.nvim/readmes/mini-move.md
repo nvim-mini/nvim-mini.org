@@ -42,7 +42,7 @@ If you want to help this project grow but don't know where to start, check out [
         - Horizontal movement is improved indent/dedent with `>` / `<`.
         - Cursor moves along with selection.
 - Provides both mappings and Lua functions for motions. See [`:h MiniMove.move_selection()`](../doc/mini-move.qmd#minimove.move_selection) and [`:h MiniMove.move_line()`](../doc/mini-move.qmd#minimove.move_line).
-- Respects `v:count`. Movement mappings can be preceded by a number which multiplies command effect.
+- Supports multicursor and `[count]`.
 - All consecutive moves (regardless of direction) can be undone by a single `u`.
 - Respects preferred column for vertical movement. It will vertically move selection as how cursor is moving (not strictly vertically if target column is not present in target line).
 

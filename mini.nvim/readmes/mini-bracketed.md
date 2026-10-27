@@ -42,7 +42,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Mappings using square brackets. They are created using configurable target suffix and can be selectively disabled.
 
-  Each mapping supports |[count]|. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat) modes are supported.
+  Each mapping supports `[count]`. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat and multicursor) modes are supported.
 
   Using `lower-suffix` and `upper-suffix` (lower and upper case suffix) for a single target the following mappings are created:
     - `[` + `upper-suffix` : go first.

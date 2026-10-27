@@ -186,6 +186,13 @@ However, any part which might need filetype/language specific tuning should
 be designed to allow it by letting user set proper buffer options and/or
 local configuration.
 
+#### Text edit repeat {#mini.nvim-general-principles-texteditrepeat}
+
+
+All text edit mappings (like for operators, textobjects, motions) created
+by modules support built-in repeat functionality if technically possible.
+This includes [dot-repeat](https://neovim.io/doc/user/helptag.html?tag=dot-repeat), [macro](https://neovim.io/doc/user/helptag.html?tag=macro), and [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor) (on Neovim>=0.13).
+
 ---
 
 ### Module list {#mini.nvim-module-list .help-syntax-right-anchor}
@@ -195,7 +202,7 @@ local configuration.
   `va"`). It enhances some builtin [text-objects](https://neovim.io/doc/user/helptag.html?tag=text-objects) (like [a(](https://neovim.io/doc/user/helptag.html?tag=a\(), [a)](https://neovim.io/doc/user/helptag.html?tag=a\)), [a'](https://neovim.io/doc/user/helptag.html?tag=a'),
   and more), creates new ones (like `a*`, `a<Space>`, `af`, `a?`, and
   more), and allows user to create their own (like based on treesitter, and
-  more). Supports dot-repeat, `v:count`, different search methods,
+  more). Supports dot-repeat, [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor), [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]), different search methods,
   consecutive application, and customization via Lua patterns or functions.
   Has builtins for brackets, quotes, function call, argument, tag, user
   prompt, and any punctuation/digit/whitespace character.
@@ -204,7 +211,8 @@ local configuration.
 - [mini.align](mini-align.qmd#mini.align) - align text interactively (with or without instant preview).
   Allows rich and flexible customization of both alignment rules and user
   interaction. Works with charwise, linewise, and blockwise selections in
-  both Normal mode (on textobject/motion; with dot-repeat) and Visual mode.
+  both Normal mode (on textobject/motion; with dot-repeat and [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor))
+  and Visual mode.
 
 
 - [mini.animate](mini-animate.qmd#mini.animate) - animate common Neovim actions. Has "works out of the box"
@@ -362,7 +370,7 @@ local configuration.
 
 - [mini.operators](mini-operators.qmd#mini.operators) - various text edit operators: replace, exchange,
   multiply, sort, evaluate. Creates mappings to operate on textobject,
-  line, and visual selection. Supports [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]) and dot-repeat.
+  line, and visual selection. Supports dot-repeat, [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor), and [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]).
 
 
 - [mini.pairs](mini-pairs.qmd#mini.pairs) - autopairs plugin which has minimal defaults and
@@ -411,7 +419,7 @@ local configuration.
 
 - [mini.surround](mini-surround.qmd#mini.surround) - fast and feature-rich surround plugin. Add, delete,
   replace, find, highlight surrounding (like pair of parenthesis, quotes,
-  etc.). Supports dot-repeat, `v:count`, different search methods,
+  etc.). Supports dot-repeat, [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor), [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]), different search methods,
   "last"/"next" extended mappings, customization via Lua patterns or
   functions, and more. Has builtins for brackets, function call, tag, user
   prompt, and any alphanumeric/punctuation/whitespace character.

@@ -40,6 +40,7 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Customizable creation of `a`/`i` textobjects using Lua patterns and functions. Supports:
     - Dot-repeat.
+    - Multicursor.
     - `v:count`.
     - Different search methods (see [`:h MiniAi.config`](../doc/mini-ai.qmd#miniai.config)).
     - Consecutive application (update selection without leaving Visual mode).

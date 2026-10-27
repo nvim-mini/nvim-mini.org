@@ -41,7 +41,7 @@ If you want to help this project grow but don't know where to start, check out [
     - Split - make every argument separator be on end of separate line. See [`MiniSplitjoin.split()`](../doc/mini-splitjoin.qmd#minisplitjoin.split) in help file.
     - Join - make all arguments be on single line. See [`MiniSplitjoin.join()`](../doc/mini-splitjoin.qmd#minisplitjoin.join) in help file.
 
-- Mappings are dot-repeatable in Normal mode and work in Visual mode.
+- Mappings support dot-repeat and multicursor. Also work in Visual mode.
 
 - Customizable argument detection (see [`MiniSplitjoin.config.detect`](../doc/mini-splitjoin.qmd#minisplitjoin.config.detect) in help file):
     - Which brackets can contain arguments.

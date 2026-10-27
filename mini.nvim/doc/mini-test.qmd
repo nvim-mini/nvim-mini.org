@@ -289,7 +289,7 @@ organization with [MiniTest-test-case](mini-test.qmd#minitest-test-case).
 All its elements are one of three categories:
 
 - A callable (object that can be called; function or table with `__call`
-  metatble entry) is considered to define a test action. It will be called
+  metatable entry) is considered to define a test action. It will be called
   with "current arguments" (result of all nested `parametrize` values, read
   further). If it throws error, test has failed.
 
@@ -1109,7 +1109,7 @@ Notes:
   convenience wrapper for corresponding `vim.*` table. Can be used both to
   return and set values. Examples:
 
-    - `child.api.nvim_buf_line_count(0)` will execute
+    - `child.api.nvim_buf_line_count(0)` will act as
       `vim.api.nvim_buf_line_count(0)` inside child process and return its
       output to current process.
 
@@ -1119,7 +1119,7 @@ Notes:
   case of a doubt, use `child.lua()`.
 
 - Almost all methods use [vim.rpcrequest()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcrequest\(\)) (i.e. wait for call to finish and
-  then return value). See for `*_notify` variant to use [vim.rpcnotify()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)).
+  then return value). In a `*_notify` variant [vim.rpcnotify()](https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify\(\)) is used.
 
 - All fields and methods should be called with `.`, not `:`.
 
@@ -1174,7 +1174,7 @@ Notes:
 
 <span class="help-syntax-special">{get_screenshot}</span> `(function)` Returns table with two "2d arrays" of single
   characters representing what is displayed on screen and how it looks.
-  Has `opts` table argument for optional configuratnion.
+  Has `opts` table argument for optional configuration.
 
 
 <span class="help-syntax-special">{job}</span> `(table|nil)` Information about current job. If `nil`, child is not running.
@@ -1339,7 +1339,7 @@ Notes:
 
 
 
-<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possieble fields:
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
   - <span class="help-syntax-keys">\<redraw\></span> `(boolean)` - whether to call [:redraw](https://neovim.io/doc/user/helptag.html?tag=:redraw) prior to computing
     screenshot. Default: `true`.
