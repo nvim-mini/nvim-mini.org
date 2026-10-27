@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-506eb1a9281648368b1828d476cc8227.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6201002d250e3e47c7e7370cdb8f3d8b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d9af6a40a4412d5a1096e1ce24459c3c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-7e54ab068ca64009bcd87c8eb82cc8a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2037e4c841d1a2b9a029dacb17503ce8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -692,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Test set is one of the two fundamental data structures. It is a table that defines hierarchical test organization as opposed to sequential organization with <a href="../../mini.nvim/doc/mini-test.html#minitest-test-case">MiniTest-test-case</a>.</p>
 <p>All its elements are one of three categories:</p>
 <ul>
-<li><p>A callable (object that can be called; function or table with <code>__call</code> metatble entry) is considered to define a test action. It will be called with “current arguments” (result of all nested <code>parametrize</code> values, read further). If it throws error, test has failed.</p></li>
+<li><p>A callable (object that can be called; function or table with <code>__call</code> metatable entry) is considered to define a test action. It will be called with “current arguments” (result of all nested <code>parametrize</code> values, read further). If it throws error, test has failed.</p></li>
 <li><p>A test set (output of this function) defines nested structure. Its options during collection (see <a href="../../mini.nvim/doc/mini-test.html#minitest.collect">MiniTest.collect()</a>) will be extended with options of this (parent) test set.</p></li>
 <li><p>Any other elements are considered helpers and don’t directly participate in test structure.</p></li>
 </ul>
@@ -1250,10 +1250,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>An important type of field is a “redirection table”. It acts as a convenience wrapper for corresponding <code>vim.*</code> table. Can be used both to return and set values. Examples:</p>
 <ul>
-<li><p><code>child.api.nvim_buf_line_count(0)</code> will execute <code>vim.api.nvim_buf_line_count(0)</code> inside child process and return its output to current process.</p></li>
+<li><p><code>child.api.nvim_buf_line_count(0)</code> will act as <code>vim.api.nvim_buf_line_count(0)</code> inside child process and return its output to current process.</p></li>
 <li><p><code>child.bo.filetype = 'lua'</code> will execute <code>vim.bo.filetype = 'lua'</code> inside child process. They still have same limitations listed above, so are not perfect. In case of a doubt, use <code>child.lua()</code>.</p></li>
 </ul></li>
-<li><p>Almost all methods use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.rpcrequest()">vim.rpcrequest()</a> (i.e.&nbsp;wait for call to finish and then return value). See for <code>*_notify</code> variant to use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify()">vim.rpcnotify()</a>.</p></li>
+<li><p>Almost all methods use <a href="https://neovim.io/doc/user/helptag.html?tag=vim.rpcrequest()">vim.rpcrequest()</a> (i.e.&nbsp;wait for call to finish and then return value). In a <code>*_notify</code> variant <a href="https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify()">vim.rpcnotify()</a> is used.</p></li>
 <li><p>All fields and methods should be called with <code>.</code>, not <code>:</code>.</p></li>
 </ul>
 <section id="minitest-child-neovim-class" class="level4">
@@ -1275,7 +1275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{is_blocked}</span> <code>(function)</code> Check whether child process is blocked.</p>
 <p><span class="help-syntax-special">{is_running}</span> <code>(function)</code> Check whether child process is currently running.</p>
 <p><span class="help-syntax-special">{ensure_normal_mode}</span> <code>(function)</code> Ensure normal mode.</p>
-<p><span class="help-syntax-special">{get_screenshot}</span> <code>(function)</code> Returns table with two “2d arrays” of single characters representing what is displayed on screen and how it looks. Has <code>opts</code> table argument for optional configuratnion.</p>
+<p><span class="help-syntax-special">{get_screenshot}</span> <code>(function)</code> Returns table with two “2d arrays” of single characters representing what is displayed on screen and how it looks. Has <code>opts</code> table argument for optional configuration.</p>
 <p><span class="help-syntax-special">{job}</span> <code>(table|nil)</code> Information about current job. If <code>nil</code>, child is not running.</p>
 <p><span class="help-syntax-special">{api}</span> <code>(table)</code> Redirection table for <code>vim.api</code>. Doesn’t check for blocked state.</p>
 <p><span class="help-syntax-special">{api_notify}</span> <code>(table)</code> Same as <code>api</code>, but uses <a href="https://neovim.io/doc/user/helptag.html?tag=vim.rpcnotify()">vim.rpcnotify()</a>.</p>
@@ -1376,7 +1376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="minitest-child-neovim-get_screenshot-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="minitest-child-neovim-get_screenshot-parameters">Parameters</h4>
-<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possieble fields:</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><span class="help-syntax-keys">&lt;redraw&gt;</span> <code>(boolean)</code> - whether to call <a href="https://neovim.io/doc/user/helptag.html?tag=:redraw">:redraw</a> prior to computing screenshot. Default: <code>true</code>.</li>
 </ul>

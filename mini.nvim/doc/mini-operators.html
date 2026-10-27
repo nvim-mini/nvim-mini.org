@@ -77,8 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-506eb1a9281648368b1828d476cc8227.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6201002d250e3e47c7e7370cdb8f3d8b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d9af6a40a4412d5a1096e1ce24459c3c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-7e54ab068ca64009bcd87c8eb82cc8a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2037e4c841d1a2b9a029dacb17503ce8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -453,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Sort text.</p></li>
 </ul></li>
 <li><p>Automated configurable mappings to operate on textobject, line, selection. Can be disabled in favor of more control with <a href="../../mini.nvim/doc/mini-operators.html#minioperators.make_mappings">MiniOperators.make_mappings()</a>.</p></li>
-<li><p>All operators support <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> and dot-repeat.</p></li>
+<li><p>All operators support dot-repeat, <a href="https://neovim.io/doc/user/helptag.html?tag=multicursor">multicursor</a>, and <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>.</p></li>
 </ul>
 <p>See <a href="../../mini.nvim/doc/mini-operators.html#minioperators-overview">MiniOperators-overview</a> and <a href="../../mini.nvim/doc/mini-operators.html#minioperators.config">MiniOperators.config</a> for more details.</p>
 <section id="module-setup" class="level4">
@@ -700,7 +700,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Notes:</p>
 <ul>
-<li><p>Use <code>&lt;C-c&gt;</code> to stop exchanging after the first step.</p></li>
+<li><p>Use <span class="help-syntax-keys">&lt;C-c&gt;</span> to stop exchanging.</p></li>
+<li><p>Works with <a href="https://neovim.io/doc/user/helptag.html?tag=multicursor">multicursor</a> for each cursor in parallel: extra cursors perform the same step (first or second) as the main cursor. There are limitations: requires the same number and “order” of extra cursors for first and second steps. Behavior if this is not the case is undefined. Usually works for common situations like <code>gxiw</code> - <code>w</code> - <code>.</code> (exchange two nearby words), both as manual separate steps and as part of a mapping.</p></li>
 <li><p>Exchanged regions can have different (char,line,block)-wise submodes.</p></li>
 <li><p>Works with most cases of intersecting regions, but not officially supported.</p></li>
 </ul>
