@@ -404,6 +404,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#minibracketed.location-parameters" id="toc-minibracketed.location-parameters" class="nav-link" data-scroll-target="#minibracketed.location-parameters">Parameters</a></li>
   </ul></li>
+  <li><a href="#minibracketed.multicursor" id="toc-minibracketed.multicursor" class="nav-link" data-scroll-target="#minibracketed.multicursor">multicursor()</a>
+  <ul>
+  <li><a href="#minibracketed.multicursor-parameters" id="toc-minibracketed.multicursor-parameters" class="nav-link" data-scroll-target="#minibracketed.multicursor-parameters">Parameters</a></li>
+  </ul></li>
   <li><a href="#minibracketed.oldfile" id="toc-minibracketed.oldfile" class="nav-link" data-scroll-target="#minibracketed.oldfile">oldfile()</a>
   <ul>
   <li><a href="#minibracketed.oldfile-parameters" id="toc-minibracketed.oldfile-parameters" class="nav-link" data-scroll-target="#minibracketed.oldfile-parameters">Parameters</a></li>
@@ -482,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Some other target specific options.</p></li>
 </ul></li>
 <li><p>Mappings using square brackets. They are created using configurable target suffix and can be selectively disabled.</p>
-<p>Each mapping supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat and <a href="https://neovim.io/doc/user/helptag.html?tag=multicursor">multicursor</a>) modes are supported.</p>
+<p>Each mapping supports <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a>. Mappings are created in Normal mode; for targets which move cursor in current buffer also Visual and Operator-pending (with dot-repeat and <a href="https://neovim.io/doc/user/helptag.html?tag=multicursor">multicursor</a>) modes are usually supported.</p>
 <p>Using <code>lower-suffix</code> and <code>upper-suffix</code> (lower and upper case suffix) for a single target the following mappings are created:</p>
 <ul>
 <li><p><code>[</code> + <code>upper-suffix</code> : go first.</p></li>
@@ -542,31 +546,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.location">MiniBracketed.location()</a></td>
 </tr>
 <tr class="odd">
+<td>Multicursor</td>
+<td><code>[M</code> <code>[m</code> <code>]m</code> <code>]M</code></td>
+<td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.multicursor">MiniBracketed.multicursor()</a></td>
+</tr>
+<tr class="even">
 <td>Old files</td>
 <td><code>[O</code> <code>[o</code> <code>]o</code> <code>]O</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.oldfile">MiniBracketed.oldfile()</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Quickfix entry from <a href="https://neovim.io/doc/user/helptag.html?tag=Quickfix">Quickfix</a></td>
 <td><code>[Q</code> <code>[q</code> <code>]q</code> <code>]Q</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.quickfix">MiniBracketed.quickfix()</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Tree-sitter node and parents</td>
 <td><code>[T</code> <code>[t</code> <code>]t</code> <code>]T</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.treesitter">MiniBracketed.treesitter()</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Undo from linear history</td>
 <td><code>[U</code> <code>[u</code> <code>]u</code> <code>]U</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.undo">MiniBracketed.undo()</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Window in current tab</td>
 <td><code>[W</code> <code>[w</code> <code>]w</code> <code>]W</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.window">MiniBracketed.window()</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Yank entry over put region</td>
 <td><code>[Y</code> <code>[y</code> <code>]y</code> <code>]Y</code></td>
 <td style="text-align: right;"><a href="../../mini.nvim/doc/mini-bracketed.html#minibracketed.yank">MiniBracketed.yank()</a></td>
@@ -641,21 +650,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- See `:h MiniBracketed.config` for more info.</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">buffer</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'b'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">comment</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'c'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">conflict</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">diagnostic</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'d'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">file</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'f'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">indent</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">jump</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'j'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">location</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">oldfile</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'o'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">quickfix</span>   <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">treesitter</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'t'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">undo</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'u'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'w'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="va">yank</span>       <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'y'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">buffer</span>      <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'b'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">comment</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'c'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">conflict</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'x'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="va">diagnostic</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'d'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">file</span>        <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'f'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">indent</span>      <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'i'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">jump</span>        <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'j'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="va">location</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'l'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="va">multicursor</span> <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'m'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">oldfile</span>     <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'o'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="va">quickfix</span>    <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'q'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="va">treesitter</span>  <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'t'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">undo</span>        <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'u'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="va">window</span>      <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'w'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">yank</span>        <span class="op">=</span> <span class="op">{</span> <span class="va">suffix</span> <span class="op">=</span> <span class="st">'y'</span><span class="op">,</span> <span class="va">options</span> <span class="op">=</span> <span class="op">{}</span> <span class="op">},</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minibracketed.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minibracketed.config-options">Options</h4>
@@ -780,6 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Direction “forward” increases line number, “backward” - decreases.</p>
 <p>Notes:</p>
 <ul>
+<li><p>Respects <code>on_jump</code> from <a href="https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.JumpOpts">vim.diagnostic.JumpOpts</a>.</p></li>
 <li><p>Using <code>severity</code> option, this target can be used in mappings like “go to next/previous error” (), etc. Using code similar to this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">severity_error</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">diagnostic</span><span class="op">.</span><span class="va">severity</span><span class="op">.</span><span class="cn">ERROR</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Use these inside custom mappings</span></span>
@@ -882,6 +893,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
 <li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="minibracketed.multicursor" class="level3 help-syntax-right-anchor">
+<h3 class="help-syntax-right-anchor anchored" data-anchor-id="minibracketed.multicursor">multicursor()</h3>
+<p align="center">
+<code>MiniBracketed.multicursor</code>(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)
+</p>
+<p>Multicursor</p>
+<p>Go to next/previous extra cursor of <a href="https://neovim.io/doc/user/helptag.html?tag=multicursor">multicursor</a>.</p>
+<p>Direction “forward” increases line number, “backward” - decreases.</p>
+<p>Notes:</p>
+<ul>
+<li><p>In follow mode (<a href="https://neovim.io/doc/user/helptag.html?tag='follow'">‘follow’</a> enabled, like after <a href="https://neovim.io/doc/user/helptag.html?tag=q=">q=</a>) extra cursors rotate while preserving their total number:</p>
+<ul>
+<li><p>If initial position is not extra cursor: add extra cursor at it and remove one from target.</p></li>
+<li><p>If initial position is extra cursor: only move main cursor.</p></li>
+</ul></li>
+<li><p><a href="https://neovim.io/doc/user/helptag.html?tag='follow'">‘follow’</a> is temporarily disabled during jump.</p></li>
+</ul>
+<section id="minibracketed.multicursor-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="minibracketed.multicursor-parameters">Parameters</h4>
+<p><span class="help-syntax-special">{direction}</span> <code>(string)</code> One of “first”, “backward”, “forward”, “last”.</p>
+<p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. A table with fields:</p>
+<ul>
+<li><p><span class="help-syntax-keys">&lt;n_times&gt;</span> <code>(number)</code> - Number of times to advance. Default: <a href="https://neovim.io/doc/user/helptag.html?tag=v:count1">v:count1</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;wrap&gt;</span> <code>(boolean)</code> - Whether to wrap around edges. Default: <code>true</code>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;add_to_jumplist&gt;</span> (<code>boolean</code>) - Whether to add current position to jumplist. Default: <code>false</code>.</p></li>
 </ul>
 <hr>
 </section>
