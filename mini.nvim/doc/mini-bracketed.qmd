@@ -32,7 +32,7 @@ Features:
 
   Each mapping supports [\[count\]](https://neovim.io/doc/user/helptag.html?tag=[count]). Mappings are created in Normal mode; for
   targets which move cursor in current buffer also Visual and Operator-pending
-  (with dot-repeat and [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor)) modes are supported.
+  (with dot-repeat and [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor)) modes are usually supported.
 
   Using `lower-suffix` and `upper-suffix` (lower and upper case suffix) for
   a single target the following mappings are created:
@@ -60,6 +60,7 @@ Features:
 | Indent change | `[I` `[i` `]i` `]I` | [MiniBracketed.indent()](mini-bracketed.qmd#minibracketed.indent) |
 | Jump inside current buffer | `[J` `[j` `]j` `]J` | [MiniBracketed.jump()](mini-bracketed.qmd#minibracketed.jump) |
 | Location from [location-list](https://neovim.io/doc/user/helptag.html?tag=location-list) | `[L` `[l` `]l` `]L` | [MiniBracketed.location()](mini-bracketed.qmd#minibracketed.location) |
+| Multicursor | `[M` `[m` `]m` `]M` | [MiniBracketed.multicursor()](mini-bracketed.qmd#minibracketed.multicursor) |
 | Old files | `[O` `[o` `]o` `]O` | [MiniBracketed.oldfile()](mini-bracketed.qmd#minibracketed.oldfile) |
 | Quickfix entry from [Quickfix](https://neovim.io/doc/user/helptag.html?tag=Quickfix) | `[Q` `[q` `]q` `]Q` | [MiniBracketed.quickfix()](mini-bracketed.qmd#minibracketed.quickfix) |
 | Tree-sitter node and parents | `[T` `[t` `]t` `]T` | [MiniBracketed.treesitter()](mini-bracketed.qmd#minibracketed.treesitter) |
@@ -164,20 +165,21 @@ Module setup
     --
     -- See `:h MiniBracketed.config` for more info.
 
-    buffer     = { suffix = 'b', options = {} },
-    comment    = { suffix = 'c', options = {} },
-    conflict   = { suffix = 'x', options = {} },
-    diagnostic = { suffix = 'd', options = {} },
-    file       = { suffix = 'f', options = {} },
-    indent     = { suffix = 'i', options = {} },
-    jump       = { suffix = 'j', options = {} },
-    location   = { suffix = 'l', options = {} },
-    oldfile    = { suffix = 'o', options = {} },
-    quickfix   = { suffix = 'q', options = {} },
-    treesitter = { suffix = 't', options = {} },
-    undo       = { suffix = 'u', options = {} },
-    window     = { suffix = 'w', options = {} },
-    yank       = { suffix = 'y', options = {} },
+    buffer      = { suffix = 'b', options = {} },
+    comment     = { suffix = 'c', options = {} },
+    conflict    = { suffix = 'x', options = {} },
+    diagnostic  = { suffix = 'd', options = {} },
+    file        = { suffix = 'f', options = {} },
+    indent      = { suffix = 'i', options = {} },
+    jump        = { suffix = 'j', options = {} },
+    location    = { suffix = 'l', options = {} },
+    multicursor = { suffix = 'm', options = {} },
+    oldfile     = { suffix = 'o', options = {} },
+    quickfix    = { suffix = 'q', options = {} },
+    treesitter  = { suffix = 't', options = {} },
+    undo        = { suffix = 'u', options = {} },
+    window      = { suffix = 'w', options = {} },
+    yank        = { suffix = 'y', options = {} },
   }
   ```
 
@@ -347,6 +349,8 @@ Direction "forward" increases line number, "backward" - decreases.
 
 Notes:
 
+- Respects `on_jump` from [vim.diagnostic.JumpOpts](https://neovim.io/doc/user/helptag.html?tag=vim.diagnostic.JumpOpts).
+
 - Using `severity` option, this target can be used in mappings like "go to
   next/previous error" (), etc. Using code similar to this:
 
@@ -491,6 +495,44 @@ Direction "forward" increases location number, "backward" - decreases.
   - <span class="help-syntax-keys">\<n_times\></span> `(number)` - Number of times to advance. Default: [v:count1](https://neovim.io/doc/user/helptag.html?tag=v:count1).
 
   - <span class="help-syntax-keys">\<wrap\></span> `(boolean)` - Whether to wrap around edges. Default: `true`.
+
+---
+
+### multicursor() {#minibracketed.multicursor .help-syntax-right-anchor}
+
+<p align="center">`MiniBracketed.multicursor`(<span class="help-syntax-special">{direction}</span>, <span class="help-syntax-special">{opts}</span>)</p>
+Multicursor
+
+Go to next/previous extra cursor of [multicursor](https://neovim.io/doc/user/helptag.html?tag=multicursor).
+
+Direction "forward" increases line number, "backward" - decreases.
+
+Notes:
+
+- In follow mode (['follow'](https://neovim.io/doc/user/helptag.html?tag='follow') enabled, like after [q=](https://neovim.io/doc/user/helptag.html?tag=q=)) extra cursors rotate while
+  preserving their total number:
+
+  - If initial position is not extra cursor: add extra cursor at it and remove
+    one from target.
+
+  - If initial position is extra cursor: only move main cursor.
+
+- ['follow'](https://neovim.io/doc/user/helptag.html?tag='follow') is temporarily disabled during jump.
+
+#### Parameters {#minibracketed.multicursor-parameters}
+
+
+
+<span class="help-syntax-special">{direction}</span> `(string)` One of "first", "backward", "forward", "last".
+
+<span class="help-syntax-special">{opts}</span> `(table|nil)` Options. A table with fields:
+
+  - <span class="help-syntax-keys">\<n_times\></span> `(number)` - Number of times to advance. Default: [v:count1](https://neovim.io/doc/user/helptag.html?tag=v:count1).
+
+  - <span class="help-syntax-keys">\<wrap\></span> `(boolean)` - Whether to wrap around edges. Default: `true`.
+
+  - <span class="help-syntax-keys">\<add_to_jumplist\></span> (`boolean`) - Whether to add current position to jumplist.
+    Default: `false`.
 
 ---
 

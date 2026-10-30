@@ -52,22 +52,23 @@ If you want to help this project grow but don't know where to start, check out [
 
 - Supported targets (for more information see help for corresponding Lua function):
 
-    | Target                                            | Mappings            | Lua function                 |
-    |---------------------------------------------------|---------------------|------------------------------|
-    | Buffer                                            | `[B` `[b` `]b` `]B` | [`MiniBracketed.buffer()`](../doc/mini-bracketed.qmd#minibracketed.buffer)     |
-    | Comment block                                     | `[C` `[c` `]c` `]C` | [`MiniBracketed.comment()`](../doc/mini-bracketed.qmd#minibracketed.comment)    |
-    | Conflict marker                                   | `[X` `[x` `]x` `]X` | [`MiniBracketed.conflict()`](../doc/mini-bracketed.qmd#minibracketed.conflict)   |
-    | Diagnostic                                        | `[D` `[d` `]d` `]D` | [`MiniBracketed.diagnostic()`](../doc/mini-bracketed.qmd#minibracketed.diagnostic) |
-    | File on disk                                      | `[F` `[f` `]f` `]F` | [`MiniBracketed.file()`](../doc/mini-bracketed.qmd#minibracketed.file)       |
-    | Indent change                                     | `[I` `[i` `]i` `]I` | [`MiniBracketed.indent()`](../doc/mini-bracketed.qmd#minibracketed.indent)     |
-    | Jump from jumplist inside current buffer          | `[J` `[j` `]j` `]J` | [`MiniBracketed.jump()`](../doc/mini-bracketed.qmd#minibracketed.jump)       |
-    | Location from location list                       | `[L` `[l` `]l` `]L` | [`MiniBracketed.location()`](../doc/mini-bracketed.qmd#minibracketed.location)   |
-    | Old files                                         | `[O` `[o` `]o` `]O` | [`MiniBracketed.oldfile()`](../doc/mini-bracketed.qmd#minibracketed.oldfile)    |
-    | Quickfix entry from quickfix list                 | `[Q` `[q` `]q` `]Q` | [`MiniBracketed.quickfix()`](../doc/mini-bracketed.qmd#minibracketed.quickfix)   |
-    | Tree-sitter node and parents                      | `[T` `[t` `]t` `]T` | [`MiniBracketed.treesitter()`](../doc/mini-bracketed.qmd#minibracketed.treesitter) |
-    | Undo states from specially tracked linear history | `[U` `[u` `]u` `]U` | [`MiniBracketed.undo()`](../doc/mini-bracketed.qmd#minibracketed.undo)       |
-    | Window in current tab                             | `[W` `[w` `]w` `]W` | [`MiniBracketed.window()`](../doc/mini-bracketed.qmd#minibracketed.window)     |
-    | Yank selection replacing latest put region        | `[Y` `[y` `]y` `]Y` | [`MiniBracketed.yank()`](../doc/mini-bracketed.qmd#minibracketed.yank)       |
+    | Target                                            | Mappings            | Lua function                  |
+    |---------------------------------------------------|---------------------|-------------------------------|
+    | Buffer                                            | `[B` `[b` `]b` `]B` | [`MiniBracketed.buffer()`](../doc/mini-bracketed.qmd#minibracketed.buffer)      |
+    | Comment block                                     | `[C` `[c` `]c` `]C` | [`MiniBracketed.comment()`](../doc/mini-bracketed.qmd#minibracketed.comment)     |
+    | Conflict marker                                   | `[X` `[x` `]x` `]X` | [`MiniBracketed.conflict()`](../doc/mini-bracketed.qmd#minibracketed.conflict)    |
+    | Diagnostic                                        | `[D` `[d` `]d` `]D` | [`MiniBracketed.diagnostic()`](../doc/mini-bracketed.qmd#minibracketed.diagnostic)  |
+    | File on disk                                      | `[F` `[f` `]f` `]F` | [`MiniBracketed.file()`](../doc/mini-bracketed.qmd#minibracketed.file)        |
+    | Indent change                                     | `[I` `[i` `]i` `]I` | [`MiniBracketed.indent()`](../doc/mini-bracketed.qmd#minibracketed.indent)      |
+    | Jump from jumplist inside current buffer          | `[J` `[j` `]j` `]J` | [`MiniBracketed.jump()`](../doc/mini-bracketed.qmd#minibracketed.jump)        |
+    | Location from location list                       | `[L` `[l` `]l` `]L` | [`MiniBracketed.location()`](../doc/mini-bracketed.qmd#minibracketed.location)    |
+    | Multicursor                                       | `[M` `[m` `]m` `]M` | [`MiniBracketed.multicursor()`](../doc/mini-bracketed.qmd#minibracketed.multicursor) |
+    | Old files                                         | `[O` `[o` `]o` `]O` | [`MiniBracketed.oldfile()`](../doc/mini-bracketed.qmd#minibracketed.oldfile)     |
+    | Quickfix entry from quickfix list                 | `[Q` `[q` `]q` `]Q` | [`MiniBracketed.quickfix()`](../doc/mini-bracketed.qmd#minibracketed.quickfix)    |
+    | Tree-sitter node and parents                      | `[T` `[t` `]t` `]T` | [`MiniBracketed.treesitter()`](../doc/mini-bracketed.qmd#minibracketed.treesitter)  |
+    | Undo states from specially tracked linear history | `[U` `[u` `]u` `]U` | [`MiniBracketed.undo()`](../doc/mini-bracketed.qmd#minibracketed.undo)        |
+    | Window in current tab                             | `[W` `[w` `]w` `]W` | [`MiniBracketed.window()`](../doc/mini-bracketed.qmd#minibracketed.window)      |
+    | Yank selection replacing latest put region        | `[Y` `[y` `]y` `]Y` | [`MiniBracketed.yank()`](../doc/mini-bracketed.qmd#minibracketed.yank)        |
 
 Notes:
 
@@ -177,20 +178,21 @@ Stable branch:
   --
   -- See [`:h MiniBracketed.config`](../doc/mini-bracketed.qmd#minibracketed.config) for more info.
 
-  buffer     = { suffix = 'b', options = {} },
-  comment    = { suffix = 'c', options = {} },
-  conflict   = { suffix = 'x', options = {} },
-  diagnostic = { suffix = 'd', options = {} },
-  file       = { suffix = 'f', options = {} },
-  indent     = { suffix = 'i', options = {} },
-  jump       = { suffix = 'j', options = {} },
-  location   = { suffix = 'l', options = {} },
-  oldfile    = { suffix = 'o', options = {} },
-  quickfix   = { suffix = 'q', options = {} },
-  treesitter = { suffix = 't', options = {} },
-  undo       = { suffix = 'u', options = {} },
-  window     = { suffix = 'w', options = {} },
-  yank       = { suffix = 'y', options = {} },
+  buffer      = { suffix = 'b', options = {} },
+  comment     = { suffix = 'c', options = {} },
+  conflict    = { suffix = 'x', options = {} },
+  diagnostic  = { suffix = 'd', options = {} },
+  file        = { suffix = 'f', options = {} },
+  indent      = { suffix = 'i', options = {} },
+  jump        = { suffix = 'j', options = {} },
+  location    = { suffix = 'l', options = {} },
+  multicursor = { suffix = 'm', options = {} },
+  oldfile     = { suffix = 'o', options = {} },
+  quickfix    = { suffix = 'q', options = {} },
+  treesitter  = { suffix = 't', options = {} },
+  undo        = { suffix = 'u', options = {} },
+  window      = { suffix = 'w', options = {} },
+  yank        = { suffix = 'y', options = {} },
 }
 ```
 
