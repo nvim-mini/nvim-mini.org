@@ -186,7 +186,7 @@ local make_social_png = function(path, opts)
 
   -- Rename `basename.png` to `basename_github.png`
   local tmp_png = path:gsub('%.svg$', '.png')
-  vim.uv.fs_rename(tmp_png, opts.output)
+  if tmp_png ~= opts.output then vim.uv.fs_rename(tmp_png, opts.output) end
 end
 
 -- 'mini.nvim' ================================================================
@@ -280,9 +280,13 @@ _G.logo_mini = function()
 
   -- Save
   local out_mini = 'logo-3/logo-mini.svg'
+  local out_mini_png = 'logo-3/logo-mini.png'
   local out_mini_social = 'logo-3/logo-mini_social.png'
   vim.fn.writefile(lines, out_mini)
-  make_social_png(out_mini, { output = out_mini_social })
+  make_social_png(out_mini, { resize = '^1x630', output = out_mini_social })
+  -- NOTE: Create this last since `magic mogrify -format png ...` from previous
+  -- steps uses `logo-mini.png` as a temporary file name
+  make_social_png(out_mini, { resize = '1000x1000', extent = '1000x1000', output = out_mini_png })
 
   local lines_circle = vim.deepcopy(lines)
   local cx = 0.5 * height - offset_hor
@@ -290,9 +294,9 @@ _G.logo_mini = function()
   lines_circle[3] = string.format('    <circle cx="%d" cy="%d" r="50%%"/>', cx, cy)
 
   local out_mini_circle = 'logo-3/logo-mini_circle.svg'
-  local out_mini_circle_social = 'logo-3/logo-mini_circle_social.png'
+  local out_mini_circle_png = 'logo-3/logo-mini_circle.png'
   vim.fn.writefile(lines_circle, out_mini_circle)
-  make_social_png(out_mini_circle, { resize = '1000x1000', extent = '1000x1000', output = out_mini_circle_social })
+  make_social_png(out_mini_circle, { resize = '1000x1000', extent = '1000x1000', output = out_mini_circle_png })
 end
 
 -- MiniMax ====================================================================
