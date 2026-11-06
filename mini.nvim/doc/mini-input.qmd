@@ -435,8 +435,8 @@ Here is an example of a basic custom key handler:
       state.caret = math.max(state.caret - 1, 1)
     end,
     [vim.keycode('<Right>')] = function(state)
-      local input_width = vim.fn.strchars(state.input)
-      state.caret = math.min(state.caret + 1, input_width + 1)
+      local input_nchars = vim.fn.strchars(state.input)
+      state.caret = math.min(state.caret + 1, input_nchars + 1)
     end,
     [vim.keycode('<CR>')] = function(state) state.status = 'accept' end,
     [vim.keycode('<Esc>')] = function(state) state.status = 'cancel' end,
@@ -774,7 +774,7 @@ interactively by pressing <span class="help-syntax-keys">\<C-s\></span>.
 
 Each element also accepts <span class="help-syntax-keys">\<to_chunks\></span> option. It is a function that takes
 a [MiniInput-state](mini-input.qmd#miniinput-state) and `max_width` arguments and returns an array of `{ text, hl }`
-chunks that fit into `max_width` display width (as in [strdisplaywidth()](https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth\(\))).
+chunks that fit into `max_width` cells (as in [nvim\_strwidth()](https://neovim.io/doc/user/helptag.html?tag=nvim_strwidth\(\))).
 
 This is a way to adjust how input is shown. Like caret/hide symbols, etc.
 By default uses [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks), which also means:
@@ -871,7 +871,7 @@ not focused and cursor position is not the same as caret position.
 
   - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
-    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+    into `max_width` cells. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
 #### Usage {#miniinput.gen_view.floatwin-usage}
 
@@ -918,7 +918,7 @@ UI line (statusline, tabline, winbar) view
 
   - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
-    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+    into `max_width` cells. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
 #### Usage {#miniinput.gen_view.uiline-usage}
 
@@ -960,7 +960,7 @@ Virtual (line, text) view
 
   - <span class="help-syntax-keys">\<to_chunks\></span> `(function)` - a function that takes [MiniInput-state](mini-input.qmd#miniinput-state) and
     `max_width` arguments and returns an array of `{ text, hl }` chunks that fit
-    into `max_width` display width. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
+    into `max_width` cells. See [MiniInput.state\_to\_chunks()](mini-input.qmd#miniinput.state_to_chunks).
 
 #### Usage {#miniinput.gen_view.virtual-usage}
 
@@ -1186,8 +1186,6 @@ Convert state into text-hl chunks
 
 - Multiline input (i.e. with newline characters `\n`) is shown as a single line.
 
-- Treats `max_width` as display width ([strdisplaywidth()](https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth\(\))).
-
 - Truncates output chunks trying to center the caret.
 
 #### Parameters {#miniinput.state_to_chunks-parameters}
@@ -1196,7 +1194,7 @@ Convert state into text-hl chunks
 
 <span class="help-syntax-special">{state}</span> `(table)` A [MiniInput-state](mini-input.qmd#miniinput-state).
 
-<span class="help-syntax-special">{max_width}</span> `(number|nil)` Maximum allowed display width. Can be [math.huge](https://neovim.io/doc/user/helptag.html?tag=math.huge).
+<span class="help-syntax-special">{max_width}</span> `(number|nil)` Maximum allowed cells. Can be [math.huge](https://neovim.io/doc/user/helptag.html?tag=math.huge).
 
 <span class="help-syntax-special">{opts}</span> `(table|nil)` Options. Possible fields:
 
@@ -1217,7 +1215,7 @@ Convert state into text-hl chunks
 #### Return {#miniinput.state_to_chunks-return}
 
 
-`(table)` An array of text-hl chunks that fit `max_width` display width.
+`(table)` An array of text-hl chunks that fit `max_width` cells.
 
 ---
 
