@@ -770,8 +770,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">=</span> <span class="fu">math.max</span><span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="va">vim</span><span class="op">.</span>keycode<span class="op">(</span><span class="st">'&lt;Right&gt;'</span><span class="op">)]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">input_width</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>strchars<span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">)</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">=</span> <span class="fu">math.min</span><span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="va">input_width</span> <span class="op">+</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">input_nchars</span> <span class="op">=</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>strchars<span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">input</span><span class="op">)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">=</span> <span class="fu">math.min</span><span class="op">(</span><span class="va">state</span><span class="op">.</span><span class="va">caret</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="va">input_nchars</span> <span class="op">+</span> <span class="dv">1</span><span class="op">)</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="va">vim</span><span class="op">.</span>keycode<span class="op">(</span><span class="st">'&lt;CR&gt;'</span><span class="op">)]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">=</span> <span class="st">'accept'</span> <span class="kw">end</span><span class="op">,</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="va">vim</span><span class="op">.</span>keycode<span class="op">(</span><span class="st">'&lt;Esc&gt;'</span><span class="op">)]</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="va">state</span><span class="op">.</span><span class="va">status</span> <span class="op">=</span> <span class="st">'cancel'</span> <span class="kw">end</span><span class="op">,</span></span>
@@ -1023,7 +1023,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>View generators</p>
 <p>This is a table with function elements. Call to actually get a view function.</p>
 <p>Each element accepts <span class="help-syntax-keys">&lt;style&gt;</span> option which fine tunes the input view. With default key handler (<a href="../../mini.nvim/doc/mini-input.html#miniinput.default_key">MiniInput.default_key()</a>) it can be adjusted interactively by pressing <span class="help-syntax-keys">&lt;C-s&gt;</span>.</p>
-<p>Each element also accepts <span class="help-syntax-keys">&lt;to_chunks&gt;</span> option. It is a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width (as in <a href="https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth()">strdisplaywidth()</a>).</p>
+<p>Each element also accepts <span class="help-syntax-keys">&lt;to_chunks&gt;</span> option. It is a function that takes a <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> cells (as in <a href="https://neovim.io/doc/user/helptag.html?tag=nvim_strwidth()">nvim_strwidth()</a>).</p>
 <p>This is a way to adjust how input is shown. Like caret/hide symbols, etc. By default uses <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>, which also means:</p>
 <ul>
 <li>All control characters (like literal <code>\t</code>, <code>\n</code>, etc.) will be translated via <a href="https://neovim.io/doc/user/helptag.html?tag=keytrans()">keytrans()</a>.</li>
@@ -1081,7 +1081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>"M"</code> - middle between left and right window borders will be at the middle of scope’s reference left and right borders.</p></li>
 <li><p><code>"R"</code> - right window border will be at scope’s reference right border.</p></li>
 </ul></li>
-<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> cells. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
 </ul>
 </section>
 <section id="miniinput.gen_view.floatwin-usage" class="level4">
@@ -1119,7 +1119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - which UI line to use. One of <code>"statusline"</code>, <code>"tabline"</code>, <code>"winbar"</code>. Default: <code>"statusline"</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> cells. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
 </ul>
 </section>
 <section id="miniinput.gen_view.uiline-usage" class="level4">
@@ -1152,7 +1152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;style&gt;</span> <code>(string)</code> - how to display virtual text. One of <code>"above"</code>, <code>"below"</code>, <code>"inline"</code>. Default: <code>"above"</code>.</p></li>
-<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> display width. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
+<li><p><span class="help-syntax-keys">&lt;to_chunks&gt;</span> <code>(function)</code> - a function that takes <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a> and <code>max_width</code> arguments and returns an array of <code>{ text, hl }</code> chunks that fit into <code>max_width</code> cells. See <a href="../../mini.nvim/doc/mini-input.html#miniinput.state_to_chunks">MiniInput.state_to_chunks()</a>.</p></li>
 </ul>
 </section>
 <section id="miniinput.gen_view.virtual-usage" class="level4">
@@ -1298,13 +1298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Treat <code>state.highlight</code> elements in increasing priority, i.e.&nbsp;later ones are placed “on top” of the previous ones if they overlap.</p></li>
 <li><p>Uses <a href="../../mini.nvim/doc/mini-input.html#miniinput-hl-groups">MiniInput-hl-groups</a>.</p></li>
 <li><p>Multiline input (i.e.&nbsp;with newline characters <code>\n</code>) is shown as a single line.</p></li>
-<li><p>Treats <code>max_width</code> as display width (<a href="https://neovim.io/doc/user/helptag.html?tag=strdisplaywidth()">strdisplaywidth()</a>).</p></li>
 <li><p>Truncates output chunks trying to center the caret.</p></li>
 </ul>
 <section id="miniinput.state_to_chunks-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="miniinput.state_to_chunks-parameters">Parameters</h4>
 <p><span class="help-syntax-special">{state}</span> <code>(table)</code> A <a href="../../mini.nvim/doc/mini-input.html#miniinput-state">MiniInput-state</a>.</p>
-<p><span class="help-syntax-special">{max_width}</span> <code>(number|nil)</code> Maximum allowed display width. Can be <a href="https://neovim.io/doc/user/helptag.html?tag=math.huge">math.huge</a>.</p>
+<p><span class="help-syntax-special">{max_width}</span> <code>(number|nil)</code> Maximum allowed cells. Can be <a href="https://neovim.io/doc/user/helptag.html?tag=math.huge">math.huge</a>.</p>
 <p><span class="help-syntax-special">{opts}</span> <code>(table|nil)</code> Options. Possible fields:</p>
 <ul>
 <li><p><span class="help-syntax-keys">&lt;keytrans&gt;</span> <code>(boolean)</code> - whether to translate control characters (escaped version of <code>&lt;C-...&gt;</code>). Default: <code>true</code>.</p></li>
@@ -1316,7 +1315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="miniinput.state_to_chunks-return" class="level4">
 <h4 class="anchored" data-anchor-id="miniinput.state_to_chunks-return">Return</h4>
-<p><code>(table)</code> An array of text-hl chunks that fit <code>max_width</code> display width.</p>
+<p><code>(table)</code> An array of text-hl chunks that fit <code>max_width</code> cells.</p>
 <hr>
 </section>
 </section>
