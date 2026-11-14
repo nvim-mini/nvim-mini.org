@@ -103,6 +103,77 @@ h6 { font-size: 1em; font-weight: normal; }
 }
 .bc-header { font-size: 1.25rem }
 
+// "Order by" and "Filter" inputs
+.input-group {
+  border: solid 1px var(--brand-grey)
+}
+.input-group-text {
+  color: var(--brand-fg-2);
+  background-color: var(--brand-bg-2);
+}
+.search::placeholder { color: var(--brand-comment) }
+
+// Top part of code block with file name
+.code-with-filename .code-with-filename-file {
+  background-color: var(--brand-grey-bg) !important;
+  border: none;
+}
+.code-with-filename .code-with-filename-file pre,
+.code-with-filename .code-with-filename-file strong {
+  color: var(--brand-grey);
+  font-size: 0.9rem;
+}
+
+// Show code annotations below code block, with same bg, separated by 2px line
+pre.code-annotation-code {
+  border: none;
+  border-radius: 0;
+
+  // Highlight annotated code line within code block when pressed on annotation
+  position: relative;
+
+  // Make sure that annotation anchors stick to the right edge of the code block
+  // when scrolling. This also removes an empty vertical line under anchors fixed
+  // to the code and. See https://github.com/quarto-dev/quarto-cli/issues/13449
+  // This also makes highlighting of annotated code (after clicking on
+  // annotation number below) span the whole width when scrolling horizontally.
+  display: inline-table !important;
+  min-width: 100%;
+}
+.code-annotation-container-grid {
+  margin-top: -1em !important;
+  border-top: 2px solid var(--brand-fg);
+  border-radius: 0;
+
+  background-color: var(--brand-bg-2);
+  font-size: 0.9em;
+  padding: 0.5rem;
+}
+// Make sure that code annotation lines are aligned vertically
+.code-annotation-container-grid dd {
+  margin: 0.25rem !important;
+}
+.code-annotation-container-grid dt {
+  margin: 0.25rem !important;
+  color: var(--brand-grey) !important;
+  background-color: var(--brand-grey-bg) !important;
+}
+.code-annotation-anchor {
+  position: sticky !important;
+  right: 0.25rem !important;
+  color: var(--brand-grey) !important;
+  background-color: var(--brand-grey-bg) !important;
+}
+.code-annotation-gutter,
+.code-annotation-gutter-bg {
+  display: none !important;
+}
+
+// Dedicated class to reduce line height for file tree code blocks
+.tree-style {
+  line-height: 1.25;
+}
+
 // Help file custom syntax
 .help-syntax-keys { color: var(--brand-magenta) }
 .help-syntax-special { color: var(--brand-yellow) }
