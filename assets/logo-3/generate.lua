@@ -89,15 +89,39 @@ end
 -- Colors come from the new 'minischeme' variant (done with 'mini.hues')
 local colors = {
   bg = '#081823',
+  grey = '#91937D',
+  red = '#FFC0C4',
+  orange = '#FCC9A0',
   yellow = '#E0D699',
   green = '#B4E3B5',
   cyan = '#94E6E5',
   azure = '#A1DDFF',
+  blue = '#C8CDFF',
+  purple = '#F0C3F2',
+  tree_green = '#3D8B44',
+  tree_brown = '#504600',
+  tree_red = '#DE1100',
+  hat_red = '#DE1100',
+  hat_white = '#E0E0E0',
 }
 
 -- Helpers for common actions
 local move = function(path, hor, ver) return (path:gsub('M0,0', 'M' .. hor .. ',' .. ver)) end
-local color = function(path, color) return (path:gsub('/>', ' stroke="' .. color .. '"/>')) end
+local set_stroke = function(path, color) return (path:gsub('/>', ' stroke="' .. color .. '"/>')) end
+local set_fill = function(path, fill) return (path:gsub('/>', ' fill="' .. fill .. '"/>')) end
+local set_color = function(path, color) return color == nil and path or set_stroke(set_fill(path, color), color) end
+local scale = function(path, mul)
+  local f = function(n)
+    local res = mul * tonumber(n)
+    return res == math.floor(res) and tostring(res) or string.format('%.1f', res)
+  end
+  local res = path:gsub('([lm])([%-%d%.]+),([%-%d%.]+)', function(t, x, y) return t .. f(x) .. ',' .. f(y) end)
+  res = res:gsub(
+    'a([%-%d%.]+),([%-%d%.]+),([01],[01],[01]),([%-%d%.]+),([%-%d%.]+)',
+    function(rx, ry, mid, x, y) return string.format('a%s,%s,%s,%s,%s', f(rx), f(ry), mid, f(x), f(y)) end
+  )
+  return res
+end
 
 local make_header = function(n_col, n_row)
   local width, height = get_dims(n_col, n_row)
@@ -109,6 +133,18 @@ local make_header = function(n_col, n_row)
     .. 'stroke-linecap="round" stroke-linejoin="round" '
     .. string.format('fill="%s">', colors.bg)
   return { svg, '  ' .. g }
+end
+
+local adjust_dimensions = function(lines, f_adjust)
+  local box_in = { lines[1]:match('viewBox="([-%d]+) ([-%d]+) ([-%d]+) ([-%d]+)"') }
+  local box = f_adjust(vim.tbl_map(tonumber, box_in))
+  local off_x, off_y, width, height = unpack(box)
+
+  lines[1] = lines[1]:gsub('width=".-"', string.format('width="%d"', width))
+  lines[1] = lines[1]:gsub('height=".-"', string.format('height="%d"', height))
+  lines[1] = lines[1]:gsub('viewBox=".-"', string.format('viewBox="%d %d %d %d"', off_x, off_y, width, height))
+  lines[3] = lines[3]:gsub('x=".-"', string.format('x="%d"', off_x))
+  lines[3] = lines[3]:gsub('y=".-"', string.format('y="%d"', off_y))
 end
 
 local make_bg_rect = function()
@@ -189,6 +225,65 @@ local make_social_png = function(path, opts)
   if tmp_png ~= opts.output then vim.uv.fs_rename(tmp_png, opts.output) end
 end
 
+-- Christmas helpers ==========================================================
+-- Four ray star
+local make_star = function(size, color)
+  local path = '<path d="M0,0 m100,0 l-75,25 l-25,75 l-25,-75 l-75,-25 l75,-25 l25,-75 l25,75 l75,25"/>'
+  return set_color(scale(path, 0.01 * size), color)
+end
+
+-- Three lines connecting opposite hexagon verticies
+local make_snowflake = function(size, color)
+  local path = '<path d="M0,0 m0,100 l0,-200 m87,50 l-174,100 m0,-100 l174,100"/>'
+  return set_color(scale(path, 0.01 * size), color)
+end
+
+local make_circle = function(size, color)
+  local path = '<path d="M0,0 m0,100 a100,100,0,0,1,0,-200 a100,100,0,0,1,0,200"/>'
+  return set_color(scale(path, 0.01 * size), color)
+end
+
+local make_decor_ball = function(color)
+  -- NOTE: imitate a thing that holds the ball on a vertical wire that goes
+  -- outside of a viewBox
+  local top = '<path d="M0,0 l4,0 l0,-12 l-8,0 l0,12 l4,0 l0,-200"/>'
+  return set_color(top, colors.grey) .. ' ' .. make_circle(10, color)
+end
+
+local make_tree = function(height)
+  -- Final dimensions: 50x100
+  local bg = '<path d="M0,0 l25,0 l0,100 l-50,0 l0,-100 l25,0"/>'
+  local tree = '<path d="M0,0 l15,30 l-10,0 l15,30 l-10,0 l15,30 l-50,0 l15,-30 l-10,0 l15,-30 l-10,0 l15,-30"/>'
+  local trunk = '<path d="M0,0 m0,90 l5,0 l0,10 l-10,0 l0,-10 l5,0"/>'
+  local ribbon_1 = '<path d="M0,0 m11,20 a11,3,0,0,1,-22,0"/>'
+  local ribbon_2 = '<path d="M0,0 m16,50 a16,4,0,0,1,-32,0"/>'
+  local ribbon_3 = '<path d="M0,0 m21,80 a21,5,0,0,1,-42,0"/>'
+
+  local parts = {
+    -- Ensure clean background, as it overlaps with the middle dot
+    set_color(bg, colors.bg),
+    set_color(trunk, colors.tree_brown),
+    set_color(tree, colors.tree_green),
+    set_fill(set_stroke(ribbon_1, colors.tree_red), 'none'),
+    set_fill(set_stroke(ribbon_2, colors.tree_red), 'none'),
+    set_fill(set_stroke(ribbon_3, colors.tree_red), 'none'),
+  }
+  return scale(table.concat(parts, ' '), 0.01 * height)
+end
+
+local make_hat = function()
+  local red = '<path d="M0,0 m25,-5 a15,10,0,0,0,-50,10 a15,15,0,0,1,25,-5"/>'
+  local pompom = '<path d="M0,0 m-20,5 a5,5,0,0,0,-10,0 a5,5,0,0,0,10,0"/>'
+  local bottom = '<path d="M0,0 m-5,1 a50,10,0,0,0,30,-6" stroke-width="10"/>'
+
+  local parts = {
+    set_color(red, colors.hat_red),
+    set_color(pompom, colors.hat_white),
+    set_color(bottom, colors.hat_white),
+  }
+  return table.concat(parts, ' ')
+end
+
 -- 'mini.nvim' ================================================================
 local with_azure_mini_prefix = function(suffix_lines)
   local prefix_lines = {
@@ -204,7 +299,7 @@ end
 _G.logo_mini_nvim = function()
   -- Construct svg content
   local suffix_lines = {
-    '<!-- N --> ' .. color(font.n_1, colors.cyan) .. ' ' .. color(font.n_2, colors.green),
+    '<!-- N --> ' .. set_stroke(font.n_1, colors.cyan) .. ' ' .. set_stroke(font.n_2, colors.green),
     '<!-- V --> ' .. font.v,
     '<!-- I --> ' .. font.i,
     '<!-- M --> ' .. font.m,
@@ -215,12 +310,95 @@ _G.logo_mini_nvim = function()
   local out = 'logo-3/logo-mini-nvim.svg'
   vim.fn.writefile(lines, out)
   make_social_png(out)
+
+  -- Christmas variant
+  -- - Adjust dimensions
+  local f_adjust = function(d)
+    -- off_x, off_y, width, height
+    return { d[1] - math.floor(1.618 * 24), d[2] - 48, d[3] + 2 * math.floor(1.618 * 24), d[4] + math.floor(1.618 * 48) }
+  end
+  adjust_dimensions(lines, f_adjust)
+
+  -- - Add decorations
+  local decor = function(path, row, col) return '  ' .. move(path, row, col) end
+  local decor_lines = {
+    '<!-- Stars -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 1, colors.yellow, colors.yellow),
+    decor(make_star(10), 188, -20),
+    decor(make_star(7), -40, 0),
+    decor(make_star(6), 30, 75),
+    decor(make_star(6), 300, 75),
+    decor(make_star(7), 410, -35),
+    '</g>',
+    '<!-- Snowflakes -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 2, colors.azure, colors.azure),
+    decor(make_snowflake(2), -40, 50),
+    decor(make_snowflake(5), -35, 75),
+    decor(make_snowflake(7), -30, -35),
+    decor(make_snowflake(4), -25, 25),
+    decor(make_snowflake(2), -15, -15),
+    decor(make_snowflake(2), 0, 70),
+    decor(make_snowflake(4), 30, -25),
+    decor(make_snowflake(2), 40, -45),
+    decor(make_snowflake(2), 60, -20),
+    decor(make_snowflake(2), 65, 75),
+    decor(make_snowflake(2), 95, -20),
+    decor(make_snowflake(2), 100, 70),
+    decor(make_snowflake(2), 115, -40),
+    decor(make_snowflake(3), 130, 80),
+    decor(make_snowflake(3), 135, -20),
+    decor(make_snowflake(2), 165, -15),
+    decor(make_snowflake(2), 170, 75),
+    decor(make_snowflake(2), 188, -50),
+    decor(make_snowflake(3), 210, -25),
+    decor(make_snowflake(5), 215, 70),
+    decor(make_snowflake(2), 240, -15),
+    decor(make_snowflake(2), 245, 75),
+    decor(make_snowflake(5), 260, -40),
+    decor(make_snowflake(2), 275, 65),
+    decor(make_snowflake(2), 280, -20),
+    decor(make_snowflake(2), 325, 70),
+    decor(make_snowflake(2), 330, -20),
+    decor(make_snowflake(2), 340, -45),
+    decor(make_snowflake(2), 355, 65),
+    decor(make_snowflake(3), 360, -20),
+    decor(make_snowflake(3), 380, 75),
+    decor(make_snowflake(2), 395, -15),
+    decor(make_snowflake(6), 400, 35),
+    decor(make_snowflake(2), 410, 70),
+    decor(make_snowflake(4), 415, 10),
+    '</g>',
+    '<!-- Decoration balls -->',
+    string.format('<g stroke-width="%d">', 1),
+    decor(make_decor_ball(colors.yellow), 0, -40),
+    decor(make_decor_ball(colors.orange), 75, -35),
+    decor(make_decor_ball(colors.red), 150, -40),
+    decor(make_decor_ball(colors.purple), 225, -40),
+    decor(make_decor_ball(colors.blue), 300, -35),
+    decor(make_decor_ball(colors.azure), 375, -40),
+    '</g>',
+    '<!-- Tree -->',
+    string.format('<g stroke-width="%d">', 2),
+    -- NOTE: Align top and bottom with letters
+    decor(make_tree(48 + w - 2), 188, -0.5 * w + 2),
+    '</g>',
+  }
+
+  local indent = string.rep(' ', 4)
+  for i = 1, #decor_lines do
+    table.insert(lines, #lines - 1, indent .. decor_lines[i])
+  end
+
+  -- - Save
+  local out_christmas = 'logo-3/logo-mini-nvim_christmas.svg'
+  vim.fn.writefile(lines, out_christmas)
+  make_social_png(out_christmas)
 end
 
 _G.logo_mini_module = function(name)
   -- Construct svg content
   local suffix_lines = {}
-  for i, l in ipairs(vim.split(name, '')) do
+  for _, l in ipairs(vim.split(name, '')) do
     table.insert(suffix_lines, string.format('<!-- %s --> %s', l:upper(), font[l]))
   end
   local lines = with_azure_mini_prefix(suffix_lines)
@@ -269,10 +447,10 @@ _G.logo_mini = function()
   -- Content
   local off_hor = 24 + 3 * w
   local off_ver = 48 + 3 * w
-  append(4, '<!-- M --> ' .. color(move(font.m, 0 * off_hor, 0 * off_ver), colors.azure))
-  append(4, '<!-- I --> ' .. color(move(font.i, 1 * off_hor, 0 * off_ver), colors.azure))
-  append(4, '<!-- N --> ' .. color(move(font.n, 0 * off_hor, 1 * off_ver), colors.yellow))
-  append(4, '<!-- I --> ' .. color(move(font.i, 1 * off_hor, 1 * off_ver), colors.yellow))
+  append(4, '<!-- M --> ' .. set_stroke(move(font.m, 0 * off_hor, 0 * off_ver), colors.azure))
+  append(4, '<!-- I --> ' .. set_stroke(move(font.i, 1 * off_hor, 0 * off_ver), colors.azure))
+  append(4, '<!-- N --> ' .. set_stroke(move(font.n, 0 * off_hor, 1 * off_ver), colors.yellow))
+  append(4, '<!-- I --> ' .. set_stroke(move(font.i, 1 * off_hor, 1 * off_ver), colors.yellow))
 
   -- - Close header tags
   append(2, '</g>')
@@ -297,10 +475,51 @@ _G.logo_mini = function()
   local out_mini_circle_png = 'logo-3/logo-mini_circle.png'
   vim.fn.writefile(lines_circle, out_mini_circle)
   make_social_png(out_mini_circle, { resize = '1000x1000', extent = '1000x1000', output = out_mini_circle_png })
+
+  -- Christmas variant
+  -- - Add decorations
+  local decor = function(path, row, col) return '  ' .. move(path, row, col) end
+  local decor_lines = {
+    '<!-- Stars -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 1, colors.yellow, colors.yellow),
+    decor(make_star(10), -30, 35),
+    decor(make_star(10), 100, 25),
+    '</g>',
+    '<!-- Hat -->',
+    string.format('<g stroke-width="%d">', 5, colors.yellow, colors.yellow),
+    decor(make_hat(), 0, 0),
+    '</g>',
+    '<!-- Snowflakes -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 2, colors.azure, colors.azure),
+    decor(make_snowflake(3), -40, -10),
+    decor(make_snowflake(5), -35, 70),
+    decor(make_snowflake(5), -30, 130),
+    decor(make_snowflake(7), -25, 100),
+    decor(make_snowflake(7), 100, 95),
+    decor(make_snowflake(5), 105, 65),
+    decor(make_snowflake(5), 110, -5),
+    decor(make_snowflake(5), 110, 125),
+    '</g>',
+  }
+
+  local indent = string.rep(' ', 4)
+  for i = 1, #decor_lines do
+    table.insert(lines, #lines - 1, indent .. decor_lines[i])
+  end
+
+  -- - Save
+  local out_christmas = 'logo-3/logo-mini_christmas.svg'
+  local out_christmas_png = 'logo-3/logo-mini_christmas.png'
+  local out_christmas_social = 'logo-3/logo-mini_christmas_social.png'
+  vim.fn.writefile(lines, out_christmas)
+  make_social_png(out_christmas, { resize = '^1x630', output = out_christmas_social })
+  -- NOTE: Create this last since `magic mogrify -format png ...` from previous
+  -- steps uses `logo-mini.png` as a temporary file name
+  make_social_png(out_christmas, { resize = '1000x1000', extent = '1000x1000', output = out_christmas_png })
 end
 
 -- MiniMax ====================================================================
-_G.logo_minimax = function(suffix_lines)
+_G.logo_minimax = function()
   local lines = make_header(7, 1)
   local append = function(indent, l) table.insert(lines, string.rep(' ', indent) .. l) end
 
@@ -330,6 +549,75 @@ _G.logo_minimax = function(suffix_lines)
   local out = 'logo-3/logo-minimax.svg'
   vim.fn.writefile(lines, out)
   make_social_png(out)
+
+  -- Christmas variant
+  -- - Adjust dimensions
+  local f_adjust = function(d)
+    -- off_x, off_y, width, height
+    return { d[1] - math.floor(1.618 * 24), d[2] - 48, d[3] + 2 * math.floor(1.618 * 24), d[4] + math.floor(1.618 * 48) }
+  end
+  adjust_dimensions(lines, f_adjust)
+
+  -- - Add decorations
+  local decor = function(path, row, col) return '  ' .. move(path, row, col) end
+  local decor_lines = {
+    '<!-- Stars -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 1, colors.yellow, colors.yellow),
+    decor(make_star(7), -40, 0),
+    decor(make_star(6), 30, 75),
+    decor(make_star(6), 300, 75),
+    decor(make_star(7), 315, 25),
+    '</g>',
+    '<!-- Snowflakes -->',
+    string.format('<g stroke-width="%d" stroke="%s" fill="%s">', 2, colors.azure, colors.azure),
+    decor(make_snowflake(2), -40, 50),
+    decor(make_snowflake(5), -35, 75),
+    decor(make_snowflake(7), -30, -35),
+    decor(make_snowflake(4), -25, 25),
+    decor(make_snowflake(2), -15, -15),
+    decor(make_snowflake(2), 0, 70),
+    decor(make_snowflake(4), 30, -25),
+    decor(make_snowflake(2), 40, -45),
+    decor(make_snowflake(2), 60, -20),
+    decor(make_snowflake(2), 65, 75),
+    decor(make_snowflake(2), 95, -20),
+    decor(make_snowflake(2), 100, 70),
+    decor(make_snowflake(2), 115, -40),
+    decor(make_snowflake(3), 130, 80),
+    decor(make_snowflake(3), 135, -20),
+    decor(make_snowflake(2), 165, -15),
+    decor(make_snowflake(2), 170, 75),
+    decor(make_snowflake(2), 188, -50),
+    decor(make_snowflake(3), 210, -25),
+    decor(make_snowflake(5), 215, 70),
+    decor(make_snowflake(2), 240, -15),
+    decor(make_snowflake(2), 245, 75),
+    decor(make_snowflake(5), 260, -40),
+    decor(make_snowflake(2), 275, 65),
+    decor(make_snowflake(2), 280, -20),
+    decor(make_snowflake(2), 320, 55),
+    decor(make_snowflake(3), 320, 0),
+    decor(make_snowflake(2), 325, -40),
+    '</g>',
+    '<!-- Decoration balls -->',
+    string.format('<g stroke-width="%d">', 1),
+    decor(make_decor_ball(colors.blue), 0, -40),
+    decor(make_decor_ball(colors.purple), 75, -35),
+    decor(make_decor_ball(colors.red), 150, -40),
+    decor(make_decor_ball(colors.orange), 225, -40),
+    decor(make_decor_ball(colors.yellow), 300, -35),
+    '</g>',
+  }
+
+  local indent = string.rep(' ', 4)
+  for i = 1, #decor_lines do
+    table.insert(lines, #lines - 1, indent .. decor_lines[i])
+  end
+
+  -- - Save
+  local out_christmas = 'logo-3/logo-minimax_christmas.svg'
+  vim.fn.writefile(lines, out_christmas)
+  make_social_png(out_christmas)
 end
 
 -- 'lang.nvim' ================================================================
@@ -347,7 +635,7 @@ end
 _G.logo_lang_nvim = function()
   -- Construct svg content
   local suffix_lines = {
-    '<!-- N --> ' .. color(font.n_1, colors.cyan) .. ' ' .. color(font.n_2, colors.green),
+    '<!-- N --> ' .. set_stroke(font.n_1, colors.cyan) .. ' ' .. set_stroke(font.n_2, colors.green),
     '<!-- V --> ' .. font.v,
     '<!-- I --> ' .. font.i,
     '<!-- M --> ' .. font.m,
@@ -363,7 +651,7 @@ end
 _G.logo_lang_module = function(name)
   -- Construct svg content
   local suffix_lines = {}
-  for i, l in ipairs(vim.split(name, '')) do
+  for _, l in ipairs(vim.split(name, '')) do
     table.insert(suffix_lines, string.format('<!-- %s --> %s', l:upper(), font[l]))
   end
   local lines = with_azure_lang_prefix(suffix_lines)
