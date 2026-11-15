@@ -1,0 +1,321 @@
+/*
+ * Bluesky Comments CSS
+ *
+ * We use CSS variables to allow for easy theming and customization. Specifically, we use:
+ *
+ * - Private variables (--_*): Used internally within the component
+ * - Public variables (--bc-*): For user customization
+ * - Bootstrap variables (--bs-*): Used as fallbacks
+ *
+ * To customize the appearance:
+ * 1. Override Bootstrap variables to affect all Bootstrap components
+ * 2. Set --bc-* variables to specifically style this component
+ * 3. Use class-specific styles for fine-grained control
+ */
+
+ bluesky-comments {
+  /* Custom Properties for Theming
+   * Each property follows the pattern:
+   * --_internal: var(--bc-public, var(--bs-bootstrap, fallback))
+   */
+
+  /* Text Colors
+   * Control the appearance of various text elements */
+  --_text-color: var(--bc-text-color, var(--bs-body-color, #000));       /* Main text color */
+  --_muted-text: var(--bc-muted-text, var(--bs-secondary-color, #666));  /* Secondary text color */
+  --_link-color: var(--bc-link-color, var(--bs-link-color, #0066cc));    /* Link color */
+  --_link-hover-color: var(--bc-link-hover-color,
+    var(--bs-link-hover-color, #0052a3));                                /* Link hover color */
+
+  --_muted-bg: var(--bc-muted-bg, rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.05));
+  --_muted-fg: var(--bc-muted-fg, rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.65));
+
+  /* Background Colors
+   * Define background colors for various component elements */
+  --_bg-avatar: var(--bc-avatar-bg, var(--bs-secondary-bg, #eee)); /* Avatar placeholder */
+
+  /* Border Colors
+   * Control the appearance of borders and dividers */
+  --_border-color: var(--bc-border-color, var(--bs-border-color, #e9ecef)); /* General borders */
+  --_thread-line: var(--bc-thread-line, var(--bs-border-color, #eee));      /* Comment thread lines */
+  --_thread-line-width: var(--bc-thread-line-width, 2px);
+
+  /* Warning Colors
+   * Styles for content warning */
+  --_warning-text: var(--bc-warning-text, var(--_muted-fg)); /* Warning text */
+  --_warning-bg: var(--bc-warning-bg, var(--_muted-bg));     /* Warning background */
+
+  /* Avatar */
+  --_avatar-size: var(--bc-avatar-size, 24px);
+
+  --_border-radius: var(--bc-border-radius, var(--bs-border-radius, 4px));
+
+  /* Base Container Styles */
+  display: block;
+  margin: 1rem auto;
+  max-width: var(--bc-max-width, 800px);
+  color: var(--_text-color);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Statistics Display
+ * Shows post engagement metrics */
+.bc-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bc-stats a {
+  color: var(--_text-color);
+}
+
+.bc-stats a:hover,
+.bc-comment__actions a:hover {
+  text-decoration: underline;
+  color: var(--_link-hover-color);
+}
+
+/* Action Links
+* Styles for interactive elements */
+.bc-stats__link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.bc-stats__link:hover {
+  opacity: 0.8;
+}
+
+.bc-no-wrap {
+  white-space: nowrap;
+}
+
+.bc-stats__link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bc-stats__link svg {
+  height: 1em;
+  width: 1em;
+  flex-shrink: 0;
+}
+
+.bc-stats__link svg {
+  vertical-align: -.125em;
+}
+
+/* Avatar Styles
+ * User profile pictures and placeholders */
+.bc-comment__header__avatar,
+.bc-comment__header__avatar--placeholder {
+  width: var(--_avatar-size);
+  height: var(--_avatar-size);
+  border-radius: 50%;
+  background-color: var(--_bg-avatar);
+}
+
+.bc-comment__header__avatar {
+  position: absolute;
+  left: calc(-1 * (var(--_avatar-size) + var(--_thread-line-width) + var(--_comment-padding-inline)));
+}
+
+/* Comment Styles
+ * Individual comment containers and their components */
+.bc-comment {
+  --_comment-padding-inline: 0.5rem;
+  margin: 0;
+  padding: 0;
+  padding-left: calc(var(--_comment-padding-inline) + var(--_avatar-size, 0) / 2);
+  padding-right: var(--_comment-padding-inline);
+  border-left: var(--_thread-line-width, 2px) solid var(--_thread-line);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.bc-comment p {
+  margin-bottom: min(var(--_comment-padding-inline), 1rem);
+}
+
+.bc-comment__header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+}
+
+.bc-comment__body {
+  margin-bottom: min(var(--_comment-padding-inline), 1rem);
+}
+
+.bc-comment__stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  color: var(--_muted-fg);
+  font-size: 0.8em;
+}
+
+/* Timestamp Display */
+.bc-timestamp-link {
+  color: var(--_muted-fg);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.bc-timestamp-link:hover {
+  text-decoration: underline;
+  color: var(--_link-hover-color);
+}
+
+/* Author Information
+ * Styles for user identification */
+.bc-author-link {
+  text-decoration: none;
+  color: var(--_text-color);
+}
+
+.bc-author-link:hover {
+  text-decoration: underline;
+  color: var(--_link-hover-color);
+}
+
+/* Reply Thread Styles
+ * Visual hierarchy for comment threads */
+.bc-comment__replies {
+  margin-top: 1rem;
+  margin-left: calc(var(--_avatar-size));
+}
+
+/* Load More Buttons
+ * Controls for expanding comment threads */
+.bc-comment__show-more {
+  background: none;
+  border: none;
+  color: var(--_link-color);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.bc-comment__show-more:hover {
+  text-decoration: underline;
+  color: var(--_link-hover-color);
+}
+
+/* Status Messages
+ * Error and loading state displays */
+.bc-error {
+  color: var(--_warning-text);
+  text-align: center;
+}
+
+.bc-loading {
+  color: var(--_muted-text);
+  animation: bc-fade-in-out 2s ease-in-out infinite;
+}
+
+@keyframes bc-fade-in-out {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Content Warning System
+ * Styles for content warning labels and interactions */
+.bc-comment__content-warning {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: min(var(--_comment-padding-inline), 1rem);
+  padding: 0.25rem 0.5rem;
+  background: var(--_warning-bg);
+  border: 1px solid var(--_border-color);
+  border-radius: var(--_border-radius);
+  font-size: 0.8rem;
+}
+
+.bc-comment__content-warning__label {
+  color: var(--_warning-text);
+  font-weight: 500;
+}
+
+.bc-comment__content-warning__button {
+  padding: 0.25rem 0.5rem;
+  color: var(--_warning-text);
+}
+
+.btn-soft {
+  --_btn-bg-opacity: 0;
+  --_btn-bg-rgb: var(--bs-emphasis-color-rgb);
+  --_btn-bg-color: rgba(var(--_btn-bg-rgb), var(--_btn-bg-opacity));
+  background-color: var(--_btn-bg-color);
+  color: var(--_muted-fg);
+  border-color: transparent;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-soft:hover {
+  --_btn-bg-opacity: 0.1;
+  background-color: var(--_btn-bg-color);
+}
+
+.btn-soft:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(var(--_btn-bg-rgb), 0.5);
+}
+
+/* ---- Embedded Media ---- */
+.bc-comment__embed {
+  display: grid;
+  gap: 0.25rem;
+  max-height: 400px;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+/* Single image takes full width */
+.bc-comment__embed:has(.bc-comment__embed__item:only-child) {
+  grid-template-columns: 1fr;
+}
+
+/* Two images split 50/50 */
+.bc-comment__embed:has(.bc-comment__embed__item:first-child:nth-last-child(2)) {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Three images: first takes left half, others stack on right */
+.bc-comment__embed:has(.bc-comment__embed__item:first-child:nth-last-child(3)) {
+  grid-template-columns: 1fr 1fr;
+}
+.bc-comment__embed:has(.bc-comment__embed__item:first-child:nth-last-child(3)) .bc-comment__embed__item:first-child {
+  grid-row: 1 / span 2;
+}
+
+/* Four images in 2x2 grid */
+.bc-comment__embed:has(.bc-comment__embed__item:first-child:nth-last-child(4)) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.bc-comment__embed__item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bc-comment__embed__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
