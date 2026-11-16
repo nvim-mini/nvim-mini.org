@@ -1,5 +1,9 @@
 _Generated from the `main` branch of 'MiniMax'_
 
+## 2026-11-16 {#2026-11-16}
+
+- Mention 'mini.nvim' mirrors on Tangled and Codeberg.
+
 ## 2026-10-24 {#2026-10-24}
 
 - Suggest using the updated `minischeme` color scheme.
