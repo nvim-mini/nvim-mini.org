@@ -387,6 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#minibasics.config-mappings-mappings.option_toggle_prefix" id="toc-minibasics.config-mappings-mappings.option_toggle_prefix" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.option_toggle_prefix">mappings.option_toggle_prefix</a></li>
   <li><a href="#minibasics.config-mappings-mappings.windows" id="toc-minibasics.config-mappings-mappings.windows" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.windows">mappings.windows</a></li>
   <li><a href="#minibasics.config-mappings-mappings.move_with_alt" id="toc-minibasics.config-mappings-mappings.move_with_alt" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.move_with_alt">mappings.move_with_alt</a></li>
+  <li><a href="#minibasics.config-mappings-mappings.search" id="toc-minibasics.config-mappings-mappings.search" class="nav-link" data-scroll-target="#minibasics.config-mappings-mappings.search">mappings.search</a></li>
   </ul></li>
   <li><a href="#minibasics.config-autocommands" id="toc-minibasics.config-autocommands" class="nav-link" data-scroll-target="#minibasics.config-autocommands">Autocommands</a>
   <ul>
@@ -518,20 +519,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move cursor in Insert, Command, and Terminal mode with &lt;M-hjkl&gt;</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">move_with_alt</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autocommands. Set field to `false` to disable</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocommands</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Basic autocommands (highlight on yank, start Insert in terminal, ...)</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Set 'relativenumber' only in linewise and blockwise Visual mode</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">relnum_in_visual_mode</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Do not move cursor after */#, improved n/N</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Autocommands. Set field to `false` to disable</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="va">autocommands</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Basic autocommands (highlight on yank, start Insert in terminal, ...)</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">basic</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Set 'relativenumber' only in linewise and blockwise Visual mode</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">relnum_in_visual_mode</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Whether to disable showing non-error feedback</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="va">silent</span> <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minibasics.config-options" class="level4">
 <h4 class="anchored" data-anchor-id="minibasics.config-options">Options</h4>
@@ -624,8 +628,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">option_toggle_prefix</span> <span class="op">=</span> <span class="vs">[[\]]</span><span class="op">,</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">windows</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">move_with_alt</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you want some mappings to be different or not made at all, set or delete them after calling <a href="../../mini.nvim/doc/mini-basics.html#minibasics.setup">MiniBasics.setup()</a>.</p>
 <section id="minibasics.config-mappings-mappings.basic" class="level5">
 <h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.basic">mappings.basic</h5>
@@ -639,7 +644,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 | go    | Normal          | Add [count] empty lines after cursor          |
 | gO    | Normal          | Add [count] empty lines before cursor         |
 | gy    | Normal, Visual  | Copy to system clipboard                      |
+| gY    | Normal          | Copy till end-of-line to system clipboard     |
 | gp    | Normal, Visual  | Paste from system clipboard                   |
+| gP    | Normal, Visual  | Paste from system clipboard                   |
 | gV    | Normal          | Visually select latest changed or yanked text |
 | g/    | Visual          | Search inside current visual selection        |
 | *     | Visual          | Search forward for current visual selection   |
@@ -652,6 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>See <a href="https://neovim.io/doc/user/helptag.html?tag=%5Bcount%5D">[count]</a> for its meaning.</p></li>
 <li><p>The <span class="help-syntax-keys">&lt;C-c&gt;</span> mapping is basically a combination of <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-C">CTRL-C</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a>. This combines related actions under one mapping. Particularly useful with enabled <code>mappings.windows</code> as it overrides <a href="https://neovim.io/doc/user/helptag.html?tag=CTRL-L-default">CTRL-L-default</a>.</p></li>
 <li><p>On Neovim&gt;=0.11 there are <a href="https://neovim.io/doc/user/helptag.html?tag=%5B%3CSpace%3E">[<span class="help-syntax-keys">&lt;Space&gt;</span></a> / <a href="https://neovim.io/doc/user/helptag.html?tag=%5D%3CSpace%3E">]<span class="help-syntax-keys">&lt;Space&gt;</span></a> for adding empty lines. The <code>gO</code> and <code>go</code> mappings are still created as they are more aligned with similarly purposed <a href="https://neovim.io/doc/user/helptag.html?tag=O">O</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=o">o</a> keys (although sometimes conflict with <a href="https://neovim.io/doc/user/helptag.html?tag=gO">gO</a>).</p></li>
+<li><p>The difference between <code>gp</code> and <code>gP</code> is that in Normal mode they paste with <a href="https://neovim.io/doc/user/helptag.html?tag=p">p</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=P">P</a> respectively.</p></li>
 </ul>
 </section>
 <section id="minibasics.config-mappings-mappings.option_toggle_prefix" class="level5">
@@ -713,6 +721,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>&lt;M-j&gt;</code> - move cursor down. Modes: Insert, Terminal.</p></li>
 <li><p><code>&lt;M-k&gt;</code> - move cursor up. Modes: Insert, Terminal.</p></li>
 <li><p><code>&lt;M-l&gt;</code> - move cursor right. Modes: Insert, Terminal, Command.</p></li>
+</ul>
+</section>
+<section id="minibasics.config-mappings-mappings.search" class="level5">
+<h5 class="anchored" data-anchor-id="minibasics.config-mappings-mappings.search">mappings.search</h5>
+<p>The <code>config.mappings.search</code> improves mappings for <a href="https://neovim.io/doc/user/helptag.html?tag=pattern-searches">pattern-searches</a>:</p>
+<ul>
+<li><p><code>n</code> and <code>N</code> will act like <a href="https://neovim.io/doc/user/helptag.html?tag=n">n</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=N">N</a>, plus open just enough folds (<a href="https://neovim.io/doc/user/helptag.html?tag=zv">zv</a>) and explicitly set <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch">v:hlsearch</a> for better plugin integrations (like <a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a>).</p></li>
+<li><p><code>*</code> and <code>#</code> will act like <a href="https://neovim.io/doc/user/helptag.html?tag=star">star</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=#">#</a> in Normal and Visual mode, but not move cursor and explicitly set <a href="https://neovim.io/doc/user/helptag.html?tag=v:hlsearch">v:hlsearch</a> and <a href="https://neovim.io/doc/user/helptag.html?tag=v:searchforward">v:searchforward</a> for better plugin integrations (like <a href="../../mini.nvim/doc/mini-map.html#mini.map">mini.map</a>).</p></li>
 </ul>
 </section>
 </section>
