@@ -46,6 +46,10 @@ There are following change types:
 
 - Add `<C-c>` basic mapping that acts as "Stop, clear, redraw" (a combination of `:h CTRL-C` and `:h CTRL-L-default`).
 
+- Add `gY` and `gP` basic mappings to complement `gy` and `gp`, that copy and paste with system clipboard with `"+Y` and `"+P` respectively.
+
+- Add `config.mappings.search` to create improved versions of search keys: `*`, `#`, `n`, `N`.
+
 ## mini.bracketed {#v0.19.0-mini.bracketed}
 
 ### Expand {#v0.19.0-mini.bracketed-expand}

@@ -134,6 +134,9 @@ Module setup
 
       -- Move cursor in Insert, Command, and Terminal mode with <M-hjkl>
       move_with_alt = false,
+
+      -- Do not move cursor after */#, improved n/N
+      search = false,
     },
 
     -- Autocommands. Set field to `false` to disable
@@ -295,6 +298,7 @@ Usage example:
       option_toggle_prefix = [[\]],
       windows = true,
       move_with_alt = true,
+      search = true,
     }
   })
   ```
@@ -322,7 +326,9 @@ Here is a table with created mappings :
  | go    | Normal          | Add [count] empty lines after cursor          |
  | gO    | Normal          | Add [count] empty lines before cursor         |
  | gy    | Normal, Visual  | Copy to system clipboard                      |
+ | gY    | Normal          | Copy till end-of-line to system clipboard     |
  | gp    | Normal, Visual  | Paste from system clipboard                   |
+ | gP    | Normal, Visual  | Paste from system clipboard                   |
  | gV    | Normal          | Visually select latest changed or yanked text |
  | g/    | Visual          | Search inside current visual selection        |
  | *     | Visual          | Search forward for current visual selection   |
@@ -343,6 +349,9 @@ Notes:
 - On Neovim>=0.11 there are [\[<span class="help-syntax-keys">\<Space\></span>](https://neovim.io/doc/user/helptag.html?tag=[<Space>) / [\]<span class="help-syntax-keys">\<Space\></span>](https://neovim.io/doc/user/helptag.html?tag=]<Space>) for adding empty lines.
   The `gO` and `go` mappings are still created as they are more aligned with
   similarly purposed [O](https://neovim.io/doc/user/helptag.html?tag=O) and [o](https://neovim.io/doc/user/helptag.html?tag=o) keys (although sometimes conflict with [gO](https://neovim.io/doc/user/helptag.html?tag=gO)).
+
+- The difference between `gp` and `gP` is that in Normal mode they paste
+  with [p](https://neovim.io/doc/user/helptag.html?tag=p) and [P](https://neovim.io/doc/user/helptag.html?tag=P) respectively.
 
 ##### mappings.option_toggle_prefix {#minibasics.config-mappings-mappings.option_toggle_prefix}
 
@@ -444,6 +453,18 @@ Here is a list of created mappings (`<M-x>` means <span class="help-syntax-keys"
 - `<M-k>` - move cursor up.    Modes: Insert, Terminal.
 
 - `<M-l>` - move cursor right. Modes: Insert, Terminal, Command.
+
+##### mappings.search {#minibasics.config-mappings-mappings.search}
+
+
+The `config.mappings.search` improves mappings for [pattern-searches](https://neovim.io/doc/user/helptag.html?tag=pattern-searches):
+
+- `n` and `N` will act like [n](https://neovim.io/doc/user/helptag.html?tag=n) and [N](https://neovim.io/doc/user/helptag.html?tag=N), plus open just enough folds ([zv](https://neovim.io/doc/user/helptag.html?tag=zv)) and
+  explicitly set [v:hlsearch](https://neovim.io/doc/user/helptag.html?tag=v:hlsearch) for better plugin integrations (like [mini.map](mini-map.qmd#mini.map)).
+
+- `*` and `#` will act like [star](https://neovim.io/doc/user/helptag.html?tag=star) and [#](https://neovim.io/doc/user/helptag.html?tag=#) in Normal and Visual mode, but not move
+  cursor and explicitly set [v:hlsearch](https://neovim.io/doc/user/helptag.html?tag=v:hlsearch) and [v:searchforward](https://neovim.io/doc/user/helptag.html?tag=v:searchforward) for better plugin
+  integrations (like [mini.map](mini-map.qmd#mini.map)).
 
 #### Autocommands {#minibasics.config-autocommands}
 

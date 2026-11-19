@@ -839,8 +839,9 @@ Integration count reflects number of actual matches.
 It prompts integration highlighting update on every change of ['hlsearch'](https://neovim.io/doc/user/helptag.html?tag='hlsearch')
 (see [OptionSet](https://neovim.io/doc/user/helptag.html?tag=OptionSet)) or [v:hlsearch](https://neovim.io/doc/user/helptag.html?tag=v:hlsearch). Note that it is not happening for some keys:
 
-- After starting search with [n](https://neovim.io/doc/user/helptag.html?tag=n), [N](https://neovim.io/doc/user/helptag.html?tag=N), [star](https://neovim.io/doc/user/helptag.html?tag=star), or [#](https://neovim.io/doc/user/helptag.html?tag=#).
-  To enable highlight update on this keys, make custom mappings. Like this:
+- After starting search with [n](https://neovim.io/doc/user/helptag.html?tag=n), [N](https://neovim.io/doc/user/helptag.html?tag=N), [star](https://neovim.io/doc/user/helptag.html?tag=star), or [#](https://neovim.io/doc/user/helptag.html?tag=#). To enable highlight
+  update on these keys, make custom mappings. The recommended way is to use
+  `config.mappings.search=true` in [mini.basics](mini-basics.qmd#mini.basics). Or create manually like this:
 
   ```lua
   for _, key in ipairs({ 'n', 'N', '*', '#' }) do
