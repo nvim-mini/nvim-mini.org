@@ -16,10 +16,6 @@ See more details in [Features](#features) and [Documentation](../doc/mini-base16
 
 ---
 
-::: {.callout-note}
-This was previously hosted at a personal `echasnovski` GitHub account. It was transferred to a dedicated organization to improve long term project stability. See more details [here](https://github.com/nvim-mini/mini.nvim/discussions/1970).
-:::
-
 ⦿ This is a part of [mini.nvim](https://nvim-mini.org/mini.nvim) library. Please use [this link](https://nvim-mini.org/mini.nvim/readmes/mini-base16) if you want to mention this module.
 
 ⦿ All contributions (issues, pull requests, discussions, etc.) are done inside of 'mini.nvim'.
